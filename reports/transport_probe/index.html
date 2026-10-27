@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local stub probe — NOT Meta verification</title>
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0; background: #f6f7f9; color: #1d232b;
+         font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 28px 22px 64px; }
+  .banner { background: #8a1c1c; color: #fff; font-weight: 700; letter-spacing: .04em;
+             padding: 12px 18px; border-radius: 8px; margin-bottom: 22px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 20px; margin-top: 34px; border-bottom: 1px solid #d9dde3; padding-bottom: 6px; }
+  .note { background: #fff7e6; border: 1px solid #f0c36d; border-radius: 8px;
+           padding: 12px 16px; margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #d9dde3; }
+  th, td { text-align: left; padding: 9px 11px; border-bottom: 1px solid #e6e9ee; }
+  th { background: #eef1f5; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  td.ok { color: #116329; font-weight: 650; }
+  td.bad { color: #8a1c1c; font-weight: 650; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  code { background: #eef1f5; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+  pre { background: #fff; border: 1px solid #d9dde3; border-radius: 8px;
+         padding: 14px; overflow: auto; font-size: 12.5px; line-height: 1.45; }
+  details { margin: 10px 0; }
+  summary { cursor: pointer; padding: 8px 0; }
+  .md { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+         font-size: 12.5px; }
+  .foot { margin-top: 34px; color: #5b6673; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="banner">LOCAL STUB — NOT META VERIFICATION</div>
+  <h1>Meta client local stub probe</h1>
+  <p>Served from <code>reports/transport_probe/</code> on <code>127.0.0.1</code>.
+     Every response below came from an in-process stub, not from Meta or any other provider.</p>
+
+  <div class="note">
+    <strong>No external network call. No real credential. No credits spent.</strong><br>
+    This page cannot verify Meta endpoint paths, models, <code>json_schema</code> support,
+    the SAM box grammar, vision format, pricing, or latency. It only shows that our
+    own client transport and parsers behave as designed against a stub.
+  </div>
+
+  <h2>Probe results</h2>
+  <table>
+    <thead><tr><th>Probe</th><th>Result</th><th>HTTP</th><th>Latency (ms, loopback)</th><th>Error</th></tr></thead>
+    <tbody><tr><td>text</td><td class="ok">ok</td><td>200</td><td>224.6</td><td><code>—</code></td></tr><tr><td>vision</td><td class="ok">ok</td><td>200</td><td>14.6</td><td><code>—</code></td></tr><tr><td>sam</td><td class="ok">ok</td><td>200</td><td>13.2</td><td><code>—</code></td></tr><tr><td>image</td><td class="ok">ok</td><td>200</td><td>13.6</td><td><code>—</code></td></tr><tr><td>error</td><td class="ok">raised as expected</td><td>400</td><td>1.8</td><td><code>MetaError: meta_http_400</code></td></tr></tbody>
+  </table>
+  <p class="foot">Latency is loopback stub time, not API latency.</p>
+
+  <h2>SAM box parsed from the stub token</h2>
+  <pre>[
+  {
+    &quot;ordinal&quot;: 0,
+    &quot;x1&quot;: 10,
+    &quot;y1&quot;: 20,
+    &quot;x2&quot;: 110,
+    &quot;y2&quot;: 120,
+    &quot;w&quot;: 128,
+    &quot;h&quot;: 128,
+    &quot;has_mask&quot;: true,
+    &quot;pct&quot;: {
+      &quot;left&quot;: 7.81,
+      &quot;top&quot;: 15.62,
+      &quot;width&quot;: 78.12,
+      &quot;height&quot;: 78.12
+    }
+  }
+]</pre>
+
+  <h2>Full summary</h2>
+  <pre class="md"># LOCAL STUB probe — NOT Meta verification
+
+**This is not a live API test.** It runs the repo&#x27;s real
+`src/ai_layer/meta_client` against an in-process loopback HTTP stub that returns
+synthetic, hand-written envelopes. No external network call was made. No real
+credential was used. No credits were spent.
+
+`HACKATHON.md` §6 must not be changed on the basis of this run. Nothing here
+verifies a Meta endpoint, model, rate limit, price, or response shape.
+
+- Run (UTC): 2026-10-26T17:10:36+00:00
+- Stub base: `http://127.0.0.1:51834/v1` (ephemeral loopback port)
+- Models in the captures are **stub names**, not real models:
+  `stub-text-model`, `stub-vision-model`, `stub-sam-model`, `stub-image-model`
+- Credential: a dummy non-credential string was set only so the client&#x27;s
+  `meta_enabled()` check would pass. It is not a real key and is not reproduced
+  here. Authorization is recorded only as `&lt;REDACTED&gt;`.
+- Guard: `meta_client.guard_url` was replaced **in the diagnostic process only**
+  to permit plain HTTP on loopback. Product code and tests are unchanged.
+- Latency is loopback stub time, not network or API latency. It is not
+  comparable to a live call.
+- Usage/tokens/cost: **none**. The stub returns no `usage` object, so no token
+  or cost number exists for this run.
+- Raw redacted exchanges: `text.json`, `vision.json`, `sam.json`, `image.json`,
+  `error.json`.
+
+| Probe | Result | HTTP | Latency ms | Stub model | Error | Stub contract checks |
+|---|---|---|---|---|---|---|
+| text | ok | 200 | 224.6 | `stub-text-model` | — | all expected values |
+| vision | ok | 200 | 14.6 | `stub-vision-model` | — | all expected values |
+| sam | ok | 200 | 13.2 | `stub-sam-model` | — | all expected values |
+| image | ok | 200 | 13.6 | `stub-image-model` | — | all expected values |
+| error | raised as expected | 400 | 1.8 | `—` | MetaError: meta_http_400 | all expected values |
+
+## What this proves
+
+- The real client opens a socket, sends `Content-Type: application/json` and a
+  Bearer header, and parses an OpenAI-shaped chat envelope.
+- `chat_json` sends `response_format.type = json_schema`, a schema name and
+  `strict: false`, then validates the returned JSON against the schema.
+- The vision request is sent as a `text` part plus an `image_url` part, and is
+  parsed through the same envelope path.
+- `sam_segment` sends `stream: true` with `input_text` + `input_image`, reads a
+  `text/event-stream`, extracts `response.output_text.delta`, and parses the
+  box token into:
+  `[{&quot;ordinal&quot;: 0, &quot;x1&quot;: 10, &quot;y1&quot;: 20, &quot;x2&quot;: 110, &quot;y2&quot;: 120, &quot;w&quot;: 128, &quot;h&quot;: 128, &quot;has_mask&quot;: true, &quot;pct&quot;: {&quot;left&quot;: 7.81, &quot;top&quot;: 15.62, &quot;width&quot;: 78.12, &quot;height&quot;: 78.12}}]`
+- `image_generate` sends `model`, `prompt`, `size`, `n` and reads `data[0]`.
+- A non-2xx response is raised as `MetaError`, not converted to a success.
+
+## What this does not prove
+
+- That Meta accepts any of these paths, models, headers, or payloads.
+- That Meta supports `json_schema` strict mode (the probe only shows our client
+  sends `strict: false` and our stub accepts it).
+- That the SAM box-token grammar is Meta&#x27;s real grammar.
+- That the vision part, image-generation envelope, rate limits, pricing, or
+  error bodies match Meta.
+- Anything about latency, tokens, or cost of a real call.
+
+The only way to verify the Meta items is a real Meta Model API key (or a
+hackathon-provided sandbox) and a live smoke run.
+</pre>
+
+  <h2>Raw redacted captures</h2>
+  <details><summary><code>text.json</code></summary><pre>{
+  &quot;probe&quot;: &quot;text&quot;,
+  &quot;ok&quot;: true,
+  &quot;error&quot;: null,
+  &quot;latency_ms&quot;: 224.6,
+  &quot;http_status&quot;: 200,
+  &quot;value&quot;: {
+    &quot;normalized_en&quot;: &quot;smoke is coming from the car and the brakes have failed&quot;,
+    &quot;confidence&quot;: 0.95
+  },
+  &quot;exchange&quot;: {
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;path&quot;: &quot;/v1/chat/completions&quot;,
+    &quot;request_headers&quot;: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      &quot;Authorization&quot;: &quot;&lt;REDACTED&gt;&quot;,
+      &quot;Accept&quot;: null
+    },
+    &quot;request_body&quot;: {
+      &quot;model&quot;: &quot;stub-text-model&quot;,
+      &quot;messages&quot;: [
+        {
+          &quot;role&quot;: &quot;system&quot;,
+          &quot;content&quot;: &quot;Normalise the vehicle complaint to English. Return JSON only.&quot;
+        },
+        {
+          &quot;role&quot;: &quot;user&quot;,
+          &quot;content&quot;: &quot;gaadi se dhuaan aa raha hai aur brake fail ho gaye&quot;
+        }
+      ],
+      &quot;temperature&quot;: 0,
+      &quot;max_tokens&quot;: 200,
+      &quot;response_format&quot;: {
+        &quot;type&quot;: &quot;json_schema&quot;,
+        &quot;json_schema&quot;: {
+          &quot;name&quot;: &quot;normalized_complaint&quot;,
+          &quot;schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+              &quot;normalized_en&quot;: {
+                &quot;type&quot;: &quot;string&quot;
+              },
+              &quot;confidence&quot;: {
+                &quot;type&quot;: &quot;number&quot;
+              }
+            },
+            &quot;required&quot;: [
+              &quot;normalized_en&quot;,
+              &quot;confidence&quot;
+            ]
+          },
+          &quot;strict&quot;: false
+        }
+      }
+    },
+    &quot;contract_checks&quot;: {
+      &quot;authorization_is_bearer&quot;: true,
+      &quot;content_type_json&quot;: true,
+      &quot;response_format_type&quot;: &quot;json_schema&quot;,
+      &quot;response_format_type_is_json_schema&quot;: true,
+      &quot;schema_name_present&quot;: true,
+      &quot;strict_is_false&quot;: true,
+      &quot;temperature_zero&quot;: true,
+      &quot;max_tokens_present&quot;: true,
+      &quot;vision_part&quot;: false
+    }
+  }
+}</pre></details><details><summary><code>vision.json</code></summary><pre>{
+  &quot;probe&quot;: &quot;vision&quot;,
+  &quot;ok&quot;: true,
+  &quot;error&quot;: null,
+  &quot;latency_ms&quot;: 14.6,
+  &quot;http_status&quot;: 200,
+  &quot;value&quot;: {
+    &quot;description&quot;: &quot;a red circle on a white background&quot;,
+    &quot;confidence&quot;: 0.95
+  },
+  &quot;exchange&quot;: {
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;path&quot;: &quot;/v1/chat/completions&quot;,
+    &quot;request_headers&quot;: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      &quot;Authorization&quot;: &quot;&lt;REDACTED&gt;&quot;,
+      &quot;Accept&quot;: null
+    },
+    &quot;request_body&quot;: {
+      &quot;model&quot;: &quot;stub-vision-model&quot;,
+      &quot;messages&quot;: [
+        {
+          &quot;role&quot;: &quot;system&quot;,
+          &quot;content&quot;: &quot;Describe the image briefly. Return JSON only.&quot;
+        },
+        {
+          &quot;role&quot;: &quot;user&quot;,
+          &quot;content&quot;: [
+            {
+              &quot;type&quot;: &quot;text&quot;,
+              &quot;text&quot;: &quot;What shape and colour is shown?&quot;
+            },
+            {
+              &quot;type&quot;: &quot;image_url&quot;,
+              &quot;image_url&quot;: {
+                &quot;url&quot;: &quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==&quot;
+              }
+            }
+          ]
+        }
+      ],
+      &quot;temperature&quot;: 0,
+      &quot;max_tokens&quot;: 200,
+      &quot;response_format&quot;: {
+        &quot;type&quot;: &quot;json_schema&quot;,
+        &quot;json_schema&quot;: {
+          &quot;name&quot;: &quot;image_description&quot;,
+          &quot;schema&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+              &quot;description&quot;: {
+                &quot;type&quot;: &quot;string&quot;
+              },
+              &quot;confidence&quot;: {
+                &quot;type&quot;: &quot;number&quot;
+              }
+            },
+            &quot;required&quot;: [
+              &quot;description&quot;,
+              &quot;confidence&quot;
+            ]
+          },
+          &quot;strict&quot;: false
+        }
+      }
+    },
+    &quot;contract_checks&quot;: {
+      &quot;authorization_is_bearer&quot;: true,
+      &quot;content_type_json&quot;: true,
+      &quot;response_format_type&quot;: &quot;json_schema&quot;,
+      &quot;response_format_type_is_json_schema&quot;: true,
+      &quot;schema_name_present&quot;: true,
+      &quot;strict_is_false&quot;: true,
+      &quot;temperature_zero&quot;: true,
+      &quot;max_tokens_present&quot;: true,
+      &quot;vision_part&quot;: true
+    }
+  }
+}</pre></details><details><summary><code>sam.json</code></summary><pre>{
+  &quot;probe&quot;: &quot;sam&quot;,
+  &quot;ok&quot;: true,
+  &quot;error&quot;: null,
+  &quot;latency_ms&quot;: 13.2,
+  &quot;http_status&quot;: 200,
+  &quot;value&quot;: [
+    {
+      &quot;ordinal&quot;: 0,
+      &quot;x1&quot;: 10,
+      &quot;y1&quot;: 20,
+      &quot;x2&quot;: 110,
+      &quot;y2&quot;: 120,
+      &quot;w&quot;: 128,
+      &quot;h&quot;: 128,
+      &quot;has_mask&quot;: true,
+      &quot;pct&quot;: {
+        &quot;left&quot;: 7.81,
+        &quot;top&quot;: 15.62,
+        &quot;width&quot;: 78.12,
+        &quot;height&quot;: 78.12
+      }
+    }
+  ],
+  &quot;exchange&quot;: {
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;path&quot;: &quot;/v1/responses&quot;,
+    &quot;request_headers&quot;: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      &quot;Authorization&quot;: &quot;&lt;REDACTED&gt;&quot;,
+      &quot;Accept&quot;: &quot;text/event-stream&quot;
+    },
+    &quot;request_body&quot;: {
+      &quot;model&quot;: &quot;stub-sam-model&quot;,
+      &quot;input&quot;: [
+        {
+          &quot;type&quot;: &quot;message&quot;,
+          &quot;role&quot;: &quot;user&quot;,
+          &quot;content&quot;: [
+            {
+              &quot;type&quot;: &quot;input_text&quot;,
+              &quot;text&quot;: &quot;red circle&quot;
+            },
+            {
+              &quot;type&quot;: &quot;input_image&quot;,
+              &quot;image_url&quot;: &quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==&quot;
+            }
+          ]
+        }
+      ],
+      &quot;stream&quot;: true
+    },
+    &quot;contract_checks&quot;: {
+      &quot;authorization_is_bearer&quot;: true,
+      &quot;content_type_json&quot;: true,
+      &quot;stream_is_true&quot;: true,
+      &quot;input_text_present&quot;: true,
+      &quot;input_image_present&quot;: true
+    }
+  }
+}</pre></details><details><summary><code>image.json</code></summary><pre>{
+  &quot;probe&quot;: &quot;image&quot;,
+  &quot;ok&quot;: true,
+  &quot;error&quot;: null,
+  &quot;latency_ms&quot;: 13.6,
+  &quot;http_status&quot;: 200,
+  &quot;value&quot;: {
+    &quot;b64_json&quot;: &quot;c3R1Yg==&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1/stub.png&quot;
+  },
+  &quot;exchange&quot;: {
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;path&quot;: &quot;/v1/images/generations&quot;,
+    &quot;request_headers&quot;: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      &quot;Authorization&quot;: &quot;&lt;REDACTED&gt;&quot;,
+      &quot;Accept&quot;: null
+    },
+    &quot;request_body&quot;: {
+      &quot;model&quot;: &quot;stub-image-model&quot;,
+      &quot;prompt&quot;: &quot;a red circle on a white background&quot;,
+      &quot;size&quot;: &quot;1024x1024&quot;,
+      &quot;n&quot;: 1
+    },
+    &quot;contract_checks&quot;: {
+      &quot;authorization_is_bearer&quot;: true,
+      &quot;content_type_json&quot;: true,
+      &quot;model_present&quot;: true,
+      &quot;prompt_present&quot;: true,
+      &quot;size_present&quot;: true,
+      &quot;n_is_one&quot;: true
+    }
+  }
+}</pre></details><details><summary><code>error.json</code></summary><pre>{
+  &quot;probe&quot;: &quot;error&quot;,
+  &quot;ok&quot;: false,
+  &quot;error&quot;: &quot;MetaError: meta_http_400&quot;,
+  &quot;latency_ms&quot;: 1.8,
+  &quot;http_status&quot;: 400,
+  &quot;value&quot;: null,
+  &quot;exchange&quot;: {
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;path&quot;: &quot;/v1/fail&quot;,
+    &quot;request_headers&quot;: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      &quot;Authorization&quot;: &quot;&lt;REDACTED&gt;&quot;,
+      &quot;Accept&quot;: null
+    },
+    &quot;request_body&quot;: {
+      &quot;probe&quot;: &quot;intentional-400&quot;
+    },
+    &quot;contract_checks&quot;: {
+      &quot;authorization_is_bearer&quot;: true,
+      &quot;content_type_json&quot;: true
+    }
+  }
+}</pre></details>
+
+  <p class="foot">Product code was not modified. <code>guard_url</code> was bypassed
+     in the diagnostic process only. This page is an untracked local artifact.</p>
+</main>
+</body>
+</html>

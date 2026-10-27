@@ -1,0 +1,43 @@
+# seed_issue_demo allow-root fix check
+# date_utc 2026-10-26T14:17:58Z
+# cmd: FRONTLINE_DB_PATH=... DOMAIN_DB_PATH=... FRONTLINE_ALLOW_DEFAULT_DB_RESET=1 python3 -m scripts.seed_issue_demo --n-scale 20 --n-warranty 5 --n-service 5 --simulate 3 --force
+→ [1/7] ops reset + NHTSA-scale corpus (n=20)…
+  ✓ scale corpus + advisories + backtest
+→ [2/7] warranty (5) + service (5) sources…
+  ✓ warranty upserted=5 service upserted=5
+→ [3/7] cluster assignment + backtest…
+  ✓ attached 30 rows to 3 clusters
+  ✓ weekly anomalies recomputed (1 slices)
+  ✓ backtest_rows=2
+→ [4/7] supplier lots (AcmeBrakes L-9 bad lot, CleanCo L-1 control)…
+  ✓ lots: L-9=5 L-11=0 control=5
+→ [5/7] simulated traffic (n=3)…
+{"ts": 1793024284.316433, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_911ea1f9cd4e450c", "span_id": "sp_ad46417c", "duration_ms": 702.2038750001229, "attributes": {"interaction_id": "int_01m5w96jk2ave82zgn84e9s0w7"}, "instrumentation": "in-house"}
+{"ts": 1793024290.566478, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_3ee5864f6fd34384", "span_id": "sp_88d034ed", "duration_ms": 598.8588340114802, "attributes": {"interaction_id": "int_01m5w96r1hf8n9d11795fws0ax"}, "instrumentation": "in-house"}
+{"ts": 1793024296.754467, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_b1f7095e9e364886", "span_id": "sp_c0310931", "duration_ms": 586.3198339939117, "attributes": {"interaction_id": "int_01m5w96xf5vzjpf9qpyw34byxg"}, "instrumentation": "in-house"}
+  ✓ completed=3 cases=3 investigations_opened=0
+→ [6/7] ownership on the hottest investigation…
+  ! no investigation opened (raise --simulate)
+→ [7/7] verify…
+  ✓ records=33 warranty=5 service=5
+
+────────────────────────────────────────────────────────────────
+8-MINUTE WALK — SERVICE BRAKES / HONDA CR-V
+────────────────────────────────────────────────────────────────
+Beat 1 — spike on the wall (0:00–2:00)
+  Open Command Center. Hero reads the brake cluster and its lead
+  time vs the advisory ($ joins the hero once live calls land).
+  Early warning shows the rising SERVICE BRAKES / HONDA slice.
+Beat 2 — Open Issue 360 (2:00–4:00)
+  Click Open issue (or visit (re-run with --simulate 30)).
+  Four signal types on one page: voice turn, warranty row, service
+  row, supplier lot L-9. Verify the voice evidence — Qubot green.
+Beat 3 — live call moves the score (4:00–6:30)
+  Voice agent → describe grinding brakes on a 2019 CR-V.
+  Watch the cluster score and open-case count move on the wall.
+Beat 4 — record the fix (6:30–8:00)
+  On the issue page: Record fix & close. Before/after drops, reopen
+  rate stays on the page. Export the audit CSV for the record.
+────────────────────────────────────────────────────────────────
+EXIT:0
+# date_utc_end 2026-10-26T14:18:21Z

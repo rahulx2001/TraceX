@@ -1,0 +1,471 @@
+"""Single-tenant shared-secret auth for pilot write/console paths.
+
+Open (dev/test) mode
+--------------------
+Allowed only when ``FRONTLINE_OPEN_MODE=1`` **or** when neither
+``FRONTLINE_AUTH_REQUIRED`` nor a non-empty ``FRONTLINE_API_KEY`` is set
+(legacy local default). Production-style pilots should set::
+
+    FRONTLINE_AUTH_REQUIRED=1
+    FRONTLINE_API_KEY=<strong-secret>
+
+Fail-closed
+-----------
+When ``FRONTLINE_AUTH_REQUIRED=1``, requests without a matching key are rejected
+even if ``FRONTLINE_API_KEY`` is empty (forces configuration).
+
+Credentials
+-----------
+HTTP: ``X-API-Key`` or ``Authorization: Bearer``. A query-string ``api_key``
+never authenticates.
+
+WebSocket: first-message ``{"type":"auth","api_key":"..."}`` or headers.
+``?api_key=`` is not a credential.
+"""
+
+from __future__ import annotations
+
+import os
+import secrets
+from dataclasses import dataclass
+from typing import Optional
+
+from fastapi import Header, HTTPException, Query, Request, WebSocket, status
+
+#: Attribute name used to carry a verified principal on a connection's state.
+PRINCIPAL_ATTR = "frontline_principal"
+
+
+@dataclass(frozen=True)
+class Principal:
+    """The credential authentication actually verified.
+
+    Authorization must decide from this, not from "authentication is enabled,
+    therefore service" — that inference silently promoted a DSR credential to
+    the service role, which carries the contact-takeover permission (R04).
+    """
+
+    credential: str  # "open" | "service" | "dsr" | "session"
+    api_key: str = ""
+    subject: str = ""
+    session: Optional[dict[str, Any]] = None
+
+    @property
+    def role(self) -> str | None:
+        """Role implied by the credential alone (a signed session overrides it)."""
+        if self.credential == "session" and self.session:
+            return str(self.session.get("role") or "agent")
+        if self.credential == "dsr":
+            return "dsr_officer"
+        if self.credential == "service":
+            return "service"
+        return None
+
+
+OPEN_PRINCIPAL = Principal(credential="open")
+
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _configured_key() -> str:
+    return os.getenv("FRONTLINE_API_KEY", "").strip()
+
+
+def _configured_dsr_key() -> str:
+    return os.getenv("FRONTLINE_DSR_API_KEY", "").strip()
+
+
+def auth_required() -> bool:
+    """True when protected routes must present a valid key.
+
+    Production-like deploys (ENV=production|staging, PILOT_HARDENED, SOC2_MODE)
+    always require auth even if FRONTLINE_OPEN_MODE is mistakenly set.
+    Non-loopback binds (0.0.0.0, ::) require auth by default unless explicitly waived.
+    """
+    try:
+        from src.security.harden import is_production_like, is_wildcard_bind
+
+        if is_production_like():
+            return True
+        if is_wildcard_bind() and not _env_bool("FRONTLINE_OPEN_BIND_ACK", False):
+            return True
+    except Exception:
+        pass
+    if _env_bool("FRONTLINE_OPEN_MODE", False):
+        return False
+    if _env_bool("FRONTLINE_AUTH_REQUIRED", False):
+        return True
+    return bool(_configured_key())
+
+
+def is_open_mode() -> bool:
+    return not auth_required()
+
+
+def _extract_key(
+    authorization: Optional[str] = None,
+    x_api_key: Optional[str] = None,
+    api_key: Optional[str] = None,
+) -> str:
+    if x_api_key and x_api_key.strip():
+        return x_api_key.strip()
+    if api_key and api_key.strip():
+        return api_key.strip()
+    if authorization:
+        parts = authorization.strip().split(None, 1)
+        if len(parts) == 2 and parts[0].lower() == "bearer":
+            return parts[1].strip()
+        return authorization.strip()
+    return ""
+
+
+def check_api_key(
+    *,
+    authorization: Optional[str] = None,
+    x_api_key: Optional[str] = None,
+    api_key: Optional[str] = None,
+    allow_open: bool = True,
+    allow_query_key: bool = True,
+) -> Principal:
+    """Raise 401 when auth is required and the provided key does not match.
+
+    Returns the verified :class:`Principal` so callers can authorize the
+    credential that actually matched instead of guessing at one.
+
+    ``allow_open=False`` forces a configured key even when open mode is on
+    (privacy-sensitive routes: DSR, etc.).
+    ``allow_query_key=False`` rejects query-string keys (FIND-006 harden path).
+    """
+    if allow_open and is_open_mode():
+        return OPEN_PRINCIPAL
+    expected = _configured_key()
+    dsr_expected = _configured_dsr_key()
+    if not expected and not dsr_expected:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=(
+                "Authentication required (FRONTLINE_AUTH_REQUIRED=1 or "
+                "privacy-sensitive route) but FRONTLINE_API_KEY is not configured."
+            ),
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    provided = _extract_key(
+        authorization=authorization, x_api_key=x_api_key, api_key=api_key
+    )
+    if not allow_query_key and api_key and not (x_api_key or authorization):
+        # Key only appeared via query — reject when hardened.
+        if _env_bool("FRONTLINE_AUTH_REQUIRED", False) or not allow_open:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="API key in query string is disabled; use X-API-Key or Authorization: Bearer.",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+    matches_service = bool(expected and secrets.compare_digest(provided, expected))
+    matches_dsr = bool(dsr_expected and secrets.compare_digest(provided, dsr_expected))
+    if not provided or (not matches_service and not matches_dsr):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing API key. Send X-API-Key or Authorization: Bearer.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    # A key configured as both is the service key: never widen a credential.
+    return Principal(
+        credential="service" if matches_service else "dsr",
+        api_key=provided,
+        subject="dsr_officer" if (matches_dsr and not matches_service) else "",
+    )
+
+
+async def require_api_key(
+    request: Request,
+    authorization: Optional[str] = Header(default=None),
+    x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
+) -> bool:
+    """FastAPI dependency for HTTP routes."""
+    # Check signed session from cookies or headers first (R10)
+    from src.api.rbac import session_token_from_cookies, verify_session
+
+    session_tok = (
+        request.headers.get("x-frontline-session")
+        or session_token_from_cookies(getattr(request, "cookies", {}) or {})
+    )
+    if session_tok:
+        try:
+            body = verify_session(session_tok)
+            p = Principal(
+                credential="session",
+                subject=str(body.get("sub") or ""),
+                session=body,
+            )
+            try:
+                setattr(request.state, PRINCIPAL_ATTR, p)
+            except Exception:
+                pass
+            return True
+        except HTTPException:
+            pass
+
+    # Query-string keys are never credentials, including when other routes are open.
+    q = request.query_params.get("api_key")
+    header_present = bool(
+        (x_api_key and x_api_key.strip())
+        or (authorization and authorization.strip())
+    )
+    if isinstance(q, str) and q.strip() and not header_present:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=(
+                "API key in query string is disabled; use X-API-Key or "
+                "Authorization: Bearer."
+            ),
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    p = check_api_key(
+        authorization=authorization,
+        x_api_key=x_api_key,
+        api_key=None,
+        allow_query_key=False,
+    )
+    try:
+        setattr(request.state, PRINCIPAL_ATTR, p)
+    except Exception:
+        pass
+    return True
+
+
+async def require_api_key_strict(
+    request: Request,
+    authorization: Optional[str] = Header(default=None),
+    x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
+) -> bool:
+    """Always require a valid credential — ignores open mode (DSR / sensitive).
+
+    Accepts an authorized signed session (admin/dsr/etc.) or header API key.
+    Query-string keys are rejected (use headers only).
+    """
+    from src.api.rbac import session_token_from_cookies, verify_session
+
+    session_tok = (
+        request.headers.get("x-frontline-session")
+        or session_token_from_cookies(getattr(request, "cookies", {}) or {})
+    )
+    if session_tok:
+        try:
+            body = verify_session(session_tok)
+            p = Principal(
+                credential="session",
+                subject=str(body.get("sub") or ""),
+                session=body,
+            )
+            try:
+                setattr(request.state, PRINCIPAL_ATTR, p)
+            except Exception:
+                pass
+            return True
+        except HTTPException:
+            pass
+
+    q = request.query_params.get("api_key")
+    header_present = bool(
+        (x_api_key and x_api_key.strip())
+        or (authorization and authorization.strip())
+    )
+    if q and not header_present:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="API key in query string is disabled for this route; use X-API-Key or Authorization: Bearer.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    p = check_api_key(
+        authorization=authorization,
+        x_api_key=x_api_key,
+        api_key=None,
+        allow_open=False,
+        allow_query_key=False,
+    )
+    try:
+        setattr(request.state, PRINCIPAL_ATTR, p)
+    except Exception:
+        pass
+    return True
+
+
+async def require_ws_api_key(
+    api_key: Optional[str] = Query(default=None),
+    authorization: Optional[str] = Header(default=None),
+    x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
+    x_frontline_session: Optional[str] = Header(default=None, alias="X-Frontline-Session"),
+) -> bool:
+    """FastAPI dependency for WebSocket routes (headers preferred; query deprecated).
+
+    Mirrors HTTP ``require_api_key``: a query-string key never authenticates.
+    Prefer the ``authenticate_websocket`` first-message frame for browsers.
+    """
+    if x_frontline_session and isinstance(x_frontline_session, str):
+        from src.api.rbac import verify_session
+
+        try:
+            verify_session(x_frontline_session)
+            return True
+        except HTTPException:
+            pass
+
+    auth_str = authorization if isinstance(authorization, str) else None
+    x_key_str = x_api_key if isinstance(x_api_key, str) else None
+    q_key_str = api_key if isinstance(api_key, str) else None
+
+    header_present = bool(
+        (x_key_str and x_key_str.strip())
+        or (auth_str and auth_str.strip())
+    )
+    if q_key_str and q_key_str.strip() and not header_present:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=(
+                "API key in query string is disabled; use X-API-Key, "
+                "Authorization: Bearer, or the WebSocket auth frame."
+            ),
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    check_api_key(
+        authorization=auth_str,
+        x_api_key=x_key_str,
+        api_key=None,
+        allow_query_key=False,
+    )
+    return True
+
+
+def store_ws_principal(websocket: WebSocket, principal: Principal) -> Principal:
+    """Attach the verified principal to the connection for later authorization."""
+    try:
+        setattr(websocket.state, PRINCIPAL_ATTR, principal)
+    except Exception:
+        # Some transports/test doubles have no mutable state; role resolution
+        # falls back to the handshake headers in that case.
+        pass
+    return principal
+
+
+def ws_principal(websocket: WebSocket) -> Principal | None:
+    """Verified principal stored by ``authenticate_websocket``, if any."""
+    try:
+        value = getattr(websocket.state, PRINCIPAL_ATTR, None)
+    except Exception:
+        return None
+    return value if isinstance(value, Principal) else None
+
+
+async def authenticate_websocket(websocket: WebSocket) -> Principal:
+    """Authenticate a WebSocket before or immediately after accept.
+
+    Order:
+      1. Open mode → allow
+      2. Cookie or header session check
+      3. Header API key (preferred for non-browser clients)
+      4. Accept + first-message auth frame (preferred for browsers)
+
+    Query ``?api_key=`` is not a credential.
+
+    Returns the verified principal and stores it on ``websocket.state`` so
+    every later authorization decision uses the credential that was actually
+    validated — the first-frame key never appears in the handshake headers,
+    so it would otherwise be lost (R04).
+
+    Raises HTTPException on failure (caller should close with 1008).
+    """
+    if is_open_mode():
+        return store_ws_principal(websocket, OPEN_PRINCIPAL)
+
+    # 1. Check signed session from headers or cookies
+    from src.api.rbac import session_token_from_cookies, verify_session
+
+    session_tok = ""
+    try:
+        session_tok = (
+            websocket.headers.get("x-frontline-session")
+            or session_token_from_cookies(getattr(websocket, "cookies", {}) or {})
+        )
+    except Exception:
+        session_tok = ""
+
+    if session_tok:
+        try:
+            body = verify_session(session_tok)
+            return store_ws_principal(
+                websocket,
+                Principal(credential="session", subject=str(body.get("sub") or ""), session=body),
+            )
+        except HTTPException:
+            pass
+
+    # 2. Header API key
+    try:
+        return store_ws_principal(
+            websocket,
+            check_api_key(
+                authorization=websocket.headers.get("authorization"),
+                x_api_key=websocket.headers.get("x-api-key"),
+                api_key=None,
+                allow_query_key=False,
+            ),
+        )
+    except HTTPException:
+        pass
+
+    # 3. Browser path: first message after accept
+    if websocket.client_state.name != "CONNECTED":
+        await websocket.accept()
+    try:
+        import asyncio
+
+        raw = await asyncio.wait_for(websocket.receive_json(), timeout=10.0)
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=f"WebSocket auth required (send auth frame first): {type(e).__name__}",
+        ) from e
+    if not isinstance(raw, dict) or raw.get("type") != "auth":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail='WebSocket auth required: first message must be {"type":"auth","api_key":"..."} or {"type":"auth","session":"..."}',
+        )
+    session_val = raw.get("session") or raw.get("token")
+    if session_val:
+        try:
+            body = verify_session(str(session_val))
+            return store_ws_principal(
+                websocket,
+                Principal(credential="session", subject=str(body.get("sub") or ""), session=body),
+            )
+        except HTTPException as e:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=e.detail) from e
+    return store_ws_principal(
+        websocket,
+        check_api_key(
+            x_api_key=str(raw.get("api_key") or ""),
+            allow_query_key=False,
+        ),
+    )
+
+
+__all__ = [
+    "Principal",
+    "OPEN_PRINCIPAL",
+    "PRINCIPAL_ATTR",
+    "require_api_key",
+    "require_api_key_strict",
+    "require_ws_api_key",
+    "check_api_key",
+    "authenticate_websocket",
+    "store_ws_principal",
+    "ws_principal",
+    "auth_required",
+    "is_open_mode",
+    "_configured_key",
+]

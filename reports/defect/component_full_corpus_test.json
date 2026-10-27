@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-10-26T15:07:00+00:00",
+  "mode": "component",
+  "labels_mode": "none",
+  "config": {
+    "z": 2.0,
+    "q": 0.05,
+    "abs_lift": 3,
+    "rel_lift": 0.5
+  },
+  "config_id": "z2.0_q0.05_abs3_rel0.5",
+  "config_sha256": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+  "test_window": [
+    "2021-01-01",
+    "2024-12-31"
+  ],
+  "metrics": {
+    "recent_campaign": {
+      "campaigns": 477,
+      "hits": 285,
+      "misses": 192,
+      "recall_rate": 0.597,
+      "lead_weeks_median": 9,
+      "lead_weeks_mean": 15.0
+    },
+    "precision": {
+      "flagged_slice_weeks": 1667,
+      "confirmed_slice_weeks": 1060,
+      "false_alarm_slice_weeks": 607,
+      "precision_slice_weeks": 0.636,
+      "flag_episodes": 1075,
+      "confirmed_episodes": 648,
+      "precision_episodes": 0.603,
+      "unconfirmed_slice_weeks": 607
+    },
+    "precision_episodes": 0.603,
+    "objective": 0.6,
+    "recalls_scored": 1861,
+    "validation": {
+      "first_flag_mismatches": 0,
+      "recent_episode_mismatches": 0
+    }
+  },
+  "complaints": {
+    "inputs": 99946,
+    "used": 99946,
+    "dropped": 0
+  },
+  "complaints_scored": 150688,
+  "advisories": {
+    "inputs": 1861,
+    "used": 1861,
+    "dropped": 0
+  },
+  "score_rows": 67172,
+  "elapsed_s": 12.7,
+  "note": "component detector on the full corpus (no defect labels)"
+}

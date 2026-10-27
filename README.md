@@ -1,0 +1,299 @@
+# TraceX
+
+<!-- [AI-LAYER] mission line -->
+> **Mission: help vehicle manufacturers reduce road accidents by recording vehicle faults from every customer contact and predicting defects early.**
+> 
+> **Meta Global AI Developer Hackathon (Oct 26 – Nov 4, 2026):** Built with Meta's newest models via Meta Model API — **Muse Spark series**, **SAM 3.1**, and **Muse Image** — with open-weights inference partner compatibility (Baseten, Modal, Fireworks). Competing in the **Startup Track** and **Indie Developer Track** across both **Build for Your World** and **Push the Frontier** themes. See [HACKATHON.md](HACKATHON.md) for full architecture and [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for the demo.
+
+TraceX is a single-tenant pilot for live customer contacts. A **domain pack** (YAML + CSV) supplies the questions, safety rules, and known issues. The same agents then run the contact, write an audit ledger, and hand a supervisor a live console.
+
+The product name is TraceX. API paths and environment variables still use `frontline` (`/api/frontline/*`, `FRONTLINE_*`).
+
+Two packs ship with small offline fixtures (10 records, 2 advisories, 3 clusters each):
+
+| Pack | Use it for |
+|---|---|
+| `automotive_nhtsa` | Vehicle year, make, model, and system. VIN capture runs only on this pack. |
+| `finance_cfpb` | Account products and fees. A 17-digit account number stays on the finance path. |
+
+`consumer_cpsc` and `medical_maude` are on disk for experiments. They are not the seeded demo packs. `_template` is a scaffold.
+
+## Start a local pilot
+
+Requirements: Python 3.12+ (the project's CI, Dockerfiles and `requirements-lock.txt` target 3.12), Node 20+, and a Chrome-family browser if you want microphone recognition.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -c requirements-lock.txt
+cp .env.example .env
+# Local only: leave FRONTLINE_API_KEY empty, or set FRONTLINE_OPEN_MODE=1
+make frontline-db
+make pack-lint PACK=automotive_nhtsa
+```
+
+Terminal 1 — API:
+
+```bash
+uvicorn src.api.main:app --reload --port 8000
+```
+
+Terminal 2 — dashboard (proxies `/api` and `/ws` to port 8000):
+
+```bash
+cd dashboard && npm install && npm run dev
+```
+
+Open [http://127.0.0.1:8787/ui/](http://127.0.0.1:8787/ui/). Health check: [http://127.0.0.1:8000/health](http://127.0.0.1:8000/health). `/health` reports `single_worker: true`. Keep it that way. Live calls live in this process.
+
+Without a microphone:
+
+```bash
+make contact          # one scripted text contact
+make simulate N=25    # replay fixture records as contacts
+make eval-frontline   # offline gates for both shipped packs
+```
+
+### Docker
+
+```bash
+# Open local pilot. API and dashboard: http://127.0.0.1:8000/ui/
+docker compose --profile open up --build
+
+# Auth-required pilot. Set FRONTLINE_API_KEY and SESSION_SECRET in .env first.
+# Host port 8001 so it does not collide with the open profile.
+docker compose --profile hardened up --build
+```
+
+Run one API container. Extra workers do not share the live-call registry.
+
+## Work a live contact
+
+1. **Voice agent** (`#call`). Start a call. Chrome asks for the microphone and for speech recognition. The greeting is spoken in the browser.
+2. Speak, or type in the box. The server receives text. It does not receive audio.
+3. **Live console** (`#console`) lists active contacts. Take over, type a reply, then release. The first supervisor to claim the call is the only one who can send or release it. A second claim returns 409.
+4. After release, the AI continues from the facts collected so far.
+5. End the call from the widget, or let the orchestrator close it. The closing line is spoken before the widget tears the call down. Hangup stops speech immediately.
+
+If recognition is denied or missing, the status reads **Text only** and the text box still works. Use **Try microphone again** after you change the browser permission. Mute stops recognition and does not send speech until you unmute.
+
+A dropped socket in the same page can resume for `FRONTLINE_WS_RECONNECT_GRACE_S` seconds (default 120). A full page refresh does not restore the call. An API restart marks the in-memory call failed; stored turns remain.
+
+## What the voice path does
+
+```mermaid
+flowchart LR
+  Mic[Browser microphone] --> STT[Web Speech recognition]
+  STT --> WS[WebSocket text]
+  Type[Typed reply] --> WS
+  WS --> Orch[Orchestrator]
+  Orch --> Ledger[(Ledger and transcript)]
+  Orch --> WS
+  WS --> TTS[Browser speechSynthesis]
+  Console[Live console] -->|takeover, human reply, release| Orch
+```
+
+| Stage | What is true |
+|---|---|
+| Recognition and speech | Happen in the browser. Safari and Firefox are not the supported path. |
+| Server input | Final text, plus barge-in timing for the utterance that was playing. |
+| Ordinary replies | A ledger action is written, then the transcript row, then the text is sent. |
+| Takeover | The widget cancels queued AI audio. Later supervisor replies still play. |
+| Barge-in | The audit records an estimated prefix of the utterance the caller was hearing. |
+| Goodbye | Plays through, then the widget releases the microphone. |
+
+Switch packs from **Settings**, or set `DOMAIN_PACK` before startup. Finance and automotive share the voice widget. VIN checks run only for the automotive pack.
+
+## Roles
+
+Signed sessions carry the role. A shared API key is the `service` principal. Open mode stays on `agent`.
+
+| Role | Live call | Console |
+|---|---|---|
+| `agent` | Can start and speak as the customer widget | Sees activity with supervisor message text removed |
+| `supervisor` | Can take over, reply, and release | Full live console |
+| `auditor` | Read and audit routes | Cannot attach to a customer socket or hang up |
+| `admin` | Includes an explicit audited override for release | Full access |
+
+Customer sockets require `contact:write`. A session that names a contact can attach only to that contact. Put the API key in the dashboard sign-in (memory by default). WebSockets authenticate with a first message, not `?api_key=` in the URL.
+
+For any shared network set `FRONTLINE_AUTH_REQUIRED=1`, a long `FRONTLINE_API_KEY`, and a distinct `SESSION_SECRET`.
+
+## Dashboard
+
+The dev server and the Docker UI are both mounted at `/ui/`.
+
+| Page | Hash | Use it to |
+|---|---|---|
+| Command center | `#command` | See whether contacts are moving |
+| Voice agent | `#call` | Place the customer call |
+| Live console | `#console` | Claim, reply, release |
+| Case queue | `#cases` | Read and update cases after close |
+| Early warning | `#warning` | Watch clusters and investigations |
+| Trust | `#audits` | Read Qubot audits |
+| Settings | `#settings` | API key, active pack, alert webhook |
+
+Enterprise Ops, Platform, Insights, and Pack Builder are extra surfaces on the same API. They read the warehouse. They do not place the live call.
+
+## Commands
+
+| Command | Result |
+|---|---|
+| `make frontline-db` | Rebuild the local ops database and fixture domain databases. Destructive. Requires the reset flag in `.env.example`. |
+| `make seed-domains` | Fixture domain databases only |
+| `make pack-lint PACK=automotive_nhtsa` | Validate a pack |
+| `make contact` | One deterministic text contact |
+| `make simulate N=25` | Replay fixture contacts |
+| `make audit ID=int_…` | Re-run Qubot on one contact |
+| `make verify-chain ID=int_…` | Check the hash-chained ledger |
+| `make eval-frontline` | Offline eval for both shipped packs, in a temp database |
+| `make test` | `tests/frontline/` in a temp database |
+| `make pack-init SRC=file.csv PACK=my_pack` | Draft a pack from CSV. Review the mapping before lint. |
+
+Audit export: `GET /api/frontline/audits/export?start=YYYY-MM-DD&end=YYYY-MM-DD`.
+
+Optional narration uses `src/ai/` only when `FRONTLINE_LLM_ENABLED=1` and a provider key is set. The default path is deterministic and does not call a model.
+
+## Early-warning report
+
+Complaints are counted on `received_at` (NHTSA DATEA). A recall's clock is `issued_at`, which is RCDATE, the Part 573 report-received date. A hit needs a flagged week at least one week earlier. Misses and flags that never match a recall stay in the report.
+
+`reports/nhtsa/recall_lead_time.md` is the Honda and Ford sample (`eval/frontline/fixtures/recall_lead/`). Those rows use real campaign numbers. It is the CI sample, not a five-make download. Regenerate it on a side database:
+
+```bash
+DOMAIN_DB_PATH=/tmp/skew-recall-lead make recall-lead-sample
+```
+
+That command refuses to run when `DOMAIN_DB_PATH` still points at `data/domains`, so the pilot warehouse is left alone. A larger public window uses the same side-database rule. `make recall-lead` writes the sample path, so the bounded run names its own file: `reports/nhtsa/recall_lead_time_2015_2024.md`. The complaint cap is the first 200,000 matching rows in `FLAT_CMPL` file order, not every complaint in those years. The CI gate uses the committed sample and does not download NHTSA.
+
+```bash
+DOMAIN_DB_PATH=/tmp/skew-nhtsa make ingest-nhtsa N=200000 MAKES=HONDA,TOYOTA,FORD,HYUNDAI,KIA YEAR_MIN=2015 YEAR_MAX=2024
+DOMAIN_DB_PATH=/tmp/skew-nhtsa make ingest-recalls MAKES=HONDA,TOYOTA,FORD,HYUNDAI,KIA YEAR_MIN=2015 YEAR_MAX=2024 RCL_TYPE=V
+DOMAIN_DB_PATH=/tmp/skew-nhtsa python -m scripts.recall_lead_report --pack automotive_nhtsa --out reports/nhtsa/recall_lead_time_2015_2024.md
+```
+
+## Try it from Claude or Cursor
+
+The MCP server is read-only: packs, spikes, investigations, one investigation brief, and the last lead-time counts. It speaks stdio. Local demo auth is the API's open mode (no `FRONTLINE_API_KEY`, or `FRONTLINE_OPEN_MODE=1`). If auth is on, the process needs `FRONTLINE_API_KEY` or it refuses tool calls.
+
+```json
+{
+  "mcpServers": {
+    "skew": {
+      "command": "python3",
+      "args": ["-m", "src.mcp_server"],
+      "cwd": "/absolute/path/to/SkewAi",
+      "env": {"FRONTLINE_OPEN_MODE": "1"}
+    }
+  }
+}
+```
+
+This checkout does not include a `.venv`. `command` has to be a Python that already imports this project's dependencies (`which python3`). After the install steps create a virtualenv, point `command` at that interpreter. `cwd` is the repo root so `-m src.mcp_server` resolves. If a client ignores `cwd`, set `args` to the absolute path of `src/mcp_server/__main__.py`. That file puts the repo root on `sys.path` before it serves.
+
+## Load a CSV
+
+`python -m scripts.ingest_source` writes every mapped row. It refuses the default `data/domains` pilot packs (`automotive_nhtsa`, `finance_cfpb`) unless `--allow-pilot` is set, the same refusal as `POST /api/frontline/pack-builder/ingest`. `--run-anomalies` refreshes weekly spikes after the load. The HTTP twin is `POST /api/frontline/pack-builder/ingest` with `pack_id`, `csv_path`, and either `mapping` or `mapping_path`. Files over about 1 MB, or `"async": true`, return a `job_id` instead of blocking. The profile upload stays capped at 5 MB unless `FRONTLINE_CSV_MAX_BYTES` is set. The CLI has no size cap. Category cannot be the same column as the narrative. `normalize_components: true` runs the NHTSA component vocabulary on the category column and leaves a blank category blank.
+
+This path does not connect to a warehouse product. It reads a CSV.
+
+## How a contact is decided
+
+```mermaid
+flowchart TD
+  Pack[Domain pack] --> Orch[Orchestrator]
+  WS[Customer WebSocket] --> Orch
+  Orch --> Agents[Intake, sentiment, triage, sentinel, investigator, case]
+  Agents --> Ledger[(agent_actions and interaction_turns)]
+  Agents --> Domain[(Pack DuckDB)]
+  Console[Supervisor console] --> Orch
+  Ledger --> Qubot[Qubot auditor]
+```
+
+States move from greeting, through collection, and into enrichment, closing, and done. Safety language can escalate. A supervisor claim moves the contact to supervised and stops new AI speech. Release recomputes the next state from the facts on the contact.
+
+Every ordinary customer-visible line is ledgered before it is sent. A failed transcript insert is not treated as an accepted turn. Qubot later checks that cited evidence IDs exist. That check runs after the call. It does not hold each sentence until a second review finishes.
+
+## Layout
+
+| Path | What lives there |
+|---|---|
+| `domains/<pack_id>/` | Pack YAML, gazetteers, fixtures |
+| `src/agents/` | Orchestrator and the six agents |
+| `src/api/routes/interactions.py` | Contact REST and the voice and console sockets |
+| `src/channels/web_voice.py` | Browser voice frames |
+| `src/ledger/` | Hash-chained action log |
+| `src/qubot/` | Post-contact auditor |
+| `dashboard/routes/CallWidget.jsx` | Voice agent |
+| `dashboard/routes/LiveContactConsole.jsx` | Supervisor console |
+| `tests/frontline/` | API, agent, and voice regressions |
+| `docs/frontline_architecture.md` | Longer design note |
+| `docs/domain_pack_guide.md` | How to add a vertical |
+| `docs/demo_script.md` | Demo beats for both packs |
+
+<!-- [AI-LAYER] optional Meta AI layer section (additive) -->
+## AI Layer (optional)
+
+**Mission: reduce road accidents by catching vehicle faults early, from every call, in the caller's own language.**
+
+> **Evidence status (2026-10-26):** no live Meta API call has been made in this
+> project. Meta paths are covered only by mocked tests or the no-key deterministic
+> fallback. All Hindi/Hinglish evaluation calls (84 total) are synthetic.
+
+Road-safety tools at `/ui/#ai-tools`: per-vehicle fault risk, manufacturer alert feed (pull only), service-centre call-in queue, fault spread by state and month, WhatsApp intake **mock** (no WhatsApp Cloud API call), and 1–10 s video evidence (the UI suggests 5–10 s; analysis is flag-gated and unverified). The tools count rows from the active warehouse; the offline hackathon seed uses fixture/synthetic rows, so those demo counts are not real-world evidence. Details in [HACKATHON.md](HACKATHON.md).
+
+The deterministic pipeline above is the default and the fallback. The optional
+Meta layer switches on only when `META_API_KEY` (or `MODEL_API_KEY`) is set.
+With no key, no Meta network call is made and every optional Meta feature returns
+the deterministic result. Two no-key behavioural additions are deliberate and
+pre-event: the deterministic Hindi/Hinglish safety layer
+(`src/ai_layer/hindi_safety.py`, disable with `AI_HINDI_SAFETY=0`) and the
+deterministic OBD-II fault-code capture/severity floor
+(`src/ai_layer/fault_codes.py`). Both can only add a kill-switch hit, slot or
+severity floor, never lower anything, and neither is a Meta call (see
+`HACKATHON.md` §4.2 and §5). On any error, timeout,
+invalid output or low confidence, the Meta path falls back silently. Kill-switch,
+`assess_safety`, Qubot and the ledger always run and have the final say. AI can
+only **raise** severity or **add** a safety flag.
+
+| Feature | Meta model | Without a key |
+|---|---|---|
+| Enhanced intake (fill only empty slots, validated) | Muse Spark 1.3 | Regex/gazetteer intake |
+| Hindi/Hinglish → English, then the existing kill-switch on the translation; `hi-IN` speech picker | Muse Spark 1.3 | Deterministic glossary; picker still works |
+| Photo evidence: upload → validate → store → attach to case/cluster; region overlay | SAM 3.1 + Muse Spark (vision) | Upload/storage/attach work; analysis "not run" |
+| Severity + sentiment, `final = max(rule, AI)` | Muse Spark 1.3 | Rule severity |
+| Grounded investigation brief (claims cite real IDs, must pass Qubot), safety-risk chip, recommended inspection/repair actions | Muse Spark 1.3 | Deterministic brief + deterministic actions |
+| Safety-risk board on Early warning + backtest headline | none (deterministic) | Same |
+| Synthetic demo photo | Muse Image 1.0 (optional) | Code-generated PNG labelled SYNTHETIC |
+
+Quick start:
+
+```bash
+bash scripts/judge_setup.sh                 # one command: deps, build, demo data, serve → http://127.0.0.1:8000/ui/#demo
+export META_API_KEY=...                     # optional; base/models are env-configurable (src/ai_layer/config.py)
+python -m eval.enhanced.run_eval            # 60-call synthetic set; the fresh 24-call set is eval/hindi_fresh (84 total); Meta column "not run" without a key
+python -m scripts.ai_meta_smoke             # live check of Muse Spark / vision / SAM 3.1 settings (skips without a key)
+python -m pytest tests/frontline/ai_layer   # all Meta calls mocked
+```
+
+Endpoints: `GET /api/ai/status`, `POST /api/ai/language/normalize`,
+`GET /api/ai/investigations/{id}/grounded-brief`, `GET /api/ai/early-warning/safety`,
+`POST|GET /api/cases/{id}/evidence`, `GET /api/evidence/{id}/file`, `POST /api/evidence/{id}/analyze`,
+`POST /api/ai/demo/seed` (only with `AI_DEMO_ENABLED=1`), `POST /api/ai/demo/safety-contrast`.
+
+Backtest on real NHTSA data: `reports/nhtsa/backtest_safety_2015_2024.md`. The
+full-window **production** detector is in-sample: 535 / 1,172 campaigns (45.6%),
+median 11 weeks. The **tuned** OOS config scored 62.7% on 2021–2024 (median 8
+weeks), but production (`abs5`) was **NOT RUN** on that test window; its in-sample
+2015–2020 score was 33.6% (episode precision 0.61). Do not quote the tuned 62.7%
+as production performance. Sources: `reports/nhtsa/backtest_safety.json`,
+`reports/oos/oos_test_results.json`, `reports/oos/oos_tune_results.json`.
+Meta API details are unverified against the live API; no live Meta call has been
+made in this project. See [HACKATHON.md](HACKATHON.md) §6.
+
+## Operating limits
+
+- One API process owns live sockets, takeover, and the reconnect grace. PostgreSQL or another database does not, by itself, make calls survive a crash or a second worker.
+- The browser performs recognition and speech. A quiet room, a denied permission, or a browser without Web Speech means the caller must type.
+- Fixture corpora are 10 records per shipped pack. Names like NHTSA and CFPB describe the pack shape, not a full public dump in this repo.
+- This pilot is one installation. It is not a multi-tenant control plane, a telephony carrier, or a CRM sync. The outbound connector writes JSON and can POST it. It does not speak Salesforce, ServiceNow, or Zendesk.

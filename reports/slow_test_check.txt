@@ -1,0 +1,84 @@
+Slow-test check: test_rebuild_clusters_assigns_records_beyond_5000
+================================================================
+
+Date: 2026-10-26
+Repo: /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool
+Test: tests/frontline/test_cluster_builds.py::test_rebuild_clusters_assigns_records_beyond_5000
+
+What the test does
+------------------
+- Inserts 5,005 records into a temporary DuckDB pack.
+- Calls src.ml_runtime.clustering.rebuild_clusters(k=2).
+- rebuild_clusters reads at most 5,000 records, then select_k() evaluates
+  k = 2..5 with silhouette_score().
+
+Why it is pathologically slow
+-----------------------------
+- silhouette_score() calls _pairwise_cosine_dist(), which builds a full
+  5000 x 5000 Python list and calls cosine() for every pair:
+  5,000 * 4,999 / 2 = 12,497,500 pairs.
+- cosine() is pure Python and converts/loops over all 512 dimensions
+  (src/ml_runtime/embeddings.py:312-330).
+- select_k() repeats silhouette for each k in 2..5.
+- This is a test/product performance issue, not a functional assertion
+  failure. No threshold, regex, lexicon, test or product code was changed
+  to make it pass.
+
+Observed run (aborted, full suite)
+----------------------------------
+Command (started at 19:04:44 IST):
+
+  python3 -m pytest -q
+
+Evidence:
+- reports/tests_baseline_attempt.txt is the captured output; it ends at 16%
+  with "EXIT:143" (SIGTERM).
+- `ps` at ~19:17 showed the pytest process at 12:55 elapsed, 100.0% CPU.
+- `sample <pid> 1` at 19:16:15 showed 774/774 samples on the Python eval
+  loop; physical footprint 915.0 MB.
+- The pytest temp dir for this test
+  (pytest-27/test_rebuild_clusters_assigns_0) was created at 19:07 and was
+  still the active test when the run was stopped.
+- It did not finish after at least ~14 minutes of wall time.
+
+Treatment in the current suite run
+----------------------------------
+The main run (reports/tests_after_cleanup.txt) uses:
+
+  python3 -m pytest -q -rfE -p no:cacheprovider \
+    --deselect tests/frontline/test_cluster_builds.py::test_rebuild_clusters_assigns_records_beyond_5000
+
+This is a documented deselect, not a skip/xfail/delete. The test remains in
+the repository and is reported as NOT RUN TO COMPLETION in this environment.
+The earlier report reports/tests_after_full.txt used the same deselect at a
+different commit.
+
+A dedicated capped run is recorded in reports/slow_test_dedicated.txt (pytest
+timeout 600 s). If it also exceeds the cap, it is reported as NOT RUN TO
+COMPLETION, not as a pass.
+
+Dedicated capped run
+--------------------
+File: reports/slow_test_dedicated.txt
+
+Command:
+
+  python3 -m pytest -q -p no:cacheprovider --timeout=600 \
+    --timeout-method=signal \
+    tests/frontline/test_cluster_builds.py::test_rebuild_clusters_assigns_records_beyond_5000
+
+Result (2026-10-26T14:07:29Z to 14:17:31Z):
+
+  1 failed in 600.37s (0:10:00)
+  E   Failed: Timeout (>600.0s) from pytest-timeout.
+  EXIT:1
+
+The stack is in the pure-Python cosine loop:
+
+  src/ml_runtime/clustering.py:503 rebuild_clusters
+  -> :152 select_k
+  -> :102 silhouette_score
+  -> :90 _pairwise_cosine_dist
+  -> src/ml_runtime/embeddings.py:327 cosine (sum(x * x for x in fa))
+
+This is NOT RUN TO COMPLETION in this environment and is not a pass.

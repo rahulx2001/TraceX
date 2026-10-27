@@ -1,0 +1,24 @@
+{
+  "probe": "error",
+  "ok": false,
+  "error": "MetaError: meta_http_400",
+  "latency_ms": 1.8,
+  "http_status": 400,
+  "value": null,
+  "exchange": {
+    "method": "POST",
+    "path": "/v1/fail",
+    "request_headers": {
+      "Content-Type": "application/json",
+      "Authorization": "<REDACTED>",
+      "Accept": null
+    },
+    "request_body": {
+      "probe": "intentional-400"
+    },
+    "contract_checks": {
+      "authorization_is_bearer": true,
+      "content_type_json": true
+    }
+  }
+}

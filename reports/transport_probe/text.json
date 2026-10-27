@@ -1,0 +1,68 @@
+{
+  "probe": "text",
+  "ok": true,
+  "error": null,
+  "latency_ms": 224.6,
+  "http_status": 200,
+  "value": {
+    "normalized_en": "smoke is coming from the car and the brakes have failed",
+    "confidence": 0.95
+  },
+  "exchange": {
+    "method": "POST",
+    "path": "/v1/chat/completions",
+    "request_headers": {
+      "Content-Type": "application/json",
+      "Authorization": "<REDACTED>",
+      "Accept": null
+    },
+    "request_body": {
+      "model": "stub-text-model",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Normalise the vehicle complaint to English. Return JSON only."
+        },
+        {
+          "role": "user",
+          "content": "gaadi se dhuaan aa raha hai aur brake fail ho gaye"
+        }
+      ],
+      "temperature": 0,
+      "max_tokens": 200,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "normalized_complaint",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "normalized_en": {
+                "type": "string"
+              },
+              "confidence": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "normalized_en",
+              "confidence"
+            ]
+          },
+          "strict": false
+        }
+      }
+    },
+    "contract_checks": {
+      "authorization_is_bearer": true,
+      "content_type_json": true,
+      "response_format_type": "json_schema",
+      "response_format_type_is_json_schema": true,
+      "schema_name_present": true,
+      "strict_is_false": true,
+      "temperature_zero": true,
+      "max_tokens_present": true,
+      "vision_part": false
+    }
+  }
+}

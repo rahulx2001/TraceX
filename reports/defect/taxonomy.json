@@ -1,0 +1,1394 @@
+{
+  "sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1",
+  "body": {
+    "train_window": [
+      "2015-01-01",
+      "2020-12-31"
+    ],
+    "train_recalls_used": 1423,
+    "components": {
+      "AIR BAGS": {
+        "train_recalls": 101,
+        "labels": [
+          {
+            "id": "inflator_module_overheat",
+            "label": "INFLATOR MODULE / overheat",
+            "leaf": "INFLATOR MODULE",
+            "mode": "overheat",
+            "definition": "A defect in the inflator module whose train-window recalls are dominated by overheat.",
+            "support": 34,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2014-2016 Toyota 4Runner, 2014-2015 Scion xB, Lexus IS350C, IS250C, 2014 Toyota Sienna, Lexus IS-F, and 2014-2017 Lexus GX460 vehicles sold, or ever registered in the states of Alabama, California, Florida, Ge",
+              "Honda (American Honda Motor Co.) is recalling certain 2014 Honda Insight and Acura TSX and TSX Wagon, 2014-2015 Honda Crosstour and Pilot vehicles nationwide, as well as certain 2014 Honda FCX Clarity and Fit EV vehicles in Florida, Hawaii, Puerto Rico, Texas, Alabama, Georgia, L"
+            ]
+          },
+          {
+            "id": "air_bag_restraint_control_module_failure",
+            "label": "AIR BAG/RESTRAINT CONTROL MODULE / failure",
+            "leaf": "AIR BAG/RESTRAINT CONTROL MODULE",
+            "mode": "failure",
+            "definition": "A defect in the air bag/restraint control module whose train-window recalls are dominated by failure.",
+            "support": 16,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing  (Toyota) is recalling certain 2011-2019 Corolla, 2011-2013 Matrix, 2012-2018 Avalon, and 2013-2018 Avalon Hybrid vehicles.  During certain crashes, the air bag electronic control unit (ECU) may malfunction, possibly disabling the deployme",
+              "Honda (American Honda Motor Co.) is recalling certain 2019 Honda Insight, Odyssey, and Ridgeline vehicles.  The Supplemental Restraint System (SRS) control unit may have a manufacturing error, possibly resulting in the air bags or seatbelt pretensioners not deploying in the event"
+            ]
+          },
+          {
+            "id": "side_window_detachment",
+            "label": "SIDE/WINDOW / detachment",
+            "leaf": "SIDE/WINDOW",
+            "mode": "detachment",
+            "definition": "A defect in the side/window whose train-window recalls are dominated by detachment.",
+            "support": 15,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain model year 2015-2016 Fit LX-trim vehicles manufactured April 11, 2014, to July 02, 2015 and not equipped with a sunroof.  In the affected vehicles, the rear grab handle brackets were not manufactured properly, and as a result,",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2016 Toyota Prius and Lexus RX 350, RX 350 F Sport, RX 450h F Sport and RX 450h vehicles and 2015-2016 Lexus NX 200T, NX Turbo and NX 300h vehicles.  The air bag pressure sensors and/or the acceleration sensor"
+            ]
+          },
+          {
+            "id": "frontal_crack_or_fracture",
+            "label": "FRONTAL / crack or fracture",
+            "leaf": "FRONTAL",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the frontal whose train-window recalls are dominated by crack or fracture.",
+            "support": 12,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2020-2021 Toyota Avalon and 2020 Avalon Hybrid, RAV4, and RAV4 Hybrid vehicles.  Breakaway pins within the steering column, designed to absorb energy and reduce injury during a crash, could have been damaged d",
+              "Hyundai Motor Company (Hyundai) is recalling certain model year 2015-2016 Sonata vehicles manufactured May 29, 2014 to February 11, 2016, 2017 Elantra vehicles manufactured January 12, 2016 to February 22, 2016, and one 2016 Sonata Hybrid vehicle manufactured October 15, 2015.  I"
+            ]
+          },
+          {
+            "id": "air_bags_compliance_or_label",
+            "label": "AIR BAGS / compliance or label",
+            "leaf": "AIR BAGS",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the air bags whose train-window recalls are dominated by compliance or label.",
+            "support": 11,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Toyota Tundra and Sequoia vehicles and 2019 Toyota Avalon and Avalon Hybrid vehicles. The air bag electronic control unit (ECU) may erroneously detect a fault during the vehicle start-up self check. ",
+              "Honda (American Honda Motor Co.) is recalling certain 2017 Honda Civic Hatchback and Civic Type R vehicles.  Driver and front passenger seatback pads sold as replacement service parts were made without slit openings for the seat-mounted side air bags. In the event of a crash nece"
+            ]
+          },
+          {
+            "id": "occupant_classification_software",
+            "label": "OCCUPANT CLASSIFICATION / software",
+            "leaf": "OCCUPANT CLASSIFICATION",
+            "mode": "software",
+            "definition": "A defect in the occupant classification whose train-window recalls are dominated by software.",
+            "support": 6,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2016 Avalon and Camry vehicles manufactured November 30, 2015 to March 4, 2016.  The occupant classification system (OCS) that activates or deactivates the front passenger seat air bag system may ha",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a cra"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 7,
+            "examples": []
+          }
+        ]
+      },
+      "BACKOVER PREVENTION": {
+        "train_recalls": 41,
+        "labels": [
+          {
+            "id": "camera_software",
+            "label": "CAMERA / software",
+            "leaf": "CAMERA",
+            "mode": "software",
+            "definition": "A defect in the camera whose train-window recalls are dominated by software.",
+            "support": 41,
+            "examples": [
+              "BMW of North America, LLC (BMW) is recalling certain 2018 540d, 2018-2020 530i, 530i xDrive, 540i, 540i xDrive, M550i xDrive, M5, 530e, 530e xDrive, X3 sDrive, X3 xDrive, X3 M40i, X3 M, and 2019-2020 X4 xDrive, X4 M40i, X4 M, X7 xDrive, X7 M50i, 740Li, 740Li xDrive, 750Li, 750Li ",
+              "Honda (American Honda Motor Co.) is recalling certain 2018-2020 Accord Sedan, Accord Hybrid, and 2019-2020 Insight vehicles.  A software error may cause intermittent or continuous disruptions in communication between the Body Control Module (BCM) and other components.  This may r"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "CHILD SEAT": {
+        "train_recalls": 1,
+        "labels": [
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 1,
+            "examples": []
+          }
+        ],
+        "note": "fewer than 8 train recalls; no specific labels"
+      },
+      "ELECTRICAL SYSTEM": {
+        "train_recalls": 142,
+        "labels": [
+          {
+            "id": "electrical_system_software_software",
+            "label": "ELECTRICAL SYSTEM SOFTWARE / software",
+            "leaf": "ELECTRICAL SYSTEM SOFTWARE",
+            "mode": "software",
+            "definition": "A defect in the electrical system software whose train-window recalls are dominated by software.",
+            "support": 36,
+            "examples": [
+              "Ford Motor Company is recalling certain 2018 Ford Mustang vehicles equipped with an automatic transmission and a 12.4\" digital instrument cluster.  If the ignition is turned off when the transmission is not in PARK, the instrument cluster may not illuminate the PRNDL gear positio",
+              "Honda (American Honda Motor Co.) is recalling certain 2018-2020 Odyssey, 2019-2020 Passport, and 2019-2021 Pilot vehicles.   Incorrect instrument panel control module software can cause the instrument panel to not display critical information, such as engine oil pressure, speedom"
+            ]
+          },
+          {
+            "id": "wiring_electrical",
+            "label": "WIRING / electrical",
+            "leaf": "WIRING",
+            "mode": "electrical",
+            "definition": "A defect in the wiring whose train-window recalls are dominated by electrical.",
+            "support": 34,
+            "examples": [
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2016-2017 Tucson vehicles manufactured May 19, 2015, to November 14, 2016, and 2017 Santa Fe vehicles manufactured November 28, 2015, to November 14, 2016.  The affected vehicles may be equipped with an accessory tra",
+              "Honda (American Honda Motor Co.) is recalling certain 2018 Honda CRF250L motorcycles.  The wiring harness may have been inappropriately installed, potentially resulting in damage to the wiring harness and affecting the operation of safety components such as the exterior lighting,"
+            ]
+          },
+          {
+            "id": "instrument_cluster_panel_compliance_or_label",
+            "label": "INSTRUMENT CLUSTER/PANEL / compliance or label",
+            "leaf": "INSTRUMENT CLUSTER/PANEL",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the instrument cluster/panel whose train-window recalls are dominated by compliance or label.",
+            "support": 14,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain model year 2016 Honda Pilot 2WD vehicles manufactured May 4, 2015, to September 8, 2015 and 2016 Pilot 4WD vehicles manufactured May 7, 2015 to September 4, 2015.  In the affected vehicles, when one of the safety systems such ",
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2015-2016 Sonata vehicles manufactured May 28, 2014, to August 21, 2015. The affected vehicles are equipped with an Antilock Braking System (ABS) warning light intended to warn the driver if there is an ABS malfuncti"
+            ]
+          },
+          {
+            "id": "relay_stall",
+            "label": "RELAY / stall",
+            "leaf": "RELAY",
+            "mode": "stall",
+            "definition": "A defect in the relay whose train-window recalls are dominated by stall.",
+            "support": 14,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain model year 2013-2015 ST1300PA, 2014-2015 CB500, CBR500, CRF250L, CBR650, CTX700, NSS300, VT750, VT1300, 2015 CB300F, CBR300, CBR600, and 2014-2016 NC700 motorcycles.  In the affected motorcycles, sealant may have been incorrec"
+            ]
+          },
+          {
+            "id": "body_control_module_software_software",
+            "label": "BODY CONTROL MODULE SOFTWARE / software",
+            "leaf": "BODY CONTROL MODULE SOFTWARE",
+            "mode": "software",
+            "definition": "A defect in the body control module software whose train-window recalls are dominated by software.",
+            "support": 8,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2018-2020 Accord Sedan, Accord Hybrid, and 2019-2020 Insight vehicles.  A software error may cause intermittent or continuous disruptions in communication between the Body Control Module (BCM) and other components.  This may r"
+            ]
+          },
+          {
+            "id": "ignition_compliance_or_label",
+            "label": "IGNITION / compliance or label",
+            "leaf": "IGNITION",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the ignition whose train-window recalls are dominated by compliance or label.",
+            "support": 7,
+            "examples": [
+              "Toyota Motor Company (Toyota) is recalling certain model year 2017 Toyota 86 vehicles manufactured July 1, 2016 through  August 11, 2016 equipped with an automatic transmission and ignition key.  Vehicles with a push-to-start button or manual transmission are not affected.  In th",
+              "Ford Motor Company (Ford) is recalling certain model year 2015 Ford Escape vehicles manufactured April 1, 2014, to June 12, 2015, Ford Focus vehicles manufactured June 17, 2014, to June 12, 2015, and Ford C-Max vehicles manufactured April 22, 2014, to June 12, 2015.  In the affec"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 29,
+            "examples": []
+          }
+        ]
+      },
+      "ELECTRONIC STABILITY CONTROL": {
+        "train_recalls": 13,
+        "labels": [
+          {
+            "id": "electronic_stability_control_esc_compliance_or_label",
+            "label": "ELECTRONIC STABILITY CONTROL ESC / compliance or label",
+            "leaf": "ELECTRONIC STABILITY CONTROL ESC",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the electronic stability control esc whose train-window recalls are dominated by compliance or label.",
+            "support": 13,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2016 Toyota RAV4 vehicles manufactured October 30, 2015, to February 3, 2016, 2016 Lexus RX350 vehicles manufactured October 26, 2015, to February 8, 2016, and 2016 Lexus ES350 vehicles manufactured",
+              "Ford Motor Company (Ford) is recalling certain model year 2015-2016 Ford Edge vehicles manufactured February 9, 2015, to August 12, 2016.  During dealer servicing, the affected vehicles may be have been updated with incorrect Antilock Brake System (ABS) and Electronic Stability C"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "ENGINE": {
+        "train_recalls": 103,
+        "labels": [
+          {
+            "id": "engine_corrosion",
+            "label": "ENGINE / corrosion",
+            "leaf": "ENGINE",
+            "mode": "corrosion",
+            "definition": "A defect in the engine whose train-window recalls are dominated by corrosion.",
+            "support": 64,
+            "examples": [
+              "Kia Motors America (Kia) is recalling certain 2011-2017 Optima, 2012-2017 Sorento and 2011-2018 Sportage vehicles that previously received an engine replacement under recall number 17V-224, warranty, or the Knock Sensor Detection System (KSDS) Product Improvement Campaign.  The h",
+              "Ford Motor Company (Ford) is recalling certain 2015-2019 Ford F-150 and 2017-2019 Ford F-250 Super Duty, F-350 Super Duty, F-450 Super Duty, and F-550 Super Duty pick-up trucks equipped with an engine block heater and previously remedied under recall 18V894.   During the previous"
+            ]
+          },
+          {
+            "id": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+            "label": "ENGINE AND ENGINE COOLING ENGINE / missing or wrong part",
+            "leaf": "ENGINE AND ENGINE COOLING ENGINE",
+            "mode": "missing_or_wrong_part",
+            "definition": "A defect in the engine and engine cooling engine whose train-window recalls are dominated by missing or wrong part.",
+            "support": 13,
+            "examples": [
+              "American Honda Motor Co. (Honda) is recalling certain model year 2014 Accord L4 vehicles manufactured July 29, 2014, to July 31, 2014, 2015 Accord L4 vehicles manufactured August 14, 2014, to January 30, 2015, and 2015 CR-V vehicles manufactured September 9, 2014, to February 6, ",
+              "Ford Motor Company (Ford) is recalling certain model year 2015-2016 Lincoln MKC vehicles manufactured November 25, 2013, to January 25, 2016, and 2016 Ford Explorer vehicles manufactured October 20, 2014, to January 28, 2016.  The affected vehicles are equipped with 2.3L GTDI eng"
+            ]
+          },
+          {
+            "id": "engine_and_engine_cooling_leak",
+            "label": "ENGINE AND ENGINE COOLING / leak",
+            "leaf": "ENGINE AND ENGINE COOLING",
+            "mode": "leak",
+            "definition": "A defect in the engine and engine cooling whose train-window recalls are dominated by leak.",
+            "support": 7,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2020 Toyota Avalon Hybrid, Camry, Camry Hybrid and  Lexus ES300h and 2019-2020 RAV4 and RAV4 Hybrid vehicles equipped with 2.5L 4-Cylinder engines.  Porosity in the engine castings may result in cracks than ca"
+            ]
+          },
+          {
+            "id": "turbo_supercharger_leak",
+            "label": "TURBO/SUPERCHARGER / leak",
+            "leaf": "TURBO/SUPERCHARGER",
+            "mode": "leak",
+            "definition": "A defect in the turbo/supercharger whose train-window recalls are dominated by leak.",
+            "support": 5,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2016 Ford Taurus, 2016-2017 Ford Flex, Lincoln MKT, 2017 Ford Explorer and Ford Explorer Police Interceptor Utility vehicles equipped with 3.5L GTDI engines.  Improperly brazed turbocharger oil supply tubes may leak oil on"
+            ]
+          },
+          {
+            "id": "belts_and_associated_pulleys_detachment",
+            "label": "BELTS AND ASSOCIATED PULLEYS / detachment",
+            "leaf": "BELTS AND ASSOCIATED PULLEYS",
+            "mode": "detachment",
+            "definition": "A defect in the belts and associated pulleys whose train-window recalls are dominated by detachment.",
+            "support": 4,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2018-2019 Acura MDX and Honda Pilot vehicles and 2019 Acura RLX, RLX Sport Hybrid, TLX and Honda Odyssey and Ridgeline vehicles.  The timing belt teeth may separate from the belt."
+            ]
+          },
+          {
+            "id": "hoses_lines_piping_fittings_leak",
+            "label": "HOSES/LINES/PIPING/FITTINGS / leak",
+            "leaf": "HOSES/LINES/PIPING/FITTINGS",
+            "mode": "leak",
+            "definition": "A defect in the hoses/lines/piping/fittings whose train-window recalls are dominated by leak.",
+            "support": 3,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2015-2017 Mustang vehicles manufactured February 24, 2015, to August 30, 2016.  A hose may separate from the engine oil cooler tube assembly causing an oil leak."
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 7,
+            "examples": []
+          }
+        ]
+      },
+      "EQUIPMENT": {
+        "train_recalls": 132,
+        "labels": [
+          {
+            "id": "labels_compliance_or_label",
+            "label": "LABELS / compliance or label",
+            "leaf": "LABELS",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the labels whose train-window recalls are dominated by compliance or label.",
+            "support": 66,
+            "examples": [
+              "Southeast Toyota Distributors, LLC (SET) is recalling certain model year 2015 Toyota Tundra vehicles manufactured March 11, 2015, to April 11, 2015 and equipped with Nitto Terra Grappler G2 275/60R20 116S XL tires.  These vehicles have a tire placcard that incorrectly states the ",
+              "Honda (American Honda Motor Co.) is recalling certain model year 2016 HR-V vehicles manufactured January 12, 2015, to May 20, 2015. The affected vehicles may be missing the required tire placard indicating \"Tire and Loading Information.\" These vehicles fail to comply with the req"
+            ]
+          },
+          {
+            "id": "equipment_sensor_or_signal",
+            "label": "EQUIPMENT / sensor or signal",
+            "leaf": "EQUIPMENT",
+            "mode": "sensor_or_signal",
+            "definition": "A defect in the equipment whose train-window recalls are dominated by sensor or signal.",
+            "support": 29,
+            "examples": [
+              "VCI Emergency Vehicle Specialists (VCI) is recalling certain 2017-2018 Ford F-550, 2014 E-350 and E-450, 2015 F-250 and F-450, 2016 E-450, 2017 E-350, F-450 and E-450, 2018 F-350, 2010 E-450, 2005-2006 E-450, 2009 E-450 and Chevrolet C4500-based Type I and Type III ambulances equ",
+              "Unicell Body Company Inc. (Unicell) is recalling certain 2017-2019 Chevrolet Express and GMC Savanna, 2018-2019 Hino 155, Ford Econoline and Transit and Isuzu NPR, and 2018 Ram ProMaster-based vehicles equipped with ASA Electronics Voyager monitors used to display the back-up cam"
+            ]
+          },
+          {
+            "id": "electrical_electrical",
+            "label": "ELECTRICAL / electrical",
+            "leaf": "ELECTRICAL",
+            "mode": "electrical",
+            "definition": "A defect in the electrical whose train-window recalls are dominated by electrical.",
+            "support": 24,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 120V Convenience charge cords that were supplied with and sold for use with 2013-2015 Ford C-Max Energi and Fusion Energi vehicles and 2012-2015 Ford Focus Electric vehicles.  Cords with part numbers FM58-10B706-AA, FM58-10B706-AB, F",
+              "Ford Motor Company (Ford) is recalling certain 2015-2019 Ford F-150 and 2017-2019 Ford F-250 Super Duty, F-350 Super Duty, F-450 Super Duty, and F-550 Super Duty pick-up trucks equipped with an engine block heater and previously remedied under recall 18V894.   During the previous"
+            ]
+          },
+          {
+            "id": "equipment_adaptive_mobility_failure",
+            "label": "EQUIPMENT ADAPTIVE/MOBILITY / failure",
+            "leaf": "EQUIPMENT ADAPTIVE/MOBILITY",
+            "mode": "failure",
+            "definition": "A defect in the equipment adaptive/mobility whose train-window recalls are dominated by failure.",
+            "support": 10,
+            "examples": [
+              "National Van Builders, Inc. (National Van) is recalling certain model year 2015 Ford Transit vehicles manufactured July 1, 2015, to October 30, 2015, and equipped with certain model S2005, S2010, S5005, S5010, S5505, and S5510 wheelchair lifts by Ricon.  The platform side plate o",
+              "Fenton Mobility Products, Inc. (Fenton) is recalling certain 2015-2017 Ford Transit passenger vans modified to be equipped with Ricon S & K Titanium Wheelchair Lifts.  The wheelchair lift positioning input cam may fail while the lift is in use, allowing the platform to travel hig"
+            ]
+          },
+          {
+            "id": "owners_service_other_manual_compliance_or_label",
+            "label": "OWNERS/SERVICE/OTHER MANUAL / compliance or label",
+            "leaf": "OWNERS/SERVICE/OTHER MANUAL",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the owners/service/other manual whose train-window recalls are dominated by compliance or label.",
+            "support": 3,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2017-2018 Honda Civic Hatchback and Civic Type R vehicles.  The owners guide in these vehicles may not have been included or  if included, the owner's guide may not have been properly provided required information.  As such, t",
+              "Honda (American Honda Motor Co.) is recalling certain 2019 CR-V vehicles.  The owner's guide incorrectly describes when the \"Passenger Airbag Off\" indicator should illuminate.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard ("
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "EXTERIOR LIGHTING": {
+        "train_recalls": 53,
+        "labels": [
+          {
+            "id": "brake_lights_electrical",
+            "label": "BRAKE LIGHTS / electrical",
+            "leaf": "BRAKE LIGHTS",
+            "mode": "electrical",
+            "definition": "A defect in the brake lights whose train-window recalls are dominated by electrical.",
+            "support": 21,
+            "examples": [
+              "Excellance, Inc. (Excellance) is recalling certain 2018 Ambulances and Emergency Vehicles built on Ford E-350, E-450, F-650, F-550 4x4, Chevrolet G4500, G4500 Diesel, C3500, G3500, Freightliner M2, International 4300, and Dodge 4500 chassis and equipped with Whelen brake lights. ",
+              "Custom Fab & Body LLC (Custom Fab & Body) is recalling certain 2018 Ford F-650 XLT Crew Cab, 2017-2018 International 7500 4x4, and 2018 International 7500 4x2, Freightliner M2-112 and M2-106, and Kenworth T-370-based emergency vehicles equipped with Whelen brake lights.  Dependin"
+            ]
+          },
+          {
+            "id": "headlights_compliance_or_label",
+            "label": "HEADLIGHTS / compliance or label",
+            "leaf": "HEADLIGHTS",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the headlights whose train-window recalls are dominated by compliance or label.",
+            "support": 15,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2018-2020 F-150 trucks equipped with high series LED headlamps with Autolamp (On/Off) functionality.  The Daytime Running Lamps (DRL) may remain activated instead of dimming to parking lamps when the Master Lighting Switch (MLS) is m",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2021 RAV4 Prime vehicles.  The headlight aiming caps may have been improperly closed, allowing for horizontal adjustment of the headlight beam.  As such, these vehicles fail to comply with the requirements of "
+            ]
+          },
+          {
+            "id": "exterior_lighting_software",
+            "label": "EXTERIOR LIGHTING / software",
+            "leaf": "EXTERIOR LIGHTING",
+            "mode": "software",
+            "definition": "A defect in the exterior lighting whose train-window recalls are dominated by software.",
+            "support": 10,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2018-2020 Accord Sedan, Accord Hybrid, and 2019-2020 Insight vehicles.  A software error may cause intermittent or continuous disruptions in communication between the Body Control Module (BCM) and other components.  This may r",
+              "American Honda Motor Co. (Honda) is recalling certain model year 2016 Civic 2-Door vehicles manufactured February 23, 2016, through May 20, 2016.  The affected vehicles may have a damaged LED side marker light circuit board inside the taillight assembly, making the marker light i"
+            ]
+          },
+          {
+            "id": "tail_lights_leak",
+            "label": "TAIL LIGHTS / leak",
+            "leaf": "TAIL LIGHTS",
+            "mode": "leak",
+            "definition": "A defect in the tail lights whose train-window recalls are dominated by leak.",
+            "support": 3,
+            "examples": [
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2016 Hyundai Tucson vehicles manufactured May 26, 2015 to January 15, 2016 and equipped with an accessory trailer hitch harness either included with the accessory trailer hitch or sold as a service part.  In the affe",
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2015 Genesis vehicles manufactured February 21, 2014, to January 24, 2015.  Water may leak into the rear combination lamp assemblies and cause an incorrect gear display on the instrument panel or a delay in the engag"
+            ]
+          },
+          {
+            "id": "turn_signal_electrical",
+            "label": "TURN SIGNAL / electrical",
+            "leaf": "TURN SIGNAL",
+            "mode": "electrical",
+            "definition": "A defect in the turn signal whose train-window recalls are dominated by electrical.",
+            "support": 3,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2020 Toyota Tundra vehicles equipped with LED headlight assemblies.  Due to a wiring error, the front turn signals may not flash brightly enough.  As such, these vehicles fail to comply with the requireme"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 1,
+            "examples": []
+          }
+        ]
+      },
+      "FORWARD COLLISION AVOIDANCE": {
+        "train_recalls": 7,
+        "labels": [
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 7,
+            "examples": []
+          }
+        ],
+        "note": "fewer than 8 train recalls; no specific labels"
+      },
+      "FUEL SYSTEM": {
+        "train_recalls": 136,
+        "labels": [
+          {
+            "id": "fuel_pump_failure",
+            "label": "FUEL PUMP / failure",
+            "leaf": "FUEL PUMP",
+            "mode": "failure",
+            "definition": "A defect in the fuel pump whose train-window recalls are dominated by failure.",
+            "support": 73,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and ce",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, "
+            ]
+          },
+          {
+            "id": "fuel_system_other_electrical",
+            "label": "FUEL SYSTEM OTHER / electrical",
+            "leaf": "FUEL SYSTEM OTHER",
+            "mode": "electrical",
+            "definition": "A defect in the fuel system other whose train-window recalls are dominated by electrical.",
+            "support": 13,
+            "examples": [
+              "Roush CleanTech, LLC (Roush) is recalling certain 2015-2017 Roush-modified Ford E-450, F59, F-650 and F-750 vehicles equipped with certain Generation 4 Propane Conversion Kits.  The fuel control valve solenoid may short circuit, shutting off the flow of propane to the engine, cau",
+              "National Fleet Services of Ohio (National Fleet) is recalling certain 2016 Ford E-450 vehicles equipped with Roush, Generation 4, Propane Conversion Kits.  The fuel control valve solenoid may short circuit, shutting off the flow of propane to the engine, causing the engine to shu"
+            ]
+          },
+          {
+            "id": "hoses_lines_piping_and_fittings_leak",
+            "label": "HOSES LINES/PIPING AND FITTINGS / leak",
+            "leaf": "HOSES LINES/PIPING AND FITTINGS",
+            "mode": "leak",
+            "definition": "A defect in the hoses lines/piping and fittings whose train-window recalls are dominated by leak.",
+            "support": 13,
+            "examples": [
+              "Kia Motors America (Kia) is recalling certain 2011-2017 Optima, 2012-2017 Sorento and 2011-2018 Sportage vehicles that previously received an engine replacement under recall number 17V-224, warranty, or the Knock Sensor Detection System (KSDS) Product Improvement Campaign.  The h",
+              "Honda (American Honda Motor Co.) is recalling certain 2017 Honda CR-V 2WD and AWD vehicles.  The affected vehicles have a fuel supply pipe that may have been improperly manufactured, possibly resulting in the pipe disconnecting and leaking while driving."
+            ]
+          },
+          {
+            "id": "tank_assembly_leak",
+            "label": "TANK ASSEMBLY / leak",
+            "leaf": "TANK ASSEMBLY",
+            "mode": "leak",
+            "definition": "A defect in the tank assembly whose train-window recalls are dominated by leak.",
+            "support": 12,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2015 Ford Mustang vehicles manufactured February 14, 2014, to February 10, 2015, and equipped with 2.3L engines.  Prolonged exposure to elevated underbody temperatures can cause degradation of the fuel tank and/or fuel vap",
+              "Honda (American Honda Motor Co.) is recalling certain model year 2015 Acura MDX 2WD and MDX 4WD vehicles, 2016 Acura MDX 4WD vehicles, 2015-2016 Honda Odyssey vehicles, and 2016 Honda Pilot 2WD and 4WD vehicles.  The affected vehicles have fuel tanks that were manufactured with i"
+            ]
+          },
+          {
+            "id": "fuel_system_diesel_detachment",
+            "label": "FUEL SYSTEM DIESEL / detachment",
+            "leaf": "FUEL SYSTEM DIESEL",
+            "mode": "detachment",
+            "definition": "A defect in the fuel system diesel whose train-window recalls are dominated by detachment.",
+            "support": 6,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2017 Ford F-250 SD, F-350 SD, F-450 SD, and F-550 SD trucks manufactured March 21, 2016, to August 28, 2016.  The protective shield on the fuel conditioning module may have inadequate adhesion, allowing the shield to becom",
+              "Ford Motor Company (Ford) is recalling certain model year 2015-2016 Transit vehicles manufactured July 15, 2015, to April 14, 2016 and equipped with a 3.2L diesel engine.  A fuel injector or the fuel volume control valve may clog due to metallic debris within the fuel system."
+            ]
+          },
+          {
+            "id": "canister_failure",
+            "label": "CANISTER / failure",
+            "leaf": "CANISTER",
+            "mode": "failure",
+            "definition": "A defect in the canister whose train-window recalls are dominated by failure.",
+            "support": 5,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2012 and 2017 Focus vehicles equipped with 2.0L GDI gasoline engines and 2013-2014 Focus ST vehicles equipped with 2.0L GTDI engines, previously recalled under 18V-735.  The affected vehicles did not have the Powertrain Control Modul",
+              "Ford Motor Company (Ford) is recalling certain 2012-2018 Ford Focus vehicles with a 2.0L GDI or 2.0L GTDI engine.  The Canister Purge Valve (CPV) may malfunction, possibly causing excessive vacuum in fuel vapor management system."
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 14,
+            "examples": []
+          }
+        ]
+      },
+      "HYBRID PROPULSION SYSTEM": {
+        "train_recalls": 25,
+        "labels": [
+          {
+            "id": "hybrid_propulsion_system_electrical",
+            "label": "HYBRID PROPULSION SYSTEM / electrical",
+            "leaf": "HYBRID PROPULSION SYSTEM",
+            "mode": "electrical",
+            "definition": "A defect in the hybrid propulsion system whose train-window recalls are dominated by electrical.",
+            "support": 18,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain model year 2014-2015 Honda Accord Hybrid vehicles manufactured August 29, 2013, to May 30, 2015.  Electrical interference may cause the hybrid system to switch into fail-safe mode, disabling the gasoline engine, limiting the v",
+              "Ford Motor Company (Ford) is recalling certain 2019 Fusion Energi Hybrid models.  The affected vehicles may not adequately protect against direct and indirect contact of high voltage sources during normal operation.  As such, these vehicles fail to comply with Federal Motor Vehic"
+            ]
+          },
+          {
+            "id": "inverter_stall",
+            "label": "INVERTER / stall",
+            "leaf": "INVERTER",
+            "mode": "stall",
+            "definition": "A defect in the inverter whose train-window recalls are dominated by stall.",
+            "support": 7,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2013-2015 Prius and 2014-2017 Prius V vehicles not included in recall 18V-684.  Excessive voltage in the Intelligent Power Module (IPM) within the inverter may cause the hybrid system to shut down, causing the",
+              "Hyundai Motor America (Hyundai) is recalling certain 2017-2018 Hyundai Ioniq Hybrid and 2018 Ioniq Plug-In Hybrid vehicles.   The Main Relay within the Power Relay Assembly (PRA) may have inadequate connections between its contacts, causing increased electrical resistance."
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "LATCHES/LOCKS/LINKAGES": {
+        "train_recalls": 56,
+        "labels": [
+          {
+            "id": "latch_crack_or_fracture",
+            "label": "LATCH / crack or fracture",
+            "leaf": "LATCH",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the latch whose train-window recalls are dominated by crack or fracture.",
+            "support": 53,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2014-2015 Fiesta, 2014-2016 Fusion and Lincoln MKZ vehicles sold, or ever registered in Alabama, Arkansas, Arizona, California, Florida, Georgia, Hawaii, Louisiana, Mississippi, New Mexico, Nevada, Oklahoma, Oregon, South Carolina, T",
+              "Ford Motor Company (Ford) is recalling certain 2015-2017 F-150, and 2017 F-250, F-350, F-450, and F-550 vehicles originally produced with black or body colored exterior door handles that may have been subsequently equipped with a chrome exterior door handle cover accessory kit pu"
+            ]
+          },
+          {
+            "id": "lock_compliance_or_label",
+            "label": "LOCK / compliance or label",
+            "leaf": "LOCK",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the lock whose train-window recalls are dominated by compliance or label.",
+            "support": 3,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2013-2017 Ford Focus hatchback vehicles manufactured February 14, 2012, to August 26, 2016 and equipped with a manual transmission.  The hatchback of the affected vehicles may be unlatched with a single press of the interi"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "PARKING BRAKE": {
+        "train_recalls": 19,
+        "labels": [
+          {
+            "id": "parking_brake_compliance_or_label",
+            "label": "PARKING BRAKE / compliance or label",
+            "leaf": "PARKING BRAKE",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the parking brake whose train-window recalls are dominated by compliance or label.",
+            "support": 15,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2015 Ford Taurus, Ford Flex, and Lincoln MKS vehicles manufactured May 4, 2015, to May 23, 2015, Lincoln MKT vehicles manufactured May 4, 2015, to May 21, 2015, and 2015-2016 Ford Explorer vehicles manufactured May 4, 2015",
+              "Ford Motor Company (Ford) is recalling certain 2020 Explorer and Lincoln Aviator vehicles. The Manual Park Release (MPR) cover may not be installed.  In addition, the vehicles may be in Factory Mode, which disables warning alerts and does not display the transmission gear selecte"
+            ]
+          },
+          {
+            "id": "indicator_light_corrosion",
+            "label": "INDICATOR LIGHT / corrosion",
+            "leaf": "INDICATOR LIGHT",
+            "mode": "corrosion",
+            "definition": "A defect in the indicator light whose train-window recalls are dominated by corrosion.",
+            "support": 4,
+            "examples": [
+              "Hyundai Motor America (Hyundai) is recalling certain 2015-2016 Sonata and Genesis vehicles.  In the affected vehicles, the warning light to indicate that the parking brake is applied may intermittently not illuminate in the dash due to corrosion in the switch."
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "POWER TRAIN": {
+        "train_recalls": 112,
+        "labels": [
+          {
+            "id": "automatic_transmission_detachment",
+            "label": "AUTOMATIC TRANSMISSION / detachment",
+            "leaf": "AUTOMATIC TRANSMISSION",
+            "mode": "detachment",
+            "definition": "A defect in the automatic transmission whose train-window recalls are dominated by detachment.",
+            "support": 21,
+            "examples": [
+              "Toyota Motor Company (Toyota) is recalling certain model year 2017 Toyota 86 vehicles manufactured July 1, 2016 through  August 11, 2016 equipped with an automatic transmission and ignition key.  Vehicles with a push-to-start button or manual transmission are not affected.  In th",
+              "Ford Motor Company (Ford) is recalling certain 2017 Ford F-250 Super Duty trucks equipped with 6.2L engines and six-speed automatic transmissions.  These transmissions may have a damaged park rod actuating plate that can result in unexpected vehicle movement even though the trans"
+            ]
+          },
+          {
+            "id": "gear_position_indication_prndl_failure",
+            "label": "GEAR POSITION INDICATION PRNDL / failure",
+            "leaf": "GEAR POSITION INDICATION PRNDL",
+            "mode": "failure",
+            "definition": "A defect in the gear position indication prndl whose train-window recalls are dominated by failure.",
+            "support": 18,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2017 F-150 trucks equipped with an eight-inch productivity screen.  In these vehicles, the instrument cluster may lose power after the initial vehicle start-up in cold ambient temperatures.  Several gauges, including the transmission",
+              "Ford Motor Company (Ford) is recalling certain 2020 Explorer and Lincoln Aviator vehicles. The Manual Park Release (MPR) cover may not be installed.  In addition, the vehicles may be in Factory Mode, which disables warning alerts and does not display the transmission gear selecte"
+            ]
+          },
+          {
+            "id": "driveshaft_detachment",
+            "label": "DRIVESHAFT / detachment",
+            "leaf": "DRIVESHAFT",
+            "mode": "detachment",
+            "definition": "A defect in the driveshaft whose train-window recalls are dominated by detachment.",
+            "support": 16,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2013-2015 Accord vehicles equipped with a 4-cylinder engine and a continuously-variable transmission that were originally sold, or ever registered, in Connecticut, Delaware, District of Columbia, Illinois, Indiana, Iowa, Kentu",
+              "Ford Motor Company (Ford) is recalling certain 2015-2017 Transit vehicles.  This recall includes all full-size Transit vehicles previously recalled under 17V-408 except ones that received mechanical universal joint (u-joint) as a remedy and any 156\" or 178\" wheelbase Chassis Cab "
+            ]
+          },
+          {
+            "id": "manual_transmission_leak",
+            "label": "MANUAL TRANSMISSION / leak",
+            "leaf": "MANUAL TRANSMISSION",
+            "mode": "leak",
+            "definition": "A defect in the manual transmission whose train-window recalls are dominated by leak.",
+            "support": 10,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2013-2014 Ford Fusion vehicles equipped with a 1.6L GTDI engine and 6-speed manual transmission and 2015-2016 Ford Focus vehicles equipped with a 1.0L GTDI engine and 6-speed manual transmission.  Also included are four 2017 Ford Foc",
+              "Ford Motor Company (Ford) is recalling certain 2016-2018 Ford Focus vehicles equipped with a 1.0L Fox GTDI engine and a 6-speed manual transmission.  The clutch may fracture, resulting in damage to the transmission assembly and possibly a transmission fluid leak."
+            ]
+          },
+          {
+            "id": "axle_shaft_crack_or_fracture",
+            "label": "AXLE SHAFT / crack or fracture",
+            "leaf": "AXLE SHAFT",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the axle shaft whose train-window recalls are dominated by crack or fracture.",
+            "support": 8,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2015 Ford Transit vehicles manufactured May 1, 2015, to June 26, 2015, and equipped with dual rear wheels.  The affected vehicles have a left or right rear axle drive shafts that may fracture, resulting in loss of drive po",
+              "Ford Motor Company (Ford) is recalling certain 2014-2016 Explorer, 2014-2015 Taurus and 2014 Edge vehicles equipped with 2.0L or 2.3L engines and front wheel drive.  The support bracket for the front drive axle halfshaft may fail."
+            ]
+          },
+          {
+            "id": "control_module_tcm_pcm_tecm_software",
+            "label": "CONTROL MODULE TCM/PCM/TECM / software",
+            "leaf": "CONTROL MODULE TCM/PCM/TECM",
+            "mode": "software",
+            "definition": "A defect in the control module tcm/pcm/tecm whose train-window recalls are dominated by software.",
+            "support": 8,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2011-2015 Ford F-350, F-450, and F-550 trucks  manufactured February 22, 2010, to January 30, 2015, and equipped with ambulance or fire engine preparation packages.  The affected vehicles may detect an incorrect Exhaust Ga",
+              "Ford Motor Company (Ford) is recalling certain 2019-2020 Transit Connect vehicles equipped with 2.5L engines.  The powertrain control module (PCM) software has fail-safe temperature threshold values higher than intended for the engine.  This may delay the fail-safe cooling strate"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 31,
+            "examples": []
+          }
+        ]
+      },
+      "SEAT BELTS": {
+        "train_recalls": 79,
+        "labels": [
+          {
+            "id": "pretensioner_failure",
+            "label": "PRETENSIONER / failure",
+            "leaf": "PRETENSIONER",
+            "mode": "failure",
+            "definition": "A defect in the pretensioner whose train-window recalls are dominated by failure.",
+            "support": 23,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2017-2019 F-Super Duty F-250, F-350, F-450, and F-550 SuperCrew Cab vehicles with carpet flooring.  If a front seat belt pretensioner deploys as the result of a crash, the sparks may ignite materials such as carpeting or insulation w",
+              "Honda (American Honda Motor Co.) is recalling certain 2019 Honda Insight, Odyssey, and Ridgeline vehicles.  The Supplemental Restraint System (SRS) control unit may have a manufacturing error, possibly resulting in the air bags or seatbelt pretensioners not deploying in the event"
+            ]
+          },
+          {
+            "id": "anchorage_compliance_or_label",
+            "label": "ANCHORAGE / compliance or label",
+            "leaf": "ANCHORAGE",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the anchorage whose train-window recalls are dominated by compliance or label.",
+            "support": 11,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2015 Ford F-150 SuperCrew trucks manufactured January 22, 2015, to March 17, 2015.  The affected vehicles may be equipped with driver or front passenger seat belt anchorage assemblies whose pretensioner cable was not prope",
+              "Ford Motor Company (Ford) is recalling certain model year 2016 Ford Fusion vehicles manufactured from March 10, 2016, through March 16, 2016.  The front driver seat track assembly's rear riser may have been improperly welded to the seat track rail, and as a result, the driver may"
+            ]
+          },
+          {
+            "id": "rear_other_compliance_or_label",
+            "label": "REAR/OTHER / compliance or label",
+            "leaf": "REAR/OTHER",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the rear/other whose train-window recalls are dominated by compliance or label.",
+            "support": 11,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2017 Focus vehicles.  The rear left side seat back frame may have an insufficient weld between the outboard pivot bracket and the pivot nut joint, resulting in the seat back having reduced strength.  As such, these vehicles fail to c",
+              "Ford Motor Company (Ford) is recalling certain 2015-2017 F-150, and 2017 F-250 and F-350 trucks equipped with a crew cab.  The left rear inflatable seat belt buckle assembly may be inadequately attached to its mounting bracket.  As such, these vehicles fail to comply with the req"
+            ]
+          },
+          {
+            "id": "buckle_assembly_failure",
+            "label": "BUCKLE ASSEMBLY / failure",
+            "leaf": "BUCKLE ASSEMBLY",
+            "mode": "failure",
+            "definition": "A defect in the buckle assembly whose train-window recalls are dominated by failure.",
+            "support": 10,
+            "examples": [
+              "Kia Motors America (Kia) is recalling certain 2019 Sedona vehicles equipped with an 8-passenger seat arrangement.  The seat belt  buckle for the second-row middle seat may have been improperly installed on the wrong side of the seat, preventing the proper use of the 3-point seat ",
+              "Ford Motor Company (Ford) is recalling certain model year 2015-2016 Transit vehicles manufactured February 13, 2014, to January 13, 2016 and equipped with rear passenger seats.  The rear seat belt buckles may be damaged if a heavy object is placed on, or impacts, the top of the b"
+            ]
+          },
+          {
+            "id": "front_crack_or_fracture",
+            "label": "FRONT / crack or fracture",
+            "leaf": "FRONT",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the front whose train-window recalls are dominated by crack or fracture.",
+            "support": 10,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2016 Toyota Sienna vehicles manufactured February 15, 2016, to February 19, 2016.  In the affected vehicles, incorrect front seat belt height adjusters may have been installed.  During a crash, this",
+              "Ford Motor Company (Ford) is recalling certain model year 2013-2016 Ford Fusion vehicles manufactured November 2, 2012, to July 31, 2014, and 2013-2015 Lincoln MKZ vehicles manufactured November 14, 2012, to July 31, 2014.  In the event of a crash, heat from the deployment of a s"
+            ]
+          },
+          {
+            "id": "seat_belts_compliance_or_label",
+            "label": "SEAT BELTS / compliance or label",
+            "leaf": "SEAT BELTS",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the seat belts whose train-window recalls are dominated by compliance or label.",
+            "support": 8,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2016 Ford Mustang vehicles manufactured September 26, 2015, to October 1, 2015.  The front and rear seat belts and child seat tether anchors may have been damaged in shipping from the supplier to the vehicle assembly plant",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2017 Toyota Tundra vehicles.  One of the rear split bench seat leg brackets may not have been properly tightened to the vehicle's floor pan, possibly allowing the seat to move in a crash.  A vehicle with an im"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 6,
+            "examples": []
+          }
+        ]
+      },
+      "SEATS": {
+        "train_recalls": 102,
+        "labels": [
+          {
+            "id": "seats_failure",
+            "label": "SEATS / failure",
+            "leaf": "SEATS",
+            "mode": "failure",
+            "definition": "A defect in the seats whose train-window recalls are dominated by failure.",
+            "support": 62,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2018 Honda Pilot and Ridgeline vehicles and 2018 Acura MDX vehicles.  The front driver and passenger powered seats in the Honda vehicles and the driver powered seats in the Acura vehicles may have been assembled with improperl",
+              "Honda (American Honda Motor Co.) is recalling certain 2017 Honda Civic Hatchback and Civic Type R vehicles.  Driver and front passenger seatback pads sold as replacement service parts were made without slit openings for the seat-mounted side air bags. In the event of a crash nece"
+            ]
+          },
+          {
+            "id": "mid_rear_assembly_detachment",
+            "label": "MID/REAR ASSEMBLY / detachment",
+            "leaf": "MID/REAR ASSEMBLY",
+            "mode": "detachment",
+            "definition": "A defect in the mid/rear assembly whose train-window recalls are dominated by detachment.",
+            "support": 32,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2018-2020 F-150 and 2019-2020 F-250, F-350, F-450, and F-550 Super Duty pickup trucks, and 2018-2019 Ford Explorer, 2019-2020 Expedition, and 2020 Escape vehicles equipped with driver and/or passenger's manual front seat back recline",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2017 Toyota Tundra vehicles.  One of the rear split bench seat leg brackets may not have been properly tightened to the vehicle's floor pan, possibly allowing the seat to move in a crash.  A vehicle with an im"
+            ]
+          },
+          {
+            "id": "recliner_compliance_or_label",
+            "label": "RECLINER / compliance or label",
+            "leaf": "RECLINER",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the recliner whose train-window recalls are dominated by compliance or label.",
+            "support": 8,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2017 Ford Explorer, F-150, F-250, F-350, F-450 and F-550 vehicles equipped with a manual driver's seat back recliner mechanism.  In the event of a crash, the seat back frame may not restrain the occupant due to having inadequate weld",
+              "Ford Motor Company (Ford) is recalling certain model year 2016 Ford Explorer and F-150 vehicles equipped with a manual recline driver's seat.  The seat back frame may have insufficient welds which may not meet the requirements of Federal Motor Vehicle Safety Standard (FMVSS) numb"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "SERVICE BRAKES": {
+        "train_recalls": 74,
+        "labels": [
+          {
+            "id": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+            "label": "HOSES LINES/PIPING AND FITTINGS / missing or wrong part",
+            "leaf": "HOSES LINES/PIPING AND FITTINGS",
+            "mode": "missing_or_wrong_part",
+            "definition": "A defect in the hoses lines/piping and fittings whose train-window recalls are dominated by missing or wrong part.",
+            "support": 15,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2018 Ford F-650 and F-750 trucks.  The brake circuit hose assemblies located between the master cylinder and the hydraulic control unit, may have been manufactured without anti-corrosion plating on the coupling fittings, or \"ferrules",
+              "Ford Motor Company (Ford) is recalling certain model year 2016 Ford F-650 and F-750 trucks manufactured April 15, 2015, to December 15, 2015, and equipped with rear air suspension.  In the affected vehicles, the rear brake hoses may contact and chafe on the rear axle housing whil"
+            ]
+          },
+          {
+            "id": "control_unit_module_fire",
+            "label": "CONTROL UNIT/MODULE / fire",
+            "leaf": "CONTROL UNIT/MODULE",
+            "mode": "fire",
+            "definition": "A defect in the control unit/module whose train-window recalls are dominated by fire.",
+            "support": 14,
+            "examples": [
+              "Hyundai Motor America (Hyundai) recalled certain 2019-2021 Tucson vehicles on September 4, 2020.  On December 30, 2020, Hyundai expanded the recall population, and added certain 2016-2018 Tucson vehicles.  The Anti-lock Brake Hydraulic Electronic Control Unit (HECU) could corrode",
+              "Ford Motor Company (Ford) is recalling certain model year 2016 Transit Connect vehicles manufactured February 22, 2016, through June 16, 2016.  The brake Hydraulic Control Unit (HCU) pump may be contaminated with metallic debris.  As such, these vehicles fail to conform to Federa"
+            ]
+          },
+          {
+            "id": "service_brakes_compliance_or_label",
+            "label": "SERVICE BRAKES / compliance or label",
+            "leaf": "SERVICE BRAKES",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the service brakes whose train-window recalls are dominated by compliance or label.",
+            "support": 11,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Lexus LS500, LC500, ES300h, UX250h, LS500h, Toyota Prius, RAV4 HV, 2019-2020 Toyota Prius Prime, and 2020 Corolla HV vehicles.  The brake booster pump may fail causing a deactivation of the Vehicle Stabil",
+              "Ford Motor Company (Ford) is recalling certain 2018 Ford Ecosport vehicles sold in the United States Federal Territiories.  These vehicles were shipped with the European brake reservoir pictogram cap label and the European English language owner's manual kits.  As such, these veh"
+            ]
+          },
+          {
+            "id": "antilock_traction_control_electronic_limited_slip_software",
+            "label": "ANTILOCK/TRACTION CONTROL/ELECTRONIC LIMITED SLIP / software",
+            "leaf": "ANTILOCK/TRACTION CONTROL/ELECTRONIC LIMITED SLIP",
+            "mode": "software",
+            "definition": "A defect in the antilock/traction control/electronic limited slip whose train-window recalls are dominated by software.",
+            "support": 7,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2016 Toyota RAV4 vehicles manufactured October 30, 2015, to February 3, 2016, 2016 Lexus RX350 vehicles manufactured October 26, 2015, to February 8, 2016, and 2016 Lexus ES350 vehicles manufactured",
+              "Ford Motor Company (Ford) is recalling certain model year 2015-2016 Ford Edge vehicles manufactured February 9, 2015, to August 12, 2016.  During dealer servicing, the affected vehicles may be have been updated with incorrect Antilock Brake System (ABS) and Electronic Stability C"
+            ]
+          },
+          {
+            "id": "caliper_compliance_or_label",
+            "label": "CALIPER / compliance or label",
+            "leaf": "CALIPER",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the caliper whose train-window recalls are dominated by compliance or label.",
+            "support": 7,
+            "examples": [
+              "Roush Performance Products, Inc. (Roush) is recalling certain model year 2015 Ford Mustang GT Roush Stage 3 vehicles manufactured April 1, 2015, to October 31, 2015, and equipped with Roush Extreme Duty Half Shafts.  The affected vehicles have a brake caliper guide pin that may n",
+              "Honda (American Honda Motor Co.) is recalling certain 2017-2019 Acura MDX, 2017-2018 Acura MDX Sport Hybrid, 2018-2019 Honda HR-V and Honda Odyssey, and 2016 Honda HR-V vehicles.  The rear brake caliper pistons may have an insufficient coating, causing gas pockets to form, reduci"
+            ]
+          },
+          {
+            "id": "master_cylinder_leak",
+            "label": "MASTER CYLINDER / leak",
+            "leaf": "MASTER CYLINDER",
+            "mode": "leak",
+            "definition": "A defect in the master cylinder whose train-window recalls are dominated by leak.",
+            "support": 7,
+            "examples": [
+              "American Honda Motor Co., Inc. (Honda) is recalling certain model year 2001-2010 and 2012-2015 GL1800, 2001-2005 GL1800A and 2013-2015 GL1800B motorcycles.  The rear brakes of the affected motorcycles may drag after the brakes are released.",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Toyota Tacoma vehicles.  Improper machining of the brake master cylinder may result in internal damage of one of the seals, affecting brake performance."
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 13,
+            "examples": []
+          }
+        ]
+      },
+      "STEERING": {
+        "train_recalls": 51,
+        "labels": [
+          {
+            "id": "electric_power_assist_system_loss_of_control",
+            "label": "ELECTRIC POWER ASSIST SYSTEM / loss of control",
+            "leaf": "ELECTRIC POWER ASSIST SYSTEM",
+            "mode": "loss_of_control",
+            "definition": "A defect in the electric power assist system whose train-window recalls are dominated by loss of control.",
+            "support": 19,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2013-2015 Ford Fusion and Lincoln MKZ vehicles manufactured February 3, 2012, to March 20, 2015, and 2015 Ford Edge vehicles manufactured February 26, 2015, to February 28, 2015, and originally sold, or currently registere",
+              "Ford Motor Company (Ford) is recalling certain 2013-2016 Ford Fusion and Lincoln MKZ, 2015-2016 Ford Edge, and 2016 Lincoln MKX vehicles originally sold, or currently registered in Connecticut, Delaware, the District of Columbia, Illinois, Indiana, Iowa, Maine, Maryland, Massachu"
+            ]
+          },
+          {
+            "id": "steering_detachment",
+            "label": "STEERING / detachment",
+            "leaf": "STEERING",
+            "mode": "detachment",
+            "definition": "A defect in the steering whose train-window recalls are dominated by detachment.",
+            "support": 17,
+            "examples": [
+              "Kia Motors America (Kia) is recalling certain 2020 Stinger vehicles equipped with a 2.0L Turbo-GDI engine.  A component within the Rack Mounted Motor Driven Power Steering (MDPS) Assembly may have been manufactured incorrectly, possibly resulting in the steering locking or becomi",
+              "Hyundai Motor America (Hyundai) is recalling certain 2020 Genesis G70 vehicles.  A component within the Rack Mounted Motor Driven Power Steering (R-MDPS) Assembly may have been manufactured incorrectly, possibly resulting in the steering locking or becoming difficult while drivin"
+            ]
+          },
+          {
+            "id": "column_crack_or_fracture",
+            "label": "COLUMN / crack or fracture",
+            "leaf": "COLUMN",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the column whose train-window recalls are dominated by crack or fracture.",
+            "support": 6,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2020-2021 Toyota Avalon and 2020 Avalon Hybrid, RAV4, and RAV4 Hybrid vehicles.  Breakaway pins within the steering column, designed to absorb energy and reduce injury during a crash, could have been damaged d",
+              "Ford Motor Company (Ford) is recalling certain model year 2016 F-650 trucks manufactured July 29, 2015, to September 3, 2015. The affected vehicles may have been built with an incorrect Park-Reverse-Neutral-Drive-Manual (PRNDM) steering column, instead of Reverse-Neutral-Drive-Ma"
+            ]
+          },
+          {
+            "id": "steering_wheel_handle_bar_detachment",
+            "label": "STEERING WHEEL/HANDLE BAR / detachment",
+            "leaf": "STEERING WHEEL/HANDLE BAR",
+            "mode": "detachment",
+            "definition": "A defect in the steering wheel/handle bar whose train-window recalls are dominated by detachment.",
+            "support": 6,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2019 CR-V vehicles.  The metal core of the steering wheel may have burrs which can damage the harnesses routed within, potentially disabling the driver's air bag or causing it to deploy without warning.",
+              "Hyundai Motor America (Hyundai) is recalling certain 2018 Hyundai Santa Fe and Santa Fe Sport vehicles.  The steering wheel assembly may break, possibly resulting in the steering wheel separating from the steering column while driving."
+            ]
+          },
+          {
+            "id": "tie_rod_assembly_loss_of_control",
+            "label": "TIE ROD ASSEMBLY / loss of control",
+            "leaf": "TIE ROD ASSEMBLY",
+            "mode": "loss_of_control",
+            "definition": "A defect in the tie rod assembly whose train-window recalls are dominated by loss of control.",
+            "support": 3,
+            "examples": [
+              "BMW of North America, LLC (BMW) is recalling certain 2019 Z4 sDrive30i, 2019-2020 330i xDrive, M340i and M340i xDrive, 2020 X3M and X4M, and Toyota Supra vehicles.  In certain driving conditions, such as high temperatures and rough road surfaces, a steering gear tie rod may becom",
+              "Ford Motor Company (Ford) is recalling certain 2015 F-650 and F-750 trucks, equipped with certain Spicer D-Series and E-Series steer axles.  The castellated nut on the steer axles may not be properly torqued, allowing the tie rod to loosen."
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "STRUCTURE": {
+        "train_recalls": 72,
+        "labels": [
+          {
+            "id": "roof_and_pillars_failure",
+            "label": "ROOF AND PILLARS / failure",
+            "leaf": "ROOF AND PILLARS",
+            "mode": "failure",
+            "definition": "A defect in the roof and pillars whose train-window recalls are dominated by failure.",
+            "support": 22,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2019 Honda Ridgeline and Pilot vehicles.  The mounting holes for the clip that secures the right center pillar trim panel may be larger than intended.   In the event of a crash necessitating right side curtain air bag deployme",
+              "Gulf States Toyota, Inc. (GST) is recalling certain model year 2015 Toyota Sienna vehicles manufactured January 23, 2015, to April 13, 2015, and equipped with non-Toyota-brand overhead entertainment accessories installed by GST.  During reassembly of the interior after the overhe"
+            ]
+          },
+          {
+            "id": "door_compliance_or_label",
+            "label": "DOOR / compliance or label",
+            "leaf": "DOOR",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the door whose train-window recalls are dominated by compliance or label.",
+            "support": 13,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2015-2017 F-150, and 2017 F-250, F-350, F-450, and F-550 vehicles originally produced with black or body colored exterior door handles that may have been subsequently equipped with a chrome exterior door handle cover accessory kit pu",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2011-2016 Toyota Sienna minivans manufactured January 4, 2010, to August 12, 2016.  If the power sliding door is unable to be opened when commanded, such as if the door is frozen shut, the door may "
+            ]
+          },
+          {
+            "id": "trailer_hitches_electrical",
+            "label": "TRAILER HITCHES / electrical",
+            "leaf": "TRAILER HITCHES",
+            "mode": "electrical",
+            "definition": "A defect in the trailer hitches whose train-window recalls are dominated by electrical.",
+            "support": 7,
+            "examples": [
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2016-2017 Tucson vehicles manufactured May 19, 2015, to November 14, 2016, and 2017 Santa Fe vehicles manufactured November 28, 2015, to November 14, 2016.  The affected vehicles may be equipped with an accessory tra",
+              "Kia Motors America (Kia) is recalling certain model year 2016-2017 Sorento vehicles manufactured October 27, 2014, to August 25, 2016, and 2017 Sportage vehicles manufactured December 10, 2015, to August 26, 2016.  The affected vehicles are equipped with an accessory trailer hitc"
+            ]
+          },
+          {
+            "id": "structure_compliance_or_label",
+            "label": "STRUCTURE / compliance or label",
+            "leaf": "STRUCTURE",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the structure whose train-window recalls are dominated by compliance or label.",
+            "support": 5,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain model year 2015-2016 Fit LX-trim vehicles manufactured April 11, 2014, to July 02, 2015 and not equipped with a sunroof.  In the affected vehicles, the rear grab handle brackets were not manufactured properly, and as a result,",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2012-2015 Yaris vehicles manufactured August 31, 2011, to February 9, 2015, and sold or registered in Puerto Rico. The affected vehicles may have been manufactured with a roof headliner that does no"
+            ]
+          },
+          {
+            "id": "structure_body_compliance_or_label",
+            "label": "STRUCTURE BODY / compliance or label",
+            "leaf": "STRUCTURE BODY",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the structure body whose train-window recalls are dominated by compliance or label.",
+            "support": 5,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2019-2020 Pilot and 2019 Passport vehicles.  The front frame left and right side upper members may not have been welded completely to the unibody.  As such, these vehicles may fail to comply with the requirements of Federal Mo",
+              "Ford Motor Company (Ford) is recalling certain 2016 Focus and C-Max vehicles.  The floor pan may have improperly welded left-hand apron joints."
+            ]
+          },
+          {
+            "id": "hinge_and_attachments_detachment",
+            "label": "HINGE AND ATTACHMENTS / detachment",
+            "leaf": "HINGE AND ATTACHMENTS",
+            "mode": "detachment",
+            "definition": "A defect in the hinge and attachments whose train-window recalls are dominated by detachment.",
+            "support": 4,
+            "examples": [
+              "Southeast Toyota Distributors, LLC (SET) is recalling certain 2011-2016 Toyota Tacoma and 4Runner vehicles equipped with accessory hood scoops installed by SET or SET dealers.  The adhesive attaching the hood scoop may weaken, allowing the hood scoop to detach from the vehicle."
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 16,
+            "examples": []
+          }
+        ]
+      },
+      "SUSPENSION": {
+        "train_recalls": 29,
+        "labels": [
+          {
+            "id": "rear_crack_or_fracture",
+            "label": "REAR / crack or fracture",
+            "leaf": "REAR",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the rear whose train-window recalls are dominated by crack or fracture.",
+            "support": 15,
+            "examples": [
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2013-2015 Genesis Coupe vehicles manufactured December 28, 2011, to April 6, 2015, equipped with manual transmissions.  In the affected vehicles, if the differential and the suspension rear crossmember were not prope",
+              "Ford Motor Company (Ford) is recalling certain 2013-2018 Lincoln MKT and Ford Flex and Taurus vehicles with the Police Interceptor or SHO Performance Pack.  The rear suspension toe links may fracture due to stress on the rear suspension."
+            ]
+          },
+          {
+            "id": "lower_arm_crack_or_fracture",
+            "label": "LOWER ARM / crack or fracture",
+            "leaf": "LOWER ARM",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the lower arm whose train-window recalls are dominated by crack or fracture.",
+            "support": 4,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019-2020 RAV4 and RAV4 Hybrid vehicles.  The front lower suspension arms may have cracks, which may result in the suspension arm separating from the front wheel assembly."
+            ]
+          },
+          {
+            "id": "suspension_detachment",
+            "label": "SUSPENSION / detachment",
+            "leaf": "SUSPENSION",
+            "mode": "detachment",
+            "definition": "A defect in the suspension whose train-window recalls are dominated by detachment.",
+            "support": 4,
+            "examples": [
+              "Life Line Emergency Vehicles (Life Line) is recalling certain model year 2014-2015 Life Line-modified Ford F-Series emergency vehicles that are equipped with Liquid Spring-brand aftermarket suspension kits. The mounting bracket that attaches the suspension fluid tank to the frame",
+              "Southeast Toyota Distributors, LLC (SET) is recalling certain 2018-2019 Toyota 4Runner vehicles.  During installation, certain steering and suspension components may not have been properly tightened."
+            ]
+          },
+          {
+            "id": "shock_absorber_missing_or_wrong_part",
+            "label": "SHOCK ABSORBER / missing or wrong part",
+            "leaf": "SHOCK ABSORBER",
+            "mode": "missing_or_wrong_part",
+            "definition": "A defect in the shock absorber whose train-window recalls are dominated by missing or wrong part.",
+            "support": 2,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain model year 2014 Honda CBR1000S motorcycles manufactured December 9, 2013, to March 28, 2014, and 2015 Honda CBR1000S motorcycles manufactured October 20, 2014, to February 27, 2015.  The affected motorcycles may have been buil",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2015 Yaris vehicles manufactured January 13, 2015, to February 27, 2015.  The front strut mounting bearings can be damaged when a high load is applied to the strut, such as driving over a large bump"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 4,
+            "examples": []
+          }
+        ]
+      },
+      "TIRES": {
+        "train_recalls": 32,
+        "labels": [
+          {
+            "id": "temporary_emergency_spare_tire_compliance_or_label",
+            "label": "TEMPORARY/EMERGENCY SPARE TIRE / compliance or label",
+            "leaf": "TEMPORARY/EMERGENCY SPARE TIRE",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the temporary/emergency spare tire whose train-window recalls are dominated by compliance or label.",
+            "support": 16,
+            "examples": [
+              "Gulf States Toyota, Inc. (Gulf States) is recalling certain 2017 4Runner , 86, Avalon, Camry, Camry Hybrid, Corolla, Corolla iM, Highlander, Highlander Hybrid, Prius, Prius C, RAV4, RAV4 Hybrid, Sienna  and Yaris vehicles.  The spare tire air pressure was not adjusted to the prop",
+              "Ford Motor Company (Ford) is recalling certain 2020 F-150 trucks equipped with 17-inch spare tires.  The spare tire could have been damaged when it was installed on the rim."
+            ]
+          },
+          {
+            "id": "tires_compliance_or_label",
+            "label": "TIRES / compliance or label",
+            "leaf": "TIRES",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the tires whose train-window recalls are dominated by compliance or label.",
+            "support": 8,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2015 Tacoma pickup trucks manufactured August 7, 2014, to December 22, 2014. The affected vehicles may have had their tires and wheels changed to TRD PRO accessory tires and wheels, causing the infl",
+              "Southeast Toyota Distributors, LLC (SET) is recalling certain model year 2015 Toyota Tundra vehicles manufactured March 11, 2015, to April 11, 2015 and equipped with Nitto Terra Grappler G2 275/60R20 116S XL tires.  These vehicles have a tire placcard that incorrectly states the "
+            ]
+          },
+          {
+            "id": "sidewall_crack_or_fracture",
+            "label": "SIDEWALL / crack or fracture",
+            "leaf": "SIDEWALL",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the sidewall whose train-window recalls are dominated by crack or fracture.",
+            "support": 5,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain model year 2016 Ford F-250, F-350, F-450, and F-550 trucks manufactured April 5, 2016, to April 11, 2016.  The tires installed during assembly of the affected vehicles may have sustained damage to the inner sidewall, possibly resulti",
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2015 Genesis vehicles manufactured March 3, 2014, to February 9, 2015, and equipped with Hankook Ventus S1 noble2 tires installed as original equipment.  The affected tires may develop cracks in the tire sidewall, re"
+            ]
+          },
+          {
+            "id": "pressure_monitoring_and_regulating_systems_software",
+            "label": "PRESSURE MONITORING AND REGULATING SYSTEMS / software",
+            "leaf": "PRESSURE MONITORING AND REGULATING SYSTEMS",
+            "mode": "software",
+            "definition": "A defect in the pressure monitoring and regulating systems whose train-window recalls are dominated by software.",
+            "support": 3,
+            "examples": [
+              "Southeast Toyota Distributors, LLC (SET) is recalling certain model year 2015 Toyota Prius C vehicles manufactured April 20, 2015, to June 30, 2015.  In the affected vehicles, the Tire Pressure Monitoring System (TPMS) may be improperly calibrated and, as a result, the TPMS may f",
+              "Hyundai Motor America (Hyundai) is recalling certain 2017 Santa Fe Sport vehicles.  The affected vehicles have a tire pressure monitoring system (TPMS) that may not have been set in the correct mode during vehicle assembly, and therefore will not provide an appropriate warning in"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "VEHICLE SPEED CONTROL": {
+        "train_recalls": 2,
+        "labels": [
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 2,
+            "examples": []
+          }
+        ],
+        "note": "fewer than 8 train recalls; no specific labels"
+      },
+      "VISIBILITY": {
+        "train_recalls": 22,
+        "labels": [
+          {
+            "id": "defroster_defogger_hvac_system_software",
+            "label": "DEFROSTER/DEFOGGER/HVAC SYSTEM / software",
+            "leaf": "DEFROSTER/DEFOGGER/HVAC SYSTEM",
+            "mode": "software",
+            "definition": "A defect in the defroster/defogger/hvac system whose train-window recalls are dominated by software.",
+            "support": 8,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2018-2020 Accord Sedan, Accord Hybrid, and 2019-2020 Insight vehicles.  A software error may cause intermittent or continuous disruptions in communication between the Body Control Module (BCM) and other components.  This may r"
+            ]
+          },
+          {
+            "id": "sun_moon_roof_assembly_detachment",
+            "label": "SUN/MOON ROOF ASSEMBLY / detachment",
+            "leaf": "SUN/MOON ROOF ASSEMBLY",
+            "mode": "detachment",
+            "definition": "A defect in the sun/moon roof assembly whose train-window recalls are dominated by detachment.",
+            "support": 8,
+            "examples": [
+              "Hyundai Motor America (Hyundai) is recalling certain model year 2015-2016 Sonata Hybrid vehicles manufactured December 8, 2014, to August 18, 2015, and Hyundai Sonata vehicles manufactured May 28, 2014, to March 18, 2016, equipped with the panoramic sunroof option.  Due to a bond",
+              "Ford Motor Company (Ford) is recalling certain model year 2014-2017 Transit Connect vehicles equipped with a Panoramic Fixed-Glass Vista roof.  An improper bond may exist between the panoramic roof and the vehicle body and may result in wind noise, water leak, and in some cases, "
+            ]
+          },
+          {
+            "id": "fan_motor_electrical",
+            "label": "FAN/MOTOR / electrical",
+            "leaf": "FAN/MOTOR",
+            "mode": "electrical",
+            "definition": "A defect in the fan/motor whose train-window recalls are dominated by electrical.",
+            "support": 2,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2019 Ranger vehicles previously repaired under recall 19V-726.  The service replacement Heating, Ventilating and Air Conditioning (HVAC) blower motor that was installed may have an improper clearance between an electrical terminal an",
+              "Ford Motor Company (Ford) is recalling certain 2019 Ranger vehicles.  The Heating, Ventilating and Air Conditioning (HVAC) blower motor may electrically short."
+            ]
+          },
+          {
+            "id": "power_window_devices_and_controls_compliance_or_label",
+            "label": "POWER WINDOW DEVICES AND CONTROLS / compliance or label",
+            "leaf": "POWER WINDOW DEVICES AND CONTROLS",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the power window devices and controls whose train-window recalls are dominated by compliance or label.",
+            "support": 2,
+            "examples": [
+              "Ford Motor Company (Ford) is recalling certain 2018 Ford Expedition and Lincoln Navigator vehicles.  The second row window control modules may intermittently stop the movement of the power window.  If something, such as a finger, is pinched by the window glass, the stopped window",
+              "Ford Motor Company (Ford) is recalling certain model year 2017 Ford Escape Titanium and SE vehicles manufactured October 5, 2015, to May 12, 2016.  The settings for the closing-force of the power-operated windows may allow the windows to close on an object such as a body part and"
+            ]
+          },
+          {
+            "id": "rearview_mirrors_devices_sensor_or_signal",
+            "label": "REARVIEW MIRRORS/DEVICES / sensor or signal",
+            "leaf": "REARVIEW MIRRORS/DEVICES",
+            "mode": "sensor_or_signal",
+            "definition": "A defect in the rearview mirrors/devices whose train-window recalls are dominated by sensor or signal.",
+            "support": 2,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2018 Honda Accord and 2019 Honda Insight vehicles.  In certain scenarios, the back-up camera center display may not function properly.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safe"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "VISIBILITY/WIPER": {
+        "train_recalls": 8,
+        "labels": [
+          {
+            "id": "visibility_wiper_software",
+            "label": "VISIBILITY/WIPER / software",
+            "leaf": "VISIBILITY/WIPER",
+            "mode": "software",
+            "definition": "A defect in the visibility/wiper whose train-window recalls are dominated by software.",
+            "support": 8,
+            "examples": [
+              "Honda (American Honda Motor Co.) is recalling certain 2018-2020 Accord Sedan, Accord Hybrid, and 2019-2020 Insight vehicles.  A software error may cause intermittent or continuous disruptions in communication between the Body Control Module (BCM) and other components.  This may r"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      },
+      "WHEELS": {
+        "train_recalls": 11,
+        "labels": [
+          {
+            "id": "lugs_nuts_bolts_studs_crack_or_fracture",
+            "label": "LUGS/NUTS/BOLTS/STUDS / crack or fracture",
+            "leaf": "LUGS/NUTS/BOLTS/STUDS",
+            "mode": "crack_or_fracture",
+            "definition": "A defect in the lugs/nuts/bolts/studs whose train-window recalls are dominated by crack or fracture.",
+            "support": 8,
+            "examples": [
+              "Southeast Toyota Distributors, LLC (SET) is recalling certain model year 2013-2017 Toyota Tundra and Sequoia vehicles accessorized with Southeast Toyota accessory 20-inch Rockstar wheels installed by Southeast Toyota or a Southeast Toyota dealer.  The Rockstar wheels were install",
+              "Hyundai Motor America (Hyundai) is recalling certain 2019 Ioniq Hybrid and 2020 Elantra vehicles.  The right-side rear wheel lug nuts may have been insufficiently tightened, allowing the wheel to detach from the vehicle."
+            ]
+          },
+          {
+            "id": "wheels_compliance_or_label",
+            "label": "WHEELS / compliance or label",
+            "leaf": "WHEELS",
+            "mode": "compliance_or_label",
+            "definition": "A defect in the wheels whose train-window recalls are dominated by compliance or label.",
+            "support": 3,
+            "examples": [
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain model year 2015 Tacoma pickup trucks manufactured August 7, 2014, to December 22, 2014. The affected vehicles may have had their tires and wheels changed to TRD PRO accessory tires and wheels, causing the infl",
+              "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018 Toyota Sienna vehicles built with a specific lot of 10-spoke alloy wheels from one production facility.  These wheels may not have been properly cooled during manufacturing.  As a result, the wheels may c"
+            ]
+          },
+          {
+            "id": "other_unclear",
+            "label": "other/unclear",
+            "definition": "No specific label fits, or the narrative is too vague.",
+            "support": 0,
+            "examples": []
+          }
+        ]
+      }
+    },
+    "label_count": 115,
+    "specific_label_count": 90,
+    "rule": "per-component leaf part from COMPNAME plus dominant defect mode; top leaves by train support; other/unclear always included",
+    "min_component_recalls": 8,
+    "min_leaf_support": 2,
+    "max_labels_per_component": 6,
+    "built_at": "2026-10-26T14:32:14+00:00",
+    "source": {
+      "recalls_parquet": "/private/var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/opencode/skewai-defect/recalls.parquet",
+      "recalls_zip": "/private/var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/opencode/skewai-nhtsa/FLAT_RCL_POST_2010.zip",
+      "recalls_zip_sha256": "bcd81f35fae61ece442825a582567a437407e281f9521e05577f304a582b7563",
+      "train_end": "2020-12-31"
+    }
+  }
+}

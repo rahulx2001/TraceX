@@ -1,0 +1,87 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+*.egg
+
+# Node / dashboard
+dashboard/node_modules/
+dashboard/dist/
+
+# Runtime data (DuckDB + connector outbox + reports)
+*.duckdb
+*.duckdb.wal
+data/**/*.duckdb
+data/**/*.duckdb.wal
+data/connectors/
+data/uploads/demo_*.csv
+data/uploads/evil_*.csv
+reports/qubot/contacts/
+reports/qubot/digests/
+data/reports/
+# Local defect-classifier response cache; the parquet outputs are the report.
+reports/defect/cache/
+# Real human-collected Hindi/Hinglish complaints: consent records, raw text,
+# audio and the working labels CSV. Never commit this directory.
+data/real_hindi/
+eval/regression/
+# Keep eval report dir but ignore generated dated files if desired:
+# reports/qubot/eval/eval_*.md
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+data/oidc_local.json
+
+# Local runtime / machine state
+data/uvicorn-local.pid
+data/security.jsonl
+data/security_audit.jsonl
+data/.pilot_marker_audit
+dashboard/test-results/
+data/builder_packs/builder_preview/demo/demo_script.md
+data/active_pack.json
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/*
+# Keep the committed Cloud Agent environment config tracked.
+!.cursor/environment.json
+!.cursor/install.sh
+.grok/
+
+# Local ONNX artifacts (acquired by scripts/prepare_minilm_onnx.py).
+# Manifest/checksums/LICENSE/README may be committed; binaries stay local.
+models/minilm/*.onnx
+models/minilm/*.onnx.data
+models/minilm/tokenizer.json
+models/minilm/vocab.txt
+models/minilm/*.bin
+
+# Docker / local tooling
+*.log
+.docker/
+
+# [AI-LAYER] locally stored photo evidence (never commit customer photos)
+data/ai_evidence/
+data/hackathon/
+*.ses

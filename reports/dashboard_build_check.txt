@@ -1,0 +1,27 @@
+Dashboard build check
+=====================
+
+Date: 2026-10-26
+Repo: /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard
+Node: v25.1.0
+npm: 11.6.2
+
+Command (exact):
+
+  npm ci
+  npm run build
+
+Results:
+- `npm ci` exit code: 0 (lockfile respected; no package-lock rewrite).
+- `npm run build` exit code: 0.
+- Vite v8.2.1: 73 modules transformed; built in 360ms.
+- Output: dist/index.html 0.56 kB, dist/assets/index-*.css 78.48 kB,
+  dist/assets/index-*.js 554.99 kB (gzip 146.59 kB).
+- Warnings only: ineffective dynamic import of src/apiAuth.js (pre-existing
+  pattern) and a chunk-size warning.
+- The build includes the edited files:
+  dashboard/routes/DemoMode.jsx, dashboard/routes/AiTools.jsx,
+  dashboard/src/ai/tools/VehicleRisk.jsx, dashboard/src/ai/SafetyRiskBoard.jsx,
+  dashboard/src/ai/MetaTag.jsx.
+
+Raw log (ephemeral): /tmp/skewai-dashboard-build.log

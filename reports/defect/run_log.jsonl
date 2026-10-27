@@ -1,0 +1,3 @@
+{"at": "2026-10-26T14:54:50+00:00", "git_head": "7db1008", "phase": "component", "labels_mode": "none", "config_id": "z2.0_q0.05_abs3_rel0.5", "config_sha256": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23", "elapsed_s": 2.3}
+{"at": "2026-10-26T14:54:50+00:00", "git_head": "7db1008", "phase": "component", "refused": "no frozen config at /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/reports/defect/defect_config.json"}
+{"at": "2026-10-26T15:07:00+00:00", "git_head": "7db1008", "phase": "component", "labels_mode": "none", "config_id": "z2.0_q0.05_abs3_rel0.5", "config_sha256": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23", "elapsed_s": 12.7}

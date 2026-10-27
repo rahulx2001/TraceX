@@ -1,0 +1,627 @@
+"""Warehouse — manages the two DuckDB databases.
+
+  1. **Ops warehouse** (`data/frontline.duckdb`) — written at runtime by the
+     orchestrator and agents. Schema from `OPS_SCHEMA_SQL`.
+  2. **Domain warehouse** (per-pack, read-only at runtime) — built by
+     ingestion. Schema from `DOMAIN_VIEWS_SQL`.
+
+The ops warehouse is created lazily on first connection. The domain warehouse
+is opened read-only after the pack loader has resolved its path.
+"""
+
+from __future__ import annotations
+
+import asyncio
+import threading
+import time
+from contextlib import contextmanager
+from pathlib import Path
+from typing import Any, Callable, Iterator, TypeVar
+
+T = TypeVar("T")
+
+import duckdb
+
+from src.config import settings
+from src.data.schema import DOMAIN_VIEWS_SQL, OPS_SCHEMA_SQL
+
+# ── Connection caching ──────────────────────────────────────────────────────
+
+# RLock (not Lock): cross-thread exclusion is identical, but same-thread
+# nesting degrades to serialized contention instead of wedging the warehouse
+# forever (audit 4.5 incident). Phased connections are still preferred.
+_ops_lock = threading.RLock()
+_ops_initialized = False
+
+
+def _ensure_parent(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+
+def _close_thread_ops_ro() -> None:
+    """No-op retained for callers that still invoke the old RO-cache helper."""
+    return
+
+
+@contextmanager
+def ops_con(read_only: bool = False) -> Iterator[duckdb.DuckDBPyConnection]:
+    """Yield a connection to the ops warehouse. Applies schema on first open.
+
+    Single-file DuckDB cannot mix concurrent read_only and read-write handles
+    (and ``asyncio.to_thread`` worker threads used to leave TLS RO handles open,
+    which broke writers). All access is serialized under ``_ops_lock`` with a
+    short-lived write-capable connection. ``read_only`` is accepted for API
+    compatibility but does not open a separate RO configuration.
+
+    A nonempty operations DSN (FRONTLINE_OPS_DSN, DATABASE_URL, or
+    POSTGRES_DSN) is rejected here, before DuckDB is opened.
+    """
+    from src.data.postgres_backend import reject_unsupported_ops_dsn
+
+    reject_unsupported_ops_dsn()
+
+    global _ops_initialized
+    path = settings.frontline_db_path
+    _ensure_parent(path)
+
+    with _ops_lock:
+        if not _ops_initialized:
+            con0 = duckdb.connect(str(path))
+            try:
+                apply_ops_schema(con0)
+            finally:
+                # Never leak the handle: a failed apply with an open
+                # connection wedges every later connect on the file lock.
+                con0.close()
+            _ops_initialized = True
+
+        con = None
+        for attempt in range(5):
+            try:
+                con = duckdb.connect(str(path), read_only=False)
+                break
+            except Exception as exc:
+                if "Could not set lock on file" in str(exc) and attempt < 4:
+                    time.sleep(0.04 * (2 ** attempt))
+                    continue
+                raise
+        try:
+            yield con
+        finally:
+            if con is not None:
+                con.close()
+
+
+async def ops_in_thread(fn: Callable[..., T], /, *args: Any, **kwargs: Any) -> T:
+    """Run a sync function that uses ``ops_con`` off the asyncio event loop.
+
+    DuckDB I/O still serializes on ``_ops_lock``; this just keeps the lock
+    (and the query) from stalling live WebSocket frames.
+    """
+    if kwargs:
+        return await asyncio.to_thread(lambda: fn(*args, **kwargs))
+    return await asyncio.to_thread(fn, *args)
+
+
+_domain_locks: dict[str, threading.RLock] = {}
+_domain_locks_guard = threading.Lock()
+
+
+def _get_pack_lock(pack_id: str) -> threading.RLock:
+    with _domain_locks_guard:
+        if pack_id not in _domain_locks:
+            _domain_locks[pack_id] = threading.RLock()
+        return _domain_locks[pack_id]
+
+
+@contextmanager
+def domain_con(pack_id: str, read_only: bool = True) -> Iterator[duckdb.DuckDBPyConnection]:
+    """Yield a connection to a pack's domain warehouse with coordinated locking.
+
+    If the file doesn't exist and read_only=True, raises FileNotFoundError —
+    callers should build it first via ``scripts.seed_domains`` /
+    ``make frontline-db``, or load a source CSV with
+    ``src.domains.mapping_ingest.ingest_mapped_csv`` /
+    ``python -m scripts.ingest_nhtsa``.
+    """
+    from src.security.identifiers import safe_pack_id
+
+    pack_id = str(safe_pack_id(pack_id))
+    path = settings.domain_db_path(pack_id)
+    if not path.exists():
+        # Try the pack's own domain_db override
+        from src.domains.loader import load_pack
+
+        try:
+            pack = load_pack(pack_id)
+            path = pack.domain_db_path()
+        except FileNotFoundError:
+            pass
+    if not path.exists():
+        if read_only:
+            raise FileNotFoundError(f"Domain warehouse not found: {path} (build it first)")
+        _ensure_parent(path)
+
+    pack_lock = _get_pack_lock(pack_id)
+    with pack_lock:
+        con = None
+        for attempt in range(5):
+            try:
+                con = duckdb.connect(str(path), read_only=False)
+                break
+            except Exception as exc:
+                if "Could not set lock on file" in str(exc) and attempt < 4:
+                    time.sleep(0.04 * (2 ** attempt))
+                    continue
+                raise
+        try:
+            if not read_only:
+                # Apply the canonical schema (CREATE IF NOT EXISTS).
+                apply_domain_schema(con)
+            yield con
+        finally:
+            if con is not None:
+                con.close()
+            if not read_only:
+                try:
+                    from scripts.migrate import stamp_schema_current
+
+                    stamp_schema_current(path, target="domain")
+                except Exception:
+                    pass
+
+
+# ── Init helpers (for tests + Makefile) ─────────────────────────────────────
+
+
+def init_ops_db() -> None:
+    """Force-create the ops warehouse with schema applied."""
+    global _ops_initialized
+    from src.data.postgres_backend import reject_unsupported_ops_dsn
+
+    reject_unsupported_ops_dsn()
+    path = settings.frontline_db_path
+    _ensure_parent(path)
+    with _ops_lock:
+        con = duckdb.connect(str(path))
+        try:
+            apply_ops_schema(con)
+        finally:
+            con.close()
+        _ops_initialized = True
+    try:
+        from scripts.migrate import stamp_schema_current
+
+        stamp_schema_current(path, target="ops")
+    except Exception:
+        pass
+
+
+def reset_ops_db() -> None:
+    """Drop and recreate the ops warehouse (used by eval + tests).
+
+    Refuses to wipe the default pilot path ``data/frontline.duckdb`` unless
+    ``FRONTLINE_ALLOW_DEFAULT_DB_RESET=1`` is set (intentional ``make frontline-db``).
+    Tests/CI must set ``FRONTLINE_DB_PATH`` to an isolated temp file.
+    """
+    global _ops_initialized
+    from src.config import allow_default_db_reset, is_default_pilot_ops_path
+
+    path = settings.frontline_db_path
+    if is_default_pilot_ops_path(path) and not allow_default_db_reset():
+        raise RuntimeError(
+            f"refusing to reset pilot ops DB at {path}; "
+            "set FRONTLINE_DB_PATH to an isolated path for tests, or set "
+            "FRONTLINE_ALLOW_DEFAULT_DB_RESET=1 for intentional local rebuilds "
+            "(make frontline-db)."
+        )
+    _close_thread_ops_ro()
+    with _ops_lock:
+        if path.exists():
+            path.unlink()
+        # Also remove WAL
+        for suffix in (".wal", ".tmp"):
+            extra = path.with_suffix(path.suffix + suffix)
+            if extra.exists():
+                extra.unlink()
+        _ops_initialized = False
+    init_ops_db()
+
+
+def ensure_domain_db_reset_allowed(path: Path, *, force: bool = False) -> None:
+    """Raise if *path* is a pilot domain DB and reset is not explicitly allowed.
+
+    Safe no-op when the file does not exist, when *force* is True, when
+    ``FRONTLINE_ALLOW_DEFAULT_DB_RESET`` / ``FRONTLINE_ALLOW_DOMAIN_DB_RESET``
+    is set, or when *path* is outside the default pilot ``data/domains/`` tree
+    (isolated test/CI warehouses).
+    """
+    from src.config import allow_domain_db_reset, is_default_pilot_domain_path
+
+    if not path.exists():
+        return
+    if force or allow_domain_db_reset():
+        return
+    if not is_default_pilot_domain_path(path):
+        return
+    raise RuntimeError(
+        f"refusing to delete pilot domain DB at {path}; "
+        "pass force=True / --force, or set FRONTLINE_ALLOW_DEFAULT_DB_RESET=1 "
+        "(or FRONTLINE_ALLOW_DOMAIN_DB_RESET=1) for intentional rebuilds "
+        "(make frontline-db / make seed-domains)."
+    )
+
+
+def unlink_domain_db(path: Path, *, force: bool = False) -> None:
+    """Delete a domain warehouse file (and WAL sidecars) only when allowed."""
+    ensure_domain_db_reset_allowed(path, force=force)
+    if path.exists():
+        path.unlink()
+    for suffix in (".wal", ".tmp"):
+        extra = path.with_suffix(path.suffix + suffix)
+        if extra.exists():
+            extra.unlink()
+
+
+def init_domain_db(pack_id: str) -> None:
+    """Force-create a pack's domain warehouse with the canonical schema."""
+    with domain_con(pack_id, read_only=False) as con:
+        pass  # schema applied in the context manager
+
+
+def _rollback_quietly(con) -> None:
+    """A failed DDL statement can leave DuckDB's transaction aborted.
+
+    ``ALTER TABLE ... ADD COLUMN`` when the column already exists is the
+    usual case. Swallowing that error without rolling back makes every
+    later statement on the connection fail with "transaction is aborted".
+    """
+    try:
+        con.rollback()
+    except Exception:
+        pass
+
+
+def _strip_sql_comments(sql: str) -> str:
+    """Strip SQL line comments (-- ...) so they don't break statement splitting."""
+    out_lines = []
+    for line in sql.splitlines():
+        # Remove everything after `--` (but only if it's not inside a string literal —
+        # our schema has no such cases).
+        idx = line.find("--")
+        if idx >= 0:
+            line = line[:idx]
+        out_lines.append(line)
+    return "\n".join(out_lines)
+
+
+def _migrate_weekly_anomaly_grain(con) -> None:
+    """Put model grain and the censored bit on the weekly_anomalies key.
+
+    CREATE TABLE IF NOT EXISTS does not alter a table that already exists.
+    Adding entity_3 as a nullable column is not enough: the old primary key
+    is (pack, week, category, make), so two models in one week cannot both
+    be stored. Rebuild when entity_3 is not part of that key. Row counts
+    must match before the old table is dropped.
+    """
+    try:
+        info = con.execute(
+            "SELECT name, pk FROM pragma_table_info('weekly_anomalies')"
+        ).fetchall()
+    except Exception:
+        return
+    if not info:
+        return
+    pk = {str(name): int(flag or 0) for name, flag in info}
+    if pk.get("entity_3", 0) > 0 and "censored" in pk:
+        return
+    for ddl in (
+        "ALTER TABLE weekly_anomalies ADD COLUMN entity_3 VARCHAR DEFAULT ''",
+        "ALTER TABLE weekly_anomalies ADD COLUMN censored BOOLEAN DEFAULT FALSE",
+        "ALTER TABLE weekly_anomalies ADD COLUMN p_value DOUBLE",
+        "ALTER TABLE weekly_anomalies ADD COLUMN p_bh DOUBLE",
+        "ALTER TABLE weekly_anomalies ADD COLUMN baseline_weeks INTEGER",
+        "ALTER TABLE weekly_anomalies ADD COLUMN method VARCHAR",
+    ):
+        try:
+            con.execute(ddl)
+        except Exception:
+            _rollback_quietly(con)
+    try:
+        n_old = con.execute("SELECT COUNT(*) FROM weekly_anomalies").fetchone()[0]
+        con.execute("DROP TABLE IF EXISTS weekly_anomalies__grain")
+        con.execute(
+            """
+            CREATE TABLE weekly_anomalies__grain (
+                pack_id             VARCHAR NOT NULL,
+                iso_week            VARCHAR NOT NULL,
+                category            VARCHAR,
+                entity_2            VARCHAR,
+                entity_3            VARCHAR DEFAULT '',
+                record_count        INTEGER NOT NULL,
+                baseline_mean       DOUBLE,
+                baseline_std        DOUBLE,
+                z_score             DOUBLE,
+                is_anomaly          BOOLEAN NOT NULL DEFAULT FALSE,
+                p_value             DOUBLE,
+                p_bh                DOUBLE,
+                baseline_weeks      INTEGER,
+                method              VARCHAR,
+                censored            BOOLEAN DEFAULT FALSE,
+                PRIMARY KEY (pack_id, iso_week, category, entity_2, entity_3)
+            )
+            """
+        )
+        con.execute(
+            """
+            INSERT INTO weekly_anomalies__grain
+            SELECT pack_id, iso_week, category, entity_2,
+                   COALESCE(entity_3, ''),
+                   record_count, baseline_mean, baseline_std, z_score,
+                   is_anomaly, p_value, p_bh, baseline_weeks, method,
+                   COALESCE(censored, FALSE)
+            FROM weekly_anomalies
+            """
+        )
+        n_new = con.execute(
+            "SELECT COUNT(*) FROM weekly_anomalies__grain"
+        ).fetchone()[0]
+        if int(n_new) != int(n_old):
+            con.execute("DROP TABLE weekly_anomalies__grain")
+            return
+        con.execute("DROP TABLE weekly_anomalies")
+        con.execute("ALTER TABLE weekly_anomalies__grain RENAME TO weekly_anomalies")
+        con.execute(
+            "CREATE INDEX IF NOT EXISTS idx_weekly_anom_pack_week "
+            "ON weekly_anomalies(pack_id, iso_week)"
+        )
+    except Exception:
+        _rollback_quietly(con)
+        try:
+            con.execute("DROP TABLE IF EXISTS weekly_anomalies__grain")
+        except Exception:
+            _rollback_quietly(con)
+
+
+def apply_domain_schema(con) -> None:
+    for stmt in _strip_sql_comments(DOMAIN_VIEWS_SQL).strip().split(";"):
+        s = stmt.strip()
+        if s:
+            con.execute(s)
+    # Forward-compatible columns for domain DBs built before items 4/43
+    # (backtest pack scoping + provenance; cluster history table below).
+    # Fixed DDL constants (not user input) — no identifier allowlist needed.
+    for ddl in (
+        "ALTER TABLE backtest_results ADD COLUMN pack_id VARCHAR",
+        "ALTER TABLE backtest_results ADD COLUMN provenance VARCHAR",
+        "ALTER TABLE backtest_results ADD COLUMN match_basis VARCHAR",
+        "ALTER TABLE clusters ADD COLUMN cluster_uid VARCHAR",
+        "ALTER TABLE clusters ADD COLUMN signature VARCHAR",
+        "ALTER TABLE weekly_anomalies ADD COLUMN p_value DOUBLE",
+        "ALTER TABLE weekly_anomalies ADD COLUMN p_bh DOUBLE",
+        "ALTER TABLE weekly_anomalies ADD COLUMN baseline_weeks INTEGER",
+        "ALTER TABLE weekly_anomalies ADD COLUMN method VARCHAR",
+        "ALTER TABLE weekly_anomalies ADD COLUMN entity_3 VARCHAR DEFAULT ''",
+        "ALTER TABLE weekly_anomalies ADD COLUMN censored BOOLEAN DEFAULT FALSE",
+        "ALTER TABLE records ADD COLUMN entity_key VARCHAR",
+        "ALTER TABLE records ADD COLUMN provenance VARCHAR",
+        "ALTER TABLE records ADD COLUMN embedding FLOAT[]",
+        "ALTER TABLE records ADD COLUMN event_count INTEGER DEFAULT 1",
+        "ALTER TABLE cluster_lineage ADD COLUMN correspondence_kind VARCHAR",
+    ):
+        try:
+            con.execute(ddl)
+        except Exception:
+            _rollback_quietly(con)
+    _migrate_weekly_anomaly_grain(con)
+    # Legacy rows predate provenance tracking: label them honestly so they
+    # can never masquerade as observed/computed evidence (item 2).
+    try:
+        con.execute(
+            "UPDATE backtest_results SET provenance = 'legacy' "
+            "WHERE provenance IS NULL"
+        )
+    except Exception:
+        _rollback_quietly(con)
+    try:
+        con.execute(
+            "UPDATE records SET provenance = 'legacy' WHERE provenance IS NULL"
+        )
+    except Exception:
+        _rollback_quietly(con)
+    for _idx_ddl in (
+        "CREATE INDEX IF NOT EXISTS idx_records_entity_key ON records(entity_key)",
+        "CREATE INDEX IF NOT EXISTS idx_records_source ON records(source)",
+    ):
+        try:
+            con.execute(_idx_ddl)
+        except Exception:
+            _rollback_quietly(con)
+    try:
+        con.execute(
+            "CREATE INDEX IF NOT EXISTS idx_backtest_pack_matched "
+            "ON backtest_results(pack_id, matched)"
+        )
+    except Exception:
+        _rollback_quietly(con)
+    try:
+        con.execute(
+            """
+            CREATE TABLE IF NOT EXISTS cluster_versions (
+                cluster_uid      VARCHAR PRIMARY KEY,
+                cluster_id       INTEGER,
+                pack_id          VARCHAR NOT NULL,
+                version          INTEGER NOT NULL DEFAULT 1,
+                supersedes_uid   VARCHAR,
+                member_count     INTEGER NOT NULL DEFAULT 0,
+                top_terms        VARCHAR,
+                category         VARCHAR,
+                created_at       TIMESTAMP DEFAULT current_timestamp
+            )
+            """
+        )
+    except Exception:
+        _rollback_quietly(con)
+    try:
+        con.execute(
+            "CREATE INDEX IF NOT EXISTS idx_cluster_versions_pack "
+            "ON cluster_versions(pack_id, cluster_id)"
+        )
+    except Exception:
+        _rollback_quietly(con)
+    try:
+        from src.ml_runtime.embedding_store import ensure_record_embeddings
+        from src.ml_runtime.cluster_builds import ensure_cluster_build_tables
+
+        ensure_record_embeddings(con)
+        ensure_cluster_build_tables(con)
+    except Exception:
+        _rollback_quietly(con)
+
+
+def apply_ops_schema(con) -> None:
+    index_stmts: list[str] = []
+    for stmt in _strip_sql_comments(OPS_SCHEMA_SQL).strip().split(";"):
+        s = stmt.strip()
+        if not s:
+            continue
+        if s.upper().startswith("CREATE INDEX"):
+            index_stmts.append(s)
+            continue
+        try:
+            con.execute(s)
+        except Exception:
+            try:
+                con.rollback()
+            except Exception:
+                pass
+    # Forward-compatible columns (older DuckDB files created before hash-chain).
+    from src.security.sql_ident import SAFE_ALTER_COLUMNS, safe_ident, safe_table
+
+    for table, cols in (
+        (
+            "interactions",
+            (
+                ("pack_version", "VARCHAR"),
+                ("entity_1", "VARCHAR"),
+                ("entity_2", "VARCHAR"),
+                ("entity_3", "VARCHAR"),
+                ("category", "VARCHAR"),
+                ("description", "TEXT"),
+                ("enrichment_partial", "BOOLEAN DEFAULT FALSE"),
+                ("supervised", "BOOLEAN DEFAULT FALSE"),
+                ("peak_frustration", "DOUBLE"),
+                ("last_frustration", "DOUBLE"),
+                ("peak_frustration_turn", "INTEGER"),
+                ("llm_calls", "INTEGER DEFAULT 0"),
+                ("customer_ref", "VARCHAR"),
+                ("degraded_ledger", "BOOLEAN DEFAULT FALSE"),
+                ("csat", "INTEGER"),
+                ("customer_resolved", "BOOLEAN"),
+                ("erased", "BOOLEAN DEFAULT FALSE"),
+                ("schema_version", "INTEGER DEFAULT 1"),
+            ),
+        ),
+        (
+            "cases",
+            (
+                ("case_kind", "VARCHAR DEFAULT 'customer'"),
+                ("customer_ref", "VARCHAR"),
+                ("description_summary", "TEXT"),
+                ("followup_draft", "TEXT"),
+                ("similar_record_count", "INTEGER DEFAULT 0"),
+                ("schema_version", "INTEGER DEFAULT 1"),
+            ),
+        ),
+        (
+            "agent_actions",
+            (
+                ("prev_hash", "VARCHAR"),
+                ("row_hash", "VARCHAR"),
+                ("erased", "BOOLEAN DEFAULT FALSE"),
+                ("hash_version", "INTEGER DEFAULT 1"),
+                ("content_hash", "VARCHAR"),
+                ("claims", "VARCHAR"),
+            ),
+        ),
+        (
+            "interaction_turns",
+            (
+                ("erased", "BOOLEAN DEFAULT FALSE"),
+            ),
+        ),
+        (
+            "investigations",
+            (
+                ("assignee", "VARCHAR"),
+                ("sla_due_at", "TIMESTAMP"),
+                ("slice_category", "VARCHAR"),
+                ("slice_entity_2", "VARCHAR"),
+                ("slice_entity_3", "VARCHAR"),
+            ),
+        ),
+        (
+            "recorded_fixes",
+            (
+                ("control_entity_2", "VARCHAR"),
+                ("control_entity_3", "VARCHAR"),
+            ),
+        ),
+    ):
+        for col, typ in cols:
+            try:
+                c = safe_ident(col, SAFE_ALTER_COLUMNS, kind="column")
+                t = safe_table(table)
+                con.execute(f"ALTER TABLE {t} ADD COLUMN {c} {typ}")
+            except Exception:
+                try:
+                    con.rollback()
+                except Exception:
+                    pass
+    # Version-dependent indexes AFTER the ALTERs above: creating them in the
+    # static DDL would hard-fail apply on pre-column databases (and a failed
+    # apply must never wedge the warehouse).
+    extra_indexes = [
+        "CREATE INDEX IF NOT EXISTS idx_cases_customer ON cases(customer_ref, category, created_at)",
+        "CREATE INDEX IF NOT EXISTS idx_cases_kind ON cases(case_kind, status)",
+    ]
+    for _idx_ddl in index_stmts + extra_indexes:
+        try:
+            con.execute(_idx_ddl)
+        except Exception:
+            try:
+                con.rollback()
+            except Exception:
+                pass
+    # LLM daily spend ledger (Phase 1 narration cap).
+    try:
+        con.execute(
+            """
+            CREATE TABLE IF NOT EXISTS llm_spend (
+                day_key            VARCHAR PRIMARY KEY,  -- YYYY-MM-DD UTC
+                turn_count         INTEGER NOT NULL DEFAULT 0,
+                cost_units         DOUBLE NOT NULL DEFAULT 0.0,
+                updated_at         TIMESTAMP NOT NULL
+            )
+            """
+        )
+    except Exception:
+        pass
+    # Refresh planner stats so new indexes are chosen after bulk loads / upgrades.
+    from src.security.sql_ident import safe_table
+
+    for table in (
+        "interactions",
+        "interaction_turns",
+        "cases",
+        "agent_actions",
+        "investigations",
+        "contact_memory",
+        "connector_deliveries",
+        "alert_dead_letter",
+        "llm_spend",
+    ):
+        try:
+            con.execute(f"ANALYZE {safe_table(table)}")
+        except Exception:
+            pass

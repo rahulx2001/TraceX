@@ -1,0 +1,201 @@
+# Individual reruns of the 4 full-suite failures
+# date 2026-10-26T14:06:44Z
+=== tests/frontline/test_live_corrections.py::test_correction_rejection_and_diagnostic_answer ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_correction_rejection_and_diagnostic_answer ________________
+
+orchestrator_factory = <function orchestrator_factory.<locals>._factory at 0x127c787d0>
+
+    @pytest.mark.asyncio
+    async def test_correction_rejection_and_diagnostic_answer(orchestrator_factory):
+        """One confirmation flow keeps a rejection open and a diagnostic answer changes severity."""
+        orch, hooks = orchestrator_factory()
+        await orch.start()
+        register_question(
+            orch.ctx.pack.id,
+            "Is the window fogged?",
+            category="VISIBILITY",
+        )
+        smoke = register_question(
+            orch.ctx.pack.id,
+            "Did you see smoke or fire?",
+            category="ENGINE",
+        )
+        orch.ctx.slots.update({
+            "entity_1": "2019",
+            "entity_2": "HONDA",
+            "entity_3": "CR-V",
+            "category": "SERVICE BRAKES",
+            "description": "mild noise",
+            "__hypotheses__": [
+                {"category": "SERVICE BRAKES", "open": True},
+                {"category": "ENGINE", "open": True},
+            ],
+        })
+        orch.ctx.severity = "Low"
+        orch.ctx.investigation_brief = {"brief": "stale"}
+        orch.ctx.slots["__advisory__"] = {"id": "old"}
+        orch.ctx.slots["__retrieval__"] = {"ids": ["old"]}
+        orch.ctx.slots["__severity_cache__"] = "Low"
+        _skip_safety(orch)
+    
+        before, _, _ = score_severity(orch.ctx)
+        assert before != "Critical"
+    
+        await orch.handle_customer_turn("the brakes still make a mild noise")
+        assert orch.ctx.slots.get("__diag_qid") == smoke["question_id"]
+        assert orch.ctx.slots.get("__diag_prompt") == "Did you see smoke or fire?"
+        assert "smoke or fire" in " ".join(hooks.agent_texts()).lower()
+        assert orch.ctx.slots.get("__confirm_pending__") != "1"
+    
+        await orch.handle_customer_turn("yes")
+        stored = answers_for_interaction(orch.ctx.interaction_id)
+        assert stored
+        row = stored[-1]
+        assert row["polarity"] == "yes"
+        assert row["provenance"] == "customer_turn"
+        assert row["uncertainty"] == "stated"
+        assert "fire" in (row["symptom"] or "")
+        assert row["source_turn"] == "yes"
+        after, _, reason = score_severity(orch.ctx)
+        assert after == "Critical"
+        assert "fire" in reason.lower()
+        assert orch.ctx.slots.get("__downstream_stale__") == "1"
+    
+        await orch.handle_customer_turn("Actually it's a 2018, not 2019.")
+        assert orch.ctx.slots.get("entity_1") == "2018"
+        meta = orch.ctx.slots["__slot_meta__"]["entity_1"]
+        assert meta["value"] == "2018"
+        assert "2018" in meta["source_turn"]
+        assert meta["confidence"] is not None
+>       assert meta["confirmation"] == "unconfirmed"
+E       AssertionError: assert 'confirmed' == 'unconfirmed'
+E         
+E         - unconfirmed
+E         ? --
+E         + confirmed
+
+tests/frontline/test_live_corrections.py:80: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"ts": 1793023608.7968068, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_eab92ac931b44a6c", "span_id": "sp_b3685b47", "duration_ms": 766.2779169622809, "attributes": {"interaction_id": "int_test_01m5w8hzjk5wdekh02zh2fex9q"}, "instrumentation": "in-house"}
+=========================== short test summary info ============================
+FAILED tests/frontline/test_live_corrections.py::test_correction_rejection_and_diagnostic_answer
+1 failed in 7.23s
+EXIT:1
+=== tests/frontline/test_live_handoff_outcomes.py::test_disabled_investigator_is_not_applicable ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_disabled_investigator_is_not_applicable _________________
+
+pack = LoadedPack(manifest=PackManifest(id='automotive_nhtsa', display_name='Automotive (NHTSA)', locale='en-US', greeting="T...'SEATS', 'CHILD SEAT']}, {'name': 'Body & Visibility', 'categories': ['STRUCTURE', 'VISIBILITY', 'WHEELS', 'TIRES']}]})
+
+    @pytest.mark.asyncio
+    async def test_disabled_investigator_is_not_applicable(pack):
+        ctx = InteractionContext(interaction_id="int_inv_skip", pack=pack)
+        ctx.slots.update({
+            "entity_1": "2019",
+            "entity_2": "HONDA",
+            "entity_3": "CR-V",
+            "category": "SERVICE BRAKES",
+            "description": "mild noise",
+        })
+    
+        def _enabled(name: str) -> bool:
+            return name != "investigator"
+    
+        import src.ops.pilot as pilot
+    
+        original = pilot.agent_enabled
+        pilot.agent_enabled = _enabled
+        try:
+            result = await InvestigatorAgent(ctx).run()
+        finally:
+            pilot.agent_enabled = original
+>       assert result["skipped"] is True
+               ^^^^^^^^^^^^^^^^^
+E       KeyError: 'skipped'
+
+tests/frontline/test_live_handoff_outcomes.py:85: KeyError
+=========================== short test summary info ============================
+FAILED tests/frontline/test_live_handoff_outcomes.py::test_disabled_investigator_is_not_applicable
+1 failed in 1.15s
+EXIT:1
+=== tests/frontline/test_live_voice_lifecycle.py::test_scheduled_speech_turn_and_playback_events ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________ test_scheduled_speech_turn_and_playback_events ________________
+
+    def test_scheduled_speech_turn_and_playback_events():
+        out = _voice_events()
+        assert out["whileSpeaking"]["flush"] is False
+        assert out["whileSpeaking"]["reason"] == "interim"
+        assert out["afterPause"]["flush"] is True
+        assert out["afterPause"]["reason"] == "committed"
+        assert out["idle"]["reprompt"] is True
+        assert out["idle"]["flush"] is False
+        assert out["notIdleYet"]["reprompt"] is False
+        assert out["notIdleYet"]["flush"] is False
+    
+        assert out["queue"]["first"]["status"] == "pending"
+        assert out["queue"]["first"]["accepted"] is False
+        assert out["queue"]["retry"]["turnId"] == "turn-voice-1"
+        assert out["queue"]["retry"]["accepted"] is False
+        assert out["queue"]["acked"]["status"] == "completed"
+        assert out["queue"]["duplicate"]["status"] == "duplicate"
+        assert out["queue"]["duplicate"]["outcome"]["status"] == "completed"
+        assert out["queue"]["duplicate"]["text"] == "um uh the brakes are grindin real bad"
+        assert out["queue"]["numbers"]["text"] == "two zero one nine"
+    
+        assert out["socketOpenOnly"] is False
+        assert out["socketAuthOnly"] is False
+        assert out["socketReady"] is True
+        assert out["playback"]["states"] == [
+            "queued", "started", "interrupted", "failed", "completed",
+        ]
+        assert out["playback"]["final"] == "completed"
+        assert "safe location" in out["playback"]["text"]
+        assert out["echoNumeric"] is False
+        assert out["echoAccent"] is False
+>       assert out["bargeNo"] is True
+E       AssertionError: assert 'No!' is True
+
+tests/frontline/test_live_voice_lifecycle.py:134: AssertionError
+=========================== short test summary info ============================
+FAILED tests/frontline/test_live_voice_lifecycle.py::test_scheduled_speech_turn_and_playback_events
+1 failed in 0.33s
+EXIT:1
+=== tests/frontline/test_voice_audit_fixes.py::test_malformed_frame_does_not_fail_the_contact ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________ test_malformed_frame_does_not_fail_the_contact ________________
+
+reset_ops_db = None
+seed_automotive_pack = PosixPath('/private/var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/pytest-of-rahulkumarsinghj/pytest-32/skewai_pytest_data0/domains/automotive_nhtsa.duckdb')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x128723bb0>
+
+    def test_malformed_frame_does_not_fail_the_contact(reset_ops_db, seed_automotive_pack, monkeypatch):
+        monkeypatch.delenv("FRONTLINE_API_KEY", raising=False)
+        monkeypatch.setenv("FRONTLINE_ENABLED", "1")
+        with TestClient(app) as client:
+            started = client.post("/api/interactions/start", params={"channel": "web_text"})
+            iid = started.json()["interaction_id"]
+            with client.websocket_connect(f"/ws/interaction/{iid}") as ws:
+                ws.send_json([])
+                frame = ws.receive_json()
+>               assert frame.get("code") == "bad_message"
+E               AssertionError: assert None == 'bad_message'
+E                +  where None = <built-in method get of dict object at 0x129039f00>('code')
+E                +    where <built-in method get of dict object at 0x129039f00> = {'type': 'ready', 'authenticated': True, 'attached': True, 'interaction_id': 'int_01m5w8ja5qvv5jxjssksmq4d2f', ...}.get
+
+tests/frontline/test_voice_audit_fixes.py:194: AssertionError
+=============================== warnings summary ===============================
+../../../../../opt/homebrew/lib/python3.14/site-packages/fastapi/testclient.py:1
+  /opt/homebrew/lib/python3.14/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/frontline/test_voice_audit_fixes.py::test_malformed_frame_does_not_fail_the_contact
+1 failed, 1 warning in 2.20s
+EXIT:1

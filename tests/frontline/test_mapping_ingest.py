@@ -1,0 +1,164 @@
+"""Mapping.yaml is executed as a real CSV → records loader."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+from src.config import REPO_ROOT
+from src.data.warehouse import domain_con
+from src.domains.mapping_ingest import (
+    ingest_mapped_csv,
+    iter_mapped_rows,
+    load_mapping,
+    map_row,
+)
+from src.ml_runtime.embeddings import cosine, embed_text
+
+
+def test_load_automotive_mapping_has_required_keys():
+    m = load_mapping(REPO_ROOT / "domains" / "automotive_nhtsa" / "data" / "mapping.yaml")
+    rec = m["records"]
+    assert rec["record_id"] == "RECORD_KEY"
+    assert rec["text"] == "CDESC"
+    assert rec["entity_2"] == "MAKETXT"
+    # The category must come from the normalized column, never the narrative.
+    assert rec["category"] == "COMPONENT"
+    assert rec["category"] != rec["text"]
+
+
+def test_map_row_uses_source_columns_and_literal_source():
+    m = load_mapping(REPO_ROOT / "domains" / "automotive_nhtsa" / "data" / "mapping.yaml")
+    row = {
+        "RECORD_KEY": "11555001|2019|HONDA|CR-V|SERVICE BRAKES",
+        "CMPLID": "16123456",
+        "DATEA": "20240115",
+        "DATEC": "20240110",
+        "MODEL_YR": "2019",
+        "MAKETXT": "HONDA",
+        "MODELTXT": "CR-V",
+        "COMPONENT": "SERVICE BRAKES",
+        "COMPDESC": "SERVICE BRAKES, HYDRAULIC:FOUNDATION COMPONENTS",
+        "CDESC": "grinding noise when braking",
+        "NUM_CYLS": "4",
+        "STATE": "CA",
+    }
+    rec = map_row(row, m["records"])
+    assert rec is not None
+    assert rec["record_id"] == "11555001|2019|HONDA|CR-V|SERVICE BRAKES"
+    assert rec["entity_1"] == "2019"
+    assert rec["entity_2"] == "HONDA"
+    assert rec["entity_3"] == "CR-V"
+    assert rec["category"] == "SERVICE BRAKES"
+    assert rec["subcategory"] == "SERVICE BRAKES, HYDRAULIC:FOUNDATION COMPONENTS"
+    assert rec["text"] == "grinding noise when braking"
+    assert rec["region"] == "CA"
+    assert rec["source"] == "NHTSA"
+    assert rec["received_at"] is not None
+
+
+def test_mapped_category_is_always_a_gazetteer_value():
+    """The Phase 0 done-when condition at the mapping boundary.
+
+    `category` is joined by exact string equality by the advisory match, the
+    anomaly baselines, the cluster signatures and the severity rules. A value
+    outside the gazetteer does not raise — it silently matches nothing, so
+    only an explicit check catches a regression here.
+    """
+    from src.domains.nhtsa_components import category_values
+
+    m = load_mapping(REPO_ROOT / "domains" / "automotive_nhtsa" / "data" / "mapping.yaml")
+    vocabulary = category_values()
+    for component in ("SERVICE BRAKES", "ENGINE", "UNKNOWN OR OTHER"):
+        rec = map_row(
+            {
+                "RECORD_KEY": f"1|2019|HONDA|CR-V|{component}",
+                "DATEA": "20240115",
+                "COMPONENT": component,
+                "CDESC": "text",
+            },
+            m["records"],
+        )
+        assert rec["category"] in vocabulary
+
+
+def test_ingest_mapped_csv_writes_canonical_records(tmp_path, monkeypatch):
+    # Live env path: do not fall back to the session fixture warehouse.
+    monkeypatch.setenv("DOMAIN_DB_PATH", str(tmp_path))
+
+    csv_path = tmp_path / "nhtsa_sample.csv"
+    csv_path.write_text(
+        "RECORD_KEY,CMPLID,DATEA,DATEC,MODEL_YR,MAKETXT,MODELTXT,"
+        "COMPONENT,COMPDESC,CDESC,NUM_CYLS,STATE\n"
+        "NHTSA-A,16000001,20260801,20260728,2019,HONDA,CR-V,SERVICE BRAKES,"
+        "SERVICE BRAKES HYDRAULIC:DISC,grinding noise when braking,4,CA\n"
+        "NHTSA-B,16000002,20260802,20260729,2018,TOYOTA,CAMRY,AIR BAGS,"
+        "AIR BAGS:FRONTAL,airbag warning light stays on,4,TX\n",
+        encoding="utf-8",
+    )
+    mapping = REPO_ROOT / "domains" / "automotive_nhtsa" / "data" / "mapping.yaml"
+    result = ingest_mapped_csv(
+        "automotive_nhtsa",
+        csv_path,
+        mapping_path=mapping,
+    )
+    assert result["upserted"] == 2
+    assert result["mapped"] == 2
+
+    with domain_con("automotive_nhtsa") as con:
+        n = con.execute("SELECT COUNT(*) FROM records").fetchone()[0]
+        rows = con.execute(
+            "SELECT record_id, entity_2, text, source, embedding, category, subcategory "
+            "FROM records ORDER BY record_id"
+        ).fetchall()
+    assert n == 2
+    by_id = {r[0]: r for r in rows}
+    assert by_id["NHTSA-A"][1] == "HONDA"
+    assert "grinding" in by_id["NHTSA-A"][2]
+    assert by_id["NHTSA-A"][3] == "NHTSA"
+    emb = list(by_id["NHTSA-A"][4])
+    assert cosine(emb, embed_text("grinding noise when braking")) > 0.999
+    # The category is the normalized component, not the narrative.
+    assert by_id["NHTSA-A"][5] == "SERVICE BRAKES"
+    assert by_id["NHTSA-B"][5] == "AIR BAGS"
+    assert by_id["NHTSA-A"][6] == "SERVICE BRAKES HYDRAULIC:DISC"
+
+
+def test_iter_mapped_rows_skips_empty_text(tmp_path):
+    mapping = load_mapping(REPO_ROOT / "domains" / "automotive_nhtsa" / "data" / "mapping.yaml")
+    csv_path = tmp_path / "mixed.csv"
+    csv_path.write_text(
+        "RECORD_KEY,CMPLID,DATEA,DATEC,MODEL_YR,MAKETXT,MODELTXT,"
+        "COMPONENT,COMPDESC,CDESC,NUM_CYLS,STATE\n"
+        "KEEP,1,20240115,20240110,2019,HONDA,CR-V,SERVICE BRAKES,SB:DISC,has text,4,CA\n"
+        ",2,20240115,20240110,2019,HONDA,CR-V,SERVICE BRAKES,SB:DISC,no id,4,CA\n"
+        "DROP,3,20240115,20240110,2019,HONDA,CR-V,SERVICE BRAKES,SB:DISC,,4,CA\n",
+        encoding="utf-8",
+    )
+    rows = list(iter_mapped_rows(csv_path, mapping))
+    assert [r["record_id"] for r in rows] == ["KEEP"]
+
+
+def test_missing_mapped_headers_not_converted_to_fabricated_constants():
+    """R24: Missing column references resolve to empty string rather than literal column names."""
+    mapping = {"record_id": "CMPLID", "text": "CDESC", "source": "NHTSA", "received_at": "DATEA"}
+    bad_row = {"unrelated_col": "some_value", "other_col": "123"}
+    res = map_row(bad_row, mapping)
+    assert res is None
+
+
+def test_parse_ts_converts_timezone_offsets_to_utc():
+    """R27: Ingestion converts timezone offsets to UTC without stripping local wall time."""
+    from datetime import datetime
+    from src.domains.mapping_ingest import _parse_ts
+
+    dt = _parse_ts("2024-01-01T00:30:00+05:30")
+    assert dt == datetime(2023, 12, 31, 19, 0, 0)
+
+    dt2 = _parse_ts("2024-01-01 00:30:00+05:30")
+    assert dt2 == datetime(2023, 12, 31, 19, 0, 0)
+
+    dt3 = _parse_ts("2024-01-01T20:00:00-05:00")
+    assert dt3 == datetime(2024, 1, 2, 1, 0, 0)
+
+    dt4 = _parse_ts("2024-01-01T15:00:00Z")
+    assert dt4 == datetime(2024, 1, 1, 15, 0, 0)

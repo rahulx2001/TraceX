@@ -1,0 +1,12 @@
+{
+  "status": "not run",
+  "taxonomy": "frozen from 2015–2020 recalls",
+  "taxonomy_source": "reports/defect/taxonomy.json",
+  "human_labels": "0/300 filled",
+  "human_labels_source": "reports/defect/defect_label_sample_300.csv",
+  "model_test": "not run",
+  "generated_at": null,
+  "model_tag": "Muse Spark",
+  "note": "No defect-level test has run. This file is overwritten by scripts/defect_backtest.py --phase test only after the frozen one-shot 2021-2024 test. It contains no mock flags and no invented numbers.",
+  "flags": []
+}

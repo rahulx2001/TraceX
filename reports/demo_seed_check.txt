@@ -1,0 +1,59 @@
+Demo seed end-to-end check (isolated temp DB)
+==============================================
+
+Date: 2026-10-26
+Repo: /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool
+No META_API_KEY / MODEL_API_KEY was set. No network call was made.
+
+Why: verify the DEMO_SCRIPT.md claim about the seeded Hinglish brake call
+without touching the pilot databases.
+
+Commands (exact):
+
+  rm -rf /tmp/skewai-demo-verify && mkdir -p /tmp/skewai-demo-verify/domains
+  export FRONTLINE_DB_PATH=/tmp/skewai-demo-verify/frontline.duckdb
+  export DOMAIN_DB_PATH=/tmp/skewai-demo-verify/domains
+  export FRONTLINE_ENABLED=1 AI_DEMO_ENABLED=1
+  python3 -m scripts.seed_frontline_fixtures
+  python3 -m scripts.ai_demo_seed --no-analyze \
+      --out /tmp/skewai-demo-verify/india_seed.json
+
+Results:
+- seed_frontline_fixtures exit code: 0
+- ai_demo_seed exit code: 0
+- india_seed.json fields:
+    label:    "synthetic demo contact (India, Hinglish + Hindi)"
+    state:    "DONE"
+    severity: "Critical"
+    safety_flags: ["brakes failed", "escalation"]
+    transcript turns: 5
+
+Pack-lexicon-only contrast for the same sentence
+------------------------------------------------
+Text:
+  "Namaste. Meri Honda CR-V 2019 ke brakes fail ho gaye, pedal neeche tak
+   chala jata hai aur grinding ki awaaz aati hai."
+
+Command:
+
+  python3 - <<'PY'
+  import json
+  from src.ai_layer.demo import safety_contrast
+  text = "Namaste. Meri Honda CR-V 2019 ke brakes fail ho gaye, pedal neeche tak chala jata hai aur grinding ki awaaz aati hai."
+  print(json.dumps(safety_contrast(text), indent=2))
+  PY
+
+Key output fields:
+    lang: "hinglish"
+    original_kill_switch: null
+    normalized_en: (unchanged; identity fallback, no key)
+    normalization_method: "identity"
+    final_kill_switch: null
+
+Interpretation (verified, not inferred):
+- The English pack lexicon alone does not match this Hinglish sentence.
+- The full no-key pipeline does catch it through the deterministic
+  src/ai_layer/hindi_safety.py layer, and the seeded case ends at Critical.
+- The Meta-enhanced path was NOT RUN; no live Meta call has been made.
+
+This is a synthetic scenario, not a real customer call.

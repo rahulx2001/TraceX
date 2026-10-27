@@ -1,0 +1,79 @@
+{
+  "probe": "vision",
+  "ok": true,
+  "error": null,
+  "latency_ms": 14.6,
+  "http_status": 200,
+  "value": {
+    "description": "a red circle on a white background",
+    "confidence": 0.95
+  },
+  "exchange": {
+    "method": "POST",
+    "path": "/v1/chat/completions",
+    "request_headers": {
+      "Content-Type": "application/json",
+      "Authorization": "<REDACTED>",
+      "Accept": null
+    },
+    "request_body": {
+      "model": "stub-vision-model",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Describe the image briefly. Return JSON only."
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "What shape and colour is shown?"
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+              }
+            }
+          ]
+        }
+      ],
+      "temperature": 0,
+      "max_tokens": 200,
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "image_description",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "confidence": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "description",
+              "confidence"
+            ]
+          },
+          "strict": false
+        }
+      }
+    },
+    "contract_checks": {
+      "authorization_is_bearer": true,
+      "content_type_json": true,
+      "response_format_type": "json_schema",
+      "response_format_type_is_json_schema": true,
+      "schema_name_present": true,
+      "strict_is_false": true,
+      "temperature_zero": true,
+      "max_tokens_present": true,
+      "vision_part": true
+    }
+  }
+}

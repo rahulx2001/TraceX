@@ -1,0 +1,34 @@
+{
+  "probe": "image",
+  "ok": true,
+  "error": null,
+  "latency_ms": 13.6,
+  "http_status": 200,
+  "value": {
+    "b64_json": "c3R1Yg==",
+    "url": "http://127.0.0.1/stub.png"
+  },
+  "exchange": {
+    "method": "POST",
+    "path": "/v1/images/generations",
+    "request_headers": {
+      "Content-Type": "application/json",
+      "Authorization": "<REDACTED>",
+      "Accept": null
+    },
+    "request_body": {
+      "model": "stub-image-model",
+      "prompt": "a red circle on a white background",
+      "size": "1024x1024",
+      "n": 1
+    },
+    "contract_checks": {
+      "authorization_is_bearer": true,
+      "content_type_json": true,
+      "model_present": true,
+      "prompt_present": true,
+      "size_present": true,
+      "n_is_one": true
+    }
+  }
+}

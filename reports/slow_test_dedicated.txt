@@ -1,0 +1,80 @@
+# Dedicated capped run of the slow cluster test
+# date_utc_start 2026-10-26T14:07:29Z
+# cmd: python3 -m pytest -q -p no:cacheprovider --timeout=600 --timeout-method=signal tests/frontline/test_cluster_builds.py::test_rebuild_clusters_assigns_records_beyond_5000
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_rebuild_clusters_assigns_records_beyond_5000 _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1244390f0>
+tmp_path = PosixPath('/private/var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/pytest-of-rahulkumarsinghj/pytest-33/test_rebuild_clusters_assigns_0')
+
+    def test_rebuild_clusters_assigns_records_beyond_5000(monkeypatch, tmp_path):
+        """R15: rebuild_clusters assigns records beyond 5,000 to nearest centroid."""
+        from src.ml_runtime.clustering import rebuild_clusters
+        from src.ml_runtime.embeddings import embedding_dim
+        from src.data.warehouse import domain_con, apply_domain_schema
+        import datetime
+    
+        pack = "test_large_pack"
+        db_file = tmp_path / f"{pack}.duckdb"
+        monkeypatch.setenv(f"FRONTLINE_{pack.upper()}_DB", str(db_file))
+        dim = embedding_dim()
+        vec = [0.1] * dim
+    
+        with domain_con(pack, read_only=False) as con:
+            apply_domain_schema(con)
+            base_time = datetime.datetime(2025, 1, 1, 12, 0, 0)
+            rows = [
+                (
+                    f"rec_{i}",
+                    f"Complaint about brake issue {i}",
+                    "BRAKES",
+                    "Acme",
+                    "Sedan",
+                    vec,
+                    (base_time + datetime.timedelta(minutes=i)).isoformat(),
+                )
+                for i in range(5005)
+            ]
+            con.executemany(
+                """
+                INSERT INTO records (record_id, text, category, entity_2, entity_3, embedding, received_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                rows,
+            )
+    
+>       res = rebuild_clusters(pack, k=2)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/frontline/test_cluster_builds.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/ml_runtime/clustering.py:503: in rebuild_clusters
+    selected_k, sil_width, k_method = select_k(vectors, k_max=kk)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/ml_runtime/clustering.py:152: in select_k
+    s = silhouette_score(vectors, labels)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/ml_runtime/clustering.py:102: in silhouette_score
+    d = _pairwise_cosine_dist(vectors)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/ml_runtime/clustering.py:90: in _pairwise_cosine_dist
+    dist = max(0.0, min(2.0, 1.0 - cosine(vectors[i], vectors[j])))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/ml_runtime/embeddings.py:327: in cosine
+    na = math.sqrt(sum(x * x for x in fa))
+                   ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x1043662c0>
+
+>   na = math.sqrt(sum(x * x for x in fa))
+                       ^^^^^
+E   Failed: Timeout (>600.0s) from pytest-timeout.
+
+src/ml_runtime/embeddings.py:327: Failed
+=========================== short test summary info ============================
+FAILED tests/frontline/test_cluster_builds.py::test_rebuild_clusters_assigns_records_beyond_5000
+1 failed in 600.37s (0:10:00)
+EXIT:1
+# date_utc_end 2026-10-26T14:17:31Z
