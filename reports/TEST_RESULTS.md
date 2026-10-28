@@ -1,7 +1,7 @@
 # Test results: current tree
 
 Date: 2026-10-28 (IST). Repo: `/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool`.
-Branch: `hackathon/ai-layer`. Python: 3.12.13 (`.venv-hackathon`). pytest: 8.4.2.
+Branch: `main`. Python: 3.12.13 (`.venv-hackathon`). pytest: 8.4.2.
 pyarrow: 22.0.0. Node: 25.1.0. Playwright: 1.62.1 with installed Google Chrome.
 
 This file records what was actually run. No backend test was deleted, skipped, or
