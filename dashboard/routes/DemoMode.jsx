@@ -127,6 +127,30 @@ function CaseSummary({ caseId }) {
   );
 }
 
+function LotGuardStep() {
+  const [lot, setLot] = useState(null);
+  const [done, setDone] = useState(false);
+  useEffect(() => {
+    aiGet("/api/ai/lotguard/latest")
+      .then((d) => setLot(d.lotguard || null))
+      .catch(() => setLot(null))
+      .finally(() => setDone(true));
+  }, []);
+  if (!done) return null;
+  if (!lot) return null;
+  return (
+    <Step n={5} title="LotGuard: one cracked part protects its whole lot"
+      link={`#issue/${encodeURIComponent(lot.investigation_id)}`} linkLabel="Open the lot investigation">
+      <p className="muted small" style={{ marginTop: 0 }}>
+        A workshop-verified suspension crack traced to supplier lot <span className="mono">LOT-SYN-2023-03-A</span>.
+        Check the lot card, run the simulated owner symptom check, approve as supervisor, and record workshop
+        outcomes — all counts are computed from warehouse rows. Nothing here sends a real message.
+      </p>
+      <p className="small"><strong>{lot.title}</strong> · status {lot.status}</p>
+    </Step>
+  );
+}
+
 export default function DemoMode({ hashQuery }) {
   const q = hashQuery || {};
   const [seed, setSeed] = useState(readLastSeed());
@@ -251,6 +275,8 @@ export default function DemoMode({ hashQuery }) {
       <Step n={4} title="Early-warning board, safety-critical first" link="#warning" linkLabel="Open early warning">
         <SafetyRiskBoard />
       </Step>
+
+      <LotGuardStep />
     </div>
   );
 }

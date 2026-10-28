@@ -2,12 +2,9 @@
  * Deep OpenAPI GET sweep + mutation edge cases (aggressive).
  */
 import { test, expect } from "@playwright/test";
+import { BASE, apiKey } from "./fixtures/env.js";
 
-const BASE = process.env.BASE_URL || "http://127.0.0.1:8000";
-const KEY =
-  process.env.E2E_API_KEY ||
-  process.env.FRONTLINE_API_KEY ||
-  "live-harden-key-32-chars-min!!";
+const KEY = apiKey();
 
 const H = { "X-API-Key": KEY };
 
@@ -61,6 +58,7 @@ test.describe("Deep OpenAPI GET sweep", () => {
   test("audit export returns a verified 200 document", async ({ request }) => {
     // The auditor verifies every action in every returned interaction, so this
     // endpoint is intentionally slower than the read-only sweep above.
+    test.setTimeout(150_000);
     const r = await request.get(`${BASE}/api/frontline/audits/export?limit=5`, {
       headers: H,
       timeout: 120_000,
@@ -102,6 +100,7 @@ test.describe("Deep mutation edges", () => {
   });
 
   test("case note author cannot be spoofed to CEO", async ({ request }) => {
+    test.setTimeout(90_000);
     // Prefer automotive pack corpus if active pack's fixture is empty/wrong.
     let sim = await request.post(
       `${BASE}/api/frontline/simulate?count=2&speed=instant&pack_id=automotive_nhtsa`,

@@ -16,6 +16,17 @@ from pathlib import Path
 RATES = {**{f"muse-spark-{v}": (1.25, 4.25) for v in ("1.1", "1.2", "1.3")},
          **{f"muse-spark-{v}-contributor": (0.10, 0.20) for v in ("1.2", "1.3")}}
 
+# Baseten-hosted Muse Spark Open: conservative estimate, not a published rate
+# (hackathon credits; Baseten per-token pricing unchecked from here). Kept at
+# the top tier above so reservations stay an upper bound under the same $30
+# lifetime cap. Revisit with Baseten's pricing page before any paid rollout.
+try:
+    from src.ai_layer.config import BASETEN_MODEL as _BASETEN_MODEL
+
+    RATES[_BASETEN_MODEL] = (1.25, 4.25)
+except Exception:  # pragma: no cover - config import must never break budget
+    pass
+
 
 def path() -> Path:
     return Path(os.getenv("META_BUDGET_PATH") or "~/.cache/skewai/meta_budget.sqlite").expanduser()

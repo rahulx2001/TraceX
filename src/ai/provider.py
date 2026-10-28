@@ -91,16 +91,27 @@ def _claude_key() -> str:
     return (os.getenv("CLAUDE_API_KEY") or settings.claude_api_key or "").strip()
 
 
-def llm_provider() -> str:
-    """Active provider name: ``openai``, ``anthropic``, or empty.
+def _baseten_key() -> str:
+    return os.getenv("BASETEN_API_KEY", "").strip()
 
-    OpenAI wins when both keys are set. A Claude-only install must never
-    send ``CLAUDE_API_KEY`` to ``api.openai.com``.
+
+_BASETEN_API_BASE = "https://inference.baseten.co/v1"
+_BASETEN_HOST = "inference.baseten.co"
+_BASETEN_MODEL = "meta-models/muse-spark-open-1026"
+
+
+def llm_provider() -> str:
+    """Active provider name: ``openai``, ``anthropic``, ``baseten``, or empty.
+
+    OpenAI wins when several keys are set, then Anthropic, then Baseten.
+    Each key is only ever sent to its own provider's host.
     """
     if _openai_key():
         return "openai"
     if _claude_key():
         return "anthropic"
+    if _baseten_key():
+        return "baseten"
     return ""
 
 
@@ -154,6 +165,8 @@ def _http_chat(system: str, user: str, model: str) -> str:
         return _http_chat_anthropic(system, user, model)
     if provider == "openai":
         return _http_chat_openai(system, user, model)
+    if provider == "baseten":
+        return _http_chat_baseten(system, user)
     raise ValueError("no_provider_key")
 
 
@@ -165,6 +178,7 @@ def _http_chat(system: str, user: str, model: str) -> str:
 _OFFICIAL_LLM_HOSTS = {
     "openai": "api.openai.com",
     "anthropic": "api.anthropic.com",
+    "baseten": _BASETEN_HOST,
 }
 
 
@@ -226,6 +240,55 @@ def _http_chat_openai(system: str, user: str, model: str) -> str:
     with urllib.request.urlopen(req, timeout=8.0) as resp:
         data = json.loads(resp.read().decode("utf-8"))
     return (data["choices"][0]["message"]["content"] or "").strip()
+
+
+_THINK_BLOCK = None
+
+
+def _strip_think(text: str) -> str:
+    global _THINK_BLOCK
+    if _THINK_BLOCK is None:
+        import re as _re_think
+
+        _THINK_BLOCK = _re_think.compile(r"<think>.*?</think>", _re_think.I | _re_think.S)
+    return _THINK_BLOCK.sub("", text or "").strip()
+
+
+def _http_chat_baseten(system: str, user: str) -> str:
+    """Baseten-hosted Muse Spark Open (OpenAI-compatible). Pinned host/model:
+    hackathon keys only serve this model. No temperature override: reasoning
+    models use their own sampling. Think blocks are stripped from prose."""
+    api_key = _baseten_key()
+    if not api_key:
+        raise ValueError("baseten_key_missing")
+    url = f"{_BASETEN_API_BASE}/chat/completions"
+
+    _guard_llm_url(url, "baseten")
+    body = {
+        "model": _BASETEN_MODEL,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        "max_tokens": 2000,
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}",
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=30.0) as resp:
+        data = json.loads(resp.read().decode("utf-8"))
+    content = (data["choices"][0]["message"]["content"] or "")
+    if isinstance(content, list):
+        content = "".join(
+            str(p.get("text") or "") for p in content if isinstance(p, dict)
+        )
+    return _strip_think(content).strip()
 
 
 def _anthropic_model(model: str) -> str:
@@ -307,11 +370,12 @@ def narrate(
         if not text:
             raise ValueError("empty_llm_response")
         provider = llm_provider()
-        default_model = (
-            _anthropic_model(model or "")
-            if provider == "anthropic"
-            else (model or os.getenv("FRONTLINE_LLM_MODEL", "gpt-4o-mini"))
-        )
+        if provider == "anthropic":
+            default_model = _anthropic_model(model or "")
+        elif provider == "baseten":
+            default_model = _BASETEN_MODEL
+        else:
+            default_model = model or os.getenv("FRONTLINE_LLM_MODEL", "gpt-4o-mini")
         return NarrationResult(
             text=text[:500],
             ok=True,

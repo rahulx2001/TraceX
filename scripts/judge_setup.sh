@@ -53,7 +53,7 @@ export FRONTLINE_ENABLED=1 AI_DEMO_ENABLED=1
 mkdir -p "$DOMAIN_DB_PATH"
 chmod 700 data/hackathon/judge-v2
 
-SEED_VERSION="2026-10-28-event"
+SEED_VERSION="2026-10-29-lotguard"
 if [ -f data/hackathon/judge-v2/.seeded ] && [ "$(cat data/hackathon/judge-v2/.seeded)" != "$SEED_VERSION" ]; then
   echo "Demo seed version mismatch: this checkout expects '$SEED_VERSION', found '$(cat data/hackathon/judge-v2/.seeded)'." >&2
   echo "The old seed is not reused. Move data/hackathon/judge-v2 aside (or delete it) and rerun this script." >&2
@@ -65,6 +65,7 @@ if [ ! -f data/hackathon/judge-v2/.seeded ]; then
   echo "→ [4/5] Simulated traffic (opens early-warning investigations) + seeded India scenario"
   .venv-hackathon/bin/python -m src.frontline.simulator --count "${SIM_COUNT:-15}" --speed instant
   .venv-hackathon/bin/python -m scripts.ai_demo_seed --out data/hackathon/judge-v2/india_seed.json >/dev/null
+  .venv-hackathon/bin/python -m scripts.lotguard_seed --out data/hackathon/judge-v2/lotguard_seed.json >/dev/null
   printf '%s\n' "$SEED_VERSION" > data/hackathon/judge-v2/.seeded
 else
   echo "→ [3-4/5] data/hackathon seed $SEED_VERSION is current"
@@ -114,6 +115,7 @@ export FRONTLINE_AI_LAYER="$START_AI_LAYER"
 echo
 echo "AI layer: $(.venv-hackathon/bin/python -c 'from src.config import load_repo_env; load_repo_env(); from src.ai_layer.config import ai_mode; print(ai_mode())')"
 echo "Seeded India case: $(.venv-hackathon/bin/python -c "import json;d=json.load(open('data/hackathon/judge-v2/india_seed.json'));print(d['case_id'], d['severity'], d['investigation_id'])")"
+echo "Seeded LotGuard lot: $(.venv-hackathon/bin/python -c "import json;d=json.load(open('data/hackathon/judge-v2/lotguard_seed.json'));print(d['lot']['lot_id'], d['investigation_id'], str(d['owner_count'])+' owners')")"
 echo "The operator API key is a service principal. It does not sign you in as a supervisor."
 echo "Operator API key (local only, paste on the Sign in page → 'Have an operator API key?'):"
 echo "   $FRONTLINE_API_KEY"

@@ -518,3 +518,67 @@ export function advancePlayback(current, event) {
   );
   return { status, text, utteranceId };
 }
+
+/** Wait this long for server TTS audio before falling back to browser TTS. */
+export const SERVER_AUDIO_WAIT_MS = 6000;
+
+/** Largest single utterance uploaded for server STT (mirrors the server cap). */
+export const SERVER_AUDIO_MAX_BYTES = 2000000;
+
+/** Stop a server-capture utterance after this much trailing silence. */
+export const SERVER_CAPTURE_SILENCE_MS = 900;
+
+/** Never record one server-capture utterance longer than this. */
+export const SERVER_CAPTURE_MAX_MS = 30000;
+
+/**
+ * Pick the STT/TTS path from the server `ready.voice` advertisement plus
+ * what this browser can actually do. Server wins when both ends agree;
+ * otherwise the shipped browser path (or text) is kept.
+ *
+ * @param {{
+ *   serverStt?: boolean, serverTts?: boolean,
+ *   mediaRecorder?: boolean, audioElement?: boolean,
+ *   hasSpeechRecognition?: boolean, hasSpeechSynthesis?: boolean,
+ * }} opts
+ * @returns {{ stt: "server"|"browser"|"text", tts: "server"|"browser"|"none" }}
+ */
+export function serverVoiceSelection(opts = {}) {
+  const {
+    serverStt = false,
+    serverTts = false,
+    mediaRecorder = false,
+    audioElement = false,
+    hasSpeechRecognition = false,
+    hasSpeechSynthesis = false,
+  } = opts || {};
+  const stt = serverStt && mediaRecorder ? "server" : hasSpeechRecognition ? "browser" : "text";
+  const tts = serverTts && audioElement ? "server" : hasSpeechSynthesis ? "browser" : "none";
+  return { stt, tts };
+}
+
+/**
+ * Build the `user_audio` WS frame. One constructor so the client and the
+ * server's frame parser cannot drift apart on field names.
+ */
+export function userAudioFrame({
+  audio = "",
+  mime = "audio/webm",
+  turnId = "",
+  turnSeq = 0,
+  locale = "",
+  region = "",
+  driving = false,
+} = {}) {
+  const frame = {
+    type: "user_audio",
+    audio: String(audio || ""),
+    mime: String(mime || "audio/webm"),
+    turn_id: String(turnId || ""),
+    turn_seq: Number(turnSeq) || 0,
+  };
+  if (locale) frame.locale = String(locale);
+  if (region) frame.region = String(region);
+  if (driving) frame.drive_hint = true;
+  return frame;
+}

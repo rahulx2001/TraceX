@@ -46,7 +46,7 @@ export default function SafetyRiskBoard({ limit = 12 }) {
       {!d.error && rows.length === 0 && <div className="muted small">No open investigations yet.</div>}
       {rows.length > 0 && (
         <table className="table small">
-          <thead><tr><th>Risk</th><th>Investigation</th><th>Slice</th><th>Cases</th><th>Crash / fire / injury mentions</th></tr></thead>
+          <thead><tr><th>Risk</th><th>Investigation</th><th>Slice</th><th>Lot</th><th>Cases</th><th>Crash / fire / injury mentions</th></tr></thead>
           <tbody>
             {rows.map((r) => {
               const m = (r.safety_risk && r.safety_risk.mentions) || {};
@@ -55,6 +55,7 @@ export default function SafetyRiskBoard({ limit = 12 }) {
                   <td><SafetyRiskChip risk={r.safety_risk} /></td>
                   <td><a className="mono" href={`#issue/${encodeURIComponent(r.investigation_id)}`}>{r.investigation_id}</a></td>
                   <td>{[r.slice_entity_2, r.slice_entity_3, r.slice_category].filter(Boolean).join(" ")}</td>
+                  <td>{r.lot ? <span className="chip mono">{r.lot.lot_id}</span> : <span className="muted small">slice only</span>}</td>
                   <td>{r.case_count}</td>
                   <td>{m.crash || 0} / {m.fire || 0} / {m.injury || 0}</td>
                 </tr>

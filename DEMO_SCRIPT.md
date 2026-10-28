@@ -37,3 +37,34 @@ Show the intake event ID, accepted/rejected fields and chain verification. The l
 “This is an Indie prototype for multilingual automotive quality intake. We reuse the earlier operations platform. Today's submission proves a live Meta text workflow and makes its review and setup reproducible. The historical recall statistics are deterministic component-level results, not Meta accuracy or lives saved. The multilingual evaluation sets are synthetic; the human defect-label study is unfinished.”
 
 Keep the last screen on the accepted model output and audit row. Show a repo/demo link, with credentials hidden.
+
+## LotGuard arc — alternative 3-minute flow (one cracked part protects its lot)
+
+Same prepare step (`bash scripts/judge_setup.sh`, `http://127.0.0.1:8000/ui/#demo`).
+All LotGuard data is synthetic and labelled; notices and replies are recorded
+locally only — say "simulated owner check" on camera, never "sent".
+
+**0:00–0:30 — The crack.** Open step 5 on #demo ("LotGuard: one cracked part
+protects its whole lot"), then the lot investigation. Show the lot card:
+supplier SYN-AXLEWORKS, lot `LOT-SYN-2023-03-A`, build window, slice
+(2023 Honda CR-V, suspension), and the rationale line naming the
+workshop-verified seed record. Read the risk reasons aloud (tier, complaint
+count, hazard mentions). Never call this a crash prediction.
+
+**0:30–1:20 — The check.** Click **Start owner check** (simulated). Record a few
+symptom replies (clunk / wear / pull) and one `None` to show both paths. Watch
+the counters move and the recommendation flip to *escalate*. Mention: a NONE
+majority would instead recommend monitoring — the loop can stand down.
+
+**1:20–2:10 — The gate.** Review the grounded brief (every claim cites record
+IDs). Sign in as supervisor (**Have a supervisor session?** with the setup
+session) and **Approve** with the `inspect_7d` lane. Show the approval row:
+who decided, what verification snapshot they saw, and the ledgered
+`approval_decided` action. Note the workshop queue was locked until now.
+
+**2:10–3:00 — The save.** Record workshop outcomes on the top-ranked owners
+(`Crack found` / `Wear only` / `No issue`) and watch yield update from outcomes
+only. Open the impact panel: exposed lot vs inspected vs confirmed, and the
+time-to-protect clock. Export the evidence packet. Close: "24 inspected instead
+of a blanket recall visit for the whole lot — earlier verified inspection, not
+lives-saved arithmetic."

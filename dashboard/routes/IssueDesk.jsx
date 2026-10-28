@@ -5,6 +5,11 @@ import { openCases, openConsole } from "../src/ui/opsActions.js";
 // [AI-LAYER] grounded brief + photo evidence panels (optional Meta AI layer)
 import GroundedBriefPanel from "../src/ai/GroundedBriefPanel.jsx";
 import EvidencePanel from "../src/ai/EvidencePanel.jsx";
+import LotCard from "../src/ai/LotCard.jsx";
+import VerificationPanel from "../src/ai/VerificationPanel.jsx";
+import ApprovalPanel from "../src/ai/ApprovalPanel.jsx";
+import WorkshopPanel from "../src/ai/WorkshopPanel.jsx";
+import ImpactPanel from "../src/ai/ImpactPanel.jsx";
 
 function fmtUSD(x) {
   if (x === null || x === undefined || Number.isNaN(Number(x))) return null;
@@ -640,6 +645,11 @@ export default function IssueDesk({ issueId, refreshKey }) {
       {inv?.investigation_id && (
         <div className="panel">
           <GroundedBriefPanel investigationId={inv.investigation_id} />
+          <LotCard investigationId={inv.investigation_id} />
+          <VerificationPanel investigationId={inv.investigation_id} />
+          <ApprovalPanel investigationId={inv.investigation_id} />
+          <WorkshopPanel investigationId={inv.investigation_id} />
+          <ImpactPanel investigationId={inv.investigation_id} />
           <EvidencePanel investigationId={inv.investigation_id} readOnly title="Customer photos on this issue" />
         </div>
       )}

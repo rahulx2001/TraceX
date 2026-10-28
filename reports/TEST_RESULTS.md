@@ -70,11 +70,20 @@ cd dashboard && npm run build
 Passed (Vite 8.2.1). Existing bundle-size and ineffective-dynamic-import
 warnings remain.
 
+Voice ranking assertions:
+
+```bash
+cd dashboard && npm run test:tts-voice
+```
+
+Passed. Novelty voices are excluded, exact-locale voices outrank other English
+variants, and an explicit operator voice choice wins.
+
 Full Playwright suite against a clean-checkout judge server (real Chrome):
 
 ```bash
 cd dashboard
-BASE_URL=http://127.0.0.1:8130 \
+BASE_URL=http://127.0.0.1:8140 \
 TRACEX_JUDGE_DATA=<judge-v2 data dir> \
 E2E_API_KEY=<operator key> \
 PLAYWRIGHT_CHANNEL=chrome \
@@ -86,7 +95,7 @@ Result: **54 passed** across
 `ui.console.spec.js` (17), `ui.interactions.spec.js` (5),
 `ui.loops.spec.js` (7) and `judge.workflow.spec.js` (1).
 
-The judge workflow verifies operator-key sign-in, the recorded live-proof panel,
+The judge workflow verifies the operator key, the recorded live-proof panel,
 supervisor token exchange into an HttpOnly cookie, takeover and release, with no
 page exceptions. The API specs verify the auth gate, service-principal denials,
 SSRF rejection, simulated-case filtering, note-author derivation and the audit

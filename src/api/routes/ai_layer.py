@@ -3,6 +3,16 @@
   GET  /api/ai/status                                  -> mode badge (enhanced | deterministic)
   GET  /api/ai/events                                  -> deterministic-vs-AI decision log
   GET  /api/ai/investigations/{investigation_id}/grounded-brief
+  GET  /api/ai/lotguard/latest                          -> most recent LotGuard investigation
+  GET  /api/ai/lotguard/{investigation_id}                -> supplier lot card + rationale + risk
+  POST /api/ai/lotguard/{investigation_id}/notify         -> record simulated owner notices (mock)
+  POST /api/ai/lotguard/{investigation_id}/replies        -> record one structured owner reply
+  GET  /api/ai/lotguard/{investigation_id}/verification   -> live counters + recommendation
+  POST /api/ai/lotguard/{investigation_id}/decision         -> supervisor approve/reject (ledgered)
+  GET  /api/ai/lotguard/{investigation_id}/approval         -> latest decision or null
+  POST /api/ai/lotguard/{investigation_id}/outcomes         -> record workshop outcome (locked until approved)
+  GET  /api/ai/lotguard/{investigation_id}/workshop         -> ranked queue + yield
+  GET  /api/ai/lotguard/{investigation_id}/packet           -> exportable evidence packet
   GET  /api/ai/early-warning/safety                    -> investigations ordered by safety risk
   POST /api/ai/demo/seed                               -> seeded India demo contact (synthetic, simulated channel)
   GET  /api/ai/investigations/{investigation_id}/evidence
@@ -30,7 +40,7 @@ from fastapi.responses import FileResponse
 
 from src.api.auth import require_api_key
 from src.api.limiter import limiter
-from src.api.rbac import require_perm_dep
+from src.api.rbac import get_actor, get_role, require_perm_dep
 from src.data.warehouse import ops_in_thread
 
 router = APIRouter(tags=["ai-layer"], dependencies=[Depends(require_api_key)])
@@ -84,6 +94,203 @@ async def grounded_brief(
 
     try:
         return await asyncio.to_thread(build_grounded_brief, investigation_id)
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@router.get("/api/ai/lotguard/latest")
+async def lotguard_latest(
+    _role: str = Depends(require_perm_dep("case:read", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """Most recent LotGuard-seeded investigation (null when unseeded)."""
+    from src.ai_layer.lotguard import latest_lotguard
+
+    return {"lotguard": await asyncio.to_thread(latest_lotguard)}
+
+
+@router.get("/api/ai/lotguard/{investigation_id}")
+async def lotguard_card(
+    investigation_id: str,
+    _role: str = Depends(require_perm_dep("case:read", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """LotGuard lot card: supplier lot + rationale + risk for one investigation."""
+    from src.ai_layer.lotguard import lot_context
+
+    try:
+        return await asyncio.to_thread(lot_context, investigation_id)
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@router.post("/api/ai/lotguard/{investigation_id}/notify")
+@limiter.limit("12 per minute")
+async def lotguard_notify(
+    investigation_id: str,
+    request: Request,
+    _role: str = Depends(require_perm_dep("contact:write", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """Record simulated owner notices for an investigation's cluster (mock: nothing sent)."""
+    from src.ai_layer.lotguard import notify_lot_owners
+
+    try:
+        return await asyncio.to_thread(notify_lot_owners, investigation_id)
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@router.post("/api/ai/lotguard/{investigation_id}/replies")
+@limiter.limit("60 per minute")
+async def lotguard_reply(
+    investigation_id: str,
+    request: Request,
+    _role: str = Depends(require_perm_dep("contact:write", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """Record one owner's structured symptom reply (simulated channel)."""
+    from src.ai_layer.lotguard import VerificationError, record_owner_reply
+
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="JSON body required") from None
+    if not isinstance(body, dict):
+        raise HTTPException(status_code=400, detail="JSON object required")
+    try:
+        return await asyncio.to_thread(
+            record_owner_reply,
+            investigation_id=investigation_id,
+            owner_id=str(body.get("owner_id") or ""),
+            symptoms=list(body.get("symptoms") or []),
+            photo_ref=body.get("photo_ref"),
+        )
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except VerificationError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+@router.get("/api/ai/lotguard/{investigation_id}/verification")
+async def lotguard_verification(
+    investigation_id: str,
+    _role: str = Depends(require_perm_dep("case:read", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """Live verification counters + recommendation (read-only)."""
+    from src.ai_layer.lotguard import verification_status
+
+    try:
+        return await asyncio.to_thread(verification_status, investigation_id)
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@router.post("/api/ai/lotguard/{investigation_id}/decision")
+@limiter.limit("12 per minute")
+async def lotguard_decision(
+    investigation_id: str,
+    request: Request,
+    role: str = Depends(get_role),
+    actor: str = Depends(get_actor),
+) -> dict[str, Any]:
+    """Supervisor-only approval gate (approve with lane / reject). Ledgered."""
+    from src.ai_layer.lotguard import VerificationError, decide_approval
+
+    # Supervisor only; open mode never bypasses this (unsigned callers are 'agent').
+    if role != "supervisor":
+        raise HTTPException(status_code=403,
+                            detail=f"role {role} cannot decide LotGuard approvals (supervisor only)")
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="JSON body required") from None
+    if not isinstance(body, dict):
+        raise HTTPException(status_code=400, detail="JSON object required")
+    try:
+        return await asyncio.to_thread(
+            decide_approval,
+            investigation_id=investigation_id,
+            decision=str(body.get("decision") or ""),
+            lane=body.get("lane"),
+            note=body.get("note"),
+            decided_by=str(actor or "supervisor"),
+            decided_role=role,
+        )
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except VerificationError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+@router.get("/api/ai/lotguard/{investigation_id}/approval")
+async def lotguard_approval(
+    investigation_id: str,
+    _role: str = Depends(require_perm_dep("case:read", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """Latest supervisor decision for an investigation (null when undecided)."""
+    from src.ai_layer.lotguard import latest_approval
+
+    try:
+        return {"approval": await asyncio.to_thread(latest_approval, investigation_id)}
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@router.post("/api/ai/lotguard/{investigation_id}/outcomes")
+@limiter.limit("60 per minute")
+async def lotguard_outcome(
+    investigation_id: str,
+    request: Request,
+    _role: str = Depends(require_perm_dep("case:write", open_mode_ok=True)),
+    actor: str = Depends(get_actor),
+) -> dict[str, Any]:
+    """Record one workshop inspection outcome (locked until approved)."""
+    from src.ai_layer.lotguard import VerificationError, record_outcome
+
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="JSON body required") from None
+    if not isinstance(body, dict):
+        raise HTTPException(status_code=400, detail="JSON object required")
+    try:
+        return await asyncio.to_thread(
+            record_outcome,
+            investigation_id=investigation_id,
+            owner_id=str(body.get("owner_id") or ""),
+            outcome=str(body.get("outcome") or ""),
+            photo_ref=body.get("photo_ref"),
+            recorded_by=str(actor or "unknown"),
+        )
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except VerificationError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+@router.get("/api/ai/lotguard/{investigation_id}/workshop")
+async def lotguard_workshop(
+    investigation_id: str,
+    _role: str = Depends(require_perm_dep("case:read", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """Ranked workshop queue + yield (read-only)."""
+    from src.ai_layer.lotguard import campaign_yield, workshop_queue
+
+    try:
+        queue = await asyncio.to_thread(workshop_queue, investigation_id)
+        queue["yield"] = await asyncio.to_thread(campaign_yield, investigation_id)
+        return queue
+    except LookupError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@router.get("/api/ai/lotguard/{investigation_id}/packet")
+async def lotguard_packet(
+    investigation_id: str,
+    _role: str = Depends(require_perm_dep("case:read", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """Exportable evidence packet (seed, lot, notices, approval, outcomes)."""
+    from src.ai_layer.lotguard import evidence_packet
+
+    try:
+        return await asyncio.to_thread(evidence_packet, investigation_id)
     except LookupError as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
 

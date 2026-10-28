@@ -12,7 +12,7 @@ runtime, test and demo status.
 |---|---|
 | Complete backend suite, Python 3.12.13, isolated warehouses and provider state | **1,794 passed**, 575.27 seconds, **no tests deselected or skipped**; one Starlette TestClient deprecation warning |
 | Documented `make test` target (dashboard build + MiniLM verify + `tests/frontline/`, 30-second per-test timeout) | **1,755 passed**, 759.59 seconds, `EXIT:0`; the 39 tests outside `tests/frontline/` are in the full-suite row |
-| Full Playwright suite against a clean-checkout judge server (real Chrome) | **54 passed**: API auth/SSRF/export specs, all UI routes and operator loops, and the judge sign-in/takeover workflow |
+| Full Playwright suite against a clean-checkout judge server (real Chrome) | **54 passed**: API auth/SSRF/export specs, all UI routes and operator loops, and the judge key/session/takeover workflow |
 | Affected AI/UI/session tests (earlier targeted run, superseded by the full suite above) | **173 passed**, 37.49 seconds |
 | Dashboard production build, theme and QA-label checks | Passed; existing bundle-size and ineffective-dynamic-import warnings remain |
 | Pinned MiniLM model/tokenizer hashes and runtime initialization | Passed |
@@ -97,9 +97,10 @@ partners remain optional/unverified; video clips are stored for human review.
   batch limit. The 18,998-batch plan is explicitly outside this demo.
 - Blocking analytics and usage accounting leave the event loop. SIGTERM
   forwards shutdown after a bounded drain.
-- Dashboard sign-in routes are restored instead of redirecting judges into
-  an unauthenticated console. Issued supervisor credentials exchange into
-  HttpOnly cookies without role elevation. Nested API-key forms are removed.
+- Dashboard sign-in/sign-up pages are removed for the hackathon build: the
+  console opens directly and backend auth remains enforced. Operators store the
+  issued key on Settings. Issued supervisor credentials still exchange into
+  HttpOnly cookies without role elevation.
 - Judge setup fails on dependency-install failures, verifies/renews signed
   supervisor tokens, preserves versioned fixture data, supports an alternate
   local port and seeds without Meta spend. Token-creation errors now fail the

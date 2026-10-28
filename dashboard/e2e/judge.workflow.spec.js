@@ -1,23 +1,29 @@
 import { test, expect } from "@playwright/test";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const dataRoot = process.env.TRACEX_JUDGE_DATA;
-test.skip(!dataRoot, "Set TRACEX_JUDGE_DATA to an isolated judge-v2 data directory");
+const tokenFile = dataRoot ? join(dataRoot, "supervisor_token.json") : "";
+test.skip(
+  !dataRoot || !existsSync(tokenFile),
+  "Set TRACEX_JUDGE_DATA to a judge directory that contains supervisor_token.json (scripts/judge_setup.sh)",
+);
 
-test("judge operator login and supervisor review work in the browser", async ({ browser }) => {
+test("judge operator key and supervisor session work in the browser", async ({ browser }) => {
   const key = readFileSync(join(dataRoot, "operator_api_key"), "utf8").trim();
-  const token = JSON.parse(readFileSync(join(dataRoot, "supervisor_token.json"), "utf8")).token;
+  const token = JSON.parse(readFileSync(tokenFile, "utf8")).token;
   const baseURL = process.env.BASE_URL || "http://127.0.0.1:8000";
   const operator = await browser.newContext({ baseURL });
+  // The sign-in page is intentionally gone from this build. Operators enter
+  // the issued key on Settings; seed it the same way that page stores it.
+  await operator.addInitScript((value) => {
+    localStorage.setItem("frontline_api_key", value);
+  }, key);
   const page = await operator.newPage();
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/ui/#signin");
-  await page.getByRole("button", { name: /Have an operator API key/ }).click();
-  await page.getByLabel("Operator API key", { exact: true }).fill(key);
-  await page.getByRole("button", { name: "Verify & Continue" }).click();
-  await expect(page).toHaveURL(/#command/);
+  await page.goto("/ui/#command");
+  await expect(page.getByText(/Command center/i).first()).toBeVisible();
   expect((await page.locator("body").innerText()).length).toBeGreaterThan(20);
   const principal = await operator.request.get("/api/frontline/auth/me", { headers: { "X-API-Key": key } });
   expect((await principal.json()).signed_in).toBe(false);
@@ -30,13 +36,16 @@ test("judge operator login and supervisor review work in the browser", async ({ 
   await operator.close();
 
   const supervisor = await browser.newContext({ baseURL });
+  // Exchange the issued supervisor token for the real httpOnly session
+  // cookie. This is the endpoint the removed sign-in page used to call.
+  const exchange = await supervisor.request.post("/api/frontline/auth/session/exchange", {
+    data: { token },
+  });
+  expect(exchange.ok(), await exchange.text()).toBe(true);
   const review = await supervisor.newPage();
   review.on("pageerror", (e) => errors.push(e.message));
-  await review.goto("/ui/#signin");
-  await review.getByRole("button", { name: /Have a supervisor session/ }).click();
-  await review.getByLabel("Supervisor session", { exact: true }).fill(token);
-  await review.getByRole("button", { name: "Use session", exact: true }).click();
-  await expect(review).toHaveURL(/#command/);
+  await review.goto("/ui/#command");
+  await expect(review.getByText(/Command center/i).first()).toBeVisible();
   const me = await supervisor.request.get("/api/frontline/auth/me");
   expect((await me.json()).role).toBe("supervisor");
   const cookies = await supervisor.cookies();

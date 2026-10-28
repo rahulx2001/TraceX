@@ -14,6 +14,7 @@ Endpoints:
 from __future__ import annotations
 
 import asyncio
+import base64
 import json
 import logging
 import secrets
@@ -1305,6 +1306,7 @@ class _WSHooks(OrchestratorHooks):
         await self._to_customer(
             self._channel.send_turn(text, speaker=meta.get("speaker", "agent"), meta=meta)
         )
+        await self._maybe_emit_agent_audio(text, meta)
         await _broadcast_console({
             "type": "agent_turn",
             "interaction_id": self._interaction_id,
@@ -1315,6 +1317,39 @@ class _WSHooks(OrchestratorHooks):
             "action_id": meta.get("action_id") or "",
             "ts": datetime.now(timezone.utc).isoformat(),
         })
+
+    async def _maybe_emit_agent_audio(self, text: str, meta: dict[str, Any]) -> None:
+        """Best-effort server TTS: follow agent_turn with an agent_audio frame.
+
+        Never raises and never blocks the turn: without server TTS (or on any
+        synthesis miss) the widget falls back to browser speechSynthesis for
+        that utterance. Synthesis runs in a thread so the WS loop stays live.
+        """
+        try:
+            from src.channels.stt_tts import ServerSpeechStack
+
+            stack = ServerSpeechStack()
+            if not stack.playable_tts_available():
+                return
+            if not (text or "").strip():
+                return
+            try:
+                audio = await asyncio.wait_for(
+                    asyncio.to_thread(stack.synthesize_audio, text), timeout=30.0
+                )
+            except Exception:
+                return
+            if not audio:
+                return
+            await self._to_customer(self._channel.send_control({
+                "type": "agent_audio",
+                "audio": base64.b64encode(bytes(audio)).decode("ascii"),
+                "mime": "audio/mpeg",
+                "turn_id": meta.get("turn_id"),
+                "utterance_id": meta.get("utterance_id") or meta.get("turn_id"),
+            }))
+        except Exception:
+            return
 
     async def emit_heard_turn(self, text: str, meta: dict[str, Any]) -> None:
         """Fan-out a customer utterance to the supervisor console."""
@@ -1444,13 +1479,82 @@ def _contact_scope_allows(websocket: WebSocket, interaction_id: str) -> bool:
     return True
 
 
+async def _rewrite_user_audio_to_turn(
+    websocket: WebSocket, interaction_id: str, msg: dict[str, Any]
+) -> dict[str, Any] | None:
+    """Transcribe a ``user_audio`` frame into a ``user_turn`` message.
+
+    Runs outside the turn lock (network I/O must never hold it). Returns the
+    rewritten text message for the normal ``user_turn`` path, or None when an
+    error/empty frame was already sent and the loop should continue. Never
+    invents transcript text: silence yields ``stt_empty``, failures yield an
+    error frame, and the orchestrator is never called with either.
+    """
+    from src.channels.deepgram import decode_user_audio
+    from src.channels.stt_tts import ServerSpeechStack
+
+    try:
+        data, mime = decode_user_audio(msg)
+    except ValueError as exc:
+        await websocket.send_json({
+            "type": "error",
+            "detail": str(exc),
+            "code": "bad_audio",
+            "recoverable": True,
+        })
+        return None
+    stack = ServerSpeechStack()
+    if not stack.operational_audio_stt():
+        await websocket.send_json({
+            "type": "error",
+            "detail": "Server speech-to-text is not enabled for this pilot.",
+            "code": "server_stt_unavailable",
+            "recoverable": True,
+        })
+        return None
+    try:
+        out = await asyncio.wait_for(
+            asyncio.to_thread(stack.transcribe_audio, data, mime=mime),
+            timeout=30.0,
+        )
+    except Exception:
+        out = None
+    if out is None:
+        await websocket.send_json({
+            "type": "error",
+            "detail": "Speech transcription failed — please say it again.",
+            "code": "stt_failed",
+            "recoverable": True,
+        })
+        return None
+    text = (out.get("text") or "").strip()
+    turn_id = str(msg.get("turn_id") or msg.get("client_turn_id") or "")
+    if not text:
+        await websocket.send_json({"type": "stt_empty", "turn_id": turn_id})
+        return None
+    logger.debug("stt_ok iid=%s chars=%d", interaction_id, len(text))
+    await websocket.send_json({"type": "heard_turn", "text": text, "turn_id": turn_id})
+    rewritten = dict(msg)
+    rewritten["type"] = "user_turn"
+    rewritten["text"] = text
+    rewritten["final"] = True
+    if out.get("confidence") is not None:
+        try:
+            rewritten["confidence"] = float(out["confidence"])
+        except (TypeError, ValueError):
+            pass
+    return rewritten
+
+
 async def interaction_ws(websocket: WebSocket, interaction_id: str) -> None:
     """Bidirectional contact stream at ``/ws/interaction/{id}``.
 
     Client → server: optional auth frame, then
       {"type":"user_turn","text":"...","final":true} | barge_in | hangup
+      {"type":"user_audio","audio":"<base64>","mime":"audio/webm",...} (server STT)
     Server → client: agent_turn | agent_activity | slots_update | handoff_offer
                      | interaction_ended | resumed | error
+                     | heard_turn | stt_empty | agent_audio (server voice)
 
     Reconnect: a socket that closes **without** a ``hangup`` frame leaves the
     contact resumable for ``FRONTLINE_WS_RECONNECT_GRACE_S`` (default 120s).
@@ -1575,6 +1679,12 @@ async def interaction_ws(websocket: WebSocket, interaction_id: str) -> None:
         "interaction_id": interaction_id,
         "resumed": bool(resumed),
     }
+    try:
+        from src.channels.stt_tts import server_voice_capabilities
+
+        ready["voice"] = server_voice_capabilities()
+    except Exception:
+        ready["voice"] = {"server_stt": False, "server_tts": False}
     pb_status = str(playback.get("status") or "")
     pb_text = str(playback.get("text") or "")
     if pb_text and pb_status not in {"", "completed"}:
@@ -1628,6 +1738,13 @@ async def interaction_ws(websocket: WebSocket, interaction_id: str) -> None:
                     "recoverable": True,
                 })
                 continue
+            if mtype == "user_audio":
+                # Server STT: transcribe, then fall through to the normal
+                # user_turn path so dedup/ack/sequencing stay in one place.
+                msg = await _rewrite_user_audio_to_turn(websocket, interaction_id, msg)
+                if msg is None:
+                    continue
+                mtype = "user_turn"
             if mtype == "playback":
                 async with entry.lock:
                     orch.note_playback(msg)

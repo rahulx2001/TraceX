@@ -55,9 +55,19 @@ def safety_board(limit: int = 50) -> dict[str, Any]:
     for inv in invs:
         risk = slice_safety(str(inv["pack_id"]), inv.get("slice_category"), inv.get("slice_entity_2"),
                             inv.get("slice_entity_3"), limit=500)
+        try:
+            from src.ai_layer.lotguard import lot_for_investigation
+
+            _lot = lot_for_investigation(str(inv["pack_id"]), inv.get("cluster_id"),
+                                         inv.get("slice_category"), inv.get("slice_entity_2"),
+                                         inv.get("slice_entity_3")) or None
+            lot = {"lot_id": _lot["lot_id"], "supplier": _lot["supplier"]} if _lot else None
+        except Exception:
+            lot = None
         rows.append({
             **{k: (v.isoformat() if hasattr(v, "isoformat") else v) for k, v in inv.items()},
             "safety_risk": risk,
+            "lot": lot,
         })
     rows.sort(key=lambda r: (TIER_ORDER.get(r["safety_risk"]["level"], 9), -int(r.get("case_count") or 0)))
     total_counts_by_level = {lvl: sum(1 for r in rows if r["safety_risk"]["level"] == lvl) for lvl in TIER_ORDER}

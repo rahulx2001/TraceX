@@ -5,7 +5,6 @@ import CaseQueue from "../routes/CaseQueue.jsx";
 import EarlyWarningBoard from "../routes/EarlyWarningBoard.jsx";
 import Settings from "../routes/Settings.jsx";
 import CommandCenter from "../routes/CommandCenter.jsx";
-import SignIn from "../routes/SignIn.jsx";
 import UserJourneyGuide from "../routes/UserJourneyGuide.jsx";
 import AnalyticsDesk from "../routes/AnalyticsDesk.jsx";
 import IssueDesk from "../routes/IssueDesk.jsx";
@@ -29,7 +28,6 @@ import { ToastProvider, useToast } from "./ui/Toast.jsx";
 import { ErrorBoundary } from "./ui/Feedback.jsx";
 import { useHotkeys, useLocalStorage } from "./ui/hooks.js";
 import { AUTH_EVENT, apiHeaders, completeGoogleHandoff, fetchMe, hasConsoleAccess } from "./apiAuth.js";
-import AccountSignIn from "./ui/AccountSignIn.jsx";
 import { canonicalizeHash, goHash, hashQueryObject, openCases, openConsole, parseLocationHash, simulateTraffic } from "./ui/opsActions.js";
 import {
   IconAlert,
@@ -47,7 +45,9 @@ import { packLabel } from "./ui/labels.js";
 
 // Use the server's access check. Judges on authenticated servers must be
 // able to enter operator credentials or an issued supervisor session.
-const DEMO_OPEN_CONSOLE = false;
+// [HACKATHON LOCAL DEMO] The sign-in / sign-up pages are removed from this
+// build. Backend auth is still enforced; this only removes the browser gate.
+const FORCE_OPEN_CONSOLE = true;
 
 const NAV_GROUPS = [
   {
@@ -80,8 +80,6 @@ const NAV_GROUPS = [
 const ALL_NAV = NAV_GROUPS.flatMap((g) => g.items);
 const EXTRA_PAGES = [
   { id: "guide", label: "User guide", route: UserJourneyGuide, keywords: "guide walkthrough journey onboarding" },
-  { id: "signin", label: "Sign in", route: SignIn, keywords: "google oidc login" },
-  { id: "signup", label: "Sign up", route: SignIn, keywords: "create account register signup" },
   { id: "issue", label: "Issue", route: IssueDesk, keywords: "issue cluster investigation failure" },
   { id: "insights", label: "Insights", route: InsightsBoard, keywords: "csat product gap analytics" },
   { id: "economics", label: "Quality economics", route: QualityEconomics, keywords: "copq dollar roi hotspot map warranty" },
@@ -173,6 +171,10 @@ function Shell() {
   const [route, setRoute] = useHashRoute();
   const [health, setHealth] = useState(null);
   const [healthError, setHealthError] = useState(false);
+  // [HACKATHON LOCAL DEMO] An explicitly open server has no credential to ask
+  // for, so send visitors straight to the console. Auth-required servers keep
+  // the sign-in gate. FORCE_OPEN_CONSOLE is an escape hatch for a demo build.
+  const demoOpenConsole = FORCE_OPEN_CONSOLE || health?.auth_required === false;
   const [collapsed, setCollapsed] = useLocalStorage("fl.sidebar.collapsed", false);
   const [theme, setTheme] = useLocalStorage("fl.theme", "dark");
   const [density, setDensity] = useLocalStorage("fl.density", "comfortable");
@@ -234,7 +236,7 @@ function Shell() {
   }, [loadHealth, route]);
 
   useEffect(() => {
-    if (DEMO_OPEN_CONSOLE && (route === "signin" || route === "signup")) {
+    if (demoOpenConsole && (route === "signin" || route === "signup")) {
       setRoute("command");
       return;
     }
@@ -245,13 +247,13 @@ function Shell() {
     }
     if (route === "issue" || route.startsWith("issue/")) return;
     if (!ALL_PAGES.some((n) => n.id === route)) setRoute("command");
-  }, [route, setRoute]);
+  }, [route, setRoute, demoOpenConsole]);
 
   // Mandatory auth gate: no session/key → no console (and no guide).
-  // [HACKATHON LOCAL DEMO] DEMO_OPEN_CONSOLE bypasses this gate. Set the flag
-  // to false to restore the original check below.
+  // [HACKATHON LOCAL DEMO] demoOpenConsole bypasses this gate on an explicitly
+  // open server. Auth-required servers keep the original check below.
   useEffect(() => {
-    if (DEMO_OPEN_CONSOLE) {
+    if (demoOpenConsole) {
       setGate("allowed");
       return undefined;
     }
@@ -527,65 +529,8 @@ function Shell() {
   const statusTone = healthError ? "danger" : health?.status === "ok" ? "ok" : "warn";
   const statusText = healthError ? "unreachable" : health?.status || "connecting";
 
-  // Authentication screens stay accessible on every deployment.
-  if (route === "signin" || route === "signup") {
-    return (
-      <div className="signin-shell">
-        <header className="signin-top">
-          <div className="signin-top-brand-group">
-            <button
-              type="button"
-              className="brand-mark signin-brand-btn"
-              onClick={() => setRoute("command")}
-            >
-              Trace<em>X</em>
-            </button>
-            <span className="signin-brand-tag">Ops Console</span>
-            <span className="signin-top-divider" aria-hidden="true">/</span>
-            <div className="signin-top-status" title="Voice Swarm & DuckDB Audit Engine Operational">
-              <span className="status-dot-pulse" aria-hidden="true" />
-              <span>Core Observability Engine Active</span>
-            </div>
-          </div>
-
-          <div className="signin-top-actions">
-            <button
-              type="button"
-              className="signin-top-link-btn"
-              onClick={() => setRoute("guide")}
-            >
-              Architecture Guide
-            </button>
-            {me?.signed_in && (
-              <button
-                type="button"
-                className="signin-top-user-pill"
-                onClick={() => setRoute("command")}
-                title="Return to active console"
-              >
-                <span className="user-dot" />
-                <span>{me.subject || "Operator"}</span>
-                <span className="pill-arrow">→</span>
-              </button>
-            )}
-            <button
-              type="button"
-              className="theme-toggle-pill"
-              onClick={cycleTheme}
-              title={`Toggle theme (${activeTheme === "light" ? "Switch to dark" : "Switch to light"}) · Shortcut (t)`}
-            >
-              <span className="theme-toggle-icon">{activeTheme === "light" ? "☀️" : "🌙"}</span>
-              <span className="theme-toggle-label">{activeTheme === "light" ? "Light" : "Dark"}</span>
-            </button>
-          </div>
-        </header>
-        <SignIn
-          initialMode={route === "signup" ? "signup" : "signin"}
-          onNavigate={setRoute}
-        />
-      </div>
-    );
-  }
+  // [HACKATHON LOCAL DEMO] Sign-in / sign-up screens are intentionally absent.
+  // The console opens directly; backend auth is unchanged.
 
   // Never flash protected content to anonymous visitors while checking.
   if (gate !== "allowed") {
@@ -679,7 +624,6 @@ function Shell() {
           >
             {collapsed ? "»" : "Collapse"}
           </button>
-          {!DEMO_OPEN_CONSOLE && <AccountSignIn />}
         </div>
       </aside>
 
@@ -712,7 +656,7 @@ function Shell() {
           <div className="topbar-right">
             {/* [AI-LAYER] AI mode badge (enhanced | deterministic) */}
             {route !== "signin" && route !== "signup" && <AiModeBadge />}
-            {!DEMO_OPEN_CONSOLE && route !== "signin" && (
+            {!demoOpenConsole && route !== "signin" && (
               me?.signed_in ? (
                 <span className="topbar-who" title={me.subject || ""}>
                   {me.subject}
@@ -801,7 +745,7 @@ function Shell() {
                 >
                   <span className="nav-text">Operator guide</span>
                 </button>
-                {!DEMO_OPEN_CONSOLE && !me?.signed_in && (
+                {!demoOpenConsole && !me?.signed_in && (
                   <button type="button" className="nav-item" onClick={() => setRoute("signin")}>
                     <span className="nav-text">Sign in</span>
                   </button>

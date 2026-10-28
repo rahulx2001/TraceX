@@ -30,7 +30,14 @@ import {
   createTurnQueue,
   socketIsLive,
   advancePlayback,
+  SERVER_AUDIO_WAIT_MS,
+  SERVER_AUDIO_MAX_BYTES,
+  SERVER_CAPTURE_SILENCE_MS,
+  SERVER_CAPTURE_MAX_MS,
+  serverVoiceSelection,
+  userAudioFrame,
 } from "../src/voiceHelpers.js";
+import { getPreferredVoiceURI, pickBestVoice } from "../src/ttsVoice.js";
 import { capabilityLabel } from "../src/ui/labels.js";
 // [AI-LAYER] optional Meta AI layer add-ons
 import CallAiExtras from "../src/ai/CallAiExtras.jsx";
@@ -59,6 +66,8 @@ export default function CallWidget() {
   const [textFallback, setTextFallback] = useState("");
   const [activity, setActivity] = useState(null);
   const [micGranted, setMicGranted] = useState(null);
+  // Server voice (Deepgram STT/TTS) as advertised by the WS `ready` frame.
+  const [serverVoice, setServerVoice] = useState({ stt: false, tts: false });
   const [turnCount, setTurnCount] = useState(0);
   const [speakPhase, setSpeakPhase] = useState("normal"); // 'greeting' | 'normal'
   const [muted, setMuted] = useState(false);
@@ -122,6 +131,14 @@ export default function CallWidget() {
   const pendingTurnRef = useRef(null);
   const playbackRef = useRef({ status: "", text: "", utteranceId: "" });
   const socketLiveRef = useRef({ open: false, authenticated: false, attached: false });
+  // Resolved STT/TTS path for this call ({ stt: server|browser|text, tts: server|browser|none }).
+  const voiceModeRef = useRef({ stt: "browser", tts: "browser" });
+  const mediaRecorderRef = useRef(null);
+  const serverChunksRef = useRef([]);
+  const serverCaptureRef = useRef({ active: false, voiced: false, lastVoiceAt: 0, startedAt: 0, stopTimer: null, mime: "" });
+  const agentAudioRef = useRef(null);
+  const pendingAgentAudioRef = useRef(new Map());
+  const audioWaitRef = useRef({ timer: null, token: 0 });
   const listeningSinceRef = useRef(0);
   const [voiceDenied, setVoiceDenied] = useState(false);
   const [humanControl, setHumanControl] = useState(false);
@@ -185,6 +202,8 @@ export default function CallWidget() {
       } catch {
         /* ignore */
       }
+      stopAgentAudio();
+      clearAudioWait();
       speakingRef.current = false;
       speakPhaseRef.current = "normal";
       setSpeakPhase("normal");
@@ -200,13 +219,12 @@ export default function CallWidget() {
     }, ms);
   }
 
-  function pickVoice() {
+  function pickVoice(lang) {
     try {
-      const vs = window.speechSynthesis.getVoices() || [];
-      return (
-        vs.find((v) => v.default) ||
-        vs.find((v) => v.lang && v.lang.startsWith("en")) ||
-        null
+      return pickBestVoice(
+        window.speechSynthesis.getVoices() || [],
+        lang || packLocale() || "en-US",
+        getPreferredVoiceURI()
       );
     } catch {
       return null;
@@ -269,6 +287,7 @@ export default function CallWidget() {
   }
 
   function stopRecognition() {
+    stopServerCapture(true);
     try {
       recogRef.current?.stop();
     } catch {
@@ -302,7 +321,6 @@ export default function CallWidget() {
   function startRecognitionSafe() {
     if (mutedRef.current || voiceDeniedRef.current) return;
     if (callEndedRef.current || pendingTerminalRef.current) return;
-    if (!recogRef.current) return;
     if (speakingRef.current) return;
     if (drainingSpeakRef.current) return;
     if (stateRef.current === CALL_STATE.THINKING) return;
@@ -321,6 +339,12 @@ export default function CallWidget() {
       clearTimeout(recogRestartTimerRef.current);
       recogRestartTimerRef.current = null;
     }
+    if (voiceModeRef.current.stt === "server") {
+      // Server STT owns segmentation (VAD tick); the interim debounce below is browser-only.
+      startServerCapture();
+      return;
+    }
+    if (!recogRef.current) return;
     try {
       recogRef.current.start();
     } catch {
@@ -467,6 +491,342 @@ export default function CallWidget() {
   }
 
   /**
+   * Server-STT capture: record one utterance with MediaRecorder and upload it
+   * as a `user_audio` frame. Segmentation reuses the barge analyser (same
+   * 0.14 RMS voice threshold): stop after ~900ms of trailing silence, or
+   * after a 30s cap. Silence alone never sends — listening just continues.
+   */
+  function startServerCapture() {
+    const cap = serverCaptureRef.current;
+    if (cap.active) return;
+    const stream = micStreamRef.current;
+    if (!stream || typeof MediaRecorder === "undefined") {
+      if (recogRef.current) {
+        try { recogRef.current.start(); } catch { /* already started */ }
+      } else {
+        setInfo("Microphone unavailable — type your reply below");
+      }
+      return;
+    }
+    let mime = "";
+    try {
+      const prefs = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4"];
+      mime = prefs.find((m) => {
+        try { return MediaRecorder.isTypeSupported(m); } catch { return false; }
+      }) || "";
+    } catch { mime = ""; }
+    let rec = null;
+    try {
+      rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+    } catch {
+      setInfo("Voice capture failed in this browser — type your reply below");
+      return;
+    }
+    serverChunksRef.current = [];
+    cap.active = true;
+    cap.voiced = false;
+    cap.lastVoiceAt = 0;
+    cap.startedAt = Date.now();
+    cap.mime = (rec.mimeType || mime || "audio/webm").split(";")[0];
+    rec.ondataavailable = (ev) => {
+      if (ev.data && ev.data.size) serverChunksRef.current.push(ev.data);
+    };
+    rec.onstop = () => { finishServerCapture(); };
+    rec.onerror = () => { stopServerCapture(true); };
+    mediaRecorderRef.current = rec;
+    try {
+      rec.start(250);
+    } catch {
+      stopServerCapture(true);
+      return;
+    }
+    if (!listeningSinceRef.current) listeningSinceRef.current = Date.now();
+    const tick = () => {
+      const c = serverCaptureRef.current;
+      if (!c.active) return;
+      const analyser = analyserRef.current;
+      let rms = 0;
+      if (analyser) {
+        const data = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteTimeDomainData(data);
+        let sum = 0;
+        for (let i = 0; i < data.length; i += 8) {
+          const v = (data[i] - 128) / 128;
+          sum += v * v;
+        }
+        rms = Math.sqrt(sum / (data.length / 8));
+      }
+      const now = Date.now();
+      if (rms >= 0.14) {
+        c.voiced = true;
+        c.lastVoiceAt = now;
+      }
+      const silenceMs = c.voiced ? now - c.lastVoiceAt : 0;
+      const elapsed = now - c.startedAt;
+      if (!c.voiced && elapsed >= IDLE_LISTEN_REPROMPT_MS && stateRef.current === CALL_STATE.LISTENING) {
+        setInfo("I'm still listening — go ahead when you're ready");
+        c.startedAt = now;
+      }
+      if ((c.voiced && silenceMs >= SERVER_CAPTURE_SILENCE_MS) || elapsed >= SERVER_CAPTURE_MAX_MS) {
+        stopServerCapture(false);
+        return;
+      }
+      c.stopTimer = window.setTimeout(tick, 120);
+    };
+    cap.stopTimer = window.setTimeout(tick, 120);
+  }
+
+  /** Stop capture. cancel=true discards (barge/mute/speak); false finalizes + sends. */
+  function stopServerCapture(cancel) {
+    const cap = serverCaptureRef.current;
+    if (cap.stopTimer) {
+      clearTimeout(cap.stopTimer);
+      cap.stopTimer = null;
+    }
+    const rec = mediaRecorderRef.current;
+    mediaRecorderRef.current = null;
+    if (!rec || !cap.active) {
+      cap.active = false;
+      return;
+    }
+    if (cancel) {
+      cap.active = false;
+      serverChunksRef.current = [];
+      try {
+        if (rec.state !== "inactive") rec.stop();
+      } catch { /* ignore */ }
+      return;
+    }
+    try {
+      if (rec.state !== "inactive") rec.stop();
+      else finishServerCapture();
+    } catch {
+      cap.active = false;
+    }
+  }
+
+  function restartServerListen() {
+    if (callEndedRef.current || pendingTerminalRef.current) return;
+    if (stateRef.current !== CALL_STATE.LISTENING) return;
+    startRecognitionSafe();
+  }
+
+  function finishServerCapture() {
+    const cap = serverCaptureRef.current;
+    const wasActive = cap.active;
+    cap.active = false;
+    if (cap.stopTimer) {
+      clearTimeout(cap.stopTimer);
+      cap.stopTimer = null;
+    }
+    mediaRecorderRef.current = null;
+    const chunks = serverChunksRef.current;
+    serverChunksRef.current = [];
+    if (!wasActive || callEndedRef.current || pendingTerminalRef.current) return;
+    if (!cap.voiced || !chunks.length) {
+      restartServerListen();
+      return;
+    }
+    let blob = null;
+    try {
+      blob = new Blob(chunks, { type: cap.mime || "audio/webm" });
+    } catch {
+      restartServerListen();
+      return;
+    }
+    if (!blob.size || blob.size > SERVER_AUDIO_MAX_BYTES) {
+      setInfo("That reply was too long — try a shorter answer");
+      restartServerListen();
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = String(reader.result || "");
+      const b64 = url.includes(",") ? url.split(",", 2)[1] : "";
+      if (!b64) {
+        restartServerListen();
+        return;
+      }
+      sendUserAudio(b64, cap.mime || "audio/webm");
+    };
+    reader.onerror = () => { restartServerListen(); };
+    try {
+      reader.readAsDataURL(blob);
+    } catch {
+      restartServerListen();
+    }
+  }
+
+  function sendUserAudio(b64, mime) {
+    if (mutedRef.current || voiceDeniedRef.current) return;
+    if (callEndedRef.current || pendingTerminalRef.current) return;
+    if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) {
+      setError("Connection was lost before your reply could be sent. Please reconnect and try again.");
+      setState(CALL_STATE.LISTENING);
+      startRecognitionSafe();
+      return;
+    }
+    wsSeqRef.current += 1;
+    const turnId = newTurnId();
+    const queued = turnQueueRef.current.submit(turnId, "[voice]");
+    if (queued.status === "rejected") {
+      setError("That turn could not be queued");
+      return;
+    }
+    const sent = sendWs(userAudioFrame({
+      audio: b64,
+      mime,
+      turnId,
+      turnSeq: wsSeqRef.current,
+      locale: packLocale(),
+      region: (region || "").trim() || undefined,
+      driving: driving || undefined,
+    }));
+    pendingTurnRef.current = { turnId, text: "", audio: b64, mime, accepted: false };
+    if (!sent) {
+      setError("Connection was lost before your reply could be sent. Please reconnect and try again.");
+      setState(CALL_STATE.LISTENING);
+      startRecognitionSafe();
+      return;
+    }
+    listeningSinceRef.current = 0;
+    enterThinking();
+  }
+
+  function stopAgentAudio() {
+    const el = agentAudioRef.current;
+    agentAudioRef.current = null;
+    if (el) {
+      try { el.pause(); } catch { /* ignore */ }
+      try { el.removeAttribute("src"); } catch { /* ignore */ }
+    }
+  }
+
+  function clearAudioWait() {
+    const wait = audioWaitRef.current;
+    audioWaitRef.current = { timer: null, token: 0 };
+    if (wait && wait.timer) {
+      try { clearTimeout(wait.timer); } catch { /* ignore */ }
+    }
+  }
+
+  function revokePendingAgentAudio() {
+    const cache = pendingAgentAudioRef.current;
+    cache.forEach((entry) => {
+      try { URL.revokeObjectURL(entry.url); } catch { /* ignore */ }
+    });
+    cache.clear();
+  }
+
+  /** Hold an `agent_audio` frame until its utterance starts (usually already waiting). */
+  function cacheAgentAudio(msg) {
+    const b64 = msg && msg.audio;
+    if (!b64 || typeof b64 !== "string") return;
+    const key = String((msg && (msg.utterance_id || msg.turn_id)) || "");
+    let url = null;
+    try {
+      const bin = atob(b64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const blob = new Blob([bytes], { type: msg.mime || "audio/mpeg" });
+      url = URL.createObjectURL(blob);
+    } catch {
+      return;
+    }
+    const wait = audioWaitRef.current;
+    if (wait && wait.timer && String(wait.key || "") === key && wait.token === utteranceSeqRef.current) {
+      clearTimeout(wait.timer);
+      audioWaitRef.current = { timer: null, token: 0 };
+      playAgentAudio(url, wait.full, wait.phase, wait.meta, wait.token, wait.finishSpeaking);
+      return;
+    }
+    if (key) {
+      const cache = pendingAgentAudioRef.current;
+      cache.set(key, { url, at: Date.now() });
+      while (cache.size > 5) {
+        const oldest = cache.keys().next().value;
+        try { URL.revokeObjectURL(cache.get(oldest).url); } catch { /* ignore */ }
+        cache.delete(oldest);
+      }
+    } else {
+      try { URL.revokeObjectURL(url); } catch { /* ignore */ }
+    }
+  }
+
+  function playAgentAudio(url, full, phase, meta, token, finishSpeaking) {
+    if (token !== utteranceSeqRef.current) {
+      try { URL.revokeObjectURL(url); } catch { /* ignore */ }
+      return;
+    }
+    stopAgentAudio();
+    const fallBack = () => {
+      agentAudioRef.current = null;
+      try { URL.revokeObjectURL(url); } catch { /* ignore */ }
+      speakWithBrowserTts(full, phase, meta, token, finishSpeaking);
+    };
+    let el = null;
+    try {
+      el = new Audio(url);
+    } catch {
+      fallBack();
+      return;
+    }
+    agentAudioRef.current = el;
+    el.onplay = () => {
+      if (token !== utteranceSeqRef.current) return;
+      ttsStartedAtRef.current = Date.now();
+      bargeStreakRef.current = 0;
+      notePlayback("started", full, meta.utteranceId || null);
+      if (phase !== "greeting") {
+        startBargeWatch();
+      }
+    };
+    el.onended = () => {
+      try { URL.revokeObjectURL(url); } catch { /* ignore */ }
+      if (agentAudioRef.current === el) agentAudioRef.current = null;
+      notePlayback("completed", full, meta.utteranceId || null);
+      finishSpeaking();
+    };
+    el.onerror = () => {
+      if (token !== utteranceSeqRef.current) return;
+      fallBack();
+    };
+    try {
+      const p = el.play();
+      if (p && p.catch) {
+        p.catch(() => {
+          if (token !== utteranceSeqRef.current) return;
+          fallBack();
+        });
+      }
+    } catch {
+      fallBack();
+      return;
+    }
+    if (phase !== "greeting" && !ttsStartedAtRef.current) {
+      ttsStartedAtRef.current = Date.now();
+      startBargeWatch();
+    }
+  }
+
+  function waitForServerAudio(full, phase, meta, token, finishSpeaking) {
+    const key = meta.utteranceId || null;
+    const cached = key ? pendingAgentAudioRef.current.get(key) : null;
+    if (cached) {
+      pendingAgentAudioRef.current.delete(key);
+      playAgentAudio(cached.url, full, phase, meta, token, finishSpeaking);
+      return;
+    }
+    const timer = window.setTimeout(() => {
+      audioWaitRef.current = { timer: null, token: 0 };
+      if (token !== utteranceSeqRef.current) return;
+      // Server audio never arrived: speak locally rather than wedge the call.
+      speakWithBrowserTts(full, phase, meta, token, finishSpeaking);
+    }, SERVER_AUDIO_WAIT_MS);
+    audioWaitRef.current = { timer, token, key: key || "", full, phase, meta, finishSpeaking };
+  }
+
+  /**
    * Speak agent text. opts.phase === 'greeting' disables barge-in so speaker
    * bleed cannot cancel the pack greeting mid-word ("than" from "Thanks").
    * Queue later agent turns instead of cancel+speak — Chrome drops the next
@@ -515,8 +875,9 @@ export default function CallWidget() {
     speakPhaseRef.current = phase;
     setSpeakPhase(phase);
     bargeStreakRef.current = 0;
+    const serverTts = voiceModeRef.current.tts === "server" && typeof Audio !== "undefined";
 
-    if (!hasTTS) {
+    if (!hasTTS && !serverTts) {
       notePlayback("failed", full, meta.utteranceId || null);
       clearSpeakWatchdog();
       speakingRef.current = false;
@@ -544,14 +905,36 @@ export default function CallWidget() {
       drainSpeakQueue();
     };
 
+    if (serverTts && phase !== "greeting") {
+      // The REST greeting has no server audio; everything else prefers it.
+      waitForServerAudio(full, phase, meta, token, finishSpeaking);
+      return;
+    }
+    speakWithBrowserTts(full, phase, meta, token, finishSpeaking);
+  }
+
+  function speakWithBrowserTts(full, phase, meta, token, finishSpeaking) {
+    if (token !== utteranceSeqRef.current) return;
+    if (!hasTTS) {
+      notePlayback("failed", full, meta.utteranceId || null);
+      finishSpeaking();
+      return;
+    }
     window.setTimeout(() => {
       if (token !== utteranceSeqRef.current) return;
       if (!speakingRef.current) return;
       const u = new SpeechSynthesisUtterance(full);
-      u.rate = 1.0;
-      try { u.lang = packLocale() || "en-US"; } catch { u.lang = "en-US"; }
-      const voice = pickVoice();
-      if (voice) u.voice = voice;
+      u.rate = 0.98;
+      u.pitch = 1;
+      const speakLang = aiSpeechLang() || packLocale() || "en-US";
+      try { u.lang = speakLang; } catch { u.lang = "en-US"; }
+      const voice = pickVoice(speakLang);
+      if (voice) {
+        u.voice = voice;
+        if (voice.lang) {
+          try { u.lang = voice.lang; } catch { /* keep pack locale */ }
+        }
+      }
       u.onstart = () => {
         if (token !== utteranceSeqRef.current) return;
         ttsStartedAtRef.current = Date.now();
@@ -587,6 +970,8 @@ export default function CallWidget() {
     currentUtteranceRef.current = null;
     speakQueueRef.current = speakQueueRef.current.filter((item) => item.speaker === "supervisor");
     clearSpeakWatchdog();
+    stopAgentAudio();
+    clearAudioWait();
     if (hasTTS) {
       try { window.speechSynthesis.cancel(); } catch { /* ignore */ }
     }
@@ -658,6 +1043,8 @@ export default function CallWidget() {
         } catch {
           /* ignore */
         }
+        stopAgentAudio();
+        clearAudioWait();
         clearSpeakWatchdog();
         speakingRef.current = false;
         speakPhaseRef.current = "normal";
@@ -772,6 +1159,21 @@ export default function CallWidget() {
         } catch { /* ignore */ }
         break;
       }
+      case "agent_audio": {
+        cacheAgentAudio(msg);
+        break;
+      }
+      case "heard_turn": {
+        if (msg.text) pushTurn({ speaker: "customer", text: String(msg.text) });
+        break;
+      }
+      case "stt_empty": {
+        clearThinkingTimeout();
+        setInfo("Didn't catch that — go ahead");
+        setState(CALL_STATE.LISTENING);
+        startRecognitionSafe();
+        break;
+      }
       case "ready": {
         socketLiveRef.current = {
           open: true,
@@ -779,6 +1181,20 @@ export default function CallWidget() {
           attached: msg.attached === true,
         };
         if (socketIsLive(socketLiveRef.current)) setWsStatus("live");
+        try {
+          const sel = serverVoiceSelection({
+            serverStt: !!(msg.voice && msg.voice.server_stt),
+            serverTts: !!(msg.voice && msg.voice.server_tts),
+            mediaRecorder: typeof MediaRecorder !== "undefined",
+            audioElement: typeof Audio !== "undefined",
+            hasSpeechRecognition: hasSR,
+            hasSpeechSynthesis: hasTTS,
+          });
+          voiceModeRef.current = sel;
+          setServerVoice({ stt: sel.stt === "server", tts: sel.tts === "server" });
+        } catch {
+          /* keep the browser path */
+        }
         if (msg.unheard_prompt) {
           const unheard = String(msg.unheard_prompt);
           pushTurn({ speaker: "agent", text: unheard });
@@ -786,15 +1202,26 @@ export default function CallWidget() {
         }
         const pending = pendingTurnRef.current;
         if (pending && pending.turnId && !pending.accepted) {
-          sendWs({
-            type: "user_turn",
-            text: pending.text,
-            final: true,
-            turn_id: pending.turnId,
-            turn_seq: wsSeqRef.current,
-            locale: packLocale(),
-            region: (region || "").trim() || undefined,
-          });
+          if (pending.audio) {
+            sendWs(userAudioFrame({
+              audio: pending.audio,
+              mime: pending.mime || "audio/webm",
+              turnId: pending.turnId,
+              turnSeq: wsSeqRef.current,
+              locale: packLocale(),
+              region: (region || "").trim() || undefined,
+            }));
+          } else {
+            sendWs({
+              type: "user_turn",
+              text: pending.text,
+              final: true,
+              turn_id: pending.turnId,
+              turn_seq: wsSeqRef.current,
+              locale: packLocale(),
+              region: (region || "").trim() || undefined,
+            });
+          }
         }
         break;
       }
@@ -904,6 +1331,9 @@ export default function CallWidget() {
   function cleanupCall() {
     utteranceSeqRef.current += 1;
     stopRecognition();
+    stopAgentAudio();
+    clearAudioWait();
+    revokePendingAgentAudio();
     clearSpeakWatchdog();
     clearThinkingTimeout();
     if (sttFlushTimerRef.current) {
@@ -1112,6 +1542,10 @@ export default function CallWidget() {
     speakPhaseRef.current = "normal";
     setSpeakPhase("normal");
     setMicGranted(null);
+    setServerVoice({ stt: false, tts: false });
+    voiceModeRef.current = { stt: "browser", tts: "browser" };
+    revokePendingAgentAudio();
+    clearAudioWait();
     setMuted(false);
     mutedRef.current = false;
     voiceDeniedRef.current = false;
@@ -1547,7 +1981,7 @@ export default function CallWidget() {
           Safety escalation active — follow the specialist script. Do not drive until reviewed.
         </div>
       )}
-      {(!hasSR || voiceDenied) && !canStart && (
+      {(!hasSR || voiceDenied) && !canStart && !serverVoice.stt && (
         <div className="banner banner-warn" role="status">
           Speech recognition is unavailable — type your replies below. This call sends text only and does not upload audio.
           {voiceDenied && hasSR ? (
@@ -1832,7 +2266,9 @@ export default function CallWidget() {
             <div className="kvs" style={{ marginTop: 12 }}>
               <span className="k">{capabilityLabel("stt")}</span>
               <span className="v">
-                {caps.sttOk ? (
+                {serverVoice.stt ? (
+                  <span className="ok-text">Deepgram server STT</span>
+                ) : caps.sttOk ? (
                   <span className="ok-text">{caps.stt}</span>
                 ) : (
                   <span className="warn-text">{caps.stt}</span>
@@ -1840,7 +2276,9 @@ export default function CallWidget() {
               </span>
               <span className="k">{capabilityLabel("tts")}</span>
               <span className="v">
-                {caps.ttsOk ? (
+                {serverVoice.tts ? (
+                  <span className="ok-text">Deepgram server TTS</span>
+                ) : caps.ttsOk ? (
                   <span className="ok-text">{caps.tts}</span>
                 ) : (
                   <span className="warn-text">{caps.tts}</span>

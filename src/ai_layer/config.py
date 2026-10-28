@@ -10,7 +10,12 @@ Env vars (all optional):
   META_API_KEY / MODEL_API_KEY   bearer token. Absent -> mode "deterministic".
   FRONTLINE_AI_LAYER             "auto" (default) | "off". "off" forces the
                                  deterministic path even when a key is set.
-  META_API_BASE                  default https://api.meta.ai/v1
+  BASETEN_API_KEY                Bearer key for Baseten-hosted Muse Spark Open
+                                 (OpenAI-compatible). Never logged, never committed.
+  META_BACKEND                   "auto" (default) | "meta" | "baseten". "auto"
+                                 prefers Baseten when BASETEN_API_KEY is set.
+  META_API_BASE                  default https://api.meta.ai/v1 (Meta backend only;
+                                 the Baseten base URL and model are pinned)
   META_MODEL_TEXT                default muse-spark-1.3   (chat completions)
   META_MODEL_VISION              default muse-spark-1.3   (image understanding)
   META_MODEL_SAM                 default sam-3.1          (Responses API)
@@ -49,6 +54,14 @@ DEFAULT_MODEL_VISION = "muse-spark-1.3"
 DEFAULT_MODEL_SAM = "sam-3.1"
 DEFAULT_MODEL_IMAGE = "muse-image-1.0"
 
+# Baseten-hosted Muse Spark Open (OpenAI-compatible chat completions).
+# Pinned: hackathon keys only work with this host and model, so there is no
+# env override for either. Responses API (SAM) and images/generations do not
+# exist here; those entry points fail fast on this backend.
+BASETEN_API_BASE = "https://inference.baseten.co/v1"
+BASETEN_HOST = "inference.baseten.co"
+BASETEN_MODEL = "meta-models/muse-spark-open-1026"
+
 
 def _env(name: str, default: str = "") -> str:
     return (os.getenv(name) or default).strip()
@@ -74,6 +87,41 @@ def meta_api_key() -> str:
     return _env("META_API_KEY") or _env("MODEL_API_KEY")
 
 
+def baseten_api_key() -> str:
+    """Bearer key for the Baseten backend. Never logged."""
+    return _env("BASETEN_API_KEY")
+
+
+def backend() -> str:
+    """Active backend: ``"baseten"``, ``"meta"``, or ``"none"`` (no key).
+
+    ``META_BACKEND=baseten|meta`` pins one (missing key -> ``"none"``, fail
+    closed). ``auto`` prefers Baseten when its key is set, else Meta.
+    """
+    want = _env("META_BACKEND", "auto").lower()
+    has_baseten = bool(baseten_api_key())
+    has_meta = bool(meta_api_key())
+    if want == "baseten":
+        return "baseten" if has_baseten else "none"
+    if want == "meta":
+        return "meta" if has_meta else "none"
+    if has_baseten:
+        return "baseten"
+    if has_meta:
+        return "meta"
+    return "none"
+
+
+def active_api_key() -> str:
+    """Key for the active backend (empty when none). Never logged."""
+    which = backend()
+    if which == "baseten":
+        return baseten_api_key()
+    if which == "meta":
+        return meta_api_key()
+    return ""
+
+
 def layer_switch() -> str:
     raw = _env("FRONTLINE_AI_LAYER", "auto").lower()
     if raw in {"0", "off", "false", "no", "deterministic"}:
@@ -82,8 +130,8 @@ def layer_switch() -> str:
 
 
 def meta_enabled() -> bool:
-    """True only when a key is configured and the layer is not switched off."""
-    return layer_switch() != "off" and bool(meta_api_key())
+    """True only when a backend key is configured and the layer is not switched off."""
+    return layer_switch() != "off" and backend() != "none"
 
 
 def ai_mode() -> str:
@@ -91,15 +139,31 @@ def ai_mode() -> str:
 
 
 def api_base() -> str:
+    if backend() == "baseten":
+        return BASETEN_API_BASE
     return _env("META_API_BASE", DEFAULT_API_BASE).rstrip("/")
 
 
 def model_text() -> str:
+    if backend() == "baseten":
+        return BASETEN_MODEL
     return _env("META_MODEL_TEXT", DEFAULT_MODEL_TEXT)
 
 
 def model_vision() -> str:
+    if backend() == "baseten":
+        return BASETEN_MODEL
     return _env("META_MODEL_VISION", DEFAULT_MODEL_VISION)
+
+
+def max_tokens() -> int:
+    """Completion budget. Baseten default is higher: the reasoning model spends
+    tokens thinking before it answers. ``META_MAX_TOKENS`` overrides either."""
+    default = 8000 if backend() == "baseten" else 2000
+    try:
+        return max(256, min(32000, int(_env("META_MAX_TOKENS", str(default)))))
+    except ValueError:
+        return default
 
 
 def model_sam() -> str:
@@ -127,6 +191,8 @@ def image_url() -> str:
 
 def allowed_hosts() -> set[str]:
     hosts = {OFFICIAL_HOST}
+    if baseten_api_key():
+        hosts.add(BASETEN_HOST)
     for raw in _env("META_ALLOWED_HOSTS").split(","):
         host = raw.strip().lower()
         if host:
@@ -175,8 +241,8 @@ def ai_status() -> dict[str, Any]:
     base_host = _host(api_base())
     return {
         "mode": ai_mode(),
-        "provider": "meta" if enabled else None,
-        "key_configured": bool(meta_api_key()),
+        "provider": backend() if enabled else None,
+        "key_configured": bool(active_api_key()),
         "layer_switch": layer_switch(),
         "api_host": base_host,
         "api_host_allowed": base_host in allowed_hosts(),
@@ -202,15 +268,19 @@ def ai_status() -> dict[str, Any]:
 
 
 __all__ = [
+    "active_api_key",
     "ai_mode",
     "ai_status",
     "allowed_hosts",
     "api_base",
+    "backend",
+    "baseten_api_key",
     "chat_url",
     "daily_call_cap",
     "evidence_max_bytes",
     "image_url",
     "intake_timeout_s",
+    "max_tokens",
     "meta_api_key",
     "meta_enabled",
     "min_confidence",

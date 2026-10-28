@@ -115,7 +115,7 @@ Signed sessions carry the role. A shared API key is the `service` principal. Ope
 | `auditor` | Read and audit routes | Cannot attach to a customer socket or hang up |
 | `admin` | Includes an explicit audited override for release | Full access |
 
-Customer sockets require `contact:write`. A session that names a contact can attach only to that contact. Put the API key in the dashboard sign-in (memory by default). WebSockets authenticate with a first message, not `?api_key=` in the URL.
+Customer sockets require `contact:write`. A session that names a contact can attach only to that contact. Put the API key in **Settings → Pilot API key** (memory by default). WebSockets authenticate with a first message, not `?api_key=` in the URL.
 
 For any shared network set `FRONTLINE_AUTH_REQUIRED=1`, a long `FRONTLINE_API_KEY`, and a distinct `SESSION_SECRET`.
 

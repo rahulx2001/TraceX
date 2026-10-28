@@ -22,6 +22,7 @@ export default defineConfig({
     ["list"],
     ["html", { open: "never", outputFolder: "playwright-report" }],
     ["json", { outputFile: "playwright-results.json" }],
+    ["junit", { outputFile: "playwright-results.xml" }],
   ],
   use: {
     baseURL: BASE,

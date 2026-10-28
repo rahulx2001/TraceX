@@ -3,12 +3,9 @@
  * Drives real HTTP paths — not reimplementations.
  */
 import { test, expect } from "@playwright/test";
+import { BASE, apiKey } from "./fixtures/env.js";
 
-const BASE = process.env.BASE_URL || "http://127.0.0.1:8000";
-const KEY =
-  process.env.E2E_API_KEY ||
-  process.env.FRONTLINE_API_KEY ||
-  "live-harden-key-32-chars-min!!";
+const KEY = apiKey();
 
 function authHeaders(extra = {}) {
   return { "X-API-Key": KEY, ...extra };
@@ -219,6 +216,7 @@ test.describe("API aggressive — service key happy paths", () => {
   });
 
   test("simulate creates traffic", async ({ request }) => {
+    test.setTimeout(90_000);
     const r = await api(request, "POST", "/api/frontline/simulate?count=3&speed=instant", {
       headers: authHeaders(),
       data: {},

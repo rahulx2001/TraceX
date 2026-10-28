@@ -38,13 +38,19 @@ def test_api_auth_helper_exports_expected_symbols():
     assert '"auth"' in src or "type: \"auth\"" in src or "type: 'auth'" in src
 
 
-def test_sidebar_account_uses_shared_web_signin() -> None:
+def test_console_opens_without_signin_gate() -> None:
+    """Hackathon build removes the browser gate; backend auth still applies.
+
+    The SignIn page source stays available for deployments that re-enable it,
+    but App.jsx must not route to it or mount the sidebar account menu.
+    """
     app = (DASH / "src" / "App.jsx").read_text(encoding="utf-8")
-    acc = (DASH / "src" / "ui" / "AccountSignIn.jsx").read_text(encoding="utf-8")
-    assert "AccountSignIn" in app
-    assert "SignIn" in app
-    assert "signin" in acc
-    assert "Sign in" in acc
+    assert "import SignIn" not in app
+    assert "<SignIn" not in app
+    assert "<AccountSignIn" not in app
+    assert 'id: "signin"' not in app
+    assert 'id: "signup"' not in app
+    assert "const FORCE_OPEN_CONSOLE = true" in app
     page = (DASH / "routes" / "SignIn.jsx").read_text(encoding="utf-8")
     assert "Continue with Google" in page
     assert "/api/frontline/auth/oidc/start" in page

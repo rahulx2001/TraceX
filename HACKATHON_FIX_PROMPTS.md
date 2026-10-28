@@ -15,7 +15,6 @@ Shared rules, already inside every prompt:
 
 Order:
 
-0. Prompt 00 — same Azure OpenAI resource for every stored item (do this before any live call)
 1. Prompt 03 — `.env` actually configures the server
 2. Prompt 04 — classifier export matches the accuracy evaluator
 3. Prompt 05 — grounding rejects unsupported claims
@@ -29,37 +28,6 @@ Order:
 11. Prompt 02 — one live Meta workflow (budget slice: at most 8 USD)
 12. Prompt 08 — evaluation only for claims you will make (budget slice: at most 22 USD, and only what remains under the 30 USD total)
 13. Prompt 13 — submission snapshot, license, three-minute story
-
----
-
-## Prompt 00 — Same Azure OpenAI resource, or this error returns
-
-```
-You are working in a checkout of https://github.com/rahulx2001/TraceX. Confirm origin with git remote -v. If origin is https://github.com/rahulx2001/SkewAi, stop and clone TraceX instead. Do not push to SkewAi.
-
-Do not print API keys. Do not send any key to the browser. Live spend for this task is 0 USD. Fix the client so the next real call cannot hit the error below. Do not "fix" it by retrying the same id.
-
-The live API returned:
-
-{"error":{"message":"The requested item was created under a different Azure OpenAI resource. Use the same resource that created the item to access it. [trace_id=261b8997d5d76dcd63e6e3d0b175f1a0]","type":"invalid_request_error","param":"","code":null}}
-
-What that sentence means: a stored id (file, batch, vector store, assistant, thread, response, upload, or fine-tune job) was created on Azure OpenAI resource A. The current request uses resource B. Azure will not move the item. Calling the same id again, on any endpoint other than the one that created it, returns this error again. trace_id 261b8997d5d76dcd63e6e3d0b175f1a0 is the failed call. A later call gets a new trace_id. Do not hardcode that trace_id as a success check.
-
-Find every place this repo saves or reuses those ids: code, .env, JSON, parquet, sqlite, reports, and tests. Also find every client constructor (AzureOpenAI, OpenAI with an Azure base_url, Meta client pointed at an Azure resource). The resource is the endpoint host, not the deployment name. Two deployments on one host are the same resource. Two hosts are different resources, even if the key name looks similar.
-
-Implement this contract:
-
-1. One resource per process. Read the endpoint and the key from the same environment the server actually loads (see Prompt 03). Refuse to start a live call when the endpoint host is empty or when two different hosts are set (AZURE_OPENAI_ENDPOINT versus a base_url baked into a client).
-2. Every stored id is saved with the endpoint host that created it, and never with the key. Persist host plus id. A bare id in git, a report, or a database is stale.
-3. Before files.retrieve, batches.retrieve, vector_stores, assistants, responses, or any other get-by-id, compare the current host with the stored host. If they differ, do not send that id. Drop the local row, create the item again on the current resource, and save the new id with the current host.
-4. If the API still returns "created under a different Azure OpenAI resource", catch that message once. Log the trace_id. Discard the stale id. Recreate on the current resource. Do not loop. Do not report the call as a successful model result.
-5. Delete checked-in ids that were created on another resource. Tests must use fake hosts, not real ids copied from a laptop.
-6. Add a regression test with two fake hosts. An id recorded under host A must not be sent when the client is on host B. The client recreates it on B. The same id on host A is sent only to host A.
-
-Acceptance criterion: a stored id from resource A is never requested from resource B, and the known error string cannot surface as a normal failed investigation. Recreate-on-current-resource is the only recovery.
-
-After this lands, Prompt 02 may make one live call. That call must create any file or batch itself, on the endpoint in the current .env, and must not reuse an id from an older resource.
-```
 
 ---
 
@@ -95,8 +63,6 @@ Do not change product behavior in this task. Docs only, plus a short "How to rea
 
 ```
 You are working in a checkout of https://github.com/rahulx2001/TraceX. If origin is still SkewAi, clone TraceX and work there. Do not push to SkewAi. The Meta API key is already configured by the owner. Never print it, log it, or let the browser accept it. The browser may receive only configuration status.
-
-Prompt 00 is already merged. Do not reuse a file id, batch id, assistant id, vector store id, or response id from any earlier Azure resource. Create what this call needs on the endpoint currently in .env. If the API returns "The requested item was created under a different Azure OpenAI resource", stop spending, discard that id, recreate it once on the current endpoint, and record the new trace_id. Do not retry the old id. That error is not a successful model result.
 
 Hard budget: this task may spend at most 8 USD of Meta API. The whole submission cap is 30 USD. Stop before the eighth dollar. Record token counts and estimated cost for every live call. If a call fails, keep the failure visible. Do not retry in a loop.
 

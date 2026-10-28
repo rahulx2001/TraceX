@@ -1,105 +1,83 @@
 import { test, expect } from "@playwright/test";
-
-const KEY =
-  process.env.E2E_API_KEY ||
-  process.env.FRONTLINE_API_KEY ||
-  "live-harden-key-32-chars-min!!";
-
-async function seedKey(page) {
-  await page.addInitScript((key) => {
-    try {
-      localStorage.setItem("frontline_api_key", key);
-    } catch {
-      /* ignore */
-    }
-  }, KEY);
-}
+import { ConsolePage } from "./pages/ConsolePage.js";
 
 test.describe("Operator loops", () => {
   test.beforeEach(async ({ page }) => {
-    await seedKey(page);
+    const consolePage = new ConsolePage(page);
+    await consolePage.seedKey();
   });
 
   test("command critical card opens filtered case queue", async ({ page }) => {
-    const errors = [];
-    page.on("pageerror", (e) => errors.push(String(e)));
-    await page.goto("/ui/#command");
-    await page.waitForLoadState("domcontentloaded");
-    await page.waitForTimeout(800);
+    const consolePage = new ConsolePage(page);
+    const errors = consolePage.trackErrors();
+    await consolePage.gotoHash("command");
     const btn = page.locator("button.stat-card-btn", { hasText: "Critical open" });
     await expect(btn).toBeVisible();
     await btn.click();
-    await page.waitForTimeout(500);
-    expect(page.url()).toMatch(/#cases/);
-    expect(page.url()).toMatch(/severity=Critical/);
+    await expect(page).toHaveURL(/#cases/);
+    await expect(page).toHaveURL(/severity=Critical/);
     expect(errors).toEqual([]);
-    await expect(page.locator("text=This view hit an error")).toHaveCount(0);
+    await expect(page.getByText("This view hit an error")).toHaveCount(0);
   });
 
   test("case row opens drawer", async ({ page }) => {
-    await page.goto("/ui/#cases");
-    await page.waitForTimeout(800);
-    // The seeded judge corpus is simulated traffic, which is opt-in on the
-    // case queue. Without this the table shows only the empty-state row.
-    const sim = page.getByLabel(/Include simulated traffic/i);
-    if ((await sim.count()) > 0 && !(await sim.isChecked())) {
-      await sim.check();
-      await page.waitForTimeout(500);
-    }
+    const consolePage = new ConsolePage(page);
+    await consolePage.gotoHash("cases");
+    const sim = page.getByLabel("Include simulated traffic");
+    await expect(sim).toBeVisible();
+    if (!(await sim.isChecked())) await sim.check();
     const row = page.locator("table tbody tr", { hasText: /case_/ }).first();
-    if ((await row.count()) === 0) test.skip();
+    try {
+      await row.waitFor({ state: "visible", timeout: 8_000 });
+    } catch {
+      test.skip(true, "no seeded case rows");
+    }
     await row.click();
     await expect(page.locator('[role="dialog"][aria-label="Case detail"]')).toBeVisible();
   });
 
   test("early warning simulate modal closes on Escape", async ({ page }) => {
-    await page.goto("/ui/#warning");
-    await page.waitForTimeout(600);
+    const consolePage = new ConsolePage(page);
+    await consolePage.gotoHash("warning");
     await page.getByRole("button", { name: /Simulate traffic/i }).first().click();
     await expect(page.locator(".modal-backdrop")).toBeVisible();
     await page.keyboard.press("Escape");
-    await page.waitForTimeout(200);
     await expect(page.locator(".modal-backdrop")).toHaveCount(0);
   });
 
   test("g then a opens trust", async ({ page }) => {
-    await page.goto("/ui/#command");
-    await page.waitForTimeout(400);
-    await page.keyboard.press("g");
-    await page.waitForTimeout(80);
-    await page.keyboard.press("a");
-    await page.waitForTimeout(300);
-    expect(page.url()).toMatch(/#audits/);
+    const consolePage = new ConsolePage(page);
+    await consolePage.gotoHash("command");
+    await expect(page.getByText(/Command center/i).first()).toBeVisible();
+    await consolePage.chord("a");
+    await expect(page).toHaveURL(/#audits/);
   });
 
   test("retired hashes alias into the cut nav", async ({ page }) => {
-    await page.goto("/ui/#studio");
-    await page.waitForTimeout(400);
-    expect(page.url()).toMatch(/#settings/);
-    await page.goto("/ui/#insights");
-    await page.waitForTimeout(400);
-    expect(page.url()).toMatch(/#warning/);
-    await page.goto("/ui/#trust");
-    await page.waitForTimeout(400);
-    expect(page.url()).toMatch(/#audits/);
-    expect(page.url()).toMatch(/tab=reports/);
+    const consolePage = new ConsolePage(page);
+    await consolePage.gotoHash("studio");
+    await expect(page).toHaveURL(/#settings/);
+    await consolePage.gotoHash("insights");
+    await expect(page).toHaveURL(/#warning/);
+    await consolePage.gotoHash("trust");
+    await expect(page).toHaveURL(/#audits/);
+    await expect(page).toHaveURL(/tab=reports/);
   });
 
   test("command open-cases card jumps to queue", async ({ page }) => {
-    await page.goto("/ui/#command");
-    await page.waitForTimeout(800);
+    const consolePage = new ConsolePage(page);
+    await consolePage.gotoHash("command");
     const cards = page.locator("button.stat-card-btn");
     await expect(cards).toHaveCount(4);
     await page.locator("button.stat-card-btn", { hasText: "Open cases" }).click();
-    await page.waitForTimeout(400);
-    expect(page.url()).toMatch(/#cases/);
+    await expect(page).toHaveURL(/#cases/);
   });
 
   test("settings remember-key defaults off", async ({ page }) => {
-    await page.goto("/ui/#settings");
-    await page.waitForTimeout(500);
-    const box = page.getByLabel(/Remember API key on this device/i);
-    await expect(box).toHaveCount(1);
+    const consolePage = new ConsolePage(page);
+    await consolePage.gotoHash("settings");
+    const box = page.getByLabel("Remember API key on this device");
+    await expect(box).toBeVisible();
     await expect(box).not.toBeChecked();
   });
 });

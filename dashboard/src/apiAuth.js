@@ -116,8 +116,9 @@ export async function verifyCredential() {
 /**
  * Single check used by the App route guard. A signed session always passes.
  * Otherwise a stored API key passes only when the server runs auth-required
- * and accepts it. Anonymous visitors fail closed (open pilot mode included —
- * there the only way in is sign up / sign in).
+ * and accepts it. An explicitly open server (auth_required: false) passes
+ * without a credential because there is nothing to sign in with; auth-required
+ * servers still fail closed and send anonymous visitors to the sign-in page.
  */
 export async function hasConsoleAccess() {
   let me = { signed_in: false };
@@ -128,6 +129,9 @@ export async function hasConsoleAccess() {
     /* both default to deny */
   }
   if (me?.signed_in) return { allowed: true, via: "session", me, health };
+  // [HACKATHON LOCAL DEMO] Open-mode servers are keyless by design. Do not
+  // force a sign-in gate that has no credential to accept.
+  if (health?.auth_required === false) return { allowed: true, via: "open-mode", me, health };
   if (getStoredApiKey() && health?.auth_required) {
     const v = await verifyCredential();
     if (v.ok) return { allowed: true, via: "api-key", me, health };

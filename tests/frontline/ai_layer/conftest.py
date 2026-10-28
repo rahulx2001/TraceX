@@ -68,6 +68,7 @@ def no_meta(monkeypatch):
 
     monkeypatch.delenv("META_API_KEY", raising=False)
     monkeypatch.delenv("MODEL_API_KEY", raising=False)
+    monkeypatch.delenv("BASETEN_API_KEY", raising=False)
     calls: list[str] = []
 
     def _boom(url, body, headers, timeout):
@@ -84,6 +85,8 @@ def fake_meta(monkeypatch, tmp_path):
     from src.ai_layer import meta_client
 
     monkeypatch.setenv("META_API_KEY", FAKE_KEY)
+    monkeypatch.delenv("BASETEN_API_KEY", raising=False)
+    monkeypatch.delenv("META_BACKEND", raising=False)
     monkeypatch.delenv("FRONTLINE_AI_LAYER", raising=False)
     monkeypatch.setenv("META_RETRIES", "1")
     monkeypatch.setenv("META_CAP_PATH", str(tmp_path / "meta_calls.json"))

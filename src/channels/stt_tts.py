@@ -7,7 +7,10 @@ Browser Web Speech is Chrome-only. This stack provides a hermetic text pilot:
   attached. Metadata alone is not playable TTS.
 
 ``STT_API_URL`` and ``FASTER_WHISPER_MODEL`` do not by themselves make
-audio STT or playable TTS available.
+audio STT or playable TTS available. The real provider is Deepgram
+(``src/channels/deepgram.py``), attached only when ``DEEPGRAM_ENABLED=1``
+and ``DEEPGRAM_API_KEY`` are both set; without them every probe below
+stays False and the stack is pure offline pilot.
 """
 
 from __future__ import annotations
@@ -15,6 +18,8 @@ from __future__ import annotations
 import hashlib
 import os
 from typing import Any
+
+from src.channels import deepgram as _deepgram
 
 
 class ServerSpeechStack:
@@ -32,6 +37,27 @@ class ServerSpeechStack:
         self.stt_api_url = (stt_api_url or os.getenv("STT_API_URL", "")).strip()
         self.tts_voice = (tts_voice or os.getenv("TTS_VOICE", "pilot-neutral")).strip()
         self._partial: list[str] = []
+        # Real provider: Deepgram attaches only behind its explicit opt-in.
+        # Construction never performs I/O, so capability probes stay cheap.
+        if _deepgram.deepgram_available():
+            self._pcm_transcriber = self._deepgram_transcribe_pcm  # type: ignore[attr-defined]
+            self._audio_synthesizer = self._deepgram_synthesize  # type: ignore[attr-defined]
+
+    def _deepgram_transcribe_pcm(self, pcm: bytes) -> str | None:
+        try:
+            out = _deepgram.transcribe_audio(
+                _deepgram.pcm16k_mono_to_wav(pcm), mime="audio/wav"
+            )
+        except _deepgram.DeepgramError:
+            return None
+        text = (out.get("text") or "").strip() if isinstance(out, dict) else ""
+        return text or None
+
+    def _deepgram_synthesize(self, text: str) -> bytes | None:
+        try:
+            return _deepgram.synthesize_speech(text)
+        except _deepgram.DeepgramError:
+            return None
 
     def _remember_partial(self, raw: str) -> None:
         self._partial.append(raw)
@@ -88,21 +114,52 @@ class ServerSpeechStack:
             return None
         return text.strip()
 
+    def transcribe_audio(self, data: bytes, *, mime: str = "audio/webm") -> dict[str, Any] | None:
+        """Transcribe one utterance (browser MediaRecorder bytes).
+
+        Returns {"text", "confidence"}; {"text": ""} when the provider heard
+        silence; None when no provider is attached or the call failed. Never
+        invents text and never raises for provider failures.
+        """
+        if not data or not self.operational_audio_stt():
+            return None
+        try:
+            out = _deepgram.transcribe_audio(bytes(data), mime=mime)
+        except _deepgram.DeepgramNoSpeech:
+            return {"text": "", "confidence": None}
+        except _deepgram.DeepgramError:
+            return None
+        if not isinstance(out, dict):
+            return None
+        return {"text": str(out.get("text") or ""), "confidence": out.get("confidence")}
+
     def synthesize_audio(self, text: str) -> bytes | None:
-        """Playable audio bytes, or None when TTS is metadata only."""
-        return None
+        """Playable audio bytes, or None when TTS is metadata only / failed."""
+        if not (text or "").strip() or not self.playable_tts_available():
+            return None
+        audio = self._audio_synthesizer(text)  # type: ignore[attr-defined]
+        if not isinstance(audio, (bytes, bytearray)) or len(audio) == 0:
+            return None
+        return bytes(audio)
 
     def playable_tts_available(self) -> bool:
-        """True only when synthesis returns audio a caller can play."""
-        sample = self.synthesize_audio(" ")
-        return isinstance(sample, (bytes, bytearray)) and len(sample) > 0
+        """True only when a synthesizer is attached that returns playable audio.
+
+        This is an attachment check, not a synthesis probe — it never performs
+        I/O, so capability reads stay cheap and hermetic suites stay offline.
+        """
+        return callable(getattr(self, "_audio_synthesizer", None))
 
     def synthesize_meta(self, text: str) -> dict[str, Any]:
         """Return TTS metadata. ``audio_ref`` is set only when audio is playable."""
         playable = self.playable_tts_available()
         digest = hashlib.sha256((text or "").encode()).hexdigest()[:16]
+        if playable:
+            provider = "deepgram"
+        else:
+            provider = "pilot" if not os.getenv("ELEVENLABS_API_KEY") else "elevenlabs"
         return {
-            "provider": "pilot" if not os.getenv("ELEVENLABS_API_KEY") else "elevenlabs",
+            "provider": provider,
             "voice": self.tts_voice,
             "text_chars": len(text or ""),
             "audio_ref": f"tts://{digest}" if playable else None,
@@ -117,3 +174,12 @@ class ServerSpeechStack:
             "server_tts": playable,
             "offline_pilot": not self.operational_audio_stt(),
         }
+
+
+def server_voice_capabilities() -> dict[str, bool]:
+    """Cheap, I/O-free voice advertisement for the WS ``ready`` frame."""
+    stack = ServerSpeechStack()
+    return {
+        "server_stt": bool(stack.operational_audio_stt()),
+        "server_tts": bool(stack.playable_tts_available()),
+    }

@@ -57,6 +57,9 @@ data/security.jsonl
 data/security_audit.jsonl
 data/.pilot_marker_audit
 dashboard/test-results/
+dashboard/playwright-report/
+dashboard/playwright-results.json
+dashboard/playwright-results.xml
 data/builder_packs/builder_preview/demo/demo_script.md
 data/active_pack.json
 

@@ -340,7 +340,7 @@ def drop_foreign_resource_ids(payload: dict[str, Any], *, stored_host: str, curr
 def _post(url: str, payload: dict[str, Any], *, timeout: float, accept: str | None = None) -> HttpResponse:
     if not config.meta_enabled():
         raise MetaError("meta_disabled")
-    key = config.meta_api_key()
+    key = config.active_api_key()
     guard_url(url)
     headers = {
         "Content-Type": "application/json",
@@ -390,10 +390,12 @@ def _post(url: str, payload: dict[str, Any], *, timeout: float, accept: str | No
 
 
 _FENCE = re.compile(r"^\s*```(?:json)?\s*|\s*```\s*$", re.I)
+_THINK = re.compile(r"<think>.*?</think>", re.I | re.S)
 
 
 def _parse_json_text(text: str) -> Any:
-    cleaned = _FENCE.sub("", (text or "").strip())
+    cleaned = _THINK.sub("", text or "").strip()
+    cleaned = _FENCE.sub("", cleaned)
     try:
         return json.loads(cleaned)
     except (json.JSONDecodeError, TypeError) as e:
@@ -409,6 +411,19 @@ def _redact(text: str) -> str:
         raise MetaError("pii_redaction_failed") from e
 
 
+# Hosts whose chat endpoint rejected json_schema: send plain json_object there.
+_SIMPLE_FORMAT_HOSTS: set[str] = set()
+
+
+def _response_format(schema_name: str, schema: dict[str, Any], *, simple: bool) -> dict[str, Any]:
+    if simple:
+        return {"type": "json_object"}
+    return {
+        "type": "json_schema",
+        "json_schema": {"name": schema_name, "schema": schema, "strict": False},
+    }
+
+
 def chat_json(
     *,
     system: str,
@@ -418,15 +433,31 @@ def chat_json(
     images: list[str] | None = None,
     model: str | None = None,
     timeout: float | None = None,
-    max_tokens: int = 2000,
+    max_tokens: int | None = None,
 ) -> dict[str, Any]:
-    """One schema-constrained Muse Spark call. Returns validated JSON or raises."""
+    """One schema-constrained chat call. Returns validated JSON or raises.
+
+    Backend-agnostic: the active backend (Meta or Baseten Muse Spark Open)
+    comes from config. Reasoning output is tolerated (think blocks stripped,
+    reasoning channel logged, never presented as the answer).
+    """
     user_text = _redact(user)
     content: Any = user_text
     if images:
         content = [{"type": "text", "text": user_text}] + [
             {"type": "image_url", "image_url": {"url": url}} for url in images[:4]
         ]
+    budget = max_tokens if max_tokens else config.max_tokens()
+    if config.backend() == "baseten":
+        # Reasoning models spend tokens thinking; never starve the answer.
+        budget = max(budget, 4000)
+    url = config.chat_url()
+    host = (urlparse(url).hostname or "").lower()
+    # Meta's API speaks json_schema officially: a 4xx there is a real error and
+    # must not be retried. Only OpenAI-compatible third-party backends (Baseten)
+    # get the one-shot plain-json_object fallback.
+    fallback_ok = config.backend() == "baseten"
+    simple = fallback_ok and host in _SIMPLE_FORMAT_HOSTS
     payload = {
         "model": model or (config.model_vision() if images else config.model_text()),
         "messages": [
@@ -434,26 +465,41 @@ def chat_json(
             {"role": "user", "content": content},
         ],
         "temperature": 0,
-        "max_tokens": max_tokens,
-        "response_format": {
-            "type": "json_schema",
-            "json_schema": {"name": schema_name, "schema": schema, "strict": False},
-        },
+        "max_tokens": budget,
+        "response_format": _response_format(schema_name, schema, simple=simple),
     }
-    resp = _post(config.chat_url(), payload, timeout=timeout or config.timeout_s())
+    try:
+        resp = _post(url, payload, timeout=timeout or config.timeout_s())
+    except MetaError as e:
+        if fallback_ok and not simple and e.reason in ("meta_http_400", "meta_http_422"):
+            # Server speaks OpenAI-compatible JSON but not json_schema
+            # (some vLLM builds): retry once, plain, and remember the host.
+            _SIMPLE_FORMAT_HOSTS.add(host)
+            payload["response_format"] = _response_format(schema_name, schema, simple=True)
+            resp = _post(url, payload, timeout=timeout or config.timeout_s())
+        else:
+            raise
     try:
         data = json.loads(resp.body.decode("utf-8"))
-        text = data["choices"][0]["message"]["content"]
+        message = data["choices"][0]["message"]
+        text = message["content"]
     except (KeyError, IndexError, TypeError, ValueError, UnicodeDecodeError) as e:
         raise MetaError("meta_bad_envelope") from e
+    reasoning = ""
+    if isinstance(message, dict):
+        reasoning = message.get("reasoning_content") or message.get("reasoning") or ""
     if isinstance(text, list):  # some servers return content parts
         text = "".join(str(p.get("text") or "") for p in text if isinstance(p, dict))
+    if isinstance(reasoning, list):
+        reasoning = "".join(str(p.get("text") or "") for p in reasoning if isinstance(p, dict))
     try:
         value = _parse_json_text(str(text or ""))
     except MetaError:
         import logging
-        logging.getLogger(__name__).warning("Meta JSON rejected: finish_reason=%s content_chars=%d completion_tokens=%s",
-            data["choices"][0].get("finish_reason"), len(str(text or "")), (data.get("usage") or {}).get("completion_tokens"))
+        logging.getLogger(__name__).warning(
+            "Meta JSON rejected: finish_reason=%s content_chars=%d reasoning_chars=%d completion_tokens=%s",
+            data["choices"][0].get("finish_reason"), len(str(text or "")), len(str(reasoning or "")),
+            (data.get("usage") or {}).get("completion_tokens"))
         raise
     errors = validate(value, schema)
     if errors:
@@ -537,6 +583,10 @@ def _responses_text(data: dict[str, Any]) -> str:
 
 def sam_segment(*, concept: str, image_data_url: str, timeout: float | None = None) -> list[dict[str, Any]]:
     """Segment one noun-phrase concept in one image. Zero matches -> []."""
+    if config.backend() == "baseten":
+        # No Responses API on the Baseten chat-only backend; evidence vision
+        # (chat_json with images) is the Baseten segmentation substitute.
+        raise MetaError("model_unsupported_on_backend")
     concept = " ".join(re.sub(r"[^A-Za-z0-9 \-]", " ", concept or "").split())[:60]
     if not concept:
         raise MetaError("sam_empty_concept")
@@ -573,6 +623,9 @@ def sam_segment(*, concept: str, image_data_url: str, timeout: float | None = No
 
 def image_generate(*, prompt: str, size: str = "1024x1024", timeout: float | None = None) -> dict[str, Any]:
     """Muse Image generation (offline demo-asset script only)."""
+    if config.backend() == "baseten":
+        # Hackathon keys only serve the chat model; callers fall back.
+        raise MetaError("model_unsupported_on_backend")
     payload = {"model": config.model_image(), "prompt": prompt[:1000], "size": size, "n": 1}
     resp = _post(config.image_url(), payload, timeout=timeout or 60.0)
     try:
