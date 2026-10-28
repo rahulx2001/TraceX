@@ -45,11 +45,9 @@ import {
 } from "./icons.jsx";
 import { packLabel } from "./ui/labels.js";
 
-// [HACKATHON LOCAL DEMO] The judge demo runs on a loopback-only server in
-// open mode, so the console opens directly instead of forcing an account.
-// Set this to false to restore the original sign-in gate and all sign-in /
-// sign-up entry points. Server-side auth code is untouched.
-const DEMO_OPEN_CONSOLE = true;
+// Use the server's access check. Judges on authenticated servers must be
+// able to enter operator credentials or an issued supervisor session.
+const DEMO_OPEN_CONSOLE = false;
 
 const NAV_GROUPS = [
   {
@@ -82,10 +80,8 @@ const NAV_GROUPS = [
 const ALL_NAV = NAV_GROUPS.flatMap((g) => g.items);
 const EXTRA_PAGES = [
   { id: "guide", label: "User guide", route: UserJourneyGuide, keywords: "guide walkthrough journey onboarding" },
-  // [HACKATHON LOCAL DEMO] Sign-in / sign-up routes disabled; see DEMO_OPEN_CONSOLE.
-  // Uncomment both lines to restore them.
-  // { id: "signin", label: "Sign in", route: SignIn, keywords: "google oidc login" },
-  // { id: "signup", label: "Sign up", route: SignIn, keywords: "create account register signup" },
+  { id: "signin", label: "Sign in", route: SignIn, keywords: "google oidc login" },
+  { id: "signup", label: "Sign up", route: SignIn, keywords: "create account register signup" },
   { id: "issue", label: "Issue", route: IssueDesk, keywords: "issue cluster investigation failure" },
   { id: "insights", label: "Insights", route: InsightsBoard, keywords: "csat product gap analytics" },
   { id: "economics", label: "Quality economics", route: QualityEconomics, keywords: "copq dollar roi hotspot map warranty" },
@@ -531,8 +527,7 @@ function Shell() {
   const statusTone = healthError ? "danger" : health?.status === "ok" ? "ok" : "warn";
   const statusText = healthError ? "unreachable" : health?.status || "connecting";
 
-  // [HACKATHON LOCAL DEMO] Kept for future use. DEMO_OPEN_CONSOLE redirects
-  // #signin / #signup to #command, so this page is unreachable in the demo.
+  // Authentication screens stay accessible on every deployment.
   if (route === "signin" || route === "signup") {
     return (
       <div className="signin-shell">

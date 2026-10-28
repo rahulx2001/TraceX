@@ -8,6 +8,7 @@ import {
   saveGoogleProvider,
   setApiKey,
   loginWithPassword,
+  loginWithSessionToken,
 } from "../src/apiAuth.js";
 
 function routeParams() {
@@ -187,6 +188,20 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
   const [showApiKeyBox, setShowApiKeyBox] = useState(false);
   const [apiKeyInput, setApiKeyInput] = useState("");
   const [rememberApiKey, setRememberApiKey] = useState(false);
+  const [showSessionBox, setShowSessionBox] = useState(false);
+  const [sessionInput, setSessionInput] = useState("");
+
+  async function handleSessionSubmit(e) {
+    e.preventDefault();
+    setBusy(true); setErr("");
+    try {
+      await loginWithSessionToken(sessionInput.trim());
+      setSessionInput("");
+      goToConsole();
+    } catch (ex) {
+      setErr(ex.message);
+    } finally { setBusy(false); }
+  }
 
   async function handleApiKeySubmit(e) {
     e.preventDefault();
@@ -413,7 +428,7 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
           </h1>
           <p className="auth-lead">
             Supervise autonomous voice agent swarms in real-time, detect emerging failure clusters,
-            and audit 100% of customer interactions against cryptographic truth ledgers.
+            and review customer interactions with a tamper-evident audit trail.
           </p>
 
           {/* ── Live RCA Observability Terminal Preview ── */}
@@ -489,7 +504,7 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
               <div>
                 <div className="auth-feature-title">Cryptographic Audit Ledgers</div>
                 <div className="auth-feature-desc">
-                  Qubot v2 verifies evidence IDs against DuckDB historical corpora with immutable hash chains.
+                  Qubot v2 checks evidence IDs against historical records and records actions in a tamper-evident hash chain.
                 </div>
               </div>
             </div>
@@ -862,8 +877,24 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
                     >
                       {showApiKeyBox ? "Hide API key entry −" : "Have an operator API key? +"}
                     </button>
+                    <button type="button" className="oidc-toggle-link"
+                      onClick={() => setShowSessionBox(!showSessionBox)} aria-expanded={showSessionBox}>
+                      {showSessionBox ? "Hide session entry −" : "Have a supervisor session? +"}
+                    </button>
+                    {showSessionBox && (
+                      <div className="auth-form-sub">
+                        <label className="auth-label"><span>Supervisor session</span>
+                          <input type="password" autoComplete="off" value={sessionInput}
+                            onChange={(e) => setSessionInput(e.target.value)} placeholder="Paste the issued session" />
+                        </label>
+                        <button type="button" className="btn btn-secondary btn-block btn-sm"
+                          disabled={busy || !sessionInput.trim()} onClick={handleSessionSubmit}>
+                          {busy ? "Verifying…" : "Use session"}
+                        </button>
+                      </div>
+                    )}
                     {showApiKeyBox && (
-                      <form className="auth-form-sub" onSubmit={handleApiKeySubmit}>
+                      <div className="auth-form-sub">
                         <label className="auth-label">
                           <span>Operator API key</span>
                           <input
@@ -885,13 +916,14 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
                           </label>
                         </div>
                         <button
-                          type="submit"
+                          type="button"
+                          onClick={handleApiKeySubmit}
                           className="btn btn-secondary btn-block btn-sm"
                           disabled={busy || !apiKeyInput.trim()}
                         >
                           {busy ? "Verifying…" : "Verify & Continue"}
                         </button>
-                      </form>
+                      </div>
                     )}
                   </div>
                 </form>

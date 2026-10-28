@@ -80,6 +80,13 @@ async def _lifespan(app: FastAPI):
     from src.ml_runtime.embedding_runtime import validate_startup_config
 
     validate_startup_config()
+    from src.ml_runtime.slm_runtime import slm_mode, warm_category_runtime
+    if slm_mode() != "legacy":
+        from src.domains.loader import load_pack
+        from src.data.warehouse import ops_in_thread
+        def _warm_category():
+            return warm_category_runtime(load_pack(settings.domain_pack))
+        app.state.category_runtime = await ops_in_thread(_warm_category)
     try:
         from src.observability.degradation import init_default_ladders
 
@@ -108,11 +115,12 @@ async def _lifespan(app: FastAPI):
         replay_ledger_wal()
     except Exception:
         pass
+    signal_cleanup = None
     # Feature #51: SIGTERM begins call drain (reject new contacts, finish active).
     try:
         from src.ops.drain import install_sigterm_handler
 
-        install_sigterm_handler()
+        signal_cleanup = install_sigterm_handler()
     except Exception:
         pass
     # Startup: close stale active interaction rows not in the live registry.
@@ -172,6 +180,8 @@ async def _lifespan(app: FastAPI):
     try:
         yield
     finally:
+        if signal_cleanup is not None:
+            signal_cleanup()
         if worker_task is not None:
             worker_task.cancel()
             try:

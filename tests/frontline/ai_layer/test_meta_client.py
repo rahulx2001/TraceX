@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+
 import pytest
 
 from src.ai_layer import config, meta_client
@@ -150,6 +152,134 @@ def test_daily_cap_survives_throwaway_warehouse_and_process_state(fake_meta, mon
         chat_json(system="s", user="u", schema=SCHEMA, schema_name="t")
     assert e.value.reason == "daily_call_cap"
     assert meta_client.calls_today() == 1
+
+
+def test_foreign_resource_id_is_not_sent_again(monkeypatch, tmp_path):
+    """A response id from another resource is dropped, then the call is created again."""
+    from src.ai_layer.meta_client import HttpResponse
+
+    monkeypatch.setenv("META_API_KEY", "test-placeholder-not-a-real-key")
+    monkeypatch.setenv("META_RESOURCE_PATH", str(tmp_path / "host"))
+    monkeypatch.setenv("META_BUDGET_PATH", str(tmp_path / "budget.sqlite"))
+    monkeypatch.setenv("META_CAP_PATH", str(tmp_path / "cap.json"))
+    monkeypatch.setenv("META_DAILY_CALL_CAP", "5")
+    meta_client.reset_call_cap()
+    meta_client.remember_resource_host("api.meta.ai")
+    seen: list[dict] = []
+
+    def transport(url, body, headers, timeout):
+        payload = json.loads(body.decode())
+        seen.append(payload)
+        if payload.get("previous_response_id"):
+            return HttpResponse(
+                status=400,
+                body=b'{"error":{"message":"The requested item was created under a different Azure OpenAI resource"}}',
+            )
+        return HttpResponse(
+            status=200,
+            body=json.dumps({"choices": [{"message": {"content": "{\"x\": 1}"}}]}).encode(),
+        )
+
+    meta_client.set_transport(transport)
+    try:
+        resp = meta_client._post(
+            "https://api.meta.ai/v1/chat/completions",
+            {
+                "model": "muse-spark-1.3",
+                "max_tokens": 16,
+                "previous_response_id": "resp_old",
+                "messages": [{"id": "msg_old", "role": "user", "content": "hi"}],
+            },
+            timeout=5,
+        )
+    finally:
+        meta_client.set_transport(None)
+    assert resp.status == 200
+    assert seen[0]["previous_response_id"] == "resp_old"
+    assert "previous_response_id" not in seen[1]
+    assert all("id" not in message for message in seen[1]["messages"])
+    assert len(seen) == 2
+
+
+def test_cross_resource_retry_runs_when_retries_are_zero(monkeypatch, tmp_path):
+    from src.ai_layer.meta_client import HttpResponse
+
+    monkeypatch.setenv("META_API_KEY", "test-placeholder-not-a-real-key")
+    monkeypatch.setenv("META_RETRIES", "0")
+    monkeypatch.setenv("META_RESOURCE_PATH", str(tmp_path / "host"))
+    monkeypatch.setenv("META_BUDGET_PATH", str(tmp_path / "budget.sqlite"))
+    monkeypatch.setenv("META_CAP_PATH", str(tmp_path / "cap.json"))
+    monkeypatch.setenv("META_DAILY_CALL_CAP", "5")
+    meta_client.reset_call_cap()
+    seen: list[dict] = []
+
+    def transport(url, body, headers, timeout):
+        payload = json.loads(body.decode())
+        seen.append(payload)
+        if payload.get("previous_response_id"):
+            return HttpResponse(
+                status=400,
+                body=b'{"error":{"message":"created under a different Azure OpenAI resource"}}',
+            )
+        return HttpResponse(status=200, body=b'{"choices":[{"message":{"content":"{\\"x\\":1}"}}]}')
+
+    meta_client.set_transport(transport)
+    try:
+        resp = meta_client._post(
+            "https://api.meta.ai/v1/chat/completions",
+            {
+                "model": "muse-spark-1.3",
+                "max_tokens": 16,
+                "previous_response_id": "resp_old",
+                "messages": [{"role": "user", "content": "hi"}],
+            },
+            timeout=5,
+        )
+    finally:
+        meta_client.set_transport(None)
+    assert resp.status == 200
+    assert len(seen) == 2
+    assert "previous_response_id" not in seen[1]
+
+
+def test_changed_resource_host_drops_ids_before_the_first_send(monkeypatch, tmp_path):
+    from src.ai_layer.meta_client import HttpResponse
+
+    monkeypatch.setenv("META_API_KEY", "test-placeholder-not-a-real-key")
+    monkeypatch.setenv("META_RESOURCE_PATH", str(tmp_path / "host"))
+    monkeypatch.setenv("META_BUDGET_PATH", str(tmp_path / "budget.sqlite"))
+    monkeypatch.setenv("META_CAP_PATH", str(tmp_path / "cap.json"))
+    monkeypatch.setenv("META_DAILY_CALL_CAP", "5")
+    meta_client.reset_call_cap()
+    meta_client.remember_resource_host("old.resource.example")
+    seen: list[dict] = []
+
+    def transport(url, body, headers, timeout):
+        payload = json.loads(body.decode())
+        seen.append(payload)
+        if payload.get("previous_response_id") or payload.get("file_id"):
+            return HttpResponse(status=400, body=b'{"error":{"message":"should not be sent"}}')
+        return HttpResponse(status=200, body=b'{"choices":[{"message":{"content":"{\\"x\\":1}"}}]}')
+
+    meta_client.set_transport(transport)
+    try:
+        resp = meta_client._post(
+            "https://api.meta.ai/v1/chat/completions",
+            {
+                "model": "muse-spark-1.3",
+                "max_tokens": 16,
+                "previous_response_id": "resp_old",
+                "file_id": "file_old",
+                "messages": [{"role": "user", "content": "hi"}],
+            },
+            timeout=5,
+        )
+    finally:
+        meta_client.set_transport(None)
+    assert resp.status == 200
+    assert len(seen) == 1
+    assert "previous_response_id" not in seen[0]
+    assert "file_id" not in seen[0]
 
 
 def test_parse_sam_output_boxes_and_pct():

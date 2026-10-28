@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-10-28T15:35:50+00:00",
+  "settings": {
+    "start": "2015-01-01",
+    "end": "2024-12-31",
+    "complaints_limit": 5000,
+    "recalls_limit": 5000
+  },
+  "sources": {
+    "complaints": {
+      "url": "https://static.nhtsa.gov/odi/ffdd/cmpl/FLAT_CMPL.zip",
+      "origin": "downloaded",
+      "sha256": "502d86612d7c7f6906066192805cf93b5fa6502b4bbdb904b401cc3d2c88a4b5"
+    },
+    "recalls": {
+      "url": "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip",
+      "origin": "downloaded",
+      "sha256": "6e886e1076d33dc457f44deafb848c28a791ec406022d6e67d1cc3662e3cbebc"
+    }
+  },
+  "complaints": {
+    "path": "data/defect/hackathon/complaints.parquet",
+    "rows": 5000,
+    "sha256": "dbbafac4a046d4337a0af623ec8a82495958bca02dbc99dcb340069422a635ae",
+    "window": [
+      "2015-01-01",
+      "2024-12-31"
+    ],
+    "tally": {
+      "lines_read": 1148652,
+      "skipped_unparseable": 35,
+      "skipped_out_of_window": 1143556,
+      "skipped_bad_year": 0,
+      "collapsed": 61
+    }
+  },
+  "recalls": {
+    "path": "data/defect/hackathon/recall_descriptions.parquet",
+    "rows": 5000,
+    "sha256": "2d62187e97eba326054d6136a1f65f20b6251915796dff3f96722bec4974cfd5",
+    "tally": {
+      "lines_read": 34603,
+      "skipped_unparseable": 0,
+      "skipped_bad_date": 0,
+      "collapsed": 29603
+    }
+  },
+  "note": "No model call was made. Complaint rows are unique on ODINO|component; longest narrative wins."
+}
+EXIT:0

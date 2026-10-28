@@ -66,15 +66,14 @@ function NormalizeTry() {
 function HeroContrast({ text }) {
   const [out, setOut] = useState(null);
   const [err, setErr] = useState("");
-  useEffect(() => {
-    let alive = true;
-    aiPostJson("/api/ai/demo/safety-contrast", { text })
-      .then((r) => { if (alive) setOut(r); })
-      .catch((e) => { if (alive) setErr(e.message); });
-    return () => { alive = false; };
-  }, [text]);
+  const [busy, setBusy] = useState(false);
+  async function run() {
+    setBusy(true); setErr("");
+    try { setOut(await aiPostJson("/api/ai/demo/safety-contrast", { text })); }
+    catch (e) { setErr(e.message); } finally { setBusy(false); }
+  }
   if (err) return <div className="muted small">Safety contrast unavailable ({err}).</div>;
-  if (!out) return null;
+  if (!out) return <button type="button" className="ghost" onClick={run} disabled={busy}>{busy ? "Comparing…" : "Compare safety checks"}</button>;
   const hit = (t) => t
     ? <span className="chip sev-critical">kill-switch: "{t}" → Critical, "do not drive"</span>
     : <span className="chip">no kill-switch term matched</span>;
@@ -132,12 +131,37 @@ export default function DemoMode({ hashQuery }) {
   const q = hashQuery || {};
   const [seed, setSeed] = useState(readLastSeed());
   const [status, setStatus] = useState(null);
+  const [proof, setProof] = useState(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
-  const caseId = q.case || seed?.case_id || null;
+  const caseId = q.case || (!proof?.recorded_at && proof?.case_id) || seed?.case_id || null;
   const invId = q.inv || seed?.investigation_id || null;
 
   useEffect(() => { aiStatus().then(setStatus); }, []);
+
+  async function runMetaWorkflow() {
+    setBusy(true); setErr("");
+    try { setProof(await aiPostJson("/api/ai/demo/meta-workflow", {})); }
+    catch (e) { setErr(e.message); } finally { setBusy(false); }
+  }
+
+  async function loadRecordedProof() {
+    setBusy(true); setErr("");
+    try {
+      const record = await aiGet("/api/ai/demo/proof");
+      const text = record.checks?.find((c) => c.feature === "text");
+      if (!record.live_transport || !text?.ok || !text.result) throw new Error("No successful recorded text workflow available");
+      setProof({ ...text.result, recorded_at: record.recorded_at, api_host: record.api_host });
+    } catch (e) { setErr(e.message); } finally { setBusy(false); }
+  }
+
+  function downloadProof() {
+    const blob = new Blob([JSON.stringify(proof, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url; link.download = "tracex-meta-proof.json"; link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
 
   async function runSeed() {
     setBusy(true); setErr("");
@@ -157,7 +181,7 @@ export default function DemoMode({ hashQuery }) {
         <p className="muted" style={{ marginTop: 0 }}>
           TraceX is designed to record customer complaints (voice, Hindi or English, with photos), link them to
           NHTSA-shaped warehouse data, and flag safety defects early. This demo seed is synthetic; the transcript and
-          generated photo are labelled SYNTHETIC. No live Meta API call has been made in this project.
+          generated photo are labelled SYNTHETIC. The status distinguishes configured models from verified live features.
         </p>
         <div className="row" style={{ gap: 8, flexWrap: "wrap", alignItems: "center" }}>
           {status && <MetaTag mode={status.mode} models={status.mode === "enhanced" ? [status.models?.text, status.models?.segmentation].filter(Boolean) : []} />}
@@ -168,6 +192,34 @@ export default function DemoMode({ hashQuery }) {
         {err && <div className="banner banner-warn small" style={{ marginTop: 8 }}>{err}</div>}
       </header>
 
+      <section className="card" style={{ padding: 14, marginBottom: 14 }}>
+        <h2>Meta complaint intake</h2>
+        <p className="muted small">A synthetic Hindi complaint through the real intake and audit ledger. Inspect the original text, accepted translation, and fallback status.</p>
+        <button type="button" className="primary" disabled={busy || status?.mode !== "enhanced"}
+          onClick={runMetaWorkflow}>Run Meta complaint</button>
+        <button type="button" className="ghost" disabled={busy} onClick={loadRecordedProof}>View recorded live proof</button>
+        {status && <p className="small">Recorded live features: {Object.entries(status.verified_features || {}).filter(([, ok]) => ok).map(([name]) => name).join(", ") || "none"}</p>}
+        {proof && <div data-testid="meta-workflow-result">
+          {proof.recorded_at && <p className="small muted">Recorded synthetic run · {proof.recorded_at} · {proof.api_host}</p>}
+          <p>{proof.ok ? "Accepted Meta output; ledger verified" : "Workflow incomplete — review the translation and fallback"}</p>
+          <p><strong>Original complaint:</strong> {proof.input}</p>
+          <p><strong>Local normalization:</strong> {proof.deterministic?.language?.normalized_en || "—"}</p>
+          <p><strong>Accepted English:</strong> {proof.accepted?.language?.normalized_en || "No translation accepted"}</p>
+          <p className="small">Model: {proof.model_id} · Result: {proof.fallback_reason || proof.reason || "—"}</p>
+          {proof.case_id && <p className="small">{proof.recorded_at ? "Recorded case ID" : "Case ready for review"}: <span className="mono">{proof.case_id}</span>{!proof.recorded_at && <> · <a href="#cases">Open case queue →</a></>}</p>}
+          <p className="small">Audit event: <span className="mono">{proof.event_id || "—"}</span> · {proof.ledger?.ok ? `${proof.ledger.checked} ledger actions verified` : "Ledger verification unavailable"}</p>
+          <details><summary className="small">View proposed and accepted facts</summary>
+            <p className="small">Proposed English: {proof.proposal?.normalized_en || "No translation proposed"}</p>
+            <ul className="small">
+              {Object.entries(proof.accepted?.filled || {}).map(([slot, fact]) => <li key={slot}>{slot}: {fact.value} · accepted from {fact.source}</li>)}
+              {Object.entries(proof.accepted?.pending_confirmation || {}).map(([slot, fact]) => <li key={slot}>{slot}: {fact.value} · caller confirmation required</li>)}
+              {Object.entries(proof.accepted?.rejected || {}).map(([slot, reason]) => <li key={slot}>{slot}: rejected · {String(reason).replaceAll("_", " ")}</li>)}
+            </ul>
+            {!Object.keys(proof.accepted?.filled || {}).length && <p className="small muted">Vehicle facts remain those extracted from the original complaint by local rules.</p>}
+            <button type="button" className="ghost" onClick={downloadProof}>Download proof and audit details</button>
+          </details>
+        </div>}
+      </section>
       <Step n={1} title="A driver in Pune calls in Hinglish and sends a photo" link="#call" linkLabel="Open voice agent">
         <SpeechLangSelect />
         <NormalizeTry />

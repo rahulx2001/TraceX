@@ -23,15 +23,16 @@ import logging
 import os
 import time
 import concurrent.futures
+import hashlib
+import json
+import threading
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
-_EMBED_EXECUTOR = concurrent.futures.ThreadPoolExecutor(
-    max_workers=2, thread_name_prefix="cat_zs_embed"
-)
+from src.ml_runtime.inference_deadline import LOCAL_INFERENCE
 
 from src.config import REPO_ROOT
 from src.data.warehouse import ops_con
@@ -122,9 +123,32 @@ class CategoryCentroids:
     categories: tuple[str, ...]
     centroids: dict[str, np.ndarray]
     category_set: frozenset[str]
+    prototypes: dict[str, tuple[np.ndarray, ...]] = field(default_factory=dict)
 
 
-_CENTROIDS_CACHE: dict[tuple[str, str], CategoryCentroids] = {}
+_CENTROIDS_CACHE: dict[tuple, CategoryCentroids] = {}
+_CACHE_LOCK = threading.Lock()
+
+
+def category_pack_fingerprint(pack: Any) -> str:
+    gaz = pack.gazetteer_for_slot("category") if hasattr(pack, "gazetteer_for_slot") else None
+    payload = {"categories": sorted(getattr(gaz, "values", ()) or ()),
+               "aliases": getattr(gaz, "canonical", {}),
+               "taxonomy": getattr(pack, "taxonomy", {})}
+    return hashlib.sha256(json.dumps(payload, sort_keys=True, default=str).encode()).hexdigest()
+
+
+def category_profile_mode() -> str:
+    """Description prototypes are an explicit experiment; labels stay default."""
+    return "descriptions" if os.getenv("FRONTLINE_CATEGORY_ZS_PROFILE", "").strip().lower() == "descriptions" else "labels"
+
+
+def normalized_category_vector(embedding: Any) -> np.ndarray:
+    vector = np.asarray(embedding.values[:384], dtype=np.float32)
+    if vector.shape != (384,) or not np.isfinite(vector).all():
+        raise ValueError("category inference requires 384 finite native dimensions")
+    norm = float(np.linalg.norm(vector))
+    return vector / norm if norm > 1e-9 else vector
 
 
 def _provider_version(embedder: Any) -> str | None:
@@ -153,13 +177,14 @@ def get_category_centroids(pack: Any, embedder: Any | None = None) -> CategoryCe
     if embedder is None:
         embedder = get_category_embedder()
     canonical_version = _provider_version(embedder)
-    cache_key = (pack_id, canonical_version) if canonical_version else None
-    if cache_key and cache_key in _CENTROIDS_CACHE:
-        return _CENTROIDS_CACHE[cache_key]
+    cache_key = (pack_id, canonical_version, category_pack_fingerprint(pack), category_profile_mode()) if canonical_version else None
+    with _CACHE_LOCK:
+        if cache_key and cache_key in _CENTROIDS_CACHE:
+            return _CENTROIDS_CACHE[cache_key]
 
     gaz = pack.gazetteer_for_slot("category") if hasattr(pack, "gazetteer_for_slot") else None
     if gaz is not None and hasattr(gaz, "values"):
-        categories = tuple(gaz.values)
+        categories = tuple(sorted(gaz.values))
     else:
         categories = ()
 
@@ -173,6 +198,7 @@ def get_category_centroids(pack: Any, embedder: Any | None = None) -> CategoryCe
             for c in g.get("categories", []):
                 tax_groups[str(c)] = str(gname)
 
+    complete = True
     for cat in categories:
         phrases: list[str] = [cat.lower()]
         w = cat.lower().replace("_", " ")
@@ -193,11 +219,12 @@ def get_category_centroids(pack: Any, embedder: Any | None = None) -> CategoryCe
         for p in phrases:
             try:
                 emb = embedder.embed(p)
-                v = np.array(emb.values[:384], dtype=np.float32)
+                v = normalized_category_vector(emb)
                 norm = float(np.linalg.norm(v))
                 if norm > 1e-9:
                     vecs.append(v / norm)
             except Exception as e:
+                complete = False
                 logger.debug("Failed to embed centroid phrase %r for %s: %s", p, cat, e)
 
         if vecs:
@@ -207,21 +234,48 @@ def get_category_centroids(pack: Any, embedder: Any | None = None) -> CategoryCe
         else:
             centroids[cat] = np.zeros(384, dtype=np.float32)
 
+    prototypes = {}
+    if category_profile_mode() == "descriptions":
+        profiles = (getattr(pack, "taxonomy", {}) or {}).get("category_profiles", {})
+        phrases = []
+        owners = []
+        if isinstance(profiles, dict):
+            for cat in categories:
+                descriptions = profiles.get(cat, [])
+                if not isinstance(descriptions, list):
+                    continue
+                for text in descriptions[:12]:
+                    if isinstance(text, str) and text.strip():
+                        phrases.append(text.strip()[:1000])
+                        owners.append(cat)
+        if phrases:
+            vectors = embedder.embed_many(phrases) if hasattr(embedder, "embed_many") else [embedder.embed(p) for p in phrases]
+            if len(vectors) != len(phrases):
+                raise ValueError("category profile embedding batch size mismatch")
+            for cat, vector in zip(owners, vectors):
+                prototypes.setdefault(cat, []).append(normalized_category_vector(vector))
+            prototypes = {cat: tuple(vectors) for cat, vectors in prototypes.items()}
+
     cached = CategoryCentroids(
         pack_id=pack_id,
         canonical_version=canonical_version or "unversioned-provider",
         categories=categories,
         centroids=centroids,
         category_set=category_set,
+        prototypes=prototypes,
     )
-    if cache_key:
-        _CENTROIDS_CACHE[cache_key] = cached
+    if cache_key and complete:
+        with _CACHE_LOCK:
+            if len(_CENTROIDS_CACHE) >= 64:
+                _CENTROIDS_CACHE.clear()
+            _CENTROIDS_CACHE[cache_key] = cached
     return cached
 
 
 def reset_category_centroids_cache() -> None:
     """Clear centroid cache (for testing)."""
-    _CENTROIDS_CACHE.clear()
+    with _CACHE_LOCK:
+        _CENTROIDS_CACHE.clear()
 
 
 def accepted_label_calibration(rows: list[dict[str, Any]] | None) -> dict[str, Any]:
@@ -312,45 +366,18 @@ def predict_category_zero_shot(
             unavailable=False,
         )
 
-    if embedder is None:
-        try:
-            embedder = get_category_embedder()
-        except Exception as e:
-            step_down("slm_understanding", reason=f"embedder_unavailable: {e}")
-            return ZeroShotCategoryResult(
-                category=None,
-                top1_category=None,
-                top1_score=0.0,
-                top2_category=None,
-                top2_score=0.0,
-                margin=0.0,
-                floor=conf_floor,
-                margin_gate=conf_margin,
-                passed_floor=False,
-                passed_margin=False,
-                is_member=False,
-                latency_ms=(time.monotonic() - t0) * 1000.0,
-                extraction_source="none",
-                unavailable=True,
-            )
-
-    elapsed = time.monotonic() - t0
-    timeout_s = max(0.001, (max_ms / 1000.0) - elapsed)
-
     def _build_and_embed():
-        centroids_obj = get_category_centroids(pack, embedder)
+        provider = embedder if embedder is not None else get_category_embedder()
+        centroids_obj = get_category_centroids(pack, provider)
         if not centroids_obj.categories:
             return centroids_obj, None
-        embedding_val = embedder.embed(clean)
+        embedding_val = provider.embed(clean)
         return centroids_obj, embedding_val
 
-    fut = None
     try:
-        fut = _EMBED_EXECUTOR.submit(_build_and_embed)
         try:
-            cc, emb = fut.result(timeout=timeout_s)
+            cc, emb = LOCAL_INFERENCE.run(_build_and_embed, deadline=t0 + max_ms / 1000.0)
         except concurrent.futures.TimeoutError:
-            fut.cancel()
             step_down("slm_understanding", reason=f"latency_breach: embedding timed out after {max_ms:.1f}ms")
             return ZeroShotCategoryResult(
                 category=None,
@@ -385,13 +412,11 @@ def predict_category_zero_shot(
                 extraction_source="none",
                 unavailable=False,
             )
-        u_v = np.array(emb.values[:384], dtype=np.float32)
+        u_v = normalized_category_vector(emb)
         norm = float(np.linalg.norm(u_v))
         if norm > 1e-9:
             u_v = u_v / norm
     except Exception as e:
-        if fut is not None:
-            fut.cancel()
         step_down("slm_understanding", reason=f"embed_text_failed: {e}")
         return ZeroShotCategoryResult(
             category=None,
@@ -410,7 +435,9 @@ def predict_category_zero_shot(
             unavailable=True,
         )
 
-    scores = {c: float(np.dot(u_v, cc.centroids[c])) for c in cc.categories}
+    scores = {c: max(float(np.dot(u_v, prototype)) for prototype in cc.prototypes[c])
+              if cc.prototypes.get(c) else float(np.dot(u_v, cc.centroids[c]))
+              for c in cc.categories}
     ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
 
     top1_cat, top1_score = ranked[0]

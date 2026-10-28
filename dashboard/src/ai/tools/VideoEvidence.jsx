@@ -1,5 +1,5 @@
 // [AI-LAYER] Short video evidence (5–10 s) attached to a case. Analysis is off unless
-// AI_VIDEO_ANALYSIS=1 and a Meta key are set; Muse Spark video input is UNVERIFIED.
+// Clips are stored for human review; raw-video model analysis is disabled.
 import { useEffect, useRef, useState } from "react";
 import { apiHeaders } from "../../apiAuth.js";
 import { aiGet, aiPostJson, aiUpload } from "../aiApi.js";
@@ -76,14 +76,14 @@ export default function VideoEvidence({ hashQuery }) {
       {msg && <div className="small" style={{ marginTop: 6 }}>{msg}</div>}
       {list && (
         <div style={{ marginTop: 8 }}>
-          <div className="muted small">Video analysis: {list.analysis_enabled ? "enabled" : "off (clips stored without analysis)"} · {list.analysis_note}</div>
+          <div className="muted small">Video analysis: {list.analysis_enabled ? "enabled" : "unavailable (clips stored for human review)"} · {list.analysis_note}</div>
           {list.videos.length === 0 && <div className="muted small">No clips on this case.</div>}
           {list.videos.map((v) => (
             <div key={v.video_id} className="card" style={{ padding: 8, marginTop: 8 }}>
               <AuthVideo videoId={v.video_id} />
               <div className="small">{v.video_id} · {v.duration_s}s · {(v.size_bytes / 1024).toFixed(0)} KB · {v.analysis_status}</div>
               {v.analysis && <pre className="small" style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify(v.analysis, null, 2)}</pre>}
-              {list.analysis_enabled && v.analysis_status !== "done" && <button type="button" className="ghost" onClick={() => analyze(v.video_id)}>Analyze (unverified)</button>}
+              {list.analysis_enabled && v.analysis_status !== "done" && <button type="button" className="ghost" onClick={() => analyze(v.video_id)}>Analyze</button>}
             </div>
           ))}
         </div>

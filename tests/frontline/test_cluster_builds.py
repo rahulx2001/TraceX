@@ -97,25 +97,16 @@ def test_rebuild_clusters_assigns_records_beyond_5000(monkeypatch, tmp_path):
     with domain_con(pack, read_only=False) as con:
         apply_domain_schema(con)
         base_time = datetime.datetime(2025, 1, 1, 12, 0, 0)
-        rows = [
-            (
-                f"rec_{i}",
-                f"Complaint about brake issue {i}",
-                "BRAKES",
-                "Acme",
-                "Sedan",
-                vec,
-                (base_time + datetime.timedelta(minutes=i)).isoformat(),
-            )
-            for i in range(5005)
-        ]
-        con.executemany(
-            """
-            INSERT INTO records (record_id, text, category, entity_2, entity_3, embedding, received_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            """,
-            rows,
+        # Load the same 5,005-record fixture in one statement. Per-row Python
+        # parameter binding/commits obscured the rebuild's own time budget.
+        con.execute(
+            """INSERT INTO records (record_id, text, category, entity_2, entity_3, embedding, received_at)
+               SELECT 'rec_' || i::VARCHAR, 'Complaint about brake issue ' || i::VARCHAR,
+                      'BRAKES', 'Acme', 'Sedan', ?, ?::TIMESTAMP + i * INTERVAL 1 MINUTE
+               FROM range(5005) t(i)""",
+            [vec, base_time],
         )
+
 
     res = rebuild_clusters(pack, k=2)
     assert res["clusters"] >= 1

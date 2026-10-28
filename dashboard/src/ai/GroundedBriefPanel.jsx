@@ -1,5 +1,5 @@
 // [AI-LAYER] Grounded investigation brief: every claim cites real record ids
-// (Qubot-verified), safety risk first, manufacturer inspection actions.
+// (source-quote and citation-scope checked), safety risk first, manufacturer inspection actions.
 import { useEffect, useState } from "react";
 import { aiGet } from "./aiApi.js";
 import MetaTag from "./MetaTag.jsx";
@@ -40,7 +40,8 @@ export default function GroundedBriefPanel({ investigationId }) {
           <li key={i} style={{ marginBottom: 4 }}>
             {c.text}{" "}
             {(c.record_ids || []).map((id) => <span key={id} className="chip mono" style={{ marginRight: 4 }}>{id}</span>)}
-            <span className="muted small"> {c.source === "meta_muse_spark" ? "· Muse Spark, Qubot-verified" : "· deterministic"}</span>
+            {(c.support_spans || []).map((span, j) => <blockquote key={j} className="muted small">Source {span.record_id}: “{span.quote}”</blockquote>)}
+            <span className="muted small"> {c.source === "meta_muse_spark" ? "· Muse Spark, source-quote and citation-scope checked" : "· deterministic"}</span>
           </li>
         ))}
       </ul>

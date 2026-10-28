@@ -14,6 +14,8 @@ import warnings
 from collections import Counter, defaultdict
 from typing import Any
 
+import pyarrow as pa
+
 from src.data.warehouse import apply_domain_schema, domain_con
 from src.ids import new_ulid
 from src.ml_runtime.embeddings import (
@@ -27,6 +29,36 @@ from src.ml_runtime.embeddings import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+def _write_embedding_batch(con, rows):
+    """One set-based write instead of an autocommit for each record."""
+    if not rows:
+        return
+    table = pa.table({"record_id": [r[0] for r in rows],
+                      "embedding": [r[1] for r in rows]},
+                     schema=pa.schema([("record_id", pa.string()),
+                                       ("embedding", pa.list_(pa.float64()))]))
+    con.register("_rebuild_embeddings", table)
+    try:
+        con.execute("UPDATE records SET embedding = b.embedding FROM _rebuild_embeddings b WHERE records.record_id = b.record_id")
+    finally:
+        con.unregister("_rebuild_embeddings")
+
+
+def _write_assignment_batch(con, rows):
+    if not rows:
+        return
+    table = pa.table({"record_id": [r[0] for r in rows],
+                      "cluster_id": [r[1] for r in rows],
+                      "distance": [r[2] for r in rows]},
+                     schema=pa.schema([("record_id", pa.string()),
+                                       ("cluster_id", pa.int64()), ("distance", pa.float64())]))
+    con.register("_rebuild_assignments", table)
+    try:
+        con.execute("INSERT INTO cluster_assignments (record_id, cluster_id, distance) SELECT record_id, cluster_id, distance FROM _rebuild_assignments")
+    finally:
+        con.unregister("_rebuild_assignments")
 
 
 # ── Cosine-distance semantics (item 5) ─────────────────────────────────────
@@ -99,23 +131,34 @@ def silhouette_score(vectors: list[list[float]], labels: list[int]) -> float:
     n = len(vectors)
     if n < 3 or len(set(labels)) < 2:
         return 0.0
-    d = _pairwise_cosine_dist(vectors)
+    import numpy as np
+    x = np.asarray(vectors, dtype=np.float64)
+    norms = np.linalg.norm(x, axis=1, keepdims=True)
+    x = x / np.where(norms > 0, norms, 1.0)
+    # Repeated complaint vectors share distances. Count their membership
+    # weights instead of rebuilding an n-by-n Python object matrix for each k.
+    unique, inverse = np.unique(x, axis=0, return_inverse=True)
+    labs = np.asarray(labels)
+    classes = np.unique(labs)
+    weights = np.zeros((len(unique), len(classes)), dtype=np.float64)
+    for col, lab in enumerate(classes):
+        np.add.at(weights[:, col], inverse[labs == lab], 1)
+    counts = weights.sum(axis=0)
     total = 0.0
-    for i in range(n):
-        same = [d[i][j] for j in range(n) if j != i and labels[j] == labels[i]]
-        if not same:
-            continue  # singleton: s undefined; contributes 0
-        a = sum(same) / len(same)
-        b = min(
-            (
-                sum(d[i][j] for j in range(n) if labels[j] == lab) /
-                max(1, sum(1 for j in range(n) if labels[j] == lab))
-                for lab in set(labels)
-                if lab != labels[i]
-            ),
-            default=a,
-        )
-        total += (b - a) / max(a, b) if max(a, b) > 0 else 0.0
+    for start in range(0, len(unique), 256):
+        stop = min(start + 256, len(unique))
+        distances = np.clip(1.0 - unique[start:stop] @ unique.T, 0.0, 2.0)
+        sums = distances @ weights
+        for row, uid in enumerate(range(start, stop)):
+            for col in range(len(classes)):
+                members = weights[uid, col]
+                if members == 0 or counts[col] <= 1:
+                    continue
+                # Subtract self-distance (zero except for zero vectors).
+                a = (sums[row, col] - distances[row, uid]) / (counts[col] - 1)
+                b = min(sums[row, other] / counts[other]
+                        for other in range(len(classes)) if other != col)
+                total += members * ((b - a) / max(a, b) if max(a, b) > 0 else 0.0)
     return total / n
 
 
@@ -140,6 +183,12 @@ def select_k(
                 distinct = True
             return (2, 1.0, "pairwise") if distinct else (1, 0.0, "identical_pair")
         return 1, 0.0, "singleton"
+    # Estimate silhouette on a deterministic, evenly spaced sample. Keep all
+    # records for final fitting/assignment; cap the quadratic scoring matrix.
+    if n > 512:
+        indices = [i * (n - 1) // 511 for i in range(512)]
+        vectors = [vectors[i] for i in indices]
+        n = len(vectors)
     hi = max(2, min(int(k_max), n - 1))
     best_k, best_s = 1, 0.0
     for k in range(2, hi + 1):
@@ -158,58 +207,35 @@ def select_k(
 
 
 def _kmeans(vectors: list[list[float]], k: int, rounds: int = 8) -> list[int]:
+    """The same deterministic cosine assignment, evaluated with array operations."""
+    import numpy as np
     if not vectors:
         return []
-    k = max(1, min(k, len(vectors)))
-    # Deterministic k-means++-style seeding: first centroid = first vector,
-    # each next = farthest from chosen set (stable, covers semantic spread,
-    # not temporal slices). Seed is deterministic so rebuilds reproduce.
-    centroids: list[list[float]] = [vectors[0][:]]
+    x = np.asarray(vectors, dtype=np.float64)
+    norms = np.linalg.norm(x, axis=1, keepdims=True)
+    unit = x / np.where(norms > 0, norms, 1.0)
+    k = max(1, min(k, len(x)))
+    centroids = [x[0].copy()]
+    def similarities(cs):
+        c = np.asarray(cs)
+        cn = np.linalg.norm(c, axis=1, keepdims=True)
+        return unit @ (c / np.where(cn > 0, cn, 1.0)).T
     while len(centroids) < k:
-        best_idx, best_d = 0, -1.0
-        for i, v in enumerate(vectors):
-            dmin = min(1.0 - cosine(v, c) for c in centroids)
-            if dmin > best_d:
-                best_d, best_idx = dmin, i
-        centroids.append(vectors[best_idx][:])
-    labels = [0] * len(vectors)
+        distances = np.min(1.0 - similarities(centroids), axis=1)
+        centroids.append(x[int(np.argmax(distances))].copy())
+    labels = np.zeros(len(x), dtype=np.int64)
     for _ in range(rounds):
-        # assign
-        for i, v in enumerate(vectors):
-            best, bi = -2.0, 0
-            for j, c in enumerate(centroids):
-                try:
-                    s = cosine(v, c)
-                except ValueError:
-                    s = -1.0
-                if s > best:
-                    best, bi = s, j
-            labels[i] = bi
-        # update
-        buckets: list[list[list[float]]] = [[] for _ in range(k)]
-        for i, lab in enumerate(labels):
-            buckets[lab].append(vectors[i])
+        labels = np.argmax(similarities(centroids), axis=1)
         for j in range(k):
-            if not buckets[j]:
-                # Revive dead centroid at farthest point from live centroids
-                far_idx, far_d = 0, -1.0
-                for i, v in enumerate(vectors):
-                    dmin = min(cosine(v, centroids[t]) for t in range(k) if t != j or True)
-                    d = 1.0 - dmin
-                    if d > far_d:
-                        far_d, far_idx = d, i
-                centroids[j] = vectors[far_idx][:]
-                continue
-            dim = len(buckets[j][0])
-            avg = [0.0] * dim
-            for v in buckets[j]:
-                for d in range(dim):
-                    avg[d] += v[d]
-            n = float(len(buckets[j]))
-            centroids[j] = [x / n for x in avg]
-            norm = math.sqrt(sum(x * x for x in centroids[j])) or 1.0
-            centroids[j] = [x / norm for x in centroids[j]]
-    return labels
+            members = x[labels == j]
+            if not len(members):
+                distances = 1.0 - np.min(similarities(centroids), axis=1)
+                centroids[j] = x[int(np.argmax(distances))].copy()
+            else:
+                avg = members.mean(axis=0)
+                norm = float(np.linalg.norm(avg)) or 1.0
+                centroids[j] = avg / norm
+    return labels.tolist()
 
 
 def cluster_signature(category: str | None, entity_2: str | None, top_terms: list[str]) -> str:
@@ -456,6 +482,7 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
 
         records = []
         vectors = []
+        embedding_updates = []
         # Read the previous transformation stamp before fit_idf rewrites the
         # IDF file. Reuse a stored vector only when that stamp still matches
         # the identity about to be fitted — dimension alone is not identity.
@@ -474,13 +501,7 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
                 or len(list(emb)) != current_dim
             ):
                 emb = embed_text(text or "", pack_id=pack_id)
-                try:
-                    con.execute(
-                        "UPDATE records SET embedding = ? WHERE record_id = ?",
-                        [list(emb), rid],
-                    )
-                except Exception:
-                    pass
+                embedding_updates.append((rid, list(emb)))
             else:
                 emb = list(emb)
             records.append(
@@ -498,6 +519,9 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
                 }
             )
             vectors.append(emb)
+
+        _write_embedding_batch(con, embedding_updates)
+        assignment_rows = []
 
         kk = min(k, len(records))
         selected_k, sil_width, k_method = select_k(vectors, k_max=kk)
@@ -750,13 +774,7 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
                     _stage_novel(
                         novel, pack_id, records[i], round(1.0 - dist, 3)
                     )
-                con.execute(
-                    """
-                    INSERT INTO cluster_assignments (record_id, cluster_id, distance)
-                    VALUES (?, ?, ?)
-                    """,
-                    [records[i]["record_id"], cid, dist],
-                )
+                assignment_rows.append((records[i]["record_id"], cid, dist))
                 written += 1
             # 1.3: absorb open novels whose signature now matches this cluster.
             # Deferred to the ops write, which runs the absorb BEFORE staging
@@ -768,6 +786,9 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
                 clustered_categories.add(str(category))
 
         # R15: Assign all remaining records in the pack so records > 5,000 are not excluded
+        _write_assignment_batch(con, assignment_rows)
+        assignment_rows = []
+        embedding_updates = []
         sample_rids = {rec["record_id"] for rec in records}
         remaining_rows = con.execute(
             """
@@ -798,13 +819,7 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
                     or len(list(rem_emb)) != current_dim
                 ):
                     rem_emb = embed_text(rem_text or "", pack_id=pack_id)
-                    try:
-                        con.execute(
-                            "UPDATE records SET embedding = ? WHERE record_id = ?",
-                            [list(rem_emb), rem_rid],
-                        )
-                    except Exception:
-                        pass
+                    embedding_updates.append((rem_rid, list(rem_emb)))
                 else:
                     rem_emb = list(rem_emb)
 
@@ -822,13 +837,7 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
 
                 if best_lab is not None:
                     cid = 1000 + best_lab
-                    con.execute(
-                        """
-                        INSERT INTO cluster_assignments (record_id, cluster_id, distance)
-                        VALUES (?, ?, ?)
-                        """,
-                        [rem_rid, cid, best_dist],
-                    )
+                    assignment_rows.append((rem_rid, cid, best_dist))
                     written += 1
                     if best_dist > _cut:
                         _stage_novel(
@@ -842,6 +851,8 @@ def rebuild_clusters(pack_id: str, *, k: int = 5) -> dict[str, Any]:
                         )
 
             # Update cluster and version member counts with the newly assigned records
+            _write_embedding_batch(con, embedding_updates)
+            _write_assignment_batch(con, assignment_rows)
             for lab in by_lab:
                 cid = 1000 + lab
                 row_stats = con.execute(

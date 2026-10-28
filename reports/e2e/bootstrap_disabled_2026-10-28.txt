@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ✓  1 [chromium] › e2e/api.aggressive.spec.js:186:3 › API aggressive — service key happy paths › connector SSRF targets return 400 not 500 (17ms)
+  ✓  2 [chromium] › e2e/api.deep-sweep.spec.js:102:3 › Deep mutation edges › case note author cannot be spoofed to CEO (6.9s)
+
+  2 passed (7.2s)
+EXIT:0

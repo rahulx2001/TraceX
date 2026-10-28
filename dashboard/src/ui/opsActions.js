@@ -142,13 +142,18 @@ export async function simulateTraffic({ count = 15, speed = "instant" } = {}) {
   return r.json();
 }
 
-export async function fetchOpenP1Cases(limit = 10) {
-  return fetchCriticalCases(limit);
+export async function fetchOpenP1Cases(limit = 10, options = {}) {
+  return fetchCriticalCases(limit, options);
 }
 
-export async function fetchCriticalCases(limit = 10) {
+export async function fetchCriticalCases(limit = 10, { getJson } = {}) {
+  const url = `/api/frontline/cases?severity=Critical&status=open&limit=${limit}&include_simulated=${includeSimQuery()}`;
+  if (getJson) {
+    const d = await getJson(url);
+    return d.cases || [];
+  }
   const r = await fetch(
-    `/api/frontline/cases?severity=Critical&status=open&limit=${limit}&include_simulated=${includeSimQuery()}`,
+    url,
     { headers: apiHeaders() },
   );
   if (!r.ok) return [];

@@ -191,6 +191,19 @@ async def test_hedged_only_fire_does_not_escalate(orchestrator_factory):
     assert "do not drive" not in spoken
 
 
+async def test_negated_hazard_list_does_not_invent_an_emergency(orchestrator_factory):
+    from src.agents.intake import hazard_term_affirmed
+
+    text = "No injury, fire or crash. I am parked safely."
+    orch, _ = orchestrator_factory()
+    await orch.start()
+    await orch.handle_customer_turn(text)
+    assert not orch.ctx.safety_flags.get("escalation")
+    assert not any(hazard_term_affirmed(text, term) for term in ("injury", "fire", "crash"))
+    assert hazard_term_affirmed("No injury, fire or crash but now there is fire", "fire")
+    assert hazard_term_affirmed("No injury, fire broke out", "fire")
+
+
 async def test_fire_drill_does_not_escalate_on_human_request(orchestrator_factory):
     orch, hooks = orchestrator_factory()
     await orch.start()

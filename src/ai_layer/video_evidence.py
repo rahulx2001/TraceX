@@ -6,16 +6,13 @@ duration read from the container itself (MP4/MOV ``mvhd`` box, WebM
 ``Segment/Info/Duration``) and capped at ``AI_VIDEO_MAX_SECONDS`` (default 10).
 A clip whose duration cannot be read is rejected rather than guessed.
 
-Analysis is OFF by default. ``AI_VIDEO_ANALYSIS=1`` plus a Meta key sends the
-clip to Muse Spark — **unverified: video input support not confirmed** in the
-Meta Model API docs. Otherwise the clip is stored with
-``analysis_status = "stored_no_analysis"``. Analysis output is informational
-only and never changes severity or any existing decision.
+Clips are stored for human review only. Raw video is never sent as an image
+to a text/vision endpoint. AI_VIDEO_ANALYSIS is retained as a deprecated setting
+but cannot enable unsupported or unpriced model input.
 """
 
 from __future__ import annotations
 
-import base64
 import hashlib
 import os
 import struct
@@ -27,7 +24,7 @@ from src.data.timeutil import utc_now
 from src.data.warehouse import ops_con
 from src.ids import new_ulid
 
-UNVERIFIED_NOTE = "unverified: video input support not confirmed"
+UNVERIFIED_NOTE = "Video stored for human review; model video analysis is unsupported and disabled."
 ALLOWED = {"video/mp4": "mp4", "video/quicktime": "mov", "video/webm": "webm"}
 MAX_PER_CASE = 3
 MIN_SECONDS = 1.0
@@ -66,7 +63,8 @@ def max_seconds() -> float:
 
 
 def analysis_enabled() -> bool:
-    return (os.getenv("AI_VIDEO_ANALYSIS") or "").strip().lower() in {"1", "true", "yes", "on"} and config.meta_enabled()
+    """Fail closed until video has a supported API and a priced request bound."""
+    return False
 
 
 # ── Container sniffing / duration ──────────────────────────────────────────
@@ -265,46 +263,10 @@ def list_for_case(case_id: str) -> list[dict[str, Any]]:
         return [_public(r) for r in _rows(con, "case_id = ?", [case_id])] if _exists(con) else []
 
 
-def _schema(categories: list[str]) -> dict[str, Any]:
-    return {"type": "object", "additionalProperties": False,
-            "required": ["observed", "component", "visible_hazards", "confidence"],
-            "properties": {"observed": {"type": "string", "maxLength": 400},
-                           "component": {"type": "string", "enum": categories + ["UNKNOWN"]},
-                           "visible_hazards": {"type": "array", "items": {"type": "string", "maxLength": 80}, "maxItems": 6},
-                           "confidence": {"type": "number", "minimum": 0, "maximum": 1}}}
-
-
 def analyze_video(video_id: str) -> dict[str, Any]:
-    """Muse Spark on the raw clip. Unverified API capability; informational only."""
-    import json
-
-    from src.ai_layer import meta_client
-    from src.ai_layer.store import record_event
-
+    """Return stored evidence without sending unsupported video to a model."""
     row = get_video(video_id, include_path=True)
-    if not analysis_enabled():
-        return {**_public(row), "analysis_status": row["analysis_status"],
-                "reason": "AI_VIDEO_ANALYSIS is off or no Meta key: stored without analysis"}
-    from src.ai_layer.evidence import _pack_categories
-
-    cats, _ = _pack_categories(row.get("pack_id"))
-    url = f"data:{row['mime']};base64," + base64.b64encode(Path(row["storage_path"]).read_bytes()).decode()
-    try:
-        out = meta_client.chat_json(
-            system="You inspect a short vehicle video clip submitted with a fault report. Describe only what is visible. "
-            "Pick the closest component from the enum or UNKNOWN. Do not guess beyond the footage.",
-            user="Describe the visible fault in this clip.", schema=_schema(cats), schema_name="video_evidence",
-            images=[url], model=config.model_vision())
-        status, analysis = "done", {**out, "note": UNVERIFIED_NOTE, "model": config.model_vision()}
-    except meta_client.MetaError as e:
-        status, analysis = "failed", {"error": getattr(e, "reason", "meta_error"), "note": UNVERIFIED_NOTE}
-    with ops_con() as con:
-        con.execute("UPDATE case_video_evidence SET analysis_status = ?, analysis = ? WHERE video_id = ?",
-                    [status, json.dumps(analysis), video_id])
-    record_event(kind="video_analysis", interaction_id=row.get("interaction_id"), case_id=row["case_id"],
-                 ai_proposal=analysis, accepted={"severity_changed": False}, reason=UNVERIFIED_NOTE,
-                 model_id=config.model_vision())
-    return get_video(video_id)
+    return {**_public(row), "reason": UNVERIFIED_NOTE}
 
 
 def erase_for_interaction(con, interaction_id: str, case_ids: list[str] | None = None) -> int:

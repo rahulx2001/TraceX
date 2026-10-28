@@ -4,7 +4,7 @@ export default function MetaTag({ models, mode, fallbackReason, style }) {
   const list = (models || []).filter(Boolean);
   if (mode === "enhanced" && list.length) {
     return (
-      <span className="chip ai-tag ai-tag-on" style={style} title="Produced by the optional Meta AI layer; claims are validated before display. No live Meta API call has been verified in this project.">
+      <span className="chip ai-tag ai-tag-on" style={style} title="Produced by the optional Meta AI layer; claims are validated before display. Inspect the accepted output and its audit evidence.">
         Powered by Meta · {list.join(" + ")}
       </span>
     );

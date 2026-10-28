@@ -302,6 +302,20 @@ export async function registerUser({ name, email, company, role, password }) {
  * Sign in with email and password.
  * Ready for backend integration via POST /api/frontline/auth/login.
  */
+export async function loginWithSessionToken(token) {
+  const r = await fetch("/api/frontline/auth/session/exchange", {
+    method: "POST", credentials: "same-origin",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token }),
+  });
+  if (!r.ok) throw new Error("Session was not accepted. Check its signature and expiry.");
+  const out = await r.json();
+  if (out.token) throw new Error("server leaked session token to JavaScript");
+  clearApiKey();
+  _write(SUBJECT_STORAGE, out.subject || "");
+  notifyAuthChange();
+  return out;
+}
+
 export async function loginWithPassword({ email, password, remember = false }) {
   try {
     const r = await fetch("/api/frontline/auth/login", {

@@ -47,6 +47,13 @@ def test_normalisation_sanity_checks():
     assert not accept_ai_normalisation(HINDI_TURN, "My 2021 Honda", 0.9, 0.7)    # invented number
     assert not accept_ai_normalisation(HINDI_TURN, "होंडा", 0.9, 0.7)           # not English
     assert accept_ai_normalisation("२०१९ होंडा", "2019 Honda", 0.9, 0.7)       # Devanagari digits ok
+    assert not accept_ai_normalisation(
+        HINDI_TURN, "My Honda Civic brakes are making a lot of noise", 0.9, 0.7,
+    )
+    assert not accept_ai_normalisation("hello there", "My Honda Civic brakes failed", 0.9, 0.7)
+    assert not accept_ai_normalisation("the brakes did not fail", "the brakes failed", 0.9, 0.7)
+    assert not accept_ai_normalisation("No fire. Smoke appeared.", "Fire appeared. No smoke.", 0.9, 0.7)
+    assert accept_ai_normalisation("No fire. Smoke appeared.", "No fire. Smoke appeared.", 0.9, 0.7)
 
 
 @pytest.mark.asyncio
@@ -131,7 +138,7 @@ async def test_model_proposals_need_grounding_confidence_and_pack_validation(fak
 
 
 @pytest.mark.asyncio
-async def test_grounded_model_proposal_is_accepted(fake_meta, orchestrator_factory):
+async def test_inferred_vehicle_make_requires_caller_confirmation(fake_meta, orchestrator_factory):
     orch, _ = orchestrator_factory()
     await orch.start()
     text = "meri gaadi ka steering bahut bhaari hai, gaadi Civic hai"
@@ -144,7 +151,8 @@ async def test_grounded_model_proposal_is_accepted(fake_meta, orchestrator_facto
     await maybe_enhance_intake(orch.ctx, text, ires)
     # 'Civic' is in the utterance and HONDA is a canonical make, so the
     # deterministic-on-translation pass or the grounded proposal fills make.
-    assert orch.ctx.slots.get("entity_2") == "HONDA"
+    assert not orch.ctx.slots.get("entity_2")
+    assert orch.ctx.slots["__ai_pending_slots__"]["entity_2"]["value"] == "HONDA"
     if filled_before:
         assert orch.ctx.slots.get("entity_3") == filled_before
 

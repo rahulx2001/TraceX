@@ -7,6 +7,9 @@ PostgreSQL: vector(512) plus embedding_version so indexes cannot mix models.
 from __future__ import annotations
 
 import json
+import hashlib
+import math
+from contextlib import nullcontext
 from datetime import datetime
 from typing import Any, Iterable, Sequence
 
@@ -16,6 +19,7 @@ from src.ml_runtime.embedding_space import (
     OUTPUT_DIMENSION,
     EmbeddedVector,
     EmbeddingDimensionError,
+    EmbeddingInvalidValuesError,
     as_embedded,
 )
 
@@ -38,6 +42,7 @@ CREATE TABLE IF NOT EXISTS record_embeddings (
     inference_ms       DOUBLE,
     library_version    VARCHAR,
     sanitized          BOOLEAN,
+    source_text_sha256 VARCHAR,
     created_at         TIMESTAMP DEFAULT current_timestamp,
     updated_at         TIMESTAMP DEFAULT current_timestamp,
     PRIMARY KEY (record_id, embedding_version)
@@ -102,6 +107,7 @@ def ensure_record_embeddings(con) -> None:
     except Exception:
         _rollback_quietly(con)
     for ddl in (
+        "ALTER TABLE record_embeddings ADD COLUMN source_text_sha256 VARCHAR",
         "ALTER TABLE record_embeddings ADD COLUMN model_key VARCHAR",
         "ALTER TABLE record_embeddings ADD COLUMN padding_strategy VARCHAR",
         "ALTER TABLE record_embeddings ADD COLUMN tokenizer_sha256 VARCHAR",
@@ -126,6 +132,8 @@ def _validate_vector(vec: EmbeddedVector) -> None:
         raise EmbeddingDimensionError(
             f"sidecar requires {OUTPUT_DIMENSION}-d vectors, got {len(vec.values)}"
         )
+    if not all(math.isfinite(v) for v in vec.values):
+        raise EmbeddingInvalidValuesError("sidecar vectors must contain finite values")
 
 
 def upsert_embedding(
@@ -144,6 +152,8 @@ def upsert_embedding(
     inference_ms: float | None = None,
     library_version: str = "",
     sanitized: bool = False,
+    source_text_sha256: str | None = None,
+    _con=None,
 ) -> None:
     if status not in _VALID_STATUS:
         raise ValueError(f"invalid embedding status {status!r}")
@@ -159,9 +169,13 @@ def upsert_embedding(
         output = vec.output_dimension
         version = vec.embedding_version
     now = utc_now().replace(tzinfo=None)
-    with domain_con(pack_id, read_only=False) as con:
-        apply_domain_schema(con)
-        ensure_record_embeddings(con)
+    with (nullcontext(_con) if _con is not None else domain_con(pack_id, read_only=False)) as con:
+        if _con is None:
+            apply_domain_schema(con)
+            ensure_record_embeddings(con)
+        if source_text_sha256 is None:
+            row = con.execute("SELECT text FROM records WHERE record_id = ?", [record_id]).fetchone()
+            source_text_sha256 = source_text_digest(row[0]) if row else None
         con.execute(
             """
             INSERT INTO record_embeddings (
@@ -169,8 +183,8 @@ def upsert_embedding(
                 artifact_sha256, embedding, status, error_code, error_message,
                 model_key, padding_strategy, tokenizer_sha256, truncation_length,
                 sequence_length, inference_ms, library_version, sanitized,
-                created_at, updated_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                created_at, updated_at, source_text_sha256
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT (record_id, embedding_version) DO UPDATE SET
                 native_dimension = excluded.native_dimension,
                 output_dimension = excluded.output_dimension,
@@ -187,6 +201,7 @@ def upsert_embedding(
                 inference_ms = excluded.inference_ms,
                 library_version = excluded.library_version,
                 sanitized = excluded.sanitized,
+                source_text_sha256 = excluded.source_text_sha256,
                 updated_at = excluded.updated_at
             """,
             [
@@ -209,6 +224,7 @@ def upsert_embedding(
                 bool(sanitized),
                 now,
                 now,
+                source_text_sha256,
             ],
         )
 
@@ -256,6 +272,28 @@ def mark_embedding_status(
         )
 
 
+def source_text_digest(text: str | None) -> str:
+    return hashlib.sha256((text or "").encode("utf-8")).hexdigest()
+
+
+def upsert_embedding_batch(pack_id: str, rows: Sequence[tuple[str, EmbeddedVector, str]], *, artifact_sha256: str = "") -> None:
+    """One transaction and schema check per batch; no per-record commits."""
+    if not rows:
+        return
+    with domain_con(pack_id, read_only=False) as con:
+        apply_domain_schema(con)
+        ensure_record_embeddings(con)
+        con.execute("BEGIN TRANSACTION")
+        try:
+            for rid, vector, digest in rows:
+                upsert_embedding(pack_id, rid, vector, artifact_sha256=artifact_sha256,
+                                 source_text_sha256=digest, _con=con)
+            con.execute("COMMIT")
+        except BaseException:
+            con.execute("ROLLBACK")
+            raise
+
+
 def get_embedding(
     pack_id: str,
     record_id: str,
@@ -265,10 +303,11 @@ def get_embedding(
         try:
             row = con.execute(
                 """
-                SELECT embedding, native_dimension, output_dimension, status,
-                       model_key, padding_strategy
-                FROM record_embeddings
-                WHERE record_id = ? AND embedding_version = ?
+                SELECT e.embedding, e.native_dimension, e.output_dimension, e.status,
+                       e.model_key, e.padding_strategy
+                FROM record_embeddings e JOIN records r ON r.record_id = e.record_id
+                WHERE e.record_id = ? AND e.embedding_version = ?
+                  AND e.source_text_sha256 = sha256(coalesce(r.text, ''))
                 """,
                 [record_id, embedding_version],
             ).fetchone()
@@ -302,11 +341,12 @@ def get_embeddings_for_records(
             try:
                 rows = con.execute(
                     f"""
-                    SELECT record_id, embedding, native_dimension, output_dimension,
-                           model_key, padding_strategy
-                    FROM record_embeddings
-                    WHERE embedding_version = ? AND status = 'complete'
-                      AND record_id IN ({ph})
+                    SELECT e.record_id, e.embedding, e.native_dimension, e.output_dimension,
+                           e.model_key, e.padding_strategy
+                    FROM record_embeddings e JOIN records r ON r.record_id = e.record_id
+                    WHERE e.embedding_version = ? AND e.status = 'complete'
+                      AND e.record_id IN ({ph})
+                      AND e.source_text_sha256 = sha256(coalesce(r.text, ''))
                     """,
                     [embedding_version, *chunk],
                 ).fetchall()
@@ -349,8 +389,10 @@ def completed_ids(pack_id: str, embedding_version: str) -> set[str]:
         try:
             rows = con.execute(
                 """
-                SELECT record_id FROM record_embeddings
-                WHERE embedding_version = ? AND status = 'complete'
+                SELECT e.record_id FROM record_embeddings e JOIN records r ON r.record_id = e.record_id
+                WHERE e.embedding_version = ? AND e.status = 'complete'
+                  AND e.source_text_sha256 = sha256(coalesce(r.text, ''))
+                  AND r.text IS NOT NULL AND length(trim(r.text)) > 0
                 """,
                 [embedding_version],
             ).fetchall()
@@ -377,7 +419,8 @@ def coverage_for_version(pack_id: str, embedding_version: str) -> dict[str, int]
             counts = {}
     return {
         "eligible": len(eligible),
-        "complete": int(counts.get("complete") or len(done)),
+        "complete": len(set(eligible) & done),
+        "stale": max(0, int(counts.get("complete") or 0) - len(done)),
         "pending": int(counts.get("pending") or 0),
         "failed": int(counts.get("failed") or 0),
         "quarantined": int(counts.get("quarantined") or 0),
@@ -395,6 +438,8 @@ def iter_records_for_backfill(
 
     Does not load the full corpus into memory.
     """
+    if batch_size < 1:
+        raise ValueError("batch_size must be positive")
     done = completed_ids(pack_id, embedding_version)
     skip_status = {"complete"}
     if not include_retry:
@@ -406,14 +451,14 @@ def iter_records_for_backfill(
                 for (rid,) in con.execute(
                     """
                     SELECT record_id FROM record_embeddings
-                    WHERE embedding_version = ? AND status = 'quarantined'
+                    WHERE embedding_version = ? AND status IN ('quarantined', 'failed')
                     """,
                     [embedding_version],
                 ).fetchall():
                     already.add(str(rid))
             except Exception:
                 pass
-    offset = 0
+    last_id = None
     page = max(50, int(batch_size) * 4)
     while True:
         with domain_con(pack_id, read_only=True) as con:
@@ -421,22 +466,22 @@ def iter_records_for_backfill(
                 rows = con.execute(
                 """
                 SELECT record_id, text FROM records
-                WHERE text IS NOT NULL
+                WHERE text IS NOT NULL AND (? IS NULL OR record_id > ?)
                 ORDER BY record_id
-                LIMIT ? OFFSET ?
+                LIMIT ?
                 """,
-                    [page, offset],
+                    [last_id, last_id, page],
                 ).fetchall()
             except Exception:
                 break
         if not rows:
             break
-        offset += len(rows)
+        last_id = str(rows[-1][0])
         batch: list[tuple[str, str]] = []
         for rid, text in rows:
             if str(rid) in already:
                 continue
-            t = str(text or "").strip()
+            t = str(text or "")
             batch.append((str(rid), t))
             if len(batch) >= batch_size:
                 yield batch

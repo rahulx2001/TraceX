@@ -91,8 +91,6 @@ severity:
     Medium: 2
     Low: 3
 taxonomy_ref: taxonomy.yaml
-pack_# TraceX Consumer Products (CPSC) Domain Pack
-id: consumer_cpsc
 description: "Pilot scaffold for CPSC consumer product incidents \u2014 feature #42."
 vertical: consumer_products
 language: en

@@ -12,6 +12,7 @@ can store the pair.
 from __future__ import annotations
 
 import re
+from collections import Counter
 from typing import Any
 
 from src.frontline.i18n import detect_language, normalize_to_english
@@ -74,9 +75,21 @@ def accept_ai_normalisation(original: str, normalized: str, confidence: float, m
         return False  # model padded / invented content
     # Numbers (years, mileage) must survive translation unchanged: a number in
     # the English text that the caller never said is invented data.
-    orig_nums = set(re.findall(r"\d+", _devanagari_digits_to_ascii(original or "")))
-    for n in re.findall(r"\d+", norm):
-        if n not in orig_nums:
+    orig_nums = Counter(re.findall(r"\d+(?:\.\d+)?", _devanagari_digits_to_ascii(original or "")))
+    norm_nums = Counter(re.findall(r"\d+(?:\.\d+)?", norm))
+    if orig_nums != norm_nums:
+        return False
+    orig_facts, norm_facts = fact_text(original), fact_text(norm)
+    for concept in CRITICAL_CONCEPTS:
+        if bool(re.search(concept, orig_facts)) != bool(re.search(concept, norm_facts)):
+            return False
+    # Fail conservatively on changes to negation or expressed uncertainty.
+    for pattern in (NEGATION, UNCERTAINTY):
+        if bool(re.search(pattern, orig_facts)) != bool(re.search(pattern, norm_facts)):
+            return False
+    # Bind polarity to each critical concept, not just a sentence-wide 'not'.
+    for concept in CRITICAL_CONCEPTS:
+        if concept_polarities(orig_facts, concept) != concept_polarities(norm_facts, concept):
             return False
     return True
 
@@ -86,6 +99,43 @@ _DEV_DIGITS = str.maketrans("०१२३४५६७८९", "0123456789")
 
 def _devanagari_digits_to_ascii(text: str) -> str:
     return (text or "").translate(_DEV_DIGITS)
+
+
+# Controlled transliterations support original-source slot checks. Unknown
+# aliases remain proposals requiring caller confirmation, never accepted facts.
+ALIASES = {
+    "होंडा": "honda", "सिविक": "civic", "टोयोटा": "toyota", "फोर्ड": "ford",
+    "हुंडई": "hyundai", "किआ": "kia", "मारुति": "maruti", "सुजुकी": "suzuki",
+    "ब्रेक": "brake", "ब्रेक्स": "brakes", "स्टीयरिंग": "steering", "इंजन": "engine",
+    "एयरबैग": "airbag", "आग": "fire", "धुआं": "smoke", "धुआँ": "smoke",
+    "फेल": "fail", "आवाज़": "noise", "आवाज": "noise", "awaaz": "noise", "aawaz": "noise",
+    "nahi": "not", "nahin": "not", "nhi": "not", "नहीं": "not", "नही": "not",
+    "शायद": "maybe", "shayad": "maybe", "लगता": "seems", "lagta": "seems",
+}
+NEGATION = r"\b(?:no|not|never|without|didn t|doesn t|isn t|wasn t|hasn t|cannot|can t)\b"
+UNCERTAINTY = r"\b(?:maybe|perhaps|possibly|seems|suspect|unsure|might|may|think|probably)\b"
+CRITICAL_CONCEPTS = [r"\b" + x + r"\b" for x in (
+    "honda", "civic", "toyota", "camry", "accord", "cr v", "ford", "hyundai", "kia", "maruti", "suzuki",
+    "brakes?", "steering", "engine", "airbags?", "fire", "smoke", "crash(?:ed)?", "injur(?:y|ies|ed)", "fail(?:ed|ure)?",
+)]
+
+
+def fact_text(text: str) -> str:
+    value = _devanagari_digits_to_ascii(text or "").lower()
+    # Longest alias first so Hindi plurals are not partially consumed.
+    for a, b in sorted(ALIASES.items(), key=lambda pair: -len(pair[0])):
+        value = re.sub(r"(?<!\w)" + re.escape(a) + r"(?!\w)", b, value)
+    # Preserve clause punctuation so 'no fire. Smoke appeared' cannot swap
+    # which hazard is denied while passing the polarity check.
+    return re.sub(r"[^\w\s।.!?;,]", " ", value)
+
+
+def concept_polarities(text: str, concept: str) -> set[tuple[bool, bool]]:
+    result = set()
+    for clause in re.split(r"\b(?:but|however|lekin|aur|and)\b|[।.!?;,]", text):
+        if re.search(concept, clause):
+            result.add((bool(re.search(NEGATION, clause)), bool(re.search(UNCERTAINTY, clause))))
+    return result
 
 
 __all__ = ["accept_ai_normalisation", "deterministic_normalise", "detect"]

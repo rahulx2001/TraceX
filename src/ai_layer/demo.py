@@ -201,4 +201,69 @@ async def seed_india_scenario(*, pack_id: str | None = None, use_muse_image: boo
     return result
 
 
-__all__ = ["INDIA_SCENARIO_TURNS", "SCENARIO_LABEL", "seed_india_scenario", "synthetic_rotor_png"]
+META_WORKFLOW_TEXT = "मेरी 2019 Honda CR-V में धीमे चलते समय ब्रेक दबाने पर घिसने जैसी आवाज आती है।"
+
+
+async def run_meta_workflow() -> dict[str, Any]:
+    """One synthetic complaint through the actual intake, event log and ledger."""
+    from src.agents.orchestrator import create_interaction, OrchestratorHooks
+    from src.ai_layer import config, meta_client
+    from src.ai_layer.store import list_events
+    from src.ledger.writer import list_actions
+    from src.ledger.chain import verify_chain
+
+    if not config.meta_enabled():
+        return {"ok": False, "reason": "meta_disabled", "synthetic": True}
+    spoken = []
+    transcript = []
+    async def remember(text, meta):
+        spoken.append(text)
+        transcript.append({"speaker": "agent", "text": text})
+    orch, _ = await create_interaction(channel="simulated", pack_id="automotive_nhtsa", locale="hi-IN",
+        hooks=OrchestratorHooks(emit_customer_turn=remember))
+    try:
+        transcript.append({"speaker": "customer", "text": META_WORKFLOW_TEXT})
+        await orch.handle_customer_turn(META_WORKFLOW_TEXT)
+        for _ in range(6):
+            if orch.ctx.state in ("DONE", "ABANDONED", "SUPERVISED"):
+                break
+            question = (spoken[-1] if spoken else "").lower()
+            if any(w in question for w in ("hurt", "injur")):
+                reply = "No, nobody is hurt."
+            elif "safe" in question:
+                reply = "Yes, I am parked in a safe location."
+            elif any(w in question for w in ("fire", "crash")):
+                reply = "No."
+            elif any(w in question for w in ("correct", "confirm", "right", "did i get")):
+                reply = "Yes, that is correct."
+            elif any(w in question for w in ("year", "make", "model", "vehicle")):
+                reply = "It is a 2019 Honda CR-V."
+            else:
+                reply = "SERVICE BRAKES. Pressing the brake pedal makes a grinding noise at low speed."
+            transcript.append({"speaker": "customer", "text": reply})
+            await orch.handle_customer_turn(reply)
+    finally:
+        await orch.hangup()
+    events = list_events(orch.ctx.interaction_id)
+    # Events are newest first. Bind the proof to the original complaint,
+    # rather than a later English answer to a safety/confirmation question.
+    intake = next((e for e in events if e["kind"] == "intake" and
+                   ((e.get("deterministic") or {}).get("language") or {}).get("original") == META_WORKFLOW_TEXT), {})
+    accepted = intake.get("accepted") or {}
+    used = (accepted.get("language") or {}).get("method") == "meta_muse_spark" or any(
+        str(v.get("source", "")).startswith("meta_") for v in accepted.get("filled", {}).values())
+    actions = list_actions(orch.ctx.interaction_id)
+    chain = verify_chain(actions)
+    return {"ok": bool(used and orch.ctx.case_id and chain["ok"] and chain["checked"]), "synthetic": True,
+            "live_transport": meta_client._transport is meta_client._urllib_transport,
+            "model_id": config.model_text(), "input": META_WORKFLOW_TEXT,
+            "state": orch.ctx.state, "transcript": transcript,
+            "interaction_id": orch.ctx.interaction_id, "case_id": orch.ctx.case_id,
+            "deterministic": intake.get("deterministic"), "proposal": intake.get("ai_proposal"),
+            "accepted": accepted, "fallback_reason": intake.get("reason"),
+            "event_id": intake.get("event_id"), "ledger": chain, "ledger_actions": actions,
+            "safety_flags": orch.ctx.safety_flags,
+            "operator_action": "Review the original complaint and accepted facts before taking action."}
+
+
+__all__ = ["INDIA_SCENARIO_TURNS", "SCENARIO_LABEL", "seed_india_scenario", "synthetic_rotor_png", "run_meta_workflow"]

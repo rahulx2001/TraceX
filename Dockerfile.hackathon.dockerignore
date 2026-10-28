@@ -5,6 +5,7 @@
 .git
 .github
 .venv
+.venv-hackathon
 venv
 __pycache__
 **/__pycache__
@@ -23,6 +24,9 @@ dashboard/node_modules
 data
 reports/*
 !reports/nhtsa
+!reports/hackathon
+reports/hackathon/*.webm
+reports/hackathon/*.mp4
 .env
 .env.*
 *.duckdb

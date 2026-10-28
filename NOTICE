@@ -1,0 +1,9 @@
+This MIT license covers the application source in this repository.
+
+It does not relicense third-party pieces:
+
+- NHTSA complaint and recall files stay under the public terms of their publisher. The raw ZIPs are not committed here.
+- Meta model names, weights, and API outputs stay under Meta's terms. This repository does not ship those weights.
+- Python and Node dependencies stay under their own licenses.
+- The optional local MiniLM embedding model and Xenova ONNX export are Apache-2.0. The download script pins the revision and checks model/tokenizer hashes; model license and manifest live in models/minilm/.
+- The CFPB, CPSC and MAUDE domain fixtures are demonstration/experimental data. Consult the corresponding pack context and publisher terms before using external data.

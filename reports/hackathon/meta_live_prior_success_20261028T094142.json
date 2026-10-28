@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "ok": true,
+  "live_transport": true,
+  "api_host": "api.meta.ai",
+  "api_base": "https://api.meta.ai/v1",
+  "recorded_at": "2026-10-28T09:41:42.237457+00:00",
+  "checks": [
+    {
+      "feature": "text",
+      "model_id": "muse-spark-1.3",
+      "ok": true,
+      "result": {
+        "ok": true,
+        "synthetic": true,
+        "live_transport": true,
+        "model_id": "muse-spark-1.3",
+        "input": "मेरी 2019 Honda CR-V में धीमे चलते समय ब्रेक दबाने पर घिसने जैसी आवाज आती है।",
+        "interaction_id": "int_01m60y5r8nncga5t29rk217ysg",
+        "case_id": "case_01m60y5zssmstt8hv5rrwg8hfe",
+        "deterministic": {
+          "slots": {
+            "entity_1": "2019",
+            "entity_2": "HONDA",
+            "entity_3": "CR-V",
+            "category": "SERVICE BRAKES",
+            "description": "मेरी 2019 Honda CR-V में धीमे चलते समय ब्रेक दबाने पर घिसने जैसी आवाज आती है।"
+          },
+          "language": {
+            "original": "मेरी 2019 Honda CR-V में धीमे चलते समय ब्रेक दबाने पर घिसने जैसी आवाज आती है।",
+            "normalized_en": "मेरी 2019 Honda CR-V में धीमे चलते समय brake दबाने पर घिसने जैसी आवाज आती है।",
+            "lang": "hi",
+            "method": "glossary"
+          }
+        },
+        "proposal": {
+          "slots": [],
+          "normalized_en": "My 2019 Honda CR-V makes a grinding-like sound when pressing the brake while moving slowly.",
+          "language": "hi",
+          "frustration": 0
+        },
+        "accepted": {
+          "filled": {},
+          "pending_confirmation": {},
+          "rejected": {},
+          "language": {
+            "original": "मेरी 2019 Honda CR-V में धीमे चलते समय ब्रेक दबाने पर घिसने जैसी आवाज आती है।",
+            "normalized_en": "My 2019 Honda CR-V makes a grinding-like sound when pressing the brake while moving slowly.",
+            "lang": "hi",
+            "method": "meta_muse_spark"
+          },
+          "sentiment": {
+            "rule": 0.0,
+            "ai": 0.0,
+            "final": 0.0,
+            "reason": "Neutral factual description with no signs of anger or urgency."
+          }
+        },
+        "fallback_reason": "ok",
+        "event_id": "aie_01m60y5yxbcdj1386g0yfyq50a",
+        "ledger": {
+          "ok": true,
+          "checked": 30,
+          "first_bad_action_id": null,
+          "detail": "ok"
+        },
+        "safety_flags": {
+          "escalation": true,
+          "fire": true
+        },
+        "operator_action": "Review the original complaint and accepted facts before taking action."
+      },
+      "ms": 10178
+    }
+  ],
+  "budget": {
+    "limit_usd": 8.0,
+    "reserved_upper_bound_usd": 2.069953,
+    "observed_token_cost_usd": 0.021787499999999998,
+    "unmetered_successes": 0,
+    "live_successful_requests": 6,
+    "pricing_checked": "2026-10-28",
+    "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+  }
+}

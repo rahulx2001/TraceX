@@ -197,6 +197,7 @@ class OnnxSemanticEmbedder:
     ) -> None:
         self._dir = Path(artifact_dir).expanduser().resolve()
         self._manifest = validate_artifact_dir(self._dir)
+        self._artifact_cache_key = artifact_cache_key(self._dir)
         self._version = build_canonical_version(self._manifest)
         self._max_seq = int(self._manifest.get("max_seq_length") or 256)
         self._max_batch = max(1, int(max_batch_size))
@@ -390,17 +391,37 @@ class OnnxSemanticEmbedder:
         return vectors
 
 
+def artifact_cache_key(artifact_dir: str | Path) -> tuple:
+    """Detect an artifact replacement without hashing model weights per request."""
+    directory = Path(artifact_dir).expanduser().resolve()
+    stamps = []
+    for name in REQUIRED_FILES:
+        try:
+            info = (directory / name).stat()
+            stamps.append((name, info.st_size, info.st_mtime_ns, info.st_ctime_ns))
+        except OSError:
+            stamps.append((name, None))
+    return (str(directory), tuple(stamps))
+
+
 def get_process_onnx_embedder(
     artifact_dir: str | Path,
     **kwargs: Any,
 ) -> OnnxSemanticEmbedder:
     """Initialize once per process. Thread-safe."""
     global _PROCESS_EMBEDDER
-    if _PROCESS_EMBEDDER is not None:
-        return _PROCESS_EMBEDDER
+    directory = Path(artifact_dir).expanduser().resolve()
+    intra = max(1, int(kwargs.get("intra_op_threads") or os.getenv("FRONTLINE_ONNX_INTRA_THREADS") or "1"))
+    inter = max(1, int(kwargs.get("inter_op_threads", 1)))
+    batch = max(1, int(kwargs.get("max_batch_size", 32)))
+    stamp = artifact_cache_key(directory)
+    def matches(provider):
+        return (provider is not None and provider._dir == directory
+                and provider._intra_threads == intra and provider._inter_threads == inter
+                and provider._max_batch == batch and provider._artifact_cache_key == stamp)
     with _SESSION_LOCK:
-        if _PROCESS_EMBEDDER is None:
-            _PROCESS_EMBEDDER = OnnxSemanticEmbedder(artifact_dir, **kwargs)
+        if not matches(_PROCESS_EMBEDDER):
+            _PROCESS_EMBEDDER = OnnxSemanticEmbedder(directory, **kwargs)
         return _PROCESS_EMBEDDER
 
 

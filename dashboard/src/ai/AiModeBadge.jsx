@@ -14,10 +14,10 @@ export default function AiModeBadge() {
   const m = s.models || {};
   const title = on
     ? `Meta AI layer on · text ${m.text} · vision ${m.vision} · segmentation ${m.segmentation}. Deterministic path stays the fallback.`
-    : "No Meta API key configured: the deterministic regex/gazetteer/rules path is running (identical to the base product). Photo upload still works.";
+    : "Meta layer is off or no key is configured: the deterministic regex/gazetteer/rules path is running (including local Hindi safety checks). Photo upload still works.";
   return (
     <a href="#demo" className={"chip ai-mode-badge " + (on ? "ai-tag-on" : "ai-tag-off")} title={title} data-testid="ai-mode-badge">
-      {on ? `AI: Enhanced · Muse Spark · SAM 3.1` : "AI: Deterministic"}
+      {on ? `AI: ${s.verified_against_live_api ? "Live verified" : "Configured"} · Meta` : "AI: Deterministic"}
     </a>
   );
 }

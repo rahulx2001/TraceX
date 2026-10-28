@@ -21,12 +21,16 @@ from src.qubot.claims import BoundClaim, audit_bound_claims
 
 
 @pytest.fixture(autouse=True)
-def clean_slm_env(monkeypatch):
+def clean_slm_env(monkeypatch, pack):
     monkeypatch.delenv("FRONTLINE_SLM_MODE", raising=False)
     monkeypatch.delenv("FRONTLINE_SLM_KILL", raising=False)
     monkeypatch.delenv("FRONTLINE_SLM_CATEGORY_FLOOR", raising=False)
     reset_slm_cache()
     reset_all_ladders()
+    # Classification assertions exercise warm inference; cold startup and
+    # deadline fallback have separate regressions.
+    from src.ml_runtime.slm_runtime import get_pack_category_vectors
+    get_pack_category_vectors(pack)
     yield
     reset_slm_cache()
     reset_all_ladders()

@@ -64,7 +64,7 @@ def test_store_without_analysis_and_erase(no_meta, reset_ops_db, monkeypatch, tm
     monkeypatch.setenv("AI_VIDEO_ANALYSIS", "1")  # flag on but no key -> still no analysis
     cid, iid = _insert_case()
     v = store_video(data=mp4(6), filename="../clip.mp4", declared_mime="video/mp4", case_id=cid)
-    assert v["analysis_status"] == "stored_no_analysis" and v["duration_s"] == 6 and "unverified" in v["analysis_note"]
+    assert v["analysis_status"] == "stored_no_analysis" and v["duration_s"] == 6 and "unsupported" in v["analysis_note"]
     assert "storage_path" not in v and list_for_case(cid)[0]["video_id"] == v["video_id"]
     assert analyze_video(v["video_id"])["analysis_status"] == "stored_no_analysis"
     assert no_meta == []
@@ -80,19 +80,13 @@ def test_flagged_analysis_with_fake_meta(fake_meta, reset_ops_db, monkeypatch, t
 
     monkeypatch.setenv("AI_EVIDENCE_DIR", str(tmp_path / "ev"))
     cid, _ = _insert_case()
-    seen = {}
-
-    def _reply(payload):
-        seen["p"] = payload
-        return {"observed": "smoke from wheel", "component": "SERVICE BRAKES", "visible_hazards": ["smoke"], "confidence": 0.7}
-
-    fake_meta.chat["video_evidence"] = _reply
     v = store_video(data=mp4(6), filename="c.mp4", declared_mime="video/mp4", case_id=cid)
-    assert v["analysis_status"] == "stored_no_analysis"  # flag off
+    assert v["analysis_status"] == "stored_no_analysis"
     monkeypatch.setenv("AI_VIDEO_ANALYSIS", "1")
     out = analyze_video(v["video_id"])
-    assert out["analysis_status"] == "done" and out["analysis"]["note"].startswith("unverified")
-    assert "data:video/mp4;base64," in str(seen["p"])
+    assert out["analysis_status"] == "stored_no_analysis"
+    assert "unsupported" in out["reason"]
+    assert fake_meta.calls == []  # even a configured key/flag cannot send raw video
 
 
 def test_video_routes(reset_ops_db, monkeypatch, tmp_path, no_meta):

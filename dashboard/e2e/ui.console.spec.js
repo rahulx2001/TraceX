@@ -41,6 +41,9 @@ test.describe("UI shell — all nav routes", () => {
     await page.waitForLoadState("domcontentloaded");
     // Brand / shell
     await expect(page.locator("body")).toBeVisible();
+    // The access gate resolves client-side after DOMContentLoaded; wait for
+    // the shell rather than sampling the "Checking access…" status text.
+    await expect(page.getByText(/Command center/i).first()).toBeVisible({ timeout: 15_000 });
     // Should not be a blank document
     const text = await page.locator("body").innerText();
     expect(text.length).toBeGreaterThan(20);

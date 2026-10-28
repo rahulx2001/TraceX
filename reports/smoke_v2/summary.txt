@@ -1,4 +1,4 @@
-# run 1: open mode, no Meta key  (2026-10-21T05:14:44Z)
+# run 1: open mode, no Meta key  (2026-10-28T15:40:53Z)
 GET /health -> 200
 GET /api/ai/status -> 200
 GET /api/ai/call-health -> 200
@@ -9,11 +9,11 @@ POST /api/ai/raises/aie_none/review -> 403
 GET /ui/ -> 200
 # seed one AI severity raise + its case into the throwaway ops DB
 # run 2: auth required (throwaway key + session secret), no Meta key
-POST /api/ai/raises/aie_01m5ee548m8njrtmtxf5pq9ng4/review -> 401
-POST /api/ai/raises/aie_01m5ee548m8njrtmtxf5pq9ng4/review -> 403
-POST /api/ai/raises/aie_01m5ee548m8njrtmtxf5pq9ng4/review -> 403
-POST /api/ai/raises/aie_01m5ee548m8njrtmtxf5pq9ng4/review -> 200
-POST /api/ai/raises/aie_01m5ee548m8njrtmtxf5pq9ng4/review -> 409
+POST /api/ai/raises/aie_01m61jr7v14tgbjvd9f1bqp20d/review -> 403
+POST /api/ai/raises/aie_01m61jr7v14tgbjvd9f1bqp20d/review -> 403
+POST /api/ai/raises/aie_01m61jr7v14tgbjvd9f1bqp20d/review -> 403
+POST /api/ai/raises/aie_01m61jr7v14tgbjvd9f1bqp20d/review -> 200
+POST /api/ai/raises/aie_01m61jr7v14tgbjvd9f1bqp20d/review -> 409
 GET /api/ai/raises -> 200
 GET /api/ai/raises/stats -> 200
 GET /api/ai/status/overview -> 200

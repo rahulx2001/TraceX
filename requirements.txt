@@ -8,6 +8,7 @@ uvicorn[standard]>=0.27,<1.0
 pydantic>=2.6,<3.0
 duckdb>=0.10,<2.0
 pyarrow>=22.0,<25.0      # Arrow-backed batched ingest (src/domains/mapping_ingest.py)
+pandas>=2.2,<3.0        # Defect export and accuracy evaluation
 pyyaml>=6.0,<7.0
 python-ulid>=2.2,<4.0
 python-dotenv>=1.0,<2.0

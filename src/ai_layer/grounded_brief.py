@@ -32,6 +32,8 @@ from src.ai_layer import config
 from src.ai_layer.meta_client import MetaError, chat_json
 from src.ai_layer.store import record_event
 
+PROMPT_VERSION = "grounded-brief-v2-extractive"
+
 BRIEF_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -44,6 +46,7 @@ BRIEF_SCHEMA: dict[str, Any] = {
                 "type": "object",
                 "properties": {
                     "text": {"type": "string", "maxLength": 400},
+                    "support_spans": {"type": "array", "maxItems": 8, "items": {"type": "object", "properties": {"record_id": {"type": "string"}, "quote": {"type": "string", "maxLength": 400}}, "required": ["record_id", "quote"]}},
                     "record_ids": {"type": "array", "maxItems": 8, "items": {"type": "string", "maxLength": 80}},
                 },
                 "required": ["text", "record_ids"],
@@ -192,6 +195,26 @@ def verify_claim(claim: dict[str, Any], *, brief: dict[str, Any], allowed_ids: s
     viol = narration_violations(text, {"evidence_ids": sorted(allowed_ids), "lead_time_weeks": lead})
     if viol:
         return False, "narration_violation:" + ",".join(viol)
+    spans = claim.get("support_spans") or []
+    if not spans:
+        return False, "missing_support_spans"
+    quotes = []
+    covered = set()
+    for span in spans:
+        rid, quote = str(span.get("record_id") or ""), str(span.get("quote") or "").strip()
+        source = str(records_by_id.get(rid, {}).get("text") or "").strip()
+        # Full source sentences preserve local negation, uncertainty and cause.
+        sentences = re.split(r"(?<=[.!?])\s+", source)
+        if rid not in cited or not quote or quote not in sentences:
+            return False, "unsupported_source_span"
+        quotes.append(quote)
+        covered.add(rid)
+    if covered != set(cited):
+        return False, "citation_without_support_span"
+    # Extractive contract: no unsupported paraphrases can acquire authority
+    # merely by attaching a valid record ID. Selection/ranking is the AI task.
+    if text != " ".join(quotes):
+        return False, "claim_not_supported_by_spans"
     return True, "ok"
 
 
@@ -220,6 +243,8 @@ def build_grounded_brief(investigation_id: str) -> dict[str, Any]:
         "safety_risk": safety,
         "recommended_actions": actions,
         "powered_by": [],
+        "prompt_version": PROMPT_VERSION,
+        "verification_contract": "extractive source sentences + citation scope + numbers + narration checks; source reports are not independently verified",
     }
     if not config.meta_enabled():
         return result
@@ -238,7 +263,9 @@ def build_grounded_brief(investigation_id: str) -> dict[str, Any]:
     _fmt_nums({k: v for k, v in facts.items() if k != "records"}, allowed_numbers)
     system = (
         "You write an investigation brief for an automotive quality engineer. Return JSON only. "
-        "Write a headline (no numbers or ids) and up to 6 claims. Every claim MUST cite record_ids taken "
+        "Select up to 6 useful complete source sentences as claims. Copy each sentence VERBATIM into text "
+        "and into support_spans [{record_id, quote}]. Do not shorten, paraphrase, remove negation or uncertainty. "
+        "Use one source sentence per claim. Supply a headline, which is a non-authoritative suggestion. Every claim MUST cite record_ids taken "
         "only from the provided facts, and must only use numbers present in the facts or cited records. "
         "Lead with crash, fire and injury risk when the records show it: the goal is getting faults repaired "
         "before they cause accidents. recommended_action is ONE inspection/repair step for the manufacturer's "
@@ -260,13 +287,15 @@ def build_grounded_brief(investigation_id: str) -> dict[str, Any]:
     for claim in out.get("claims") or []:
         ok, why = verify_claim(claim, brief=brief, allowed_ids=allowed_ids,
                                allowed_numbers=allowed_numbers, records_by_id=records_by_id)
-        row = {"text": str(claim.get("text") or "")[:400], "record_ids": list(claim.get("record_ids") or [])[:8]}
+        row = {"text": str(claim.get("text") or "")[:400], "record_ids": list(claim.get("record_ids") or [])[:8], "support_spans": list(claim.get("support_spans") or [])[:8]}
         if ok:
-            kept.append({**row, "verified": True, "source": "meta_muse_spark"})
+            kept.append({**row, "verified": True, "source": "meta_muse_spark", "verification": "exact_source_sentences_and_citation_scope"})
         else:
             dropped.append({**row, "reason": why})
     headline = str(out.get("headline") or "").strip()
-    if headline and (_NUM.search(headline) or verify_headline_ids(headline)):
+    result["headline_rejection_reason"] = None
+    if headline and (headline not in {c["text"] for c in kept} or _NUM.search(headline) or verify_headline_ids(headline)):
+        result["headline_rejection_reason"] = "headline_not_supported_by_accepted_source_span"
         headline = ""  # headline must not carry numbers / ids (they are uncited)
     record_event(kind="grounded_brief", model_id=config.model_text(),
                  deterministic={"investigation_id": investigation_id, "claims": det_claims},

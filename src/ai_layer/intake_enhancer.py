@@ -155,10 +155,18 @@ def _evidence_grounded(evidence: str, original: str, normalized: str) -> bool:
     ev = re.sub(r"\s+", " ", (evidence or "").strip().lower())
     if len(ev) < 2:
         return False
-    for hay in (original, normalized):
-        if ev in re.sub(r"\s+", " ", (hay or "").lower()):
-            return True
-    return False
+    return ev in re.sub(r"\s+", " ", (original or "").lower())
+
+
+def _value_supported(ctx, slot, value: str, original: str) -> bool:
+    from src.ai_layer.language import fact_text
+    source = fact_text(original)
+    if slot.validation == "free-text":
+        # A translated description is review text; accepted description remains
+        # the caller's original words.
+        return value.casefold() in original.casefold()
+    extracted = _deterministic_on_normalized(ctx, slot, source)
+    return bool(extracted) and str(extracted).casefold() == value.casefold()
 
 
 def _deterministic_on_normalized(ctx, slot, normalized: str) -> str | None:
@@ -279,6 +287,7 @@ async def _enhance(ctx, text: str, ires: dict[str, Any]) -> dict[str, Any]:
         if name and name not in proposals:
             proposals[name] = p
     filled: dict[str, dict[str, Any]] = {}
+    pending: dict[str, dict[str, Any]] = {}
     rejected: dict[str, str] = {}
     intake = IntakeAgent(ctx)
     for slot in empty:
@@ -302,6 +311,10 @@ async def _enhance(ctx, text: str, ires: dict[str, Any]) -> dict[str, Any]:
                 source = "meta_muse_spark"
                 if not value:
                     rejected[slot.name] = "failed_pack_validation"
+        if value and not _value_supported(ctx, slot, value, text):
+            pending[slot.name] = {"value": value, "reason": "requires_caller_confirmation", "source_turn": text}
+            rejected[slot.name] = "value_not_supported_by_original"
+            value = None
         if value:
             intake._stamp_slot(slot.name, value, source_turn=text, confidence=round(conf, 3))
             meta = dict(ctx.slots.get("__slot_meta__") or {})
@@ -310,6 +323,8 @@ async def _enhance(ctx, text: str, ires: dict[str, Any]) -> dict[str, Any]:
                 ctx.slots["__slot_meta__"] = meta
             filled[slot.name] = {"value": value, "source": source, "confidence": round(conf, 3)}
 
+    if pending:
+        ctx.slots["__ai_pending_slots__"] = {**(ctx.slots.get("__ai_pending_slots__") or {}), **pending}
     if filled:
         record_action(AgentAction(
             interaction_id=iid, agent="ai_layer", action_type="slot_extracted",
@@ -339,12 +354,12 @@ async def _enhance(ctx, text: str, ires: dict[str, Any]) -> dict[str, Any]:
         deterministic={"slots": deterministic_snapshot, "language": det_norm},
         ai_proposal={"slots": out.get("slots"), "normalized_en": ai_norm, "language": out.get("language"),
                      "frustration": out.get("frustration")},
-        accepted={"filled": filled, "rejected": rejected, "language": language, "sentiment": sentiment},
+        accepted={"filled": filled, "pending_confirmation": pending, "rejected": rejected, "language": language, "sentiment": sentiment},
         reason="ok",
     )
 
     result = dict(ires)
-    result["ai_layer"] = {"filled": filled, "rejected": rejected, "language": language["lang"], "sentiment": sentiment}
+    result["ai_layer"] = {"filled": filled, "pending_confirmation": pending, "rejected": rejected, "language": language["lang"], "sentiment": sentiment}
     if filled:
         extracted = dict(ires.get("extracted") or {})
         extracted.update({k: v["value"] for k, v in filled.items()})

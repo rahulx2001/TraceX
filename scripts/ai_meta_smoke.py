@@ -1,84 +1,88 @@
-"""Live smoke check of the Meta Model API settings.  [AI-LAYER]
+"""Record one real Meta intake workflow. Optional --vision/--sam/--image checks.
 
-The layer's Meta endpoints are configured from public docs but have never been
-called live from this repo (no key exists here). Anyone with a key can verify
-them in about 30 seconds:
-
-    META_API_KEY=... python -m scripts.ai_meta_smoke            # text, vision, SAM 3.1
-    META_API_KEY=... python -m scripts.ai_meta_smoke --image    # + one Muse Image call
-
-Each check makes one small call through the same client the product uses
-(host allow-list, timeout, call cap, schema validation) and prints ok/failed
-with the reason. Without a key it makes no network call and exits 0. The key
-is never printed.
+Run with the server-side .env or exported key. Synthetic input only. Default
+output: reports/hackathon/meta_live_smoke.json. A skipped/unaccepted workflow
+is never recorded as verified. Uses the existing lifetime $30 spend guard.
 """
-
 from __future__ import annotations
 
 import argparse
+import asyncio
 import base64
-import json
-import sys
 import time
-from typing import Any, Callable
-
-_SCHEMA = {
-    "type": "object",
-    "properties": {"normalized_en": {"type": "string"}, "confidence": {"type": "number"}},
-    "required": ["normalized_en", "confidence"],
-}
-_VISION_SCHEMA = {
-    "type": "object",
-    "properties": {"description": {"type": "string"}, "confidence": {"type": "number"}},
-    "required": ["description", "confidence"],
-}
+from pathlib import Path
 
 
-def _run(name: str, fn: Callable[[], Any]) -> dict[str, Any]:
-    from src.ai_layer.meta_client import MetaError
-
-    t0 = time.time()
-    try:
-        detail = fn()
-        return {"check": name, "ok": True, "ms": int((time.time() - t0) * 1000), "detail": detail}
-    except MetaError as e:
-        return {"check": name, "ok": False, "ms": int((time.time() - t0) * 1000), "reason": e.reason}
-    except Exception as e:  # report, never raise
-        return {"check": name, "ok": False, "ms": int((time.time() - t0) * 1000), "reason": type(e).__name__}
-
-
-def run_checks(*, image: bool = False) -> dict[str, Any]:
-    from src.ai_layer import config
-    from src.ai_layer.demo import synthetic_rotor_png
-    from src.ai_layer.meta_client import chat_json, image_generate, sam_segment
-
-    status = config.ai_status()
+def run_checks(*, vision=False, sam=False, image=False):
+    from src.config import load_repo_env
+    load_repo_env()
+    from src.ai_layer import config, meta_client
+    from src.ai_layer.demo import run_meta_workflow, synthetic_rotor_png
+    from src.ai_layer.live_proof import save_proof
     if not config.meta_enabled():
-        return {"status": status, "skipped": "no META_API_KEY / MODEL_API_KEY (or FRONTLINE_AI_LAYER=off)", "checks": []}
+        return {"ok": False, "skipped": "no configured Meta key or layer switched off", "checks": []}
+
+    checks = []
+    def check(feature, model, fn):
+        start = time.monotonic()
+        try:
+            result = fn()
+            ok = result.get("ok", True)
+            item = {"feature": feature, "model_id": model, "ok": bool(ok), "result": result}
+        except Exception as e:
+            item = {"feature": feature, "model_id": model, "ok": False,
+                    "reason": getattr(e, "reason", type(e).__name__)}
+        item["ms"] = round((time.monotonic() - start) * 1000)
+        checks.append(item)
+
+    check("text", config.model_text(), lambda: asyncio.run(run_meta_workflow()))
     data_url = "data:image/png;base64," + base64.b64encode(synthetic_rotor_png(240, 180)).decode()
-    checks = [
-        _run("text:" + config.model_text(), lambda: chat_json(
-            system="Translate to English. JSON only.", user="Meri gaadi ke brakes fail ho gaye.",
-            schema=_SCHEMA, schema_name="smoke_normalize")),
-        _run("vision:" + config.model_vision(), lambda: chat_json(
-            system="Describe the image in one sentence. JSON only.", user="What vehicle part is shown?",
-            schema=_VISION_SCHEMA, schema_name="smoke_vision", images=[data_url])),
-        _run("segmentation:" + config.model_sam(), lambda: {"boxes": len(sam_segment(concept="brake disc", image_data_url=data_url))}),
-    ]
+    if vision:
+        schema = {"type": "object", "properties": {"description": {"type": "string"}}, "required": ["description"]}
+        check("vision", config.model_vision(), lambda: meta_client.chat_json(system="Describe only visible features. JSON only.",
+              user="Describe this synthetic image.", schema=schema, schema_name="smoke_vision", model=config.model_vision(), images=[data_url]))
+    if sam:
+        def segment():
+            boxes = meta_client.sam_segment(concept="brake disc", image_data_url=data_url)
+            return {"ok": bool(boxes), "boxes": boxes}
+        check("segmentation", config.model_sam(), segment)
     if image:
-        checks.append(_run("image:" + config.model_image(), lambda: {"keys": sorted(image_generate(
-            prompt="Synthetic photo of a scored brake disc, no text", size="512x512").keys())}))
-    return {"status": status, "checks": checks, "all_ok": all(c["ok"] for c in checks)}
+        def generate():
+            result = meta_client.image_generate(prompt="Synthetic brake disc illustration, no text", size="512x512")
+            return {"ok": bool(result), "returned_keys": sorted(result)}
+        check("image", config.model_image(), generate)
+    return save_proof(checks, live=meta_client._transport is meta_client._urllib_transport)
 
 
-def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    p.add_argument("--image", action="store_true", help="also call Muse Image once")
+def main(argv=None):
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--vision", action="store_true")
+    p.add_argument("--sam", action="store_true")
+    p.add_argument("--image", action="store_true")
     args = p.parse_args(argv)
-    out = run_checks(image=args.image)
-    print(json.dumps(out, indent=2, default=str))
-    return 0 if out.get("skipped") or out.get("all_ok") else 1
+    # Every execution gets its own fixture warehouse; no pilot reset or reuse.
+    import os, tempfile
+    from src.config import REPO_ROOT
+    root = Path(tempfile.mkdtemp(prefix="tracex-meta-proof-"))
+    os.environ["FRONTLINE_DB_PATH"] = str(root / "frontline.duckdb")
+    os.environ["DOMAIN_DB_PATH"] = str(root / "domains")
+    os.environ["FRONTLINE_LLM_ENABLED"] = "0"
+    from src.data.warehouse import init_ops_db
+    from scripts.seed_domains import build
+    init_ops_db()
+    build("automotive_nhtsa", force=True)
+    out = run_checks(**vars(args))
+    if out.get("skipped"):
+        print("Meta proof skipped:", out["skipped"])
+        print("checks: [] (no live verification recorded)")
+        return 0
+    # The full safe synthetic evidence is in the artifact, not raw provider logs.
+    print("Meta proof:", "verified" if out.get("ok") else "not verified")
+    for c in out.get("checks", []):
+        print(c["feature"], c["model_id"], "accepted" if c.get("ok") else c.get("reason") or c.get("result", {}).get("fallback_reason", "not accepted"))
+    print("Artifact: reports/hackathon/meta_live_smoke.json")
+    return 0 if out.get("ok") else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())

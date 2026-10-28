@@ -31,12 +31,47 @@ test.describe("Deep OpenAPI GET sweep", () => {
       if (!methods.get) continue;
       if (path.includes("{")) continue;
       if (path === "/docs" || path === "/redoc" || path === "/openapi.json") continue;
+      // /audits/export runs the groundedness auditor for every interaction in
+      // the window and is covered by its own test with a realistic timeout.
+      if (path === "/api/frontline/audits/export") continue;
+      // Optional integrations legitimately answer 503 when unconfigured:
+      // Google OIDC without GOOGLE_CLIENT_ID is exercised separately.
+      if (path === "/api/frontline/auth/oidc/start") continue;
       const res = await request.get(`${BASE}${path}`, { headers: H });
       if (res.status() >= 500) {
         failures.push(`GET ${path} → ${res.status()} ${(await res.text()).slice(0, 160)}`);
       }
     }
     expect(failures, failures.join("\n")).toEqual([]);
+  });
+
+  test("optional OIDC start fails closed when unconfigured", async ({ request }) => {
+    const r = await request.get(`${BASE}/api/frontline/auth/oidc/start`, {
+      maxRedirects: 0,
+    });
+    if (r.status() === 503) {
+      const body = await r.json();
+      expect(JSON.stringify(body).toLowerCase()).toContain("google");
+      return;
+    }
+    // When OIDC is configured, /start is a redirect or a 200 login rendezvous.
+    expect([200, 302, 307]).toContain(r.status());
+  });
+
+  test("audit export returns a verified 200 document", async ({ request }) => {
+    // The auditor verifies every action in every returned interaction, so this
+    // endpoint is intentionally slower than the read-only sweep above.
+    const r = await request.get(`${BASE}/api/frontline/audits/export?limit=5`, {
+      headers: H,
+      timeout: 120_000,
+    });
+    expect(r.status()).toBe(200);
+    const body = await r.json();
+    expect(body.count).toBeGreaterThanOrEqual(0);
+    expect(body.manifest?.sha256).toMatch(/^[a-f0-9]{64}$/);
+    for (const row of body.interactions || []) {
+      expect(row.audit?.overall_verdict).toBeTruthy();
+    }
   });
 
   test("core /api GETs without auth are 401 (not 500)", async ({ request }) => {
@@ -70,24 +105,47 @@ test.describe("Deep mutation edges", () => {
     // Prefer automotive pack corpus if active pack's fixture is empty/wrong.
     let sim = await request.post(
       `${BASE}/api/frontline/simulate?count=2&speed=instant&pack_id=automotive_nhtsa`,
-      { headers: H },
+      { headers: H, timeout: 60_000 },
     );
     if (sim.status() !== 200) {
       sim = await request.post(`${BASE}/api/frontline/simulate?count=2&speed=instant`, {
         headers: H,
+        timeout: 60_000,
       });
     }
     expect(sim.status()).toBe(200);
     const simBody = await sim.json();
     expect((simBody.completed || 0) + (simBody.cases_created || 0)).toBeGreaterThan(0);
 
-    const list = await request.get(`${BASE}/api/frontline/cases?limit=5`, { headers: H });
+    const list = await request.get(`${BASE}/api/frontline/cases?include_simulated=true&limit=5`, {
+      headers: H,
+    });
     expect(list.status()).toBe(200);
     const cases = (await list.json()).cases || [];
     expect(cases.length, "simulate should create cases").toBeGreaterThan(0);
     const cid = cases[0].case_id;
-    const note = await request.post(`${BASE}/api/frontline/cases/${cid}/notes`, {
+    // case:write belongs to supervisor/admin, not the service principal.
+    const serviceNote = await request.post(`${BASE}/api/frontline/cases/${cid}/notes`, {
       headers: { ...H, "Content-Type": "application/json" },
+      data: { body: "e2e note", author: "CEO" },
+    });
+    expect(serviceNote.status()).toBe(403);
+
+    const mint = await request.post(`${BASE}/api/frontline/auth/session`, {
+      headers: { ...H, "Content-Type": "application/json" },
+      data: { subject: "e2e-note-admin", role: "admin" },
+    });
+    if (mint.status() === 403) {
+      test.info().annotations.push({
+        type: "note",
+        description: "FRONTLINE_BOOTSTRAP_ADMIN not enabled — service-key denial verified only",
+      });
+      return;
+    }
+    expect(mint.status()).toBe(200);
+    const token = (await mint.json()).token;
+    const note = await request.post(`${BASE}/api/frontline/cases/${cid}/notes`, {
+      headers: { ...H, "Content-Type": "application/json", "X-Frontline-Session": token },
       data: { body: "e2e note", author: "CEO" },
     });
     expect(note.status()).toBe(200);

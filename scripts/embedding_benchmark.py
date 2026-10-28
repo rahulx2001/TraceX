@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 
 from src.config import REPO_ROOT
-from src.ml_runtime.embedding_runtime import semantic_artifact_dir, try_semantic_embedder
+from src.ml_runtime.embedding_runtime import semantic_artifact_dir, onnx_intra_threads, reset_embedding_runtime
 from src.ml_runtime.hash_embedder import HashEmbedder
 from src.ml_runtime.onnx_embedder import OnnxSemanticEmbedder, ToySemanticEmbedder
 
@@ -34,7 +34,8 @@ TEXTS = [
 
 def _rss_mb() -> float:
     try:
-        return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1024 * 1024)
+        divisor = 1024 * 1024 if platform.system() == "Darwin" else 1024
+        return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / divisor
     except Exception:
         return 0.0
 
@@ -52,13 +53,23 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", default="reports/embedding_benchmark.json")
     p.add_argument("--iters", type=int, default=40)
     p.add_argument("--concurrency", default="20,50,100")
+    p.add_argument("--toy", action="store_true", help="Explicit synthetic benchmark; never ML acceptance evidence")
     args = p.parse_args(argv)
+    if args.iters < 1:
+        p.error("--iters must be positive")
+    try:
+        levels = [int(x.strip()) for x in args.concurrency.split(",") if x.strip()]
+    except ValueError:
+        p.error("--concurrency must contain positive integers")
+    if not levels or any(n < 1 or n > 256 for n in levels):
+        p.error("--concurrency must contain values between 1 and 256")
+    reset_embedding_runtime()
     rss0 = _rss_mb()
     t_init0 = time.perf_counter()
-    embedder = try_semantic_embedder()
-    used = "onnx" if embedder is not None else "toy"
-    if embedder is None:
-        embedder = ToySemanticEmbedder()
+    used = "toy" if args.toy else "onnx"
+    embedder = ToySemanticEmbedder() if args.toy else OnnxSemanticEmbedder(
+        semantic_artifact_dir(), intra_op_threads=onnx_intra_threads()
+    )
     # Warmup (not counted in warm latency).
     embedder.embed("warmup " + TEXTS[0])
     cold = time.perf_counter() - t_init0
@@ -94,6 +105,7 @@ def main(argv: list[str] | None = None) -> int:
         "rss_mb_after_load": round(_rss_mb(), 2),
         "rss_mb_before": round(rss0, 2),
         "cold_init_s": round(cold, 4),
+        "rss_measurement": "process peak resident set size (MiB)",
         "warm_single_s": {
             "p50": round(_pct(single, 50), 4),
             "p95": round(_pct(single, 95), 4),
@@ -113,7 +125,6 @@ def main(argv: list[str] | None = None) -> int:
     }
     from concurrent.futures import ThreadPoolExecutor
 
-    levels = [int(x) for x in str(args.concurrency).split(",") if x.strip()]
     def _one(i: int) -> float:
         t0 = time.perf_counter()
         embedder.embed(TEXTS[i % len(TEXTS)])

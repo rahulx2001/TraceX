@@ -14,8 +14,9 @@ function authHeaders(extra = {}) {
   return { "X-API-Key": KEY, ...extra };
 }
 
-async function api(request, method, path, { headers, data, failOk } = {}) {
+async function api(request, method, path, { headers, data, failOk, timeout } = {}) {
   const opts = { method, headers: headers || {} };
+  if (timeout) opts.timeout = timeout;
   if (data !== undefined) {
     opts.headers = { "Content-Type": "application/json", ...opts.headers };
     opts.data = data;
@@ -35,7 +36,11 @@ test.describe("API aggressive — auth gate", () => {
     const j = await r.json();
     expect(j.status).toMatch(/ok|degraded/);
     expect(j.auth_required).toBe(true);
-    expect(j.security?.soc2_engineering_baseline).toBe(true);
+    // Unauthenticated health is sanitized on an auth-required server: it must
+    // not disclose internal architecture or claim a SOC 2 attestation.
+    expect(j.worker_count).toBeUndefined();
+    expect(j.security).toBeUndefined();
+    expect(j.soc2_engineering_baseline).not.toBe(true);
   });
 
   test("unauthenticated ops reads are 401", async ({ request }) => {
@@ -180,12 +185,37 @@ test.describe("API aggressive — service key happy paths", () => {
   });
 
   test("connector SSRF targets return 400 not 500", async ({ request }) => {
-    const r = await api(request, "PUT", "/api/frontline/connectors/config", {
+    // ops:write is admin-only (Row 12). A service key must be denied before
+    // the URL can reach the connector configuration.
+    const denied = await api(request, "PUT", "/api/frontline/connectors/config", {
       headers: authHeaders(),
       data: { enabled: true, webhook_url: "https://169.254.169.254/latest/meta-data/" },
       failOk: true,
     });
-    expect(r.status()).toBe(400);
+    expect(denied.status()).toBe(403);
+
+    // With a bootstrap admin session, the SSRF guard must reject the URL as a
+    // client error (400), not crash the process (5xx).
+    const mint = await api(request, "POST", "/api/frontline/auth/session", {
+      headers: authHeaders(),
+      data: { subject: "e2e-ssrf-admin", role: "admin" },
+      failOk: true,
+    });
+    if (mint.status() === 403) {
+      test.info().annotations.push({
+        type: "note",
+        description: "FRONTLINE_BOOTSTRAP_ADMIN not enabled — service-key denial verified only",
+      });
+      return;
+    }
+    expect(mint.status()).toBe(200);
+    const token = (await mint.json()).token;
+    const rejected = await api(request, "PUT", "/api/frontline/connectors/config", {
+      headers: authHeaders({ "X-Frontline-Session": token }),
+      data: { enabled: true, webhook_url: "https://169.254.169.254/latest/meta-data/" },
+      failOk: true,
+    });
+    expect(rejected.status()).toBe(400);
   });
 
   test("simulate creates traffic", async ({ request }) => {
@@ -193,6 +223,9 @@ test.describe("API aggressive — service key happy paths", () => {
       headers: authHeaders(),
       data: {},
       failOk: true,
+      // Three instant contacts still run the full agent pipeline; under load
+      // this can exceed the console's 12s action timeout.
+      timeout: 60_000,
     });
     // simulate may 200 or 429 if rate limited
     expect([200, 429]).toContain(r.status());

@@ -34,6 +34,8 @@ from src.ml_runtime.embedding_store import (
     list_eligible_record_ids,
     mark_embedding_status,
     upsert_embedding,
+    upsert_embedding_batch,
+    source_text_digest,
 )
 
 
@@ -142,6 +144,10 @@ def run_backfill(
     run_id: str | None = None,
 ) -> dict[str, Any]:
     started = time.perf_counter()
+    if batch_size is not None and batch_size < 1:
+        raise ValueError("batch_size must be positive")
+    if limit is not None and limit < 0:
+        raise ValueError("limit must be nonnegative")
     ensure_pack_embedding_schema(pack_id)
     embedder = _select_embedder(embedding_version)
     if embedder.version != embedding_version:
@@ -229,7 +235,8 @@ def run_backfill(
             continue
         if len(vectors) != len(clean):
             raise RuntimeError("embedder returned a different batch size")
-        for (rid, _), vec in zip(clean, vectors):
+        writes = []
+        for (rid, text), vec in zip(clean, vectors):
             if vec.embedding_version != embedding_version:
                 mark_embedding_status(
                     pack_id,
@@ -243,21 +250,15 @@ def run_backfill(
                 )
                 summary["failed"] += 1
                 continue
-            upsert_embedding(
-                pack_id,
-                rid,
-                vec,
-                artifact_sha256=artifact_sha,
-                status="complete",
-                model_key=vec.model_key,
-                sanitized=False,
-            )
+            writes.append((rid, vec, source_text_digest(text)))
             summary["newly_completed"] += 1
             summary["last_record_id"] = rid
             if fail_after is not None and summary["newly_completed"] >= int(fail_after):
+                upsert_embedding_batch(pack_id, writes, artifact_sha256=artifact_sha)
                 summary["run_status"] = "interrupted"
                 _write_checkpoint(str(summary["run_id"]), summary, rid)
                 raise RuntimeError("injected_interrupt")
+        upsert_embedding_batch(pack_id, writes, artifact_sha256=artifact_sha)
         processed += len(batch)
         _write_checkpoint(str(summary["run_id"]), summary, summary.get("last_record_id"))
     elapsed = time.perf_counter() - started
@@ -267,7 +268,8 @@ def run_backfill(
     summary["skipped"] += summary["already_completed"]
     cov = coverage_for_version(pack_id, embedding_version)
     summary["coverage"] = cov
-    summary["run_status"] = "complete"
+    summary["run_status"] = ("failed" if summary["failed"] else
+                             "partial" if cov["complete"] < cov["eligible"] else "complete")
     summary["total_records"] = summary["eligible"]
     summary["completed"] = summary["already_completed"] + summary["newly_completed"]
     summary["in_progress"] = 0
@@ -283,18 +285,23 @@ def run_backfill(
 
 
 def job_handler(payload: dict[str, Any]) -> dict[str, Any]:
+    from src.domains.csv_load import as_bool
     pack = payload.get("pack_id") or "automotive_nhtsa"
     version = payload.get("embedding_version") or ""
     if not version:
         raise ValueError("embedding_version is required")
-    return run_backfill(
+    result = run_backfill(
         pack,
         version,
-        dry_run=bool(payload.get("dry_run")),
+        dry_run=as_bool(payload.get("dry_run")),
         batch_size=payload.get("batch_size"),
         limit=payload.get("limit"),
-        include_retry=bool(payload.get("include_retry", True)),
+        include_retry=as_bool(payload.get("include_retry", True)),
     )
+    if result.get("failed"):
+        result["ok"] = False
+        result["error"] = "embedding backfill contains failed records"
+    return result
 
 
 __all__ = ["run_backfill", "job_handler"]

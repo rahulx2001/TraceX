@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import logging
 import os
+import threading
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +35,8 @@ PRODUCTION_SEMANTIC_PREFIX = "all-MiniLM-L6-v2@"
 _HASH = HashEmbedder()
 _SEMANTIC: Embedder | None = None
 _SEMANTIC_ERROR: str | None = None
+_SEMANTIC_KEY: tuple | None = None
+_SEMANTIC_LOCK = threading.RLock()
 
 
 def embedding_mode() -> str:
@@ -148,14 +151,25 @@ def hash_embedder() -> HashEmbedder:
 
 
 def _load_semantic() -> Embedder:
-    global _SEMANTIC, _SEMANTIC_ERROR
-    if _SEMANTIC is not None:
+    with _SEMANTIC_LOCK:
+        return _load_semantic_locked()
+
+
+def _load_semantic_locked() -> Embedder:
+    global _SEMANTIC, _SEMANTIC_ERROR, _SEMANTIC_KEY
+    toy = os.getenv("FRONTLINE_EMBEDDING_TOY", "").strip() in {"1", "true", "yes"}
+    from src.ml_runtime.onnx_embedder import artifact_cache_key
+    key = (toy, artifact_cache_key(semantic_artifact_dir()), onnx_intra_threads(), backfill_batch_size(), expected_manifest_sha())
+    if _SEMANTIC is not None and _SEMANTIC_KEY == key:
         return _SEMANTIC
-    if os.getenv("FRONTLINE_EMBEDDING_TOY", "").strip() in {"1", "true", "yes"}:
+    _SEMANTIC = None
+    _SEMANTIC_KEY = None
+    if toy:
         from src.ml_runtime.onnx_embedder import ToySemanticEmbedder
 
         _SEMANTIC = ToySemanticEmbedder()
         _SEMANTIC_ERROR = None
+        _SEMANTIC_KEY = key
         return _SEMANTIC
     from src.ml_runtime.onnx_embedder import get_process_onnx_embedder
 
@@ -172,6 +186,7 @@ def _load_semantic() -> Embedder:
                 "configured FRONTLINE_SEMANTIC_MODEL_SHA256 does not match artifact"
             )
         _SEMANTIC = embedder
+        _SEMANTIC_KEY = key
         _SEMANTIC_ERROR = None
         return embedder
     except Exception as e:
@@ -210,9 +225,10 @@ def active_embedding_version() -> str:
 
 def reset_embedding_runtime() -> None:
     """Drop cached semantic provider (tests)."""
-    global _SEMANTIC, _SEMANTIC_ERROR
+    global _SEMANTIC, _SEMANTIC_ERROR, _SEMANTIC_KEY
     _SEMANTIC = None
     _SEMANTIC_ERROR = None
+    _SEMANTIC_KEY = None
     try:
         from src.ml_runtime.onnx_embedder import reset_process_onnx_embedder
 
@@ -265,7 +281,7 @@ def validate_startup_config() -> dict[str, Any]:
             )
         elif report.get("semantic_ready"):
             try:
-                from src.ml_runtime.cluster_builds import load_cluster_build
+                from src.ml_runtime.cluster_builds import load_cluster_build, retrieval_scorecard_approved
 
                 pack = os.getenv("DOMAIN_PACK") or "automotive_nhtsa"
                 build = load_cluster_build(pack, build_id)
@@ -275,6 +291,14 @@ def validate_startup_config() -> dict[str, Any]:
                     report["errors"].append(
                         "active cluster build embedding_version does not match the semantic embedder"
                     )
+                else:
+                    if build.get("status") != "active":
+                        report["errors"].append("configured cluster build is not active")
+                    model_key = build.get("coverage", {}).get("embedding_model_key")
+                    if not model_key or not retrieval_scorecard_approved(
+                        pack, sem.version, model_key=model_key
+                    ):
+                        report["errors"].append("active semantic build lacks a matching approved retrieval scorecard")
             except Exception as e:
                 report["errors"].append(f"cluster build inspect failed: {type(e).__name__}")
         allow_partial = os.getenv("FRONTLINE_EMBEDDING_ALLOW_PARTIAL", "").strip() in {

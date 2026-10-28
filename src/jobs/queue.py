@@ -360,7 +360,10 @@ def run_next(
     denial = _authorization_denial(jtype, req_role, req_by)
     if denial is not None:
         return _finish(jid, owner, ok=False, error=denial, terminal=True)
-    payload = json.loads(payload_raw or "{}")
+    try:
+        payload = validate_job_payload(jtype, json.loads(payload_raw or "{}"))
+    except (ValueError, TypeError) as exc:
+        return _finish(jid, owner, ok=False, error=f"invalid stored payload: {type(exc).__name__}", terminal=True)
     fn = _HANDLERS.get(jtype)
 
     import threading

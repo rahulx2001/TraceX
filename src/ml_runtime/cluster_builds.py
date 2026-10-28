@@ -11,6 +11,7 @@ import json
 import logging
 import math
 import time
+import pyarrow as pa
 from collections import Counter, defaultdict
 from typing import Any
 
@@ -380,6 +381,7 @@ def rebuild_cluster_build(
         except Exception:
             old_members = {}
         written = 0
+        assignment_rows = []
         for lab, idxs in sorted(by_lab.items()):
             cid = 1000 + lab
             uid = "clu_" + new_ulid()
@@ -464,15 +466,18 @@ def rebuild_cluster_build(
                 )
                 if dist > max_distance:
                     continue
-                con.execute(
-                    """
-                    INSERT INTO cluster_build_assignments
-                    (build_id, record_id, cluster_id, embedding_version, distance)
-                    VALUES (?, ?, ?, ?, ?)
-                    """,
-                    [build_id, records[i]["record_id"], cid, embedding_version, dist],
-                )
+                assignment_rows.append((build_id, records[i]["record_id"], cid, embedding_version, dist))
                 written += 1
+        if assignment_rows:
+            table = pa.Table.from_pylist([
+                dict(zip(("build_id", "record_id", "cluster_id", "embedding_version", "distance"), row))
+                for row in assignment_rows
+            ])
+            con.register("_versioned_assignments", table)
+            try:
+                con.execute("INSERT INTO cluster_build_assignments SELECT build_id, record_id, cluster_id, embedding_version, distance FROM _versioned_assignments")
+            finally:
+                con.unregister("_versioned_assignments")
         coverage = {
             "included": eligible_embedded,
             "excluded": excluded,
@@ -653,7 +658,7 @@ def activate_cluster_build(pack_id: str, build_id: str) -> dict[str, Any]:
     with domain_con(pack_id, read_only=False) as con:
         ensure_cluster_build_tables(con)
         row = con.execute(
-            "SELECT status, embedding_version FROM cluster_builds WHERE build_id = ? AND pack_id = ?",
+            "SELECT status, embedding_version, coverage_json FROM cluster_builds WHERE build_id = ? AND pack_id = ?",
             [build_id, pack_id],
         ).fetchone()
         if not row:
@@ -661,7 +666,8 @@ def activate_cluster_build(pack_id: str, build_id: str) -> dict[str, Any]:
         if row[0] not in {"built", "active", "superseded", "rolled_back"}:
             raise ValueError(f"cannot activate cluster build in status {row[0]!r}")
         if _semantic_embedding_version(str(row[1] or "")) and not _scorecard_rows_match(
-            _approved_scorecard_rows(con, pack_id, str(row[1] or ""))
+            _approved_scorecard_rows(con, pack_id, str(row[1] or "")),
+            model_key=json.loads(row[2] or "{}").get("embedding_model_key", ""),
         ):
             raise ValueError(
                 "semantic cluster build requires an approved retrieval scorecard "

@@ -28,3 +28,74 @@ groups:
       - VISIBILITY
       - WHEELS
       - TIRES
+
+# Builder-authored component descriptions, not reviewed training labels.
+# Used only with FRONTLINE_CATEGORY_ZS_PROFILE=descriptions. Keep competing
+# components separate; ambiguous symptoms must still pass the margin gate.
+category_profiles:
+  SERVICE BRAKES:
+    - "The service brake foot pedal and hydraulic braking system slow and stop the moving vehicle. Defects include excessive pedal travel, loss of stopping power, fluid leaks, vibration during braking, and noisy brake pads or rotors."
+    - "Pressing the brake pedal does not decelerate the car normally. The foot pedal feels soft, requires repeated pumping, or takes much more distance to bring the vehicle to rest."
+  PARKING BRAKE:
+    - "The parking brake or handbrake holds a parked car stationary. The parking brake lever, electric parking brake actuator, or parking brake switch fails to engage or release."
+  ENGINE:
+    - "The combustion engine stops running, idles unevenly, misfires, knocks, overheats, or consumes engine oil. Engine failure causes the motor to cut out or refuse to restart."
+    - "An engine problem causes loss of motor power, abnormal engine noises, exhaust smoke, burning oil, or stalling at idle and while driving."
+  POWER TRAIN:
+    - "The transmission, gearbox, clutch, driveshaft, or differential fails to transfer engine power to the wheels. Gear changes become rough, delayed, slipping, or fail to engage."
+    - "The engine revs but the car does not move as expected. The transmission jerks when changing gears, shifts into neutral, hesitates when selecting drive or reverse, or shudders under acceleration."
+  AIR BAGS:
+    - "The supplemental restraint system, passenger occupant sensor, airbag inflator, or airbag warning indicator malfunctions. An airbag may fail to deploy in a collision or deploy unexpectedly."
+    - "A dashboard restraint warning depicts a seated person and an airbag. Occupant detection incorrectly disables the passenger airbag or the airbag warning remains illuminated."
+  SEAT BELTS:
+    - "The occupant safety belt, shoulder harness, buckle, latch, webbing, retractor, or pretensioner fails. The belt cannot buckle, retract, extend, tighten, or hold an occupant securely."
+    - "The seat belt strap stays loose or stuck, the buckle releases unexpectedly, or the shoulder restraint does not lock when the vehicle decelerates."
+  ELECTRICAL SYSTEM:
+    - "The vehicle electrical supply, battery, wiring, charging system, instrument panel, infotainment display, power accessories, or switches malfunction. Multiple electrical devices lose power or work intermittently."
+    - "The dashboard display blacks out, gauges reset, electrical accessories stop responding, or the battery goes flat when parked. Several powered windows, mirrors, locks, or cabin lights fail together."
+  EXTERIOR LIGHTING:
+    - "Exterior headlamps, brake lamps, tail lamps, turn indicators, or fog lamps fail to illuminate correctly. Vehicle lighting outside the cabin is dim, flickers, or stops working."
+  STEERING:
+    - "The steering wheel, steering rack, tie rods, or power steering system makes the vehicle difficult to direct. Steering becomes heavy, locks, pulls sideways, feels loose, or shakes through the driver's hands."
+    - "The driver cannot turn or keep the car travelling straight. Steering assistance cuts out or excessive play and vibration affect directional control."
+  SUSPENSION:
+    - "The vehicle suspension springs, dampers, struts, shocks, or control arms fail to cushion road bumps and maintain ride height. The body bounces, sags, bottoms out, or clunks over uneven roads."
+    - "A rough ride, repeated body oscillation, uneven ride height, or knocking under the chassis when crossing bumps indicates a suspension defect."
+  WHEELS:
+    - "The wheel rim, wheel bearing, hub, or wheel fastener cracks, loosens, separates, or becomes damaged. A wheel bearing makes noise or a wheel is physically bent."
+  TIRES:
+    - "The rubber tire loses air pressure, punctures, blows out, develops a sidewall bulge, separates its tread, or wears abnormally."
+  VEHICLE SPEED CONTROL:
+    - "The accelerator pedal, throttle controller, or cruise control causes unintended acceleration or fails to regulate vehicle speed. The car speeds up without driver input or the accelerator sticks."
+  ELECTRONIC STABILITY CONTROL:
+    - "Electronic stability control incorrectly intervenes or fails to correct a skid. The stability control warning appears or the vehicle's yaw-control system malfunctions."
+  TRACTION CONTROL SYSTEM:
+    - "Traction control fails to limit wheelspin on slippery surfaces, activates incorrectly, or displays a traction control fault."
+  LANE DEPARTURE:
+    - "The lane departure warning or lane keeping driver assistance falsely detects road markings, gives incorrect alerts, or makes unwanted automatic steering corrections."
+  FORWARD COLLISION AVOIDANCE:
+    - "The forward collision warning, collision radar, or automatic emergency braking falsely detects an obstacle, brakes without reason, or fails to warn about traffic ahead."
+  BACKOVER PREVENTION:
+    - "The rearview reversing camera, rear parking sensors, or backup warning system fails to show or warn about objects behind the vehicle."
+  LATCHES/LOCKS/LINKAGES:
+    - "The door, hood, or trunk latch and locking mechanism fails mechanically. A door will not latch shut, cannot be unlatched, or opens unexpectedly."
+  STRUCTURE:
+    - "The vehicle body, frame, panels, roof, or structural seams corrode, crack, separate, leak water, or develop structural damage."
+  VISIBILITY:
+    - "The windshield, windows, rearview mirrors, defroster, or glass visibility system obstructs the driver's view. Glass cracks or fogging cannot be cleared."
+  VISIBILITY/WIPER:
+    - "The windshield wiper blades, wiper motor, or washer system fails to clear rain, snow, or dirt from the windshield."
+  SEATS:
+    - "The seat frame, seat adjustment motor, seat back, seat rail, or seat cushion fails, moves unexpectedly, or cannot maintain its position."
+  CHILD SEAT:
+    - "A child safety seat, infant restraint, child seat harness, or child seat anchor malfunctions or cannot be installed securely."
+  FUEL SYSTEM:
+    - "The fuel tank, fuel pump, fuel lines, fuel injectors, or fuel delivery system leaks gasoline or fails to deliver fuel to the engine."
+  FUEL/PROPULSION SYSTEM:
+    - "The fuel delivery or propulsion system develops a fuel leak, fuel pressure fault, or loss of propulsion energy supply."
+  HYBRID PROPULSION SYSTEM:
+    - "The hybrid electric propulsion battery, inverter, high voltage system, or hybrid drive motor malfunctions. The hybrid vehicle cannot switch between electric and engine power normally."
+  EQUIPMENT:
+    - "Vehicle equipment and accessories such as a trailer hitch, jack, or accessory device have a defect not covered by a named vehicle system."
+  UNKNOWN OR OTHER:
+    - "The caller has an unspecified vehicle concern with insufficient detail to identify the affected component."

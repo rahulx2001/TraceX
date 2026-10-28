@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { apiHeaders } from "../src/apiAuth.js";
 import {
+  fetchOpenP1Cases,
   goHash,
   includeSimQuery,
   openCases,
@@ -105,16 +106,20 @@ export default function CommandCenter({ refreshKey }) {
       // Render each operational snapshot as soon as it arrives. Optional
       // analytics and the audit export must not hold the floor view hostage.
       const core = await Promise.allSettled([
+        ...[
         ["/health", setHealth],
         [`/api/frontline/wallboard?include_simulated=${sim}`, setWall],
         [`/api/frontline/metrics?include_simulated=${sim}`, setMetrics],
         ["/api/frontline/usage", setUsage],
         ["/api/frontline/ops/drain", setDrain],
-        [`/api/frontline/cases?severity=Critical&status=open&limit=8&include_simulated=${sim}`, (d) => setP1Cases(d.cases || [])],
       ].map(async ([url, apply]) => {
         const data = await json(url);
         if (!ctrl.signal.aborted) apply(data);
-      }));
+      }),
+        fetchOpenP1Cases(8, { getJson: json }).then((cases) => {
+          if (!ctrl.signal.aborted) setP1Cases(cases);
+        }),
+      ]);
       if (ctrl.signal.aborted) return;
       const failures = core.filter((r) => r.status === "rejected");
       setErr(failures.map((r) => String(r.reason?.message || r.reason)).join(" · "));

@@ -397,6 +397,25 @@ async def auth_signup(request: Request, body: dict[str, Any]) -> JSONResponse:
     return resp
 
 
+@router.post("/auth/session/exchange")
+@limiter.limit("10 per minute")
+async def exchange_session(request: Request, body: dict[str, Any]) -> JSONResponse:
+    """Use an already issued session in the browser without minting privileges."""
+    import time
+    from src.api.rbac import verify_session
+
+    token = str(body.get("token") or "").strip()
+    if not token or len(token) > 8192:
+        raise HTTPException(status_code=401, detail="Invalid session token.")
+    try:
+        claims = verify_session(token)
+    except (ValueError, TypeError):
+        raise HTTPException(status_code=401, detail="Invalid session token.") from None
+    resp = JSONResponse({"success": True, "subject": claims.get("sub"), "role": claims.get("role")})
+    _session_cookie(resp, token, max_age=max(1, int(claims["exp"] - time.time())))
+    return resp
+
+
 @router.post("/auth/login")
 @limiter.limit("10 per minute")
 async def auth_login(request: Request, body: dict[str, Any]) -> JSONResponse:

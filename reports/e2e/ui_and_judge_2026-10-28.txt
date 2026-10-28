@@ -1,0 +1,29 @@
+
+Running 23 tests using 1 worker
+
+  ✓   1 [chromium] › e2e/judge.workflow.spec.js:8:1 › judge operator login and supervisor review work in the browser (5.0s)
+  ✓   2 [chromium] › e2e/ui.console.spec.js:39:3 › UI shell — all nav routes › loads command center with health (967ms)
+  ✓   3 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #command renders without crash (31.1s)
+  ✓   4 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #call renders without crash (1.6s)
+  ✓   5 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #console renders without crash (1.7s)
+  ✓   6 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #cases renders without crash (1.5s)
+  ✓   7 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #warning renders without crash (1.8s)
+  ✓   8 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #audits renders without crash (1.5s)
+  ✓   9 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #platform renders without crash (1.6s)
+  ✓  10 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #settings renders without crash (1.8s)
+  ✓  11 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #insights renders without crash (1.8s)
+  ✓  12 [chromium] › e2e/ui.console.spec.js:53:5 › UI shell — all nav routes › nav #studio renders without crash (2.0s)
+  ✓  13 [chromium] › e2e/ui.console.spec.js:69:3 › UI shell — all nav routes › theme toggle cycles dark/light (367ms)
+  ✓  14 [chromium] › e2e/ui.console.spec.js:81:3 › UI shell — all nav routes › command palette opens with meta+k (816ms)
+  ✓  15 [chromium] › e2e/ui.console.spec.js:99:3 › UI Settings — API key + packs under auth › settings shows pack list after key is stored (2.4s)
+  ✓  16 [chromium] › e2e/ui.console.spec.js:120:3 › UI Settings — API key + packs under auth › without key, settings pack load surfaces auth error (not silent empty only) (2.0s)
+  ✓  17 [chromium] › e2e/ui.console.spec.js:143:3 › UI Case queue — authenticated list › cases page loads without hard error when key present (2.2s)
+  ✓  18 [chromium] › e2e/ui.console.spec.js:161:3 › UI Command center — metrics fetch › wallboard/metrics requests succeed with key (31.9s)
+  ✓  19 [chromium] › e2e/ui.interactions.spec.js:18:3 › UI interactions › sidebar nav clicks visit every primary item (195ms)
+  ✓  20 [chromium] › e2e/ui.interactions.spec.js:46:3 › UI interactions › settings save key reloads packs (no 401) (2.7s)
+  ✓  21 [chromium] › e2e/ui.interactions.spec.js:92:3 › UI interactions › case queue export button does not 401 (2.7s)
+  ✓  22 [chromium] › e2e/ui.interactions.spec.js:111:3 › UI interactions › enterprise ops load does not 500/401 (2.9s)
+  ✓  23 [chromium] › e2e/ui.interactions.spec.js:128:3 › UI interactions › platform OS loads without 401 (2.7s)
+
+  23 passed (1.7m)
+EXIT:0

@@ -89,21 +89,21 @@ def _builder_upload_cap() -> int:
 
 
 @router.get("/trust/kpis")
-async def trust_kpis() -> dict[str, Any]:
+def trust_kpis() -> dict[str, Any]:
     from src.frontline.provenance import list_kpis
 
     return {"kpis": list_kpis()}
 
 
 @router.get("/provenance/kpis")
-async def provenance_kpis() -> dict[str, Any]:
+def provenance_kpis() -> dict[str, Any]:
     from src.frontline.provenance import list_kpis
 
     return {"kpis": list_kpis()}
 
 
 @router.get("/provenance/kpis/{kpi_id}")
-async def provenance_kpi(kpi_id: str, record_id: str | None = None, pack_id: str | None = None) -> dict[str, Any]:
+def provenance_kpi(kpi_id: str, record_id: str | None = None, pack_id: str | None = None) -> dict[str, Any]:
     from src.frontline.provenance import figure_lineage
 
     try:
@@ -113,7 +113,7 @@ async def provenance_kpi(kpi_id: str, record_id: str | None = None, pack_id: str
 
 
 @router.get("/validation-queue")
-async def validation_queue() -> dict[str, Any]:
+def validation_queue() -> dict[str, Any]:
     from src.frontline.validation_queue import list_queue_all, list_reviews
 
     items = list_queue_all()
@@ -122,7 +122,7 @@ async def validation_queue() -> dict[str, Any]:
 
 
 @router.post("/reviews/{review_id}/assign")
-async def review_assign(
+def review_assign(
     review_id: str,
     body: dict[str, Any],
     role: str = Depends(get_role),
@@ -144,7 +144,7 @@ async def review_assign(
 
 
 @router.post("/reviews/{review_id}/resolve")
-async def review_resolve(
+def review_resolve(
     review_id: str,
     body: dict[str, Any],
     role: str = Depends(get_role),
@@ -170,7 +170,7 @@ async def review_resolve(
 
 
 @router.post("/sandbox/boot")
-async def sandbox_boot(body: dict[str, Any] | None = None) -> dict[str, Any]:
+def sandbox_boot(body: dict[str, Any] | None = None) -> dict[str, Any]:
     from src.frontline.sandbox import boot_sandbox
 
     body = body or {}
@@ -226,9 +226,9 @@ async def pack_builder_profile(file: UploadFile = File(...)) -> dict[str, Any]:
     # Refuse obvious non-CSV binaries (NUL bytes / MZ header)
     if b"\x00" in raw[:4096] or raw[:2] == b"MZ":
         raise HTTPException(400, "not a csv file")
-    dest.write_bytes(raw)
+    await ops_in_thread(dest.write_bytes, raw)
     try:
-        profile = profile_csv(dest)
+        profile = await ops_in_thread(profile_csv, dest)
     except Exception:
         # Malformed CSV must not leave orphaned upload files behind.
         try:
@@ -236,12 +236,12 @@ async def pack_builder_profile(file: UploadFile = File(...)) -> dict[str, Any]:
         except OSError:
             pass
         raise
-    lint = lint_mapping(profile["proposed_mapping"], profile["columns"])
+    lint = await ops_in_thread(lint_mapping, profile["proposed_mapping"], profile["columns"])
     return {**profile, "lint": lint, "csv_path": str(dest)}
 
 
 @router.post("/pack-builder/insight")
-async def pack_builder_insight(
+def pack_builder_insight(
     request: Request,
     body: dict[str, Any],
     role: str = Depends(get_role),
@@ -276,7 +276,7 @@ async def pack_builder_insight(
         Depends(require_perm_dep("ops:write", open_mode_ok=False)),
     ],
 )
-async def pack_builder_ingest(
+def pack_builder_ingest(
     body: dict[str, Any],
     role: str = Depends(get_role),
     actor: str = Depends(get_actor),
@@ -355,7 +355,7 @@ async def pack_builder_ingest(
 
 
 @router.post("/marketplace/install/{pack_id}")
-async def marketplace_install(pack_id: str, role: str = Depends(get_role)) -> dict[str, Any]:
+def marketplace_install(pack_id: str, role: str = Depends(get_role)) -> dict[str, Any]:
     from src.api.rbac import require_perm
     from src.domains.marketplace import install_vertical
 
@@ -367,7 +367,7 @@ async def marketplace_install(pack_id: str, role: str = Depends(get_role)) -> di
 
 
 @router.get("/billing/usage")
-async def usage(tenant_id: str | None = None) -> dict[str, Any]:
+def usage(tenant_id: str | None = None) -> dict[str, Any]:
     from src.frontline.billing import usage_dashboard
     from src.ops.tenant import get_tenant
 
@@ -376,7 +376,7 @@ async def usage(tenant_id: str | None = None) -> dict[str, Any]:
 
 
 @router.post("/billing/checkout")
-async def billing_checkout(body: dict[str, Any]) -> dict[str, Any]:
+def billing_checkout(body: dict[str, Any]) -> dict[str, Any]:
     from src.frontline.billing import stripe_checkout
     from src.ops.tenant import get_tenant
 
@@ -401,7 +401,7 @@ async def billing_webhook(request: Request, body: dict[str, Any]) -> dict[str, A
         "Stripe-Signature"
     )
     try:
-        return stripe_webhook(body, raw_body=raw, signature=sig)
+        return await ops_in_thread(stripe_webhook, body, raw_body=raw, signature=sig)
     except PermissionError as e:
         raise HTTPException(status_code=401, detail=str(e)) from e
     except LookupError as e:
@@ -411,7 +411,7 @@ async def billing_webhook(request: Request, body: dict[str, Any]) -> dict[str, A
 
 
 @router.post("/seats")
-async def seats_assign(body: dict[str, Any], role: str = Depends(get_role)) -> dict[str, Any]:
+def seats_assign(body: dict[str, Any], role: str = Depends(get_role)) -> dict[str, Any]:
     from src.api.rbac import require_perm
     from src.frontline.billing import assign_seat
     from src.ops.tenant import get_tenant
@@ -429,7 +429,7 @@ async def seats_assign(body: dict[str, Any], role: str = Depends(get_role)) -> d
 
 
 @router.post("/keys")
-async def keys_create(
+def keys_create(
     request: Request,
     body: dict[str, Any],
     role: str = Depends(get_role),
@@ -556,14 +556,14 @@ async def keys_create(
 
 
 @router.get("/webhooks/catalog")
-async def webhooks_catalog() -> dict[str, Any]:
+def webhooks_catalog() -> dict[str, Any]:
     from src.frontline.webhook_catalog import list_catalog
 
     return {"events": list_catalog()}
 
 
 @router.post("/webhooks/tick")
-async def webhooks_tick(body: dict[str, Any] | None = None) -> dict[str, Any]:
+def webhooks_tick(body: dict[str, Any] | None = None) -> dict[str, Any]:
     from src.frontline.webhook_catalog import fire_due_tick
 
     body = body or {}
@@ -571,7 +571,7 @@ async def webhooks_tick(body: dict[str, Any] | None = None) -> dict[str, Any]:
 
 
 @router.post("/nl/query")
-async def nl_query(body: dict[str, Any]) -> dict[str, Any]:
+def nl_query(body: dict[str, Any]) -> dict[str, Any]:
     from src.enterprise.grounded_nl import grounded_query
 
     return grounded_query(
@@ -582,21 +582,21 @@ async def nl_query(body: dict[str, Any]) -> dict[str, Any]:
 
 
 @router.post("/views")
-async def views_save(body: dict[str, Any]) -> dict[str, Any]:
+def views_save(body: dict[str, Any]) -> dict[str, Any]:
     from src.frontline.saved_views import save_view
 
     return save_view(str(body.get("name") or "untitled"), body.get("spec") or {})
 
 
 @router.post("/reports")
-async def reports_build(body: dict[str, Any]) -> dict[str, Any]:
+def reports_build(body: dict[str, Any]) -> dict[str, Any]:
     from src.frontline.reports import build_report
 
     return build_report(str(body.get("title") or "Report"), kpi_ids=body.get("kpi_ids"), notes=str(body.get("notes") or ""))
 
 
 @router.post("/reports/digest")
-async def reports_digest(body: dict[str, Any] | None = None) -> dict[str, Any]:
+def reports_digest(body: dict[str, Any] | None = None) -> dict[str, Any]:
     from src.frontline.reports import run_scheduled_digest
 
     body = body or {}
@@ -604,21 +604,21 @@ async def reports_digest(body: dict[str, Any] | None = None) -> dict[str, Any]:
 
 
 @router.get("/ops/slo")
-async def ops_slo() -> dict[str, Any]:
+def ops_slo() -> dict[str, Any]:
     from src.observability.slo import evaluate_slos, job_queue_status, slo_dashboard
 
     return {"slo": slo_dashboard(), "jobs": job_queue_status(), "eval": evaluate_slos()}
 
 
 @router.get("/ops/workers")
-async def ops_workers() -> dict[str, Any]:
+def ops_workers() -> dict[str, Any]:
     from src.jobs.registry import list_workers
 
     return {"workers": list_workers()}
 
 
 @router.post("/compliance/{key}/toggle")
-async def compliance_toggle(key: str, body: dict[str, Any] | None = None) -> dict[str, Any]:
+def compliance_toggle(key: str, body: dict[str, Any] | None = None) -> dict[str, Any]:
     from src.frontline.compliance_packs import toggle_pack
 
     body = body or {}
@@ -629,7 +629,7 @@ async def compliance_toggle(key: str, body: dict[str, Any] | None = None) -> dic
 
 
 @router.get("/compliance/{key}/template")
-async def compliance_template(key: str) -> dict[str, Any]:
+def compliance_template(key: str) -> dict[str, Any]:
     from src.frontline.compliance_packs import evidence_template
 
     try:
@@ -649,7 +649,7 @@ async def copq_rank(window_days: int = 7, include_simulated: bool = False) -> di
 
 
 @router.get("/copq/roi")
-async def copq_roi(issues_caught: int = 0, copq_per_issue: float = 0, lead_time_weeks: float = 0) -> dict[str, Any]:
+def copq_roi(issues_caught: int = 0, copq_per_issue: float = 0, lead_time_weeks: float = 0) -> dict[str, Any]:
     from src.frontline.copq import roi_attribution
 
     return roi_attribution(
@@ -660,14 +660,14 @@ async def copq_roi(issues_caught: int = 0, copq_per_issue: float = 0, lead_time_
 
 
 @router.get("/analytics/hotspots-map")
-async def hotspots_map(pack_id: str | None = None, window_days: int = 90) -> dict[str, Any]:
+def hotspots_map(pack_id: str | None = None, window_days: int = 90) -> dict[str, Any]:
     from src.frontline.analytics import geographic_hotspots
 
     return geographic_hotspots(pack_id=pack_id, window_days=window_days)
 
 
 @router.get("/widget/skew-widget.js")
-async def widget_script() -> FileResponse:
+def widget_script() -> FileResponse:
     path = REPO_ROOT / "dashboard" / "public" / "skew-widget.js"
     if not path.is_file():
         raise HTTPException(404, "widget missing")
@@ -675,7 +675,7 @@ async def widget_script() -> FileResponse:
 
 
 @router.get("/scoped")
-async def scoped_probe(x_scoped_key: str | None = Header(default=None, alias="X-Scoped-Key")) -> dict[str, Any]:
+def scoped_probe(x_scoped_key: str | None = Header(default=None, alias="X-Scoped-Key")) -> dict[str, Any]:
     from src.security.scoped_keys import authenticate_scoped
 
     result = authenticate_scoped(x_scoped_key or "", "kpi:read")

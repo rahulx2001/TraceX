@@ -180,18 +180,22 @@ class InvestigatorAgent(Agent):
         ctx = self.ctx
         try:
             from src.ops.pilot import agent_enabled
-            from src.ledger import record_action as _ra
-            if not agent_enabled("investigator"):
+            enabled = agent_enabled("investigator")
+        except Exception:
+            enabled = False
+        if not enabled:
+            try:
+                from src.ledger import record_action as _ra
                 _ra(self._action(action_type="investigation_briefed",
                                  input_summary="flag disabled",
                                  output_summary="investigator disabled; skipped"))
-                return {
-                    "skipped": True,
-                    "outcome": "not_applicable",
-                    "reason": "disabled_by_flag",
-                }
-        except Exception:
-            pass
+            except Exception:
+                pass
+            return {
+                "skipped": True,
+                "outcome": "not_applicable",
+                "reason": "disabled_by_flag",
+            }
         entity_2 = ctx.slots.get("entity_2")
         entity_3 = ctx.slots.get("entity_3")
         category = ctx.slots.get("category")

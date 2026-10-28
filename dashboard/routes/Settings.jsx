@@ -374,8 +374,10 @@ export default function Settings() {
             <span className="mono">FRONTLINE_AUTH_REQUIRED=1</span>.
           </li>
           <li>
-            Restart the API process (the uvicorn on port 8000). A browser refresh is not enough,
-            because the key is read at process start.
+            Restart the API with the documented command:
+            python -m uvicorn src.api.main:app --host 127.0.0.1 --port 8000.
+            That process loads the repo .env itself. A browser refresh is not enough, and this
+            page never accepts the Meta key.
           </li>
           <li>
             Return here or look at the top bar. It should change from "AI: Deterministic" to the

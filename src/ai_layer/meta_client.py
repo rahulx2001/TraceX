@@ -6,8 +6,8 @@ usable text through ``fallback`` on any miss. Structured calls
 (``chat_json``) raise ``MetaError`` instead, and every caller in
 ``src.ai_layer`` catches it and keeps the deterministic value.
 
-Wire shapes (from https://dev.meta.ai/docs, read 2026-10-21; NOT exercised
-against the live API from this repo, so all of it is env-configurable):
+Wire shapes (from https://dev.meta.ai/docs; live text intake verified on
+2026-10-28 in reports/hackathon/meta_live_smoke.json; media is unverified):
 
 * Chat Completions, OpenAI-compatible: ``POST {base}/chat/completions`` with
   ``Authorization: Bearer <key>``, ``response_format`` = ``json_schema``.
@@ -24,7 +24,7 @@ Safety properties:
   (``src.security.url_guard``) still runs on approved hosts.
 * Customer text is PII-redacted before it leaves the process.
 * Timeouts on every attempt, bounded retries on 429/5xx/network errors only.
-* A process-local daily call cap.
+* A cross-process daily call cap and conservative lifetime spend ledger.
 """
 
 from __future__ import annotations
@@ -282,6 +282,61 @@ def guard_url(url: str) -> str:
     return url
 
 
+_REMOTE_ID_KEYS = frozenset({
+    "previous_response_id", "file_id", "vector_store_id", "assistant_id", "batch_id", "id",
+})
+
+
+def resource_path() -> Path:
+    raw = os.getenv("META_RESOURCE_PATH") or "~/.cache/skewai/meta_resource_host"
+    return Path(raw).expanduser()
+
+
+def bound_resource_host() -> str:
+    try:
+        return resource_path().read_text(encoding="utf-8").strip().lower()
+    except OSError:
+        return ""
+
+
+def remember_resource_host(host: str) -> None:
+    path = resource_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text((host or "").lower(), encoding="utf-8")
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
+
+
+def is_cross_resource_error(body: bytes) -> bool:
+    text = (body or b"").decode("utf-8", "replace").lower()
+    return "different azure openai resource" in text or "created under a different" in text
+
+
+def drop_foreign_resource_ids(payload: dict[str, Any], *, stored_host: str, current_host: str,
+                              force: bool = False) -> tuple[dict[str, Any], bool]:
+    """Drop ids that belong to another Azure/Meta resource.
+
+    A file, batch, assistant, vector-store, or response id created on one
+    resource cannot be read with a key that now talks to a different one.
+    Sending that id again returns the same error with a new trace id. The
+    caller creates the item again on the current endpoint instead.
+    """
+    mismatch = force or bool(stored_host and current_host and stored_host != current_host)
+    if not mismatch:
+        return payload, False
+
+    def strip(value: Any) -> Any:
+        if isinstance(value, dict):
+            return {k: strip(v) for k, v in value.items() if k not in _REMOTE_ID_KEYS}
+        if isinstance(value, list):
+            return [strip(v) for v in value]
+        return value
+
+    return strip(payload), True
+
+
 def _post(url: str, payload: dict[str, Any], *, timeout: float, accept: str | None = None) -> HttpResponse:
     if not config.meta_enabled():
         raise MetaError("meta_disabled")
@@ -293,10 +348,18 @@ def _post(url: str, payload: dict[str, Any], *, timeout: float, accept: str | No
     }
     if accept:
         headers["Accept"] = accept
+    host = (urlparse(url).hostname or "").lower()
+    payload, _ = drop_foreign_resource_ids(
+        payload, stored_host=bound_resource_host(), current_host=host,
+    )
     body = json.dumps(payload).encode("utf-8")
     attempts = 1 + config.retries()
     last = "meta_unknown_error"
-    for i in range(attempts):
+    cross_resource_retried = False
+    i = 0
+    while i < attempts:
+        from src.ai_layer.budget import reserve, complete
+        reservation = reserve(payload)
         _reserve_call()
         try:
             resp = _transport(url, body, headers, timeout)
@@ -304,12 +367,25 @@ def _post(url: str, payload: dict[str, Any], *, timeout: float, accept: str | No
             last = f"meta_network:{type(e).__name__}"
         else:
             if 200 <= resp.status < 300:
+                complete(reservation, resp.body, live=_transport is _urllib_transport)
+                remember_resource_host(host)
                 return resp
+            if not cross_resource_retried and is_cross_resource_error(resp.body):
+                # This resend is not part of the normal retry budget. META_RETRIES=0
+                # must still drop the foreign id and create the item on this host.
+                payload, _ = drop_foreign_resource_ids(
+                    payload, stored_host=host, current_host="", force=True,
+                )
+                body = json.dumps(payload).encode("utf-8")
+                cross_resource_retried = True
+                last = "meta_cross_resource_retry"
+                continue
             last = f"meta_http_{resp.status}"
             if resp.status != 429 and resp.status < 500:
                 raise MetaError(last)
         if i + 1 < attempts:
             time.sleep(min(2.0, 0.25 * (2 ** i)))
+        i += 1
     raise MetaError(last)
 
 
@@ -342,7 +418,7 @@ def chat_json(
     images: list[str] | None = None,
     model: str | None = None,
     timeout: float | None = None,
-    max_tokens: int = 700,
+    max_tokens: int = 2000,
 ) -> dict[str, Any]:
     """One schema-constrained Muse Spark call. Returns validated JSON or raises."""
     user_text = _redact(user)
@@ -372,7 +448,13 @@ def chat_json(
         raise MetaError("meta_bad_envelope") from e
     if isinstance(text, list):  # some servers return content parts
         text = "".join(str(p.get("text") or "") for p in text if isinstance(p, dict))
-    value = _parse_json_text(str(text or ""))
+    try:
+        value = _parse_json_text(str(text or ""))
+    except MetaError:
+        import logging
+        logging.getLogger(__name__).warning("Meta JSON rejected: finish_reason=%s content_chars=%d completion_tokens=%s",
+            data["choices"][0].get("finish_reason"), len(str(text or "")), (data.get("usage") or {}).get("completion_tokens"))
+        raise
     errors = validate(value, schema)
     if errors:
         raise MetaError("meta_schema_invalid:" + errors[0][:120])

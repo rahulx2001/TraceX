@@ -1,0 +1,72 @@
+==============================================================================
+batch key: 72b4b11d45f48744b894cb777912b3bd903f0b853dc9ec508bd985f93db81083
+component: AIR BAGS  records: 8
+------------------------------------------------------------------------------
+Component: AIR BAGS
+
+Allowed labels:
+- inflator_module_overheat: INFLATOR MODULE / overheat — A defect in the inflator module whose train-window recalls are dominated by overheat.
+- air_bag_restraint_control_module_failure: AIR BAG/RESTRAINT CONTROL MODULE / failure — A defect in the air bag/restraint control module whose train-window recalls are dominated by failure.
+- side_window_detachment: SIDE/WINDOW / detachment — A defect in the side/window whose train-window recalls are dominated by detachment.
+- frontal_crack_or_fracture: FRONTAL / crack or fracture — A defect in the frontal whose train-window recalls are dominated by crack or fracture.
+- air_bags_compliance_or_label: AIR BAGS / compliance or label — A defect in the air bags whose train-window recalls are dominated by compliance or label.
+- occupant_classification_software: OCCUPANT CLASSIFICATION / software — A defect in the occupant classification whose train-window recalls are dominated by software.
+- other_unclear: other/unclear — No specific label fits, or the narrative is too vague.
+
+Narratives:
+[c1]
+DRIVER'S DOOR WAS DEMOLISHED AND SIDE CURTAIN AIRBAG DIDN'T DEPLOY.   *JS
+
+[c2]
+HIT BLACK ICE. TRUCK SLID OFF THE ROAD AND  FRONT END IMPACTED THE DITCH CAUSING HEAVY DAMAGE TO THE FRONT END. AIR BAG FAILED TO DEPLOY CAUSING INJURY.   *JS
+
+[c3]
+I WAS DRIVING TO THE WORK, A SEMI TRUCK WAS  FRONT OF MY JEEP,IT WAS A STOP SIGN AND THE SEMI TRUCK WAS STOPPING AND I WAS SLOWING DOWN TO STOP, BUT MY JEEP DIDN'T SLOW DOWN. EVEN I WAS PRESSING THE BRAKE, DIDN'T STOP ON TIME AND I CRASHED TO THE SEMI TRUCK. LUCKILY, DIDN'T GIVE ANY DAMAGE TO  THE SEMI TRUCK , BUT MY JEEP  END UP TOTAL LOST.  AFTER I GOT THIS RECALL FROM MAIL, I REALIZE , THE ACCIDENT WASN'T MY FAULT, THE JEEP HAD A FACTORY DEFECTED. I NEED SOME ONE TO ANSWER THIS FOR ME. BECAUSE I LOST MY JEEP AND GOT ANOTHER CAR TO GO TO WORK. TILL NOW I WAS ASKING MYSELF HOW I COULDN'T STOP THE JEEP AND IT WAS ONLY 15 TO 20 MILES AN HOURS. NOW I KNOW IT WASN'T ME.      *JS
+
+[c4]
+MY AIRBAG WARNING LIGHT RECENTLY CAME ON AND IS STAYING ON.  *JS
+
+[c5]
+I HAVE A 2009 DODGE AVENGER. MY AIRBAG LIGHT KEEPS COMING ON AND OFF INTERMITTENTLY. IS IT DANGEROUS? *JS
+
+[c6]
+WENT OFF ROAD TO MISS DEER, AIR BAG, RECENTLY TO TOYOTA FOR RECALL ON AIR BAGS, DID NOT INFLATE OR DEPLOY.  *TR
+
+[c7]
+I CONTACTED A HONDA DEALER (HONDA OF COLUMBIA, LEXINGTON, SC 29072)  FOR MY ODYSSEY VAN AIRBAG RECALL ON 10 NOV AND FILED THE RECALL REPAIR.  I ASKED A SERVICE REP WHAT I NEEDED TO DO WHEN THE AIRBAG WERE NOT SAFE.  HE TOLD ME THAT I NEEDED TO KEEP DRIVING MY VAN AT MY OWN RISK WHILE NEW AIRBAGS WERE ON ORDER!  ON 31 DEC, I WENT TO THE DEALER AND ASKED THE STATUS OF MY AIRBAG RECALL FIX STATUS.  THEY GAVE ME THE SAME ANSWER THAT I HAD TO DRIVE MY VAN AT MY OWN RISK UNTIL THE AIRBAGS WOULD ARRIVE, BUT DID NOT KNOW HOW LONG IT TOOK.    THIS IS ABSOLUTELY NOT RIGHT!  HONDA CAR OWNER HAVE TO KEEP DRIVING AT THEIR OWN RISKS WHEN THE SAFETY PROBLEMS ARE CAUSED BY THE COMPANY?  THE COMPANY MUST OFFER AN ALTERNATIVE CAR FOR AFFECTED CUSTOMERS UNTIL THEIR CARS ARE FIXED.  WAITING FOR 2 MONTHS OR LONGER IS NOT ACCEPTABLE ESPECIALLY WHEN THE RECALL MAY CAUSE A FATAL RESULT.  *TR
+
+[c8]
+THE CAR WAS BEING PULLED OUT OF THE DRIVEWAY ONTO THE STREET, AT ABOUT 5 MPH, WHEN BOTH THE DRIVER'S AND PASSENGER'S SIDE AIRBAGS DEPLOYED. THE CAR DID NOT HIT ANYTHING, AND SHOWS NO VISIBLE DAMAGE. A POLICE REPORT WAS FILED, IN WHICH THE OFFICER STATED THAT THERE WAS NO APPARENT REASON FOR THE AIRBAGS TO HAVE DEPLOYED.  *TR
+==============================================================================
+{
+  "created_at": "2026-10-28T15:35:58+00:00",
+  "model": "muse-spark-1.3-contributor",
+  "prompt_version": "defect-cls-v1",
+  "batch_size": 8,
+  "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1",
+  "batches_total": 3,
+  "batches_estimated": 3,
+  "records_total": 24,
+  "records_estimated": 24,
+  "estimated_input_tokens": 4516,
+  "output_tokens_per_record_assumed": 70,
+  "estimated_output_tokens_at_70": 1680,
+  "tokenizer": "chars/4 fallback",
+  "pricing_usd_per_mtok": {
+    "standard_input": 1.25,
+    "standard_output": 4.25,
+    "contributor_input": 0.1,
+    "contributor_output": 0.2
+  },
+  "estimated_cost_usd_at_70_output": {
+    "standard": 0.0128,
+    "contributor": 0.0008
+  },
+  "sensitivity_output_tokens_per_record": {
+    "60": 0.0007,
+    "120": 0.001
+  },
+  "sensitivity_note": "cost sensitivity uses Contributor input/output prices and the exact input-token estimate",
+  "note": "dry run only; no network call was made; token counts are a local estimate, not a bill"
+}
+EXIT:0

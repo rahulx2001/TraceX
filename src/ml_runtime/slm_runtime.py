@@ -18,6 +18,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -38,6 +39,8 @@ from src.ml_runtime.onnx_embedder import (
     ToySemanticEmbedder,
     get_process_onnx_embedder,
 )
+from src.ml_runtime.inference_deadline import LOCAL_INFERENCE
+from src.ml_runtime.category_zeroshot import category_pack_fingerprint, _provider_version, normalized_category_vector
 
 logger = logging.getLogger(__name__)
 
@@ -146,14 +149,21 @@ class CategoryCandidateVectors:
     created_at: float = field(default_factory=time.monotonic)
 
 
-_PACK_CATEGORY_CACHE: dict[str, CategoryCandidateVectors] = {}
+_PACK_CATEGORY_CACHE: dict[tuple, CategoryCandidateVectors] = {}
+_PACK_CACHE_LOCK = threading.Lock()
 
 
-def get_pack_category_vectors(pack) -> CategoryCandidateVectors:
+def get_pack_category_vectors(pack, embedder=None) -> CategoryCandidateVectors:
     """Precompute and cache candidate vectors (canonical category + synonym expansions)."""
     pack_id = getattr(pack, "id", "") or "default"
-    if pack_id in _PACK_CATEGORY_CACHE:
-        return _PACK_CATEGORY_CACHE[pack_id]
+    if embedder is None:
+        embedder = get_slm_embedder()
+    from src.agents.intake import _CATEGORY_SYNONYMS
+    version = _provider_version(embedder)
+    key = (pack_id, version, category_pack_fingerprint(pack), tuple(sorted(_CATEGORY_SYNONYMS.items())))
+    with _PACK_CACHE_LOCK:
+        if version and key in _PACK_CATEGORY_CACHE:
+            return _PACK_CATEGORY_CACHE[key]
 
     gaz = pack.gazetteer_for_slot("category") if hasattr(pack, "gazetteer_for_slot") else None
     if gaz is not None and hasattr(gaz, "values"):
@@ -164,7 +174,6 @@ def get_pack_category_vectors(pack) -> CategoryCandidateVectors:
     # Import category synonyms from intake for the pack
     from src.agents.intake import _CATEGORY_SYNONYMS
 
-    embedder = get_slm_embedder()
     phrases_by_cat: dict[str, list[tuple[str, np.ndarray]]] = {}
     if embedder is None:
         # Do not cache an empty result. A later artifact load must be able
@@ -175,6 +184,7 @@ def get_pack_category_vectors(pack) -> CategoryCandidateVectors:
             phrases_by_cat={cat: [] for cat in categories},
         )
 
+    complete = True
     for cat in categories:
         phrases = [cat.lower()]
         # Add any known synonyms matching this canonical category
@@ -188,12 +198,13 @@ def get_pack_category_vectors(pack) -> CategoryCandidateVectors:
             try:
                 vec_obj = embedder.embed(phrase)
                 # MiniLM native dimension is 384
-                arr = np.array(vec_obj.values[:384], dtype=np.float32)
+                arr = normalized_category_vector(vec_obj)
                 norm = np.linalg.norm(arr)
                 if norm > 1e-9:
                     arr = arr / norm
                 embedded_list.append((phrase, arr))
             except Exception as e:
+                complete = False
                 logger.debug("Failed to embed phrase %r: %s", phrase, e)
 
         phrases_by_cat[cat] = embedded_list
@@ -203,13 +214,38 @@ def get_pack_category_vectors(pack) -> CategoryCandidateVectors:
         categories=categories,
         phrases_by_cat=phrases_by_cat,
     )
-    _PACK_CATEGORY_CACHE[pack_id] = cached
+    if version and complete:
+        with _PACK_CACHE_LOCK:
+            if len(_PACK_CATEGORY_CACHE) >= 64:
+                _PACK_CATEGORY_CACHE.clear()
+            _PACK_CATEGORY_CACHE[key] = cached
     return cached
 
 
 def reset_slm_cache() -> None:
     """Clear cached category embeddings (for testing)."""
-    _PACK_CATEGORY_CACHE.clear()
+    with _PACK_CACHE_LOCK:
+        _PACK_CATEGORY_CACHE.clear()
+
+
+def warm_category_runtime(pack: Any) -> dict[str, Any]:
+    """Load model and both pack caches before serving shadow/live traffic."""
+    if slm_mode() == "legacy":
+        return {"required": False, "ready": True}
+    started = time.monotonic()
+    try:
+        from src.ml_runtime.category_zeroshot import get_category_centroids
+        provider = get_slm_embedder()
+        if provider is None:
+            return {"required": True, "ready": False}
+        get_pack_category_vectors(pack, provider)
+        get_category_centroids(pack, provider)
+        provider.embed("warmup")
+        return {"required": True, "ready": True, "version": provider.version,
+                "warmup_ms": round((time.monotonic() - started) * 1000, 2)}
+    except Exception as exc:
+        logger.warning("category warmup unavailable: %s", type(exc).__name__)
+        return {"required": True, "ready": False, "error": type(exc).__name__}
 
 
 # ── Zero-shot Category Classification ────────────────────────────────────────
@@ -236,6 +272,28 @@ def predict_category_zero_shot(
     floor: float | None = None,
     timeout_ms: float | None = None,
 ) -> SLMCategoryResult:
+    t0 = time.monotonic()
+    conf_floor = floor if floor is not None else category_confidence_floor()
+    budget = timeout_ms if timeout_ms is not None else slm_timeout_ms()
+    if not (text or "").strip():
+        return SLMCategoryResult(category=None, score=0.0, confidence_floor=conf_floor)
+    try:
+        result = LOCAL_INFERENCE.run(
+            lambda: _predict_category(text, pack, floor=conf_floor),
+            deadline=t0 + budget / 1000.0,
+        )
+        result.latency_ms = (time.monotonic() - t0) * 1000.0
+        if result.latency_ms > budget:
+            result.category = None
+        return result
+    except Exception as exc:
+        from src.observability.degradation import step_down
+        step_down("slm_understanding", reason=f"inference_unavailable: {type(exc).__name__}")
+        return SLMCategoryResult(category=None, score=0.0, confidence_floor=conf_floor,
+                                 latency_ms=(time.monotonic() - t0) * 1000.0)
+
+
+def _predict_category(text: str, pack: Any, *, floor: float) -> SLMCategoryResult:
     """Zero-shot category classification via MiniLM sentence similarity.
 
     Args:
@@ -249,8 +307,7 @@ def predict_category_zero_shot(
         confidence score, and verbatim span.
     """
     t0 = time.monotonic()
-    conf_floor = floor if floor is not None else category_confidence_floor()
-    timeout = (timeout_ms if timeout_ms is not None else slm_timeout_ms()) / 1000.0
+    conf_floor = floor
 
     clean_text = (text or "").strip()
     if not clean_text:
@@ -261,7 +318,8 @@ def predict_category_zero_shot(
             latency_ms=0.0,
         )
 
-    cat_vectors = get_pack_category_vectors(pack)
+    embedder = get_slm_embedder()
+    cat_vectors = get_pack_category_vectors(pack, embedder)
     if not cat_vectors.categories:
         return SLMCategoryResult(
             category=None,
@@ -270,7 +328,6 @@ def predict_category_zero_shot(
             latency_ms=(time.monotonic() - t0) * 1000.0,
         )
 
-    embedder = get_slm_embedder()
     if embedder is None:
         return SLMCategoryResult(
             category=None,
@@ -281,7 +338,7 @@ def predict_category_zero_shot(
 
     try:
         u_vec_obj = embedder.embed(clean_text)
-        u_vec = np.array(u_vec_obj.values[:384], dtype=np.float32)
+        u_vec = normalized_category_vector(u_vec_obj)
         u_norm = np.linalg.norm(u_vec)
         if u_norm > 1e-9:
             u_vec = u_vec / u_norm
@@ -340,6 +397,11 @@ def predict_category_zero_shot(
             span_text = clean_text[span_start:span_end]
 
     latency_ms = (time.monotonic() - t0) * 1000.0
+
+    # Offsets refer to the original turn, including leading whitespace.
+    leading = len(text) - len(text.lstrip())
+    span_start += leading
+    span_end += leading
 
     # Rule 1: Closed-vocabulary check (must be in pack categories)
     if best_cat not in cat_vectors.categories:
@@ -404,7 +466,7 @@ def record_slm_shadow_comparison(
     agreement = (rules_value == slm_value)
     # Confident wrong is defined when SLM predicted a non-None value that
     # disagrees with the rules (or ground truth in eval)
-    confident_wrong = (slm_value is not None and rules_value is not None and slm_value != rules_value)
+    confident_wrong = False  # Rules disagreement is not independently reviewed truth.
 
     try:
         with ops_con() as con:
@@ -429,7 +491,7 @@ def record_slm_shadow_comparison(
                     confidence_floor,
                     agreement,
                     confident_wrong,
-                    span_text,
+                    "",  # Preserve offsets, never persist raw customer utterances.
                     span_start,
                     span_end,
                     latency_ms,

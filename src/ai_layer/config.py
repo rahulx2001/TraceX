@@ -36,7 +36,9 @@ Env vars (all optional):
 
 from __future__ import annotations
 
+import json
 import os
+from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
@@ -137,7 +139,7 @@ def timeout_s() -> float:
 
 
 def intake_timeout_s() -> float:
-    return max(0.5, min(30.0, _env_float("META_INTAKE_TIMEOUT_S", 4.0)))
+    return max(0.5, min(30.0, _env_float("META_INTAKE_TIMEOUT_S", 20.0)))
 
 
 def retries() -> int:
@@ -160,9 +162,16 @@ def _host(url: str) -> str:
     return (urlparse(url).hostname or "").lower()
 
 
+def _live_verified(current_host: str) -> bool:
+    """True only when a recorded live smoke succeeded on this same host."""
+    from src.ai_layer.live_proof import verified_features
+    return current_host == _host(api_base()) and any(verified_features().values())
+
+
 def ai_status() -> dict[str, Any]:
     """Public, secret-free status for GET /api/ai/status and the UI badge."""
     enabled = meta_enabled()
+    from src.ai_layer.live_proof import verified_features
     base_host = _host(api_base())
     return {
         "mode": ai_mode(),
@@ -186,7 +195,9 @@ def ai_status() -> dict[str, Any]:
             "photo_evidence_analysis": enabled,
         },
         "fallback": "deterministic regex/gazetteer/rules path (always on)",
-        "verified_against_live_api": False,
+        "verified_against_live_api": _live_verified(base_host),
+        "verified_features": verified_features(),
+        "budget_limit_usd": 30,
     }
 
 

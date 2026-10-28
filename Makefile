@@ -5,7 +5,9 @@
 
 ifndef PY
   # Prefer project venv when present (pytest / deps live there).
-  ifneq (,$(wildcard .venv/bin/python))
+  ifneq (,$(wildcard .venv-hackathon/bin/python))
+    PY := .venv-hackathon/bin/python
+  else ifneq (,$(wildcard .venv/bin/python))
     PY := .venv/bin/python
   else
     PY := $(shell command -v python3 2>/dev/null || command -v python 2>/dev/null || echo python3)
@@ -174,7 +176,10 @@ eval-frontline:
 	STATUS=$$?; rm -rf "$$ROOT"; exit $$STATUS
 
 # Isolated temp DBs — pytest session also isolates via conftest.
-test:
+test-setup: dashboard-build
+	$(PY) -m scripts.prepare_minilm_onnx --verify-only || $(PY) -m scripts.prepare_minilm_onnx
+
+test: test-setup
 	@ROOT=$$(mktemp -d "$${TMPDIR:-/tmp}/tracex-pytest-XXXXXX"); \
 	echo "test data root: $$ROOT"; \
 	FRONTLINE_TEST_ISOLATION=1 \
@@ -185,7 +190,7 @@ test:
 
 # SLM Phase 0 probe suite — Appendix cases against real intake code.
 # Same isolation as `test`; safe to run alongside a live pilot.
-slm-probes:
+slm-probes: test-setup
 	@ROOT=$$(mktemp -d "$${TMPDIR:-/tmp}/tracex-probes-XXXXXX"); \
 	echo "probe data root: $$ROOT"; \
 	FRONTLINE_TEST_ISOLATION=1 \

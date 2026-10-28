@@ -25,7 +25,7 @@ export default function AiTools({ hashQuery }) {
   return (
     <div className="ai-tools" style={{ maxWidth: 1150 }}>
       <h1 style={{ marginBottom: 4 }}>Road-safety tools</h1>
-      <p className="muted" style={{ marginTop: 0 }}>Every number on these tabs comes from the active warehouse. The offline hackathon seed can contain synthetic rows, so demo counts are not real-world evidence; the seeded transcript/photo are labelled synthetic. AI text, when a Meta key is set, is labelled; no live Meta call has been made in this project.</p>
+      <p className="muted" style={{ marginTop: 0 }}>Every number on these tabs comes from the active warehouse. The offline hackathon seed can contain synthetic rows, so demo counts are not real-world evidence; the seeded transcript/photo are labelled synthetic. AI text, when a Meta key is set, is labelled. Live verification is shown in the demo status.</p>
       <div className="row" style={{ gap: 6, marginBottom: 12, flexWrap: "wrap" }} role="tablist">
         {TABS.map((t) => (
           <button key={t.id} role="tab" aria-selected={tab === t.id} className={tab === t.id ? "primary" : "ghost"} onClick={() => setTab(t.id)}>{t.label}</button>

@@ -26,28 +26,28 @@ async def analytics_forecast(
 ) -> dict[str, Any]:
     from src.frontline.analytics import forecast_cluster_volume
 
-    return forecast_cluster_volume(pack_id=pack_id, window_days=window_days, threshold=threshold)
+    return await ops_in_thread(forecast_cluster_volume, pack_id=pack_id, window_days=window_days, threshold=threshold)
 
 
 @router.get("/analytics/cross-pack")
 async def analytics_cross_pack() -> dict[str, Any]:
     from src.frontline.analytics import cross_pack_patterns
 
-    return cross_pack_patterns()
+    return await ops_in_thread(cross_pack_patterns)
 
 
 @router.get("/analytics/hotspots")
 async def analytics_hotspots(pack_id: str | None = None, window_days: int = 90) -> dict[str, Any]:
     from src.frontline.analytics import geographic_hotspots
 
-    return geographic_hotspots(pack_id=pack_id, window_days=window_days)
+    return await ops_in_thread(geographic_hotspots, pack_id=pack_id, window_days=window_days)
 
 
 @router.get("/analytics/severity-drift")
 async def analytics_severity_drift(pack_id: str | None = None) -> dict[str, Any]:
     from src.frontline.analytics import severity_drift
 
-    return severity_drift(pack_id=pack_id)
+    return await ops_in_thread(severity_drift, pack_id=pack_id)
 
 
 @router.get("/analytics/cohorts")
@@ -59,14 +59,14 @@ async def analytics_cohorts(pack_id: str | None = None, group_field: str = "enti
         field = safe_column(group_field)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
-    return cohort_analysis(pack_id=pack_id, group_field=field)
+    return await ops_in_thread(cohort_analysis, pack_id=pack_id, group_field=field)
 
 
 @router.get("/analytics/regulator-watch")
 async def analytics_regulator(pack_id: str | None = None) -> dict[str, Any]:
     from src.frontline.analytics import regulator_filing_watch
 
-    return regulator_filing_watch(pack_id=pack_id)
+    return await ops_in_thread(regulator_filing_watch, pack_id=pack_id)
 
 
 @router.get("/analytics/financial-impact")
@@ -80,7 +80,7 @@ async def analytics_financial(pack_id: str | None = None) -> dict[str, Any]:
 async def analytics_fairness(pack_id: str | None = None) -> dict[str, Any]:
     from src.frontline.analytics import bias_fairness_report
 
-    return bias_fairness_report(pack_id=pack_id)
+    return await ops_in_thread(bias_fairness_report, pack_id=pack_id)
 
 
 @router.post("/booking/offer")

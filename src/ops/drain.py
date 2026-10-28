@@ -86,15 +86,52 @@ class DrainController:
 DRAIN = DrainController()
 
 
-def install_sigterm_handler() -> None:
-    """Install SIGTERM → begin_drain (no hard exit; process manager waits)."""
+def install_sigterm_handler() -> Callable[[], None]:
+    """Drain for a bounded interval, then forward SIGTERM to the server.
 
-    def _handler(signum, frame):  # noqa: ARG001
+    Uvicorn owns process exit and graceful transport shutdown. Preserve its
+    handler rather than swallowing the signal. Return a lifespan cleanup.
+    """
+    import os
+    previous = signal.getsignal(signal.SIGTERM)
+    task = None
+    timeout = max(0.0, min(120.0, float(os.getenv("FRONTLINE_DRAIN_TIMEOUT_S", "10"))))
+
+    def forward(signum, frame):
+        if callable(previous):
+            previous(signum, frame)
+        elif previous == signal.SIG_DFL:
+            signal.signal(signal.SIGTERM, signal.SIG_DFL)
+            os.kill(os.getpid(), signal.SIGTERM)
+
+    async def finish(signum, frame):
+        await DRAIN.wait_until_drained(timeout)
+        forward(signum, frame)
+
+    def handler(signum, frame):
+        nonlocal task
         DRAIN.begin_drain()
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            forward(signum, frame)
+            return
+        if task is None:
+            task = loop.create_task(finish(signum, frame))
+        else:
+            task.cancel()
+            forward(signum, frame)
+
+    def cleanup():
+        if task is not None:
+            task.cancel()
+        if signal.getsignal(signal.SIGTERM) is handler:
+            signal.signal(signal.SIGTERM, previous)
+        DRAIN._sigterm_installed = False
 
     try:
-        signal.signal(signal.SIGTERM, _handler)
+        signal.signal(signal.SIGTERM, handler)
         DRAIN._sigterm_installed = True
-    except Exception:
-        # Windows / restricted environments may refuse signal handlers.
+    except (ValueError, OSError):
         pass
+    return cleanup

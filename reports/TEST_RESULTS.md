@@ -1,71 +1,134 @@
-# Test results: current HEAD after dependency cleanup
+# Test results: current tree
 
-Date: 2026-10-26 (IST). Repo: `/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool`.
-Branch: `hackathon/ai-layer`. Code under test: `4b70a80` plus the `pyarrow`
-declarations and the demo-seed path fix (uncommitted at test time). Later
-commits are documentation/report only and change no test or product logic.
-Python: 3.14.7. pytest: 9.1.1. pyarrow: 22.0.0.
+Date: 2026-10-28 (IST). Repo: `/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool`.
+Branch: `hackathon/ai-layer`. Python: 3.12.13 (`.venv-hackathon`). pytest: 8.4.2.
+pyarrow: 22.0.0. Node: 25.1.0. Playwright: 1.62.1 with installed Google Chrome.
 
-This file records what was actually run. No test was deleted, skipped, xfailed,
-or edited. The one very slow test is deselected from the main run and recorded
-separately; that is a documented **NOT RUN TO COMPLETION** item, not a pass.
+This file records what was actually run. No backend test was deleted, skipped, or
+xfailed to obtain the result below. The previous Oct 26 audit (four failures,
+one deselected cluster test) is superseded; its raw logs remain in
+`reports/tests_after_cleanup.txt`, `reports/tests_individual_failures.txt`,
+`reports/slow_test_check.txt` and `reports/slow_test_dedicated.txt` for history.
+Three browser-spec assertions that contradicted the hardened product were
+updated to test the intended behavior; the changes and reasons are documented in
+[`e2e/E2E_RESULTS_2026-10-28.md`](e2e/E2E_RESULTS_2026-10-28.md).
 
-## Main suite
+## Backend suite — complete, no deselection
 
-Exact command (captured at the top of `reports/tests_after_cleanup.txt`):
+Exact command:
 
 ```bash
-python3 -m pytest -q -rfE -p no:cacheprovider \
-  --deselect tests/frontline/test_cluster_builds.py::test_rebuild_clusters_assigns_records_beyond_5000
+FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m pytest \
+  -q -rfE -p no:cacheprovider
 ```
 
-Result:
+Result (`reports/tests_current_full_final.txt`):
 
 ```text
-4 failed, 1711 passed, 1 skipped, 1 deselected, 1 warning in 962.55s (0:16:02)
-EXIT:1
+1794 passed, 1 warning in 575.27s (0:09:35)
+EXIT:0
 ```
 
-- 1 skipped: `tests/frontline/test_csv_load.py::test_cli_run_anomalies_flag_is_accepted`
-- 1 deselected: `tests/frontline/test_cluster_builds.py::test_rebuild_clusters_assigns_records_beyond_5000`
-  (see `reports/slow_test_check.txt` and `reports/slow_test_dedicated.txt`)
-- 1 warning: Starlette deprecation notice from the installed FastAPI test client,
-  not a test failure.
+- **No tests deselected, skipped or xfailed.** The 5,005-record cluster rebuild
+  test now runs and passes in about 1.8 seconds as part of the suite.
+- 1 warning: the installed Starlette/FastAPI test client deprecation notice.
+  It is a warning, not a failure.
+- The four Oct 26 failures (`test_live_corrections`,
+  `test_live_handoff_outcomes`, `test_live_voice_lifecycle`,
+  `test_voice_audit_fixes`) pass in this run.
 
-## The four failures
+## Documented developer command (`make test`)
 
-Each was re-run alone on the same checkout. All four fail alone too, so they are
-not order-dependent or full-suite flakiness. None was modified.
+`make test` builds the dashboard, verifies the pinned MiniLM artifact, then runs
+`tests/frontline/` against a fresh temp database with a stricter 30-second
+per-test timeout:
 
-| # | Test | Observed failure | Category |
-|---|---|---|---|
-| F1 | `tests/frontline/test_live_corrections.py::test_correction_rejection_and_diagnostic_answer` | line 80: `meta["confirmation"]` is `"confirmed"`, test expects `"unconfirmed"` after `"Actually it's a 2018, not 2019."` | Real behavior/test-expectation mismatch. Not a missing dependency or path issue. Not fixed: changing it would change product correction semantics. |
-| F2 | `tests/frontline/test_live_handoff_outcomes.py::test_disabled_investigator_is_not_applicable` | line 85: `KeyError: 'skipped'`; `InvestigatorAgent._run_sync` calls `record_action` inside the same `try` as the disabled check, so when the ledger write raises the broad `except Exception: pass` falls through and the agent runs normally | Real product bug in the disabled-agent guard. Not fixed: requires product logic change; out of this documentation/dependency cleanup. |
-| F3 | `tests/frontline/test_live_voice_lifecycle.py::test_scheduled_speech_turn_and_playback_events` | line 134: `assert out["bargeNo"] is True`; the helper returns the raw utterance `"No!"` (a string) | Stale test expectation. The JavaScript helper is documented to return the retained utterance text, not a boolean. Test not edited. |
-| F4 | `tests/frontline/test_voice_audit_fixes.py::test_malformed_frame_does_not_fail_the_contact` | line 194: first WebSocket frame is `{"type": "ready", "authenticated": true, "attached": true, ...}`, not `{"code": "bad_message"}` | Test/protocol ordering mismatch: the server sends a ready frame first. Test not edited. |
+```bash
+make test
+```
 
-Individual rerun log: `reports/tests_individual_failures.txt`.
+Result (`reports/make_test_current.txt`):
 
-## Comparison, with caveats
+```text
+1755 passed, 1 warning in 759.59s (0:12:39)
+EXIT:0
+```
 
-| Run | Commit / environment | Result | Comparable? |
-|---|---|---|---|
-| Historical report | `9d2c30d`, Python 3.12 venv, pyarrow **not installed**, `--timeout 120`, same slow test deselected | 47 failed, 1650 passed, 1 skipped, 1 deselected, 30:34 | No. Different commit, different interpreter, and `pyarrow` was missing. |
-| Baseline attempt at current HEAD | `4b70a80`, Python 3.14.7, pyarrow missing, no per-test timeout | **NOT COMPLETED**: aborted at 16% after ~14 min stuck in the slow cluster test (`EXIT:143`) | No count. Kept as evidence in `reports/tests_baseline_attempt.txt`. |
-| Current after dependency cleanup | `4b70a80`, Python 3.14.7, pyarrow 22.0.0, slow test deselected | **4 failed, 1711 passed**, 1 skipped, 1 deselected, 16:02 | This is the current, reproducible result. |
+The dashboard production build and MiniLM verification also passed inside this
+target. The remaining 39 backend tests (`tests/test_voice_invariants.py` and
+`tests/real_hindi/`) are covered by the full-suite run above. No failures,
+skips, or deselections in either run.
 
-The historical 47 failure blocks included 36 that contained
-`ModuleNotFoundError: No module named 'pyarrow'` (38 occurrences in those
-blocks). The dependency declaration fix makes those run; the remaining four are
-unrelated pre-existing failures. Do not describe the suite as “all green”. Do not compare
-the 47/1650 and 4/1711 totals as a controlled before/after experiment: the
-commit and interpreter differ, and the baseline run at this HEAD did not complete.
+## Dashboard and browser end-to-end
 
-## What was not run
+Production build:
 
-- `test_rebuild_clusters_assigns_records_beyond_5000` was not run to completion.
-  It is deselected from the main suite; the dedicated capped run failed with
-  `Timeout (>600.0s) from pytest-timeout` after 600.37s. See
-  `reports/slow_test_check.txt` and `reports/slow_test_dedicated.txt`.
-- No test was run on Python 3.12 in this audit. The project's CI/Docker target
-  is 3.12; this box used 3.14.7.
+```bash
+cd dashboard && npm run build
+```
+
+Passed (Vite 8.2.1). Existing bundle-size and ineffective-dynamic-import
+warnings remain.
+
+Full Playwright suite against a clean-checkout judge server (real Chrome):
+
+```bash
+cd dashboard
+BASE_URL=http://127.0.0.1:8130 \
+TRACEX_JUDGE_DATA=<judge-v2 data dir> \
+E2E_API_KEY=<operator key> \
+PLAYWRIGHT_CHANNEL=chrome \
+npx playwright test --reporter=list
+```
+
+Result: **54 passed** across
+`api.aggressive.spec.js` (14), `api.deep-sweep.spec.js` (10),
+`ui.console.spec.js` (17), `ui.interactions.spec.js` (5),
+`ui.loops.spec.js` (7) and `judge.workflow.spec.js` (1).
+
+The judge workflow verifies operator-key sign-in, the recorded live-proof panel,
+supervisor token exchange into an HttpOnly cookie, takeover and release, with no
+page exceptions. The API specs verify the auth gate, service-principal denials,
+SSRF rejection, simulated-case filtering, note-author derivation and the audit
+export manifest. Commands, per-spec counts and logs are in
+[`e2e/E2E_RESULTS_2026-10-28.md`](e2e/E2E_RESULTS_2026-10-28.md).
+
+## No-key AI-layer smoke
+
+```bash
+PY="$PWD/.venv-hackathon/bin/python" PORT=8131 bash scripts/ai_v2_smoke.sh
+```
+
+All expected routes and status codes matched; `EXIT:0`
+(`reports/ai_v2_smoke_current.txt`).
+
+## Defect pipeline inputs
+
+The NHTSA parquet inputs are not committed. The portable preparation command
+was run against the official flat files:
+
+```bash
+.venv-hackathon/bin/python -m scripts.defect_prepare_inputs \
+  --out-dir data/defect/hackathon --complaints-limit 5000 --recalls-limit 5000
+```
+
+Wrote 5,000 complaint rows and 5,000 recall rows with source SHA-256 values and
+a manifest (`reports/defect_inputs_prepare.txt`). The classifier dry run made no
+network call and estimated 4,516 input tokens over 3 batches
+(`reports/defect_dry_run_real.txt`). Export-only wrote 5,000 rows and preserved
+`model`, `prompt_version` and `taxonomy_sha256`
+(`reports/defect_export_real.txt`). Two regression tests cover preparation and
+the missing-input message (`tests/frontline/ai_layer/test_defect_inputs.py`).
+
+## Not run / still unverified
+
+- **Docker image execution**: Docker is unavailable on this machine. The
+  workflow YAML, Compose file and shell syntax were checked; a CI image run is
+  still required.
+- **Live vision / SAM image analysis**: only live Muse Spark text intake has
+  been called. Photo upload, validation, storage and attachment run locally;
+  remote vision analysis remains unverified.
+- **Live defect classification at scale**: the dry run and export are verified
+  locally; the 18,998-batch plan is explicitly outside the demo budget.
+- **Meta spend during this verification pass**: none. The recorded live proof
+  artifact from the earlier authorized run is reused.

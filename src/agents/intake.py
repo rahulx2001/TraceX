@@ -528,6 +528,19 @@ _ASSESS_TERMS = (
     "injuries", "bleeding", "limping", "sore", "trapped", "wound",
 )
 
+_LIST_HAZARD = r"(?:injury|injuries|fire|smoke|crash|crashes|accident|accidents|bleeding)"
+_NEGATED_HAZARD_LIST = re.compile(
+    rf"\b(?:no|without(?: any)?)\s+{_LIST_HAZARD}\b"
+    rf"(?:\s*(?:,\s*(?:(?:or|and)\s+)?|\s+(?:or|and)\s+){_LIST_HAZARD}\b)+"
+    r"(?=\s*(?:[.!?;]|$|\b(?:but|however)\b))"
+)
+
+
+def _in_negated_hazard_list(text: str, pos: int) -> bool:
+    # A comma separates ordinary clauses, but not the nouns in a denial like
+    # 'no injury, fire or crash'. A later affirmative predicate still counts.
+    return any(m.start() <= pos < m.end() for m in _NEGATED_HAZARD_LIST.finditer(text))
+
 
 def _split_safety_clauses(text: str) -> list[str]:
     return [part.strip() for part in _CLAUSE_SPLIT_RE.split(text or "") if part and part.strip()]
@@ -535,6 +548,8 @@ def _split_safety_clauses(text: str) -> list[str]:
 
 def _occurrence_blocked(text: str, start: int, *, hedges: bool) -> bool:
     """True when this one hit is negated (and, if asked, hedged) in its clause."""
+    if _in_negated_hazard_list(text, start):
+        return True
     prefix = (text or "")[_clause_prefix_start(text or "", start):start]
     tokens = re.findall(r"[a-z0-9']+", prefix)
     blockers = _NEGATORS | _HEDGES if hedges else _NEGATORS
@@ -822,6 +837,8 @@ def _term_hedged_or_negated(text: str, term: str, *, hedges: bool = True) -> boo
     matches = list(re.finditer(rf"\b{esc}\b", t_lower))
     if matches:
         for m in matches:
+            if _in_negated_hazard_list(t_lower, m.start()):
+                continue
             clause_prefix = t_lower[_clause_prefix_start(t_lower, m.start()):m.start()]
             toks = re.findall(r"[a-z0-9'-]+", clause_prefix)
             is_match_hedged = False

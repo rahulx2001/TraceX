@@ -41,6 +41,10 @@ FILES = {
 NATIVE_DIM = 384
 OUTPUT_DIM = 512
 MAX_SEQ = 256
+EXPECTED_HASHES = {
+    "model.onnx": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+    "tokenizer.json": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+}
 
 
 def _sha256(path: Path) -> str:
@@ -66,10 +70,20 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Prepare local MiniLM ONNX artifact")
     parser.add_argument("--out", default="models/minilm", help="artifact directory")
     parser.add_argument("--revision", default=HF_REVISION)
+    parser.add_argument("--verify-only", action="store_true", help="verify pinned local artifacts without downloading")
     args = parser.parse_args(argv)
     out = Path(args.out)
     if not out.is_absolute():
         out = REPO_ROOT / out
+    if args.verify_only:
+        from src.ml_runtime.onnx_embedder import OnnxSemanticEmbedder
+        for name, expected in EXPECTED_HASHES.items():
+            if not (out / name).is_file() or _sha256(out / name) != expected:
+                print(f"Missing or invalid pinned artifact: {name}", file=sys.stderr)
+                return 1
+        OnnxSemanticEmbedder(out)
+        print("Pinned MiniLM artifact verified")
+        return 0
     out.mkdir(parents=True, exist_ok=True)
     base = f"https://huggingface.co/{HF_REPO}/resolve/{args.revision}"
     checksums: dict[str, str] = {}
@@ -78,7 +92,10 @@ def main(argv: list[str] | None = None) -> int:
         url = f"{base}/{remote}"
         print(f"fetch {remote} -> {dest.name}")
         try:
-            _download(url, dest)
+            if not dest.is_file() or (local_name in EXPECTED_HASHES and _sha256(dest) != EXPECTED_HASHES[local_name]):
+                _download(url, dest)
+            if args.revision == HF_REVISION and local_name in EXPECTED_HASHES and _sha256(dest) != EXPECTED_HASHES[local_name]:
+                raise ValueError("pinned artifact checksum mismatch")
         except Exception as e:
             if local_name == "LICENSE":
                 dest.write_text(

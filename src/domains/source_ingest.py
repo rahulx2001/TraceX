@@ -155,20 +155,27 @@ def ingest_source(
             )
     mapping = load_mapping(mpath)
     mapped = skipped = 0
-    staged: list[dict[str, Any]] = []
-    for rec in iter_mapped_rows(csv_path, mapping, limit=limit):
-        mapped += 1
-        rec["source"] = tag.upper()
-        rec["provenance"] = prov
-        if not rec["record_id"] or not (rec.get("text") or "").strip():
-            skipped += 1
-            continue
-        staged.append(rec)
-    if str(mapping.get("aggregate") or "").strip().lower() == "day":
-        staged = aggregate_daily(staged)
-    for rec in staged:
-        rec["record_id"] = namespace_id(tag, str(rec.get("record_id") or ""))
-    written = upsert_records(pack_id, [rec for rec in staged if rec.get("record_id")])
+    def accepted_rows():
+        nonlocal mapped, skipped
+        for rec in iter_mapped_rows(csv_path, mapping, limit=limit):
+            mapped += 1
+            rec["source"] = tag.upper()
+            rec["provenance"] = prov
+            if not rec["record_id"] or not (rec.get("text") or "").strip():
+                skipped += 1
+                continue
+            yield rec
+
+    def namespaced_rows():
+        rows = accepted_rows()
+        if str(mapping.get("aggregate") or "").strip().lower() == "day":
+            rows = aggregate_daily(rows)
+        for rec in rows:
+            rec["record_id"] = namespace_id(tag, str(rec.get("record_id") or ""))
+            if rec["record_id"]:
+                yield rec
+
+    written = upsert_records(pack_id, namespaced_rows())
     return {
         "pack_id": pack_id,
         "source": tag.upper(),

@@ -1,6 +1,25 @@
 import { test, expect } from "@playwright/test";
 
+const KEY =
+  process.env.E2E_API_KEY ||
+  process.env.FRONTLINE_API_KEY ||
+  "live-harden-key-32-chars-min!!";
+
+async function seedKey(page) {
+  await page.addInitScript((key) => {
+    try {
+      localStorage.setItem("frontline_api_key", key);
+    } catch {
+      /* ignore */
+    }
+  }, KEY);
+}
+
 test.describe("Operator loops", () => {
+  test.beforeEach(async ({ page }) => {
+    await seedKey(page);
+  });
+
   test("command critical card opens filtered case queue", async ({ page }) => {
     const errors = [];
     page.on("pageerror", (e) => errors.push(String(e)));
@@ -20,7 +39,14 @@ test.describe("Operator loops", () => {
   test("case row opens drawer", async ({ page }) => {
     await page.goto("/ui/#cases");
     await page.waitForTimeout(800);
-    const row = page.locator("table tbody tr").first();
+    // The seeded judge corpus is simulated traffic, which is opt-in on the
+    // case queue. Without this the table shows only the empty-state row.
+    const sim = page.getByLabel(/Include simulated traffic/i);
+    if ((await sim.count()) > 0 && !(await sim.isChecked())) {
+      await sim.check();
+      await page.waitForTimeout(500);
+    }
+    const row = page.locator("table tbody tr", { hasText: /case_/ }).first();
     if ((await row.count()) === 0) test.skip();
     await row.click();
     await expect(page.locator('[role="dialog"][aria-label="Case detail"]')).toBeVisible();

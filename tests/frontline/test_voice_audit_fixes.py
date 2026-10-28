@@ -189,6 +189,9 @@ def test_malformed_frame_does_not_fail_the_contact(reset_ops_db, seed_automotive
         started = client.post("/api/interactions/start", params={"channel": "web_text"})
         iid = started.json()["interaction_id"]
         with client.websocket_connect(f"/ws/interaction/{iid}") as ws:
+            ready = ws.receive_json()
+            assert ready["type"] == "ready"
+            assert ready["authenticated"] is True and ready["attached"] is True
             ws.send_json([])
             frame = ws.receive_json()
             assert frame.get("code") == "bad_message"

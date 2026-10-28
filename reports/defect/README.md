@@ -3,6 +3,35 @@
 This folder holds the frozen inputs and outputs for the defect-level recall
 experiment. Nothing in this folder is model ground truth.
 
+## Preparing the inputs
+
+The classifier, taxonomy builder and sample exporter read two parquet files
+that are not committed because they are large derived NHTSA extracts. Build
+them from the official flat files (no model call, no Meta spend):
+
+```bash
+# Downloads FLAT_CMPL.zip and FLAT_RCL_POST_2010.zip, then writes
+# data/defect/complaints.parquet, data/defect/recall_descriptions.parquet
+# and data/defect/defect_input_manifest.json with source hashes.
+python -m scripts.defect_prepare_inputs --out-dir data/defect
+
+# Offline, from ZIPs already downloaded:
+python -m scripts.defect_prepare_inputs --out-dir data/defect \
+  --complaints-zip /path/FLAT_CMPL.zip \
+  --recalls-zip /path/FLAT_RCL_POST_2010.zip
+
+# Small deterministic judge/demo sample:
+python -m scripts.defect_prepare_inputs --out-dir data/defect/hackathon \
+  --complaints-limit 5000 --recalls-limit 5000
+```
+
+A missing file names this command. After preparation, verify the classifier
+reads the inputs without a network call:
+
+```bash
+python -m scripts.defect_classify --dry-run --limit 1
+```
+
 ## Hand-label file
 
 `defect_label_sample_300.csv` has 300 complaints drawn from the 2021–2024 test
@@ -43,6 +72,33 @@ even when the complaint describes a real defect: the frozen taxonomy may not
 have a label for it.
 
 ## Files
+
+### Hackathon execution scope
+
+The frozen dry-run estimate covers **18,998 batches / 151,766 records**; it is
+not an authorized live run. At the default 300-call daily cap it would require
+at least 64 days before retries. The estimate assumes short completions and
+does not override the client's conservative reservations or $30 lifetime cap.
+The committed estimate records `cl100k_base`; a clean environment without the
+optional `tiktoken` package falls back to `chars/4` and labels the estimate
+accordingly. Both are local estimates, not a bill. A 3-batch dry run on the
+prepared sample estimated 4,516 input tokens (~1,505 per batch), well below the
+8,000-input-token bound the live-run guard reserves per batch.
+
+For this submission, full classification and human-label accuracy remain
+**Not run**. The 300-row sample contains no completed human labels. The live
+proof is a separate synthetic intake workflow; it is not classification
+accuracy evidence. Do not fill labels with model output and call them human.
+
+Use repository-relative defaults or explicit portable input paths. Start with
+`python -m scripts.defect_classify --dry-run --limit 1`. Any future live run
+requires an explicit batch `--limit`, frozen human labels when scoring,
+available calls in the daily cap, and remaining Meta budget. Use one worker
+and 20 RPM initially. Completed batches are cached before continuing;
+failed calls remain charged by the reservation ledger. Retries are bounded
+and recorded. The full 18,998-batch plan is outside this demo's scope.
+
+### Artifact list
 
 | File | What it is |
 |---|---|

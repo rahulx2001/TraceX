@@ -7,11 +7,12 @@ Spark; it never edits the taxonomy and never uses test-window labels.
     # Dry run: build the prompts, print counts and the first prompt. No network.
     python -m scripts.defect_classify --input both --dry-run --limit 1
 
-    # Live run (key in .env, which is gitignored):
-    set -a; source .env; set +a
-    FRONTLINE_DB_PATH=/path/to/scratch/frontline.duckdb \
-    META_DAILY_CALL_CAP=30000 \
-    python -m scripts.defect_classify --input both --workers 6 --rpm 140
+    # Live run. This process loads the repo .env. A shell export wins.
+    # --limit is required. The run is refused when pending batches exceed
+    # META_DAILY_CALL_CAP (default 300) or the remaining $30 Meta budget.
+    python -m scripts.defect_classify --input both --workers 1 --rpm 20 --limit 1 \
+        --complaints data/defect/complaints.parquet \
+        --recalls data/defect/recall_descriptions.parquet
 
 Every successful batch is cached in SQLite before the next batch starts, keyed
 by model + prompt version + taxonomy SHA + exact prompt. Re-running the same
@@ -277,6 +278,14 @@ def open_cache(path: Path) -> sqlite3.Connection:
 
 
 def load_complaints(path: Path, start: str, end: str) -> list[dict[str, Any]]:
+    if not path.is_file():
+        raise SystemExit(
+            f"Missing input: {path}. Run "
+            "`python -m scripts.defect_prepare_inputs --out-dir data/defect` "
+            "to build it from the official NHTSA flat files, or pass --complaints "
+            "explicitly. Required columns: datea, odino, cmplid, make, model, year, "
+            "component, text. The default data/defect/complaints.parquet is not shipped."
+        )
     df = pd.read_parquet(path)
     df = df[(df["datea"] >= start) & (df["datea"] <= end)].copy()
     df = df.sort_values(["component", "datea", "odino"]).reset_index(drop=True)
@@ -303,6 +312,15 @@ def load_complaints(path: Path, start: str, end: str) -> list[dict[str, Any]]:
 
 
 def load_recalls(path: Path) -> list[dict[str, Any]]:
+    if not path.is_file():
+        raise SystemExit(
+            f"Missing input: {path}. Run "
+            "`python -m scripts.defect_prepare_inputs --out-dir data/defect` "
+            "to build it from the official NHTSA flat files, or pass --recalls "
+            "explicitly. Required columns: campno, component, desc_defect, rcdate, "
+            "make, model, year. The default data/defect/recall_descriptions.parquet "
+            "is not shipped."
+        )
     df = pd.read_parquet(path).sort_values(["component", "rcdate", "campno"]).reset_index(drop=True)
     records = []
     seen: set[str] = set()
@@ -386,7 +404,7 @@ def call_batch(batch: dict[str, Any], *, model: str, limiter: RateLimiter) -> di
             )
         except MetaError as e:
             last_error = e.reason
-            if e.reason == "daily_call_cap":
+            if e.reason in {"daily_call_cap", "budget_exceeded", "budget_unavailable", "budget_unpriced_model"}:
                 return {"status": "cap", "error": e.reason, "attempts": attempt}
             if e.reason in {"meta_disabled", "meta_url_must_be_https"} or e.reason.startswith("meta_host_not_allowlisted"):
                 return {"status": "fatal", "error": e.reason, "attempts": attempt}
@@ -466,7 +484,7 @@ def export(con: sqlite3.Connection, *, model: str, taxonomy_sha: str, complaints
             return pd.DataFrame(columns=[
                 "record_id", "input_type", "odino", "cmplid", "datea", "make", "vehicle_model", "year",
                 "component", "text", "label_id", "confidence", "evidence", "evidence_verbatim", "status",
-                "error", "batch_key", "campno",
+                "error", "batch_key", "campno", "model", "prompt_version", "taxonomy_sha256",
             ])
         rows = con.execute(
             """
@@ -484,6 +502,9 @@ def export(con: sqlite3.Connection, *, model: str, taxonomy_sha: str, complaints
             lab = labels.get(rec["record_id"], {})
             out.append({
                 **rec,
+                "model": model,
+                "prompt_version": PROMPT_VERSION,
+                "taxonomy_sha256": taxonomy_sha,
                 "label_id": lab.get("label_id"),
                 "confidence": lab.get("confidence"),
                 "evidence": lab.get("evidence"),
@@ -603,8 +624,8 @@ def dry_run(batches: list[dict[str, Any]], *, taxonomy: dict[str, Any], limit: i
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="Classify NHTSA narratives into the frozen defect taxonomy")
     p.add_argument("--input", choices=["complaints", "recalls", "both"], default="both")
-    p.add_argument("--complaints", default="/private/var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/opencode/skewai-defect/complaints.parquet")
-    p.add_argument("--recalls", default="/private/var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/opencode/skewai-defect/recall_descriptions.parquet")
+    p.add_argument("--complaints", default=str(REPO_ROOT / "data/defect/complaints.parquet"))
+    p.add_argument("--recalls", default=str(REPO_ROOT / "data/defect/recall_descriptions.parquet"))
     p.add_argument("--taxonomy", default=str(REPO_ROOT / "reports/defect/taxonomy.json"))
     p.add_argument("--cache", default=str(REPO_ROOT / "reports/defect/cache/classifications.sqlite"))
     p.add_argument("--out-dir", default=str(REPO_ROOT / "reports/defect"))
@@ -612,7 +633,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--batch-size", type=int, default=8)
     p.add_argument("--workers", type=int, default=1)
     p.add_argument("--rpm", type=float, default=140.0)
-    p.add_argument("--limit", type=int, default=0, help="only the first N batches (smoke test)")
+    p.add_argument("--limit", type=int, default=0, help="first N batches; required for live runs. The 18,998-batch dry-run plan exceeds the default 300/day cap; start with 1, one worker, 20 RPM, and remaining $30 budget")
     p.add_argument("--start", default="2015-01-01")
     p.add_argument("--end", default="2024-12-31")
     p.add_argument("--dry-run", action="store_true")
@@ -620,10 +641,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--no-export", action="store_true")
     args = p.parse_args(argv)
 
+    if args.batch_size < 1 or args.workers < 1 or args.rpm <= 0 or args.limit < 0:
+        p.error("batch-size, workers and rpm must be positive; limit must be nonnegative")
+    if not args.dry_run and not args.export_only and args.limit == 0:
+        p.error("Live runs require an explicit --limit batch count; start with --dry-run --limit 1")
     taxonomy_path = Path(args.taxonomy)
     taxonomy = load_taxonomy(taxonomy_path)
     taxonomy_sha = taxonomy["sha256"]
     out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
     cache_path = Path(args.cache)
 
     complaints_in = load_complaints(Path(args.complaints), args.start, args.end) if args.input in {"complaints", "both"} else []
@@ -655,7 +681,8 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(manifest, indent=2))
         return 0
 
-    os.environ.setdefault("META_DAILY_CALL_CAP", "30000")
+    from dotenv import load_dotenv
+    load_dotenv(REPO_ROOT / ".env", override=False)
     if not (os.getenv("META_API_KEY") or os.getenv("MODEL_API_KEY")):
         print("REFUSED: no META_API_KEY or MODEL_API_KEY in the environment; source .env first", file=sys.stderr)
         return 2
@@ -665,6 +692,30 @@ def main(argv: list[str] | None = None) -> int:
 
     statuses = existing_batch_status(con, [b["batch_key"] for b in batches])
     pending = [b for b in batches if statuses.get(b["batch_key"]) != "ok"]
+    cap = config.daily_call_cap()
+    if len(pending) > cap:
+        print(
+            f"REFUSED: {len(pending)} pending batches exceed META_DAILY_CALL_CAP={cap}. "
+            "Pass a smaller --limit. The full classification plan is not authorized on the default cap.",
+            file=sys.stderr,
+        )
+        return 2
+    from src.ai_layer.budget import status as budget_status
+    try:
+        ledger = budget_status()
+    except Exception as e:
+        print(f"REFUSED: Meta spend ledger is unreadable ({type(e).__name__}). No live calls were made.", file=sys.stderr)
+        return 2
+    remaining = float(ledger["limit_usd"]) - float(ledger["reserved_upper_bound_usd"])
+    # Conservative standard-rate bound: 8k input tokens and 70 output tokens per record.
+    est_usd = len(pending) * ((8000 * 1.25) + (70 * args.batch_size * 4.25)) / 1_000_000
+    if est_usd > remaining:
+        print(
+            f"REFUSED: estimated ${est_usd:.2f} exceeds the remaining ${remaining:.2f} "
+            f"of the ${ledger['limit_usd']:.0f} Meta cap. Lower --limit. No live calls were made.",
+            file=sys.stderr,
+        )
+        return 2
     done_count = len(batches) - len(pending)
     print(json.dumps({
         "model": args.model,

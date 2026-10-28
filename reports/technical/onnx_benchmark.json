@@ -1,0 +1,46 @@
+{
+  "os": "macOS-27.0.1-arm64-arm-64bit",
+  "cpu": "arm",
+  "python": "3.12.13",
+  "provider": "onnx",
+  "version": "all-MiniLM-L6-v2@751bff37182d3f1213fa05d7196b954e230abad9:tok@751bff37182d3f1213fa05d7196b954e230abad9:onnx-int8:mean-pool:l2:zeropad512:v1:modelsha256=afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+  "threads": 1,
+  "artifact_bytes": 23687096,
+  "rss_mb_after_load": 153.34,
+  "rss_mb_before": 71.61,
+  "cold_init_s": 0.1973,
+  "rss_measurement": "process peak resident set size (MiB)",
+  "warm_single_s": {
+    "p50": 0.0013,
+    "p95": 0.0016,
+    "p99": 0.0017,
+    "mean": 0.0013
+  },
+  "batch8_s": {
+    "p50": 0.0101,
+    "p95": 0.0103,
+    "mean": 0.0101
+  },
+  "throughput_texts_per_s": 791.99,
+  "hash_single_mean_s": 5.9e-05,
+  "iters": 80,
+  "concurrency": {
+    "1": {
+      "p99_s": 0.0016,
+      "rss_mb": 153.34
+    },
+    "2": {
+      "p99_s": 0.002,
+      "rss_mb": 153.34
+    },
+    "8": {
+      "p99_s": 0.0087,
+      "rss_mb": 153.95
+    },
+    "20": {
+      "p99_s": 0.0234,
+      "rss_mb": 155.89
+    }
+  },
+  "note": "Warmup excluded from warm percentiles. No model download time included."
+}

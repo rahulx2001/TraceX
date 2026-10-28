@@ -53,7 +53,7 @@ async def ai_status() -> dict[str, Any]:
     from src.ai_layer.meta_client import calls_today
 
     out = _status()
-    out["calls_today"] = calls_today()
+    out["calls_today"] = await asyncio.to_thread(calls_today)
     return out
 
 
@@ -113,6 +113,32 @@ async def demo_seed(
     if os.environ.get("AI_DEMO_ENABLED", "").strip() not in ("1", "true", "yes"):
         raise HTTPException(status_code=403, detail="demo seeding disabled (set AI_DEMO_ENABLED=1)")
     return await seed_india_scenario()
+
+
+@router.post("/api/ai/demo/meta-workflow")
+@limiter.limit("5 per minute")
+async def demo_meta_workflow(request: Request,
+    _role: str = Depends(require_perm_dep("contact:write", open_mode_ok=True)),
+) -> dict[str, Any]:
+    import os
+    from src.ai_layer.demo import run_meta_workflow
+    if os.getenv("AI_DEMO_ENABLED") != "1":
+        raise HTTPException(status_code=403, detail="demo seeding disabled")
+    return await run_meta_workflow()
+
+
+@router.get("/api/ai/demo/proof")
+async def demo_proof() -> dict[str, Any]:
+    """Recorded synthetic evidence lets judges review without their own key."""
+    import json
+    import os
+    from src.ai_layer.live_proof import proof_path
+    if os.getenv("AI_DEMO_ENABLED") != "1":
+        raise HTTPException(status_code=403, detail="demo proof disabled")
+    try:
+        return json.loads(await asyncio.to_thread(proof_path().read_text))
+    except (OSError, ValueError):
+        raise HTTPException(status_code=404, detail="No recorded Meta proof available") from None
 
 
 @router.post("/api/ai/demo/safety-contrast")

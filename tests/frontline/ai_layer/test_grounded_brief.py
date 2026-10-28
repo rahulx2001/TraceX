@@ -61,7 +61,7 @@ def test_enhanced_keeps_only_verified_claims(fake_meta, patched):
         "headline": "Brake failures with crash reports on Civic",
         "recommended_action": "Inspect master cylinder seals on affected builds before customer delivery.",
         "claims": [
-            {"text": "An owner reported a crash after brake pedal went to the floor.", "record_ids": ["NHTSA-11111"]},
+            {"text": "Brake pedal went to the floor and the car crashed into a pole.", "record_ids": ["NHTSA-11111"], "support_spans": [{"record_id": "NHTSA-11111", "quote": "Brake pedal went to the floor and the car crashed into a pole."}]},
             {"text": "Invented id claim.", "record_ids": ["NHTSA-99999"]},
             {"text": "No citation.", "record_ids": []},
             {"text": "17 owners were injured.", "record_ids": ["NHTSA-11111"]},
@@ -76,6 +76,29 @@ def test_enhanced_keeps_only_verified_claims(fake_meta, patched):
     assert reasons == ["invented_id", "narration_violation", "no_citation", "uncited_id_in_text", "unsupported_number"]
     ai = [a for a in out["recommended_actions"] if a["source"] == "meta_muse_spark"]
     assert ai and "engineering review" in ai[0]["note"]
+
+
+def test_valid_citation_cannot_carry_an_unsupported_fault(fake_meta, patched):
+    from src.ai_layer.grounded_brief import build_grounded_brief
+
+    fake_meta.chat["grounded_brief"] = lambda p: {
+        "headline": "Engine fire and airbag failure",
+        "recommended_action": "Inspect the component named in the source record.",
+        "claims": [{
+            "text": "The engine caught fire and the airbag failed.",
+            "record_ids": ["NHTSA-22222"],
+            "support_spans": [{
+                "record_id": "NHTSA-22222",
+                "quote": "Brakes failed at 40 mph, no crash.",
+            }],
+        }],
+    }
+    out = build_grounded_brief(INV)
+    assert out["mode"] == "deterministic"
+    assert any("claim_not_supported_by_spans" in d["reason"] for d in out["dropped_claims"])
+    assert out["headline_rejection_reason"] == "headline_not_supported_by_accepted_source_span"
+    assert "fire" not in out["headline"].lower()
+    assert "airbag" not in out["headline"].lower()
 
 
 def test_ai_action_with_numbers_rejected_and_all_dropped_falls_back(fake_meta, patched):

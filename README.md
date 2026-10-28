@@ -3,7 +3,7 @@
 <!-- [AI-LAYER] mission line -->
 > **Mission: help vehicle manufacturers reduce road accidents by recording vehicle faults from every customer contact and predicting defects early.**
 > 
-> **Meta Global AI Developer Hackathon (Oct 26 – Nov 4, 2026):** Built with Meta's newest models via Meta Model API — **Muse Spark series**, **SAM 3.1**, and **Muse Image** — with open-weights inference partner compatibility (Baseten, Modal, Fireworks). Competing in the **Startup Track** and **Indie Developer Track** across both **Build for Your World** and **Push the Frontier** themes. See [HACKATHON.md](HACKATHON.md) for full architecture and [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for the demo.
+> **Meta Global AI Developer Hackathon:** **Indie developer track**, primarily **Build for Your World**. Muse Spark text intake has a recorded live proof; SAM/photo analysis and image generation are separate optional capabilities. See [HACKATHON.md](HACKATHON.md), [ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
 
 TraceX is a single-tenant pilot for live customer contacts. A **domain pack** (YAML + CSV) supplies the questions, safety rules, and known issues. The same agents then run the contact, write an audit ledger, and hand a supervisor a live console.
 
@@ -20,7 +20,7 @@ Two packs ship with small offline fixtures (10 records, 2 advisories, 3 clusters
 
 ## Start a local pilot
 
-Requirements: Python 3.12+ (the project's CI, Dockerfiles and `requirements-lock.txt` target 3.12), Node 20+, and a Chrome-family browser if you want microphone recognition.
+Requirements: Python 3.12 (the project's CI, Dockerfiles and judge setup target 3.12), Node 20.19+ or 22.12+, and a Chrome-family browser if you want microphone recognition.
 
 ```bash
 python -m venv .venv
@@ -236,11 +236,12 @@ Every ordinary customer-visible line is ledgered before it is sent. A failed tra
 
 **Mission: reduce road accidents by catching vehicle faults early, from every call, in the caller's own language.**
 
-> **Evidence status (2026-10-26):** no live Meta API call has been made in this
-> project. Meta paths are covered only by mocked tests or the no-key deterministic
-> fallback. All Hindi/Hinglish evaluation calls (84 total) are synthetic.
+> **Evidence status (2026-10-28):** live Muse Spark text intake is recorded in
+> `reports/hackathon/meta_live_smoke.json`. Feature-specific verification appears
+> in `/api/ai/status`; a text success does not verify vision/SAM/image paths.
+> All 84 Hindi/Hinglish evaluation examples remain synthetic.
 
-Road-safety tools at `/ui/#ai-tools`: per-vehicle fault risk, manufacturer alert feed (pull only), service-centre call-in queue, fault spread by state and month, WhatsApp intake **mock** (no WhatsApp Cloud API call), and 1–10 s video evidence (the UI suggests 5–10 s; analysis is flag-gated and unverified). The tools count rows from the active warehouse; the offline hackathon seed uses fixture/synthetic rows, so those demo counts are not real-world evidence. Details in [HACKATHON.md](HACKATHON.md).
+Road-safety tools at `/ui/#ai-tools`: per-vehicle fault risk, manufacturer alert feed (pull only), service-centre call-in queue, fault spread by state and month, WhatsApp intake **mock** (no WhatsApp Cloud API call), and 1–10 s video evidence (the UI suggests 5–10 s; clips are stored for human review; model video analysis is disabled). The tools count rows from the active warehouse; the offline hackathon seed uses fixture/synthetic rows, so those demo counts are not real-world evidence. Details in [HACKATHON.md](HACKATHON.md).
 
 The deterministic pipeline above is the default and the fallback. The optional
 Meta layer switches on only when `META_API_KEY` (or `MODEL_API_KEY`) is set.
@@ -288,8 +289,12 @@ weeks), but production (`abs5`) was **NOT RUN** on that test window; its in-samp
 2015–2020 score was 33.6% (episode precision 0.61). Do not quote the tuned 62.7%
 as production performance. Sources: `reports/nhtsa/backtest_safety.json`,
 `reports/oos/oos_test_results.json`, `reports/oos/oos_tune_results.json`.
-Meta API details are unverified against the live API; no live Meta call has been
-made in this project. See [HACKATHON.md](HACKATHON.md) §6.
+Live Muse Spark text intake is recorded in
+[`reports/hackathon/meta_live_smoke.json`](reports/hackathon/meta_live_smoke.json)
+(model `muse-spark-1.3`, endpoint `api.meta.ai`, artifact SHA-256
+`db34ee978a5c8455cc43cb143fd02cc119be0dc019a39e088058a74c6f875fe3`).
+Vision and SAM image analysis have **not** been called against the live API and
+remain unverified. See [HACKATHON.md](HACKATHON.md) §6.
 
 ## Operating limits
 

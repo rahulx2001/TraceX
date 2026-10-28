@@ -1,5 +1,6 @@
 # Python
 .venv/
+.venv-hackathon/
 venv/
 __pycache__/
 *.py[cod]
@@ -28,6 +29,8 @@ data/**/*.duckdb.wal
 data/connectors/
 data/uploads/demo_*.csv
 data/uploads/evil_*.csv
+# Derived NHTSA defect inputs; build with scripts/defect_prepare_inputs.py
+data/defect/
 reports/qubot/contacts/
 reports/qubot/digests/
 data/reports/
@@ -84,4 +87,6 @@ models/minilm/*.bin
 # [AI-LAYER] locally stored photo evidence (never commit customer photos)
 data/ai_evidence/
 data/hackathon/
+reports/hackathon/*.webm
+reports/hackathon/*.mp4
 *.ses

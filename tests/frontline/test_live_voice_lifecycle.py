@@ -84,8 +84,10 @@ out.playback = { states, final: playback.status, text: playback.text };
 
 out.echoNumeric = looksLikeAgentEcho(numeric, "What model year is the vehicle?");
 out.echoAccent = looksLikeAgentEcho(noisy, "Tell me what the brakes are doing.");
-out.bargeNo = shouldRetainBargeInUtterance("No!", { interrupting: true });
-out.bargeFire = shouldRetainBargeInUtterance("the car is on fire", { interrupting: true });
+out.bargeNoText = shouldRetainBargeInUtterance("No!", { interrupting: true });
+out.bargeFireText = shouldRetainBargeInUtterance("the car is on fire", { interrupting: true });
+out.bargeNo = Boolean(out.bargeNoText);
+out.bargeFire = Boolean(out.bargeFireText);
 console.log(JSON.stringify(out));
 """
     proc = subprocess.run(
@@ -133,6 +135,8 @@ def test_scheduled_speech_turn_and_playback_events():
     assert out["echoAccent"] is False
     assert out["bargeNo"] is True
     assert out["bargeFire"] is True
+    assert out["bargeNoText"] == "No!"
+    assert out["bargeFireText"] == "the car is on fire"
 
 
 def test_carrier_route_is_not_a_live_audio_conversation():

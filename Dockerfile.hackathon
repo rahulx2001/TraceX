@@ -43,6 +43,7 @@ COPY domains ./domains
 COPY scripts ./scripts
 COPY eval ./eval
 COPY reports/nhtsa ./reports/nhtsa
+COPY reports/hackathon ./reports/hackathon
 COPY Makefile .
 COPY --from=dashboard /dash/dist ./dashboard/dist
 

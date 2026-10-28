@@ -1,0 +1,16 @@
+
+Running 10 tests using 1 worker
+
+  ✓   1 [chromium] › e2e/api.deep-sweep.spec.js:15:3 › Deep OpenAPI GET sweep › production-like docs/openapi not anonymously open (or openapi sweep) (3.1s)
+  ✓   2 [chromium] › e2e/api.deep-sweep.spec.js:48:3 › Deep OpenAPI GET sweep › optional OIDC start fails closed when unconfigured (4ms)
+  ✓   3 [chromium] › e2e/api.deep-sweep.spec.js:61:3 › Deep OpenAPI GET sweep › audit export returns a verified 200 document (5.0s)
+  ✓   4 [chromium] › e2e/api.deep-sweep.spec.js:77:3 › Deep OpenAPI GET sweep › core /api GETs without auth are 401 (not 500) (11ms)
+  ✓   5 [chromium] › e2e/api.deep-sweep.spec.js:94:3 › Deep mutation edges › usage ignores client tenant spoof (16ms)
+  ✓   6 [chromium] › e2e/api.deep-sweep.spec.js:104:3 › Deep mutation edges › case note author cannot be spoofed to CEO (8.1s)
+  ✓   7 [chromium] › e2e/api.deep-sweep.spec.js:156:3 › Deep mutation edges › subscriptions create validates channel (2ms)
+  ✓   8 [chromium] › e2e/api.deep-sweep.spec.js:164:3 › Deep mutation edges › jobs enqueue unknown type rejected; run-next denied for service (3ms)
+  ✓   9 [chromium] › e2e/api.deep-sweep.spec.js:178:3 › Deep mutation edges › dsr delete with service key is 403 (2ms)
+  ✓  10 [chromium] › e2e/api.deep-sweep.spec.js:185:3 › Deep mutation edges › wrong API key is 401 everywhere critical (4ms)
+
+  10 passed (16.6s)
+EXIT:0

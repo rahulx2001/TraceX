@@ -1316,11 +1316,11 @@ class Orchestrator:
                     },
                 )
                 return True
-            if self._unresolved_rejection(text, changed or {}):
+            if self._unresolved_rejection(text, changed or {}) or not looks_like_confirmation(text):
                 summary = self._confirmation_summary()
                 record_action(self._orchestrator_action(
                     "question_asked",
-                    input_summary="slot confirmation rejected without a replacement",
+                    input_summary="slots remain unconfirmed; explicit confirmation required",
                     output_summary=summary,
                 ))
                 turn = self.ctx.record_turn("agent", summary, llm_used=False)

@@ -31,7 +31,7 @@ export default defineConfig({
     actionTimeout: 12_000,
     navigationTimeout: 30_000,
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}) } }],
   // Require an already-running API. Fail loudly if /health is unreachable.
   webServer: {
     command: `python3 -c "import urllib.request,sys; urllib.request.urlopen('${BASE}/health', timeout=3); print('health ok')" && sleep 3600`,

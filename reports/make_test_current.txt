@@ -1,0 +1,62 @@
+cd dashboard && npm run build && test -f dist/index.html
+
+> tracex-ops-console@2.0.0 build
+> vite build
+
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 75 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.55 kB │ gzip:   0.35 kB
+dist/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+dist/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+dist/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+dist/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+dist/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+dist/assets/index-DByJOnCB.css              79.01 kB │ gzip:  14.95 kB
+dist/assets/index-BBE0N4Zj.js              570.00 kB │ gzip: 150.75 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/apiAuth.js is dynamically imported by src/ai/tools/Alerts.jsx but also statically imported by routes/AnalyticsDesk.jsx, routes/AuditReports.jsx, routes/CallWidget.jsx, routes/CaseQueue.jsx, routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 125ms
+.venv-hackathon/bin/python -m scripts.prepare_minilm_onnx --verify-only || .venv-hackathon/bin/python -m scripts.prepare_minilm_onnx
+Pinned MiniLM artifact verified
+test data root: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T//tracex-pytest-yLd3pu
+........................................................................ [  4%]
+........................................................................ [  8%]
+........................................................................ [ 12%]
+........................................................................ [ 16%]
+........................................................................ [ 20%]
+........................................................................ [ 24%]
+........................................................................ [ 28%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 41%]
+........................................................................ [ 45%]
+........................................................................ [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+........................................................................ [ 61%]
+........................................................................ [ 65%]
+........................................................................ [ 69%]
+........................................................................ [ 73%]
+........................................................................ [ 77%]
+........................................................................ [ 82%]
+........................................................................ [ 86%]
+........................................................................ [ 90%]
+........................................................................ [ 94%]
+........................................................................ [ 98%]
+...........................                                              [100%]
+=============================== warnings summary ===============================
+.venv-hackathon/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/.venv-hackathon/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1755 passed, 1 warning in 759.59s (0:12:39)
+EXIT:0

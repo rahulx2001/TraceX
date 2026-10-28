@@ -115,6 +115,44 @@ jobs:
           npm run build
           test -f dist/index.html
 
+  hackathon-docker-smoke:
+    name: hackathon image and recorded proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build hackathon image
+        run: docker build -f Dockerfile.hackathon -t tracex-hackathon:test .
+      - name: Seed without models and verify authenticated proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          HACKATHON_API_KEY=$(python3 -c 'import secrets; print(secrets.token_hex(24))')
+          HACKATHON_SESSION_SECRET=$(python3 -c 'import secrets; print(secrets.token_hex(32))')
+          echo "::add-mask::$HACKATHON_API_KEY"
+          echo "::add-mask::$HACKATHON_SESSION_SECRET"
+          docker run -d --name tracex-judge -p 8001:8000 \
+            -e FRONTLINE_AUTH_REQUIRED=1 \
+            -e FRONTLINE_API_KEY="$HACKATHON_API_KEY" \
+            -e SESSION_SECRET="$HACKATHON_SESSION_SECRET" \
+            -e FRONTLINE_AI_LAYER=off tracex-hackathon:test
+          trap 'docker logs tracex-judge; docker rm -f tracex-judge' EXIT
+          READY=0
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:8001/health >/dev/null; then READY=1; break; fi
+            sleep 2
+          done
+          test "$READY" = 1
+          curl -sf http://127.0.0.1:8001/ui/ >/dev/null
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/api/ai/demo/proof)
+          test "$CODE" = 401
+          curl -sf -H "X-API-Key: $HACKATHON_API_KEY" \
+            http://127.0.0.1:8001/api/ai/demo/proof > /tmp/tracex-recorded-proof.json
+          python3 -c 'import json; d=json.load(open("/tmp/tracex-recorded-proof.json")); assert d["ok"] and d["live_transport"]'
+          docker exec tracex-judge python -c 'from pathlib import Path; assert Path("/app/data/.hackathon_seeded").read_text().strip() == "2026-10-28-event"'
+          docker stop --time 15 tracex-judge
+
   docker-smoke:
     name: docker build, startup and customer turn smoke test
     runs-on: ubuntu-latest
@@ -183,10 +221,11 @@ jobs:
 
           echo "Starting customer interaction..."
           START_RESP=$(curl -sf -X POST "http://127.0.0.1:8000/api/interactions/start?channel=web_text&pack_id=automotive_nhtsa")
-          echo "Interaction started: $START_RESP"
+          echo "Interaction created."
 
-          IID=$(python3 -c "import json; d=json.loads('''$START_RESP'''); print(d.get('interaction_id') or '')")
-          TOKEN=$(python3 -c "import json; d=json.loads('''$START_RESP'''); print(d.get('capability_token') or '')")
+          IID=$(printf '%s' "$START_RESP" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("interaction_id") or "")')
+          TOKEN=$(printf '%s' "$START_RESP" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("capability_token") or "")')
+          echo "::add-mask::$TOKEN"
           if [ -z "$IID" ]; then
             echo "Failed to extract interaction_id"
             docker logs frontline-test
@@ -195,23 +234,23 @@ jobs:
 
           echo "Sending customer turn via WebSocket for interaction $IID..."
           docker exec frontline-test python3 -c "
-import asyncio, json, websockets
+          import asyncio, json, websockets
 
-async def test_ws():
-    url = 'ws://127.0.0.1:8000/ws/interaction/$IID?token=$TOKEN'
-    async with websockets.connect(url) as ws:
-        await ws.send(json.dumps({'type': 'user_turn', 'text': 'my brake pedal feels spongy'}))
-        for _ in range(10):
-            raw = await asyncio.wait_for(ws.recv(), timeout=15.0)
-            msg = json.loads(raw)
-            print('WS received:', msg.get('type'), msg.get('text'))
-            if msg.get('type') in ('agent_turn', 'turn') and (msg.get('speaker') == 'agent' or msg.get('text')):
-                print('Agent turn verified!')
-                return
-    raise RuntimeError('No agent turn received')
+          async def test_ws():
+              url = 'ws://127.0.0.1:8000/ws/interaction/$IID?token=$TOKEN'
+              async with websockets.connect(url) as ws:
+                  await ws.send(json.dumps({'type': 'user_turn', 'text': 'my brake pedal feels spongy'}))
+                  for _ in range(10):
+                      raw = await asyncio.wait_for(ws.recv(), timeout=15.0)
+                      msg = json.loads(raw)
+                      print('WS received:', msg.get('type'), msg.get('text'))
+                      if msg.get('type') in ('agent_turn', 'turn') and (msg.get('speaker') == 'agent' or msg.get('text')):
+                          print('Agent turn verified!')
+                          return
+              raise RuntimeError('No agent turn received')
 
-asyncio.run(test_ws())
-"
+          asyncio.run(test_ws())
+          "
           if [ $? -ne 0 ]; then
             echo "WebSocket test failed. Container logs:"
             docker logs frontline-test

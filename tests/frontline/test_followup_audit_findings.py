@@ -543,15 +543,16 @@ def test_fu14_future_cancelled_on_timeout():
         centroids={"brakes": np.zeros(384, dtype=np.float32)},
     )
 
-    mock_future = MagicMock()
-    mock_future.result.side_effect = concurrent.futures.TimeoutError("timed out")
-    mock_future.cancel = MagicMock()
+    from src.ml_runtime.inference_deadline import InferenceDeadline
+    runner = InferenceDeadline(workers=1)
+    mock_future = concurrent.futures.Future()
 
     with patch("src.ml_runtime.category_zeroshot.get_category_centroids", return_value=mock_centroids), \
-         patch("src.ml_runtime.category_zeroshot._EMBED_EXECUTOR.submit", return_value=mock_future):
+         patch("src.ml_runtime.category_zeroshot.LOCAL_INFERENCE", runner), \
+         patch.object(runner._pool, "submit", return_value=mock_future):
         res = predict_category_zero_shot("brake pedal", pack=MagicMock(), embedder=MagicMock(), timeout_ms=50.0)
 
-    mock_future.cancel.assert_called_once()
+    assert mock_future.cancelled()
     assert res.category is None
 
 

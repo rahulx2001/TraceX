@@ -23,7 +23,7 @@ services:
       API_PORT: "8000"
       FRONTLINE_AUTH_REQUIRED: "1"
       FRONTLINE_API_KEY: ${FRONTLINE_API_KEY:?Set FRONTLINE_API_KEY (32+ random chars) for the demo container}
-      SESSION_SECRET: ${SESSION_SECRET:-hackathon_demo_session_secret_32_bytes_min_super_secret}
+      SESSION_SECRET: ${SESSION_SECRET:?Set a separate random SESSION_SECRET (32+ chars) for the demo container}
       AI_DEMO_ENABLED: "1"
       SIM_COUNT: ${SIM_COUNT:-15}
       META_API_KEY: ${META_API_KEY:-}
@@ -35,6 +35,9 @@ services:
       META_SAM_ENDPOINT: ${META_SAM_ENDPOINT:-}
       META_IMAGE_ENDPOINT: ${META_IMAGE_ENDPOINT:-}
       META_ALLOWED_HOSTS: ${META_ALLOWED_HOSTS:-}
+      META_BUDGET_PATH: /app/data/meta_budget.sqlite
+      META_CAP_PATH: /app/data/meta_calls.json
+      META_RESOURCE_PATH: /app/data/meta_resource_host
     volumes:
       - tracex-hackathon-data:/app/data
     healthcheck:

@@ -24,6 +24,29 @@ from pathlib import Path
 # Repo root = parent of this file's `src/` directory.
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
+
+def load_repo_env(*, force: bool = False) -> None:
+    """Load the gitignored repo ``.env`` into the process.
+
+    Existing environment variables win, so a shell export or a test
+    monkeypatch is never overwritten. The server reads configuration from
+    the process environment, and the documented ``uvicorn`` command does not
+    pass ``--env-file``.
+    """
+    if not force and os.getenv("FRONTLINE_TEST_ISOLATION") == "1":
+        return
+    env_path = REPO_ROOT / ".env"
+    if not env_path.is_file():
+        return
+    try:
+        from dotenv import load_dotenv
+    except Exception:
+        return
+    load_dotenv(env_path, override=False)
+
+
+load_repo_env()
+
 # Canonical pilot paths (never wiped by tests unless explicitly allowed).
 DEFAULT_OPS_DB = (REPO_ROOT / "data" / "frontline.duckdb").resolve()
 DEFAULT_DOMAIN_DB_DIR = (REPO_ROOT / "data" / "domains").resolve()

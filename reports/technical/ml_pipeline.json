@@ -1,0 +1,1886 @@
+{
+  "provider": "onnx",
+  "version": "all-MiniLM-L6-v2@751bff37182d3f1213fa05d7196b954e230abad9:tok@751bff37182d3f1213fa05d7196b954e230abad9:onnx-int8:mean-pool:l2:zeropad512:v1:modelsha256=afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+  "model_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+  "paid_calls": 0,
+  "warehouses": "disposable",
+  "records_requested": 1000,
+  "semantic_promotion": "blocked_pending_independent_human_evidence",
+  "checks": {
+    "csv_ingestion": {
+      "passed": true,
+      "written": 1000,
+      "duration_s": 0.516
+    },
+    "real_onnx_backfill": {
+      "passed": true,
+      "duration_s": 5.1864,
+      "throughput_per_s": 192.811,
+      "coverage": {
+        "eligible": 1000,
+        "complete": 1000,
+        "stale": 0,
+        "pending": 0,
+        "failed": 0,
+        "quarantined": 0
+      }
+    },
+    "idempotent_backfill": {
+      "passed": true,
+      "duration_s": 0.1032
+    },
+    "versioned_cluster_build": {
+      "passed": true,
+      "duration_s": 0.409,
+      "assignments": 1000,
+      "clusters": 2
+    },
+    "unapproved_promotion_rejected": {
+      "passed": true
+    },
+    "semantic_retrieval_exact_replay": {
+      "passed": true,
+      "top_score": 0.9952005644628146,
+      "note": "Exact replay verifies plumbing; not unseen retrieval accuracy."
+    },
+    "queued_stale_source_refresh": {
+      "passed": true,
+      "job_status": "done",
+      "coverage": {
+        "eligible": 1000,
+        "complete": 1000,
+        "stale": 0,
+        "pending": 0,
+        "failed": 0,
+        "quarantined": 0
+      }
+    },
+    "fixture_provenance_excluded_from_live_anomalies": {
+      "passed": true
+    },
+    "hash_rollback": {
+      "passed": true
+    }
+  },
+  "pair_diagnostic": {
+    "dataset_version": "pairs_v1",
+    "n_pairs": 12,
+    "label_sources": [
+      "coding_agent_seed"
+    ],
+    "providers": {
+      "hash": {
+        "version": "blake2b-512-v1:feature-hash:tok2.0-bi0.5:sublinear-tf:idf-optional:l2:dim512",
+        "positive_mean": 0.1133,
+        "negative_mean": 0.2184,
+        "positive_n": 6,
+        "negative_n": 6,
+        "roc_auc": 0.2778,
+        "average_precision": 0.4549,
+        "max_native_padded_delta": 0.0
+      },
+      "onnx": {
+        "version": "all-MiniLM-L6-v2@751bff37182d3f1213fa05d7196b954e230abad9:tok@751bff37182d3f1213fa05d7196b954e230abad9:onnx-int8:mean-pool:l2:zeropad512:v1:modelsha256=afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+        "positive_mean": 0.4026,
+        "negative_mean": 0.2549,
+        "positive_n": 6,
+        "negative_n": 6,
+        "roc_auc": 0.7222,
+        "average_precision": 0.7052,
+        "max_native_padded_delta": 0.0
+      }
+    },
+    "acceptance_eligible": false,
+    "git_sha": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
+    "limitations": [
+      "pairs_v1 is a coding-agent development fixture and is not an acceptance gate.",
+      "Human labels with provenance, \u03ba \u2265 0.70, and quota are required before cutover.",
+      "Do not treat Macro-F1 as available: no failure-mode ground truth ships.",
+      "canonical_identity is not used as a positive-pair signal."
+    ],
+    "per_class": {
+      "hash": {
+        "hard_negative_same_category": {
+          "n": 3,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "negation_mention": {
+          "n": 1,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "novel_true": {
+          "n": 2,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "paraphrase_positive": {
+          "n": 6,
+          "positives": 6,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "precision_at_5": 1.0,
+          "average_precision": 1.0,
+          "positive_mean_ci95": [
+            0.0577,
+            0.1715
+          ],
+          "ndcg": 1.0,
+          "ndcg_at_5": 1.0,
+          "hard_negative_performance": null,
+          "query_recall_ci95": [
+            1.0,
+            1.0
+          ],
+          "query_level": true
+        }
+      },
+      "onnx": {
+        "hard_negative_same_category": {
+          "n": 3,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "negation_mention": {
+          "n": 1,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "novel_true": {
+          "n": 2,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "paraphrase_positive": {
+          "n": 6,
+          "positives": 6,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "precision_at_5": 1.0,
+          "average_precision": 1.0,
+          "positive_mean_ci95": [
+            0.3164,
+            0.5172
+          ],
+          "ndcg": 1.0,
+          "ndcg_at_5": 1.0,
+          "hard_negative_performance": null,
+          "query_recall_ci95": [
+            1.0,
+            1.0
+          ],
+          "query_level": true
+        }
+      }
+    }
+  },
+  "category_diagnostics": {
+    "labels": {
+      "profile": "labels",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "acceptance_eligible": false,
+      "held_out": false,
+      "n": 76,
+      "accuracy": 0.0526,
+      "accepted_precision": 0.2353,
+      "coverage": 0.2237,
+      "unavailable": 0,
+      "per_category": {
+        "SERVICE BRAKES": {
+          "n": 12,
+          "correct": 0
+        },
+        "ENGINE": {
+          "n": 12,
+          "correct": 0
+        },
+        "AIR BAGS": {
+          "n": 8,
+          "correct": 0
+        },
+        "ELECTRICAL SYSTEM": {
+          "n": 10,
+          "correct": 0
+        },
+        "STEERING": {
+          "n": 10,
+          "correct": 1
+        },
+        "SUSPENSION": {
+          "n": 8,
+          "correct": 1
+        },
+        "POWER TRAIN": {
+          "n": 10,
+          "correct": 0
+        },
+        "SEAT BELTS": {
+          "n": 6,
+          "correct": 2
+        }
+      },
+      "rows": [
+        {
+          "text": "the pedal went straight down to the mat and i could not get the car to halt",
+          "gold": "SERVICE BRAKES",
+          "prediction": "PARKING BRAKE",
+          "top1": "PARKING BRAKE",
+          "score": 0.42906901240348816,
+          "margin": 0.13082686066627502,
+          "latency_ms": 2.316917001735419,
+          "unavailable": false
+        },
+        {
+          "text": "takes twice as long to come to a standstill when slowing from highway speeds",
+          "gold": "SERVICE BRAKES",
+          "prediction": "VEHICLE SPEED CONTROL",
+          "top1": "VEHICLE SPEED CONTROL",
+          "score": 0.47291672229766846,
+          "margin": 0.13096404075622559,
+          "latency_ms": 1.9674170180223882,
+          "unavailable": false
+        },
+        {
+          "text": "loud metallic grinding friction whenever i press down to halt at an intersection",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.327073335647583,
+          "margin": 0.042611271142959595,
+          "latency_ms": 1.8963749753311276,
+          "unavailable": false
+        },
+        {
+          "text": "violent shuddering under my right shoe whenever trying to decelerate",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.26640450954437256,
+          "margin": 0.03893470764160156,
+          "latency_ms": 1.6020830371417105,
+          "unavailable": false
+        },
+        {
+          "text": "pushed down as hard as i could with my foot but the vehicle kept rolling forward",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.3545477092266083,
+          "margin": 0.013868361711502075,
+          "latency_ms": 1.914000022225082,
+          "unavailable": false
+        },
+        {
+          "text": "spongy resistance underfoot and i have to pump it repeatedly to stop",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.18130949139595032,
+          "margin": 0.0018832236528396606,
+          "latency_ms": 1.7770829726941884,
+          "unavailable": false
+        },
+        {
+          "text": "terrible high pitched scraping screech whenever slowing down for red lights",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "EXTERIOR LIGHTING",
+          "score": 0.20652659237384796,
+          "margin": 0.00012928247451782227,
+          "latency_ms": 1.7659590230323374,
+          "unavailable": false
+        },
+        {
+          "text": "vehicle lurches forward unexpectedly when attempting to come to a complete halt",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "FORWARD COLLISION AVOIDANCE",
+          "score": 0.42863184213638306,
+          "margin": 0.034500688314437866,
+          "latency_ms": 1.674500002991408,
+          "unavailable": false
+        },
+        {
+          "text": "stopping distance has expanded drastically over the last few days",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "LANE DEPARTURE",
+          "score": 0.2363175004720688,
+          "margin": 0.02429981529712677,
+          "latency_ms": 1.3307500048540533,
+          "unavailable": false
+        },
+        {
+          "text": "felt zero resistance under my sole and the car drifted through the stop sign",
+          "gold": "SERVICE BRAKES",
+          "prediction": "PARKING BRAKE",
+          "top1": "PARKING BRAKE",
+          "score": 0.3506930470466614,
+          "margin": 0.0711054801940918,
+          "latency_ms": 1.5818339888937771,
+          "unavailable": false
+        },
+        {
+          "text": "severe pulsing and vibrating through the floor when decelerating on the off ramp",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.31865572929382324,
+          "margin": 0.10385942459106445,
+          "latency_ms": 1.7765830270946026,
+          "unavailable": false
+        },
+        {
+          "text": "complete loss of stopping ability while descending a steep grade",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.31987264752388,
+          "margin": 0.04428568482398987,
+          "latency_ms": 1.3022920466028154,
+          "unavailable": false
+        },
+        {
+          "text": "shuts off abruptly while waiting at red lights but turns over after waiting",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "EXTERIOR LIGHTING",
+          "score": 0.18257954716682434,
+          "margin": 0.011695712804794312,
+          "latency_ms": 1.6080000204965472,
+          "unavailable": false
+        },
+        {
+          "text": "loud rhythmic knocking and metallic tapping from under the bonnet when cold",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.1572871208190918,
+          "margin": 0.013164907693862915,
+          "latency_ms": 1.53645797399804,
+          "unavailable": false
+        },
+        {
+          "text": "terrible shuddering and hesitation when trying to accelerate from a stop",
+          "gold": "ENGINE",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.3628818392753601,
+          "margin": 0.07936370372772217,
+          "latency_ms": 1.5051670488901436,
+          "unavailable": false
+        },
+        {
+          "text": "lost all power climbing a hill and could not accelerate past twenty",
+          "gold": "ENGINE",
+          "prediction": "POWER TRAIN",
+          "top1": "POWER TRAIN",
+          "score": 0.35224995017051697,
+          "margin": 0.12593430280685425,
+          "latency_ms": 1.5500829904340208,
+          "unavailable": false
+        },
+        {
+          "text": "sputtered violently and died right in the middle of a busy intersection",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "VISIBILITY/WIPER",
+          "score": 0.3123277723789215,
+          "margin": 0.00306585431098938,
+          "latency_ms": 1.7506250296719372,
+          "unavailable": false
+        },
+        {
+          "text": "thick white vapor with a sweet odor drifting from the front compartment",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "AIR BAGS",
+          "score": 0.2353125661611557,
+          "margin": 0.04634596407413483,
+          "latency_ms": 1.575708040036261,
+          "unavailable": false
+        },
+        {
+          "text": "runs incredibly rough and shakes the entire cabin when sitting at an idle",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.22751499712467194,
+          "margin": 0.02620840072631836,
+          "latency_ms": 1.774792035575956,
+          "unavailable": false
+        },
+        {
+          "text": "pungent burning oil odor and dark drips forming under the front end",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "FUEL SYSTEM",
+          "score": 0.21205145120620728,
+          "margin": 0.05383744835853577,
+          "latency_ms": 1.5938750002533197,
+          "unavailable": false
+        },
+        {
+          "text": "loud clattering sound from the front bay that speeds up when revving",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "FORWARD COLLISION AVOIDANCE",
+          "score": 0.22242246568202972,
+          "margin": 0.0447833389043808,
+          "latency_ms": 1.8146249931305647,
+          "unavailable": false
+        },
+        {
+          "text": "bogged down completely when merging onto the motorway and would not go",
+          "gold": "ENGINE",
+          "prediction": "LANE DEPARTURE",
+          "top1": "LANE DEPARTURE",
+          "score": 0.39232707023620605,
+          "margin": 0.10822820663452148,
+          "latency_ms": 1.7106669838540256,
+          "unavailable": false
+        },
+        {
+          "text": "died suddenly while cruising at fifty and had to coast onto the shoulder",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SEAT BELTS",
+          "score": 0.2611955404281616,
+          "margin": 0.009022533893585205,
+          "latency_ms": 1.8251670408062637,
+          "unavailable": false
+        },
+        {
+          "text": "severe misfiring and loss of forward thrust under normal acceleration",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "HYBRID PROPULSION SYSTEM",
+          "score": 0.2975447177886963,
+          "margin": 0.007281184196472168,
+          "latency_ms": 1.6536249895580113,
+          "unavailable": false
+        },
+        {
+          "text": "the warning symbol showing a seated person with a round balloon stays lit",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "AIR BAGS",
+          "score": 0.24096986651420593,
+          "margin": 0.0065732598304748535,
+          "latency_ms": 1.7432080348953605,
+          "unavailable": false
+        },
+        {
+          "text": "supplemental restraint indicator turned on and will not extinguish",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "SEAT BELTS",
+          "score": 0.30863630771636963,
+          "margin": 0.031172513961791992,
+          "latency_ms": 1.5685419784858823,
+          "unavailable": false
+        },
+        {
+          "text": "passenger safety cushion lamp displays disabled even with an adult occupant",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "CHILD SEAT",
+          "score": 0.42231661081314087,
+          "margin": 0.013152509927749634,
+          "latency_ms": 1.6148330178111792,
+          "unavailable": false
+        },
+        {
+          "text": "an icon of an inflated cushion glowing continuously on the instrument cluster",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "STRUCTURE",
+          "score": 0.2393403947353363,
+          "margin": 0.021864965558052063,
+          "latency_ms": 1.6025829827412963,
+          "unavailable": false
+        },
+        {
+          "text": "yellow restraint warning illuminates intermittently whenever adjusting the seat",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "CHILD SEAT",
+          "score": 0.38510411977767944,
+          "margin": 0.00048866868019104,
+          "latency_ms": 1.7490830505266786,
+          "unavailable": false
+        },
+        {
+          "text": "the secondary occupant protection alert has been glowing for two weeks",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "BACKOVER PREVENTION",
+          "score": 0.1620725840330124,
+          "margin": 0.003573805093765259,
+          "latency_ms": 1.5901250299066305,
+          "unavailable": false
+        },
+        {
+          "text": "dashboard shows an occupant icon with a circle and chime rings on startup",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "UNKNOWN OR OTHER",
+          "score": 0.16312497854232788,
+          "margin": 0.0385456383228302,
+          "latency_ms": 1.9814159604720771,
+          "unavailable": false
+        },
+        {
+          "text": "passive restraint alert came on during heavy rain and remains stuck on",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "PARKING BRAKE",
+          "score": 0.2523494064807892,
+          "margin": 0.013618752360343933,
+          "latency_ms": 1.544790982734412,
+          "unavailable": false
+        },
+        {
+          "text": "the dash displays flickered and the center console shut down completely",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "PARKING BRAKE",
+          "score": 0.20813633501529694,
+          "margin": 0.0308038592338562,
+          "latency_ms": 1.498500001616776,
+          "unavailable": false
+        },
+        {
+          "text": "completely unresponsive in the morning and only makes a faint click when pressing start",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "UNKNOWN OR OTHER",
+          "score": 0.08634636551141739,
+          "margin": 0.006204299628734589,
+          "latency_ms": 1.9380419980734587,
+          "unavailable": false
+        },
+        {
+          "text": "all cabin illumination and instrument gauges went totally dark while driving",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "EXTERIOR LIGHTING",
+          "score": 0.34134578704833984,
+          "margin": 0.13583974540233612,
+          "latency_ms": 1.5372919733636081,
+          "unavailable": false
+        },
+        {
+          "text": "power windows refuse to go up and the door lock toggles do nothing",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.2624019682407379,
+          "margin": 0.1315627545118332,
+          "latency_ms": 1.4947080053389072,
+          "unavailable": false
+        },
+        {
+          "text": "the center display keeps rebooting every ten minutes on my commute",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "SERVICE BRAKES",
+          "score": 0.10470187664031982,
+          "margin": 0.0021039843559265137,
+          "latency_ms": 1.5873340307734907,
+          "unavailable": false
+        },
+        {
+          "text": "keyless entry fob fails to unlock doors or let me turn on the ignition",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.21852463483810425,
+          "margin": 0.07502229511737823,
+          "latency_ms": 1.7871670424938202,
+          "unavailable": false
+        },
+        {
+          "text": "all dashboard needles dropped to zero while traveling at cruising speed",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "SERVICE BRAKES",
+          "score": 0.21363617479801178,
+          "margin": 0.03868599236011505,
+          "latency_ms": 1.48583302507177,
+          "unavailable": false
+        },
+        {
+          "text": "infotainment unit went black and no audio comes from the sound system",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "EQUIPMENT",
+          "score": 0.2325116991996765,
+          "margin": 0.0527515709400177,
+          "latency_ms": 1.6173329786397517,
+          "unavailable": false
+        },
+        {
+          "text": "power mirrors and interior dome lights do not activate at all",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": "EXTERIOR LIGHTING",
+          "top1": "EXTERIOR LIGHTING",
+          "score": 0.36602410674095154,
+          "margin": 0.19344261288642883,
+          "latency_ms": 1.4965420123189688,
+          "unavailable": false
+        },
+        {
+          "text": "warning chime rings constantly with erratic symbols flashing across the cluster",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "UNKNOWN OR OTHER",
+          "score": 0.0948687344789505,
+          "margin": 0.006302729249000549,
+          "latency_ms": 1.5620419871993363,
+          "unavailable": false
+        },
+        {
+          "text": "the wheel shakes violently in my hands on the motorway",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "WHEELS",
+          "score": 0.3362184166908264,
+          "margin": 0.025889307260513306,
+          "latency_ms": 1.302707998547703,
+          "unavailable": false
+        },
+        {
+          "text": "the vehicle constantly pulls towards the ditch on flat pavement",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.31191354990005493,
+          "margin": 0.011405080556869507,
+          "latency_ms": 1.3379169977270067,
+          "unavailable": false
+        },
+        {
+          "text": "turning into tight parking spots requires immense physical effort",
+          "gold": "STEERING",
+          "prediction": "PARKING BRAKE",
+          "top1": "PARKING BRAKE",
+          "score": 0.5164350271224976,
+          "margin": 0.22778752446174622,
+          "latency_ms": 1.5931250527501106,
+          "unavailable": false
+        },
+        {
+          "text": "wanders between highway lanes unless i fight hard to hold it centered",
+          "gold": "STEERING",
+          "prediction": "LANE DEPARTURE",
+          "top1": "LANE DEPARTURE",
+          "score": 0.45675191283226013,
+          "margin": 0.10626378655433655,
+          "latency_ms": 1.7314580036327243,
+          "unavailable": false
+        },
+        {
+          "text": "loud whining groan whenever turning sharply around roundabouts",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "LANE DEPARTURE",
+          "score": 0.2837337255477905,
+          "margin": 0.024132072925567627,
+          "latency_ms": 1.5424169832840562,
+          "unavailable": false
+        },
+        {
+          "text": "directional control feels disconnected from where the front is pointing",
+          "gold": "STEERING",
+          "prediction": "STEERING",
+          "top1": "STEERING",
+          "score": 0.3959929645061493,
+          "margin": 0.07070961594581604,
+          "latency_ms": 1.381542009767145,
+          "unavailable": false
+        },
+        {
+          "text": "huge dead zone in the column before the front actually begins to turn",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "LANE DEPARTURE",
+          "score": 0.2311345636844635,
+          "margin": 0.03544023633003235,
+          "latency_ms": 1.7337079625576735,
+          "unavailable": false
+        },
+        {
+          "text": "jerks sharply to the right side whenever letting go of the rim",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.2754480242729187,
+          "margin": 0.00934407114982605,
+          "latency_ms": 1.7684160266071558,
+          "unavailable": false
+        },
+        {
+          "text": "front assembly feels frozen solid when trying to make ninety degree turns",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.2187376320362091,
+          "margin": 0.022019818425178528,
+          "latency_ms": 1.6225419822148979,
+          "unavailable": false
+        },
+        {
+          "text": "violent wobble transmitted directly into my palms at highway velocity",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "FORWARD COLLISION AVOIDANCE",
+          "score": 0.2459094226360321,
+          "margin": 0.0017706751823425293,
+          "latency_ms": 1.4894159976392984,
+          "unavailable": false
+        },
+        {
+          "text": "loud clunking and banging over small potholes and road seams",
+          "gold": "SUSPENSION",
+          "prediction": null,
+          "top1": "TIRES",
+          "score": 0.23231568932533264,
+          "margin": 0.03460034728050232,
+          "latency_ms": 1.6167500289157033,
+          "unavailable": false
+        },
+        {
+          "text": "the rear end bounces uncontrollably after crossing bridge joints",
+          "gold": "SUSPENSION",
+          "prediction": null,
+          "top1": "FORWARD COLLISION AVOIDANCE",
+          "score": 0.34224531054496765,
+          "margin": 0.047816187143325806,
+          "latency_ms": 1.5344580169767141,
+          "unavailable": false
+        },
+        {
+          "text": "the vehicle leans heavily to the driver side even on flat level ground",
+          "gold": "SUSPENSION",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.26742255687713623,
+          "margin": 0.004209756851196289,
+          "latency_ms": 1.714959042146802,
+          "unavailable": false
+        },
+        {
+          "text": "harsh creaking and popping underneath whenever rolling over speed bumps",
+          "gold": "SUSPENSION",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.3421613574028015,
+          "margin": 0.06876268982887268,
+          "latency_ms": 1.5106670325621963,
+          "unavailable": false
+        },
+        {
+          "text": "the whole chassis oscillates up and down repeatedly after dips in the road",
+          "gold": "SUSPENSION",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.3638782501220703,
+          "margin": 0.021990835666656494,
+          "latency_ms": 2.006584021728486,
+          "unavailable": false
+        },
+        {
+          "text": "rough jarring ride feels like there is zero cushioning over bumps",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.37023669481277466,
+          "margin": 0.07907366752624512,
+          "latency_ms": 1.7147500184364617,
+          "unavailable": false
+        },
+        {
+          "text": "bottoms out with a loud metal bang whenever carrying passengers in back",
+          "gold": "SUSPENSION",
+          "prediction": null,
+          "top1": "SEATS",
+          "score": 0.336373507976532,
+          "margin": 0.024262309074401855,
+          "latency_ms": 1.5677909832447767,
+          "unavailable": false
+        },
+        {
+          "text": "front corner sags noticeably and scrapes the curb when parking",
+          "gold": "SUSPENSION",
+          "prediction": "PARKING BRAKE",
+          "top1": "PARKING BRAKE",
+          "score": 0.4053521156311035,
+          "margin": 0.1385522484779358,
+          "latency_ms": 1.5759580419398844,
+          "unavailable": false
+        },
+        {
+          "text": "jerks violently between gears during moderate acceleration",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.24012941122055054,
+          "margin": 0.024681925773620605,
+          "latency_ms": 1.2832499924115837,
+          "unavailable": false
+        },
+        {
+          "text": "tachometer spikes up to four thousand revs but the vehicle barely creeps",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "TRACTION CONTROL SYSTEM",
+          "score": 0.28323790431022644,
+          "margin": 0.0175916850566864,
+          "latency_ms": 1.7872090102173388,
+          "unavailable": false
+        },
+        {
+          "text": "massive clunk reverberates underneath when shifting into reverse",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.20776104927062988,
+          "margin": 0.013447493314743042,
+          "latency_ms": 1.5112090040929615,
+          "unavailable": false
+        },
+        {
+          "text": "slipped out of drive and neutralised while cruising on the expressway",
+          "gold": "POWER TRAIN",
+          "prediction": "LANE DEPARTURE",
+          "top1": "LANE DEPARTURE",
+          "score": 0.40501153469085693,
+          "margin": 0.06794464588165283,
+          "latency_ms": 1.5416669775731862,
+          "unavailable": false
+        },
+        {
+          "text": "huge hesitation from a standstill before anything catches and moves",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.2373133897781372,
+          "margin": 0.005928978323936462,
+          "latency_ms": 1.4856250490993261,
+          "unavailable": false
+        },
+        {
+          "text": "harsh shudder through the floorboards whenever accelerating past thirty",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "WHEELS",
+          "score": 0.19938857853412628,
+          "margin": 0.04532589018344879,
+          "latency_ms": 1.3774579856544733,
+          "unavailable": false
+        },
+        {
+          "text": "refuses to engage when shifting out of park in cold temperatures",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "PARKING BRAKE",
+          "score": 0.3291970491409302,
+          "margin": 0.15451015532016754,
+          "latency_ms": 1.5910830115899444,
+          "unavailable": false
+        },
+        {
+          "text": "delayed engagement followed by a violent thud when pressing the accelerator",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.19346971809864044,
+          "margin": 0.05766148865222931,
+          "latency_ms": 1.6087919939309359,
+          "unavailable": false
+        },
+        {
+          "text": "hesitates and slips when trying to climb an incline from a complete stop",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "PARKING BRAKE",
+          "score": 0.3057269752025604,
+          "margin": 0.03816989064216614,
+          "latency_ms": 1.7318750033155084,
+          "unavailable": false
+        },
+        {
+          "text": "shudders uncontrollably when downshifting to overtake on the highway",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "LANE DEPARTURE",
+          "score": 0.32415321469306946,
+          "margin": 0.005123764276504517,
+          "latency_ms": 2.0275419810786843,
+          "unavailable": false
+        },
+        {
+          "text": "the safety strap will not pull out of the pillar when trying to buckle",
+          "gold": "SEAT BELTS",
+          "prediction": "SEAT BELTS",
+          "top1": "SEAT BELTS",
+          "score": 0.3764449656009674,
+          "margin": 0.08711397647857666,
+          "latency_ms": 1.5480000292882323,
+          "unavailable": false
+        },
+        {
+          "text": "the center clasp refuses to click and lock into the receiver",
+          "gold": "SEAT BELTS",
+          "prediction": "LATCHES/LOCKS/LINKAGES",
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.3851076364517212,
+          "margin": 0.17121997475624084,
+          "latency_ms": 1.546582963783294,
+          "unavailable": false
+        },
+        {
+          "text": "the shoulder harness remains loose and does not cinch against the torso",
+          "gold": "SEAT BELTS",
+          "prediction": "SEAT BELTS",
+          "top1": "SEAT BELTS",
+          "score": 0.40417754650115967,
+          "margin": 0.1070786714553833,
+          "latency_ms": 1.8023749580606818,
+          "unavailable": false
+        },
+        {
+          "text": "the webbing got stuck midway and refuses to retract back into the reel",
+          "gold": "SEAT BELTS",
+          "prediction": null,
+          "top1": "EQUIPMENT",
+          "score": 0.1686801016330719,
+          "margin": 0.016447246074676514,
+          "latency_ms": 1.8829579930752516,
+          "unavailable": false
+        },
+        {
+          "text": "the latching mechanism unfastens on its own whenever hitting a bump",
+          "gold": "SEAT BELTS",
+          "prediction": "LATCHES/LOCKS/LINKAGES",
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.4566338062286377,
+          "margin": 0.18854036927223206,
+          "latency_ms": 1.6362919704988599,
+          "unavailable": false
+        },
+        {
+          "text": "tensioner failed to lock during sudden deceleration on the highway",
+          "gold": "SEAT BELTS",
+          "prediction": null,
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.24355807900428772,
+          "margin": 0.0024580657482147217,
+          "latency_ms": 1.7956660012714565,
+          "unavailable": false
+        }
+      ]
+    },
+    "descriptions": {
+      "profile": "descriptions",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "acceptance_eligible": false,
+      "held_out": false,
+      "n": 76,
+      "accuracy": 0.2895,
+      "accepted_precision": 0.5946,
+      "coverage": 0.4868,
+      "unavailable": 0,
+      "per_category": {
+        "SERVICE BRAKES": {
+          "n": 12,
+          "correct": 1
+        },
+        "ENGINE": {
+          "n": 12,
+          "correct": 0
+        },
+        "AIR BAGS": {
+          "n": 8,
+          "correct": 6
+        },
+        "ELECTRICAL SYSTEM": {
+          "n": 10,
+          "correct": 3
+        },
+        "STEERING": {
+          "n": 10,
+          "correct": 1
+        },
+        "SUSPENSION": {
+          "n": 8,
+          "correct": 7
+        },
+        "POWER TRAIN": {
+          "n": 10,
+          "correct": 2
+        },
+        "SEAT BELTS": {
+          "n": 6,
+          "correct": 2
+        }
+      },
+      "rows": [
+        {
+          "text": "the pedal went straight down to the mat and i could not get the car to halt",
+          "gold": "SERVICE BRAKES",
+          "prediction": "SERVICE BRAKES",
+          "top1": "SERVICE BRAKES",
+          "score": 0.5017401576042175,
+          "margin": 0.11410892009735107,
+          "latency_ms": 2.1388750174082816,
+          "unavailable": false
+        },
+        {
+          "text": "takes twice as long to come to a standstill when slowing from highway speeds",
+          "gold": "SERVICE BRAKES",
+          "prediction": "VEHICLE SPEED CONTROL",
+          "top1": "VEHICLE SPEED CONTROL",
+          "score": 0.4583927392959595,
+          "margin": 0.15600574016571045,
+          "latency_ms": 1.8241670331917703,
+          "unavailable": false
+        },
+        {
+          "text": "loud metallic grinding friction whenever i press down to halt at an intersection",
+          "gold": "SERVICE BRAKES",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.3766249418258667,
+          "margin": 0.06635326147079468,
+          "latency_ms": 1.9110830035060644,
+          "unavailable": false
+        },
+        {
+          "text": "violent shuddering under my right shoe whenever trying to decelerate",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "POWER TRAIN",
+          "score": 0.34612351655960083,
+          "margin": 0.008536487817764282,
+          "latency_ms": 1.789500005543232,
+          "unavailable": false
+        },
+        {
+          "text": "pushed down as hard as i could with my foot but the vehicle kept rolling forward",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "SERVICE BRAKES",
+          "score": 0.36222487688064575,
+          "margin": 0.014214277267456055,
+          "latency_ms": 1.9240420078858733,
+          "unavailable": false
+        },
+        {
+          "text": "spongy resistance underfoot and i have to pump it repeatedly to stop",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "SERVICE BRAKES",
+          "score": 0.2566016912460327,
+          "margin": 0.006925851106643677,
+          "latency_ms": 1.890834013465792,
+          "unavailable": false
+        },
+        {
+          "text": "terrible high pitched scraping screech whenever slowing down for red lights",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "WHEELS",
+          "score": 0.2843678593635559,
+          "margin": 0.005324244499206543,
+          "latency_ms": 1.7886660061776638,
+          "unavailable": false
+        },
+        {
+          "text": "vehicle lurches forward unexpectedly when attempting to come to a complete halt",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.4868032932281494,
+          "margin": 0.04482227563858032,
+          "latency_ms": 1.6253340290859342,
+          "unavailable": false
+        },
+        {
+          "text": "stopping distance has expanded drastically over the last few days",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "SERVICE BRAKES",
+          "score": 0.24689795076847076,
+          "margin": 0.01155078411102295,
+          "latency_ms": 1.3553340104408562,
+          "unavailable": false
+        },
+        {
+          "text": "felt zero resistance under my sole and the car drifted through the stop sign",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.33633843064308167,
+          "margin": 0.00698515772819519,
+          "latency_ms": 1.5966249629855156,
+          "unavailable": false
+        },
+        {
+          "text": "severe pulsing and vibrating through the floor when decelerating on the off ramp",
+          "gold": "SERVICE BRAKES",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.3864212930202484,
+          "margin": 0.05881321430206299,
+          "latency_ms": 1.7894160118885338,
+          "unavailable": false
+        },
+        {
+          "text": "complete loss of stopping ability while descending a steep grade",
+          "gold": "SERVICE BRAKES",
+          "prediction": null,
+          "top1": "TRACTION CONTROL SYSTEM",
+          "score": 0.31581708788871765,
+          "margin": 0.013777703046798706,
+          "latency_ms": 1.3119159848429263,
+          "unavailable": false
+        },
+        {
+          "text": "shuts off abruptly while waiting at red lights but turns over after waiting",
+          "gold": "ENGINE",
+          "prediction": "ELECTRICAL SYSTEM",
+          "top1": "ELECTRICAL SYSTEM",
+          "score": 0.35720714926719666,
+          "margin": 0.08093458414077759,
+          "latency_ms": 1.6260829870589077,
+          "unavailable": false
+        },
+        {
+          "text": "loud rhythmic knocking and metallic tapping from under the bonnet when cold",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.30596619844436646,
+          "margin": 0.04375302791595459,
+          "latency_ms": 1.5453750384040177,
+          "unavailable": false
+        },
+        {
+          "text": "terrible shuddering and hesitation when trying to accelerate from a stop",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.3848433494567871,
+          "margin": 9.864568710327148e-05,
+          "latency_ms": 1.491959032136947,
+          "unavailable": false
+        },
+        {
+          "text": "lost all power climbing a hill and could not accelerate past twenty",
+          "gold": "ENGINE",
+          "prediction": "POWER TRAIN",
+          "top1": "POWER TRAIN",
+          "score": 0.389953076839447,
+          "margin": 0.08824619650840759,
+          "latency_ms": 1.5534170088358223,
+          "unavailable": false
+        },
+        {
+          "text": "sputtered violently and died right in the middle of a busy intersection",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.337949275970459,
+          "margin": 0.057349979877471924,
+          "latency_ms": 1.834999944549054,
+          "unavailable": false
+        },
+        {
+          "text": "thick white vapor with a sweet odor drifting from the front compartment",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "EXTERIOR LIGHTING",
+          "score": 0.24390840530395508,
+          "margin": 0.036709487438201904,
+          "latency_ms": 1.58716703299433,
+          "unavailable": false
+        },
+        {
+          "text": "runs incredibly rough and shakes the entire cabin when sitting at an idle",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.373574435710907,
+          "margin": 0.009331345558166504,
+          "latency_ms": 1.7665830091573298,
+          "unavailable": false
+        },
+        {
+          "text": "pungent burning oil odor and dark drips forming under the front end",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "FUEL SYSTEM",
+          "score": 0.25657734274864197,
+          "margin": 0.01144513487815857,
+          "latency_ms": 1.5683340025134385,
+          "unavailable": false
+        },
+        {
+          "text": "loud clattering sound from the front bay that speeds up when revving",
+          "gold": "ENGINE",
+          "prediction": "POWER TRAIN",
+          "top1": "POWER TRAIN",
+          "score": 0.3678848147392273,
+          "margin": 0.08734631538391113,
+          "latency_ms": 1.8092920072376728,
+          "unavailable": false
+        },
+        {
+          "text": "bogged down completely when merging onto the motorway and would not go",
+          "gold": "ENGINE",
+          "prediction": "POWER TRAIN",
+          "top1": "POWER TRAIN",
+          "score": 0.35478606820106506,
+          "margin": 0.06550416350364685,
+          "latency_ms": 1.7817920306697488,
+          "unavailable": false
+        },
+        {
+          "text": "died suddenly while cruising at fifty and had to coast onto the shoulder",
+          "gold": "ENGINE",
+          "prediction": null,
+          "top1": "SEAT BELTS",
+          "score": 0.29402950406074524,
+          "margin": 0.03274700045585632,
+          "latency_ms": 1.7455000197514892,
+          "unavailable": false
+        },
+        {
+          "text": "severe misfiring and loss of forward thrust under normal acceleration",
+          "gold": "ENGINE",
+          "prediction": "FUEL/PROPULSION SYSTEM",
+          "top1": "FUEL/PROPULSION SYSTEM",
+          "score": 0.38702595233917236,
+          "margin": 0.05757763981819153,
+          "latency_ms": 1.515874988399446,
+          "unavailable": false
+        },
+        {
+          "text": "the warning symbol showing a seated person with a round balloon stays lit",
+          "gold": "AIR BAGS",
+          "prediction": "AIR BAGS",
+          "top1": "AIR BAGS",
+          "score": 0.4451773166656494,
+          "margin": 0.24474778771400452,
+          "latency_ms": 1.7527500167489052,
+          "unavailable": false
+        },
+        {
+          "text": "supplemental restraint indicator turned on and will not extinguish",
+          "gold": "AIR BAGS",
+          "prediction": "AIR BAGS",
+          "top1": "AIR BAGS",
+          "score": 0.5579680800437927,
+          "margin": 0.22387158870697021,
+          "latency_ms": 1.519374956842512,
+          "unavailable": false
+        },
+        {
+          "text": "passenger safety cushion lamp displays disabled even with an adult occupant",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "AIR BAGS",
+          "score": 0.4536525011062622,
+          "margin": 0.034651488065719604,
+          "latency_ms": 1.5689580468460917,
+          "unavailable": false
+        },
+        {
+          "text": "an icon of an inflated cushion glowing continuously on the instrument cluster",
+          "gold": "AIR BAGS",
+          "prediction": null,
+          "top1": "AIR BAGS",
+          "score": 0.2540155053138733,
+          "margin": 0.06088387966156006,
+          "latency_ms": 1.5482910093851388,
+          "unavailable": false
+        },
+        {
+          "text": "yellow restraint warning illuminates intermittently whenever adjusting the seat",
+          "gold": "AIR BAGS",
+          "prediction": "AIR BAGS",
+          "top1": "AIR BAGS",
+          "score": 0.6069477796554565,
+          "margin": 0.14928171038627625,
+          "latency_ms": 1.7633750103414059,
+          "unavailable": false
+        },
+        {
+          "text": "the secondary occupant protection alert has been glowing for two weeks",
+          "gold": "AIR BAGS",
+          "prediction": "AIR BAGS",
+          "top1": "AIR BAGS",
+          "score": 0.433773398399353,
+          "margin": 0.13207727670669556,
+          "latency_ms": 1.630250015296042,
+          "unavailable": false
+        },
+        {
+          "text": "dashboard shows an occupant icon with a circle and chime rings on startup",
+          "gold": "AIR BAGS",
+          "prediction": "AIR BAGS",
+          "top1": "AIR BAGS",
+          "score": 0.41593611240386963,
+          "margin": 0.1618114411830902,
+          "latency_ms": 2.1158329909667373,
+          "unavailable": false
+        },
+        {
+          "text": "passive restraint alert came on during heavy rain and remains stuck on",
+          "gold": "AIR BAGS",
+          "prediction": "AIR BAGS",
+          "top1": "AIR BAGS",
+          "score": 0.42585819959640503,
+          "margin": 0.05661100149154663,
+          "latency_ms": 1.546250015962869,
+          "unavailable": false
+        },
+        {
+          "text": "the dash displays flickered and the center console shut down completely",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": "ELECTRICAL SYSTEM",
+          "top1": "ELECTRICAL SYSTEM",
+          "score": 0.6062877178192139,
+          "margin": 0.2920629382133484,
+          "latency_ms": 1.5579999890178442,
+          "unavailable": false
+        },
+        {
+          "text": "completely unresponsive in the morning and only makes a faint click when pressing start",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "ELECTRICAL SYSTEM",
+          "score": 0.31761932373046875,
+          "margin": 0.017292022705078125,
+          "latency_ms": 2.006332972086966,
+          "unavailable": false
+        },
+        {
+          "text": "all cabin illumination and instrument gauges went totally dark while driving",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": "EXTERIOR LIGHTING",
+          "top1": "EXTERIOR LIGHTING",
+          "score": 0.5469576120376587,
+          "margin": 0.07415533065795898,
+          "latency_ms": 1.5723329852335155,
+          "unavailable": false
+        },
+        {
+          "text": "power windows refuse to go up and the door lock toggles do nothing",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "ELECTRICAL SYSTEM",
+          "score": 0.4454328119754791,
+          "margin": 0.018994927406311035,
+          "latency_ms": 1.5680830110795796,
+          "unavailable": false
+        },
+        {
+          "text": "the center display keeps rebooting every ten minutes on my commute",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": "ELECTRICAL SYSTEM",
+          "top1": "ELECTRICAL SYSTEM",
+          "score": 0.4975763261318207,
+          "margin": 0.20317858457565308,
+          "latency_ms": 1.5671660075895488,
+          "unavailable": false
+        },
+        {
+          "text": "keyless entry fob fails to unlock doors or let me turn on the ignition",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": "LATCHES/LOCKS/LINKAGES",
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.4090959429740906,
+          "margin": 0.1627151221036911,
+          "latency_ms": 1.8198330071754754,
+          "unavailable": false
+        },
+        {
+          "text": "all dashboard needles dropped to zero while traveling at cruising speed",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": "ELECTRICAL SYSTEM",
+          "top1": "ELECTRICAL SYSTEM",
+          "score": 0.4533669948577881,
+          "margin": 0.14448148012161255,
+          "latency_ms": 1.6450410475954413,
+          "unavailable": false
+        },
+        {
+          "text": "infotainment unit went black and no audio comes from the sound system",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "ELECTRICAL SYSTEM",
+          "score": 0.3339826762676239,
+          "margin": 0.020402759313583374,
+          "latency_ms": 1.6644579591229558,
+          "unavailable": false
+        },
+        {
+          "text": "power mirrors and interior dome lights do not activate at all",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": "EXTERIOR LIGHTING",
+          "top1": "EXTERIOR LIGHTING",
+          "score": 0.44587206840515137,
+          "margin": 0.08842188119888306,
+          "latency_ms": 1.520542020443827,
+          "unavailable": false
+        },
+        {
+          "text": "warning chime rings constantly with erratic symbols flashing across the cluster",
+          "gold": "ELECTRICAL SYSTEM",
+          "prediction": null,
+          "top1": "LANE DEPARTURE",
+          "score": 0.3341580629348755,
+          "margin": 0.008270978927612305,
+          "latency_ms": 1.580666983500123,
+          "unavailable": false
+        },
+        {
+          "text": "the wheel shakes violently in my hands on the motorway",
+          "gold": "STEERING",
+          "prediction": "WHEELS",
+          "top1": "WHEELS",
+          "score": 0.5017262697219849,
+          "margin": 0.07808133959770203,
+          "latency_ms": 1.3332500238902867,
+          "unavailable": false
+        },
+        {
+          "text": "the vehicle constantly pulls towards the ditch on flat pavement",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.40684694051742554,
+          "margin": 0.021723926067352295,
+          "latency_ms": 1.3062910293228924,
+          "unavailable": false
+        },
+        {
+          "text": "turning into tight parking spots requires immense physical effort",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "PARKING BRAKE",
+          "score": 0.40148046612739563,
+          "margin": 0.03954797983169556,
+          "latency_ms": 1.4772919821552932,
+          "unavailable": false
+        },
+        {
+          "text": "wanders between highway lanes unless i fight hard to hold it centered",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.3769180178642273,
+          "margin": 0.044292569160461426,
+          "latency_ms": 1.7578330007381737,
+          "unavailable": false
+        },
+        {
+          "text": "loud whining groan whenever turning sharply around roundabouts",
+          "gold": "STEERING",
+          "prediction": "WHEELS",
+          "top1": "WHEELS",
+          "score": 0.42479801177978516,
+          "margin": 0.06061089038848877,
+          "latency_ms": 1.4899159432388842,
+          "unavailable": false
+        },
+        {
+          "text": "directional control feels disconnected from where the front is pointing",
+          "gold": "STEERING",
+          "prediction": "STEERING",
+          "top1": "STEERING",
+          "score": 0.5004509091377258,
+          "margin": 0.15417742729187012,
+          "latency_ms": 1.3231660122983158,
+          "unavailable": false
+        },
+        {
+          "text": "huge dead zone in the column before the front actually begins to turn",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "ELECTRONIC STABILITY CONTROL",
+          "score": 0.29198893904685974,
+          "margin": 0.018881171941757202,
+          "latency_ms": 1.7370839486829937,
+          "unavailable": false
+        },
+        {
+          "text": "jerks sharply to the right side whenever letting go of the rim",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.3599245250225067,
+          "margin": 0.028813093900680542,
+          "latency_ms": 1.7540830303914845,
+          "unavailable": false
+        },
+        {
+          "text": "front assembly feels frozen solid when trying to make ninety degree turns",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.3328801393508911,
+          "margin": 0.01200181245803833,
+          "latency_ms": 1.6018750029616058,
+          "unavailable": false
+        },
+        {
+          "text": "violent wobble transmitted directly into my palms at highway velocity",
+          "gold": "STEERING",
+          "prediction": null,
+          "top1": "SUSPENSION",
+          "score": 0.33966702222824097,
+          "margin": 0.0023200809955596924,
+          "latency_ms": 1.5678749768994749,
+          "unavailable": false
+        },
+        {
+          "text": "loud clunking and banging over small potholes and road seams",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.4708915948867798,
+          "margin": 0.07895320653915405,
+          "latency_ms": 1.6418329905718565,
+          "unavailable": false
+        },
+        {
+          "text": "the rear end bounces uncontrollably after crossing bridge joints",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.45173946022987366,
+          "margin": 0.1033424437046051,
+          "latency_ms": 1.6424590139649808,
+          "unavailable": false
+        },
+        {
+          "text": "the vehicle leans heavily to the driver side even on flat level ground",
+          "gold": "SUSPENSION",
+          "prediction": null,
+          "top1": "STEERING",
+          "score": 0.5005593299865723,
+          "margin": 0.032466620206832886,
+          "latency_ms": 1.81666697608307,
+          "unavailable": false
+        },
+        {
+          "text": "harsh creaking and popping underneath whenever rolling over speed bumps",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.553085207939148,
+          "margin": 0.19554907083511353,
+          "latency_ms": 1.6109999851323664,
+          "unavailable": false
+        },
+        {
+          "text": "the whole chassis oscillates up and down repeatedly after dips in the road",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.5570489168167114,
+          "margin": 0.13186043500900269,
+          "latency_ms": 2.1134159760549664,
+          "unavailable": false
+        },
+        {
+          "text": "rough jarring ride feels like there is zero cushioning over bumps",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.6024518013000488,
+          "margin": 0.278944730758667,
+          "latency_ms": 1.824249979108572,
+          "unavailable": false
+        },
+        {
+          "text": "bottoms out with a loud metal bang whenever carrying passengers in back",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.42333996295928955,
+          "margin": 0.09542754292488098,
+          "latency_ms": 1.6129589639604092,
+          "unavailable": false
+        },
+        {
+          "text": "front corner sags noticeably and scrapes the curb when parking",
+          "gold": "SUSPENSION",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.47222620248794556,
+          "margin": 0.1652025580406189,
+          "latency_ms": 1.6211249749176204,
+          "unavailable": false
+        },
+        {
+          "text": "jerks violently between gears during moderate acceleration",
+          "gold": "POWER TRAIN",
+          "prediction": "POWER TRAIN",
+          "top1": "POWER TRAIN",
+          "score": 0.5241566896438599,
+          "margin": 0.09164601564407349,
+          "latency_ms": 1.3515829923562706,
+          "unavailable": false
+        },
+        {
+          "text": "tachometer spikes up to four thousand revs but the vehicle barely creeps",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "POWER TRAIN",
+          "score": 0.40574929118156433,
+          "margin": 0.04117277264595032,
+          "latency_ms": 1.8693750025704503,
+          "unavailable": false
+        },
+        {
+          "text": "massive clunk reverberates underneath when shifting into reverse",
+          "gold": "POWER TRAIN",
+          "prediction": "POWER TRAIN",
+          "top1": "POWER TRAIN",
+          "score": 0.4597538113594055,
+          "margin": 0.14609059691429138,
+          "latency_ms": 1.6211670008488,
+          "unavailable": false
+        },
+        {
+          "text": "slipped out of drive and neutralised while cruising on the expressway",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "POWER TRAIN",
+          "score": 0.3673635721206665,
+          "margin": 0.028183579444885254,
+          "latency_ms": 1.5833329525776207,
+          "unavailable": false
+        },
+        {
+          "text": "huge hesitation from a standstill before anything catches and moves",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "SEATS",
+          "score": 0.3000331223011017,
+          "margin": 0.010113120079040527,
+          "latency_ms": 1.615457993466407,
+          "unavailable": false
+        },
+        {
+          "text": "harsh shudder through the floorboards whenever accelerating past thirty",
+          "gold": "POWER TRAIN",
+          "prediction": "SUSPENSION",
+          "top1": "SUSPENSION",
+          "score": 0.39010632038116455,
+          "margin": 0.10514098405838013,
+          "latency_ms": 1.3150419690646231,
+          "unavailable": false
+        },
+        {
+          "text": "refuses to engage when shifting out of park in cold temperatures",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "PARKING BRAKE",
+          "score": 0.37018150091171265,
+          "margin": 0.030848920345306396,
+          "latency_ms": 1.4621249865740538,
+          "unavailable": false
+        },
+        {
+          "text": "delayed engagement followed by a violent thud when pressing the accelerator",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "VEHICLE SPEED CONTROL",
+          "score": 0.33553457260131836,
+          "margin": 0.0922079086303711,
+          "latency_ms": 1.5141660114750266,
+          "unavailable": false
+        },
+        {
+          "text": "hesitates and slips when trying to climb an incline from a complete stop",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "TRACTION CONTROL SYSTEM",
+          "score": 0.4377414584159851,
+          "margin": 0.030750155448913574,
+          "latency_ms": 1.6161659732460976,
+          "unavailable": false
+        },
+        {
+          "text": "shudders uncontrollably when downshifting to overtake on the highway",
+          "gold": "POWER TRAIN",
+          "prediction": null,
+          "top1": "POWER TRAIN",
+          "score": 0.44388341903686523,
+          "margin": 0.03035593032836914,
+          "latency_ms": 2.083917031995952,
+          "unavailable": false
+        },
+        {
+          "text": "the safety strap will not pull out of the pillar when trying to buckle",
+          "gold": "SEAT BELTS",
+          "prediction": null,
+          "top1": "SEAT BELTS",
+          "score": 0.478669136762619,
+          "margin": 0.03506782650947571,
+          "latency_ms": 1.532082969788462,
+          "unavailable": false
+        },
+        {
+          "text": "the center clasp refuses to click and lock into the receiver",
+          "gold": "SEAT BELTS",
+          "prediction": "LATCHES/LOCKS/LINKAGES",
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.44864165782928467,
+          "margin": 0.08651521801948547,
+          "latency_ms": 1.4418330392800272,
+          "unavailable": false
+        },
+        {
+          "text": "the shoulder harness remains loose and does not cinch against the torso",
+          "gold": "SEAT BELTS",
+          "prediction": "SEAT BELTS",
+          "top1": "SEAT BELTS",
+          "score": 0.5396813154220581,
+          "margin": 0.21242552995681763,
+          "latency_ms": 1.7465410055592656,
+          "unavailable": false
+        },
+        {
+          "text": "the webbing got stuck midway and refuses to retract back into the reel",
+          "gold": "SEAT BELTS",
+          "prediction": null,
+          "top1": "SEAT BELTS",
+          "score": 0.28281864523887634,
+          "margin": 0.03118649125099182,
+          "latency_ms": 1.8300000228919089,
+          "unavailable": false
+        },
+        {
+          "text": "the latching mechanism unfastens on its own whenever hitting a bump",
+          "gold": "SEAT BELTS",
+          "prediction": null,
+          "top1": "LATCHES/LOCKS/LINKAGES",
+          "score": 0.35056227445602417,
+          "margin": 0.003406703472137451,
+          "latency_ms": 1.5925000188872218,
+          "unavailable": false
+        },
+        {
+          "text": "tensioner failed to lock during sudden deceleration on the highway",
+          "gold": "SEAT BELTS",
+          "prediction": "SEAT BELTS",
+          "top1": "SEAT BELTS",
+          "score": 0.4650347828865051,
+          "margin": 0.11727884411811829,
+          "latency_ms": 1.7375420429743826,
+          "unavailable": false
+        }
+      ]
+    }
+  },
+  "rules_category_diagnostic_accuracy": 0.0263,
+  "technical_checks_passed": true
+}
