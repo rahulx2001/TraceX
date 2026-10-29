@@ -643,7 +643,7 @@ export default function IssueDesk({ issueId, refreshKey }) {
 
       {/* [AI-LAYER] grounded brief (safety risk, cited claims, inspection actions) + photos from linked cases */}
       {inv?.investigation_id && (
-        <div className="panel">
+        <div className="ai-stack">
           <GroundedBriefPanel investigationId={inv.investigation_id} />
           <LotCard investigationId={inv.investigation_id} />
           <VerificationPanel investigationId={inv.investigation_id} />

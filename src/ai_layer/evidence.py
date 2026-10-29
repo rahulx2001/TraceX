@@ -469,13 +469,24 @@ def analyze_evidence(evidence_id: str) -> dict[str, Any]:
             case_ctx = f"case category={case.get('category')} description={(case.get('description_summary') or '')[:300]}"
     analysis: dict[str, Any] = {"vision": None, "segmentation": None, "errors": []}
     mapped = None
+    # Name the allowed values verbatim: weak-enforcement backends never see
+    # the schema enum, and the model will slugify ("SERVICE_BRAKES") unless
+    # told the exact strings, spaces and slashes included.
+    allowed_cats = (categories or ["UNKNOWN OR OTHER"]) + ["UNKNOWN"]
+    cats_block = ", ".join(f'"{c}"' for c in allowed_cats)
     try:
         vis = chat_json(
             system=(
                 "You inspect a customer's photo of a vehicle/product defect for a quality team. Return JSON only. "
-                "Describe only what is visible. Choose component_category strictly from the enum (UNKNOWN if unsure). "
+                f"component_category must be exactly one of these values, copied verbatim (spaces and slashes included), or \"UNKNOWN\" if unsure: {cats_block}. "
+                "Describe only what is visible. "
                 "damaged_part is a short noun phrase naming the damaged part (e.g. 'brake disc', 'tire'). "
-                "Never invent part numbers, recalls or causes."
+                "Never invent part numbers, recalls or causes. "
+                "Return exactly one JSON object with this shape and nothing else: "
+                '{"component_category": "<one enum value>", "confidence": <0 to 1>, '
+                '"defect_description": "<what is visibly damaged, at most 300 characters>", '
+                '"damaged_part": "<short noun phrase, at most 40 characters>", '
+                '"visible_hazard": <true or false>, "hazard_reason": "<why it is a hazard, or empty string>"}'
             ),
             user=f"{case_ctx}\nDescribe the defect in the attached photo.",
             schema=vision_schema(categories or ["UNKNOWN OR OTHER"]),

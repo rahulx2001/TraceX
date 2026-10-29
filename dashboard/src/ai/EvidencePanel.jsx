@@ -93,6 +93,7 @@ function Analysis({ ev, enabled, onAnalyze, busy }) {
 export default function EvidencePanel({ caseId, interactionId, investigationId, readOnly = false, title = "Photo evidence" }) {
   const [rows, setRows] = useState([]);
   const [err, setErr] = useState("");
+  const [needSignin, setNeedSignin] = useState(false);
   const [busy, setBusy] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const fileRef = useRef(null);
@@ -142,9 +143,15 @@ export default function EvidencePanel({ caseId, interactionId, investigationId, 
   }
 
   async function analyze(id) {
-    setBusy(true);
-    try { await aiPostJson(`/api/evidence/${encodeURIComponent(id)}/analyze`, {}); await load(); }
-    catch (ex) { setErr(`Analysis failed: ${ex.message}`); }
+    setBusy(true); setErr("");
+    try { await aiPostJson(`/api/evidence/${encodeURIComponent(id)}/analyze`, {}); setNeedSignin(false); await load(); }
+    catch (ex) {
+      const forbidden = String(ex.message || "").includes("403");
+      setNeedSignin(forbidden);
+      setErr(forbidden
+        ? "Photo analysis needs a supervisor sign-in (the operator key cannot run it)."
+        : `Analysis failed: ${ex.message}`);
+    }
     finally { setBusy(false); }
   }
 
@@ -178,7 +185,12 @@ export default function EvidencePanel({ caseId, interactionId, investigationId, 
           <span className="chip">{busy ? "Uploading…" : "+ Add photo (JPEG/PNG/WebP, ≤ 8 MB)"}</span>
         </label>
       )}
-      {err && <div className="banner banner-warn small" role="alert" style={{ marginTop: 6 }}>{err}</div>}
+      {err && (
+        <div className="banner banner-warn small" role="alert" style={{ marginTop: 6 }}>
+          {err}
+          {needSignin && <> <a href="#signin">Open sign-in →</a></>}
+        </div>
+      )}
       {rows.length === 0 && <div className="muted small" style={{ marginTop: 6 }}>No photos attached.</div>}
       {readOnly && rows.length > 3 && <div className="muted small">Showing 3 of {rows.length}; open the cases for the rest.</div>}
       {(readOnly ? rows.slice(0, 3) : rows).map((ev) => (

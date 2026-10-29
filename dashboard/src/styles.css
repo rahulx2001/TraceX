@@ -446,6 +446,23 @@ label.check-row {
 
 /* ── Panels / stats ────────────────────────────────────────────────────── */
 
+/* Issue page AI blocks: each panel gets its own surface + breathing room,
+   instead of seven sections squeezed into one shared panel. */
+.ai-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.ai-stack > section {
+  background: var(--bg-panel);
+  border: 1px solid var(--edge);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-soft);
+  margin-top: 0 !important;
+}
+
 .panel {
   background: var(--bg-panel);
   border: 1px solid var(--edge);

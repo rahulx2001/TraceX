@@ -204,3 +204,26 @@ def test_dsr_erase_removes_ai_rows_and_files(no_meta, reset_ops_db, monkeypatch,
     assert not path.exists()
     with ops_con() as con:
         assert con.execute("SELECT COUNT(*) FROM case_evidence").fetchone()[0] == 0
+
+
+def test_vision_prompt_states_exact_json_shape(fake_meta, reset_ops_db, monkeypatch, tmp_path):
+    # Weak-enforcement backends (Baseten, strict:false) follow the prompt's
+    # own words: if the prompt never names a field, the model omits it and
+    # schema validation drops the whole analysis.
+    from src.ai_layer.evidence import analyze_evidence, store_evidence
+
+    monkeypatch.setenv("AI_EVIDENCE_DIR", str(tmp_path / "ev"))
+    case_id, _ = _insert_case()
+    ev = store_evidence(data=tiny_png(), filename="v.png", declared_mime="image/png", case_id=case_id)
+    fake_meta.chat["evidence_vision"] = lambda p: {
+        "component_category": "SERVICE BRAKES", "confidence": 0.9,
+        "defect_description": "scored disc", "damaged_part": "brake disc",
+        "visible_hazard": False, "hazard_reason": ""}
+    analyze_evidence(ev["evidence_id"])
+    system_text = fake_meta.chat_calls("evidence_vision")[0]["payload"]["messages"][0]["content"]
+    for token in ('"component_category"', '"confidence"', '"defect_description"',
+                  '"damaged_part"', '"visible_hazard"', '"hazard_reason"'):
+        assert token in system_text
+    # Allowed categories must be named verbatim (the model slugifies
+    # "SERVICE BRAKES" to SERVICE_BRAKES otherwise).
+    assert '"SERVICE BRAKES"' in system_text
