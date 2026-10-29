@@ -1,0 +1,1065 @@
+{
+  "generated_at": "2026-10-28T21:30:55+00:00",
+  "chosen": "z2.0_q0.05_abs3_rel0.5",
+  "production": "z2.0_q0.05_abs5_rel0.5",
+  "config_sha256": "3d7da943d3362ae9cf337c0982a1be2d0b787b6f43d7466dc2be114c9330430f",
+  "grid_results": [
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.05,
+        "abs_lift": 3,
+        "rel_lift": 0.5
+      },
+      "id": "z2.0_q0.05_abs3_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.05,
+        "abs_lift": 3,
+        "rel_lift": 1.0
+      },
+      "id": "z2.0_q0.05_abs3_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.05,
+        "abs_lift": 5,
+        "rel_lift": 0.5
+      },
+      "id": "z2.0_q0.05_abs5_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.05,
+        "abs_lift": 5,
+        "rel_lift": 1.0
+      },
+      "id": "z2.0_q0.05_abs5_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.05,
+        "abs_lift": 8,
+        "rel_lift": 0.5
+      },
+      "id": "z2.0_q0.05_abs8_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.05,
+        "abs_lift": 8,
+        "rel_lift": 1.0
+      },
+      "id": "z2.0_q0.05_abs8_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.01,
+        "abs_lift": 3,
+        "rel_lift": 0.5
+      },
+      "id": "z2.0_q0.01_abs3_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.01,
+        "abs_lift": 3,
+        "rel_lift": 1.0
+      },
+      "id": "z2.0_q0.01_abs3_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.01,
+        "abs_lift": 5,
+        "rel_lift": 0.5
+      },
+      "id": "z2.0_q0.01_abs5_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.01,
+        "abs_lift": 5,
+        "rel_lift": 1.0
+      },
+      "id": "z2.0_q0.01_abs5_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.01,
+        "abs_lift": 8,
+        "rel_lift": 0.5
+      },
+      "id": "z2.0_q0.01_abs8_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.0,
+        "q": 0.01,
+        "abs_lift": 8,
+        "rel_lift": 1.0
+      },
+      "id": "z2.0_q0.01_abs8_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.05,
+        "abs_lift": 3,
+        "rel_lift": 0.5
+      },
+      "id": "z2.5_q0.05_abs3_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.05,
+        "abs_lift": 3,
+        "rel_lift": 1.0
+      },
+      "id": "z2.5_q0.05_abs3_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.05,
+        "abs_lift": 5,
+        "rel_lift": 0.5
+      },
+      "id": "z2.5_q0.05_abs5_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.05,
+        "abs_lift": 5,
+        "rel_lift": 1.0
+      },
+      "id": "z2.5_q0.05_abs5_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.05,
+        "abs_lift": 8,
+        "rel_lift": 0.5
+      },
+      "id": "z2.5_q0.05_abs8_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.05,
+        "abs_lift": 8,
+        "rel_lift": 1.0
+      },
+      "id": "z2.5_q0.05_abs8_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.01,
+        "abs_lift": 3,
+        "rel_lift": 0.5
+      },
+      "id": "z2.5_q0.01_abs3_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.01,
+        "abs_lift": 3,
+        "rel_lift": 1.0
+      },
+      "id": "z2.5_q0.01_abs3_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.01,
+        "abs_lift": 5,
+        "rel_lift": 0.5
+      },
+      "id": "z2.5_q0.01_abs5_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.01,
+        "abs_lift": 5,
+        "rel_lift": 1.0
+      },
+      "id": "z2.5_q0.01_abs5_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.01,
+        "abs_lift": 8,
+        "rel_lift": 0.5
+      },
+      "id": "z2.5_q0.01_abs8_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 2.5,
+        "q": 0.01,
+        "abs_lift": 8,
+        "rel_lift": 1.0
+      },
+      "id": "z2.5_q0.01_abs8_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.05,
+        "abs_lift": 3,
+        "rel_lift": 0.5
+      },
+      "id": "z3.0_q0.05_abs3_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.05,
+        "abs_lift": 3,
+        "rel_lift": 1.0
+      },
+      "id": "z3.0_q0.05_abs3_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.05,
+        "abs_lift": 5,
+        "rel_lift": 0.5
+      },
+      "id": "z3.0_q0.05_abs5_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.05,
+        "abs_lift": 5,
+        "rel_lift": 1.0
+      },
+      "id": "z3.0_q0.05_abs5_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.05,
+        "abs_lift": 8,
+        "rel_lift": 0.5
+      },
+      "id": "z3.0_q0.05_abs8_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.05,
+        "abs_lift": 8,
+        "rel_lift": 1.0
+      },
+      "id": "z3.0_q0.05_abs8_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.01,
+        "abs_lift": 3,
+        "rel_lift": 0.5
+      },
+      "id": "z3.0_q0.01_abs3_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.01,
+        "abs_lift": 3,
+        "rel_lift": 1.0
+      },
+      "id": "z3.0_q0.01_abs3_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 18,
+        "confirmed_slice_weeks": 2,
+        "false_alarm_slice_weeks": 16,
+        "precision_slice_weeks": 0.111,
+        "flag_episodes": 9,
+        "confirmed_episodes": 2,
+        "precision_episodes": 0.222,
+        "unconfirmed_slice_weeks": 16
+      },
+      "precision_episodes": 0.222,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.01,
+        "abs_lift": 5,
+        "rel_lift": 0.5
+      },
+      "id": "z3.0_q0.01_abs5_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.01,
+        "abs_lift": 5,
+        "rel_lift": 1.0
+      },
+      "id": "z3.0_q0.01_abs5_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 8,
+        "confirmed_slice_weeks": 1,
+        "false_alarm_slice_weeks": 7,
+        "precision_slice_weeks": 0.125,
+        "flag_episodes": 7,
+        "confirmed_episodes": 1,
+        "precision_episodes": 0.143,
+        "unconfirmed_slice_weeks": 7
+      },
+      "precision_episodes": 0.143,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.01,
+        "abs_lift": 8,
+        "rel_lift": 0.5
+      },
+      "id": "z3.0_q0.01_abs8_rel0.5",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    },
+    {
+      "config": {
+        "z": 3.0,
+        "q": 0.01,
+        "abs_lift": 8,
+        "rel_lift": 1.0
+      },
+      "id": "z3.0_q0.01_abs8_rel1.0",
+      "recent_campaign": {
+        "campaigns": 294,
+        "hits": 0,
+        "misses": 294,
+        "recall_rate": 0.0,
+        "lead_weeks_median": null,
+        "lead_weeks_mean": null
+      },
+      "precision": {
+        "flagged_slice_weeks": 3,
+        "confirmed_slice_weeks": 0,
+        "false_alarm_slice_weeks": 3,
+        "precision_slice_weeks": 0.0,
+        "flag_episodes": 3,
+        "confirmed_episodes": 0,
+        "precision_episodes": 0.0,
+        "unconfirmed_slice_weeks": 3
+      },
+      "precision_episodes": 0.0,
+      "objective": 0.0
+    }
+  ],
+  "score_rows": 29206,
+  "elapsed_s": 2.8,
+  "complaints_used": {
+    "inputs": 567623,
+    "used": 2046,
+    "dropped": 565577
+  },
+  "advisories_used": {
+    "inputs": 6442,
+    "used": 294,
+    "dropped": 6148
+  },
+  "regate_mismatches_vs_scorer": 0
+}

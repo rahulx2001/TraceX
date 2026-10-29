@@ -236,10 +236,9 @@ function Shell() {
   }, [loadHealth, route]);
 
   useEffect(() => {
-    if (demoOpenConsole && (route === "signin" || route === "signup")) {
-      setRoute("command");
-      return;
-    }
+    // #signin stays reachable even with an open console: it is the only
+    // place a supervisor session can be pasted, and supervisor-only actions
+    // (Analyze evidence, approvals) 403 without it. Never bounce it away.
     if (route === "signin" || route === "signup" || route === "guide") return;
     if (route === "main") {
       setRoute("command");

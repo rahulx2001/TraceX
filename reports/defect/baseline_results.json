@@ -1,0 +1,420 @@
+{
+  "generated_at": "2026-10-28T21:31:12+00:00",
+  "definitions": {
+    "budget": "same number of slice-weeks as the detector under test, in the 2021-2024 test window",
+    "count": "highest raw weekly complaint count; ties -> earlier week, then slice key",
+    "random": "uniform random slice-weeks without replacement, fixed seed 20261026; 20 further draws are recorded for context"
+  },
+  "defect_grain": {
+    "budget_slice_weeks": 89,
+    "count": {
+      "grain": "make+component+defect",
+      "budget_slice_weeks": 89,
+      "universe_positive_slice_weeks": 2177,
+      "selection": "highest raw weekly complaint count; ties -> earlier week, then slice key",
+      "metrics": {
+        "recent_campaign": {
+          "campaigns": 269,
+          "hits": 6,
+          "misses": 263,
+          "recall_rate": 0.022,
+          "lead_weeks_median": 40.0,
+          "lead_weeks_mean": 37
+        },
+        "precision": {
+          "flagged_slice_weeks": 89,
+          "confirmed_slice_weeks": 29,
+          "false_alarm_slice_weeks": 60,
+          "precision_slice_weeks": 0.326,
+          "flag_episodes": 50,
+          "confirmed_episodes": 12,
+          "precision_episodes": 0.24,
+          "unconfirmed_slice_weeks": 60
+        },
+        "precision_episodes": 0.24,
+        "objective": 0.0403,
+        "recalls_scored": 269,
+        "selected_slice_weeks": 89
+      }
+    },
+    "random": {
+      "grain": "make+component+defect",
+      "budget_slice_weeks": 89,
+      "universe_positive_slice_weeks": 2177,
+      "seed": 20261026,
+      "selection": "uniform random slice-weeks without replacement, fixed seed",
+      "metrics": {
+        "recent_campaign": {
+          "campaigns": 269,
+          "hits": 25,
+          "misses": 244,
+          "recall_rate": 0.093,
+          "lead_weeks_median": 20,
+          "lead_weeks_mean": 23.5
+        },
+        "precision": {
+          "flagged_slice_weeks": 89,
+          "confirmed_slice_weeks": 37,
+          "false_alarm_slice_weeks": 52,
+          "precision_slice_weeks": 0.416,
+          "flag_episodes": 87,
+          "confirmed_episodes": 35,
+          "precision_episodes": 0.402,
+          "unconfirmed_slice_weeks": 52
+        },
+        "precision_episodes": 0.402,
+        "objective": 0.1511,
+        "recalls_scored": 269,
+        "selected_slice_weeks": 89
+      },
+      "draws": [
+        {
+          "seed": 20261027,
+          "campaign_recall": 0.048,
+          "median_lead": 35,
+          "episode_precision": 0.314,
+          "episodes": 86
+        },
+        {
+          "seed": 20261028,
+          "campaign_recall": 0.045,
+          "median_lead": 32.0,
+          "episode_precision": 0.299,
+          "episodes": 87
+        },
+        {
+          "seed": 20261029,
+          "campaign_recall": 0.059,
+          "median_lead": 21.5,
+          "episode_precision": 0.326,
+          "episodes": 89
+        },
+        {
+          "seed": 20261030,
+          "campaign_recall": 0.067,
+          "median_lead": 27.5,
+          "episode_precision": 0.292,
+          "episodes": 89
+        },
+        {
+          "seed": 20261031,
+          "campaign_recall": 0.067,
+          "median_lead": 29.5,
+          "episode_precision": 0.375,
+          "episodes": 88
+        },
+        {
+          "seed": 20261032,
+          "campaign_recall": 0.045,
+          "median_lead": 29.0,
+          "episode_precision": 0.227,
+          "episodes": 88
+        },
+        {
+          "seed": 20261033,
+          "campaign_recall": 0.052,
+          "median_lead": 21.0,
+          "episode_precision": 0.261,
+          "episodes": 88
+        },
+        {
+          "seed": 20261034,
+          "campaign_recall": 0.071,
+          "median_lead": 20,
+          "episode_precision": 0.356,
+          "episodes": 87
+        },
+        {
+          "seed": 20261035,
+          "campaign_recall": 0.071,
+          "median_lead": 28,
+          "episode_precision": 0.348,
+          "episodes": 89
+        },
+        {
+          "seed": 20261036,
+          "campaign_recall": 0.048,
+          "median_lead": 27,
+          "episode_precision": 0.253,
+          "episodes": 87
+        },
+        {
+          "seed": 20261037,
+          "campaign_recall": 0.082,
+          "median_lead": 29.5,
+          "episode_precision": 0.352,
+          "episodes": 88
+        },
+        {
+          "seed": 20261038,
+          "campaign_recall": 0.048,
+          "median_lead": 25,
+          "episode_precision": 0.23,
+          "episodes": 87
+        },
+        {
+          "seed": 20261039,
+          "campaign_recall": 0.045,
+          "median_lead": 23.5,
+          "episode_precision": 0.236,
+          "episodes": 89
+        },
+        {
+          "seed": 20261040,
+          "campaign_recall": 0.082,
+          "median_lead": 25.0,
+          "episode_precision": 0.398,
+          "episodes": 88
+        },
+        {
+          "seed": 20261041,
+          "campaign_recall": 0.041,
+          "median_lead": 28,
+          "episode_precision": 0.273,
+          "episodes": 88
+        },
+        {
+          "seed": 20261042,
+          "campaign_recall": 0.093,
+          "median_lead": 17,
+          "episode_precision": 0.375,
+          "episodes": 88
+        },
+        {
+          "seed": 20261043,
+          "campaign_recall": 0.059,
+          "median_lead": 26.0,
+          "episode_precision": 0.292,
+          "episodes": 89
+        },
+        {
+          "seed": 20261044,
+          "campaign_recall": 0.086,
+          "median_lead": 28,
+          "episode_precision": 0.284,
+          "episodes": 88
+        },
+        {
+          "seed": 20261045,
+          "campaign_recall": 0.067,
+          "median_lead": 27.5,
+          "episode_precision": 0.326,
+          "episodes": 89
+        },
+        {
+          "seed": 20261046,
+          "campaign_recall": 0.078,
+          "median_lead": 20,
+          "episode_precision": 0.284,
+          "episodes": 88
+        }
+      ]
+    }
+  },
+  "component_grain": {
+    "budget_slice_weeks": 110,
+    "count": {
+      "grain": "make+component",
+      "budget_slice_weeks": 110,
+      "universe_positive_slice_weeks": 1564,
+      "selection": "highest raw weekly complaint count; ties -> earlier week, then slice key",
+      "metrics": {
+        "recent_campaign": {
+          "campaigns": 269,
+          "hits": 29,
+          "misses": 240,
+          "recall_rate": 0.108,
+          "lead_weeks_median": 17,
+          "lead_weeks_mean": 17.0
+        },
+        "precision": {
+          "flagged_slice_weeks": 110,
+          "confirmed_slice_weeks": 81,
+          "false_alarm_slice_weeks": 29,
+          "precision_slice_weeks": 0.736,
+          "flag_episodes": 62,
+          "confirmed_episodes": 44,
+          "precision_episodes": 0.71,
+          "unconfirmed_slice_weeks": 29
+        },
+        "precision_episodes": 0.71,
+        "objective": 0.1875,
+        "recalls_scored": 269,
+        "selected_slice_weeks": 110
+      }
+    },
+    "random": {
+      "grain": "make+component",
+      "budget_slice_weeks": 110,
+      "universe_positive_slice_weeks": 1564,
+      "seed": 20261026,
+      "selection": "uniform random slice-weeks without replacement, fixed seed",
+      "metrics": {
+        "recent_campaign": {
+          "campaigns": 269,
+          "hits": 53,
+          "misses": 216,
+          "recall_rate": 0.197,
+          "lead_weeks_median": 12,
+          "lead_weeks_mean": 18.7
+        },
+        "precision": {
+          "flagged_slice_weeks": 110,
+          "confirmed_slice_weeks": 78,
+          "false_alarm_slice_weeks": 32,
+          "precision_slice_weeks": 0.709,
+          "flag_episodes": 106,
+          "confirmed_episodes": 76,
+          "precision_episodes": 0.717,
+          "unconfirmed_slice_weeks": 32
+        },
+        "precision_episodes": 0.717,
+        "objective": 0.3091,
+        "recalls_scored": 269,
+        "selected_slice_weeks": 110
+      },
+      "draws": [
+        {
+          "seed": 20261027,
+          "campaign_recall": 0.19,
+          "median_lead": 20,
+          "episode_precision": 0.602,
+          "episodes": 108
+        },
+        {
+          "seed": 20261028,
+          "campaign_recall": 0.201,
+          "median_lead": 15.5,
+          "episode_precision": 0.645,
+          "episodes": 107
+        },
+        {
+          "seed": 20261029,
+          "campaign_recall": 0.212,
+          "median_lead": 14,
+          "episode_precision": 0.75,
+          "episodes": 108
+        },
+        {
+          "seed": 20261030,
+          "campaign_recall": 0.219,
+          "median_lead": 15,
+          "episode_precision": 0.615,
+          "episodes": 109
+        },
+        {
+          "seed": 20261031,
+          "campaign_recall": 0.216,
+          "median_lead": 15.5,
+          "episode_precision": 0.594,
+          "episodes": 106
+        },
+        {
+          "seed": 20261032,
+          "campaign_recall": 0.197,
+          "median_lead": 19,
+          "episode_precision": 0.571,
+          "episodes": 105
+        },
+        {
+          "seed": 20261033,
+          "campaign_recall": 0.23,
+          "median_lead": 19.0,
+          "episode_precision": 0.567,
+          "episodes": 104
+        },
+        {
+          "seed": 20261034,
+          "campaign_recall": 0.212,
+          "median_lead": 19,
+          "episode_precision": 0.657,
+          "episodes": 105
+        },
+        {
+          "seed": 20261035,
+          "campaign_recall": 0.197,
+          "median_lead": 21,
+          "episode_precision": 0.664,
+          "episodes": 107
+        },
+        {
+          "seed": 20261036,
+          "campaign_recall": 0.216,
+          "median_lead": 16.0,
+          "episode_precision": 0.62,
+          "episodes": 108
+        },
+        {
+          "seed": 20261037,
+          "campaign_recall": 0.197,
+          "median_lead": 17,
+          "episode_precision": 0.626,
+          "episodes": 107
+        },
+        {
+          "seed": 20261038,
+          "campaign_recall": 0.227,
+          "median_lead": 13,
+          "episode_precision": 0.673,
+          "episodes": 104
+        },
+        {
+          "seed": 20261039,
+          "campaign_recall": 0.193,
+          "median_lead": 17.5,
+          "episode_precision": 0.562,
+          "episodes": 105
+        },
+        {
+          "seed": 20261040,
+          "campaign_recall": 0.201,
+          "median_lead": 18.0,
+          "episode_precision": 0.648,
+          "episodes": 105
+        },
+        {
+          "seed": 20261041,
+          "campaign_recall": 0.223,
+          "median_lead": 13.0,
+          "episode_precision": 0.639,
+          "episodes": 108
+        },
+        {
+          "seed": 20261042,
+          "campaign_recall": 0.238,
+          "median_lead": 18.5,
+          "episode_precision": 0.685,
+          "episodes": 108
+        },
+        {
+          "seed": 20261043,
+          "campaign_recall": 0.234,
+          "median_lead": 14,
+          "episode_precision": 0.645,
+          "episodes": 107
+        },
+        {
+          "seed": 20261044,
+          "campaign_recall": 0.23,
+          "median_lead": 17.5,
+          "episode_precision": 0.664,
+          "episodes": 110
+        },
+        {
+          "seed": 20261045,
+          "campaign_recall": 0.204,
+          "median_lead": 22,
+          "episode_precision": 0.648,
+          "episodes": 108
+        },
+        {
+          "seed": 20261046,
+          "campaign_recall": 0.227,
+          "median_lead": 16,
+          "episode_precision": 0.654,
+          "episodes": 104
+        }
+      ]
+    }
+  }
+}

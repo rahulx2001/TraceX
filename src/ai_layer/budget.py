@@ -55,7 +55,10 @@ def bound(payload: dict) -> int:
     if model in RATES:
         # Text and still-image chat only. Long media requires a separate bound.
         raw = json.dumps(payload, ensure_ascii=False).encode()
-        if b"video_url" in raw or b"audio" in raw or b"data:video" in raw:
+        # URL-structural markers only: the bare word "audio" appears in
+        # ordinary complaint prose ("rear audio display failed") and must
+        # not price a text call as media.
+        if b"video_url" in raw or b"data:video" in raw or b"data:audio" in raw:
             raise ValueError("unpriced media")
         cap = payload.get("max_completion_tokens", payload.get("max_tokens"))
         if not isinstance(cap, int) or cap < 1 or cap > 10000:

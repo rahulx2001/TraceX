@@ -1,0 +1,81 @@
+{
+  "sha256": "3d7da943d3362ae9cf337c0982a1be2d0b787b6f43d7466dc2be114c9330430f",
+  "body": {
+    "thresholds": {
+      "z": 2.0,
+      "q": 0.05,
+      "abs_lift": 3,
+      "rel_lift": 0.5
+    },
+    "config_id": "z2.0_q0.05_abs3_rel0.5",
+    "production_thresholds": {
+      "z": 2.0,
+      "q": 0.05,
+      "abs_lift": 5,
+      "rel_lift": 0.5
+    },
+    "objective": "maximise harmonic mean of (actionable 52-week campaign recall rate, episode precision) on the train window; ties -> higher episode precision, then the production config",
+    "grid": {
+      "z": [
+        2.0,
+        2.5,
+        3.0
+      ],
+      "q": [
+        0.05,
+        0.01
+      ],
+      "abs_lift": [
+        3,
+        5,
+        8
+      ],
+      "rel_lift": [
+        0.5,
+        1.0
+      ]
+    },
+    "train_window": [
+      "2015-01-01",
+      "2020-12-31"
+    ],
+    "test_window": [
+      "2021-01-01",
+      "2024-12-31"
+    ],
+    "grain": "make+component+defect",
+    "detector": "src.ml_runtime.anomalies.score_weekly_slices (received clock, entity_3=defect), re-gated",
+    "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1",
+    "classifier_model": "muse-spark-1.3-contributor",
+    "classifier_prompt_version": "defect-cls-v2",
+    "complaints_used": {
+      "inputs": 567623,
+      "used": 2046,
+      "dropped": 565577
+    },
+    "train_advisories": {
+      "inputs": 6442,
+      "used": 294,
+      "dropped": 6148
+    },
+    "train_recalls_used": 294,
+    "train_campaigns": 294,
+    "data": {
+      "complaints": "data/defect/complaints.parquet",
+      "complaints_sha256": "2a6beb4ff820c7c5d1a28e902d1a6b572d7a27db9a0746922e880e0ca9f69b08",
+      "classifications": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/reports/defect/classifications.parquet",
+      "classifications_sha256": "c9e6171beda60c4c048a62c6f114b64722d1624b95cb8916dcaaa4e63d62ad1d",
+      "recalls": "data/defect/recall_descriptions.parquet",
+      "recalls_sha256": "f74020cb6cbd52e1a0358fd6d5940c4dc3a382f5e75ae8f090a363560555b50d",
+      "recall_labels": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/reports/defect/recall_labels.parquet",
+      "recall_labels_sha256": "bf5f0f94c0038949752629f256429edd2ece4b43764190f485d5459796a9bbe2",
+      "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1"
+    },
+    "validation": {
+      "first_flag_mismatches": 0,
+      "recent_episode_mismatches": 0,
+      "regate_mismatches_vs_scorer": 0
+    },
+    "frozen_at": "2026-10-28T21:30:55+00:00"
+  }
+}

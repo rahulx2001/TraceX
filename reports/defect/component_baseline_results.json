@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-10-28T21:31:12+00:00",
+  "mode": "component",
+  "labels_mode": "matched",
+  "config": {
+    "z": 2.0,
+    "q": 0.05,
+    "abs_lift": 3,
+    "rel_lift": 0.5
+  },
+  "config_id": "z2.0_q0.05_abs3_rel0.5",
+  "config_sha256": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+  "test_window": [
+    "2021-01-01",
+    "2024-12-31"
+  ],
+  "metrics": {
+    "recent_campaign": {
+      "campaigns": 269,
+      "hits": 34,
+      "misses": 235,
+      "recall_rate": 0.126,
+      "lead_weeks_median": 13.5,
+      "lead_weeks_mean": 18.9
+    },
+    "precision": {
+      "flagged_slice_weeks": 110,
+      "confirmed_slice_weeks": 74,
+      "false_alarm_slice_weeks": 36,
+      "precision_slice_weeks": 0.673,
+      "flag_episodes": 62,
+      "confirmed_episodes": 44,
+      "precision_episodes": 0.71,
+      "unconfirmed_slice_weeks": 36
+    },
+    "precision_episodes": 0.71,
+    "objective": 0.214,
+    "recalls_scored": 269,
+    "validation": {
+      "first_flag_mismatches": 0,
+      "recent_episode_mismatches": 0
+    }
+  },
+  "complaints": {
+    "inputs": 323589,
+    "used": 3114,
+    "dropped": 320475
+  },
+  "complaints_scored": 5160,
+  "advisories": {
+    "inputs": 4790,
+    "used": 269,
+    "dropped": 4521
+  },
+  "score_rows": 20249,
+  "elapsed_s": null,
+  "note": "component baseline on the same complaint/recall subset as the defect run"
+}

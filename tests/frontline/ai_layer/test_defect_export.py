@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 
 from scripts.defect_accuracy import load_classifications
-from scripts.defect_classify import PROMPT_VERSION, export, open_cache
+from scripts.defect_classify import PROMPT_VERSION, export, load_recalls, open_cache
 
 
 def test_export_round_trip_keeps_provenance(tmp_path):
@@ -43,3 +43,14 @@ def test_export_round_trip_keeps_provenance(tmp_path):
     export(con, model="muse-spark-1.3", taxonomy_sha="missing", complaints_in=[], recalls_in=[], out_dir=empty)
     blank = pd.read_parquet(empty / "classifications.parquet")
     assert {"model", "prompt_version", "taxonomy_sha256"} <= set(blank.columns)
+
+
+def test_recall_records_keep_backtest_join_keys(tmp_path):
+    # The backtest joins recall labels on campno/component/desc_defect.
+    pd.DataFrame([{
+        "campno": "C1", "component": "FUEL SYSTEM", "desc_defect": "DEFECT TEXT HERE",
+        "rcdate": "2021-03-04", "make": "HONDA", "model": "CIVIC", "year": 2020,
+    }]).to_parquet(tmp_path / "recalls.parquet")
+    recs = load_recalls(tmp_path / "recalls.parquet")
+    assert recs[0]["campno"] == "C1"
+    assert recs[0]["desc_defect"] == "DEFECT TEXT HERE"

@@ -434,12 +434,19 @@ def chat_json(
     model: str | None = None,
     timeout: float | None = None,
     max_tokens: int | None = None,
+    reasoning_effort: str | None = None,
 ) -> dict[str, Any]:
     """One schema-constrained chat call. Returns validated JSON or raises.
 
     Backend-agnostic: the active backend (Meta or Baseten Muse Spark Open)
     comes from config. Reasoning output is tolerated (think blocks stripped,
     reasoning channel logged, never presented as the answer).
+
+    On Baseten, ``reasoning_effort`` defaults to ``"low"``: Muse Spark Open
+    reasons exhaustively unless asked not to, and on multi-record batches the
+    thinking can consume the whole completion budget and starve the JSON
+    answer (finish_reason=length, empty content). Pass an explicit level to
+    override; the Meta backend never receives this knob.
     """
     user_text = _redact(user)
     content: Any = user_text
@@ -468,6 +475,8 @@ def chat_json(
         "max_tokens": budget,
         "response_format": _response_format(schema_name, schema, simple=simple),
     }
+    if config.backend() == "baseten":
+        payload["reasoning_effort"] = reasoning_effort or "low"
     try:
         resp = _post(url, payload, timeout=timeout or config.timeout_s())
     except MetaError as e:

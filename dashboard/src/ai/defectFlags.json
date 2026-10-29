@@ -1,12 +1,230 @@
 {
-  "status": "not run",
-  "taxonomy": "frozen from 2015–2020 recalls",
-  "taxonomy_source": "reports/defect/taxonomy.json",
-  "human_labels": "0/300 filled",
-  "human_labels_source": "reports/defect/defect_label_sample_300.csv",
-  "model_test": "not run",
-  "generated_at": null,
+  "generated_at": "2026-10-28T21:31:13+00:00",
   "model_tag": "Muse Spark",
-  "note": "No defect-level test has run. This file is overwritten by scripts/defect_backtest.py --phase test only after the frozen one-shot 2021-2024 test. It contains no mock flags and no invented numbers.",
-  "flags": []
+  "note": "Five real defect-level test-window flags. Selection is fixed before the outcome is read: restrict to slice-weeks with at least 3 complaints, prefer specific defect labels over other/unclear, then take the largest record_count first while preferring a different test year and a different defect slice, for 3 confirmed and 2 unconfirmed flags. Excerpts are real complaint text, PII-redacted; the model saw PII-redacted text.",
+  "selection": {
+    "candidates": 89,
+    "specific_candidates": 22,
+    "confirmed_candidates": 32,
+    "unconfirmed_candidates": 57,
+    "selected_confirmed": 3,
+    "selected_unconfirmed": 2,
+    "selected_specific": 5
+  },
+  "flags": [
+    {
+      "flag_id": "DF-2024-W08-HONDA-FUEL_SYSTEM-fuel_pump_failure",
+      "week": "2024-W08",
+      "make": "HONDA",
+      "component": "FUEL SYSTEM",
+      "defect_label_id": "fuel_pump_failure",
+      "defect_label": "FUEL PUMP / failure",
+      "model_tag": "Muse Spark",
+      "record_count": 5,
+      "matched_recall": {
+        "campno": "24V763000",
+        "rcdate": "2024-10-14",
+        "make": "HONDA",
+        "component": "FUEL SYSTEM",
+        "defect_label_id": "fuel_pump_failure",
+        "defect_label": "FUEL PUMP / failure",
+        "desc_defect": "Honda (American Honda Motor Co.) is recalling certain 2023-2024 Honda Accord, Accord Hybrid, 2023-2025 Honda CR-V Hybrid, and 2025 Honda Civic and Civic Hybrid vehicles. The high-pressure fuel pump may crack and leak fuel."
+      },
+      "match": "recall",
+      "complaints": [
+        {
+          "cmplid": "1969134",
+          "date": "2024-02-21",
+          "make": "HONDA",
+          "model": "PILOT",
+          "year": 2019,
+          "excerpt": "The contact owns a 2019 Honda Pilot. The contact received notification of NHTSA Campaign Number: 23V858000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The local dealer was notified of the issue and stated it would be 6 months to a year before parts became available. The manufacturer was not notified of the issue. The contact stated while driving at an undisclosed speed, the vehicle stalled and lost motive power. Several unknown warning lights wer"
+        },
+        {
+          "cmplid": "1969153",
+          "date": "2024-02-21",
+          "make": "HONDA",
+          "model": "CR-V",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Honda CR-V. The contact stated that while his wife was driving approximately 10 MPH, the check engine warning light flashed on and off and the vehicle momentarily lost motive power and would not properly accelerate. The failure occurred on several occasions. The vehicle was taken to the local dealer, but the cause of the failure was not yet determined. The contact later received notification of NHTSA Campaign Number: 23V858000(Fuel System, Gasoline). The contact stated that the vehicle had experienced the failure listed in the recall. The failure mileage was 61,300."
+        },
+        {
+          "cmplid": "1969159",
+          "date": "2024-02-21",
+          "make": "HONDA",
+          "model": "ACCORD",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Honda Accord. The contact stated that while driving at various speeds, several unknown warning lights illuminated on the instrument panel and the vehicle stalled. The vehicle was taken to the local dealer where it was diagnosed that the fuel system needed to be repaired. The contact received notification of NHTSA Campaign Number: 23V858000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The vehicle was not repaired due to parts not being available. The contact stated that the manufacturer had exceeded a reasonable amount of time "
+        }
+      ]
+    },
+    {
+      "flag_id": "DF-2023-W15-FORD-FUEL_SYSTEM-hoses_lines_piping_and_fittings_leak",
+      "week": "2023-W15",
+      "make": "FORD",
+      "component": "FUEL SYSTEM",
+      "defect_label_id": "hoses_lines_piping_and_fittings_leak",
+      "defect_label": "HOSES LINES/PIPING AND FITTINGS / leak",
+      "model_tag": "Muse Spark",
+      "record_count": 4,
+      "matched_recall": {
+        "campno": "23V499000",
+        "rcdate": "2023-07-19",
+        "make": "FORD",
+        "component": "FUEL SYSTEM",
+        "defect_label_id": "hoses_lines_piping_and_fittings_leak",
+        "defect_label": "HOSES LINES/PIPING AND FITTINGS / leak",
+        "desc_defect": "Quality Vans (Quality Vans) is recalling certain 2020-2023 Ford Transit vans equipped with Onan QG 2800i EVAP generators, part number 2.8HGLAA-8303A. The fuel hose between the inline fuel filter and the Injection Pump Module (IPM) may not be properly secured, which can cause a gas leak."
+      },
+      "match": "recall",
+      "complaints": [
+        {
+          "cmplid": "1887625",
+          "date": "2023-04-14",
+          "make": "FORD",
+          "model": "BRONCO SPORT",
+          "year": 2021,
+          "excerpt": "The contact owns a 2021 Ford Bronco Sport. The contact stated that after she purchased the vehicle, the dealer made her aware of NHTSA Campaign Number: 22V859000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The dealer and Koons Ford Lincoln of Annapolis ([ADDRESS], Annapolis, MD 21401) were made aware of the issue and confirmed that parts were not yet available. The dealer provided the contact with a loaner vehicle. The manufacturer was made aware"
+        },
+        {
+          "cmplid": "1887642",
+          "date": "2023-04-14",
+          "make": "FORD",
+          "model": "ESCAPE",
+          "year": 2020,
+          "excerpt": "The contact owns a 2020 Ford Escape. The contact received notification of NHTSA Campaign Number: 22V859000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The dealer and Gary Crossley Ford (8050 N Church Rd, Kansas City, MO 64158) were made aware of the issue and confirmed that parts were not yet available. The manufacturer was not made aware of the issue. The contact had not experienced a failure. Parts distribution disconnect."
+        },
+        {
+          "cmplid": "1887701",
+          "date": "2023-04-14",
+          "make": "FORD",
+          "model": "BRONCO SPORT",
+          "year": 2022,
+          "excerpt": "The contact owns a 2022 Ford Bronco Sport. The contact received notification of NHTSA Campaign Number: 22V859000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The local dealer was contacted. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue. The contact had not experienced a failure. Parts distribution disconnect."
+        }
+      ]
+    },
+    {
+      "flag_id": "DF-2024-W09-HONDA-FUEL_SYSTEM-fuel_pump_failure",
+      "week": "2024-W09",
+      "make": "HONDA",
+      "component": "FUEL SYSTEM",
+      "defect_label_id": "fuel_pump_failure",
+      "defect_label": "FUEL PUMP / failure",
+      "model_tag": "Muse Spark",
+      "record_count": 5,
+      "matched_recall": {
+        "campno": "24V763000",
+        "rcdate": "2024-10-14",
+        "make": "HONDA",
+        "component": "FUEL SYSTEM",
+        "defect_label_id": "fuel_pump_failure",
+        "defect_label": "FUEL PUMP / failure",
+        "desc_defect": "Honda (American Honda Motor Co.) is recalling certain 2023-2024 Honda Accord, Accord Hybrid, 2023-2025 Honda CR-V Hybrid, and 2025 Honda Civic and Civic Hybrid vehicles. The high-pressure fuel pump may crack and leak fuel."
+      },
+      "match": "recall",
+      "complaints": [
+        {
+          "cmplid": "1970533",
+          "date": "2024-02-26",
+          "make": "HONDA",
+          "model": "CLARITY PLUG-IN HYBRID",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Honda Clarity Plug in Hybrid. The contact received notification of NHTSA Campaign Number: 23V858000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The contact stated that his wife informed him that the vehicle failed to start upon pushing the \"Push to Start\" button. The contact stated that his wife was able to start the vehicle after several attempts. Additionally, the contact stated while his wife was driving at an undisclosed speed downhill and depressing the accelerator pedal, the engine revved, but the vehicle failed to resp"
+        },
+        {
+          "cmplid": "1970839",
+          "date": "2024-02-27",
+          "make": "HONDA",
+          "model": "ACCORD HYBRID",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Honda Accord. The contact received notification of NHTSA Campaign Number: 23V858000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The contact stated that while driving at an undisclosed speed, the emission system error warning light illuminated. Additionally, the vehicle stalled and lost motive power. The contact stated that while depressing the accelerator pedal, the vehicle would not accelerate above 30 MPH. The vehicle wa"
+        },
+        {
+          "cmplid": "1971352",
+          "date": "2024-02-29",
+          "make": "HONDA",
+          "model": "HR-V",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Honda HR-V. The contact received notification of NHTSA Campaign Number: 23V858000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue. The contact stated while driving approximately 35 MPH, the vehicle lost motive power. The contact stated no warning light was illuminated. The contact stated that the vehicle almost stalled. The contact stated that the fuel tank was almost always full. The c"
+        }
+      ]
+    },
+    {
+      "flag_id": "DF-2023-W46-RAM-FUEL_SYSTEM-fuel_system_diesel_detachment",
+      "week": "2023-W46",
+      "make": "RAM",
+      "component": "FUEL SYSTEM",
+      "defect_label_id": "fuel_system_diesel_detachment",
+      "defect_label": "FUEL SYSTEM DIESEL / detachment",
+      "model_tag": "Muse Spark",
+      "record_count": 7,
+      "matched_recall": null,
+      "match": "no recall by 2024-12-31",
+      "complaints": [
+        {
+          "cmplid": "1942825",
+          "date": "2023-11-13",
+          "make": "RAM",
+          "model": "1500",
+          "year": 2017,
+          "excerpt": "The contact owns a 2017 Ram 1500. The contact received notification of NHTSA Campaign Number: 22V406000 (Fuel System, Diesel) however, the part to do the recall repair was not yet available. The local dealer was contacted and determined that the parts were not available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue and confirmed that parts were not yet available. The contact had not experienced a failure. VIN tool confirms parts not available."
+        },
+        {
+          "cmplid": "1943091",
+          "date": "2023-11-14",
+          "make": "RAM",
+          "model": "1500",
+          "year": 2016,
+          "excerpt": "The contact owns a 2016 Ram 1500. The contact received notification of NHTSA Campaign Number: 22V406000 (Fuel System, Diesel) however, the part to do the recall repair was not yet available. The local dealer was made aware of the issue. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue and confirmed that parts were not yet available. The contact had not experienced a failure. VIN tool confirms parts not available."
+        },
+        {
+          "cmplid": "1943180",
+          "date": "2023-11-15",
+          "make": "RAM",
+          "model": "1500",
+          "year": 2017,
+          "excerpt": "The contact owns a 2017 Ram 1500. The contact received notification of NHTSA Campaign Number: 22V406000 (Fuel System, Diesel) however, the part to do the recall repair was unavailable. The local dealer was contacted and confirmed that the part was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue. The contact had not experienced a failure. VIN tool confirms parts not available."
+        }
+      ]
+    },
+    {
+      "flag_id": "DF-2022-W04-MAZDA-FUEL_SYSTEM-fuel_pump_failure",
+      "week": "2022-W04",
+      "make": "MAZDA",
+      "component": "FUEL SYSTEM",
+      "defect_label_id": "fuel_pump_failure",
+      "defect_label": "FUEL PUMP / failure",
+      "model_tag": "Muse Spark",
+      "record_count": 5,
+      "matched_recall": null,
+      "match": "no recall by 2024-12-31",
+      "complaints": [
+        {
+          "cmplid": "1789945",
+          "date": "2022-01-24",
+          "make": "MAZDA",
+          "model": "CX-5",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Mazda CX-5. The contact stated that while driving at approximately 20-30 MPH, the vehicle stalled. The contact was able to restart the vehicle. The vehicle was not diagnosed nor repaired by an independent mechanic or dealer. The manufacturer was not made aware of the failure. The contact later received notification of NHTSA Campaign Number: 21V875000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The failure mileage was unavailable."
+        },
+        {
+          "cmplid": "1789953",
+          "date": "2022-01-24",
+          "make": "MAZDA",
+          "model": "MAZDA6",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Mazda Mazda6. The contact stated that while driving at low speeds, the vehicle would hesitate upon the depression of the accelerator pedal without warning. The contact then received notification of NHTSA Campaign Number: 21V875000 (Fuel System, Gasoline) however, the part to do the recall repair was unavailable. The dealer was also notified about the recall; however, the contact was informed that the parts were not yet available. The manufacturer had been notified of the recall. The contact stated that the manufacturer had exceeded a reasonable amount of time for the re"
+        },
+        {
+          "cmplid": "1789998",
+          "date": "2022-01-24",
+          "make": "MAZDA",
+          "model": "CX-5",
+          "year": 2018,
+          "excerpt": "The contact owns a 2018 Mazda CX-5. The contact received a recall notification for NHTSA Campaign Number: 21V875000 (Fuel System, Gasoline) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was notified of the issue. The contact had not experienced a failure. VIN tool confirms parts are not available."
+        }
+      ]
+    }
+  ]
 }

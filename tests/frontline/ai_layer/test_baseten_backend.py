@@ -266,3 +266,28 @@ def test_narrator_baseten_chat(monkeypatch):
     assert seen["payload"]["model"] == BASETEN_MODEL
     assert seen["auth"] == f"Bearer {FAKE_BASETEN_KEY}"
     assert "temperature" not in seen["payload"]
+
+
+def test_baseten_reasoning_effort_defaults_low(baseten_env, capture_transport):
+    # Muse Spark Open reasons exhaustively by default (thousands of tokens on
+    # a trivial prompt) and can starve the JSON answer inside a fixed
+    # max_tokens budget. Structured calls default to low effort.
+    calls, _queue = capture_transport
+    _chat(calls, None)
+    assert calls[0]["payload"]["reasoning_effort"] == "low"
+
+
+def test_baseten_reasoning_effort_override(baseten_env, capture_transport):
+    calls, _queue = capture_transport
+    _chat(calls, None, reasoning_effort="medium")
+    assert calls[0]["payload"]["reasoning_effort"] == "medium"
+
+
+def test_meta_backend_omits_reasoning_effort(capture_transport, monkeypatch):
+    # The Meta API never sees the Baseten-only knob.
+    monkeypatch.setenv("META_API_KEY", "test-meta-not-a-real-key")
+    monkeypatch.setenv("META_BACKEND", "meta")
+    monkeypatch.delenv("BASETEN_API_KEY", raising=False)
+    calls, _queue = capture_transport
+    _chat(calls, None)
+    assert "reasoning_effort" not in calls[0]["payload"]

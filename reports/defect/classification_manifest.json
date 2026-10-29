@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-10-28T21:30:48+00:00",
+  "model": "meta-models/muse-spark-open-1026",
+  "prompt_version": "defect-cls-v2",
+  "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1",
+  "system_prompt_sha256": "6e3990280862c665c90f10acb862d8688aa3070fba732d9642e9449211d814f1",
+  "complaints": {
+    "inputs": 891212,
+    "ok": 5160,
+    "failed": 886052,
+    "other_unclear": 2440,
+    "label_counts": {
+      "other_unclear": 2440,
+      "fuel_pump_failure": 911,
+      "tank_assembly_leak": 509,
+      "hoses_lines_piping_and_fittings_leak": 494,
+      "canister_failure": 344,
+      "fuel_system_other_electrical": 322,
+      "fuel_system_diesel_detachment": 140
+    },
+    "sha256": "c9e6171beda60c4c048a62c6f114b64722d1624b95cb8916dcaaa4e63d62ad1d"
+  },
+  "recalls": {
+    "inputs": 17032,
+    "ok": 858,
+    "failed": 16174,
+    "other_unclear": 110,
+    "label_counts": {
+      "hoses_lines_piping_and_fittings_leak": 343,
+      "fuel_pump_failure": 148,
+      "tank_assembly_leak": 120,
+      "other_unclear": 110,
+      "fuel_system_diesel_detachment": 63,
+      "fuel_system_other_electrical": 59,
+      "canister_failure": 15
+    },
+    "sha256": "bf5f0f94c0038949752629f256429edd2ece4b43764190f485d5459796a9bbe2"
+  }
+}

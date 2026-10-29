@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-10-28T21:31:09+00:00",
+  "phase": "test",
+  "config": {
+    "z": 2.0,
+    "q": 0.05,
+    "abs_lift": 3,
+    "rel_lift": 0.5
+  },
+  "config_id": "z2.0_q0.05_abs3_rel0.5",
+  "config_sha256": "3d7da943d3362ae9cf337c0982a1be2d0b787b6f43d7466dc2be114c9330430f",
+  "test_window": [
+    "2021-01-01",
+    "2024-12-31"
+  ],
+  "metrics": {
+    "recent_campaign": {
+      "campaigns": 269,
+      "hits": 6,
+      "misses": 263,
+      "recall_rate": 0.022,
+      "lead_weeks_median": 34.5,
+      "lead_weeks_mean": 33.2
+    },
+    "precision": {
+      "flagged_slice_weeks": 89,
+      "confirmed_slice_weeks": 32,
+      "false_alarm_slice_weeks": 57,
+      "precision_slice_weeks": 0.36,
+      "flag_episodes": 54,
+      "confirmed_episodes": 16,
+      "precision_episodes": 0.296,
+      "unconfirmed_slice_weeks": 57
+    },
+    "precision_episodes": 0.296,
+    "objective": 0.041,
+    "recalls_scored": 269,
+    "validation": {
+      "first_flag_mismatches": 0,
+      "recent_episode_mismatches": 0
+    }
+  },
+  "complaints": {
+    "inputs": 323589,
+    "used": 3114,
+    "dropped": 320475
+  },
+  "complaints_scored": 5160,
+  "advisories": {
+    "inputs": 4790,
+    "used": 269,
+    "dropped": 4521
+  },
+  "score_rows": 63241,
+  "other_unclear_recalls": {
+    "train": {
+      "labelled": 294,
+      "other_unclear": 47,
+      "rate": 0.16,
+      "scope_rows": 6442,
+      "scope_rows_labelled": 294,
+      "scope_rows_other_unclear": 47,
+      "scope_rows_unlabelled": 6148,
+      "campaigns": 5776,
+      "campaigns_labelled": 294,
+      "campaigns_all_other_unclear": 47,
+      "campaigns_any_other_unclear": 47,
+      "campaigns_unlabelled": 5482
+    },
+    "test": {
+      "labelled": 269,
+      "other_unclear": 16,
+      "rate": 0.059,
+      "scope_rows": 4790,
+      "scope_rows_labelled": 269,
+      "scope_rows_other_unclear": 16,
+      "scope_rows_unlabelled": 4521,
+      "campaigns": 4218,
+      "campaigns_labelled": 269,
+      "campaigns_all_other_unclear": 16,
+      "campaigns_any_other_unclear": 16,
+      "campaigns_unlabelled": 3949
+    }
+  },
+  "note": "single evaluation of the frozen config; no thresholds were changed after this run",
+  "elapsed_s": 8.2
+}

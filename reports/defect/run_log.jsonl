@@ -1,3 +1,5 @@
 {"at": "2026-10-26T14:54:50+00:00", "git_head": "7db1008", "phase": "component", "labels_mode": "none", "config_id": "z2.0_q0.05_abs3_rel0.5", "config_sha256": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23", "elapsed_s": 2.3}
 {"at": "2026-10-26T14:54:50+00:00", "git_head": "7db1008", "phase": "component", "refused": "no frozen config at /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/reports/defect/defect_config.json"}
 {"at": "2026-10-26T15:07:00+00:00", "git_head": "7db1008", "phase": "component", "labels_mode": "none", "config_id": "z2.0_q0.05_abs3_rel0.5", "config_sha256": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23", "elapsed_s": 12.7}
+{"at": "2026-10-28T21:30:55+00:00", "git_head": "b23309b", "phase": "tune", "mode": "defect", "forced": false, "chosen": "z2.0_q0.05_abs3_rel0.5", "config_sha256": "3d7da943d3362ae9cf337c0982a1be2d0b787b6f43d7466dc2be114c9330430f", "elapsed_s": 2.8}
+{"at": "2026-10-28T21:31:13+00:00", "git_head": "b23309b", "phase": "test", "forced": false, "config_sha256": "3d7da943d3362ae9cf337c0982a1be2d0b787b6f43d7466dc2be114c9330430f", "elapsed_s": 8.2}

@@ -50,7 +50,7 @@ import pandas as pd
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
-PROMPT_VERSION = "defect-cls-v1"
+PROMPT_VERSION = "defect-cls-v2"
 DEFAULT_MODEL = "muse-spark-1.3-contributor"
 OTHER_ID = "other_unclear"
 OTHER_LABEL = {
@@ -80,7 +80,11 @@ Allowed labels:
 {labels}
 
 Narratives:
-{narratives}"""
+{narratives}
+
+Return exactly one JSON object, nothing else, with this shape:
+{{"items": [{{"record_id": "c1", "label_id": "<one allowed id>", "confidence": <0 to 1>, "evidence": "<verbatim quote, at most 200 characters>"}}]}}
+One item per narrative in order, record_id "c1" through "c{n}". label_id must be one of the allowed ids above; confidence is your certainty from 0 to 1."""
 
 
 def utc_now() -> str:
@@ -126,7 +130,7 @@ def make_prompt(component: str, labels: list[dict[str, Any]], items: list[dict[s
     for i, item in enumerate(items, 1):
         chunks.append(f"[c{i}]\n{item['text'].strip()}")
     return USER_TEMPLATE.format(component=component, labels=label_block(labels),
-                                narratives="\n\n".join(chunks))
+                                narratives="\n\n".join(chunks), n=len(items))
 
 
 def make_schema(n_items: int, allowed_ids: list[str]) -> dict[str, Any]:
@@ -336,6 +340,8 @@ def load_recalls(path: Path) -> list[dict[str, Any]]:
             "input_type": "recall_description",
             "odino": "",
             "cmplid": str(r.campno),
+            "campno": str(r.campno),
+            "desc_defect": desc,
             "datea": str(r.rcdate),
             "make": str(r.make),
             "vehicle_model": str(r.model),
