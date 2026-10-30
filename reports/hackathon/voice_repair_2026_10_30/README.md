@@ -54,6 +54,13 @@ cd ..
 .venv-hackathon/bin/python -m pytest -q tests/frontline/test_voice_report_repair.py tests/frontline/test_voice_multiturn_regression.py tests/frontline/test_voice_widget_multiturn.py tests/frontline/test_voice_helpers.py tests/frontline/test_live_voice_lifecycle.py tests/frontline/test_live_safety_voice.py tests/frontline/test_live_corrections.py tests/frontline/test_orchestrator.py tests/frontline/ai_layer/test_intake_enhancer.py tests/frontline/ai_layer/test_baseten_backend.py
 ```
 
+The [committed-source verification](release_verification.json) pins the tested
+source commit and code hashes, with actual [Python](release-python.txt),
+[Node](release-node.txt), and [browser](release-browser.txt) logs. The
+[localhost check](localhost_check.json) confirms the restarted app serves the UI,
+uses the configured Baseten text provider, and refuses unauthenticated API access.
+It does not invoke a model or record audio.
+
 Nine Node contract checks passed. The 95-test focused Python run passed; the later
 88-test run added coverage of the updated Baseten adapter and its existing client
 contracts. These counts overlap and must not be added together. The browser run

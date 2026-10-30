@@ -1,0 +1,17 @@
+✔ final words and the unfinished correction survive together exactly once (0.474ms)
+✔ short interim-only answers survive recognition ending (0.063084ms)
+✔ question examples and readback years are valid answers, not echo (0.435041ms)
+✔ physical speech holds a turn when recognizer text delivery stalls (0.079375ms)
+✔ only mutually supported browser formats are selected (0.36ms)
+✔ PCM pre-roll preserves the last 450ms exactly once and cancellation removes it (1.57325ms)
+✔ PCM segment length remains bounded and WAV contract is 16k mono PCM (8.676375ms)
+✔ quiet speech crosses calibrated threshold; strong speech cannot train the noise floor upward (0.081833ms)
+✔ speech preference is validated and English replies do not use a Hindi-only voice (0.08125ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51.869083

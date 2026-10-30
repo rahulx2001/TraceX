@@ -1,0 +1,41 @@
+{
+  "recorded_at": "2026-10-30T12:45:33.007576+00:00",
+  "tested_source_commit": "26b3a3f2bf013dc42d1a2decb13e48ee4860c0b4",
+  "checks": [
+    {
+      "kind": "python",
+      "result": "passed",
+      "log": "release-python.txt",
+      "sha256": "0815bc861c0368bcc8da3cc8b2fc2bb288d0617bbb9f69896cd6f948c9897268",
+      "scope": "synthetic speech and local API regression; no audio-quality result or inference calls"
+    },
+    {
+      "kind": "node",
+      "result": "passed",
+      "log": "release-node.txt",
+      "sha256": "92dd7956db53dab7cfe9a0401cf5264200080e4804110387aef8f1d69963bcc4",
+      "scope": "synthetic speech and local API regression; no audio-quality result or inference calls"
+    },
+    {
+      "kind": "browser",
+      "result": "passed",
+      "log": "release-browser.txt",
+      "sha256": "69e58ef61a769ffb18f01e2fd25f36d6852dcc3177b94e06853cd5d5fb52fd23",
+      "scope": "synthetic speech and local API regression; no audio-quality result or inference calls"
+    }
+  ],
+  "source_sha256": {
+    "dashboard/routes/CallWidget.jsx": "5cbc125d9a3a0834140e4cdf7dd0109304096080186584c770499b773cf3ad58",
+    "dashboard/src/speechDraft.js": "be4f1e44283745c1b9d372494d3f6ff3a05e5f9d4f69cffca799e1ebc4ad7156",
+    "dashboard/src/voiceHelpers.js": "ece24dcda2dc5142907e660660f1e7a1970278e9eab1813a736ec7dda902b337",
+    "dashboard/src/voiceExperience.js": "ea00b04de04850e34a07737c37f6fbab4bdc439c3fd992993281e9074c6838f6",
+    "src/agents/intake.py": "aa733a72b00ad58b8ad6c4c65fbc37859e2859be48d1790db5b3045a1755887c",
+    "src/agents/orchestrator.py": "8a6f312d88c70b54868f2699abe8249f7e5d9fb87e895295dfea8d21f2d39843",
+    "src/ai_layer/intake_enhancer.py": "83fc36ab84841c20859ac9be4aa3a3a9d902de094526022de61906b9d254c06b",
+    "src/ai_layer/meta_client.py": "a54ea92afaca148954580543705524c142eb2d65656516303099545a32103568"
+  },
+  "human_reviews": "pending",
+  "consented_audio_validation": "pending",
+  "new_live_requests_in_release_checks": 0,
+  "note": "Development live text probes are recorded separately, including their failure. Production source hashes allow later artifact-only packaging commits to be checked against the tested code."
+}
