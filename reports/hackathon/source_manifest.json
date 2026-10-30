@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-10-30T08:29:44.218914+00:00",
+  "recorded_at": "2026-10-30T09:54:42.974876+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "e6517f124ada5ebc98b5ba13139adc149c165ad7",
-  "source_tree": "1e79f9eeddeabfd4f7e7b9a123cba252fc7e9c9c",
+  "source_commit": "6d774064d0d52896f5488656f7fe15c2bcad0f44",
+  "source_tree": "bcdbb42fefd47797985cb24c1251def11dde5cbc",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -17,6 +17,10 @@
       "path": ".env.example"
     },
     {
+      "status": "A",
+      "path": ".github/workflows/container-readiness.yml"
+    },
+    {
       "status": "M",
       "path": ".github/workflows/frontline.yml"
     },
@@ -27,6 +31,10 @@
     {
       "status": "M",
       "path": "DEMO_SCRIPT.md"
+    },
+    {
+      "status": "M",
+      "path": "Dockerfile"
     },
     {
       "status": "M",
@@ -226,6 +234,10 @@
     },
     {
       "status": "A",
+      "path": "dashboard/scripts/container-readiness.test.mjs"
+    },
+    {
+      "status": "A",
       "path": "dashboard/scripts/investigation-ui.test.mjs"
     },
     {
@@ -374,7 +386,15 @@
     },
     {
       "status": "M",
+      "path": "docker/entrypoint.sh"
+    },
+    {
+      "status": "M",
       "path": "docker/hackathon-entrypoint.sh"
+    },
+    {
+      "status": "A",
+      "path": "docs/container-validation.md"
     },
     {
       "status": "A",
@@ -411,6 +431,10 @@
     {
       "status": "M",
       "path": "domains/medical_maude/pack.yaml"
+    },
+    {
+      "status": "A",
+      "path": "migrations/004_ops_runtime_columns.sql"
     },
     {
       "status": "A",
@@ -742,6 +766,118 @@
     },
     {
       "status": "A",
+      "path": "reports/hackathon/container_validation/41f7d87-arm64-attempt1.browser.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/41f7d87-arm64-attempt1.container.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/41f7d87-arm64-attempt1.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/41f7d87.build.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/41f7d87.full-revision-label.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/8edc0fd-arm64-attempt1.container.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/8edc0fd-arm64-attempt1.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/8edc0fd.build.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/README.md"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/ci-edfda13.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt1.browser.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt1.container.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt1.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt2.container.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt2.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/e240143.build.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-arm64-attempt1.browser.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-arm64-attempt1.container.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-arm64-attempt1.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt1.browser.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt1.container.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt1.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt2.browser.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt2.container.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt2.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/edfda13.build.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/focused-tests.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/container_validation/verification.json"
+    },
+    {
+      "status": "A",
       "path": "reports/hackathon/investigation_current_live_smoke.json"
     },
     {
@@ -1005,6 +1141,14 @@
       "path": "reports/voice_validation/README.md"
     },
     {
+      "status": "A",
+      "path": "reports/voice_validation/results.json"
+    },
+    {
+      "status": "M",
+      "path": "requirements-docker.txt"
+    },
+    {
       "status": "M",
       "path": "requirements-lock.txt"
     },
@@ -1015,6 +1159,10 @@
     {
       "status": "M",
       "path": "scripts/ai_meta_smoke.py"
+    },
+    {
+      "status": "A",
+      "path": "scripts/bootstrap_container_trust.py"
     },
     {
       "status": "A",
@@ -1055,6 +1203,10 @@
     {
       "status": "A",
       "path": "scripts/defect_verify.py"
+    },
+    {
+      "status": "A",
+      "path": "scripts/docker_readiness.py"
     },
     {
       "status": "M",
@@ -1469,6 +1621,14 @@
       "path": "tests/frontline/test_cluster_builds.py"
     },
     {
+      "status": "A",
+      "path": "tests/frontline/test_container_migrations.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/frontline/test_container_trust_bootstrap.py"
+    },
+    {
       "status": "M",
       "path": "tests/frontline/test_dashboard_pilot_auth.py"
     },
@@ -1559,6 +1719,13 @@
       "sha256": "ab9c801ff3c9e23d7ce9ca70b56356ab93d0691c8309458ebcc03672e5de4d2b"
     },
     {
+      "path": ".github/workflows/container-readiness.yml",
+      "mode": "100644",
+      "git_blob": "3855a2ee5a781353df8a75788a9627316291488c",
+      "bytes": 1298,
+      "sha256": "4fa7b7672b44ccf6454dcd4ce34ee57619452141ce4af33fee9c2c3e8d081ba1"
+    },
+    {
       "path": ".github/workflows/frontline.yml",
       "mode": "100644",
       "git_blob": "cfe48f1971d66be3a4c8281f0372f1392ced3bab",
@@ -1582,16 +1749,16 @@
     {
       "path": "Dockerfile",
       "mode": "100644",
-      "git_blob": "838b51b8463e6ccfb5c26e374da181e497b27829",
-      "bytes": 2518,
-      "sha256": "404b91504cc6fea35f48fe541c033fdade08ff496d5f0e70ba2b24dc1c917996"
+      "git_blob": "c57cb5ab1ae63b6900451be7f5083b9f61603e14",
+      "bytes": 2587,
+      "sha256": "60e2a02741c2df12239bf9c8ee8a53af229179baa7f946b7f5a297de28aea4b2"
     },
     {
       "path": "Dockerfile.hackathon",
       "mode": "100644",
-      "git_blob": "c4b1c414fa95600f8e1f27e69e2dbc3e594356fa",
-      "bytes": 3822,
-      "sha256": "da0129b59730ef01f0ce0b4e69a0c87bfe3753a4fe367d53af1400492382e762"
+      "git_blob": "e5ed7b4886d147dc9746d4d30950c790000c3c42",
+      "bytes": 3891,
+      "sha256": "b4578ad53c2721ea3457cdf197a0dd7f51e913af3161ccd6fced5d68984ab3a4"
     },
     {
       "path": "Dockerfile.hackathon.dockerignore",
@@ -1610,9 +1777,9 @@
     {
       "path": "HACKATHON.md",
       "mode": "100644",
-      "git_blob": "104120cec8732ac032736f35d580015443e50003",
-      "bytes": 13974,
-      "sha256": "934e9983862bcb662ec9f3ff3247f51998b6d90fc84c076f0ddef6344cd887dd"
+      "git_blob": "907427fbb11c81779369e97dc3a126993bca68b5",
+      "bytes": 14164,
+      "sha256": "e51e561d51111b37cfe04f51e4d40e001586717104e5b164d5ed6e84fc8abd7b"
     },
     {
       "path": "HACKATHON_FIX_PROMPTS.md",
@@ -1645,9 +1812,9 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "git_blob": "1e161e5025cfa77394b19b962d3dc09bb0f91075",
-      "bytes": 20766,
-      "sha256": "8571bc4ff80324d99014554d13e6b3f2a669ffe54318ca271cc6791861521ef9"
+      "git_blob": "0e445673a9912fbce060d32f90b9782b5bd2564b",
+      "bytes": 21355,
+      "sha256": "7ad91bae19b4b4679cce549278a897b8e1c9efc10dd6d562f3edef434baba039"
     },
     {
       "path": "dashboard/e2e/api.aggressive.spec.js",
@@ -2112,6 +2279,13 @@
       "sha256": "a13b26eebaad035ab514eee74e6ea89d70bdc7afe9d5f7f18af437a0707f15fd"
     },
     {
+      "path": "dashboard/scripts/container-readiness.test.mjs",
+      "mode": "100644",
+      "git_blob": "cdcda71d3a7f9f9942fe028b34c55486d50ad144",
+      "bytes": 3392,
+      "sha256": "d1d8580ec4f7229a41feeed7c133fc3d01e89cd647dd9188e34ffaf603bb6afd"
+    },
+    {
       "path": "dashboard/scripts/investigation-ui.test.mjs",
       "mode": "100644",
       "git_blob": "eaa494cc9e5170105b74fb72811b32bf9b74a084",
@@ -2534,9 +2708,9 @@
     {
       "path": "docker-compose.hackathon.yml",
       "mode": "100644",
-      "git_blob": "e2cd4463d91cc1bc306b263b4d9c0e507356d17a",
-      "bytes": 2217,
-      "sha256": "9fb5eaa3bcef64cb42dba1b352ed0f5b329f8c0a3249ccf124dccc17389831ce"
+      "git_blob": "ebd155600b12af9af7fc9c2ce43c01fc8a453f9a",
+      "bytes": 2283,
+      "sha256": "c116ede7d74047caf7cf8db30d9608c1a915701749b6745aa9444c6ad7d8f77c"
     },
     {
       "path": "docker-compose.yml",
@@ -2548,9 +2722,9 @@
     {
       "path": "docker/entrypoint.sh",
       "mode": "100755",
-      "git_blob": "c895d196f12af05f53ee3c6bcd227ecc58a0ebf8",
-      "bytes": 3110,
-      "sha256": "b81909974d7f949c84c2a29d1f558a078c993905097a0b2f9cc2e6ba344f4859"
+      "git_blob": "e7d5e85aca62e79efd4286e3abac6928441192d5",
+      "bytes": 3317,
+      "sha256": "3565672aa6a084f8e41b005877ce8b14520bb297306d2db28b839fac4679ca19"
     },
     {
       "path": "docker/hackathon-entrypoint.sh",
@@ -2670,6 +2844,13 @@
       "git_blob": "0c125812ec239fea007741949cb298bc5e1737fe",
       "bytes": 923,
       "sha256": "7ff6e247084146c033f042dde2abb28d99756cf6b7c70283bb32443ed45b571e"
+    },
+    {
+      "path": "docs/container-validation.md",
+      "mode": "100644",
+      "git_blob": "d7993564094bd1634219603d56216c9c0dea82c5",
+      "bytes": 4286,
+      "sha256": "478f0bb5a4fd5a5e57b8c16fd67bf4f56572c4e17f1b3f2d19c1e9fdab7507d9"
     },
     {
       "path": "docs/database_optimization.md",
@@ -3638,6 +3819,13 @@
       "sha256": "c9396d414aa1eba3d20d529f62ec2a35e1ea12d7b949837bf2a7b9e7aabdf1cc"
     },
     {
+      "path": "migrations/004_ops_runtime_columns.sql",
+      "mode": "100644",
+      "git_blob": "a8817cdbf734df60fe31a74c1aab98987c330197",
+      "bytes": 1455,
+      "sha256": "8d8ba5dceaf1ef528b6761b1e70f552805a31afe9bceb744698d747c295eb853"
+    },
+    {
       "path": "migrations/README.md",
       "mode": "100644",
       "git_blob": "5d92dfabaf58d3333b4c82360f342c7518f105b6",
@@ -4354,9 +4542,9 @@
     {
       "path": "reports/hackathon/CLAIM_INDEX.md",
       "mode": "100644",
-      "git_blob": "9a389d52b5812a9f20361769592add3f3c1bfcab",
-      "bytes": 4018,
-      "sha256": "3da6980245f77db608bce9410e97e58adafed514bd4f59f88bb1f209d9caf062"
+      "git_blob": "a4eb05858de0f99f9fc5497ed6063de8777d6220",
+      "bytes": 4649,
+      "sha256": "01e9b867cd23ded03c16cae140ecf1023529501eee77bdf6a376ff28ab1c52ec"
     },
     {
       "path": "reports/hackathon/COMPETITIVENESS_REVIEW_2026-10-30.md",
@@ -4375,9 +4563,9 @@
     {
       "path": "reports/hackathon/READINESS_STATUS_2026-10-30.md",
       "mode": "100644",
-      "git_blob": "7b51c24e4053a42bebf9c915b8ba9560a7a1b170",
-      "bytes": 10628,
-      "sha256": "2b63227f4312d80f792e0168f206e09718eecd191576fae556fea6b9d5512f94"
+      "git_blob": "5487aa89a425bfb7beba9e8d60d3324480d285fb",
+      "bytes": 11590,
+      "sha256": "e3f5cae26605bb743166c62cf4828545d7657c1c2f81d6bd113b1c549a7dcc7b"
     },
     {
       "path": "reports/hackathon/claim_index.json",
@@ -4385,6 +4573,202 @@
       "git_blob": "ae218125ab34718cd9af0aac8d1107adbbdc1107",
       "bytes": 5750,
       "sha256": "74b4cb610e41accba22a58eecd53dad52c1f3539d6bb20b635ac33a0cc4cfd34"
+    },
+    {
+      "path": "reports/hackathon/container_validation/41f7d87-arm64-attempt1.browser.log",
+      "mode": "100644",
+      "git_blob": "b67e68fe0f6a08fb86c5b6fa54f16ba9099d2061",
+      "bytes": 1366,
+      "sha256": "2c32403b37400facddb7526dcd182ab619f7343a6fceab84001c5849ce0c6484"
+    },
+    {
+      "path": "reports/hackathon/container_validation/41f7d87-arm64-attempt1.container.log",
+      "mode": "100644",
+      "git_blob": "8ea113b14a93bd6ffd237b90b28196b8de5f4ab8",
+      "bytes": 12913,
+      "sha256": "58093965b71c4b282c1a7f0fd7a531bd8ea95c37548e71c3ac6dde4c9215763c"
+    },
+    {
+      "path": "reports/hackathon/container_validation/41f7d87-arm64-attempt1.json",
+      "mode": "100644",
+      "git_blob": "76be75ec94c8c0b6106ba7721adc646c6b30c85f",
+      "bytes": 2642,
+      "sha256": "917f59eb2dec56cc3f7011a2d2f7c50a8af7a845fb315505751ba7f71b5896d9"
+    },
+    {
+      "path": "reports/hackathon/container_validation/41f7d87.build.log",
+      "mode": "100644",
+      "git_blob": "a2a7051fd143ec8400a89583f8db4faff70a6c3d",
+      "bytes": 25534,
+      "sha256": "a0d1ff3769278de2849e9fdfd92cbfed48908622ec7c7398076ccb2496d44491"
+    },
+    {
+      "path": "reports/hackathon/container_validation/41f7d87.full-revision-label.log",
+      "mode": "100644",
+      "git_blob": "99334846724547588a9c45001f36c3f06a5697ce",
+      "bytes": 4830,
+      "sha256": "420393b86065dcd992caeda8a2eb90ade9ce6719945c8cae302184e91e3d7747"
+    },
+    {
+      "path": "reports/hackathon/container_validation/8edc0fd-arm64-attempt1.container.log",
+      "mode": "100644",
+      "git_blob": "7096f9da33f53fd109c42ffc5f70fa2dd57c311f",
+      "bytes": 7251,
+      "sha256": "97a8300f8bfb159160c2b9c22d283d1fc4cc820efa54bffd8c5db8e0a4da8908"
+    },
+    {
+      "path": "reports/hackathon/container_validation/8edc0fd-arm64-attempt1.json",
+      "mode": "100644",
+      "git_blob": "b33146f0fcde233470bcfe000efa8f24a6c418a4",
+      "bytes": 747,
+      "sha256": "70a991a5542e1f30297ab7a20657b2c5f26f7c5b90af41971af26a6e5e536792"
+    },
+    {
+      "path": "reports/hackathon/container_validation/8edc0fd.build.log",
+      "mode": "100644",
+      "git_blob": "c85c698dd9132db2b314cfe8b8bc18297c4d189b",
+      "bytes": 31583,
+      "sha256": "70341226eed69ed6fdc4ccdb2788223c99e95b3fe031c0a6d0925d9e46973a90"
+    },
+    {
+      "path": "reports/hackathon/container_validation/README.md",
+      "mode": "100644",
+      "git_blob": "94abfa39203a05ebfce99568c0378119612b3fe3",
+      "bytes": 5073,
+      "sha256": "7806a2ba230818bb98950ec044b0775b0f76e1a7edf2b14ac15a1d182f8ebf7b"
+    },
+    {
+      "path": "reports/hackathon/container_validation/ci-edfda13.json",
+      "mode": "100644",
+      "git_blob": "81553088bf22c568875871bebf8c245fcc6db395",
+      "bytes": 3977,
+      "sha256": "1c9cc112ccf8532b65118156032d9e6d5960584b7ad10f1d80c0ee9519792792"
+    },
+    {
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt1.browser.log",
+      "mode": "100644",
+      "git_blob": "91ab7b8b659ccdcec87056e06d6d15a7fd5ffc42",
+      "bytes": 703,
+      "sha256": "13cbbe7e699a131eae8de58397d8bf5c0689c5da077ada28e8e2074c57c6636b"
+    },
+    {
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt1.container.log",
+      "mode": "100644",
+      "git_blob": "aa1bfe09fae1ed30fffe5d7a6fd89757e75ceb82",
+      "bytes": 13144,
+      "sha256": "99e5935c620be1869013f0895ca21621575c93599453a1a152f8791f2ece9cc0"
+    },
+    {
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt1.json",
+      "mode": "100644",
+      "git_blob": "54152c3f0f1f602ae8158b1a60666ba00701dfbf",
+      "bytes": 2126,
+      "sha256": "31a497a4badf4405aa0dc913fb90f572ffa68405ef8c8530a44691d9ba7df91b"
+    },
+    {
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt2.container.log",
+      "mode": "100644",
+      "git_blob": "010be1c1a07c9d46f7fee2330cf584be8df94d07",
+      "bytes": 5791,
+      "sha256": "4f943d5bd2ff01bcb833a4afbdbdad44f82bab355f9820251793fae3aa192a37"
+    },
+    {
+      "path": "reports/hackathon/container_validation/e240143-arm64-attempt2.json",
+      "mode": "100644",
+      "git_blob": "ad40ad23395ab46076a5ade62e15dd518912a65a",
+      "bytes": 1978,
+      "sha256": "df0537b19933a2b65ac27059b117b754fd052d8baac31a942203752b56459bf7"
+    },
+    {
+      "path": "reports/hackathon/container_validation/e240143.build.log",
+      "mode": "100644",
+      "git_blob": "30abd3370eb75ecd9e146110508daa938d099fdd",
+      "bytes": 25537,
+      "sha256": "6ebc84af10741439080073a68ec0edd5b972add92d5be8860181db683bd078dd"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-arm64-attempt1.browser.log",
+      "mode": "100644",
+      "git_blob": "cbaca0c0e79deb306d864b624647a348f1677af6",
+      "bytes": 451,
+      "sha256": "08f2100ae51c3ee385b0e3c088c2c6257d0c88523bd307e58bc18c18e878a763"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-arm64-attempt1.container.log",
+      "mode": "100644",
+      "git_blob": "c950bebb9960981f9e9cac57968f1235bba49cea",
+      "bytes": 13895,
+      "sha256": "99f58d299238c5990442433587f8743acfbe778ddd17dc00f7feacdd60afdc7e"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-arm64-attempt1.json",
+      "mode": "100644",
+      "git_blob": "70199db3ca9306e60c27b7c6a8261aa5771fcea3",
+      "bytes": 3322,
+      "sha256": "3d2268b9921c03803896eeaf5aae7061893b7165fc4b0243738bf47b4976a153"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt1.browser.log",
+      "mode": "100644",
+      "git_blob": "cbaca0c0e79deb306d864b624647a348f1677af6",
+      "bytes": 451,
+      "sha256": "08f2100ae51c3ee385b0e3c088c2c6257d0c88523bd307e58bc18c18e878a763"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt1.container.log",
+      "mode": "100644",
+      "git_blob": "a805b692997a249352bb3aa5b0adb2701f89a978",
+      "bytes": 13896,
+      "sha256": "eb8e1491c9168bebdb87586d039c62666be32f34f6e56c19cac9c6b23f699a64"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt1.json",
+      "mode": "100644",
+      "git_blob": "89246ea8ace98fbea1a67f6249c29412a1957822",
+      "bytes": 3399,
+      "sha256": "acca1638de00d31aefc6601d6f79855f4b2a6a6d736d0f68292ce737c3921fc7"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt2.browser.log",
+      "mode": "100644",
+      "git_blob": "cbaca0c0e79deb306d864b624647a348f1677af6",
+      "bytes": 451,
+      "sha256": "08f2100ae51c3ee385b0e3c088c2c6257d0c88523bd307e58bc18c18e878a763"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt2.container.log",
+      "mode": "100644",
+      "git_blob": "ecdce4b95f1d54f81841b7b9a05d7507206112fa",
+      "bytes": 14490,
+      "sha256": "a68bdbcead522af1a1f9107f8f43a597fdf64349ff4c7304e3dbdf2ab3c5661b"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13-compose-arm64-attempt2.json",
+      "mode": "100644",
+      "git_blob": "cc02a5a9f645b9b597e22d98f9c05fa4b1c0c403",
+      "bytes": 3399,
+      "sha256": "a4e5fae84123e65b7acee8ee7c553eb409ef225d46feda8af43aee97972382ec"
+    },
+    {
+      "path": "reports/hackathon/container_validation/edfda13.build.log",
+      "mode": "100644",
+      "git_blob": "37d2f6526e9b643d04b0c5c8fea622fd10731731",
+      "bytes": 25847,
+      "sha256": "48c984fc6b2d56ef819a3e9ccad47b072cae584845eef7584d1170b5de1a15bc"
+    },
+    {
+      "path": "reports/hackathon/container_validation/focused-tests.log",
+      "mode": "100644",
+      "git_blob": "3e8ba8fe03568500b6471105cc945e10a53cdc44",
+      "bytes": 664,
+      "sha256": "46ef9c3277a3ec21e5cf857483a0a2da44548007f02047e159e00c755dc1ef39"
+    },
+    {
+      "path": "reports/hackathon/container_validation/verification.json",
+      "mode": "100644",
+      "git_blob": "879ec7fa0d58d4302abf9ad2888573bf7c056ed4",
+      "bytes": 1241,
+      "sha256": "828aae32a7e0a7f631b4b3e875d287e40a0ba5949570eeaee85b3ac8c754def2"
     },
     {
       "path": "reports/hackathon/investigation_current_live_smoke.json",
@@ -4690,9 +5074,9 @@
     {
       "path": "reports/hackathon/submission_links.json",
       "mode": "100644",
-      "git_blob": "1657242680ed0047b2b71fd43d9b1950c1a612d2",
-      "bytes": 575,
-      "sha256": "4b6c9cc877661b18e4b73fb05506f3f70e5d685a6ba45043fa9b6cbebc1bfb1b"
+      "git_blob": "8a929bba2b3a20e679e28c074aed386874a78aab",
+      "bytes": 909,
+      "sha256": "e0b80785e3ea115eeb928f7ce1bc531913275aacb9546d1be0fe4825377d4d92"
     },
     {
       "path": "reports/hindi_safety/HINDI_EVAL.md",
@@ -5325,11 +5709,18 @@
       "sha256": "dea8c554a2b23a0be6f21d2bbade779662800615c9310fa3425c2e3cb6ac625a"
     },
     {
+      "path": "reports/voice_validation/results.json",
+      "mode": "100644",
+      "git_blob": "04a79bdf6d6d03d23d10b6dd85570f178320af56",
+      "bytes": 1906,
+      "sha256": "62838325004aaed92c5c3aa71e1995e9964c94670623d642a78a7f55506690c0"
+    },
+    {
       "path": "requirements-docker.txt",
       "mode": "100644",
-      "git_blob": "75362afcdc04c6449d81b393317561deaed1b5a8",
-      "bytes": 576,
-      "sha256": "0ca67bfe41ba1912750f3b35ff78ff56965695b5c1d8a4f4bbf066191523fb6f"
+      "git_blob": "136cb016be9d85e608362a4fb5d6159ee2d63282",
+      "bytes": 671,
+      "sha256": "ffba47aa7844071124e0c8297556a8470542299a19b2ba6ebc9833b2e9a7fab2"
     },
     {
       "path": "requirements-lock.txt",
@@ -5393,6 +5784,13 @@
       "git_blob": "edccbdd897fd4a4228275b8c42e7434161037ef6",
       "bytes": 6387,
       "sha256": "ddba7fba87f7578223d0e061672081be804239d29dcba25bdbf5d80467e57c0c"
+    },
+    {
+      "path": "scripts/bootstrap_container_trust.py",
+      "mode": "100644",
+      "git_blob": "ce823431594442406e53c7c43587c4a49887ad38",
+      "bytes": 3197,
+      "sha256": "3101eb82aa23570da83cf98af05e06c75ec91526d0f5b8e38a5f496f4f8edcbf"
     },
     {
       "path": "scripts/build_claim_index.py",
@@ -5491,6 +5889,13 @@
       "git_blob": "5a0bfaf8513af8dcb18bda2331087a60d3cdd64d",
       "bytes": 1167,
       "sha256": "3285942af809c2ea1abb5ea80e3dda00ce9ba0b5e80543c65e25643a69b5ba24"
+    },
+    {
+      "path": "scripts/docker_readiness.py",
+      "mode": "100644",
+      "git_blob": "c10f69fe347c0387e79cde80fec06c71180ac23b",
+      "bytes": 9679,
+      "sha256": "59ef7317d54d1e9cc50f33696ac92aed93b8677f2cdc5eb1b5b7a8497c969296"
     },
     {
       "path": "scripts/embedding_backfill.py",
@@ -8424,6 +8829,20 @@
       "git_blob": "3ebbc72663c666c4cd65f2b19a0afd54e3dd3d3a",
       "bytes": 2958,
       "sha256": "3976674fc6dd4b1c6522cb77164aa330c63cfaad512724f1439a4e2eff2deecc"
+    },
+    {
+      "path": "tests/frontline/test_container_migrations.py",
+      "mode": "100644",
+      "git_blob": "f4ab035dc1d6ba7b3dd957159b904bd3f3840327",
+      "bytes": 3210,
+      "sha256": "d0e2ec1ced447d73bc38ef79f46d17d004d4d2d6dee6421aa0616d552359ce95"
+    },
+    {
+      "path": "tests/frontline/test_container_trust_bootstrap.py",
+      "mode": "100644",
+      "git_blob": "29d2925de92f8849ce985f34ecec289d389913ac",
+      "bytes": 3336,
+      "sha256": "94c3d38dcefb8d86f215022df20c112bf5c0dde30731c684880bafcb51ef3246"
     },
     {
       "path": "tests/frontline/test_crypto_shred_real.py",
