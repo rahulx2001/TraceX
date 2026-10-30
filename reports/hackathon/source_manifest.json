@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-10-30T10:27:46.860121+00:00",
+  "recorded_at": "2026-10-30T12:46:16.506762+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "b74c695e834b85e61935f56407989db842204ed4",
-  "source_tree": "a8ceb6444b3f5309c821767fb6e851e4d68349f9",
+  "source_commit": "bff515b14a1eb1d26cb4f61ec098768bdcc3bca7",
+  "source_tree": "c16b5fcfaf6b57096ec3b2a1a4ad1c30ce8533b2",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -266,6 +266,10 @@
     },
     {
       "status": "A",
+      "path": "dashboard/scripts/speech-draft.test.mjs"
+    },
+    {
+      "status": "A",
       "path": "dashboard/scripts/voice-capture.test.mjs"
     },
     {
@@ -339,6 +343,10 @@
     {
       "status": "M",
       "path": "dashboard/src/apiAuth.js"
+    },
+    {
+      "status": "A",
+      "path": "dashboard/src/speechDraft.js"
     },
     {
       "status": "M",
@@ -1070,6 +1078,46 @@
     },
     {
       "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/README.md"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/localhost_check.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe_after_schema_fix.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe_after_schema_fix_request.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe_request.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/release-browser.txt"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/release-node.txt"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/release-python.txt"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/voice_repair_2026_10_30/release_verification.json"
+    },
+    {
+      "status": "A",
       "path": "reports/make_test_current.txt"
     },
     {
@@ -1315,6 +1363,10 @@
     {
       "status": "A",
       "path": "scripts/verify_ml_pipeline.py"
+    },
+    {
+      "status": "A",
+      "path": "scripts/voice_intake_probe.py"
     },
     {
       "status": "A",
@@ -1690,6 +1742,10 @@
     },
     {
       "status": "A",
+      "path": "tests/frontline/test_voice_report_repair.py"
+    },
+    {
+      "status": "A",
       "path": "tests/frontline/test_voice_validation.py"
     },
     {
@@ -1744,9 +1800,9 @@
     {
       "path": ".github/workflows/frontline.yml",
       "mode": "100644",
-      "git_blob": "cfe48f1971d66be3a4c8281f0372f1392ced3bab",
-      "bytes": 10009,
-      "sha256": "48014c1fb18206b0ca306db7ea194eef975f5909ab73f856435464313bf869a8"
+      "git_blob": "27432bbe316dace225988e5ab73b71ab152c8efd",
+      "bytes": 10201,
+      "sha256": "22ac578c1495f828142cf818e9cf1b71e203946041952c87197e8ec63a8d7959"
     },
     {
       "path": ".gitignore",
@@ -1905,9 +1961,9 @@
     {
       "path": "dashboard/package.json",
       "mode": "100644",
-      "git_blob": "9491566ea6e427f4c5a22367c7f13f0a8ba7d4bb",
-      "bytes": 1035,
-      "sha256": "21d61f4c4cb80878bb6266e8a911499d64ad173a5afe45746ae64e4542d0ee74"
+      "git_blob": "8e454ef49b4c08351c368c542a85593a29913553",
+      "bytes": 1105,
+      "sha256": "0da217b749fd388cf1571e15c413c82653fa3c73fae6896d915a58aea7aeb775"
     },
     {
       "path": "dashboard/playwright.config.js",
@@ -2024,9 +2080,9 @@
     {
       "path": "dashboard/routes/CallWidget.jsx",
       "mode": "100644",
-      "git_blob": "6e62e3b98568c20d6ad972f886b33dc7c2ed130d",
-      "bytes": 89615,
-      "sha256": "d23c913f53f1808b8237859b7dc56de2233a91685bfb8d524778b1b898dc87c8"
+      "git_blob": "1c92f28176ddbbbf59c6ab6ed14e49048b6f37cb",
+      "bytes": 93793,
+      "sha256": "5cbc125d9a3a0834140e4cdf7dd0109304096080186584c770499b773cf3ad58"
     },
     {
       "path": "dashboard/routes/CaseQueue.jsx",
@@ -2358,18 +2414,25 @@
       "sha256": "653646985c830fe7f0f94fe31f6ae277073585f6a69f1c0d568f44c435109da8"
     },
     {
+      "path": "dashboard/scripts/speech-draft.test.mjs",
+      "mode": "100644",
+      "git_blob": "9679b61cccfd05cc5880c029e172bbc7400629c7",
+      "bytes": 2177,
+      "sha256": "4942482f1d7f612116d1d99869ea2b597e7ba96ca60b3ab20fea81a408fa237d"
+    },
+    {
       "path": "dashboard/scripts/voice-capture.test.mjs",
       "mode": "100644",
-      "git_blob": "416dc572ca7772bd56c3bcb779e4c573821197b9",
-      "bytes": 2456,
-      "sha256": "b6c6adb816dac62460655aa56acbec39d1a0bdef73e447ab662d42a32b72b331"
+      "git_blob": "ff5b1d219f3025ccd729e337cdbb833039a45143",
+      "bytes": 2592,
+      "sha256": "2366d38364f9af829c346c7f2751f8bec79ede8a6bd7df61d20cdf14eae317be"
     },
     {
       "path": "dashboard/scripts/voice-ui.test.mjs",
       "mode": "100644",
-      "git_blob": "1c96816dd1598b03ca698939c8aa2994ae17018f",
-      "bytes": 12365,
-      "sha256": "52ad9656c01ec668d8a3b87fe754696133151212afe64e06100627a99bd7b212"
+      "git_blob": "348a2e221c59f208a65a93dfe10c366a18e159d9",
+      "bytes": 15605,
+      "sha256": "c34cac892b7f17d581ca8e3cb3569b391fbb62adda5a7620ffea8cba6d076909"
     },
     {
       "path": "dashboard/src/App.jsx",
@@ -2568,6 +2631,13 @@
       "sha256": "b96470bcd0e5ae9ea9775b5a0f38a0741343ed027278f5fec220fee9fca7cd7d"
     },
     {
+      "path": "dashboard/src/speechDraft.js",
+      "mode": "100644",
+      "git_blob": "aa1e1a2b0259e20c3a4110075ad09e12d21042ff",
+      "bytes": 1408,
+      "sha256": "be4f1e44283745c1b9d372494d3f6ff3a05e5f9d4f69cffca799e1ebc4ad7156"
+    },
+    {
       "path": "dashboard/src/styles.css",
       "mode": "100644",
       "git_blob": "4b5aa2d000ae5a417a163e69ce76777f3f9393b6",
@@ -2703,16 +2773,16 @@
     {
       "path": "dashboard/src/voiceExperience.js",
       "mode": "100644",
-      "git_blob": "2754b0b78639757d5efbb999e39940087839bf93",
-      "bytes": 3290,
-      "sha256": "fc0b11ea903270da2d3a23f761bf85defdce3e0da4c5d8532ce34862a03b1c64"
+      "git_blob": "ff3f2ba00568843ecaf144f4f9bd08831143d455",
+      "bytes": 3448,
+      "sha256": "ea00b04de04850e34a07737c37f6fbab4bdc439c3fd992993281e9074c6838f6"
     },
     {
       "path": "dashboard/src/voiceHelpers.js",
       "mode": "100644",
-      "git_blob": "6e13a36bb00f7b7f1febdcf31636718e775edb73",
-      "bytes": 20135,
-      "sha256": "73dab1eac870821a7c414faedff7e2680d42182e44405cae7b223a8bf64554a6"
+      "git_blob": "723594f141fc16291944e600756b97a4680e17f0",
+      "bytes": 20411,
+      "sha256": "ece24dcda2dc5142907e660660f1e7a1970278e9eab1813a736ec7dda902b337"
     },
     {
       "path": "dashboard/vite.config.js",
@@ -3151,9 +3221,9 @@
     {
       "path": "docs/voice-validation.md",
       "mode": "100644",
-      "git_blob": "def434e970168d574e29e67597c1643895ca0f36",
-      "bytes": 7277,
-      "sha256": "bc71fc2f001517d3473f6aedaa1a9caa2da49af4c4c0a69267510f0ffd6d0a93"
+      "git_blob": "2e9c2f4723217599f2d41938c27d562e068e5ee9",
+      "bytes": 9640,
+      "sha256": "a1fd66728dc2a72c2039e7893702fcccab1f68bda314163b8543cfb8cc7e01e9"
     },
     {
       "path": "domains/_template/context/README.md",
@@ -5123,6 +5193,76 @@
       "sha256": "37ebedf26d3340318a32ba8e838452d7951cb2979f439b7ae026ca5c750fa8cf"
     },
     {
+      "path": "reports/hackathon/voice_repair_2026_10_30/README.md",
+      "mode": "100644",
+      "git_blob": "d2144a5b03e3b442f3c391614e4cabe4828fbe60",
+      "bytes": 5421,
+      "sha256": "95357dea12498be85f14eda5d870d7f4a8c2be2205cf0c2a8a8056dbab3cf895"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/localhost_check.json",
+      "mode": "100644",
+      "git_blob": "825d486da087dda9c71b04067b4bc098564197ec",
+      "bytes": 833,
+      "sha256": "8b5d687932c32bf8939e9ad868c743cc2f10f5ece33fb85c253bd52dfb7167e9"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe.json",
+      "mode": "100644",
+      "git_blob": "6b87b8b1377e3df16ad848ba32b08e7ccca8fdae",
+      "bytes": 3134,
+      "sha256": "446170c96a01cee09e7011cb23161b886c30b306ba3e2e34077aa046a4b72511"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe_after_schema_fix.json",
+      "mode": "100644",
+      "git_blob": "bf0ae4b82b10fb0705f787c552d31ef7a6d910bf",
+      "bytes": 4151,
+      "sha256": "5a3d14e0650b87f296b9791e0ae55c53e44ae351f2ce015296e23e0f6730e051"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe_after_schema_fix_request.json",
+      "mode": "100644",
+      "git_blob": "fa4fada0ed74d66955a609d4ac0c004798d70766",
+      "bytes": 7477,
+      "sha256": "88684c64d0db5715a27da7e12cbadca708bb38ba4d916048be0351ef7eeeea9a"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/meta_text_probe_request.json",
+      "mode": "100644",
+      "git_blob": "4ceaa3babe7f1e475f0ba94a0dae8edc8c323944",
+      "bytes": 6459,
+      "sha256": "a4cbfcde61c780687f3ecd0d1f696257ff2224fdd685dffc8924d2c4fe466a64"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/release-browser.txt",
+      "mode": "100644",
+      "git_blob": "f52c4ca59d60bac02352468ce5be68dc6609283b",
+      "bytes": 3712,
+      "sha256": "69e58ef61a769ffb18f01e2fd25f36d6852dcc3177b94e06853cd5d5fb52fd23"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/release-node.txt",
+      "mode": "100644",
+      "git_blob": "ae96ff447864f3baf114f76673460f87d004ad5e",
+      "bytes": 889,
+      "sha256": "92dd7956db53dab7cfe9a0401cf5264200080e4804110387aef8f1d69963bcc4"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/release-python.txt",
+      "mode": "100644",
+      "git_blob": "00ab19ace96698dd3c10c48f6d6a6d1e4937d7e2",
+      "bytes": 180,
+      "sha256": "0815bc861c0368bcc8da3cc8b2fc2bb288d0617bbb9f69896cd6f948c9897268"
+    },
+    {
+      "path": "reports/hackathon/voice_repair_2026_10_30/release_verification.json",
+      "mode": "100644",
+      "git_blob": "8dd1a993a53b36047fbb3726546a5497f2ab496f",
+      "bytes": 2171,
+      "sha256": "1cc0064c4708f7d486843f64b538d5b8e4a921d8dcdecec5f3264fa9da4f1097"
+    },
+    {
       "path": "reports/hindi_safety/HINDI_EVAL.md",
       "mode": "100644",
       "git_blob": "7fce8836b0f1a22f781515a9989c56cf871cba6c",
@@ -6236,6 +6376,13 @@
       "sha256": "68f35c3ab09b718fcf9727a3398042b3c88c63febaabed53773dbdc08f654292"
     },
     {
+      "path": "scripts/voice_intake_probe.py",
+      "mode": "100644",
+      "git_blob": "8e0d6f650b850681a1372f4fa4933fd929587a13",
+      "bytes": 3666,
+      "sha256": "e36571e7df03297f0fa9672ccd94d5feb19462f2886880a4f3f02e6dc156d33c"
+    },
+    {
       "path": "scripts/voice_validation.py",
       "mode": "100644",
       "git_blob": "667df8cf86d1083d363a3c35da81515b7b28bda5",
@@ -6280,9 +6427,9 @@
     {
       "path": "src/agents/intake.py",
       "mode": "100644",
-      "git_blob": "34cddfaa217ec2aef287e09b5fa4f1b80d13d3ab",
-      "bytes": 73080,
-      "sha256": "9996d40e9932744d005dcefa51fc49095b528be9b5b7ad28c0b1e53659092830"
+      "git_blob": "05c599386abfb73c97291ad57d3e6af772e2666f",
+      "bytes": 78845,
+      "sha256": "aa733a72b00ad58b8ad6c4c65fbc37859e2859be48d1790db5b3045a1755887c"
     },
     {
       "path": "src/agents/investigator.py",
@@ -6294,9 +6441,9 @@
     {
       "path": "src/agents/orchestrator.py",
       "mode": "100644",
-      "git_blob": "d2f043bc4b399b0f265c6e6247e8fcc730d1167a",
-      "bytes": 146704,
-      "sha256": "b5f688dd3c6a48c6efb8c13a4745050854127c22da01e67dd87ac11370700941"
+      "git_blob": "63e6b40b3da808245c550f98f9116eba0c60fb7b",
+      "bytes": 147399,
+      "sha256": "8a6f312d88c70b54868f2699abe8249f7e5d9fb87e895295dfea8d21f2d39843"
     },
     {
       "path": "src/agents/self_critique.py",
@@ -6483,9 +6630,9 @@
     {
       "path": "src/ai_layer/intake_enhancer.py",
       "mode": "100644",
-      "git_blob": "55a6824c98aec7453ea08c756f2c554964e5e8ed",
-      "bytes": 17839,
-      "sha256": "d9b599351daade1dbe751ec0e7fc5ad508e065c66aeed61568accbc169ddafdf"
+      "git_blob": "d1136d5f5ad3490ace8e8b688066babb5f2ed2c6",
+      "bytes": 20325,
+      "sha256": "83fc36ab84841c20859ac9be4aa3a3a9d902de094526022de61906b9d254c06b"
     },
     {
       "path": "src/ai_layer/language.py",
@@ -6511,9 +6658,9 @@
     {
       "path": "src/ai_layer/meta_client.py",
       "mode": "100644",
-      "git_blob": "e0d143eedc633bc09efe9410f31d446cfcadd3ef",
-      "bytes": 27432,
-      "sha256": "3c384ea9dd709dde26bd17a3a1414a4cb63dc75ceab38fcfed09dd166cf1b61c"
+      "git_blob": "32ef856833e3c4cf725b6625e2d54133070932b0",
+      "bytes": 27570,
+      "sha256": "a54ea92afaca148954580543705524c142eb2d65656516303099545a32103568"
     },
     {
       "path": "src/ai_layer/normalize.py",
@@ -8394,9 +8541,9 @@
     {
       "path": "tests/frontline/ai_layer/test_baseten_backend.py",
       "mode": "100644",
-      "git_blob": "d863f2e990d86189f7198045d0ef157851f09b9a",
-      "bytes": 12438,
-      "sha256": "37958b8b10c3166a06135f65b3cafd06e32acddd82d43fd543962307c5c0e012"
+      "git_blob": "8e1e8a951283b95f75be2c181c4017a6971cd34a",
+      "bytes": 12567,
+      "sha256": "76909496edb8bea4593cdcd0dfd48af4e4eab8d648b74c38dae903197e4292c8"
     },
     {
       "path": "tests/frontline/ai_layer/test_budget.py",
@@ -9832,6 +9979,13 @@
       "git_blob": "17952740d1e3c3d5f27e28a7aef0736ae9b25929",
       "bytes": 4124,
       "sha256": "5628ef61d859a7a1807e6adb6d568432a2d7758e2fe98689c265c0bf0c73beca"
+    },
+    {
+      "path": "tests/frontline/test_voice_report_repair.py",
+      "mode": "100644",
+      "git_blob": "0b73371e5ce2888830ae94482d34989fa30b3850",
+      "bytes": 2814,
+      "sha256": "4c266797b535edb4e07f38da369603cbebee1b22e02a2addce90e66cdf6f7d4d"
     },
     {
       "path": "tests/frontline/test_voice_tierA_wiring.py",
