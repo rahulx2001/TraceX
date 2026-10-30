@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-10-30T09:58:09.057904+00:00",
+  "recorded_at": "2026-10-30T10:27:46.860121+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "cc27cdac9abc174b8f3570bd741fac6ea53f304e",
-  "source_tree": "a0df86431b2d74d9050947da7dc0a46875a854d4",
+  "source_commit": "b74c695e834b85e61935f56407989db842204ed4",
+  "source_tree": "a8ceb6444b3f5309c821767fb6e851e4d68349f9",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -1003,6 +1003,14 @@
     {
       "status": "A",
       "path": "reports/hackathon/meta_live_smoke.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/navigation_2026_10_30/browser.log"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/navigation_2026_10_30/verification.json"
     },
     {
       "status": "A",
@@ -2261,9 +2269,9 @@
     {
       "path": "dashboard/scripts/assert-signin-reachable.mjs",
       "mode": "100644",
-      "git_blob": "e0387a06b083be6bd1d88d3ca05c9f11e9598046",
-      "bytes": 10614,
-      "sha256": "e7f2ea728cf6b615c89fe67d314f42f644a92eb2ae800ec69399f20c4b6de229"
+      "git_blob": "a6c984ca4c14663373b68545c103bbb9da9338a8",
+      "bytes": 11152,
+      "sha256": "f06c9bf915693af59a33ee6754449b685c2d23f180dcb45f4f5d329d6ce160ad"
     },
     {
       "path": "dashboard/scripts/assert-tts-voice.mjs",
@@ -2366,9 +2374,9 @@
     {
       "path": "dashboard/src/App.jsx",
       "mode": "100644",
-      "git_blob": "544f23389bbb382f7ad1f8380fbf0b99f64777ed",
-      "bytes": 31118,
-      "sha256": "43cd3af69c1a40f149dbf5a516673e02b4ca4c1e7df81386dec725eb75403eaa"
+      "git_blob": "960cdb7ff6bc2cfddaf234a2ff73eb2ea850a783",
+      "bytes": 31301,
+      "sha256": "54ff35015cde7b15b08a075d6e646d1e656dd403bd65048c1df584cbdaa006eb"
     },
     {
       "path": "dashboard/src/ai/AiModeBadge.jsx",
@@ -4571,9 +4579,9 @@
     {
       "path": "reports/hackathon/READINESS_STATUS_2026-10-30.md",
       "mode": "100644",
-      "git_blob": "5487aa89a425bfb7beba9e8d60d3324480d285fb",
-      "bytes": 11590,
-      "sha256": "e3f5cae26605bb743166c62cf4828545d7657c1c2f81d6bd113b1c549a7dcc7b"
+      "git_blob": "fe3e53284a38603fee1730950fff4a970148bab2",
+      "bytes": 11982,
+      "sha256": "fc64cdbde96ddbf40ac73cd6fee4c74fe81481f0dd969bbd4dd2389bbb1a6555"
     },
     {
       "path": "reports/hackathon/claim_index.json",
@@ -5001,6 +5009,20 @@
       "git_blob": "ab348faba1246b1fd2536e5d8dc4a4c09dd1c0d2",
       "bytes": 50563,
       "sha256": "db34ee978a5c8455cc43cb143fd02cc119be0dc019a39e088058a74c6f875fe3"
+    },
+    {
+      "path": "reports/hackathon/navigation_2026_10_30/browser.log",
+      "mode": "100644",
+      "git_blob": "938beb66a7e1436a045362db45ba22e307a6bd91",
+      "bytes": 3514,
+      "sha256": "e3fa4c1bec26cb847b33f701e0f839d381d3b9f91410b3b9ba3bfcb81870f256"
+    },
+    {
+      "path": "reports/hackathon/navigation_2026_10_30/verification.json",
+      "mode": "100644",
+      "git_blob": "979fa409c8034311a8cba95259cc78df4947572c",
+      "bytes": 991,
+      "sha256": "fe996fb7b3c1f2324b5729ddf9502b46f242b8f5d5c6510b47e4b962646801aa"
     },
     {
       "path": "reports/hackathon/readiness_2026_10_30/browser.log",
