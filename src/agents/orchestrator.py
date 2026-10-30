@@ -791,6 +791,19 @@ class Orchestrator:
                 ires = await maybe_enhance_intake(self.ctx, text, ires)
             except Exception:
                 pass
+            # Report the operation that actually ran, rather than key presence.
+            # Skipped safety/clarification turns retain deterministic authority.
+            try:
+                understanding = ires.get("voice_understanding") or {
+                    "mode": "deterministic", "model": None,
+                    "scope": "installed intake rules; no model call on this turn",
+                }
+                await self.hooks._maybe(self.hooks.emit_activity, {
+                    "agent": "report_understanding", "action_type": "voice_understanding",
+                    "voice_understanding": understanding,
+                })
+            except Exception:
+                pass
             # 2.1/6.3: turn latency observe vs 1200ms SLO
             try:
                 import time as _t2

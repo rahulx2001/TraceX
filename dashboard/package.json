@@ -12,6 +12,7 @@
     "test:qa-labels": "node scripts/assert-qa-labels.mjs",
     "test:tts-voice": "node scripts/assert-tts-voice.mjs",
     "test:server-voice": "node scripts/assert-server-voice.mjs",
+    "test:speech-draft": "node --test scripts/speech-draft.test.mjs",
     "test:signin": "node scripts/assert-signin-reachable.mjs",
     "test:e2e": "playwright test",
     "test:e2e:api": "playwright test e2e/api.aggressive.spec.js",

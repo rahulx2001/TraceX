@@ -469,13 +469,15 @@ def chat_json(
     fallback_ok = config.backend() == "baseten"
     simple = fallback_ok and host in _SIMPLE_FORMAT_HOSTS
     system_text = _redact(system)
-    # json_object guarantees syntax only. Preserve the actual output contract
-    # in the prompt when the provider cannot receive a schema in response_format.
+    # Baseten's Muse Spark can accept response_format without enforcing it.
+    # Preserve the contract in the prompt on every Baseten request, including
+    # HTTP 200 responses, then validate locally. Neither transport success nor
+    # a json_object request is proof of schema conformance.
     simple_system = system_text + "\nReturn only a JSON object matching this JSON schema:\n" + _redact(json.dumps(schema))
     payload = {
         "model": model or (config.model_vision() if images else config.model_text()),
         "messages": [
-            {"role": "system", "content": simple_system if simple else system_text},
+            {"role": "system", "content": simple_system if fallback_ok else system_text},
             {"role": "user", "content": content},
         ],
         "temperature": 0,

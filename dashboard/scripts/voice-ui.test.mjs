@@ -15,8 +15,9 @@ export async function runVoiceUiTest({ page, base }) {
       throw new DOMException("Synthetic microphone denial for UI regression", "NotAllowedError");
     } });
     window.SpeechRecognition = class {
+      constructor() { window.__voiceUi.recog = this; }
       start() { window.__voiceUi.recognition++; }
-      stop() {}
+      stop() { queueMicrotask(() => this.onend?.()); }
       abort() {}
     };
     Object.defineProperty(window, "speechSynthesis", { configurable: true, value: {
@@ -168,4 +169,45 @@ export async function runVoiceUiTest({ page, base }) {
   await page.getByRole("button", { name: "Unmute microphone", exact: true }).click();
   await page.getByRole("button", { name: "End call", exact: true }).click();
   console.log("PASS: separate mute/interrupt/end controls, source-ID handoff and feedback failure/retry semantics. Speech is stubbed; no multilingual/audio quality claim.");
+
+  // Drive the shipped recognizer callbacks, not a source-string assertion.
+  // These are synthetic recognition events; no microphone recording or STT model.
+  const turnsBeforeSpeech = frames.filter(f => f.type === "user_turn").length;
+  await page.getByLabel("Pause before sending", { exact: true }).selectOption("0");
+  await start.click();
+  await page.getByRole("button", { name: "Interrupt playback", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Finish speaking", exact: true })).toBeEnabled();
+  await page.evaluate(() => {
+    const results = [Object.assign([{ transcript: "The panel is damaged" }], { isFinal: true }),
+      Object.assign([{ transcript: "plus the brake" }], { isFinal: false })];
+    __voiceUi.recog.onresult({ resultIndex: 0, results });
+    __voiceUi.recog.onresult({ resultIndex: 1, results }); // same final is still in the result list
+  });
+  await expect(log).toContainText("The panel is damaged plus the brake");
+  await page.waitForTimeout(2400);
+  assert.equal(frames.filter(f => f.type === "user_turn").length, turnsBeforeSpeech, "manual capture does not auto-send at a pause");
+  await page.getByRole("button", { name: "Finish speaking", exact: true }).click();
+  await expect.poll(() => frames.filter(f => f.type === "user_turn").length).toBe(turnsBeforeSpeech + 1);
+  assert.equal(frames.filter(f => f.type === "user_turn").at(-1).text, "The panel is damaged plus the brake");
+  await expect(page.getByRole("button", { name: "Interrupt playback", exact: true })).toBeEnabled();
+  await page.getByRole("button", { name: "Interrupt playback", exact: true }).click();
+  await page.getByLabel("Pause before sending", { exact: true }).selectOption("1400");
+  await page.evaluate(() => __voiceUi.recog.onresult({ resultIndex: 0,
+    results: [Object.assign([{ transcript: "Honda" }], { isFinal: true })] }));
+  await expect.poll(() => frames.filter(f => f.type === "user_turn").length).toBe(turnsBeforeSpeech + 2);
+  assert.equal(frames.filter(f => f.type === "user_turn").at(-1).text, "Honda");
+  await expect(page.getByRole("button", { name: "Interrupt playback", exact: true })).toBeEnabled();
+  await page.getByRole("button", { name: "Interrupt playback", exact: true }).click();
+  await page.getByLabel("Pause before sending", { exact: true }).selectOption("0");
+  await page.evaluate(() => {
+    __voiceUi.recog.onresult({ resultIndex: 0,
+      results: [Object.assign([{ transcript: "Oh no" }], { isFinal: false })] });
+    __voiceUi.recog.onend();
+  });
+  await expect(log).toContainText("Oh no");
+  await page.getByRole("button", { name: "Finish speaking", exact: true }).click();
+  await expect.poll(() => frames.filter(f => f.type === "user_turn").length).toBe(turnsBeforeSpeech + 3);
+  assert.equal(frames.filter(f => f.type === "user_turn").at(-1).text, "Oh no");
+  await page.getByRole("button", { name: "End call", exact: true }).click();
+  console.log("PASS: rendered voice capture sends final + interim words once, keeps manual pauses, accepts a short brand and rescues an interim-only answer across recognizer restart. Synthetic events; no audio-quality result.");
 }

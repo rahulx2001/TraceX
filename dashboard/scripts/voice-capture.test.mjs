@@ -33,6 +33,7 @@ test("PCM segment length remains bounded and WAV contract is 16k mono PCM", () =
 });
 test("quiet speech crosses calibrated threshold; strong speech cannot train the noise floor upward", () => {
   assert.equal(voiceActivity(.025, .004).voiced, true);
+  assert.equal(voiceActivity(.012, .003).voiced, true, "calibrated quiet samples clear the voice gate; synthetic amplitude test only");
   assert.equal(voiceActivity(.002, .004).voiced, false);
   assert.equal(voiceActivity(.5, .004).noiseFloor, .004);
   assert.equal(voiceActivity(Number.NaN).voiced, false);

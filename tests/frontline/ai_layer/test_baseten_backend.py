@@ -146,6 +146,8 @@ def test_baseten_routing_and_key(baseten_env, capture_transport, monkeypatch):
     assert calls[0]["payload"]["model"] == BASETEN_MODEL
     assert calls[0]["payload"]["max_tokens"] == 8000
     assert calls[0]["payload"]["response_format"]["type"] == "json_schema"
+    prompt = calls[0]["payload"]["messages"][0]["content"]
+    assert json.loads(prompt.split("JSON schema:\n", 1)[1]) == SCHEMA
 
 
 def test_baseten_token_floor_for_reasoning(baseten_env, capture_transport, monkeypatch):

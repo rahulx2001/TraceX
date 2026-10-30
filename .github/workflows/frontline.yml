@@ -75,6 +75,10 @@ jobs:
         # Fail hangs instead of burning the runner (WS contract must not block CI).
         run: make test
 
+      - name: Speech segmentation and capture contracts (synthetic)
+        working-directory: dashboard
+        run: node --test scripts/speech-draft.test.mjs scripts/voice-capture.test.mjs
+
       - name: Install current browser runtime
         working-directory: dashboard
         run: npx playwright install --with-deps chromium

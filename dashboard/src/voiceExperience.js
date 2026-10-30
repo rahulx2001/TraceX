@@ -17,7 +17,9 @@ export function recordingMime(isSupported) {
 export function voiceActivity(rms, noiseFloor = 0.008) {
   const level = Number.isFinite(rms) ? Math.max(0, rms) : 0;
   const floor = Math.min(0.04, Math.max(0.003, noiseFloor));
-  const threshold = Math.min(0.12, Math.max(0.018, floor * 3));
+  // With a calibrated quiet headset, the old fixed .018 minimum could be
+  // higher than the entire answer. Keep a floor-relative gate and manual finish.
+  const threshold = Math.min(0.12, Math.max(0.008, floor * 2.5));
   const voiced = level >= threshold;
   return { voiced, threshold, noiseFloor: voiced ? floor : floor * 0.96 + Math.min(level, threshold) * 0.04 };
 }

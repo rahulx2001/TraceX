@@ -23,7 +23,6 @@ import {
   STT_FINAL_DEBOUNCE_MS,
   RECOG_RESTART_MS,
   looksLikeAgentEcho,
-  coalesceSpeechFinals,
   IDLE_LISTEN_REPROMPT_MS,
   decideSpeechFinal,
   createTurnQueue,
@@ -31,7 +30,6 @@ import {
   advancePlayback,
   SERVER_AUDIO_WAIT_MS,
   SERVER_AUDIO_MAX_BYTES,
-  SERVER_CAPTURE_SILENCE_MS,
   SERVER_CAPTURE_MAX_MS,
   serverVoiceSelection,
   userAudioFrame,
@@ -42,6 +40,7 @@ import CallAiExtras, { SpeechLangSelect } from "../src/ai/CallAiExtras.jsx";
 import { aiSpeechLang } from "../src/ai/aiApi.js";
 import { recordingMime, responseSpeechLocale, sendIntakeSurvey, speechLocale, voiceActivity } from "../src/voiceExperience.js";
 import { createPcmRecorder, microphonePreflight } from "../src/voiceCapture.js";
+import { createSpeechDraft, speechPause } from "../src/speechDraft.js";
 import "./voice-report.css";
 
 // Backoff caps at 5s, so 8 tries ≈ 25s of retrying — comfortably inside the
@@ -67,10 +66,17 @@ export default function CallWidget() {
   const [wsStatus, setWsStatus] = useState("idle");
   const [textFallback, setTextFallback] = useState("");
   const [activity, setActivity] = useState(null);
+  const [understanding, setUnderstanding] = useState(null);
   const [micGranted, setMicGranted] = useState(null);
   const [inputLevel, setInputLevel] = useState(0);
   const [preflight, setPreflight] = useState({ busy: false, note: "" });
   const [automaticInterrupt, setAutomaticInterrupt] = useState(false);
+  const [pauseMs, setPauseMs] = useState(2200);
+  const pauseMsRef = useRef(2200);
+  const speechDraftRef = useRef(createSpeechDraft());
+  const lastMicVoiceAtRef = useRef(0);
+  const finishSpeechTimerRef = useRef(null);
+  const manualFinishRef = useRef(false);
   const automaticInterruptRef = useRef(false);
   const noiseFloorRef = useRef(.008), pcmRecorderRef = useRef(null), preRollPendingRef = useRef(false);
   const reportLocaleRef = useRef(speechLocale(aiSpeechLang()));
@@ -311,6 +317,7 @@ export default function CallWidget() {
   function enterThinking() {
     // Mic pauses while the server works so background noise during the
     // 5-10s enrichment window cannot pile up duplicate user_turns.
+    stateRef.current = CALL_STATE.THINKING;
     stopRecognition();
     setState(CALL_STATE.THINKING);
     clearThinkingTimeout();
@@ -367,13 +374,15 @@ export default function CallWidget() {
 
   function scheduleSpeechDecision() {
     if (sttFlushTimerRef.current) clearTimeout(sttFlushTimerRef.current);
+    if (!pauseMsRef.current) return; // Caller controls endpointing in manual mode.
     const now = Date.now();
     const latest = Math.max(
       Number(sttBufferRef.current && sttBufferRef.current.at) || 0,
       Number(lastInterimRef.current && lastInterimRef.current.at) || 0,
+      lastMicVoiceAtRef.current,
     );
     const wait = latest
-      ? Math.max(40, STT_FINAL_DEBOUNCE_MS - (now - latest))
+      ? Math.max(40, pauseMsRef.current - (now - latest))
       : Math.min(STT_FINAL_DEBOUNCE_MS, IDLE_LISTEN_REPROMPT_MS);
     sttFlushTimerRef.current = window.setTimeout(() => {
       sttFlushTimerRef.current = null;
@@ -382,16 +391,22 @@ export default function CallWidget() {
         lastSpeechAt: Math.max(
           Number(sttBufferRef.current && sttBufferRef.current.at) || 0,
           Number(lastInterimRef.current && lastInterimRef.current.at) || 0,
+          lastMicVoiceAtRef.current,
         ),
         lastInterimAt: Number(lastInterimRef.current && lastInterimRef.current.at) || 0,
         committedAt: Number(sttBufferRef.current && sttBufferRef.current.at) || 0,
         now: Date.now(),
-        debounceMs: STT_FINAL_DEBOUNCE_MS,
+        debounceMs: pauseMsRef.current,
         idleRepromptMs: IDLE_LISTEN_REPROMPT_MS,
         listeningSince: listeningSinceRef.current || 0,
       });
       if (decision.flush) {
-        flushCustomerUtterance();
+        if (speechDraftRef.current.snapshot().text) flushCustomerUtterance();
+        else {
+          lastMicVoiceAtRef.current = 0;
+          setInfo("Microphone input arrived but no words were recognized. Check the headset input in Chrome, retry, or type your answer.");
+          scheduleSpeechDecision();
+        }
         return;
       }
       if (decision.reprompt && stateRef.current === CALL_STATE.LISTENING) {
@@ -428,21 +443,22 @@ export default function CallWidget() {
       }
       sttBufferRef.current = { text: "", at: 0 };
       lastInterimRef.current = { text: "", at: 0 };
+      speechDraftRef.current.clear();
       return;
     }
     if (sttFlushTimerRef.current) {
       clearTimeout(sttFlushTimerRef.current);
       sttFlushTimerRef.current = null;
     }
-    const buf = sttBufferRef.current;
+    const draft = speechDraftRef.current.snapshot();
+    speechDraftRef.current.clear();
+    lastMicVoiceAtRef.current = 0;
+    manualFinishRef.current = false;
     sttBufferRef.current = { text: "", at: 0 };
     // Single-word answers ("yes") often arrive as interim only and would be
     // lost forever — promote the last interim to a final on flush.
-    const fallback = lastInterimRef.current && lastInterimRef.current.text
-      ? lastInterimRef.current.text
-      : "";
     lastInterimRef.current = { text: "", at: 0 };
-    const raw = (buf && buf.text ? buf.text : "") || fallback;
+    const raw = draft.text;
     const text = raw.replace(/\s+/g, " ").trim();
     if (!text) return;
     if (looksLikeAgentEcho(text, lastAgentTextRef.current)) {
@@ -488,19 +504,11 @@ export default function CallWidget() {
     enterThinking();
   }
 
-  function queueCustomerFinal(txt) {
-    const piece = String(txt || "").trim();
-    const prev = String((sttBufferRef.current && sttBufferRef.current.text) || "").trim();
-    if (piece && prev === piece) return;
-    const { buffer } = coalesceSpeechFinals(sttBufferRef.current, txt, Date.now(), STT_FINAL_DEBOUNCE_MS);
-    sttBufferRef.current = buffer;
-    scheduleSpeechDecision();
-  }
-
   /**
    * Server-STT capture: bounded PCM WAV, or negotiated MediaRecorder fallback,
    * uploaded once per utterance. Calibrated voice activity ends capture after
-   * ~900ms trailing silence or 30 seconds. Silence alone never sends.
+   * The selected pause or manual finish ends a turn; 30 seconds bounds uploads.
+   * Silence alone never sends.
    */
   function startServerCapture() {
     const cap = serverCaptureRef.current;
@@ -579,7 +587,7 @@ export default function CallWidget() {
         setInfo("I'm still listening — go ahead when you're ready");
         c.lastPromptAt = now;
       }
-      if ((c.voiced && silenceMs >= SERVER_CAPTURE_SILENCE_MS) || elapsed >= SERVER_CAPTURE_MAX_MS) {
+      if ((pauseMsRef.current && c.voiced && silenceMs >= pauseMsRef.current) || elapsed >= SERVER_CAPTURE_MAX_MS) {
         stopServerCapture(false);
         return;
       }
@@ -1301,6 +1309,7 @@ export default function CallWidget() {
         break;
       }
       case "agent_activity": {
+        if (msg.voice_understanding) setUnderstanding(msg.voice_understanding);
         if (msg.action_type === "handoff_unfulfilled") { setHandoff(true); setHandoffStatus("unavailable"); }
         if (msg.action_type === "handoff_accepted") { setHandoff(true); setHandoffStatus("queued"); }
         setActivity({
@@ -1402,6 +1411,11 @@ export default function CallWidget() {
     pendingTerminalRef.current = null;
     sttBufferRef.current = { text: "", at: 0 };
     lastInterimRef.current = { text: "", at: 0 };
+    speechDraftRef.current.clear();
+    lastMicVoiceAtRef.current = 0;
+    manualFinishRef.current = false;
+    if (finishSpeechTimerRef.current) clearTimeout(finishSpeechTimerRef.current);
+    finishSpeechTimerRef.current = null;
     if (bargeRafRef.current) cancelAnimationFrame(bargeRafRef.current);
     bargeRafRef.current = null;
     if (hasTTS) {
@@ -1450,7 +1464,17 @@ export default function CallWidget() {
       analyserRef.current = analyser;
       try {
         pcmRecorderRef.current = createPcmRecorder(ctx, stream, { noiseFloor: noiseFloorRef.current,
-          onLevel: ({ rms }) => setInputLevel(rms), onFull: () => { if (serverCaptureRef.current.active) stopServerCapture(false); } });
+          onLevel: ({ rms }) => {
+            setInputLevel(rms);
+            // Recognition can deliver text after the physical speech. Hold a
+            // pending turn while the caller is still speaking, even if STT stalls.
+            if (stateRef.current === CALL_STATE.LISTENING && !speakingRef.current && !mutedRef.current
+                && Date.now() >= listenReadyAtRef.current) {
+              const activity = voiceActivity(rms, noiseFloorRef.current);
+              noiseFloorRef.current = activity.noiseFloor;
+              if (activity.voiced) lastMicVoiceAtRef.current = Date.now();
+            }
+          }, onFull: () => { if (serverCaptureRef.current.active) stopServerCapture(false); } });
       } catch { /* MediaRecorder remains available without PCM pre-roll. */ }
       await ctx.resume();
       setMicGranted(true);
@@ -1486,8 +1510,27 @@ export default function CallWidget() {
   }
 
   function finishSpeaking() {
+    if (stateRef.current !== CALL_STATE.LISTENING || mutedRef.current) return;
     if (serverCaptureRef.current.active) { serverCaptureRef.current.voiced = true; stopServerCapture(false); }
-    else if (recogRef.current) { try { recogRef.current.stop(); } catch { /* recognition already stopped */ } }
+    else if (recogRef.current) {
+      manualFinishRef.current = true;
+      if (sttFlushTimerRef.current) clearTimeout(sttFlushTimerRef.current);
+      try { recogRef.current.stop(); } catch { /* recognition already stopped */ }
+      // Give stop() its final result; recover if this browser never emits onend.
+      if (finishSpeechTimerRef.current) clearTimeout(finishSpeechTimerRef.current);
+      finishSpeechTimerRef.current = window.setTimeout(completeManualSpeech, 800);
+    }
+  }
+
+  function completeManualSpeech() {
+    finishSpeechTimerRef.current = null;
+    if (!manualFinishRef.current || callEndedRef.current || stateRef.current !== CALL_STATE.LISTENING) return;
+    manualFinishRef.current = false;
+    if (speechDraftRef.current.snapshot().text) flushCustomerUtterance();
+    else {
+      setInfo("No words were recognized. Check the headset microphone, try again, or type your answer.");
+      startRecognitionSafe();
+    }
   }
 
   function toggleMute() {
@@ -1510,6 +1553,9 @@ export default function CallWidget() {
       }
       sttBufferRef.current = { text: "", at: 0 };
       lastInterimRef.current = { text: "", at: 0 };
+      speechDraftRef.current.clear();
+      lastMicVoiceAtRef.current = 0;
+      manualFinishRef.current = false;
       setTranscript((rows) => (Array.isArray(rows) ? rows.filter((t) => !t.interim) : rows));
       stopRecognition();
     } else if (stateRef.current === CALL_STATE.LISTENING) startRecognitionSafe();
@@ -1530,16 +1576,13 @@ export default function CallWidget() {
       if (stateRef.current === CALL_STATE.THINKING) return;
       if (mutedRef.current || voiceDeniedRef.current) return;
 
-      let interim = "";
-      const finals = [];
-      for (let i = ev.resultIndex; i < ev.results.length; i++) {
+      const rows = [];
+      for (let i = 0; i < ev.results.length; i++) {
         const res = ev.results[i];
         const txt = (res[0].transcript || "").trim();
-        if (!txt) continue;
-        if (res.isFinal) finals.push(txt);
-        else interim += (interim ? " " : "") + txt;
+        rows.push({ index: i, text: txt, final: res.isFinal });
       }
-      const sample = finals[0] || interim;
+      const sample = rows.slice(ev.resultIndex).map(row => row.text).join(" ");
       const interrupting = bargeRecoverRef.current;
       const accept = shouldAcceptSpeechResult({
         speaking: speakingRef.current,
@@ -1552,16 +1595,12 @@ export default function CallWidget() {
       if (!accept) return;
       if (interrupting) bargeRecoverRef.current = false;
 
-      for (const txt of finals) {
-        if (looksLikeAgentEcho(txt, lastAgentTextRef.current)) continue;
-        lastInterimRef.current = { text: "", at: 0 };
-        queueCustomerFinal(txt);
-      }
-      if (interim && !looksLikeAgentEcho(interim, lastAgentTextRef.current)) {
-        lastInterimRef.current = { text: interim, at: Date.now() };
-        pushTurn({ speaker: "customer", text: interim, interim: true });
-        scheduleSpeechDecision();
-      }
+      const draft = speechDraftRef.current.observe(rows.map(row => ({ ...row,
+        text: looksLikeAgentEcho(row.text, lastAgentTextRef.current) ? "" : row.text })), Date.now());
+      sttBufferRef.current = { text: draft.final, at: draft.final ? draft.at : 0 };
+      lastInterimRef.current = { text: draft.interim, at: draft.interim ? draft.at : 0 };
+      if (draft.text) pushTurn({ speaker: "customer", text: draft.text, interim: true });
+      if (!manualFinishRef.current) scheduleSpeechDecision();
     };
     recog.onerror = (e) => {
       if (e.error === "no-speech" || e.error === "aborted") return;
@@ -1581,18 +1620,16 @@ export default function CallWidget() {
       if (speakPhaseRef.current === "greeting") return;
       if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return;
       if (intentionalCloseRef.current) return;
-      if (stateRef.current === CALL_STATE.THINKING) {
-        // A short answer ("yes") may end the session with only interim text
-        // buffered — promote it to a final instead of dropping the turn.
-        if (sttBufferRef.current.text || lastInterimRef.current.text) {
-          flushCustomerUtterance();
-        }
+      if (stateRef.current === CALL_STATE.THINKING) return;
+      const draft = speechDraftRef.current.endSession();
+      sttBufferRef.current = { text: draft.final, at: draft.at };
+      lastInterimRef.current = { text: "", at: 0 };
+      if (manualFinishRef.current) {
+        if (finishSpeechTimerRef.current) clearTimeout(finishSpeechTimerRef.current);
+        finishSpeechTimerRef.current = window.setTimeout(completeManualSpeech, 100);
         return;
       }
-      if (!sttBufferRef.current.text && lastInterimRef.current.text) {
-        queueCustomerFinal(lastInterimRef.current.text);
-        lastInterimRef.current = { text: "", at: 0 };
-      }
+      scheduleSpeechDecision();
       // Chrome may end a recognition session between pieces of one spoken
       // sentence. Keep the debounce window alive and restart recognition so
       // "my car has ... been stuck" becomes one turn, not two competing turns.
@@ -1611,6 +1648,9 @@ export default function CallWidget() {
     const gen = ++callGenRef.current;
     textOnlyRef.current = useText;
     reportLocaleRef.current = speechLocale(aiSpeechLang());
+    pauseMsRef.current = pauseMs;
+    speechDraftRef.current.clear();
+    lastMicVoiceAtRef.current = 0;
     automaticInterruptRef.current = automaticInterrupt;
     setTextOnly(useText);
     stateRef.current = CALL_STATE.CONNECTING;
@@ -1625,6 +1665,7 @@ export default function CallWidget() {
     setHandoffStatus("");
     setEnded(null);
     setActivity(null);
+    setUnderstanding(null);
     setTurnCount(0);
     // A new report owns a new queue. Same-report reconnect still reuses it.
     turnQueueRef.current = createTurnQueue();
@@ -1922,6 +1963,9 @@ export default function CallWidget() {
     }
     pushTurn({ speaker: "customer", text });
     setTextFallback("");
+    speechDraftRef.current.clear();
+    sttBufferRef.current = { text: "", at: 0 };
+    lastMicVoiceAtRef.current = 0;
     lastInterimRef.current = { text: "", at: 0 };
     enterThinking();
   }
@@ -2095,10 +2139,20 @@ export default function CallWidget() {
         <details><summary>Interruption settings</summary><label><input type="checkbox" checked={automaticInterrupt} onChange={e => setAutomaticInterrupt(e.target.checked)} />Automatic speech interruption (experimental; headphones recommended)</label>
           <p>Default: select Interrupt playback, then speak. Optional server PCM capture keeps 450 ms before an automatic interruption. Browser recognition cannot recover words spoken while it was paused.</p></details>
       </section>}
+      {!textOnly && <section className="voice-start-options" aria-label="Speech capture settings">
+        <label>Pause before sending <select aria-label="Pause before sending" value={pauseMs} onChange={e => {
+          const value = speechPause(e.target.value); setPauseMs(value); pauseMsRef.current = value;
+          if (stateRef.current === CALL_STATE.LISTENING) scheduleSpeechDecision();
+        }}>
+          <option value={2200}>Allow pauses · 2.2 seconds</option>
+          <option value={1400}>Short answers · 1.4 seconds</option>
+          <option value={0}>Only when I select Finish speaking</option>
+        </select></label>
+        <p>Use your headset microphone and select the language you will speak. Choose manual finish if words are cut off; the recognized draft stays visible until you send it.</p>
+      </section>}
       {(preflight.busy || (inCall && !textOnly && micGranted)) && <section className="voice-input-meter" aria-label="Microphone input">
         <label>Input level <meter aria-label="Microphone input level" min="0" max="0.25" value={Math.min(.25, inputLevel)} /></label>
         <span>{muted ? "Muted" : inputLevel < .003 ? "Very quiet / no input" : "Microphone samples arriving"}</span>
-        {inCall && <button type="button" className="ghost" disabled={muted || state !== CALL_STATE.LISTENING} onClick={finishSpeaking}>Finish speaking</button>}
         <p className="voice-note">If quiet speech is not detected, finish manually or type. The meter is input feedback, not transcription-quality evidence.</p>
       </section>}
       {error && <div className="banner banner-error" role="alert">{error}{" "}<button type="button" className="ghost" onClick={() => setError(null)}>Dismiss</button></div>}
@@ -2122,6 +2176,7 @@ export default function CallWidget() {
             {humanControl && inCall && <span>Specialist joined</span>}
           </div>
           <h2 id="report-transcript-title">Report transcript</h2>
+          {inCall && !needsText && <button type="button" className="ghost" disabled={muted || state !== CALL_STATE.LISTENING} onClick={finishSpeaking}>Finish speaking</button>}
           <div className="transcript" role="log" aria-label="Report transcript" tabIndex={0}
             ref={node => { transcriptScrollRef.current = node; transcriptEndRef.current = node; }} aria-live="polite" aria-relevant="additions">
             {transcript.length === 0 && <div className="empty-state"><p className="empty-state-text">
@@ -2192,6 +2247,10 @@ export default function CallWidget() {
               <span className="k">Interaction</span><span className="v mono">{interactionId || "Not started"}</span>
               <span className="k">Recognition</span><span className="v">{textOnly ? "Off · text report" : serverVoice.stt ? "Deepgram server STT" : caps.stt}</span>
               <span className="k">Playback</span><span className="v">{textOnly ? "Off · text report" : serverVoice.tts ? "Deepgram server TTS" : caps.tts}</span>
+              <span className="k">Last text understanding</span><span className="v">{understanding
+                ? `${understanding.mode === "live_inference" ? "Live inference" : understanding.mode === "fallback" ? "Deterministic fallback" : understanding.mode === "test_output" ? "Test output" : "Deterministic handling"}${understanding.model ? ` · ${understanding.model}` : ""}${understanding.finished_at ? ` · ${understanding.finished_at}` : ""}${understanding.fallback_reason ? ` · ${understanding.fallback_reason}` : ""}`
+                : "No operation recorded yet"}</span>
+              <span className="k">Muse Spark audio</span><span className="v">Disabled · pinned endpoint and real-audio quality unverified</span>
               <span className="k">Microphone</span><span className="v">{micGranted === true ? "Granted" : micGranted === false ? "Blocked" : "Not requested"}</span>
               <span className="k">Pack</span><span className="v">{pack?.display_name || pack?.id || "Selected when report starts"}</span>
               {latency && <><span className="k">Server turn duration</span><span className="v">{latency.elapsed_ms} ms · excludes audible playback</span></>}

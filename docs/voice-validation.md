@@ -95,3 +95,40 @@ Do not publish private recordings, consent records, exact transcripts or persona
 device names. The committed empty result documents the outstanding dependency;
 replace it only after real collection and review. No paid call or recording is
 triggered by either command above.
+
+## 30 October: missed words and repeated-question repair
+
+The report widget now retains indexed final and interim recognition results
+together until sending. Recognition restart retains the current draft; repeated
+updates to an index replace that segment. The normal pause is 2.2 seconds, with
+1.4-second short answers and explicit **Finish speaking** alternatives. Physical
+microphone activity holds a pending browser turn while speech continues. A
+calibrated quiet input no longer has to exceed the former fixed .018 floor.
+These are implementation and synthetic signal checks, not measured device quality.
+
+Short make/model/year answers are no longer rejected merely because the words
+appeared in the assistant's examples. Safety parsing accepts discourse fillers
+such as “Oh no” without removing later contradictory clauses. A pending model-year
+answer “11” proposes 2011 and requires explicit confirmation; it does not fill a
+vehicle fact or consume the year re-ask limit. The source and confirming turns
+remain separate. Unclear answers offer specific clarification and text fallback.
+
+The configured Baseten Muse Spark endpoint can assist with **text after
+transcription**. Its output is still validated and grounded; it cannot invent
+a make from “Hello” or silently expand a short year. Deterministic safety and
+explicit clarification turns skip model inference. Last-operation metadata
+shows actual inference, test output, deterministic handling, or fallback.
+Replies remain installed English scripts, and speech still uses browser Web
+Speech or the existing optional Deepgram stack.
+
+Baseten's [audio contract](https://docs.baseten.co/inference/model-apis/audio.md),
+read 30 October, documents `audio_url` for `meta-models/muse-spark-open`.
+This project pins `meta-models/muse-spark-open-1026`. That exact endpoint's audio
+contract and quality on consented Hindi/English/Hinglish audio are unverified;
+direct Muse Spark audio remains disabled. No raw audio was sent in this repair.
+
+The [repair evidence](../reports/hackathon/voice_repair_2026_10_30/README.md)
+retains both live development text probes, including the rejected output,
+request hashes, exact credential-free requests, elapsed server time and spend
+reservations. Neither probe measures end-of-speech to audible response.
+Human and consented real-audio results remain pending.

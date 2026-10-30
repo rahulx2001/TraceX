@@ -55,7 +55,8 @@ def interaction_state(interaction_id: str) -> dict[str, Any]:
 # Results the enhancer must never rewrite (deterministic gates already chose).
 _SPECIAL_KEYS = (
     "kill_switch", "readback", "dtmf", "case_status", "max_turns_reached",
-    "escalate_low_confidence", "handoff_requested", "safety_downgraded",
+    "escalate_low_confidence", "handoff_requested", "safety_downgraded", "slot_clarification",
+    "safety_answer_consumed", "safety_clarification",
 )
 
 SLOT_SCHEMA: dict[str, Any] = {
@@ -119,10 +120,19 @@ def build_prompt(ctx, text: str, empty_slots: list) -> tuple[str, str]:
         "3) For the listed EMPTY slots only, propose a value if the caller actually said it. "
         "For every proposal copy the exact caller words that support it into evidence (verbatim from the utterance). "
         "Use only values from the allowed lists where a list is given. Never guess; omit a slot you are unsure about. "
+        "The previous assistant question and captured facts below provide context only, not source evidence. "
+        "An example in a question (Honda, Ford, Toyota) is never a caller statement. "
+        "A short year such as 11 is ambiguous: do not expand it to 2011. 'Hello' is not a vehicle brand. "
+        "Preserve negation and corrections; do not turn a suspected cause into a finding. "
         "4) Rate caller frustration 0-1 with a one-line reason. Do not invent IDs, recalls, or facts."
     )
     hints = "\n".join(_slot_hint(ctx, s) for s in empty_slots) or "(none)"
-    user = f"EMPTY SLOTS:\n{hints}\n\nCALLER UTTERANCE:\n{text[:1000]}"
+    import json
+    question = next((turn.get("text", "") for turn in reversed(ctx.turns or [])
+                     if turn.get("speaker") == "agent"), "")
+    captured = {slot.name: ctx.slots[slot.name] for slot in ctx.pack.manifest.slot_frame if ctx.slots.get(slot.name)}
+    user = (f"CONTEXT ONLY:\n{json.dumps({'previous_question': question[:500], 'captured': captured}, ensure_ascii=False)}"
+            f"\n\nEMPTY SLOTS:\n{hints}\n\nCALLER UTTERANCE (only source for proposals):\n{text[:1000]}")
     return system, user
 
 
@@ -196,7 +206,7 @@ async def _call_model(system: str, user: str) -> dict[str, Any]:
     return await asyncio.wait_for(
         asyncio.to_thread(
             chat_json, system=system, user=user, schema=SLOT_SCHEMA,
-            schema_name="intake_slots", timeout=timeout,
+            schema_name="intake_slots", timeout=timeout, max_tokens=1200,
         ),
         timeout=timeout + 0.5,
     )
@@ -208,12 +218,36 @@ async def maybe_enhance_intake(ctx, text: str, ires: dict[str, Any]) -> dict[str
         return ires
     if _skip(ires) or (getattr(ctx, "safety_flags", None) or {}).get("escalation"):
         return ires
+    from src.ai_layer import operation_trace
+    import time
+    operations = {}
+    started_at = operation_trace.stamp()
+    started = time.monotonic()
+    failure = None
     try:
-        return await _enhance(ctx, text, ires)
+        with operation_trace.capture(lambda event: operations.update({event["attempt_id"]: event})):
+            result = await _enhance(ctx, text, ires)
     except Exception as e:  # never break the live call
+        failure = getattr(e, "reason", type(e).__name__)
         record_event(kind="intake_error", interaction_id=getattr(ctx, "interaction_id", None),
                      reason=f"{type(e).__name__}")
-        return ires
+        result = ires
+    attempts = list(operations.values())
+    accepted = any(op.get("validation") == "accepted" for op in attempts)
+    live = any(op.get("live_transport") for op in attempts)
+    trace = {"mode": "live_inference" if live and accepted else "fallback" if live else "test_output" if result.get("ai_layer") else "deterministic",
+             "provider": config.backend(), "model": config.model_text(),
+             "started_at": started_at, "finished_at": operation_trace.stamp(),
+             "elapsed_ms": round((time.monotonic() - started) * 1000),
+             "scope": "text understanding after transcription; replies use installed scripts",
+             "fallback_reason": failure or next((op.get("validation_reason") or op.get("status") for op in reversed(attempts)
+                                                  if op.get("validation") != "accepted"), None) if not accepted else None,
+             "operations": attempts}
+    result["voice_understanding"] = trace
+    record_event(kind="intake_operation", interaction_id=getattr(ctx, "interaction_id", None),
+                 mode=trace["mode"], model_id=config.model_text(), accepted=trace,
+                 reason=trace["fallback_reason"] or "ok")
+    return result
 
 
 async def _enhance(ctx, text: str, ires: dict[str, Any]) -> dict[str, Any]:

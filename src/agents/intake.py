@@ -339,6 +339,23 @@ def _extract_year(text: str, year_range: tuple[int, int] | None) -> str | None:
     return None
 
 
+def _short_year_candidate(text: str, year_range) -> str | None:
+    """A short year is only a proposal; the caller must confirm its century."""
+    cleaned = _without_answer_filler(text).strip(" .!?")
+    words = {"eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+             "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
+             "nineteen": 19, "twenty": 20}
+    if re.fullmatch(r"\d{2}", cleaned):
+        short = int(cleaned)
+    elif cleaned in words:
+        short = words[cleaned]
+    else:
+        return None
+    low, high = year_range or (1990, 2026)
+    candidates = [year for year in range(int(low), int(high) + 1) if year % 100 == short]
+    return str(candidates[0]) if len(candidates) == 1 else None
+
+
 def _extract_via_gazetteer(text: str, ctx: InteractionContext, slot_name: str) -> str | None:
     """Find a gazetteer value that appears in `text` (whole-word match)."""
     gaz = ctx.pack.gazetteer_for_slot(slot_name)
@@ -595,7 +612,7 @@ def _answer_contradicts(text: str, question: str | None) -> bool:
     A single consistent clause ("no everyones fine") is not a contradiction.
     "No, my son has a cut" and "Yes, but I'm not in a safe location" are.
     """
-    clauses = _split_safety_clauses(text)
+    clauses = _split_safety_clauses(_without_answer_filler(text))
     if not clauses:
         return False
     head = clauses[0]
@@ -691,6 +708,15 @@ _HI_POLITE_TOKENS = frozenset({"जी", "ji", "सर", "sir", "मैडम", 
 _HI_WORD_RE = re.compile(r"[\w\u0900-\u097F]+")
 
 
+def _without_answer_filler(text: str) -> str:
+    """Ignore discourse fillers, never the answer or any later hazard clause.
+
+    The original turn and hazard spans remain unchanged. In particular,
+    'Oh no, someone is hurt' still reaches the contradiction/safety checks.
+    """
+    return re.sub(r"^(?:(?:oh|ah|uh|um|erm|well)[\s,.!]+)+", "", (text or "").strip().lower())
+
+
 def _hindi_safety_polarity(text: str) -> str | None:
     """Bare Hindi/Hinglish yes/no (e.g. ``"नहीं"``, ``"नहीं जी"``, ``"haan"``).
 
@@ -737,7 +763,7 @@ def classify_answer(question: str, text: str) -> str | None:
        (``im fine`` = ``no`` to "hurt?", ``yes`` to "safe location?");
     6. anything else → legacy ``classify_yes_no`` (unchanged behavior).
     """
-    t = (text or "").strip().lower()
+    t = _without_answer_filler(text)
     if not t:
         return None
     if _answer_contradicts(t, question):
@@ -1137,6 +1163,40 @@ class IntakeAgent(Agent):
                     safety_answered = True
 
         # ── Slot extraction from the customer turn ────────────────────────
+        # Short year answers are bound to the question actually asked. Keep
+        # the proposal separate from captured facts until explicitly confirmed.
+        year_answered = False
+        if customer_turn and not ctx.slots.get(_SAFETY_PENDING_KEY):
+            pending_year = ctx.slots.get("__year_confirmation__")
+            if isinstance(pending_year, dict):
+                answer = _without_answer_filler(customer_turn).strip(" .!?")
+                full_year = _extract_year(customer_turn, self._year_range_for_entity_1())
+                if full_year:
+                    ctx.slots.pop("__year_confirmation__", None)
+                elif answer in {"yes", "yeah", "yep", "correct", "that's right", "हाँ", "हां", "haan"}:
+                    value = pending_year["value"]
+                    self._stamp_slot("entity_1", value, source_turn=pending_year["source_turn"], confirmation="confirmed")
+                    ctx.slots["__slot_meta__"]["entity_1"].update({
+                        "confirmation_turn": customer_turn,
+                        "source_turn_id": pending_year.get("source_turn_id"),
+                        "confirmation_turn_id": self._latest_customer_turn_id(),
+                    })
+                    extracted["entity_1"] = value
+                    year_answered = True
+                    ctx.slots.pop("__year_confirmation__", None)
+                elif answer in {"no", "nope", "not correct", "नहीं", "nahi"}:
+                    ctx.slots.pop("__year_confirmation__", None)
+                    return {"extracted": {}, "question": "Please say the full four-digit model year, or type it below.",
+                            "fast_path": True, "kill_switch": None, "slots_filled_now": False, "slot_clarification": True}
+                else:
+                    return self._year_confirmation_result(pending_year["value"], repeated=True)
+            if (not ctx.slots.get("entity_1") and not ctx.slots.get("__year_confirmation__")
+                    and ctx.slots.get("__intake_pending_slot__") == "entity_1"):
+                candidate = _short_year_candidate(customer_turn, self._year_range_for_entity_1())
+                if candidate:
+                    ctx.slots["__year_confirmation__"] = {"value": candidate, "source_turn": customer_turn,
+                                                         "source_turn_id": self._latest_customer_turn_id()}
+                    return self._year_confirmation_result(candidate)
         if customer_turn:
             # A correction can arrive after a slot is filled. Apply it before
             # the skip-filled pass so the new value is the one we keep.
@@ -1163,7 +1223,7 @@ class IntakeAgent(Agent):
                     self._stamp_slot(slot.name, value, source_turn=customer_turn)
             # Second pass: description needs real symptom content — not a
             # safety reply, not filler, and not a bare entity echo.
-            if not safety_answered and not ctx.slots.get("description"):
+            if not safety_answered and not year_answered and not ctx.slots.get("description"):
                 desc = self._extract_slot(
                     next(s for s in ctx.pack.manifest.slot_frame if s.name == "description"),
                     customer_turn,
@@ -1181,7 +1241,7 @@ class IntakeAgent(Agent):
                     if not others_pending or (len(desc.strip()) >= 8 and len(toks) >= 2):
                         extracted["description"] = desc
                         self._stamp_slot("description", desc, source_turn=customer_turn)
-            elif not safety_answered and ctx.slots.get("description"):
+            elif not safety_answered and not year_answered and ctx.slots.get("description"):
                 desc = _extract_description(customer_turn)
                 if desc and _new_symptom_words(str(ctx.slots.get("description") or ""), desc):
                     extracted["description"] = desc
@@ -1226,6 +1286,7 @@ class IntakeAgent(Agent):
                     "kill_switch": None,
                     "slots_filled_now": bool(extracted),
                     "safety_question": True,
+                    "safety_answer_consumed": safety_answered,
                 }
         else:
             ctx.slots.pop(_SAFETY_PENDING_KEY, None)
@@ -1271,6 +1332,8 @@ class IntakeAgent(Agent):
                     "low_confidence_slot": remaining[0],
                 }
         if next_slot:
+            previous_slot = ctx.slots.get("__intake_pending_slot__")
+            ctx.slots["__intake_pending_slot__"] = next_slot.name
             ctx.slot_attempts.setdefault(next_slot.name, 0)
             ctx.slot_attempts[next_slot.name] += 1
             attempts = ctx.slot_attempts[next_slot.name]
@@ -1308,6 +1371,13 @@ class IntakeAgent(Agent):
                 }
             # Task 4: Retired LLM phrasing site on live turn path. Use deterministic pack prompt directly.
             q_text = next_slot.prompt
+            if previous_slot == next_slot.name and customer_turn and next_slot.name not in extracted:
+                if next_slot.name == "entity_1":
+                    q_text = "Please say the full four-digit model year, for example 2011, or type it below."
+                elif next_slot.name == "entity_2":
+                    q_text = "I haven't captured the vehicle make yet. Say just the brand, for example Honda, or type it below."
+                else:
+                    q_text = "I haven't captured that detail yet. " + next_slot.prompt + " You can also type it below."
             record_action(self._action(
                 action_type="question_asked",
                 input_summary=f"missing required slot '{next_slot.name}' (attempt {attempts})",
@@ -1319,9 +1389,12 @@ class IntakeAgent(Agent):
                 "fast_path": True,                # LLM optional; fallback is pack prompt
                 "kill_switch": None,
                 "slots_filled_now": bool(extracted),
+                "safety_answer_consumed": safety_answered,
+                "slot_clarification": previous_slot == next_slot.name and _is_filler_description(customer_turn),
             }
 
         # All required slots filled.
+        ctx.slots.pop("__intake_pending_slot__", None)
         record_action(self._action(
             action_type="intake_completed",
             input_summary="all required slots filled",
@@ -1386,6 +1459,17 @@ class IntakeAgent(Agent):
         except Exception:
             pass
         return (1990, 2026)
+
+    def _latest_customer_turn_id(self):
+        return next((turn.get("turn_id") or turn.get("id") for turn in reversed(self.ctx.turns or [])
+                     if turn.get("speaker") == "customer"), None)
+
+    def _year_confirmation_result(self, value, repeated=False):
+        prompt = ("Please confirm: " if repeated else "") + f"Do you mean model year {value}? Say yes, or say the full model year."
+        record_action(self._action(action_type="question_asked", input_summary="short model year requires confirmation",
+                                   output_summary=prompt))
+        return {"extracted": {}, "question": prompt, "fast_path": True, "kill_switch": None,
+                "slots_filled_now": False, "slot_clarification": True, "year_confirmation": True}
 
     def _merge_secondary_categories(self, text: str, primary: str | None) -> None:
         """Preserve every affected system without replacing the primary."""
@@ -1501,11 +1585,13 @@ class IntakeAgent(Agent):
         escalate_on = escalate_on_for_prompt(prompt)
         if polarity is None:
             # Keep pending; _next_safety_question will re-ask this index.
+            ctx.slots["__safety_unclear__"] = str(idx)
             return None
         asked = _parse_asked_indices(ctx.slots.get(_SAFETY_ASKED_KEY))
         asked.add(idx)
         _store_asked_indices(ctx, asked)
         ctx.slots.pop(_SAFETY_PENDING_KEY, None)
+        ctx.slots.pop("__safety_unclear__", None)
         if escalate_on and polarity == escalate_on:
             flag = f"safety_q_{idx}"
             ctx.safety_flags["escalation"] = True
@@ -1544,6 +1630,8 @@ class IntakeAgent(Agent):
             except ValueError:
                 i = -1
             if 0 <= i < len(questions):
+                if self.ctx.slots.get("__safety_unclear__") == str(i):
+                    return "I didn't catch a clear answer. " + questions[i] + " Please say yes or no, or type your answer."
                 return questions[i]
         asked = _parse_asked_indices(self.ctx.slots.get(_SAFETY_ASKED_KEY))
         # Honour leftover in-memory attr from older contacts (best-effort).

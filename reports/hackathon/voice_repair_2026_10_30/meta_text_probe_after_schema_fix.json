@@ -1,0 +1,110 @@
+{
+  "scope": "single synthetic text development probe through the shipped intake enhancer; not microphone/audio quality or human accuracy",
+  "source_kind": "synthetic_text",
+  "audio_uploaded": false,
+  "human_grading": "pending",
+  "code_revision": "80efff39db46ce3cc37187d01db55ac027bfef60",
+  "working_tree_diff_sha256": "1d976d4c2cb7defd89b3ae2770b0b2f68aab95ebcc7b43fc2b7ea98cdfa85092",
+  "text": "मेरी होंडा सिविक 2019 के ब्रेक से बहुत आवाज़ आ रही है",
+  "deterministic_extraction": {
+    "entity_1": "2019"
+  },
+  "accepted_extraction": {
+    "entity_1": "2019",
+    "entity_2": "HONDA",
+    "entity_3": "CIVIC",
+    "category": "SERVICE BRAKES"
+  },
+  "ai_layer": {
+    "filled": {
+      "entity_2": {
+        "value": "HONDA",
+        "source": "deterministic_on_ai_normalized",
+        "confidence": 0.98
+      },
+      "entity_3": {
+        "value": "CIVIC",
+        "source": "deterministic_on_ai_normalized",
+        "confidence": 0.98
+      },
+      "category": {
+        "value": "SERVICE BRAKES",
+        "source": "deterministic_on_ai_normalized",
+        "confidence": 0.98
+      }
+    },
+    "pending_confirmation": {
+      "description": {
+        "value": "My Honda Civic 2019 brakes are making a lot of noise.",
+        "reason": "requires_caller_confirmation",
+        "source_turn": "मेरी होंडा सिविक 2019 के ब्रेक से बहुत आवाज़ आ रही है"
+      }
+    },
+    "rejected": {
+      "description": "value_not_supported_by_original"
+    },
+    "language": "hi",
+    "sentiment": {
+      "rule": 0.0,
+      "ai": 0.2,
+      "final": 0.2,
+      "reason": "Caller reports brake noise neutrally without strong emotional language."
+    }
+  },
+  "operation": {
+    "mode": "live_inference",
+    "provider": "baseten",
+    "model": "meta-models/muse-spark-open-1026",
+    "started_at": "2026-10-30T11:54:55.127544+00:00",
+    "finished_at": "2026-10-30T11:54:58.313874+00:00",
+    "elapsed_ms": 3186,
+    "scope": "text understanding after transcription; replies use installed scripts",
+    "fallback_reason": null,
+    "operations": [
+      {
+        "attempt_id": "191bae77-3c78-412b-967b-2e790d341e6e",
+        "reservation_id": 628,
+        "model": "meta-models/muse-spark-open-1026",
+        "host": "inference.baseten.co",
+        "started_at": "2026-10-30T11:54:55.388018+00:00",
+        "status": "response_received",
+        "live_transport": true,
+        "request_sha256": "8ca8cfc990bb2d3d8808b6681898a57e23273cfff31994d6f70cc0ac9bf2d8c8",
+        "prompt_sha256": "750606cc821de2cb6120f517905c6f14bd96788d1280eb40623b27e621f27667",
+        "schema_sha256": "e4212645f7ee7d2d867b80065802d0dd4b506e4f2fdf774723ee130d03f0e136",
+        "validation": "accepted",
+        "reserved_upper_bound_usd": 0.027854,
+        "observed_token_cost_estimate_usd": 0.00311175,
+        "actual_billed_cost_usd": null,
+        "pricing_basis": "configured token rates; estimate, not provider invoice",
+        "http_status": 200,
+        "finished_at": "2026-10-30T11:54:58.238317+00:00",
+        "elapsed_ms": 2850,
+        "prompt_tokens": 1092,
+        "completion_tokens": 411,
+        "schema_name": "intake_slots",
+        "logical_schema_sha256": "e06c2e4be9e1355cf2f1920cdd25677362a3daddda020b95f98d5d81f3a1315e",
+        "validation_reason": null
+      }
+    ]
+  },
+  "budget_before": {
+    "limit_usd": 30.0,
+    "reserved_upper_bound_usd": 24.504439,
+    "observed_token_cost_usd": 5.394484749999995,
+    "unmetered_successes": 0,
+    "live_successful_requests": 431,
+    "pricing_checked": "2026-10-28",
+    "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+  },
+  "budget_after": {
+    "limit_usd": 30.0,
+    "reserved_upper_bound_usd": 24.532293,
+    "observed_token_cost_usd": 5.397596499999995,
+    "unmetered_successes": 0,
+    "live_successful_requests": 432,
+    "pricing_checked": "2026-10-28",
+    "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+  },
+  "calls_after": 6
+}
