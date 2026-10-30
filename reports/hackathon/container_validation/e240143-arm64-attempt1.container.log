@@ -1,0 +1,233 @@
+→ Hackathon demo seed (first start only)…
+applied migrations: 001
+→ Container bootstrap: init-ops, seed-automotive, seed-finance
+{
+  "campaign_id": "sc_01m662djc1esbts1w4cespaxw4",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:31:54.659039+00:00",
+    "first_inspection_at": "2026-10-30T09:31:54.702994+00:00",
+    "first_verified_repair_at": "2026-10-30T09:31:54.731463+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+{
+  "campaign_id": "sc_01m662djc1esbts1w4cespaxw4",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:31:54.659039+00:00",
+    "first_inspection_at": "2026-10-30T09:31:54.702994+00:00",
+    "first_verified_repair_at": "2026-10-30T09:31:54.731463+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+   AI layer mode: deterministic
+   Demo path: http://localhost:8000/ui/#demo
+→ Applying database migrations…
+already up to date.
+already up to date.
+already up to date.
+→ Container bootstrap: init-ops, init-automotive, init-finance
+Container trust: local_trust_initialized
+→ Starting Skew AI API on 0.0.0.0:8000
+   Dashboard (if built): http://localhost:8000/ui/
+   Workers: 1 (in-process call registry — do not pass --workers / do not scale replicas)
+   Auth: FRONTLINE_API_KEY is set
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     172.17.0.1:52028 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52032 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52038 - "GET /ui/ HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52040 - "GET /api/safety-campaigns HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:52056 - "GET /api/safety-campaigns HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52068 - "GET /api/safety-campaigns/sc_01m662djc1esbts1w4cespaxw4/packet HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52070 - "GET /api/safety-campaigns/review-kit/original-300 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52078 - "GET /ui/review-scripts/original-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52080 - "GET /api/safety-campaigns/review-kit/development HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52096 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52106 - "GET /api/safety-campaigns/review-kit/fuel-complaints HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52122 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52124 - "GET /api/safety-campaigns/review-kit/recalls HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52140 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52156 - "GET /api/safety-campaigns/review-kit/study HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52166 - "GET /ui/review-scripts/reviewer-study.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41338 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /ui/ HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /ui/assets/index-Bu55Ojg3.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /ui/assets/index-Cl6MPf0i.css HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:52198 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:52186 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /ui/assets/geist-sans-400-B40WzpMT.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52206 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:52170 - "GET /api/frontline/auth/oidc/status HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52206 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52198 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /ui/assets/geist-mono-500-YINYabwD.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /ui/assets/geist-sans-600-CSETrqM2.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /ui/assets/geist-mono-400-DTRLJnHl.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52214 - "GET /ui/assets/geist-sans-500-CTWBw9NS.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /api/frontline/auth/verify HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:52214 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:52214 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:52214 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /api/frontline/auth/verify HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52214 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52206 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /api/ai/status HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52198 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52198 - "GET /api/frontline/auth/verify HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52198 - "GET /api/frontline/auth/oidc/status HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "POST /api/frontline/auth/session/exchange HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52206 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52206 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52206 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52170 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52214 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52206 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52198 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52186 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52176 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:52214 - "POST /api/interactions/start?channel=web_text&locale=en-US HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/app/src/api/main.py", line 470, in __call__
+    await self.app(scope, receive, send)
+  File "/app/src/api/main.py", line 446, in __call__
+    await self.app(scope, receive, send_with_version)
+  File "/app/src/api/main.py", line 420, in __call__
+    await self.app(scope, receive, send_with_obs)
+  File "/app/src/security/headers.py", line 71, in __call__
+    await self.app(scope, receive, send_with_headers)
+  File "/app/src/api/identifier_guard.py", line 82, in __call__
+    await self.app(scope, receive, send)
+  File "/app/src/api/main.py", line 65, in __call__
+    await self.app(scope, receive, send)
+  File "/app/src/api/main.py", line 350, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/slowapi/extension.py", line 737, in async_wrapper
+    response = await func(*args, **kwargs)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/api/routes/interactions.py", line 635, in start_interaction
+    orch, greeting = await create_interaction(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/agents/orchestrator.py", line 3279, in create_interaction
+    record_action(_build_started_action(interaction_id, pack.id))
+  File "/app/src/ledger/writer.py", line 387, in record_action
+    return _record_action_inner(action, pack_id, degraded, snaps, on_degraded)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/ledger/writer.py", line 654, in _record_action_inner
+    row_hash = _insert_action_row(con, action)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/ledger/writer.py", line 257, in _insert_action_row
+    prev_row = con.execute(
+               ^^^^^^^^^^^^
+_duckdb.BinderException: Binder Error: Referenced column "ts" not found in FROM clause!
+Candidate bindings: "input_summary", "output_summary", "erased", "action_id", "tenant_id"
+
+LINE 2:         SELECT row_hash, ts FROM agent_actions
+                                 ^

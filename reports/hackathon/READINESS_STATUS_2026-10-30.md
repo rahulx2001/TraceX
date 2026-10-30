@@ -67,6 +67,17 @@ The [anonymous checks](link_checks/results.json) verify the public repository
 and exact application commit. `main` still points to an earlier build; use the
 published `submission/readiness-2026-10-30` branch or the pinned commit.
 
+The follow-up completed clean Docker execution at application commit
+`edfda13e616314480c3501ba9b1a600c1e42ff88`. Bare Docker, documented Compose
+startup and public CI passed entry → stored report → source handoff → correction
+→ revision → supervisor review → export, plus all five review pages and restart.
+[Container evidence](container_validation/README.md) retains the actual failures,
+repairs, build logs, exact versions and 60 focused Python tests. No model or
+audio provider was called. Local trust creation preserves existing identity;
+the campaign packet is still unsigned. The owner confirmed a one-person team
+and deferred portal upload until checks are complete. Hosted demo and video
+are excluded from this follow-up.
+
 | Review IDs | Source/evidence in tree | Acceptance still open |
 |---|---|---|
 | 1, 4 | README, `JudgeEntry.jsx`, SignIn and compact main navigation align on the engineer workflow; earlier tour now uses the same promise. | First-time visitor usability has no participant evidence. |
@@ -82,7 +93,7 @@ published `submission/readiness-2026-10-30` branch or the pinned commit.
 | 27–32 | Separate study modes, 32-row pending development worksheet, label boundaries, blind field/material-fact grading and disagreement retention. [Evaluation readiness](../../docs/evaluation-readiness.md). | Owner recruitment; named real reviews, independent rubric/grades and participants. No usefulness, accuracy, correction-effort, adoption or time-saving result. |
 | 33–36 | Development freeze before sealed gold attachment, complete-coverage gates, broad/exact association distinction, original/matched workload reporting, preflight and failure/cost accounting. | No new candidate freeze, reserved-gold inspection, holdout inference or score. Billing unknown; cap unchanged. |
 | 37 | Earlier additions are committed in `b8afe38`; the application candidate is published on the submission branch and verified from a clean checkout. The regenerated manifest pins the packaged source/evidence commit. | A candidate is not a portal submission. |
-| 38, 39 | Fresh local setup, current campaign and all five review pages verified; public repository and exact application commit verified anonymously. Container source and CI job are present. | Hosted demo URL, portal/team verification and clean container execution. Docker is not installed on this machine; no current Docker CI result is claimed. |
+| 38, 39 | Fresh local setup, current campaign and all five review pages verified; public source verified anonymously. Clean image, Compose startup, browser report/revision/review/export and restart passed locally and in public CI. Solo team confirmed by owner. | Hosted demo excluded; portal upload and portal/team-entry verification deferred by owner. No publicly reachable deployment is claimed. |
 | 40, 42 | Focused entry → report → correction → revision → review → export regression; failure/stale/restart unit tests; lightweight standard-library replay and [claim index](CLAIM_INDEX.md). | Full setup and current release CI are separate from existing dependencies or historical test counts. |
 | 43, 44 | Buyer/data/pilot scope documented. No late rewrite or extra dashboard was added. | No real pilot; broader refactoring is deferred behind P0/P1. |
 
@@ -110,8 +121,10 @@ The next evidence priority is a relevant real reviewer assessing an acceptable
 packet, with independent grading and failures retained. The owner recruits;
 code cannot supply participants or consented recordings. Then collect actual
 multilingual/device/audio timing under the stated protocol. Package and verify
-the candidate, current Docker CI and public/portal links. Keep the reliable
-text fallback available. Video remains outside this pass.
+the candidate and public source links. Current Docker execution is complete
+for the recorded commit and scope. Portal upload remains deferred by the owner;
+do not submit it while these checks are being reviewed. Keep the reliable text
+fallback available. Hosted demo and video remain outside this pass.
 
 The supplied deadline is 4 November at 9 PM Eastern, or 5 November at 7:30 AM
 India time if Eastern Standard Time applies as stated in the guide.

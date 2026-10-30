@@ -1,0 +1,16 @@
+<anonymous_script>:1
+Internal Server Error
+^
+
+SyntaxError: Unexpected token 'I', "Internal S"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at APIResponse.json (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright-core/lib/coreBundle.js:59078:21)
+    at async expect.poll.timeout (file:///Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/scripts/report-handoff.test.mjs:19:22)
+    at async /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright/lib/matchers/expect.js:13387:19
+    at async raceAgainstDeadline (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright-core/lib/coreBundle.js:4272:10)
+    at async pollAgainstDeadline (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright-core/lib/coreBundle.js:4293:22)
+    at async invokePollMatcher (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright/lib/matchers/expect.js:13384:18)
+    at async runReportHandoffTest (file:///Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/scripts/report-handoff.test.mjs:18:5)
+    at async file:///Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/scripts/container-readiness.test.mjs:30:3
+
+Node.js v25.1.0

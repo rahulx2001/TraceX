@@ -25,3 +25,12 @@ See [the frozen experiment instructions](../defect/fuel_holdout/README.md) and [
 ## Current implementation checks
 
 `PLAYWRIGHT_CHANNEL=chrome npm run test:signin` in `dashboard/` builds current assets and exercises real local entry/auth and text-report-to-packet behavior, plus clearly labelled UI fixtures. It makes no model call. Source version and acceptance details are in [entry validation](../../docs/entry-auth-validation.md). A saved historical video or model output does not validate a new build.
+
+The [30 October container execution](container_validation/README.md) records
+clean image and Compose/browser checks, public CI, exact image/source versions,
+60 focused Python tests and failed attempts. Reproduce with
+`python3 -m scripts.docker_readiness --image IMAGE --expected-revision SHA --compose --browser --output /tmp/result.json`
+after [building the image](../../docs/container-validation.md). These are
+fictional text/software checks with zero inference, not participant or audio
+quality results. [Real-audio status](../voice_validation/results.json) remains
+zero captures, zero participants and no latency percentiles.

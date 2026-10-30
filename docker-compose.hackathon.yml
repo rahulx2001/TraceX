@@ -1,7 +1,8 @@
 # [AI-LAYER] TraceX hackathon demo: ONE container (API + dashboard + demo seed).
 #
-#   FRONTLINE_API_KEY=$(python3 -c "import secrets;print(secrets.token_hex(24))") \
-#     docker compose -f docker-compose.hackathon.yml up --build
+#   Set separate FRONTLINE_API_KEY and SESSION_SECRET values (32+ random chars)
+#   in your private environment or .env; preserve both across restarts.
+#   docker compose -f docker-compose.hackathon.yml up --build
 #   → http://127.0.0.1:8000/ui/#demo   (Sign in → "Have an operator API key?" → paste the key)
 #
 # Optional Meta AI layer (Muse Spark, SAM 3.1, Muse Image): also set META_API_KEY

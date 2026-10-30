@@ -26,7 +26,7 @@ jobs:
       - name: Build the current source with no developer cache
         run: docker build --pull --no-cache --label "org.opencontainers.image.revision=$GITHUB_SHA" -f Dockerfile.hackathon -t tracex-readiness:ci .
       - name: Entry, report, correction, review, export, assets and restart
-        run: python3 -m scripts.docker_readiness --image tracex-readiness:ci --expected-revision "$GITHUB_SHA" --browser --output reports/hackathon/container_validation/ci.json
+        run: python3 -m scripts.docker_readiness --image tracex-readiness:ci --expected-revision "$GITHUB_SHA" --compose --browser --output reports/hackathon/container_validation/ci.json
       - name: Retain actual container result and logs
         if: always()
         uses: actions/upload-artifact@v4

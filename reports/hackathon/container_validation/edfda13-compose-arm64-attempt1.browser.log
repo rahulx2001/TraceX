@@ -1,0 +1,2 @@
+PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → supervisor review → downloaded original/revised packet. No mocked transport, model or real-audio claim.
+PASS: clean Docker image serves rendered credential entry and the complete text report/correction/revision/review/export workflow. Fixtures only; no real audio or human study.

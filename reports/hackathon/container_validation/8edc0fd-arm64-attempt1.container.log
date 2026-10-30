@@ -1,0 +1,163 @@
+→ Hackathon demo seed (first start only)…
+already up to date.
+→ Container bootstrap: init-ops, seed-automotive, seed-finance
+{
+  "campaign_id": "sc_01m661ea3v31sf4ex44qqhts74",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:14:50.398409+00:00",
+    "first_inspection_at": "2026-10-30T09:14:50.443740+00:00",
+    "first_verified_repair_at": "2026-10-30T09:14:50.472825+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+{
+  "campaign_id": "sc_01m661ea3v31sf4ex44qqhts74",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:14:50.398409+00:00",
+    "first_inspection_at": "2026-10-30T09:14:50.443740+00:00",
+    "first_verified_repair_at": "2026-10-30T09:14:50.472825+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+   AI layer mode: deterministic
+   Demo path: http://localhost:8000/ui/#demo
+→ Applying database migrations…
+already up to date.
+already up to date.
+already up to date.
+→ Container bootstrap: init-ops, init-automotive, init-finance
+→ Starting Skew AI API on 0.0.0.0:8000
+   Dashboard (if built): http://localhost:8000/ui/
+   Workers: 1 (in-process call registry — do not pass --workers / do not scale replicas)
+   Auth: FRONTLINE_API_KEY is set
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+ERROR:    Traceback (most recent call last):
+  File "/app/src/security/harden.py", line 199, in validate_startup_security
+    store.get_active_public_key()
+  File "/app/src/security/trust_roots.py", line 264, in get_active_public_key
+    raise TrustRootNotFound("No active trust root key ID configured or found")
+src.security.trust_roots.TrustRootNotFound: No active trust root key ID configured or found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 638, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 233, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/api/main.py", line 78, in _lifespan
+    validate_startup_security()
+  File "/app/src/security/harden.py", line 209, in validate_startup_security
+    raise RuntimeError(err)
+RuntimeError: Security startup check failed: no trust root configured (FRONTLINE_TRUST_ROOT_REQUIRED=1): No active trust root key ID configured or found. Register a trust root in the DB, set FRONTLINE_TRUST_ROOT_PATH, or set FRONTLINE_TRUST_ROOT_REQUIRED=0.
+
+ERROR:    Application startup failed. Exiting.

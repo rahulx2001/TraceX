@@ -1,0 +1,138 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.hackathon
+#1 transferring dockerfile: 5.65kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 1.8s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 DONE 1.8s
+
+#4 [dashboard 1/7] FROM docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
+#4 resolve docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293 done
+#4 DONE 0.0s
+
+#5 [review-assets 1/5] FROM docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+#5 resolve docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159 done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 37.23kB 0.0s done
+#6 DONE 0.0s
+
+#7 [review-assets 4/5] COPY scripts/prepare_review_assets.py ./scripts/prepare_review_assets.py
+#7 CACHED
+
+#8 [runtime 17/24] COPY reports/defect/evidence_v1/development_comparison.json ./reports/defect/evidence_v1/development_comparison.json
+#8 CACHED
+
+#9 [review-assets 3/5] COPY scripts/templates ./scripts/templates
+#9 CACHED
+
+#10 [runtime  8/24] COPY scripts ./scripts
+#10 CACHED
+
+#11 [dashboard 2/7] WORKDIR /dash
+#11 CACHED
+
+#12 [runtime  3/24] COPY --from=pydeps /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+#12 CACHED
+
+#13 [runtime 22/24] COPY docker/entrypoint.sh /entrypoint.sh
+#13 CACHED
+
+#14 [runtime  6/24] COPY migrations ./migrations
+#14 CACHED
+
+#15 [runtime 15/24] COPY reports/defect/evidence_v1/fuel_complaint_review.html ./reports/defect/evidence_v1/fuel_complaint_review.html
+#15 CACHED
+
+#16 [runtime 10/24] COPY reports/nhtsa ./reports/nhtsa
+#16 CACHED
+
+#17 [runtime 11/24] COPY reports/hackathon ./reports/hackathon
+#17 CACHED
+
+#18 [dashboard 6/7] COPY --from=review-assets /app/dashboard/public/review-scripts ./public/review-scripts
+#18 CACHED
+
+#19 [runtime 16/24] COPY reports/defect/evidence_v1/recall_review.html ./reports/defect/evidence_v1/recall_review.html
+#19 CACHED
+
+#20 [dashboard 3/7] COPY dashboard/package.json dashboard/package-lock.json* ./
+#20 CACHED
+
+#21 [pydeps 3/4] COPY requirements-docker.txt requirements-lock.txt ./
+#21 CACHED
+
+#22 [runtime 21/24] RUN useradd -m -u 10001 frontline     && mkdir -p /app/data/domains /app/reports/qubot/contacts /app/reports/qubot/digests     && chown -R frontline:frontline /app
+#22 CACHED
+
+#23 [runtime  5/24] COPY src ./src
+#23 CACHED
+
+#24 [runtime  9/24] COPY eval ./eval
+#24 CACHED
+
+#25 [runtime 23/24] COPY docker/hackathon-entrypoint.sh /hackathon-entrypoint.sh
+#25 CACHED
+
+#26 [runtime  7/24] COPY domains ./domains
+#26 CACHED
+
+#27 [runtime 14/24] COPY reports/defect/evidence_v1/development_review.html ./reports/defect/evidence_v1/development_review.html
+#27 CACHED
+
+#28 [dashboard 5/7] COPY dashboard/ ./
+#28 CACHED
+
+#29 [runtime 12/24] COPY reports/defect/repair/human_review.html ./reports/defect/repair/human_review.html
+#29 CACHED
+
+#30 [runtime 19/24] COPY Makefile .
+#30 CACHED
+
+#31 [dashboard 4/7] RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+#31 CACHED
+
+#32 [runtime  4/24] COPY --from=pydeps /usr/local/bin /usr/local/bin
+#32 CACHED
+
+#33 [review-assets 2/5] WORKDIR /app
+#33 CACHED
+
+#34 [runtime 18/24] COPY reports/defect/fuel_holdout/holdout_results.json reports/defect/fuel_holdout/protocol.json ./reports/defect/fuel_holdout/
+#34 CACHED
+
+#35 [pydeps 4/4] RUN pip install --no-cache-dir --upgrade pip  && pip install --no-cache-dir -r requirements-docker.txt -c requirements-lock.txt
+#35 CACHED
+
+#36 [review-assets 5/5] RUN python scripts/prepare_review_assets.py
+#36 CACHED
+
+#37 [runtime 20/24] COPY --from=dashboard /dash/dist ./dashboard/dist
+#37 CACHED
+
+#38 [dashboard 7/7] RUN npm run build
+#38 CACHED
+
+#39 [runtime 13/24] COPY reports/defect/repair/human_validation_status.json ./reports/defect/repair/human_validation_status.json
+#39 CACHED
+
+#40 [runtime 24/24] RUN chmod +x /entrypoint.sh /hackathon-entrypoint.sh
+#40 CACHED
+
+#41 exporting to image
+#41 exporting layers done
+#41 exporting manifest sha256:67f6162ba2cf1ffe245498f3138dec18f227ee9207faf33bf38d0fcf77c96441 done
+#41 exporting config sha256:2c065cd29588a365b4d64bcdb509850d77a59677bbb1d083bc902aefdc567cb1 done
+#41 exporting attestation manifest sha256:a0c9303bcefbd966097f5e1ffbf947ecd6a0c911cc887a596dafec3cb5af62e0 done
+#41 exporting manifest list sha256:cdea9a4ef36cf7b91b1401b6e681f6e09638ebcb5a2f322445e8fcb4b7ee6a52 done
+#41 naming to docker.io/library/tracex-readiness:41f7d87 done
+#41 unpacking to docker.io/library/tracex-readiness:41f7d87 done
+#41 DONE 0.0s

@@ -21,6 +21,18 @@ try {
   await page.getByLabel('Operator API key', { exact: true }).fill(fixture.api_key);
   await page.getByRole('button', { name: 'Verify & Continue', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'From an owner report to a reviewable investigation' })).toBeVisible();
+  await page.goto(`${base}/ui/#safety-campaigns`);
+  await page.getByRole('button', { name: 'New campaign', exact: true }).click();
+  for (const [label, value] of Object.entries({
+    'Campaign title': 'Fictional authorization test', 'Component': 'Test component',
+    'Supplier': 'Fictional supplier', 'Installed part number': 'TEST-PART',
+    'Suspected supplier lot': 'TEST-LOT',
+    'Initial finding and source reference': 'Disposable software authorization check; no actual vehicle finding.'
+  })) await page.getByLabel(label, { exact: true }).fill(value);
+  const refused = page.waitForResponse(r => r.url().endsWith('/api/safety-campaigns') && r.request().method() === 'POST');
+  await page.getByRole('button', { name: 'Create campaign', exact: true }).click();
+  assert.equal((await refused).status(), 403, 'operator credential must not authorize campaign creation');
+  await expect(page.getByRole('alert').first()).toContainText(/permission|forbidden|supervisor|case:write/i);
   await page.goto(`${base}/ui/#signin?next=demo`);
   await page.getByRole('button', { name: /Have a supervisor session/ }).click();
   await page.getByLabel('Supervisor session', { exact: true }).fill(fixture.supervisor_token);

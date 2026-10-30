@@ -1,0 +1,150 @@
+→ Hackathon demo seed (first start only)…
+applied migrations: 001
+→ Container bootstrap: init-ops, seed-automotive, seed-finance
+{
+  "campaign_id": "sc_01m662nqe56mrnv34z6y8za9kh",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:36:21.991468+00:00",
+    "first_inspection_at": "2026-10-30T09:36:22.035014+00:00",
+    "first_verified_repair_at": "2026-10-30T09:36:22.064700+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+{
+  "campaign_id": "sc_01m662nqe56mrnv34z6y8za9kh",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:36:21.991468+00:00",
+    "first_inspection_at": "2026-10-30T09:36:22.035014+00:00",
+    "first_verified_repair_at": "2026-10-30T09:36:22.064700+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+   AI layer mode: deterministic
+   Demo path: http://localhost:8000/ui/#demo
+→ Applying database migrations…
+already up to date.
+already up to date.
+already up to date.
+→ Container bootstrap: init-ops, init-automotive, init-finance
+Container trust: local_trust_initialized
+→ Starting Skew AI API on 0.0.0.0:8000
+   Dashboard (if built): http://localhost:8000/ui/
+   Workers: 1 (in-process call registry — do not pass --workers / do not scale replicas)
+   Auth: FRONTLINE_API_KEY is set
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     172.17.0.1:46968 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:46980 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:46984 - "GET /ui/ HTTP/1.1" 200 OK
+INFO:     172.17.0.1:46988 - "GET /api/safety-campaigns HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:46996 - "GET /api/safety-campaigns HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47008 - "GET /api/safety-campaigns/sc_01m662nqe56mrnv34z6y8za9kh/packet HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47024 - "GET /api/safety-campaigns/review-kit/original-300 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47038 - "GET /ui/review-scripts/original-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47040 - "GET /api/safety-campaigns/review-kit/development HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47052 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47054 - "GET /api/safety-campaigns/review-kit/fuel-complaints HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47068 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47080 - "GET /api/safety-campaigns/review-kit/recalls HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47086 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47090 - "GET /api/safety-campaigns/review-kit/study HTTP/1.1" 200 OK
+INFO:     172.17.0.1:47102 - "GET /ui/review-scripts/reviewer-study.js HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1]
+{
+  "campaign_id": "sc_01m662nqe56mrnv34z6y8za9kh",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:36:21.991468+00:00",
+    "first_inspection_at": "2026-10-30T09:36:22.035014+00:00",
+    "first_verified_repair_at": "2026-10-30T09:36:22.064700+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+   AI layer mode: deterministic
+   Demo path: http://localhost:8000/ui/#demo
+→ Applying database migrations…
+already up to date.
+already up to date.
+already up to date.
+→ Container bootstrap: init-ops, init-automotive, init-finance
+Container trust: existing_trust_unchanged
+→ Starting Skew AI API on 0.0.0.0:8000
+   Dashboard (if built): http://localhost:8000/ui/
+   Workers: 1 (in-process call registry — do not pass --workers / do not scale replicas)
+   Auth: FRONTLINE_API_KEY is set
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54236 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40128 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57836 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58338 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41976 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39304 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42288 - "GET /health HTTP/1.1" 200 OK

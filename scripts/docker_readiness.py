@@ -29,6 +29,7 @@ def main():
     parser.add_argument('--context')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--browser', action='store_true', help='Run the current report/correction browser check too')
+    parser.add_argument('--compose', action='store_true', help='Use the documented Compose service with an isolated project/volume')
     args = parser.parse_args()
     docker = ['docker'] + (['--context', args.context] if args.context else [])
     def run(*command, **kwargs):
@@ -49,18 +50,36 @@ def main():
               'image_os': image['Os'], 'docker_server': run('version', '--format', '{{.Server.Version}}'),
               'scope': 'Disposable container integration checks on fictional seed/text data; no live inference or real audio.',
               'host_data_mounts': False, 'model_calls': 0, 'checks': []}
+    result['startup'] = 'docker_compose' if args.compose else 'docker_run'
     result['verification_files'] = {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in (Path(__file__), ROOT/'scripts/submission_smoke.py',
                      ROOT/'dashboard/scripts/container-readiness.test.mjs', ROOT/'dashboard/scripts/report-handoff.test.mjs')}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     created = False
+    compose = None
+    private_config = None
     try:
         flags = [flag for key in ('FRONTLINE_API_KEY', 'SESSION_SECRET', 'FRONTLINE_AUTH_REQUIRED',
                  'FRONTLINE_OPEN_MODE', 'FRONTLINE_AI_LAYER', 'FRONTLINE_LLM_ENABLED', 'FRONTLINE_TEST_ISOLATION')
                  for flag in ('--env', key)]
-        run('run', '-d', '--name', name, '-p', '127.0.0.1::8000', *flags, args.image, env=env)
-        created = True
+        if args.compose:
+            result['compose_version'] = run('compose', 'version', '--short')
+            private_config = tempfile.TemporaryDirectory(prefix='tracex-compose-check-')
+            override = Path(private_config.name)/'override.json'
+            # No credentials enter the override. --env-file excludes local .env.
+            override.write_text(json.dumps({'services': {'tracex': {
+                'image': args.image, 'container_name': name,
+                'environment': {'FRONTLINE_AI_LAYER': 'off', 'FRONTLINE_LLM_ENABLED': '0',
+                                'FRONTLINE_TEST_ISOLATION': '1'}, 'restart': 'no'}}}))
+            env['TRACEX_PUBLISH'] = '127.0.0.1::8000'
+            compose = ['compose', '--env-file', '/dev/null', '-p', name,
+                       '-f', str(ROOT/'docker-compose.hackathon.yml'), '-f', str(override)]
+            created = True  # Clean up this unique project even if startup is partial.
+            run(*compose, 'up', '-d', '--no-build', env=env)
+        else:
+            run('run', '-d', '--name', name, '-p', '127.0.0.1::8000', *flags, args.image, env=env)
+            created = True
         def container_base():
             endpoint = run('port', name, '8000/tcp').splitlines()[0]
             if not endpoint.startswith('127.0.0.1:'):
@@ -123,7 +142,12 @@ def main():
             log = args.output.with_suffix('.container.log')
             log.write_text(run('logs', name, stderr=subprocess.STDOUT))
             result['container_log'] = {'path': log.name, 'sha256': hashlib.sha256(log.read_bytes()).hexdigest()}
-            run('rm', '-f', name)
+            if compose:
+                run(*compose, 'down', '--volumes', env=env)
+            else:
+                run('rm', '-f', name)
+        if private_config:
+            private_config.cleanup()
         result['elapsed_ms'] = round((time.monotonic()-started)*1000)
         args.output.write_text(json.dumps(result, indent=2)+'\n')
         print(json.dumps(result, indent=2))

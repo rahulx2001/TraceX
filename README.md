@@ -15,7 +15,7 @@ The product name is TraceX. API paths and environment variables still use `front
 
 **Judge entry:** open `#demo` for **Report → Investigate → Review → Evidence**. Finish a voice or typed report, choose **Investigate this report**, review the stored customer turns and confirm the campaign vehicle. The investigation keeps original turn IDs and source hashes without retyping. Correct a draft claim, record the review, and create a linked revision. Imported CSV assertions remain unverified until a reviewer attaches installation-record contents. Fictional seed reviews and saved Meta replays remain labelled; they are not participant results.
 
-The [30 October readiness record](reports/hackathon/READINESS_STATUS_2026-10-30.md) separates verified source/build behavior from pending real-reviewer, audio, hosted-demo and container evidence. The candidate is on `submission/readiness-2026-10-30`; video remains an owner task outside this pass.
+The [30 October readiness record](reports/hackathon/READINESS_STATUS_2026-10-30.md) separates source/build checks from pending real-reviewer and audio evidence. The candidate is on `submission/readiness-2026-10-30`. The owner confirmed a one-person team and deferred portal upload until checks are complete; hosted demo and video are outside this pass.
 
 Two packs ship with small offline fixtures (10 records, 2 advisories, 3 clusters each):
 
@@ -63,6 +63,20 @@ make eval-frontline   # offline gates for both shipped packs
 ```
 
 ### Docker
+
+For the current investigation workflow, set separate `FRONTLINE_API_KEY` and
+`SESSION_SECRET` values in your private environment or local `.env` (32+ random
+characters each), then run:
+
+```bash
+docker compose -f docker-compose.hackathon.yml up --build
+```
+
+Open `http://127.0.0.1:8000/ui/` and sign in. See [container setup and
+verification](docs/container-validation.md) for supervisor entry, persistent
+records, local trust initialization and the no-inference browser check.
+
+The reused pilot profiles remain available separately:
 
 ```bash
 # Open local pilot. API and dashboard: http://127.0.0.1:8000/ui/
