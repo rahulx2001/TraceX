@@ -15,6 +15,8 @@ The product name is TraceX. API paths and environment variables still use `front
 
 **Judge entry:** open `#demo` for **Report → Investigate → Review → Evidence**. Finish a voice or typed report, choose **Investigate this report**, review the stored customer turns and confirm the campaign vehicle. The investigation keeps original turn IDs and source hashes without retyping. Correct a draft claim, record the review, and create a linked revision. Imported CSV assertions remain unverified until a reviewer attaches installation-record contents. Fictional seed reviews and saved Meta replays remain labelled; they are not participant results.
 
+The [30 October readiness record](reports/hackathon/READINESS_STATUS_2026-10-30.md) separates verified source/build behavior from pending real-reviewer, audio, hosted-demo and container evidence. The candidate is on `submission/readiness-2026-10-30`; video remains an owner task outside this pass.
+
 Two packs ship with small offline fixtures (10 records, 2 advisories, 3 clusters each):
 
 | Pack | Use it for |

@@ -52,10 +52,25 @@ are unchanged. This prepares collection and does not create any human evidence.
 the full acceptance criterion has been met when the right-hand column is pending.
 Focused execution evidence is recorded separately with the tested source commit.
 
+Execution at application commit `6a0bd2dc383beeba07790f110fd7416d9d7d1af3`:
+[verification record](readiness_2026_10_30/verification.json),
+[browser log](readiness_2026_10_30/browser.log),
+[negative control](readiness_2026_10_30/signin-negative-control.log),
+[61 focused Python tests](readiness_2026_10_30/targeted-tests.log),
+[clean-setup/API smoke](readiness_2026_10_30/clean-setup-smoke.json), and
+[credit-free replay](readiness_2026_10_30/public-replay.json).
+The clean checkout installed fresh dependencies and seeded fresh data; no local
+developer configuration or runtime database was copied. The initial sandbox
+dependency download failed on DNS; installation succeeded with network access.
+The expected negative control exits 1 at the missing rendered SignIn assertion.
+The [anonymous checks](link_checks/results.json) verify the public repository
+and exact application commit. `main` still points to an earlier build; use the
+published `submission/readiness-2026-10-30` branch or the pinned commit.
+
 | Review IDs | Source/evidence in tree | Acceptance still open |
 |---|---|---|
 | 1, 4 | README, `JudgeEntry.jsx`, SignIn and compact main navigation align on the engineer workflow; earlier tour now uses the same promise. | First-time visitor usability has no participant evidence. |
-| 2, 3 | Production-build browser credential entry, invalid-key refusal, operator 403, supervisor cookie and recorded actor; missing-registry negative-control command exists. See [entry checks](../../docs/entry-auth-validation.md). | Full clean setup/release execution must be attached to the candidate; route source text alone is insufficient. |
+| 2, 3 | Verified production-build credential entry, invalid-key refusal, operator 403, supervisor cookie and recorded actor in a clean checkout; negative control failed as intended. See [entry checks](../../docs/entry-auth-validation.md). | Hosted deployment behavior remains untested. |
 | 5, 23, 26 | Per-operation provenance, model/time/mode, stages, request/prompt/schema/code hashes, attempts and cost estimates; campaign export explicitly unsigned. | No provider invoice or latency-distribution claim. Saved historical runs do not validate this parser version. |
 | 6–9, 18 | Visible stable controls, transcript/fact correction, source/vehicle review gates, original turn lineage; the unpunctuated-turn defect is fixed. Browser text handoff and sampled contrast/reflow checks exist. | Actual speech-to-investigation capture, assistive-technology use and real 200% browser zoom remain unmeasured. Half-width reflow is only an equivalent layout check. |
 | 10–13, 17 | Locale propagation, PCM capture, explicit interruption, pre-roll, preflight, meter and manual finish have software contracts. [Audio protocol](../../docs/voice-validation.md) distinguishes recognition, English script replies and synthesis. | No new consented audio, codec/device matrix, quiet-mic/echo/endpointing result or real audible-response timing. Hindi/Hinglish quality and Safari/iOS support are not established. |
@@ -66,8 +81,8 @@ Focused execution evidence is recorded separately with the tested source commit.
 | 24, 25 | Omitted record/character counts, scoped pagination, original-record opening and reviewed action routing. | No measured fact-recovery benefit from older lookup or routing. |
 | 27–32 | Separate study modes, 32-row pending development worksheet, label boundaries, blind field/material-fact grading and disagreement retention. [Evaluation readiness](../../docs/evaluation-readiness.md). | Owner recruitment; named real reviews, independent rubric/grades and participants. No usefulness, accuracy, correction-effort, adoption or time-saving result. |
 | 33–36 | Development freeze before sealed gold attachment, complete-coverage gates, broad/exact association distinction, original/matched workload reporting, preflight and failure/cost accounting. | No new candidate freeze, reserved-gold inspection, holdout inference or score. Billing unknown; cap unchanged. |
-| 37 | Earlier additions are committed in `b8afe38`; current changes are to be packaged on the submission branch with a regenerated commit manifest. | A candidate is not a portal submission. Verify the packaged commit and public source independently. |
-| 38, 39 | Reproducible setup, current campaign/review-assets Docker path and CI job; anonymous link checker. | Hosted demo URL, portal/team verification and clean container execution. Docker is not installed on this machine. |
+| 37 | Earlier additions are committed in `b8afe38`; the application candidate is published on the submission branch and verified from a clean checkout. The regenerated manifest pins the packaged source/evidence commit. | A candidate is not a portal submission. |
+| 38, 39 | Fresh local setup, current campaign and all five review pages verified; public repository and exact application commit verified anonymously. Container source and CI job are present. | Hosted demo URL, portal/team verification and clean container execution. Docker is not installed on this machine; no current Docker CI result is claimed. |
 | 40, 42 | Focused entry → report → correction → revision → review → export regression; failure/stale/restart unit tests; lightweight standard-library replay and [claim index](CLAIM_INDEX.md). | Full setup and current release CI are separate from existing dependencies or historical test counts. |
 | 43, 44 | Buyer/data/pilot scope documented. No late rewrite or extra dashboard was added. | No real pilot; broader refactoring is deferred behind P0/P1. |
 

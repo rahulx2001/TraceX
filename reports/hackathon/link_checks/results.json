@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-10-30T06:49:35.832Z",
-  "manifest_sha256": "3098ba265d41674e2f5e51ea9044c3b733747d9f47884bc30f837a23e2fffb07",
+  "checked_at": "2026-10-30T08:24:14.595Z",
+  "manifest_sha256": "4b6c9cc877661b18e4b73fb05506f3f70e5d685a6ba45043fa9b6cbebc1bfb1b",
   "browser": "fresh Playwright context; no user cookies or credentials; GET/HEAD only",
   "results": [
     {
@@ -14,19 +14,34 @@
       "repository_login_link_visible": true
     },
     {
-      "kind": "video",
-      "status": "pending_missing_url"
+      "kind": "source_commit",
+      "url": "https://github.com/rahulx2001/TraceX/tree/6a0bd2dc383beeba07790f110fd7416d9d7d1af3",
+      "final_url": "https://github.com/rahulx2001/TraceX/tree/6a0bd2dc383beeba07790f110fd7416d9d7d1af3",
+      "http_status": 200,
+      "title": "GitHub - rahulx2001/TraceX at 6a0bd2dc383beeba07790f110fd7416d9d7d1af3 · GitHub",
+      "status": "anonymous_page_access_verified",
+      "fresh_browser_context": true,
+      "repository_login_link_visible": true
     },
     {
       "kind": "hosted_demo",
       "status": "pending_missing_url"
     }
   ],
+  "scope": "Public source and hosted-demo links; video excluded from this pass. Portal/team still require inspection.",
+  "excluded": [
+    "video"
+  ],
+  "source_commit": "6a0bd2dc383beeba07790f110fd7416d9d7d1af3",
+  "source_commit_kind": "candidate",
+  "source_commit_verified": true,
   "submitted_commit_verified": false,
+  "public_links_complete": false,
   "portal": {
     "status": "pending_owner_portal_access",
     "configured_url": null,
-    "team_list_present": false
+    "team_list_present": false,
+    "verified": false
   },
   "complete": false
 }
