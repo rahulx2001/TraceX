@@ -88,6 +88,11 @@ jobs:
       - name: Public-link scope and submission truthfulness
         run: node --test dashboard/scripts/public-link-scope.test.mjs
 
+      - name: Committed review pages match current templates
+        run: |
+          python -m scripts.prepare_review_assets
+          git diff --exit-code -- dashboard/public/review-scripts reports/defect/evidence_v1 reports/hackathon/reviewer_study
+
       - name: Public credit-free evidence replay
         run: python -m scripts.public_replay
 

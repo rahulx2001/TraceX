@@ -40,6 +40,12 @@ The public-link checker excludes video,
 checks a full candidate/submitted source SHA separately from the repository
 homepage, and cannot certify portal/team completion from a stored boolean.
 
+Clean setup exposed stale committed review pages/scripts: the current templates
+included reviewer expertise, field-completion attestation and failed-task outcome
+controls that the shipped assets lacked. Regenerated presentation assets now
+match those templates; CI checks for drift. Frozen review/study JSON and hashes
+are unchanged. This prepares collection and does not create any human evidence.
+
 ## Acceptance status
 
 “Implemented” below means source and regression coverage exist. It never means
