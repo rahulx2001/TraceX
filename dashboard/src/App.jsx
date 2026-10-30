@@ -47,15 +47,18 @@ import {
 } from "./icons.jsx";
 import { packLabel } from "./ui/labels.js";
 
+const WORKFLOW_PAGES = [
+  { id: "call", label: "Report", Icon: IconMic, route: CallWidget, keywords: "report voice call widget mic speak contact" },
+  { id: "safety-campaigns", label: "Investigation workspace", Icon: IconShield, route: SafetyCampaigns, keywords: "investigate review evidence road safety lotguard vehicle part traceability owners workshop repair recall" },
+];
+
 const NAV_GROUPS = [
   {
     label: "Operate",
     items: [
       { id: "command", label: "Command center", Icon: IconGrid, route: CommandCenter, keywords: "wallboard home overview live" },
-      { id: "call", label: "Voice agent", Icon: IconMic, route: CallWidget, keywords: "call widget mic speak contact" },
       { id: "console", label: "Live console", Icon: IconHeadset, route: LiveContactConsole, keywords: "supervisor takeover transcript" },
       { id: "cases", label: "Case queue", Icon: IconFolder, route: CaseQueue, keywords: "tickets severity priority p1 critical" },
-      { id: "safety-campaigns", label: "Safety campaigns", Icon: IconShield, route: SafetyCampaigns, keywords: "road safety lotguard vehicle part traceability owners workshop repair recall" },
     ],
   },
   {
@@ -76,7 +79,7 @@ const NAV_GROUPS = [
   },
 ];
 
-const ALL_NAV = NAV_GROUPS.flatMap((g) => g.items);
+const ALL_NAV = [...WORKFLOW_PAGES, ...NAV_GROUPS.flatMap((g) => g.items)];
 const EXTRA_PAGES = [
   { id: "signin", label: "Sign in", route: SignIn },
   { id: "signup", label: "Create account", route: SignIn },
@@ -132,7 +135,7 @@ function ShortcutSheet({ open, onClose }) {
     ["⌘ K / Ctrl K", "Open command palette"],
     ["g then j", "User journey & guide"],
     ["g then c", "Command center"],
-    ["g then v", "Voice agent"],
+    ["g then v", "Report"],
     ["g then l", "Live console"],
     ["g then q", "Case queue"],
     ["g then w", "Early warning"],
@@ -415,7 +418,7 @@ function Shell() {
       },
       {
         id: "act-voice",
-        label: "Start voice agent",
+        label: "Start voice report",
         group: "Ops power",
         keywords: "call mic speak",
         run: () => goHash("call"),
@@ -553,6 +556,7 @@ function Shell() {
     ...[["Investigate", "investigate", IconSpark], ["Review", "trace", IconShield], ["Evidence", "evidence", IconFolder]]
       .map(([label, tab, Icon]) => ({ label, Icon, target: workflowTarget(tab), current: active.id === "safety-campaigns" && hashQuery.tab === tab })),
   ];
+  const currentWorkflowStep = workflow.find((step) => step.current);
   const navList = (
     <>
       <nav aria-label="Engineer workflow" className="nav-group">
@@ -681,7 +685,7 @@ function Shell() {
                 </span>
               </>
             ) : null}
-            <span className="topbar-page">{active.label}</span>
+            <span className="topbar-page">{currentWorkflowStep?.label || active.label}</span>
           </div>
 
           <div className="topbar-right">

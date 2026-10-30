@@ -131,9 +131,15 @@ try {
   await expect(navigation.getByRole("button", { name: "Early warning", exact: true })).not.toBeVisible();
   await navigation.getByLabel("Advanced tools", { exact: true }).click();
   await expect(navigation.getByRole("button", { name: "Early warning", exact: true })).toBeVisible();
+  assert.equal(await navigation.getByRole("button", { name: "Report", exact: true }).count(), 1);
+  assert.equal(await navigation.getByRole("button", { name: "Voice agent", exact: true }).count(), 0);
+  assert.equal(await navigation.getByRole("button", { name: "Safety campaigns", exact: true }).count(), 0);
   await navigation.getByLabel("Advanced tools", { exact: true }).click();
   await workflow.getByRole("button", { name: "Report", exact: true }).click();
   await expect(local.page.getByRole("button", { name: "Start voice report", exact: true })).toBeVisible();
+  await expect(local.page.locator(".topbar-page")).toHaveText("Report");
+  await workflow.getByRole("button", { name: "Evidence", exact: true }).click();
+  await expect(local.page.locator(".topbar-page")).toHaveText("Evidence");
   await navigation.getByRole("button", { name: "Judge start →", exact: true }).click();
   console.log("PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.");
   await local.page.screenshot({ path: path.join(visuals, "judge-entry.png"), fullPage: true });

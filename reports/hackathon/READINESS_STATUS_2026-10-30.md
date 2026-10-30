@@ -36,6 +36,11 @@ replaced with investigation support. Screenshot inspection also found that the
 sidebar still exposed all 11 destinations; it now presents four workflow steps
 and keeps the existing tools in an expandable section. A bare `/ui/` opens the
 judge entry, and workflow tab links retain the current source/campaign query.
+The owner's subsequent sidebar check found duplicate Voice agent and Safety
+campaigns entries inside Advanced tools. Those entries are now removed, Report
+is the single report destination, and the header follows the selected workflow
+step. [Browser verification](navigation_2026_10_30/verification.json) covers the
+expanded sidebar and retains the existing authentication/report/review path.
 The public-link checker excludes video,
 checks a full candidate/submitted source SHA separately from the repository
 homepage, and cannot certify portal/team completion from a stored boolean.
