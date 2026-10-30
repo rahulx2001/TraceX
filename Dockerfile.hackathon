@@ -37,6 +37,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DOMAIN_PACK=automotive_nhtsa \
     FRONTLINE_ENABLED=1 \
+    FRONTLINE_BOOTSTRAP_LOCAL_TRUST=1 \
     API_HOST=0.0.0.0 \
     API_PORT=8000 \
     AI_DEMO_ENABLED=1 \
@@ -47,6 +48,7 @@ COPY --from=pydeps /usr/local/lib/python3.12/site-packages /usr/local/lib/python
 COPY --from=pydeps /usr/local/bin /usr/local/bin
 
 COPY src ./src
+COPY migrations ./migrations
 COPY domains ./domains
 COPY scripts ./scripts
 COPY eval ./eval

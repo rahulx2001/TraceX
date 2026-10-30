@@ -1,0 +1,69 @@
+{
+  "schema_version": "voice-validation-v1",
+  "generated_at": "2026-10-30T08:36:49.791338+00:00",
+  "status": "pending_real_audio",
+  "scope": "Consented microphone recordings and human attestations, not simulated timing; independent audit still required.",
+  "manifest_sha256": "0552965e7e14a2d7ad53a9ef5a234f4b53b9d394c3c805466c830d9fcf0c1f3a",
+  "turns": 0,
+  "participants": 0,
+  "sessions": 0,
+  "outcomes": {
+    "completed": 0,
+    "fallback": 0,
+    "failed": 0
+  },
+  "failure_categories": {},
+  "end_of_speech_to_first_audible_response": {
+    "n": 0,
+    "p50_ms": null,
+    "p95_ms": null,
+    "suppression_rule": "p50 needs >=5 audible turns; p95 needs >=40. These thresholds do not establish representativeness.",
+    "missing_or_no_audible_response": 0
+  },
+  "groups": {},
+  "human_graded_turns": 0,
+  "ungraded_turns": 0,
+  "critical_entities": {
+    "results": {},
+    "denominator": 0,
+    "by_field": {}
+  },
+  "observations": {
+    "correction_success": {
+      "true": 0,
+      "false": 0,
+      "denominator": 0,
+      "not_exercised_or_ungraded": 0
+    },
+    "interruption_success": {
+      "true": 0,
+      "false": 0,
+      "denominator": 0,
+      "not_exercised_or_ungraded": 0
+    },
+    "repetition": {
+      "true": 0,
+      "false": 0,
+      "denominator": 0,
+      "not_exercised_or_ungraded": 0
+    },
+    "endpointing_error": {
+      "true": 0,
+      "false": 0,
+      "denominator": 0,
+      "not_exercised_or_ungraded": 0
+    },
+    "agent_echo": {
+      "true": 0,
+      "false": 0,
+      "denominator": 0,
+      "not_exercised_or_ungraded": 0
+    }
+  },
+  "limits": [
+    "No recording or reviewer is created by this tool.",
+    "Provider timestamps/HTTP completion are not audible response timing.",
+    "Failures and ungraded turns remain in denominators.",
+    "Repeating one participant or fixture cannot establish device/language population performance."
+  ]
+}

@@ -16,6 +16,10 @@ done
 # treats a non-CFPB record id as corruption.
 python -m scripts.container_bootstrap
 
+# Fresh local pilot images create their own signing identity in persistent data.
+# Configured or production trust remains operator-owned; never disable its gate.
+python -m scripts.bootstrap_container_trust
+
 # Fail-closed when production-like (also enforced in app lifespan).
 if [ "${ENV:-}" = "production" ] || [ "${ENV:-}" = "prod" ] \
    || [ "${ENV:-}" = "staging" ] || [ "${ENV:-}" = "stage" ] \

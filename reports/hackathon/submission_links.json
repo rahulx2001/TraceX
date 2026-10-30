@@ -6,6 +6,10 @@
   "hosted_demo_url": null,
   "portal_url": null,
   "team_members": [],
+  "team_size": 1,
+  "team_size_source": "Owner confirmed they are the sole member on 30 October 2026; portal display name has not been supplied or verified.",
+  "portal_verification_status": "deferred_by_owner_until_checks_complete",
+  "current_pass_excludes": ["hosted_demo", "video", "portal_upload_or_submission"],
   "portal_submission_confirmed": false,
   "note": "Set final public URLs, actual team names and the submitted commit only after they exist. A packaged candidate is not a submitted entry. Video is an owner task outside the 30 October readiness pass and does not gate these checks. Never store credentials here."
 }

@@ -1,0 +1,39 @@
+name: container-readiness
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['submission/readiness-*']
+    paths:
+      - 'Dockerfile.hackathon*'
+      - 'requirements*.txt'
+      - 'docker/**'
+      - 'src/**'
+      - 'dashboard/**'
+      - 'scripts/docker_readiness.py'
+      - 'scripts/submission_smoke.py'
+      - 'scripts/prepare_review_assets.py'
+      - 'scripts/templates/**'
+      - '.github/workflows/container-readiness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  current-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build the current source with no developer cache
+        run: docker build --pull --no-cache --label "org.opencontainers.image.revision=$GITHUB_SHA" -f Dockerfile.hackathon -t tracex-readiness:ci .
+      - name: Current campaign, authentication, review assets and restart
+        run: python3 -m scripts.docker_readiness --image tracex-readiness:ci --expected-revision "$GITHUB_SHA" --output reports/hackathon/container_validation/ci.json
+      - name: Retain actual container result and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-readiness-${{ github.sha }}
+          path: reports/hackathon/container_validation/ci.*
+          if-no-files-found: warn
