@@ -8,6 +8,8 @@ cryptography>=42,<46
 uvicorn[standard]>=0.27,<1.0
 pydantic>=2.6,<3.0
 duckdb>=0.10,<2.0
+# DuckDB's Python TIMESTAMPTZ results require pytz; local pandas installs hid it.
+pytz>=2025.2
 pyarrow>=22.0,<25.0
 pyyaml>=6.0,<7.0
 python-ulid>=2.2,<4.0

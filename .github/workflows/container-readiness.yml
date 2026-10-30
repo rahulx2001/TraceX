@@ -4,20 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: ['submission/readiness-*']
-    paths:
-      - 'Dockerfile.hackathon*'
-      - 'requirements*.txt'
-      - 'migrations/**'
-      - 'docker/**'
-      - 'src/**'
-      - 'dashboard/**'
-      - 'scripts/docker_readiness.py'
-      - 'scripts/bootstrap_container_trust.py'
-      - 'scripts/container_bootstrap.py'
-      - 'scripts/submission_smoke.py'
-      - 'scripts/prepare_review_assets.py'
-      - 'scripts/templates/**'
-      - '.github/workflows/container-readiness.yml'
 
 permissions:
   contents: read
