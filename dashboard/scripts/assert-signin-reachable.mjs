@@ -123,8 +123,19 @@ try {
 
   const open = await startServer("open");
   const local = await isolatedPage(open.base);
-  await local.page.goto(`${open.base}/ui/#demo`);
+  await local.page.goto(`${open.base}/ui/`);
   await expect(local.page.getByRole("heading", { name: "From an owner report to a reviewable investigation" })).toBeVisible();
+  const navigation = local.page.getByRole("complementary", { name: "Primary", exact: true });
+  const workflow = navigation.getByRole("navigation", { name: "Engineer workflow", exact: true });
+  assert.deepEqual(await workflow.getByRole("button").allTextContents(), ["Report", "Investigate", "Review", "Evidence"]);
+  await expect(navigation.getByRole("button", { name: "Early warning", exact: true })).not.toBeVisible();
+  await navigation.getByLabel("Advanced tools", { exact: true }).click();
+  await expect(navigation.getByRole("button", { name: "Early warning", exact: true })).toBeVisible();
+  await navigation.getByLabel("Advanced tools", { exact: true }).click();
+  await workflow.getByRole("button", { name: "Report", exact: true }).click();
+  await expect(local.page.getByRole("button", { name: "Start voice report", exact: true })).toBeVisible();
+  await navigation.getByRole("button", { name: "Judge start →", exact: true }).click();
+  console.log("PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.");
   await local.page.screenshot({ path: path.join(visuals, "judge-entry.png"), fullPage: true });
   await local.page.goto(`${open.base}/ui/#signin`);
   await expect(local.page.getByTestId("signin-page")).toBeVisible();

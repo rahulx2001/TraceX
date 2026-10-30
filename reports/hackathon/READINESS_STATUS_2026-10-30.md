@@ -32,7 +32,11 @@ unit tests exercise claim-level correction context; neither proves that live
 Meta will always incorporate a correction.
 
 Remaining crash-prevention promises in the README and earlier product tour were
-replaced with investigation support. The public-link checker excludes video,
+replaced with investigation support. Screenshot inspection also found that the
+sidebar still exposed all 11 destinations; it now presents four workflow steps
+and keeps the existing tools in an expandable section. A bare `/ui/` opens the
+judge entry, and workflow tab links retain the current source/campaign query.
+The public-link checker excludes video,
 checks a full candidate/submitted source SHA separately from the repository
 homepage, and cannot certify portal/team completion from a stored boolean.
 

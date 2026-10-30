@@ -16,6 +16,6 @@ export default function JudgeEntry() {
       <li><h2>Evidence</h2><p>Inspect the source lineage, recorded decisions and separate repair verification.</p><button onClick={() => goHash("safety-campaigns?tab=evidence")}>Open evidence packet</button></li>
     </ol>
     <p className="sc-muted">Human accuracy and time savings remain pending real reviewer participation. The scoped historical matching result is research evidence; this demonstration shows investigation support.</p>
-    <details><summary>Advanced tools and earlier platform tour</summary><p>The sidebar provides the reused operations platform. <a href="#legacy-demo">Open the earlier intake and LotGuard tour</a>.</p></details>
+    <details><summary>Advanced tools and earlier platform tour</summary><p>Expand Advanced tools in the sidebar for the reused operations platform. <a href="#legacy-demo">Open the earlier intake and LotGuard tour</a>.</p></details>
   </section>;
 }

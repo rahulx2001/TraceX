@@ -542,8 +542,29 @@ function Shell() {
     return <Page initialMode={active.id} onNavigate={setRoute} />;
   }
 
+  function workflowTarget(tab) {
+    const params = new URLSearchParams(active.id === "safety-campaigns" ? hashQuery : {});
+    params.set("tab", tab);
+    params.delete("action");
+    return `safety-campaigns?${params}`;
+  }
+  const workflow = [
+    { label: "Report", target: "call", Icon: IconMic, current: active.id === "call" },
+    ...[["Investigate", "investigate", IconSpark], ["Review", "trace", IconShield], ["Evidence", "evidence", IconFolder]]
+      .map(([label, tab, Icon]) => ({ label, Icon, target: workflowTarget(tab), current: active.id === "safety-campaigns" && hashQuery.tab === tab })),
+  ];
   const navList = (
     <>
+      <nav aria-label="Engineer workflow" className="nav-group">
+        <div className="nav-group-label">Investigation workflow</div>
+        {workflow.map(({ label, target, Icon, current }) => <button key={label} type="button"
+          className={`nav-item${current ? " active" : ""}`} aria-label={label} aria-current={current ? "page" : undefined}
+          title={collapsed ? label : undefined} onClick={() => setRoute(target)}>
+          <span className="nav-ico" aria-hidden="true"><Icon /></span><span className="nav-text">{label}</span>
+        </button>)}
+      </nav>
+      <details className="advanced-nav" key={active.id} open={!["call", "safety-campaigns", "demo"].includes(active.id)}>
+      <summary aria-label="Advanced tools" title={collapsed ? "Advanced tools" : undefined}><span aria-hidden="true">⚙</span><span className="nav-text">Advanced tools</span></summary>
       {NAV_GROUPS.map((g) => (
         <div key={g.label} className="nav-group">
           <div className="nav-group-label">{g.label}</div>
@@ -556,6 +577,7 @@ function Shell() {
                 type="button"
                 className={"nav-item" + (isActive ? " active" : "")}
                 aria-current={isActive ? "page" : undefined}
+                aria-label={n.label}
                 onClick={() => setRoute(n.id)}
                 title={collapsed ? n.label : undefined}
               >
@@ -568,6 +590,7 @@ function Shell() {
           })}
         </div>
       ))}
+      </details>
     </>
   );
 

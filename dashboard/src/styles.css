@@ -301,6 +301,9 @@ label.check-row {
 .nav-group {
   margin-top: 14px;
 }
+.advanced-nav { margin-top: 12px; }
+.advanced-nav > summary { display: flex; gap: 10px; align-items: center; cursor: pointer; padding: 12px; color: var(--ink-soft); font-size: 13px; }
+.advanced-nav > summary:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
 .nav-group-label {
   font-size: 12px;
   font-weight: 500;
