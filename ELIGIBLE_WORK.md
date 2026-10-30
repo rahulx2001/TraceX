@@ -32,8 +32,8 @@ The committed contribution range is **`de3c483946..HEAD`** in TraceX. Working-tr
 - Honest Indie-only submission wording, bounded feature claims, MIT application license and third-party notice.
 - Regressions and recorded verification results in `reports/HACKATHON_FIX_RESULTS_2026-10-28.md`.
 
-Additional local work now has its own evidence and must be included in the final
-submission delta before it is demonstrated as submitted functionality:
+Readiness implementation was committed in `b8afe38` before this follow-up pass.
+The following inventory is part of that committed foundation for the candidate:
 
 | Local addition | Source and evidence |
 |---|---|
@@ -44,11 +44,10 @@ submission delta before it is demonstrated as submitted functionality:
 | Current route/authentication, reviewed report handoff, inspectable trace sources, claim corrections and bounded run recovery | `dashboard/routes/JudgeEntry.jsx`, `dashboard/routes/CallWidget.jsx`, `src/ai_layer/report_sources.py`, `src/ai_layer/claim_support.py`, `src/ai_layer/operation_trace.py`, `dashboard/scripts/assert-signin-reachable.mjs`, `docs/entry-auth-validation.md` |
 | Current seed/container review assets, credit-free replay, claim index and public-link checks | `scripts/submission_smoke.py`, `scripts/public_replay.py`, `scripts/submission_manifest.py`, `scripts/package_public_replay.py`, `reports/hackathon/CLAIM_INDEX.md`, `reports/hackathon/link_checks/results.json` |
 
-This inventory names the local additions; it is not a substitute for reviewing
-their history against the imported baseline. The 28 October
-`reports/hackathon/source_manifest.json` remains a historical snapshot and does
-not attest to the later working tree. The final video must show which specific
-new steps it demonstrates and disclose the reused platform.
+This inventory does not replace a review of history against the imported
+baseline. The current `reports/hackathon/source_manifest.json` must identify the
+packaged source commit; older manifests remain in Git history. Video work is
+outside this readiness pass and belongs to the owner.
 
 ## Package the final source
 
@@ -72,9 +71,11 @@ history. A subsequent implementation change requires a new source manifest.
 
 Verify a fresh checkout of the pinned source commit with the public replay,
 production authentication/browser path and current container CI. Record the
-actual submitted commit and accessible video in
+candidate source commit separately from the actual submitted commit in
 [`submission_links.json`](reports/hackathon/submission_links.json). Its empty
 values and pending verification must not be interpreted as a completed release.
+The current link check covers public source and hosted demo, with portal/team
+inspection recorded separately. A missing video does not gate this pass.
 
 ## Verify the dates and delta
 

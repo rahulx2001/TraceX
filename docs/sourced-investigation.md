@@ -21,6 +21,10 @@ resolves the original reply on the server instead of copying its text.
 Interaction sources retain the interaction and turn IDs, speaker, UTC
 timestamps, source version and hashes; citations link to the original stored
 record. Personal information is redacted before model input and packet storage.
+Citation spans end at either punctuation or a line boundary, so speech turns
+without terminal punctuation remain citable, including denials and corrections.
+This parser change is versioned as `complaint-evidence-v4-line-complete-citations`;
+historical model artifacts retain their original versions and results.
 Recorded owner replies retain author/date/vehicle lineage and are labelled as
 operator transcriptions. Separately typed text is labelled manual and has no
 original-record claim. A changed, erased, active or unavailable source is
@@ -88,11 +92,11 @@ PLAYWRIGHT_CHANNEL=chrome npm run test:signin
 
 The browser check builds current assets and starts isolated real backends for
 entry/auth and a text/WebSocket report → stored source → manual investigation
-→ supervisor review → downloaded packet check. Separate UI fixtures check
+→ correction review → linked revision → supervisor acceptance → downloaded packet check. Separate UI fixtures check
 correction controls and voice behavior. UI transport simulations do not measure real speech quality,
 multilingual accuracy, live Meta reliability or reviewer usefulness. The
-historical three-minute recording below predates this handoff; a final video
-still needs to be recorded and external links checked.
+historical recording predates this handoff. Video work is outside this readiness
+pass and remains an owner task; it does not gate the source and link checks here.
 
 Build the dashboard and restart the normal API using its existing server-side
 Meta configuration. The established API budgets and daily cap still apply.

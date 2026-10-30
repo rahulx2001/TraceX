@@ -58,6 +58,46 @@ def test_stored_turns_reach_packet_with_lineage_and_redaction(scenario):
     assert sc.get_campaign(scenario["campaign_id"]) == before
 
 
+def test_unpunctuated_multilingual_turns_remain_citable_through_revision(scenario):
+    # Browser/STT transcripts need not add terminal punctuation. Every stored
+    # owner turn must remain available to the model, including denials/corrections.
+    reports = ["No fire", "नहीं, मैंने 2018 कहा", "Meri Toyota Camry bumps par khat khat karti hai"]
+    for seq, text in enumerate(reports, start=4):
+        persist_turn("voice-source", {"turn_id": f"turn-{seq}", "seq": seq, "speaker": "customer", "text": text})
+    preview = rs.interaction_report("voice-source")
+    draft = investigate(scenario)
+    source = draft["report_sources"][0]
+    citations = ce.citations([source])
+    for seq, text in enumerate(reports, start=4):
+        matches = [c for c in citations.values() if c["quote"] == text]
+        assert len(matches) == 1, f"Owner turn omitted or duplicated in citable evidence: {text}"
+        citation = matches[0]
+        assert citation["source_turn"]["turn_id"] == f"turn-{seq}"
+        assert source["text"][citation["start"]:citation["end"]] == text
+        assert citation["source_turn"]["at"]
+    reviewed = ci.review(scenario["campaign_id"], draft["run_id"], {
+        "decision": "needs_correction", "attestation": True,
+        "note": "Fixture operator correction: keep the denial and model year 2018 explicit.",
+    }, "fixture-engineer", "agent")
+    revision = investigate(scenario, source_ref=None, request_id="unpunctuated-revision", parent_run_id=draft["run_id"])
+    assert revision["report_sources"] == draft["report_sources"]
+    assert revision["report_sources"][0]["source_ref"] == preview["source_ref"]
+    assert revision["correction_context"]["review"] == reviewed["review"]
+    assert ce.citations(revision["report_sources"]) == citations
+    assert ci.list_runs(scenario["campaign_id"])[0] == reviewed
+
+
+@pytest.mark.parametrize("text,quotes", [
+    ("No fire\nModel year 2018\nKnocking", ["No fire", "Model year 2018", "Knocking"]),
+    ("No fire\r\n\r\n  मॉडल वर्ष २०१८  \n", ["No fire", "मॉडल वर्ष २०१८"]),
+    ("No smoke. No fire!\nसुधार: 2018।\nPart unknown", ["No smoke.", "No fire!", "सुधार: 2018।", "Part unknown"]),
+])
+def test_report_line_boundaries_preserve_exact_quotes(text, quotes):
+    source = ce.source("line-boundaries", text)
+    assert [s["quote"] for s in source["sentences"]] == quotes
+    assert all(source["text"][s["start"]:s["end"]] == s["quote"] for s in source["sentences"])
+
+
 def test_unreviewed_forged_changed_and_live_sources_are_refused(scenario):
     for kwargs in ({"source_reviewed": False}, {"vehicle_association_confirmed": False}, {"text": "Fabricated quote"}):
         with pytest.raises(sc.CampaignError):

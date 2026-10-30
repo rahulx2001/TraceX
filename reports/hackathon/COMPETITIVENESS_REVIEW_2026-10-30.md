@@ -1,5 +1,9 @@
 **TraceX: competitive-readiness review — 30 October 2026**
 
+Historical review of the pre-fix tree. The owner's subsequent instructions and
+[current status](READINESS_STATUS_2026-10-30.md) govern this pass. The video
+recommendations below are archived, outside the active work, and do not gate it.
+
 TraceX has a substantial implementation, but the current evidence does not establish first-prize readiness. Its strongest submission is a quality-engineer workflow: a multilingual owner report becomes a source-cited investigation, missing evidence is resolved, a documented part/lot association is reviewed, and the action and repair evidence remain inspectable.
 
 This review uses the current working tree, the supplied voice-agent screenshot, saved integration/evaluation artifacts and the supplied judging rubric. It is a source and evidence review, not a fresh live test of every feature or an estimate of winning probability. Recommendations below are not completed changes. No model calls, human labels or participant results were created for this review. The only check rerun was the existing `npm run test:signin`; it passes despite the route-registry problem described below.

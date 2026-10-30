@@ -1,10 +1,11 @@
 {
   "repository_url": "https://github.com/rahulx2001/TraceX",
   "submitted_source_commit": null,
+  "candidate_source_commit": null,
   "video_url": null,
   "hosted_demo_url": null,
   "portal_url": null,
   "team_members": [],
   "portal_submission_confirmed": false,
-  "note": "Set final public URLs, actual team names and the submitted commit only after they exist. This is a completion checklist, not a submitted entry. Never store credentials here."
+  "note": "Set final public URLs, actual team names and the submitted commit only after they exist. A packaged candidate is not a submitted entry. Video is an owner task outside the 30 October readiness pass and does not gate these checks. Never store credentials here."
 }

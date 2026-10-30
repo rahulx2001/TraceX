@@ -18,7 +18,7 @@ The check builds into a new temporary directory and starts the actual API with t
 - An invalid API key stays refused; a valid operator key is accepted without disk persistence unless selected.
 - An operator sees the server's refusal when attempting a real-campaign draft review.
 - An issued supervisor token becomes an HttpOnly cookie and permits a review whose saved actor matches the authenticated supervisor.
-- A real local text contact sends consent, a report and a correction over WebSocket; the ended report reaches a reviewed source-reference investigation without retyping, then a downloaded packet retains its original turn IDs. This exercises manual fallback with model calls disabled.
+- A real local text contact sends consent, a punctuation-free report, a denial and a year correction over WebSocket. Every turn remains citable. A recorded correction review becomes a linked revision without retyping, and the downloaded packet retains both reviews and the original turn IDs. This exercises manual fallback with model calls disabled; it does not establish model obedience to a correction.
 - Open local mode needs no credential, still exposes sign-in and retains `agent` authority.
 
 No developer credentials, running demo server, external service, model credit or human evaluation result is used. These are UI/authentication regressions, not speech-quality or productivity measurements. Temporary fixture records are explicitly fictional even though the permission test exercises the non-demo campaign policy.

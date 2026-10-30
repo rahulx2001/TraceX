@@ -201,11 +201,11 @@ export default function DemoMode({ hashQuery }) {
   return (
     <div className="demo-mode" style={{ maxWidth: 1100 }}>
       <header style={{ marginBottom: 14 }}>
-        <h1 style={{ marginBottom: 4 }}>Catch vehicle faults before they cause crashes</h1>
+        <h1 style={{ marginBottom: 4 }}>Earlier complaint intake and evidence tour</h1>
         <p className="muted" style={{ marginTop: 0 }}>
-          TraceX is designed to record customer complaints (voice, Hindi or English, with photos), link them to
-          NHTSA-shaped warehouse data, and flag safety defects early. This demo seed is synthetic; the transcript and
-          generated photo are labelled SYNTHETIC. The status distinguishes configured models from verified live features.
+          TraceX helps quality and service engineers review owner reports against source records.
+          This earlier tour uses synthetic records and optional tools. Start the current Report → Investigate → Review → Evidence
+          workflow at <a href="#demo">Judge start</a>. Prediction remains historical research; accident reduction is unmeasured.
         </p>
         <div className="row" style={{ gap: 8, flexWrap: "wrap", alignItems: "center" }}>
           {status && <MetaTag mode={status.mode} models={status.mode === "enhanced" ? [status.models?.text, status.models?.segmentation].filter(Boolean) : []} />}

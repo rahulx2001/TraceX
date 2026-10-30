@@ -1,5 +1,10 @@
 # TraceX: stronger prediction evidence and hackathon submission
 
+Historical plan, superseded for this pass by the owner's investigation-first
+instructions and [current readiness status](READINESS_STATUS_2026-10-30.md).
+Its threshold targets and video schedule are not current tasks. Video work is
+outside this pass and remains the owner's later task.
+
 Prepared 30 October 2026 after the owner chose to prioritize both objectives.
 This is an implementation and evaluation plan. Proposed capabilities, targets,
 participant counts and future measurements below are not completed results.

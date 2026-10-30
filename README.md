@@ -3,15 +3,15 @@
 <!-- [AI-LAYER] mission line -->
 > **TraceX helps automotive quality and service engineers turn multilingual owner reports into source-cited investigations, reviewed next steps and inspectable repair evidence.**
 > 
-> **Meta Global AI Developer Hackathon:** **Indie developer track**, primarily **Build for Your World**. Muse Spark text intake has a recorded live proof; SAM/photo analysis and image generation are separate optional capabilities. See [HACKATHON.md](HACKATHON.md), [ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
+> **Meta Global AI Developer Hackathon:** **Indie developer track**, primarily **Build for Your World**. Meta's contribution is cited extraction and the choice of a bounded evidence lookup or follow-up. See [HACKATHON.md](HACKATHON.md), [ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and the [claim-to-artifact index](reports/hackathon/CLAIM_INDEX.md).
 
 The primary user is an **automotive quality or service engineer** reviewing an owner complaint against installation and workshop records. TraceX is a single-tenant pilot: a **domain pack** (YAML + CSV) supplies the intake questions, safety rules and known issues. Prediction remains a scoped historical research result; accident reduction and investigator time savings have not been established.
 
 The product name is TraceX. API paths and environment variables still use `frontline` (`/api/frontline/*`, `FRONTLINE_*`).
 
-**Safety campaigns:** the console now supports component-lot traceability, reviewed simulated owner outreach, repeat symptom reports, workshop inspections, exact-part repair verification, follow-up and evidence export. Start at `#safety-campaigns`; see the [build and demo guide](docs/safety-campaigns.md). Outreach is simulated, and accident reduction is an objective rather than a measured product result.
+**Safety campaigns:** the console supports component-lot traceability, reviewed simulated owner outreach, repeat symptom reports, workshop inspections, exact-part repair verification, follow-up and evidence export. Start at `#demo`; see the [workflow guide](docs/safety-campaigns.md). Outreach is simulated; accident reduction has not been measured.
 
-**Sourced Meta investigations:** the campaign's **Meta investigation** tab extracts cited observations, selects read-only evidence lookups, asks for missing information and updates a reviewable brief. Independent review packs and a timed reviewer study are prepared; human results are pending. See [the feature, comparison protocol and three-minute demo](docs/sourced-investigation.md).
+**Sourced Meta investigations:** the campaign's **Meta investigation** tab extracts cited observations, selects read-only evidence lookups, asks for missing information and updates a reviewable brief. Independent review packs and a timed reviewer study are prepared; human results are pending. See [the feature and comparison protocol](docs/sourced-investigation.md).
 
 **Judge entry:** open `#demo` for **Report → Investigate → Review → Evidence**. Finish a voice or typed report, choose **Investigate this report**, review the stored customer turns and confirm the campaign vehicle. The investigation keeps original turn IDs and source hashes without retyping. Correct a draft claim, record the review, and create a linked revision. Imported CSV assertions remain unverified until a reviewer attaches installation-record contents. Fictional seed reviews and saved Meta replays remain labelled; they are not participant results.
 
@@ -240,7 +240,7 @@ Every ordinary customer-visible line is ledgered before it is sent. A failed tra
 <!-- [AI-LAYER] optional Meta AI layer section (additive) -->
 ## AI Layer (optional)
 
-**Mission: reduce road accidents by catching vehicle faults early, from every call, in the caller's own language.**
+**Purpose: help a quality or service engineer turn an owner report into a source-cited investigation and a documented, reviewed next step.** Accident reduction and field productivity remain unmeasured; prediction is scoped historical research.
 
 > **Evidence status (2026-10-28):** live Muse Spark text intake is recorded in
 > `reports/hackathon/meta_live_smoke.json`. Feature-specific verification appears

@@ -74,7 +74,7 @@ See [`ELIGIBLE_WORK.md`](ELIGIBLE_WORK.md) for the actual baseline, original sou
 
 The participant guide supplied by the owner gives kickoff as 26 October, the building period as **27 October–4 November**, and the deadline as **4 November at 9 PM Eastern**. It explicitly requires a **public repository** and a **three-minute demo video** highlighting the features, code and functionality built during the event. Existing codebases may be used, but new contributions must be clearly identified; failure to identify them can disqualify a submission. Reused foundation must be disclosed as context, and the demo must highlight event-built work. Check the portal for its accepted video container and upload details.
 
-The published rubric is Impact **30%**, Use of Meta AI Tooling **25%**, Technical Depth & Execution **20%**, and Demo **25%**. The next work is prioritized in [`reports/hackathon/IMPROVEMENT_PLAN_2026-10-30.md`](reports/hackathon/IMPROVEMENT_PLAN_2026-10-30.md); that plan contains proposed work and acceptance criteria, not claimed results.
+The published rubric is Impact **30%**, Use of Meta AI Tooling **25%**, Technical Depth & Execution **20%**, and Demo **25%**. The active scope and evidence gaps are in [`reports/hackathon/READINESS_STATUS_2026-10-30.md`](reports/hackathon/READINESS_STATUS_2026-10-30.md). Earlier plans are historical. Video production and scripting are outside this pass and remain the owner's later task.
 
 ## Historical results — context, not Meta prediction accuracy
 

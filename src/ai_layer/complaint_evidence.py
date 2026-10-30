@@ -13,7 +13,7 @@ import time
 from src.ai_layer import config, meta_client, claim_support
 from src.security.pii import redact_pii
 
-VERSION = "complaint-evidence-v3-critical-support"
+VERSION = "complaint-evidence-v4-line-complete-citations"
 FIELDS = ["vehicle", "part", "symptom", "failure_mode", "timing", "negation", "uncertainty"]
 TOOLS = ["installed_part", "workshop_history", "owner_history"]
 QUESTIONS = {
@@ -28,7 +28,10 @@ QUESTIONS = {
 
 def source(source_id: str, text: str, kind: str = "owner_report") -> dict:
     redacted = redact_pii(text)
-    spans = list(re.finditer(r"[^\n.!?।]+(?:[.!?।]+|$)", redacted))
+    # Stored speech turns are newline-separated and often have no terminal
+    # punctuation. A newline must end a citable span, without being consumed
+    # or changing the exact offsets into the stored, redacted report.
+    spans = list(re.finditer(r"[^\n.!?।]+(?:[.!?।]+|(?=\n|$))", redacted))
     sentences = []
     for match in spans:
         raw = match.group()

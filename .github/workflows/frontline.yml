@@ -85,6 +85,9 @@ jobs:
           E2E_PYTHON: python
         run: npm run test:signin
 
+      - name: Public-link scope and submission truthfulness
+        run: node --test dashboard/scripts/public-link-scope.test.mjs
+
       - name: Public credit-free evidence replay
         run: python -m scripts.public_replay
 
