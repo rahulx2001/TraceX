@@ -8,8 +8,7 @@ import InsightsBoard from "./InsightsBoard.jsx";
 import QualityEconomics from "./QualityEconomics.jsx";
 // [AI-LAYER] safety-first queue + NHTSA backtest headline (deterministic, real data)
 import SafetyRiskBoard from "../src/ai/SafetyRiskBoard.jsx";
-
-
+import "./early-warning.css";
 
 export default function EarlyWarningBoard() {
   const hashQ = hashQueryObject();
@@ -169,12 +168,12 @@ export default function EarlyWarningBoard() {
   }
 
   return (
-    <div className="page-enter">
+    <div className="page-enter early-warning-page">
       <header className="page-header">
         <div>
           <h1>Early warning</h1>
           <p className="sub">
-            Snapshot tiles, weekly funnel, and risk cards — simulate traffic to light the board.
+            Monitor safety risks, investigations and weekly activity.
           </p>
         </div>
         <div className="page-actions">
@@ -206,9 +205,6 @@ export default function EarlyWarningBoard() {
           </button>
         </div>
       </header>
-      {/* [AI-LAYER] safety-first ordering of open investigations */}
-      <SafetyRiskBoard />
-
       {error && (
         <div className="banner banner-error" role="alert">
           {error}{" "}
@@ -218,7 +214,7 @@ export default function EarlyWarningBoard() {
         </div>
       )}
 
-      <div className="tabs" role="tablist" aria-label="Early warning desk">
+      <div className="tabs warning-desk-tabs" role="tablist" aria-label="Early warning desk">
         <button
           type="button"
           role="tab"
@@ -252,7 +248,10 @@ export default function EarlyWarningBoard() {
       {boardTab === "economics" && <QualityEconomics embedded />}
       {boardTab === "risk" && (
       <>
-      <div className="tabs" role="tablist" aria-label="Early warning views">
+      {/* [AI-LAYER] safety-first ordering of open investigations */}
+      <SafetyRiskBoard compact />
+
+      <div className="tabs warning-view-tabs" role="tablist" aria-label="Early warning views">
         <button
           type="button"
           role="tab"
@@ -292,44 +291,51 @@ export default function EarlyWarningBoard() {
 
       {tab === "clusters" && !loading && (
         <>
-          {metrics && (
-            <div className="snapshot-grid">
-              <div className="snapshot-tile">
-                <div className="k">Open cases</div>
-                <div className="v">{metrics.cases?.open ?? 0}</div>
-                <div className="h">7-day snapshot</div>
-              </div>
-              <div className="snapshot-tile danger">
-                <div className="k">Critical open</div>
-                <div className="v">{metrics.cases?.critical_open ?? 0}</div>
-                <div className="h">needs eyes</div>
-              </div>
-              <div className="snapshot-tile warn">
-                <div className="k">Investigations</div>
-                <div className="v">{metrics.investigations?.open ?? 0}</div>
-                <div className="h">open</div>
-              </div>
-              <div className="snapshot-tile accent">
-                <div className="k">Active calls</div>
-                <div className="v">{metrics.interactions_active ?? 0}</div>
-                <div className="h">live right now</div>
-              </div>
+          {(metrics || funnel) && (
+            <div className="warning-overview">
+              {metrics && (
+                <div className="snapshot-grid">
+                  <div className="snapshot-tile">
+                    <div className="k">Open cases</div>
+                    <div className="v">{metrics.cases?.open ?? 0}</div>
+                    <div className="h">7-day snapshot</div>
+                  </div>
+                  <div className="snapshot-tile danger">
+                    <div className="k">Critical open</div>
+                    <div className="v">{metrics.cases?.critical_open ?? 0}</div>
+                    <div className="h">Needs attention</div>
+                  </div>
+                  <div className="snapshot-tile warn">
+                    <div className="k">Investigations</div>
+                    <div className="v">{metrics.investigations?.open ?? 0}</div>
+                    <div className="h">open</div>
+                  </div>
+                  <div className="snapshot-tile accent">
+                    <div className="k">Active calls</div>
+                    <div className="v">{metrics.interactions_active ?? 0}</div>
+                    <div className="h">live right now</div>
+                  </div>
+                </div>
+              )}
+              {funnel && (
+                <div className="warning-activity">
+                  <div className="warning-activity-label">Weekly activity</div>
+                  <div className="funnel" aria-label="Weekly funnel">
+                    <div className="funnel-step"><div className="n">{funnel.started ?? 0}</div><div className="l">started</div></div>
+                    <div className="funnel-step"><div className="n">{funnel.completed ?? 0}</div><div className="l">completed</div></div>
+                    <div className="funnel-step"><div className="n">{funnel.cases_created ?? 0}</div><div className="l">cases</div></div>
+                    <div className="funnel-step"><div className="n">{funnel.advisories_notified ?? 0}</div><div className="l">advisories</div></div>
+                    <div className="funnel-step"><div className="n">{funnel.escalated ?? 0}</div><div className="l">escalated</div></div>
+                    <div className="funnel-step"><div className="n">{funnel.takeovers ?? 0}</div><div className="l">takeovers</div></div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {funnel && funnel.include_simulated === false && funnel.simulated_count != null && (
             <p className="faint" style={{ margin: "0 0 10px" }}>
               {funnel.simulated_count} simulated contacts excluded from this board
             </p>
-          )}
-          {funnel && (
-            <div className="funnel" aria-label="Weekly funnel">
-              <div className="funnel-step"><div className="n">{funnel.started ?? 0}</div><div className="l">started</div></div>
-              <div className="funnel-step"><div className="n">{funnel.completed ?? 0}</div><div className="l">completed</div></div>
-              <div className="funnel-step"><div className="n">{funnel.cases_created ?? 0}</div><div className="l">cases</div></div>
-              <div className="funnel-step"><div className="n">{funnel.advisories_notified ?? 0}</div><div className="l">advisories</div></div>
-              <div className="funnel-step"><div className="n">{funnel.escalated ?? 0}</div><div className="l">escalated</div></div>
-              <div className="funnel-step"><div className="n">{funnel.takeovers ?? 0}</div><div className="l">takeovers</div></div>
-            </div>
           )}
 
           <div className="panel" style={{ marginTop: 12 }}>

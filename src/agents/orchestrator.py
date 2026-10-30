@@ -232,7 +232,7 @@ class Orchestrator:
         ``region`` 2.4: two-party/biometric consent branching. ``dtmf`` 2.4.
         ``turn_seq``: monotonic client sequence for durable dedup diagnostics.
         ``drive_hint``: client-reported driving state for drive_mode_guard.
-        ``locale``: BCP-47 client locale; pack locale wins when set.
+        ``locale``: validated speech preference selected at report start.
         """
         if getattr(self, "_erased", False) or getattr(self.ctx, "_erased", False):
             return
@@ -260,13 +260,9 @@ class Orchestrator:
             self.ctx.region = str(region).strip() or self.ctx.region
         if locale:
             try:
-                pack_locale = getattr(self.ctx.pack, "locale", None) or "en-US"
-                # Pack locale is authoritative; client locale is a fallback hint.
-                if (pack_locale or "en-US") == "en-US":
-                    self.ctx.locale = str(locale).strip() or self.ctx.locale
-                else:
-                    self.ctx.locale = pack_locale
-            except Exception:
+                from src.voice.language import speech_locale
+                self.ctx.locale = speech_locale(locale)
+            except ValueError:
                 pass
         if self.ctx.region:
             try:
@@ -1445,9 +1441,9 @@ class Orchestrator:
 
                 with _ops_con() as _con:
                     _con.execute(
-                        "UPDATE handoff_requests SET status = 'claimed'"
+                        "UPDATE handoff_requests SET status = 'claimed', claimed_by = ?"
                         " WHERE interaction_id = ? AND status = 'pending'",
-                        [self.ctx.interaction_id],
+                        [self.ctx.takeover_claimed_by, self.ctx.interaction_id],
                     )
             except Exception:
                 pass
@@ -1821,7 +1817,7 @@ class Orchestrator:
         # Notify both caller and console that this is now a live queue item.
         # This also keeps a spoken request visually consistent with the button.
         await self.hooks._maybe(self.hooks.emit_handoff_offer)
-        spoken = "Connecting you to a human specialist now — thanks for holding."
+        spoken = "Your specialist request is queued. A specialist has not joined yet; please keep this report open while waiting."
         turn = self.ctx.record_turn("agent", spoken, llm_used=False)
         await self.hooks._maybe(
             self.hooks.emit_customer_turn,

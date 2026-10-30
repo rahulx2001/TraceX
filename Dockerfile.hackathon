@@ -1,7 +1,14 @@
 # [AI-LAYER] TraceX hackathon image: the pilot image + optional Meta AI layer demo.
-# Same stages as ./Dockerfile; adds the committed NHTSA backtest reports and a
-# first-start demo seed. Build/run via docker-compose.hackathon.yml.
+# Adds the sourced-investigation seed and the exact review assets advertised
+# by the current judge path. Build/run via docker-compose.hackathon.yml.
 # Smoke: curl -sf http://127.0.0.1:8000/health
+
+# Review JavaScript is generated from the same templates as the served HTML.
+FROM python:3.12-slim AS review-assets
+WORKDIR /app
+COPY scripts/templates ./scripts/templates
+COPY scripts/prepare_review_assets.py ./scripts/prepare_review_assets.py
+RUN python scripts/prepare_review_assets.py
 
 # ── Dashboard (Vite production build) ──────────────────────────────────────
 FROM node:20-alpine AS dashboard
@@ -10,6 +17,7 @@ COPY dashboard/package.json dashboard/package-lock.json* ./
 # Hermetic when lockfile present; falls back to install for fresh trees
 RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 COPY dashboard/ ./
+COPY --from=review-assets /app/dashboard/public/review-scripts ./public/review-scripts
 RUN npm run build
 
 # ── Python deps (wheels only; no compiler in final image) ──────────────────
@@ -44,6 +52,13 @@ COPY scripts ./scripts
 COPY eval ./eval
 COPY reports/nhtsa ./reports/nhtsa
 COPY reports/hackathon ./reports/hackathon
+COPY reports/defect/repair/human_review.html ./reports/defect/repair/human_review.html
+COPY reports/defect/repair/human_validation_status.json ./reports/defect/repair/human_validation_status.json
+COPY reports/defect/evidence_v1/development_review.html ./reports/defect/evidence_v1/development_review.html
+COPY reports/defect/evidence_v1/fuel_complaint_review.html ./reports/defect/evidence_v1/fuel_complaint_review.html
+COPY reports/defect/evidence_v1/recall_review.html ./reports/defect/evidence_v1/recall_review.html
+COPY reports/defect/evidence_v1/development_comparison.json ./reports/defect/evidence_v1/development_comparison.json
+COPY reports/defect/fuel_holdout/holdout_results.json reports/defect/fuel_holdout/protocol.json ./reports/defect/fuel_holdout/
 COPY Makefile .
 COPY --from=dashboard /dash/dist ./dashboard/dist
 

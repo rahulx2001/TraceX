@@ -59,9 +59,9 @@ def test_widget_thinking_timeout_recovers():
 
 def test_widget_keeps_the_call_live_for_handoff_and_speaks_supervisor_replies():
     text = CALL.read_text(encoding="utf-8")
-    # Microphone permission starts in parallel with contact setup, rather than
-    # leaving the caller on a Connecting screen until getUserMedia returns.
-    assert "const micReady = setupMic" in text
+    # Voice permission starts in parallel; explicitly typed reports never ask
+    # for microphone access. The rendered browser regression exercises both.
+    assert "const micReady = useText ? Promise.resolve(false) : setupMic(gen)" in text
     assert "void micReady.finally" in text
     # The requested console opens separately, so navigating to it cannot run
     # CallWidget's unmount cleanup and end the customer contact.

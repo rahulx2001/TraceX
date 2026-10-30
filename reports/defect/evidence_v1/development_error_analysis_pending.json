@@ -1,0 +1,457 @@
+{
+  "status": "pending_actual_human_error_analysis",
+  "pack": "development_review",
+  "sample_hash": "1d2c25af85e8b86975c0d6738ccf8479a3f1ddef174fa635823c85a4e1a0890b",
+  "source_rows": 32,
+  "reviewed_rows": 0,
+  "annotation_source": "pending_human",
+  "attestation": false,
+  "reviewer": "",
+  "reviewer_profile": {
+    "role": "",
+    "experience": ""
+  },
+  "instructions": "First complete independent development_review labels without seeing predictions. Then inspect linked recorded outputs to analyze support, omissions and critical errors. No model output is a human judgment. Every development row remains present, including those without a model output.",
+  "rows": [
+    {
+      "record_id": "11514976",
+      "source_input_sha256": "d76120522cb88cc69dc7de4923c2f034a0a1330d6177d7883b2d4cb4e179510b",
+      "source_text": "I believe The failure that i'm experiencing is with the vehicle's transmission.  The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.   I believe the safety for mine and others can be at risk at times because they would be times where the car will not accelerate, even when your foot is pushed all the way on the pedal and as a result the car begins to slow down. This is can be risk depending on where you're driving for an example if you're on the highway or a congested area going at a specified speed.   From my understanding after doing research I have found out that several others have been experiencing this same problem, so to my understanding this is a common issue and I'm not sure why it was never addressed. I have taken the car to a mechanic where they said the problem is the CVT Transmission.   The Check Engine Light is on. This vehicle has not been in an accident.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/11514976.json",
+          "sha256": "378382e6856cbc8b3c1befcfbd5c8e18eea2552af49a0cf13e4a6c737bbc5eff",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11420261",
+      "source_input_sha256": "742218130bce45dfd7bd111358270accc6c9421e8d7cd86724abaec20a5a1954",
+      "source_text": "The contact owns a 2015 Chevrolet Silverado 1500. The contact stated that after taking the vehicle to a local dealer for an oil change, while driving at an undisclosed speed, the vehicle shuddered and lost motive power. The vehicle was restarted and while driving back to the residence the failure recurred several times. The contact took the vehicle back to the local dealer to be diagnosed. The contact was informed that the fuel pump needed to be replaced. The fuel pump was replaced and the vehicle was fixed. The manufacturer was made aware of the failure. The failure mileage was 87,000.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/11420261.json",
+          "sha256": "cdd2fd9bbe76f30a76bfe92865b73f47c7ff53f47da4268e43998ae722e53012",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11500185",
+      "source_input_sha256": "c3695a8a82ab87bc1d3fa7f4fe7e160e35edce84ee4715c466a41fa91d2eed5a",
+      "source_text": "December 17th, 2022 - Check engine light came on with an onstar message to have my engine/transmission system serviced within 7 days.   Dealership replaced fuel pump module on December 23rd.   Drove the car to a basketball game that evening (14 miles) and check engine light came back on with same onstar message.   Took car to dealership on January 3rd (due to holiday, didn't drive vehicle after check engine light came on).  Dealership advised it was a low battery.  So battery was replaced and advised we should come get the car.  When they were driving the car from the back of the lot to the front of the lot - the check engine light came on again.  They called us to tell us not to come get the car that they found a new code issue.  They advised they would call us tomorrow.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/11500185.json",
+          "sha256": "cb63eb455cab0e6a903ac4bccc968f80126144b8dcdcdcc43ca63eaa1a271a53",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "10939189",
+      "source_input_sha256": "f49e4f9574a88655ffffc3665085b512a8440fa3f62fd55c35378d044986b483",
+      "source_text": "TL* THE CONTACT OWNS A 2016 CHEVROLET SILVERADO 3500. THE CONTACT STATED THAT FUEL MONITORING SYSTEM MALFUNCTIONED DUE TO TRANSFER FUEL PUMPS. THE VEHICLE WAS TAKEN TO THE DEALER WHERE IT WAS DIAGNOSED THAT THE FUEL SYSTEM SOFTWARE NEEDED TO BE UPDATED. THE MANUFACTURER WAS MADE AWARE OF THE FAILURE. THE FAILURE MILEAGE WAS 20,000.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/10939189.json",
+          "sha256": "3d4fdb7e2d60eb75712f77859c22f84cfa4406ae56cf75471441d0b21004e8f9",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11060885",
+      "source_input_sha256": "00272de107592ee9079a0cb4f0c5241971c6b68927804e9db1e37170ed860fcf",
+      "source_text": "IN COLD TEMPERATURES THAT THE NORTHERN STATES EXPERIENCE (AROUND 4 DEGREES F) THE TRUCK WILL INTERMITTENTLY DIE IN THE MIDDLE OF THE ROAD WHILE DRIVING.  COMPLETE POWER LOSS WITH NO WARNING, WHICH SEEMS TO HAPPEN AT ANY TIME.  WHEN THE WEATHER IS ABOVE 10F CONSISTENTLY IT SEEMS THERE ARE NO ISSUES.  EXTREMELY DANGEROUS AND CAN LEAVE YOU SUDDENLY WITHOUT POWER WHILE DRIVING.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/11060885.json",
+          "sha256": "1a0b069ba2a5f46017c08a30feab68036c1533d22ead6cc112e2662e44db59f8",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11608269",
+      "source_input_sha256": "49720a9b42ae02c3bb2fcc531e9ea295377cb62bae00e11630fa975016c3aad8",
+      "source_text": "Car does not display the correct amount of fuel remaining once it hits half a tank left.  Can read quarter of a tank remaining, and the distance to empty meter shows 40 miles.  Or it will show 97 miles to empty and car will be on empty on fuel gauge.  Then once I arrive at my destination, they flip.  Driving 3 miles reports driving over 10-15 miles from distance to empty, the gauge starts moving.  Never an accurate reading.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/11608269.json",
+          "sha256": "3c573bf7cd53c8f879166771340f1864a6c4ee3763bb865b82bc0b1795e81f88",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11490006",
+      "source_input_sha256": "ca4ae3c4b72fcf38eedff2e1076a2762e7eb46b7f1bbd0d78e6c53f51fae76f7",
+      "source_text": "Gas gauge will not go all the way to full.  It stops just over 3/4 of a tank, no matter how much fuel you put in the tank.  There is no way to accurately determine how much fuel is in the vehicle at any point and time.  This is a safety hazard because we could be stranded on the side of the road, not knowing the vehicle would run out of fuel.    Also, occasionally when you crank the vehicle, you get a strong odor of fuel in the cabin, when running the A/C.  There is nothing specific that is being done differently, and it does not happen every time.  We bought this vehicle on 9/18/22 with 27,602 miles on it and as of today, it has 28,594 miles on it.  After purchasing it, we noticed the fuel gauge issue and I researched it online, finding out it is a common issue and GM claims to have no idea how to fix it.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/11490006.json",
+          "sha256": "575ad77adf7db16fdece254147057db746a0cd75465c2b4b6f4c3805d7c1efbe",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11550955",
+      "source_input_sha256": "fe72486cba553af061966b6a1b4ffbb251b08308feb362456af9dd3d3dcdaf9e",
+      "source_text": "The contact owns a 2019 Chevrolet Silverado 1500. The contact stated that while driving at various speeds, the vehicle shuddered. Several unknown warning lights were illuminated. The local dealer was contacted, and the vehicle was diagnosed, and it was determined that the purge valve and EVAP system needed to be replaced. The vehicle was repaired, but the failure recurred. The vehicle was taken back to the dealer, where it was determined that the fuel pump control module needed to be replaced. The vehicle was not repaired due to parts not being available. The manufacturer was contacted, but no assistance was provided. The failure mileage was approximately 80,000.",
+      "recorded_output_refs": [
+        {
+          "path": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2/11550955.json",
+          "sha256": "fa31a97161e3ecf14d6b688ddd3b40132e0a4b5273b7d6ec4908bc0313d32a7a",
+          "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+          "mode": "meta"
+        }
+      ],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11279140",
+      "source_input_sha256": "877c2c6193404f0d6246ce87a9d913443bd7355536f570278b6749df882ce9e6",
+      "source_text": "MY 2015 CHEVY CITY EXPRESS VAN HAS 25,000 MILES TO THIS DAY, IN AUGUST 2019 I TOOK MY VEHICLE TO CHEVROLET AUTHORIZED DEALER AT MATHEWS-HARGREAVES IN THE CITY OF ROYAL OAK MICHIGAN 48067, WHEN THE WARRANTY WAS STILL EFFECTIVE, MY COMPLAINT WAS THE CHECK ENGINE LIGHT ON THE DASHBOARD KEEPS COMING ON FROM A CODE RELATED TO EMISSION PROBLEM, AFTER 5 VISITS, AND COUPLE OF PARTS WERE REPLACED BY THE WARRANTY, THE SERVICE MANAGER TOLD ME THAT THEY CAN NOT DO ANYTHING FOR ME, AND I SHOULD TAKE IT SOMEWHERE ELSE, I HAVE ALL THE SERVICE PAPER WORK, DATES, WITH ME, IT IS AWFUL TO HAVE A NEW CAR WITH WARRANTY THAT THE AUTHORIZED DEALER CAN NOT AND WILL NOT RESOLVE THE PROBLEM. NOW THE SAME VEHICLE IS NOT COVERED BY THE WARRANTY, BUT THE COMPLAINT AND THE INITIAL PROBLEM HAPPENED WHEN MY VEHICLE WAS UNDER WARRANTY,",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11597572",
+      "source_input_sha256": "5c12ef848c2db261569b8fb7bdbe84fd58102938a78be0bc3e72a2a22b1d8d8b",
+      "source_text": "I was driving on [XXX], close to [XXX]  but my lights ( engine and tire were on ),when suddenly I lost the control and I hit on the wall. The steering wheel was a little hard and the mechanic told me my CATALYST wasn't good( engine and tire sensor aren't working correctly ). I thought it was my last day because that freeway is a little hight. I imaged my car flying.  ALSO I HAVE 1 ACCIDENT . I CRASHED ONE CAR BUT IT WASNT MY BLAME. The car lost the control. Now I have to pay but it is expensive for me INFORMATION REDACTED PURSUANT TO THE FREEDOM OF INFORMATION ACT (FOIA), 5 U.S.C. 552(B)(6)",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11618037",
+      "source_input_sha256": "982a63ef9c4e1a586bc3403f99c9e308873ca28bfc93c38fb781ae13c6a03e01",
+      "source_text": "The contact owns a 2019 Chevrolet Colorado. The contact stated that while driving approximately 30 MPH and depressing the brake pedal, the brake pedal was stiff. The contact pulled to the side of the road and restarted the vehicle. The message \"Brake Assist - Service Required'' was displayed. The vehicle was taken to the residence. The vehicle was then towed to the dealer, where it was diagnosed that the brake assist vacuum pump and the carburetor cap needed to be replaced. The vehicle was not repaired. The manufacturer was not notified of the failure. The failure mileage was 87,000.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11376012",
+      "source_input_sha256": "83981bf0d28d922afa4fdec9468d66f89aec4cccc4bb79295f41643f49ed7113",
+      "source_text": "HAD TO REPLACE THE CATALYTIC CONVERTER AND MY ENGINE LIGHT CAME BACK ON AND IT'S SHOWING THAT THAT IS STILL AN ISSUE. A MECHANIC TOLD ME THIS HAS BEEN A COMMON ISSUE WITH OTHER CHEVY CRUZE.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11578368",
+      "source_input_sha256": "7c0a45198827fe1cb0d03d3a6a26361578a1aa6db9fb6034e4d80c0812b376b9",
+      "source_text": "While driving the car, going 50 miles an hour down the highway the car slowly comes to a stop goes in the park and stops in the middle of the road. Wouldnât go into any gear for me to get the vehicle out of the roadway kept flashing message about going into low power mode And vehicle had to be towed to the dealer",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11588130",
+      "source_input_sha256": "0354a600aef8047a0594b2ae694c9d7c8a0c86acde8c8075ea439260f48f23a8",
+      "source_text": "The contact owns a 2023 Chevrolet Traverse. The contact stated that while starting the vehicle, a strong unknown sound was noticed coming from the pipes in the front area. No warning lights were illuminated. The vehicle was taken to an independent mechanic who inspected the vehicle and advised to take it to the dealer. The vehicle was not diagnosed or repaired by an independent mechanic or dealer. The manufacturer was not made aware of the failure. The failure mileage was approximately 30,000.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11513715",
+      "source_input_sha256": "6984038431ed4c662b5b77588a512b65009def6b2b28ea0a7ae228504bb77edf",
+      "source_text": "The PTC Heater and A/C compressor failed on my 2018 Nissan Leaf, just as the winter of 2022 was getting started.  The vehicle passed prior service inspections, with no mention of issues on either of these components. The failure of the PTC heater and A/C compressor results in a \"Service EV System\" error message, and indication that the vehicle would not restart after powering off.  When this error message appeared, the heating and defrost capabilities of the vehicle were lost.  The fans would continue to blow air, but windows would fog up. I could not charge my vehicle in this error state either, so if I hadn't been close to home, I would've been in a potentially dangerous situation because it was cold out. The local Nissan dealership confirmed the error codes of P0AA6-1A (HV battery voltage system isolation) and P31E7 (restart inhibition) were present. They initially fixed this issue after nearly 5 months of the vehicle being in their shop. These codes, paired with the information I've read on the Internet, indicates others have had this issue before, and the normal repair involved replacing the traction battery (400v high-voltage battery), not these two components.  The \"Service EV System\" came back less than 36 hours after paying for the repair.  The 12v battery was also at a low voltage, which may have been related to the vehicle sitting for so long for service without being charged.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11152257",
+      "source_input_sha256": "446aed9bf65b054db693e13b97fb58b01ce9c0d7a117ff5a723fd68c63e6d877",
+      "source_text": "VERY STRONG SMELL OF A GAS LEAK ON THE DRIVER SIDE OF THE VEHICLE. NO MATTER THE FUEL LEVEL, RUNNING OR STOPPED FOR HOURS.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "10928085",
+      "source_input_sha256": "850299b49b591d07353fc4221916b13d97678bc5c07c0eeab54d29b4886def34",
+      "source_text": "STRONG FUEL LEAK SMELL WHEN PARKED IN THE GARAGE",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11601044",
+      "source_input_sha256": "53c992ce12716ebb8343d1850cbda400a5d2f1dde6e01481b61963ed7bf25978",
+      "source_text": "After going very slow, mostly stopped, in stop-and-go traffic for 2 hours, my Chevy Equinox suddenly started to shake and would not respond.  The car/engine was on and in Drive but the gas petal would not propel the car forward. My steering wheel locked and I could not turn it in any way. The Engine Light came on and a message came on the dash that said \"Push Brake to Start Engine\" but pushing the brake did not change anything, and the engine had never turned off.  I tried to turn the car off by mashing the brake and pushing the engine stop button but my car would not turn off.  I rolled backward into the car behind me as could not go forward and traffic had to be routed around me.  About 20 minutes later, I tried to turn my car off and it did cut off completely. About 30 minutes later a police officer was able to turn my car on, put it in neutral, and roll it to the side of the road. The check engine light was still on. My car was towed 200 miles back home and I was able to drive it off the tow truck and into our driveway but the engine light was still on. The next day, the car turned on and the engine light was not on.  I did not feel safe to drive it so we had it towed to the Carmax where we purchased it.  Carmax towed it to a local chevy dealership and they said it was the fuel nodule. It is currently awaiting those repairs.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11424776",
+      "source_input_sha256": "261291a150320c53d29d79b520681ddea45094fe0dd1b52dc527987384d2fd64",
+      "source_text": "After turning off a major highway (65 mph) onto a side road after driving for approximately eight hours, the transmission shifted into N...on its own.  The engine continued to run but the vehicle would not move.  We could not shift into P, R or D.  When attempting to shift into P, R or D, an error message appeared on the dashboard that said \"Conditions not right for shifting.\"  We turned the vehicle off and then back on and the error cleared.  The vehicle continued to drive \"normally\" for another two hours and the end of the journey.  Had this happened in the middle of heavy traffic, a deadly accident could have occurred.  Mileage on vehicle is 4,900.  Date: 13 July 2021 at 1800 hours.  Dealer has been notified but has taken no action to date.  There were no warning signs or messages prior to the incident.  I'm guessing it is a sensor or software problem related to the engine/transmission.  There is a paragraph in the Owner's Manual that states: \"Under certain conditions, propulsion will be disabled.  Try restarting after the ignition has been off for two minutes.\"  It offers no other explanation as to what \"under certain conditions\" means.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11612274",
+      "source_input_sha256": "f04e4ec24df1904d7c4c4dc81ad0f6ba5e1f9662f0caedc7b82392036fe9ea76",
+      "source_text": "Gas line leak",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11172267",
+      "source_input_sha256": "3d7bd8735ba0a57ecfd03d5b1a7fba9925f3427ccc36afe3a44a9e2adca049f5",
+      "source_text": "THROTTLE POSITION SENSOR HAS GONE BAD ON MY 2016 MALIBU IT HAS TO BE A KNOWN PROBLEM BECAUSE THERE ARE THOUSANDS OF VIDEOS OF PEOPLE SHOWING HOW TO FIX THE PROBLEM AND INSTALLING A NEW TPS AND PEDAL.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11520404",
+      "source_input_sha256": "a99052201911345e4f34699b03595ece93c56f8c9e75696676850886dc55db82",
+      "source_text": "The contact owns a 2017 Chevrolet Tahoe. The contact stated that while driving approximately 80-85 MPH, the vehicle inadvertently started to decelerate with the check engine warning light illuminated. The contact coasted to the side of the roadway and waited before restarting the vehicle and continued driving. The failure reoccurred several times. The contact took the vehicle to the dealer who diagnosed that the fuel pump failed and needed to be replaced. The vehicle was repaired. The manufacturer was made aware of the failure. The approximate failure mileage was 46,494.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11339337",
+      "source_input_sha256": "f9a85de9473b58e7e5077e176f202cd4dfc2a93e0f5a9f9f5d42a123f79070e6",
+      "source_text": "MY CAR SHUTS OFF WHILE I AM DRIVING (AT A STOP OR IDLING) STATIONARY",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11414121",
+      "source_input_sha256": "57d87263fce03e62fe4b85e036f74c732da0a9979a14c8100538bde8faf8ab2e",
+      "source_text": "AFTER FUELING, THE VEHICLE CRANKS BUT DOES NOT START.  AFTER SITTING FOR APPROXIMATELY 10 MINUTES, THE ENGINE WILL START BUT IDLES ROUGHLY FOR A FEW MORE MINUTES.  ALSO AFTER LONG HIGHWAY DRIVES, THE ENGINE WILL RUN ROUGHLY AND OCCASIONALLY STALL WHEN THE VEHICLE IS STOPPED.  VEHICLE WAS BROUGHT TO DEALER WHO DIAGNOSED AS A FAULTY PURGE SOLENOID.  THIS IS A KNOWN PROBLEM IN 2015 MODELS AS DETAILED IN GM SPECIAL COVERAGE ADJUSTMENT LETTER #18029.  THIS 2016 MODEL YEAR IS NOT INCLUDED.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11461527",
+      "source_input_sha256": "7b46eb8eea9729b2afeefd687f2e562a693d5bdbcfbfe037461738cafa3db1d2",
+      "source_text": "while driving down a mountain in monterey tenessee from visiting a friend the car started blowing white smoke and all dash lights flickered before car shut off no brakes or steering  while coasting down mountain almost got rear ended by pickup this was around 9pm it was dark i coasted into a gas station after a few attempts to start car . i called roadside assistance that night and got towed to dave kirk chevy dealer next town over after having issues with car i encountered issues with manager of dealer ship and roadside assistance neither could help til i started raising my voice i was stranded there in town for 2 days my friends felt bad the paid for my motel since i was so stressed out they didnt want to look at my car that manager said he knew nothing about after diagnosing my car they found a bad fuel injector that he said was open 100 percent so after 2 days i was on my way back to florida bad experience all the way around",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11558332",
+      "source_input_sha256": "0fe51920c1874b7d81bb384b7a8f14b86d4b4ada368b2ece03fdb0ebe9cecf94",
+      "source_text": "1. 2 BECM failures: The original BECM failed and the replacement BECM failed as well.   2. Sudden loss of electric propulsion on the freeway while my wife (pregnant at the time), my son (1 year and a half) and I were driving. The car was still driving but was unstable when steering and with weak braking. The dealership identified the issue as BECM failure and the part was changed.  3. A couple of months later the car would not start at all leaving me stranded at work. The car was towed to the repair shop. The dealership diagnosed BECM failure again.   4. There was no warning indication or message prior to these issues.  5. The vehicle was only inspected by the dealership to the best of my knowledge.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11307998",
+      "source_input_sha256": "7dd2bd9aa4df3b593561231fc51d2bd2936c2a948220c19988d25a1b0236a4a1",
+      "source_text": "MY 2015 CHEVY EQUINOX BEGAN STALLING AND IDLING LOW TO THE POINT THAT SLOWING DOWN OR STOPPING WOULD CAUSE A STALLING ISSUE; GOING IN REVERSE WOULD CAUSE A STALLING ISSUE; PUTTING IT IN PARK WOULD CAUSE A STALLING ISSUE.  SOMETIMES THE CHECK ENGINE LIGHT WOULD COME ON, BUT MOST TIMES IT DID NOT.  THE VEHICLE MAINTAINS A REGULAR OIL CHANGE AND MAINTENANCE SCHEDULE YET THIS PROBLEM, WHICH WAS INTERMITTENT AT FIRST, BEGAN HAPPENING EVERY TIME THE VEHICLE WAS DRIVEN.  COULD NOT BE DRIVEN DUE TO SAFETY CONCERNS.  VERY SCARY IN TRAFFIC!",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11562945",
+      "source_input_sha256": "d54bd8f036036ae65248ca129884ee510a645cf3d790a2034bd46e689f64f6b1",
+      "source_text": "Oil drained and no oil after oil change ra about 2300 miles and there is no indicator for low oil level or anything. Engine started rattling and engine sounded so that I pour oil then no more sound and working  About month ago engine stopped while going slow in school line and after resting it worked and same rattling sound because of no oil",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11576113",
+      "source_input_sha256": "504962e89f57a211f6c3ede88f206c9c5468466e19da55a3e03bff59a9bd6e74",
+      "source_text": "The warning light comes on and off and is showing (P0498/P0449) which is the evaporative emission system vent control electrical circuit signal has low voltage for a predetermined period of time. Its calling to replace the evaporative emissions canister vent solenoid and I have seen 3 vehicles the same as mine needed the same thing fixed. When the vehicle is in park you can feel it jerk and also while pressing gas when you pull off it stalls. When cranking you can smell fumes .",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11219219",
+      "source_input_sha256": "7a19d98e893279ad0aee081e24c72e0d64608af4d0c7ca41faf8e36a86c11da9",
+      "source_text": "WHILE IN MOTION THE CAR BEGAN TO ERRATICALLY SPEED UP & SLOW DOWN WITHOUT THE DRIVER DEPRESSING EITHER THE ACCELERATION PEDAL OR THE BRAKE. THE RESULT WAS THE JUMPING & BUCKING OF THE CAR & PASSENGERS WITHIN. UPON TAKING THE CAR TO CHEVY REPAIR, IT WAS DISCOVERED THAT THE WHEEL SPEED SENSOR WAS DAMAGED BECAUSE OF A FAULTY WASHER IN THE AXLE THAT BROKE.  THE BROKEN WASHER PARTS ENTERED THE WHEEL HUB, DAMAGING BOTH THE WHEEL HUB & THE SPEED SENSOR.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11587376",
+      "source_input_sha256": "bfbfa6c9716c9f905c394526718c41ece5aed54955b9363f313036ebad6957f0",
+      "source_text": "Fuel pump quit on 12/24/23.  Dealer had vehicle four months while GM designed new pump. Notified vehicle was ready but later same day was notified the catalytic converter was bad - one ordered. Another week. Picked up vehicle mid April 24 and drove about three miles and warning light came on. Returned to dealer, mechanic made adjustments and said all fixed. Been dealing w/GM for buy back or higher trade in. Battle all the way. Bought as tow vehicle with RV. About to leave on 2 to 3,000 mile trip. Do not trust Equinox and want to return/trade for another Equinox or Blazer. Have also looked at Ford products.       BTW I was in the inside lane of a busy four lane highway when this happened and speed reduced to about 5 miles per hour. People love their horns when you try to get in outside lane in heavy traffic.",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    },
+    {
+      "record_id": "11396869",
+      "source_input_sha256": "25d5f8bd1f23e9f245f7f8aa37db56db3b140237e9b32ffd54edd45434bc0ee9",
+      "source_text": "THE VEHICLE WAS STATIONARY, IT WILL NOT START, IT WILL NOT TURN ON. NONE OF MY LIGHTS HAVE BEEN LEFT ON, NOTHING HAS BEEN PLUGGED IN. THE FIRST TIME I HAD IT JUMPED IT STARTED AND TURNED ON. THE BELT WAS MAKING A HIGH PITCHED SQUEALING NOISE. AFTER IT WAS INITIALLY JUMPED AND AFTER IT WAS ON & DROVE AROUND & PUT BACK IN PARK AND TURNED BACK OFF. IT NO LONGER WOULD START. I HAVE TRIED TO HAVE IT JUMPED AGAIN & IT WOULD NOT JUMP. I AM CONCERNED WITH THE ENGINE AND FUEL SYSTEM. WHEN I'VE TRIED TO TURN IT ON AND IT WOULDN'T IT MADE SORT OF LIKE A GARGLING NOISE AFTER I HAD HIT THE START BUTTON AS WELL AS THE GAUGES COMING VERY SLIGHTLY & SHAKING",
+      "recorded_output_refs": [],
+      "human_review_reference": null,
+      "support_errors": null,
+      "material_omissions": null,
+      "critical_errors": null,
+      "ambiguity_or_disagreement": null,
+      "review_complete": false
+    }
+  ]
+}

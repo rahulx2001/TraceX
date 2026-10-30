@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { apiHeaders } from "../src/apiAuth.js";
-import { AreaChart, BarList, DonutChart, Gauge, HeatMatrix, StackBar } from "../src/ui/Chart.jsx";
+import { BarList, DonutChart, Gauge, HeatMatrix, StackBar } from "../src/ui/Chart.jsx";
+import { ActivityHeatmap, CaseTimeline, ForecastChart, ParetoChart, SeverityDriftChart, SeverityRing } from "../src/ui/AnalyticsCharts.jsx";
+import { SEVERITIES, casesInWindow, dailySeverity, utcDays } from "../src/ui/analyticsData.js";
 import { renderMarkdown } from "./AuditReports.jsx";
+import "./analytics-desk.css";
 
 const WINDOWS = [1, 7, 30];
 const COHORT_FIELDS = ["entity_3", "entity_1", "entity_2", "category", "status", "pack_id"];
@@ -25,24 +28,7 @@ function fmtUSD(x) {
 }
 
 function isoDay(offsetBack) {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() - offsetBack);
-  return d.toISOString().slice(0, 10);
-}
-
-function bucketByDay(rows, days, getDate) {
-  const out = [];
-  for (let i = days - 1; i >= 0; i--) {
-    const key = isoDay(i);
-    out.push({ key, label: key.slice(5), value: 0 });
-  }
-  const map = Object.fromEntries(out.map((o) => [o.key, o]));
-  for (const r of rows || []) {
-    const k = String(getDate(r) || "").slice(0, 10);
-    if (map[k]) map[k].value += 1;
-  }
-  return out;
+  return utcDays(offsetBack + 1)[0];
 }
 
 export default function AnalyticsDesk({ refreshKey }) {
@@ -88,25 +74,25 @@ export default function AnalyticsDesk({ refreshKey }) {
       // to the single-process dev API, and each batch paints progressively.
       const batches = [
         [
-          get(`/api/frontline/metrics?window_days=${windowDays}${sim}`),
-          get(`/api/frontline/early-warning?window_days=${windowDays}${sim}`),
-          get(`/api/frontline/insights/csat?window_days=${windowDays}${sim}`),
-          get(`/api/frontline/insights/product-gap?window_days=${windowDays}&limit=8${sim}`),
-          get(`/api/frontline/wallboard`),
+          `/api/frontline/metrics?window_days=${windowDays}${sim}`,
+          `/api/frontline/early-warning?window_days=${windowDays}${sim}`,
+          `/api/frontline/insights/csat?window_days=${windowDays}${sim}`,
+          `/api/frontline/insights/product-gap?window_days=${windowDays}&limit=8${sim}`,
+          `/api/frontline/wallboard?include_simulated=${includeSim}`,
         ],
         [
-          get(`/api/frontline/cases?limit=200${sim}`),
-          get(`/api/frontline/digest?window_days=${windowDays}`),
-          get(`/api/frontline/analytics/forecast`),
-          get(`/api/frontline/analytics/severity-drift`),
-          get(`/api/frontline/analytics/cohorts?group_field=${cohortField}`),
+          `/api/frontline/cases?limit=200${sim}`,
+          `/api/frontline/digest?window_days=${windowDays}`,
+          `/api/frontline/analytics/forecast`,
+          `/api/frontline/analytics/severity-drift`,
+          `/api/frontline/analytics/cohorts?group_field=${cohortField}`,
         ],
         [
-          get(`/api/frontline/analytics/cross-pack`),
-          get(`/api/frontline/investigations`),
-          get(`/api/frontline/analytics/financial-impact`),
-          get(`/api/frontline/analytics/fairness`),
-          get(`/api/frontline/analytics/regulator-watch`),
+          `/api/frontline/analytics/cross-pack`,
+          `/api/frontline/investigations`,
+          `/api/frontline/analytics/financial-impact`,
+          `/api/frontline/analytics/fairness`,
+          `/api/frontline/analytics/regulator-watch`,
         ],
       ];
       const acc = {};
@@ -116,7 +102,7 @@ export default function AnalyticsDesk({ refreshKey }) {
       let failed = 0;
       let ki = 0;
       for (const batch of batches) {
-        const settled = await Promise.allSettled(batch);
+        const settled = await Promise.allSettled(batch.map(get));
         if (!alive()) return;
         settled.forEach((s, bi) => {
           acc[keys[ki + bi]] = s.status === "fulfilled" ? s.value : null;
@@ -143,10 +129,10 @@ export default function AnalyticsDesk({ refreshKey }) {
     let cancelled = false;
     setAudit(null);
     setAuditLoading(true);
-    const sim = includeSim ? "&include_simulated=true" : "";
     const start = isoDay(windowDays - 1);
     const end = isoDay(0);
-    fetch(`/api/frontline/audits/export?limit=25&start=${start}&end=${end}${sim}`, {
+    // Audit exports cover all channels; this endpoint has no traffic filter.
+    fetch(`/api/frontline/audits/export?limit=25&start=${start}&end=${end}`, {
       headers: apiHeaders(),
       signal: ctrl.signal,
     })
@@ -159,7 +145,7 @@ export default function AnalyticsDesk({ refreshKey }) {
           if (!cancelled) setAudit(d);
         },
         () => {
-          // Aborted on cleanup/unmount — stay silent.
+          if (!cancelled && !ctrl.signal.aborted) setAudit({ error: true });
         },
       )
       .catch(() => {
@@ -172,10 +158,10 @@ export default function AnalyticsDesk({ refreshKey }) {
       cancelled = true;
       ctrl.abort();
     };
-  }, [windowDays, includeSim, refreshKey]);
+  }, [windowDays, refreshKey]);
 
   if (loading && !bundle) return <div className="empty">Loading analytics…</div>;
-  if (error && !bundle) return <div className="empty err-text">{error}</div>;
+  if (error) return <div className="empty err-text">{error}</div>;
   const { metrics, early, csat, gaps, wall, cases, digest,
     forecast, drift, cohorts, crosspack, invs, financial, fairness, regulator } = bundle || {};
 
@@ -197,14 +183,13 @@ export default function AnalyticsDesk({ refreshKey }) {
     .sort((a, b) => b.value - a.value)
     .slice(0, 8);
 
-  const caseRows = cases?.cases || [];
+  const caseRows = casesInWindow(cases?.cases || [], windowDays);
   const sevCount = {};
   const statusCount = {};
-  const catCount = {};
   for (const c of caseRows) {
-    sevCount[c.severity || "Unknown"] = (sevCount[c.severity || "Unknown"] || 0) + 1;
+    const severity = SEVERITIES.find((s) => s.key.toLowerCase() === String(c.severity).toLowerCase())?.key || "Unknown";
+    sevCount[severity] = (sevCount[severity] || 0) + 1;
     statusCount[c.status || "Unknown"] = (statusCount[c.status || "Unknown"] || 0) + 1;
-    if (c.category) catCount[c.category] = (catCount[c.category] || 0) + 1;
   }
   const sevSegs = Object.entries(sevCount).map(([label, value]) => ({
     label,
@@ -212,21 +197,18 @@ export default function AnalyticsDesk({ refreshKey }) {
     tone: toneForSeverity(label),
   }));
   const statusSegs = Object.entries(statusCount).map(([label, value]) => ({ label, value }));
-  const catBars = Object.entries(catCount)
-    .map(([label, value]) => ({ label, value }))
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 8);
 
   // Severity × status matrix
   const sevKeys = Object.keys(sevCount).sort();
   const statusKeys = Object.keys(statusCount).sort();
   const matrix = {};
   for (const c of caseRows) {
-    const k = `${c.severity || "Unknown"}|${c.status || "Unknown"}`;
+    const severity = SEVERITIES.find((s) => s.key.toLowerCase() === String(c.severity).toLowerCase())?.key || "Unknown";
+    const k = `${severity}|${c.status || "Unknown"}`;
     matrix[k] = (matrix[k] || 0) + 1;
   }
 
-  const casesPerDay = bucketByDay(caseRows, windowDays, (c) => c.created_at);
+  const casesPerDay = dailySeverity(caseRows, windowDays);
 
   const clusters = (wall?.top_risk_clusters || []).map((c) => ({
     label: `#${c.cluster_id} · ${c.pack_id || ""}`.trim(),
@@ -242,14 +224,14 @@ export default function AnalyticsDesk({ refreshKey }) {
   const rising = gaps?.rising_issues || [];
 
   const kpis = [
-    { label: "Open cases", value: wall?.open_cases ?? metrics?.cases?.open ?? "—", tone: "accent" },
-    { label: "Critical open", value: wall?.critical_open ?? metrics?.cases?.critical_open ?? "—", tone: "danger" },
-    { label: "Completed contacts", value: wall?.completed_contacts ?? "—", tone: "ok" },
-    { label: "Satisfaction proxy", value: csat ? fmtPct(csat.satisfaction_proxy) : "—", tone: "ok" },
-    { label: "Active now", value: wall?.active_contacts ?? early ? 0 : "—", tone: "accent" },
+    { label: "Open cases", value: wall?.open_cases ?? metrics?.cases?.open ?? "—", tone: "accent", hint: "Current backlog" },
+    { label: "Critical open", value: wall?.critical_open ?? metrics?.cases?.critical_open ?? "—", tone: "danger", hint: "Needs attention" },
+    { label: "Completed contacts", value: early?.funnel?.completed ?? "—", tone: "ok", hint: `Last ${windowDays} days` },
+    { label: "Satisfaction proxy", value: csat ? fmtPct(csat.satisfaction_proxy) : "—", tone: "ok", hint: `Last ${windowDays} days` },
+    { label: "Active now", value: wall?.active_contacts ?? metrics?.interactions_active ?? "—", tone: "accent" },
     { label: "Open investigations", value: metrics?.investigations?.open ?? "—", tone: "warn" },
     { label: "Portfolio risk", value: financial ? fmtUSD(financial.portfolio_risk_usd) : "—", tone: "danger" },
-    { label: "Contacts (csat window)", value: csat?.contact_count ?? "—", tone: "accent" },
+    { label: "Contacts in window", value: csat?.contact_count ?? "—", tone: "accent" },
   ];
 
   // Investigations
@@ -270,10 +252,6 @@ export default function AnalyticsDesk({ refreshKey }) {
 
   // Forecast
   const forecasts = forecast?.forecasts || [];
-  const forecastVol = [...forecasts]
-    .sort((a, b) => (b.last_week_volume || 0) - (a.last_week_volume || 0))
-    .slice(0, 8)
-    .map((f) => ({ label: `#${f.cluster_id}`, value: f.last_week_volume || 0 }));
 
   // Drift
   const driftRows = drift?.clusters || [];
@@ -305,7 +283,6 @@ export default function AnalyticsDesk({ refreshKey }) {
   let supervised = 0;
   const frustBuckets = [0, 0, 0, 0, 0];
   const channelCount = {};
-  const hourCount = new Array(24).fill(0);
   for (const r of axRows) {
     const v = r.audit?.overall_verdict || "unknown";
     verdictCount[v] = (verdictCount[v] || 0) + 1;
@@ -315,8 +292,6 @@ export default function AnalyticsDesk({ refreshKey }) {
     const f = Number(r.peak_frustration);
     if (!Number.isNaN(f)) frustBuckets[Math.min(4, Math.floor(f * 5))] += 1;
     channelCount[r.channel || "unknown"] = (channelCount[r.channel || "unknown"] || 0) + 1;
-    const h = new Date(r.started_at).getHours();
-    if (!Number.isNaN(h)) hourCount[h] += 1;
   }
   const verdictDonut = Object.entries(verdictCount).map(([label, value]) => ({
     label,
@@ -329,18 +304,14 @@ export default function AnalyticsDesk({ refreshKey }) {
     tone: i >= 3 ? "danger" : i === 2 ? "warn" : "ok",
   }));
   const channelSegs = Object.entries(channelCount).map(([label, value]) => ({ label, value }));
-  const hourBars = hourCount.map((value, h) => ({
-    label: String(h).padStart(2, "0"),
-    value,
-  }));
 
   return (
-    <div>
+    <div className="analytics-page">
       <header className="page-header">
         <div>
           <h1>Analytics</h1>
           <p className="sub">
-            Telemetry and data analysis across contacts, cases, audits and early warning.
+            Explore case trends, emerging risks and contact performance.
           </p>
         </div>
         <div className="row" style={{ gap: 8, alignItems: "center", flexWrap: "wrap" }}>
@@ -372,19 +343,30 @@ export default function AnalyticsDesk({ refreshKey }) {
       {loading && <div className="empty">Refreshing…</div>}
 
       {/* ── KPI cards ── */}
-      <div className="analytics-kpis">
-        {kpis.map((k) => (
+      <div className="analytics-kpis analytics-primary-kpis">
+        {kpis.slice(0, 4).map((k) => (
           <div key={k.label} className="analytics-kpi">
             <span className="analytics-kpi-label">{k.label}</span>
             <span className={`analytics-kpi-value tone-${k.tone}`}>{k.value}</span>
+            <span className="analytics-kpi-hint">{k.hint}</span>
           </div>
         ))}
       </div>
+      <div className="analytics-secondary-kpis">
+        {kpis.slice(4).map((k) => <div key={k.label}><span>{k.label}</span><strong>{k.value}</strong></div>)}
+      </div>
 
       {/* ── Volume trend ── */}
-      <div className="panel" style={{ marginTop: 18 }}>
-        <h3 className="analytics-h">Cases per day · last {windowDays}d (total {caseRows.length} in sample)</h3>
-        <AreaChart data={casesPerDay} label={`Cases per day, total ${caseRows.length}`} />
+      <div className="analytics-hero-grid">
+        <section className="panel">
+          <div className="analysis-heading"><div><h2>Case activity</h2><p>Daily volume and severity · last {windowDays} days</p></div><span className="analysis-period">UTC</span></div>
+          <CaseTimeline data={casesPerDay} unavailable={!cases} />
+          <p className="analysis-note">Case charts use up to 200 recent records, filtered by creation date.{cases?.pagination?.has_more ? " More records exist outside this sample." : ""}</p>
+        </section>
+        <section className="panel">
+          <div className="analysis-heading"><div><h2>Severity breakdown</h2><p>Share of cases in the selected window</p></div></div>
+          {cases ? <SeverityRing data={sevSegs} /> : <div className="analysis-empty">Case data unavailable.</div>}
+        </section>
       </div>
 
       <div className="analytics-grid2" style={{ marginTop: 18 }}>
@@ -416,9 +398,7 @@ export default function AnalyticsDesk({ refreshKey }) {
       <div className="analytics-grid2" style={{ marginTop: 18 }}>
         {/* ── Severity / status ── */}
         <div className="panel">
-          <h3 className="analytics-h">Case severity mix ({caseRows.length} cases)</h3>
-          <StackBar segments={sevSegs} label="Case severity distribution" />
-          <h3 className="analytics-h" style={{ marginTop: 14 }}>Case status mix</h3>
+          <h3 className="analytics-h">Case status mix · {caseRows.length} sampled cases</h3>
           <StackBar segments={statusSegs} label="Case status distribution" />
         </div>
 
@@ -445,9 +425,10 @@ export default function AnalyticsDesk({ refreshKey }) {
       {/* ── Audit deep-dive (streams in separately) ── */}
       <div className="panel" style={{ marginTop: 18 }}>
         <h3 className="analytics-h">
-          Audit deep-dive · {axRows.length > 0 ? `${axRows.length} sampled contacts` : "sampling contacts"}
+          Audit deep-dive{axRows.length > 0 ? ` · ${axRows.length} sampled contacts` : ""}
           {auditLoading && <span className="muted"> (loading…)</span>}
         </h3>
+        <p className="analysis-note" style={{ marginBottom: 18 }}>Latest 25 contacts in the selected dates · all channels, including test traffic. The traffic filter does not apply to this audit sample.</p>
         {audit?.error && <div className="chart-empty">Audit aggregates unavailable</div>}
         {!audit?.error && axRows.length === 0 && !auditLoading && (
           <div className="chart-empty">No sampled contacts in window</div>
@@ -469,14 +450,14 @@ export default function AnalyticsDesk({ refreshKey }) {
                 <BarList data={frustBars} emptyText="No frustration data" />
               </div>
             </div>
-            <div className="analytics-grid2" style={{ marginTop: 14 }}>
-              <div>
+            <div style={{ marginTop: 14 }}>
+              <div style={{ marginBottom: 20 }}>
                 <h3 className="analytics-h">Channel mix</h3>
                 <StackBar segments={channelSegs} label="Contact channel mix" />
               </div>
               <div>
-                <h3 className="analytics-h">Contacts by hour (UTC)</h3>
-                <BarList data={hourBars} emptyText="No hourly data" />
+                <h3 className="analytics-h">Contact activity · day × hour</h3>
+                <ActivityHeatmap rows={axRows} days={windowDays} />
               </div>
             </div>
           </>
@@ -492,8 +473,8 @@ export default function AnalyticsDesk({ refreshKey }) {
 
         {/* ── Categories ── */}
         <div className="panel">
-          <h3 className="analytics-h">Top case categories</h3>
-          <BarList data={catBars} emptyText="No categorized cases" />
+          <div className="analysis-heading"><div><h2>Category concentration</h2><p>Pareto analysis · which categories drive case volume?</p></div></div>
+          {cases ? <ParetoChart rows={caseRows} /> : <div className="analysis-empty">Case data unavailable.</div>}
         </div>
       </div>
 
@@ -603,11 +584,10 @@ export default function AnalyticsDesk({ refreshKey }) {
       <div className="analytics-grid2" style={{ marginTop: 18 }}>
         {/* ── Forecast ── */}
         <div className="panel">
-          <h3 className="analytics-h">Volume forecast (top clusters)</h3>
-          {forecastVol.length === 0 && <div className="chart-empty">No forecast data</div>}
-          {forecastVol.length > 0 && <BarList data={forecastVol} />}
+          <div className="analysis-heading"><div><h2>Volume outlook</h2><p>{forecast?.window_days || 28}-day model window · all recorded customer cases</p></div></div>
+          <ForecastChart forecasts={forecasts} />
           {forecasts.length > 0 && (
-            <div style={{ overflowX: "auto", marginTop: 12 }}>
+            <details className="analysis-data"><summary>Compare cluster forecasts</summary><div className="analysis-table-scroll">
               <table className="analytics-table">
                 <thead>
                   <tr><th>Cluster</th><th>Last wk</th><th>Slope/wk</th><th>Projected</th><th>Status</th></tr>
@@ -624,16 +604,16 @@ export default function AnalyticsDesk({ refreshKey }) {
                   ))}
                 </tbody>
               </table>
-            </div>
+            </div></details>
           )}
         </div>
 
         {/* ── Severity drift ── */}
         <div className="panel">
-          <h3 className="analytics-h">Severity drift by cluster</h3>
-          {driftRows.length === 0 && <div className="chart-empty">No drift data</div>}
+          <div className="analysis-heading"><div><h2>Severity shift</h2><p>{drift?.window_days || 28}-day model window · all recorded customer cases</p></div></div>
+          <SeverityDriftChart rows={driftRows} />
           {driftRows.length > 0 && (
-            <div style={{ overflowX: "auto" }}>
+            <details className="analysis-data"><summary>View severity data</summary><div className="analysis-table-scroll">
               <table className="analytics-table">
                 <thead>
                   <tr><th>Cluster</th><th>Early avg</th><th>Late avg</th><th>Δ</th><th>Trend</th></tr>
@@ -644,13 +624,13 @@ export default function AnalyticsDesk({ refreshKey }) {
                       <td className="mono">#{d.cluster_id}</td>
                       <td className="mono">{d.early_avg_severity}</td>
                       <td className="mono">{d.late_avg_severity}</td>
-                      <td className="mono">+{d.severity_drift}</td>
-                      <td>{d.worsening ? <span className="chip red">▲ worsening</span> : <span className="chip green">stable</span>}</td>
+                      <td className="mono">{d.early_avg_severity >= 1 && d.late_avg_severity >= 1 ? `${d.severity_drift > 0 ? "+" : ""}${d.severity_drift}` : "—"}</td>
+                      <td>{d.early_avg_severity < 1 || d.late_avg_severity < 1 ? "No paired data" : d.worsening ? <span className="chip red">▲ worsening</span> : <span className="chip green">stable</span>}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
+            </div></details>
           )}
         </div>
       </div>

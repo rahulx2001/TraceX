@@ -7,6 +7,8 @@
 // and this page shows no numbers rather than a mock.
 import { useState } from "react";
 import defectFlags from "../src/ai/defectFlags.json";
+import prediction from "../src/ai/defectPrediction.json";
+import "./defect-level.css";
 
 function ModelTag() {
   return (
@@ -16,30 +18,42 @@ function ModelTag() {
   );
 }
 
-function RecallCell({ flag }) {
+function RecallCell({ flag, detailed = false }) {
   if (flag.matched_recall) {
     const r = flag.matched_recall;
     return (
-      <div>
-        <span className="tag ok">recall</span>{" "}
-        <span className="mono">{r.campno}</span>{" "}
-        <span className="muted small">issued {r.rcdate}</span>
-        <div className="muted small" style={{ marginTop: 4 }}>{r.desc_defect}</div>
+      <div className="defect-recall">
+        <div><span className="defect-recall-status">Recall</span>{" "}<span className="mono">{r.campno}</span></div>
+        <div className="muted small">Issued {r.rcdate}</div>
+        {detailed && <p className="defect-recall-description">{r.desc_defect}</p>}
       </div>
     );
   }
-  return <span className="tag med">no recall by 2024-12-31</span>;
+  return (
+    <div className="defect-recall">
+      <div className="defect-recall-pending">No recall</div>
+      <div className="muted small">By 2024-12-31</div>
+    </div>
+  );
 }
 
 function Excerpts({ complaints }) {
   if (!complaints?.length) return <div className="muted small">No complaint excerpts in this file.</div>;
   return (
-    <ol className="small" style={{ margin: "6px 0 0 18px", padding: 0 }}>
-      {complaints.map((c) => (
-        <li key={`${c.cmplid}-${c.date}`} style={{ marginBottom: 8 }}>
-          <span className="mono">{c.cmplid}</span>{" "}
-          <span className="muted">{c.date} · {c.year || "–"} {c.make} {c.model}</span>
-          <div>{c.excerpt}</div>
+    <ol className="defect-excerpts">
+      {complaints.map((c, i) => (
+        <li key={`${c.cmplid}-${c.date}`}>
+          <details open={i === 0}>
+            <summary>
+              <span className="defect-excerpt-vehicle">{c.year || "–"} {c.make} {c.model}</span>
+              <span className="muted small">{c.date}</span>
+              <span className="defect-chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div className="defect-excerpt-body">
+              <div className="muted small">Complaint <span className="mono">{c.cmplid}</span></div>
+              <p>{c.excerpt}</p>
+            </div>
+          </details>
         </li>
       ))}
     </ol>
@@ -54,6 +68,53 @@ function SourcedFact({ value, source }) {
   return <>{value} (<span className="mono">{source}</span>).</>;
 }
 
+function PredictionEvidence() {
+  const all = prediction.blocks.all_reports;
+  const clean = prediction.blocks.excluding_explicit_recall_reports;
+  const percent = value => value == null ? "Unavailable" : `${(value * 100).toFixed(1)}%`;
+  const holdout = prediction.temporal_holdout;
+  return (
+    <section className="card" style={{ padding: 20, marginBottom: 20 }} aria-labelledby="prediction-evidence-heading">
+      <h2 id="prediction-evidence-heading">Repaired historical comparison</h2>
+      <p className="muted">{prediction.scope}</p>
+      <p>{prediction.coverage.model_labelled_complaints.toLocaleString()} / {prediction.coverage.complaints.toLocaleString()} complaints classified, with complete recall vehicle scope.</p>
+      <div className="defect-table-scroll">
+        <table className="table">
+          <caption style={{ textAlign: "left" }}>Campaign recall at equal alert budgets</caption>
+          <thead><tr><th>Strategy</th><th>All reports</th><th>Excluding recall/campaign mentions</th></tr></thead>
+          <tbody>
+            <tr><th>Rolling defect detector</th><td>{all.detector.hits}/{all.detector.campaigns} · {percent(all.detector.campaign_recall)}</td><td>{clean.detector.hits}/{clean.detector.campaigns} · {percent(clean.detector.campaign_recall)}</td></tr>
+            <tr><th>Complaint-count reference</th><td>{all.count.hits}/{all.count.campaigns} · {percent(all.count.campaign_recall)}</td><td>{clean.count.hits}/{clean.count.campaigns} · {percent(clean.count.campaign_recall)}</td></tr>
+            <tr><th>Random reference, {all.random_draws} runs</th><td>{percent(all.random_mean_recall)} mean</td><td>{percent(clean.random_mean_recall)} mean</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p className="small">Each strategy receives {all.detector.alerts} alerts on all reports and {clean.detector.alerts} after excluding recall mentions. Detector precision among alerts with complete follow-up: {percent(all.detector.episode_precision)} and {percent(clean.detector.episode_precision)}, respectively.</p>
+      <p className="small">In the recall-mention sensitivity, {(clean.random_at_least_detector * 100).toFixed(0)}% of random runs matched or exceeded detector recall. The measured advantage remains exploratory.</p>
+      <p><strong>Human review:</strong> {prediction.human_review.reviewed}/{prediction.human_review.total} labelled.</p>
+      <p className="muted small">{prediction.note}</p>
+      {holdout && (
+        <div style={{ borderTop: "1px solid var(--border, #d8dedb)", marginTop: 20, paddingTop: 16 }}>
+          <h3>Separate 2025 holdout</h3>
+          <p><strong>{holdout.method.hits}/{holdout.method.campaigns} campaigns detected · {percent(holdout.method.campaign_recall)}</strong></p>
+          <p>Alerts matching later campaigns with complete follow-up: {holdout.method.confirmed_mature_alerts}/{holdout.method.mature_alerts}
+            {" "}· {percent(holdout.method.episode_precision)} precision.
+            {" "}Total alerts: {holdout.method.alerts}; outcomes observed through {holdout.outcome_end}.</p>
+          <p>Count policy recall: {percent(holdout.count_baseline.campaign_recall)}.
+            {" "}Random reference mean: {percent(holdout.random_mean_recall)}.</p>
+          <p className="small">{percent(holdout.random_at_least_method)} of {holdout.random_draws} random runs matched or exceeded this recall.
+            {" "}Descriptive 95% recall interval: {percent(holdout.method.recall_wilson95[0])}–{percent(holdout.method.recall_wilson95[1])}; the campaign sample is small and may be correlated.</p>
+          <p><strong>Above-86% target: {holdout.target_met ? "Measured target met" : "Not met"}.</strong>
+            {!holdout.protocol_qualified && " The experimental method also failed the development precision gate."}</p>
+          <p className="muted small">Expanded fuel/propulsion inputs; method selected before evaluating 2025.
+            {" "}{holdout.note} Matches use make and defect category; they do not verify the same affected vehicle or physical defect.
+            {" "}This uses a different period and input set from the earlier comparison.</p>
+        </div>
+      )}
+    </section>
+  );
+}
+
 export default function DefectLevel() {
   const [open, setOpen] = useState(0);
   const flags = defectFlags?.flags || [];
@@ -64,8 +125,9 @@ export default function DefectLevel() {
         <div>
           <h1>Defect-level early warning</h1>
           <p className="sub">
-            Flags appear here only after the frozen 2021–2024 defect test has been run.
-            Nothing on this page is estimated.
+            {notRun
+              ? "Flags appear after the frozen 2021–2024 defect test has been run."
+              : "Historical evaluation and source complaint evidence."}
           </p>
         </div>
         {!notRun && (
@@ -74,6 +136,8 @@ export default function DefectLevel() {
           </div>
         )}
       </header>
+
+      <PredictionEvidence />
 
       {notRun ? (
           <div className="hero-empty defect-empty" data-testid="defect-level-not-run">
@@ -110,59 +174,80 @@ export default function DefectLevel() {
           </div>
       ) : (
         <>
-          <div className="card" style={{ marginBottom: 14, overflowX: "auto" }}>
-            <h3 className="analytics-h">Flags</h3>
-            <table className="table table-clickable">
-              <thead>
-                <tr>
-                  <th>Week</th>
-                  <th>Make</th>
-                  <th>Component</th>
-                  <th>Defect label</th>
-                  <th>Complaints</th>
-                  <th>Later recall</th>
-                </tr>
-              </thead>
-              <tbody>
-                {flags.map((f, i) => (
-                  <tr
-                    key={f.flag_id || i}
-                    className={open === i ? "selected" : undefined}
-                    tabIndex={0}
-                    aria-expanded={open === i}
-                    onClick={() => setOpen(open === i ? -1 : i)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        setOpen(open === i ? -1 : i);
-                      }
-                    }}
-                  >
-                    <td className="mono">{f.week}</td>
-                    <td>{f.make}</td>
-                    <td>{f.component}</td>
-                    <td><strong>{f.defect_label}</strong><div className="muted small mono">{f.defect_label_id}</div></td>
-                    <td>{f.record_count}</td>
-                    <td><RecallCell flag={f} /></td>
+          <section className="card defect-flags" aria-labelledby="defect-flags-heading">
+            <div className="defect-section-heading">
+              <h2 id="defect-flags-heading">Earlier partial experiment: flags <span className="muted">({flags.length})</span></h2>
+              <span className="muted small">Select a flag to view evidence</span>
+            </div>
+            <p className="muted small">These examples belong to the original incomplete run. They are retained for traceability and do not supply the repaired comparison above.</p>
+            <div className="defect-table-scroll" role="region" aria-label="Defect flags" tabIndex={0}>
+              <table className="table table-clickable">
+                <thead>
+                  <tr>
+                    <th>Week</th>
+                    <th>Make</th>
+                    <th>Component</th>
+                    <th>Defect label</th>
+                    <th>Complaints</th>
+                    <th>Later recall</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {flags.map((f, i) => (
+                    <tr
+                      key={f.flag_id || i}
+                      className={open === i ? "selected" : undefined}
+                      onClick={() => setOpen(open === i ? -1 : i)}
+                    >
+                      <td className="mono defect-week">{f.week}</td>
+                      <td>{f.make}</td>
+                      <td>{f.component}</td>
+                      <td>
+                        <button
+                          type="button"
+                          className="defect-flag-button"
+                          aria-label={`${f.week} ${f.make}: ${f.defect_label} details`}
+                          aria-expanded={open === i}
+                          aria-controls={open === i ? `defect-detail-${i}` : undefined}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOpen(open === i ? -1 : i);
+                          }}
+                        >
+                          <span>{f.defect_label}</span>
+                          <span className="defect-chevron" aria-hidden="true">⌄</span>
+                        </button>
+                      </td>
+                      <td>{f.record_count}</td>
+                      <td><RecallCell flag={f} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
           {flags.map((f, i) => (
             open === i && (
-              <div className="card" key={`${f.flag_id || i}-excerpts`} style={{ marginBottom: 14 }}>
-                <h3 className="analytics-h" style={{ marginTop: 0 }}>
-                  {f.week} · {f.make} · {f.component} · {f.defect_label}
-                </h3>
-                <div className="muted small" style={{ marginBottom: 6 }}>
-                  {f.record_count} complaints in this slice-week. Showing the {f.complaints?.length || 0} real
-                  complaint excerpts stored with the flag.
+              <section className="card defect-detail" key={`${f.flag_id || i}-excerpts`} id={`defect-detail-${i}`} aria-labelledby={`defect-detail-heading-${i}`}>
+                <div className="defect-detail-heading">
+                  <div>
+                    <h2 id={`defect-detail-heading-${i}`}>{f.defect_label}</h2>
+                    <p className="muted small">{f.week} · {f.make} · {f.component}</p>
+                  </div>
+                  <span className="muted small">Label ID: <span className="mono">{f.defect_label_id}</span></span>
                 </div>
-                <div style={{ maxHeight: 420, overflowY: "auto" }}>
+                <div className="defect-detail-recall">
+                  <h3>Later recall</h3>
+                  <RecallCell flag={f} detailed />
+                </div>
+                <div className="defect-evidence">
+                  <div className="defect-section-heading">
+                    <h3>Complaint excerpts</h3>
+                    <span className="muted small">{f.complaints?.length || 0} stored excerpts · {f.record_count} complaints in this slice-week</span>
+                  </div>
                   <Excerpts complaints={f.complaints} />
                 </div>
-              </div>
+              </section>
             )
           ))}
         </>

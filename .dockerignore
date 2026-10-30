@@ -17,6 +17,7 @@ htmlcov
 
 # Dashboard sources are copied only into the node stage; exclude host modules/dist
 dashboard/node_modules
+dashboard/dist
 # dist is produced inside the image; do not ship host build
 
 # Local data, reports, secrets
@@ -40,4 +41,8 @@ context
 .vscode
 .cursor
 .grok
+**/*.webm
+**/*.mp4
+**/*.aiff
+**/*.wav
 **/.DS_Store

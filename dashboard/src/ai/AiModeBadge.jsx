@@ -13,11 +13,11 @@ export default function AiModeBadge() {
   const on = s.mode === "enhanced";
   const m = s.models || {};
   const title = on
-    ? `Meta AI layer on · text ${m.text} · vision ${m.vision} · segmentation ${m.segmentation}. Deterministic path stays the fallback.`
-    : "Meta layer is off or no key is configured: the deterministic regex/gazetteer/rules path is running (including local Hindi safety checks). Photo upload still works.";
+    ? `Server configuration: Meta ${m.text}. This badge does not mean the current operation called a model. Check each investigation's request provenance.`
+    : "Server configuration: model calls disabled or unconfigured. A saved Meta result can still be replayed; its original model, time and provenance appear on that result.";
   return (
     <a href="#demo" className={"chip ai-mode-badge " + (on ? "ai-tag-on" : "ai-tag-off")} title={title} data-testid="ai-mode-badge">
-      {on ? `AI: ${s.verified_against_live_api ? "Live verified" : "Configured"} · Meta` : "AI: Deterministic"}
+      {on ? "Server: Meta configured" : "Server: offline / deterministic"}
     </a>
   );
 }

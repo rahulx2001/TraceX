@@ -70,12 +70,12 @@ function SpeechVoiceSelect({ lang }) {
   );
 }
 
-export function SpeechLangSelect() {
+export function SpeechLangSelect({ showVoice = false } = {}) {
   const [lang, setLang] = useState(aiSpeechLang() || "en-US");
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <label className="small muted" style={{ display: "inline-flex", gap: 6, alignItems: "center" }}>
-        Speech language
+        Report recognition language
         <select
           value={lang}
           aria-label="Speech recognition language"
@@ -86,19 +86,23 @@ export function SpeechLangSelect() {
         >
           <option value="en-US">English (default)</option>
           <option value="en-IN">English (India)</option>
-          <option value="hi-IN">हिन्दी / Hinglish (hi-IN)</option>
+          <option value="hi-IN">हिन्दी (India)</option>
         </select>
-        <span className="faint">applies when the mic starts</span>
+        <span>saved for browser/server recognition when the report starts</span>
       </label>
-      <SpeechVoiceSelect lang={lang} />
+      {showVoice && <SpeechVoiceSelect lang={lang} />}
     </div>
   );
 }
 
-export default function CallAiExtras({ interactionId, caseId }) {
+export default function CallAiExtras({ interactionId, caseId, showLanguage = true, serverVoice = {}, textOnly = false }) {
   return (
     <div className="ai-call-extras" style={{ marginTop: 10 }}>
-      <SpeechLangSelect />
+      {showLanguage && <SpeechLangSelect />}
+      {textOnly ? <p>Spoken playback is off for this text report.</p>
+        : serverVoice.tts ? <p>Deepgram voice: {serverVoice.tts_model || "configured English voice"}. English replies use this provider; Hindi text falls back to a browser voice when available.</p>
+          : <SpeechVoiceSelect lang={aiSpeechLang() || "en-US"} />}
+      <p className="small">The selected language is sent to recognition and saved with the report. Reply scripts currently remain in English. Hindi and mixed Hindi/English recognition quality still need real-audio validation.</p>
       {(caseId || interactionId) && (
         <EvidencePanel caseId={caseId || undefined} interactionId={caseId ? undefined : interactionId}
           title="Photo of the fault (optional)" />

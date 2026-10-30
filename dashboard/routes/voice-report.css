@@ -1,0 +1,58 @@
+/* Compact report intake; source text and stable controls take precedence. */
+.voice-page { min-width: 0; }
+.voice-page .page-header { align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+.voice-page .page-header > div:first-child { flex: 1 1 280px; }
+.voice-page .sub { max-width: 68ch; }
+.voice-controls { flex-wrap: wrap; gap: 8px; }
+.voice-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; }
+.voice-controls svg { width: 18px; height: 18px; flex-shrink: 0; }
+.voice-page button.danger { background: #8f1d2c; color: #fff; border-color: #8f1d2c; }
+.voice-page button.danger:hover:not(:disabled) { background: #721622; color: #fff; border-color: #721622; }
+.voice-start-options { background: var(--bg-panel); border: 1px solid var(--edge); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 16px; }
+.voice-start-options label { flex-wrap: wrap; }
+.voice-start-options p, .voice-note { color: var(--ink-soft); font-size: 13px; line-height: 1.6; margin: 8px 0; }
+.voice-page .call-layout { grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.8fr); }
+.voice-page .call-stage { min-height: 340px; padding: 18px; }
+.voice-page .call-stage h2 { margin: 8px 0 14px; }
+.voice-input-meter { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 12px; margin-bottom: 12px; border: 1px solid var(--edge); border-radius: var(--radius); }
+.voice-input-meter label { display: flex; align-items: center; gap: 8px; }
+.voice-input-meter meter { width: 150px; }
+.voice-input-meter p { flex-basis: 100%; }
+.voice-status { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-bottom: 10px; border-bottom: 1px solid var(--edge); color: var(--ink-soft); }
+.voice-status strong { color: var(--ink); }
+.voice-page .transcript { min-height: 160px; max-height: min(420px, 44vh); line-height: 1.6; }
+.voice-page .turn { overflow-wrap: anywhere; font-size: 15px; }
+.voice-page .turn .who { color: var(--ink-soft); font-size: 11px; }
+.voice-page .turn.customer .who { color: var(--ink); }
+.voice-page .call-compose { flex-wrap: wrap; }
+.voice-page .call-compose input { min-width: 160px; width: 0; }
+.voice-page .call-compose input::placeholder { color: var(--ink-soft); opacity: 1; }
+.voice-page .call-compose button { min-height: 44px; }
+.voice-page .stack { min-width: 0; }
+.voice-page .panel { overflow-wrap: anywhere; }
+.voice-fact { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; padding: 9px 0; border-bottom: 1px solid var(--edge); }
+.voice-fact > span { flex: 1 1 90px; color: var(--ink-soft); }
+.voice-fact > strong { flex: 1 1 90px; overflow-wrap: anywhere; }
+.voice-fact button { min-height: 36px; }
+.voice-secondary-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.voice-diagnostics summary { cursor: pointer; font-weight: 600; }
+.voice-diagnostics select, .voice-diagnostics input { max-width: 100%; }
+.voice-diagnostics .kvs { grid-template-columns: minmax(90px, auto) minmax(0, 1fr); }
+.voice-diagnostics .v { overflow-wrap: anywhere; }
+.voice-page .result-card { margin-top: 18px; }
+.voice-handoff { display: inline-block; color: var(--ink); font-weight: 700; text-decoration: underline; padding: 12px 0; }
+.voice-feedback { border: 1px solid var(--edge); border-radius: var(--radius-sm); margin: 18px 0 0; padding: 12px; }
+.voice-feedback legend { font-size: 13px; }
+.voice-feedback .row { gap: 8px; flex-wrap: wrap; }
+.voice-feedback button { min-width: 40px; min-height: 40px; }
+.voice-page button:focus-visible, .voice-page a:focus-visible, .voice-page summary:focus-visible, .voice-page .transcript:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 1100px) {
+  .voice-page .call-layout { grid-template-columns: 1fr; }
+  .voice-page .stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+}
+@media (max-width: 680px) {
+  .voice-page .stack { grid-template-columns: 1fr; }
+  .voice-page .page-actions { width: 100%; justify-content: flex-start; }
+  .voice-page .call-stage { padding: 12px; }
+  .voice-page .transcript { max-height: none; }
+}

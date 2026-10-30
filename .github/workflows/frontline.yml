@@ -75,6 +75,19 @@ jobs:
         # Fail hangs instead of burning the runner (WS contract must not block CI).
         run: make test
 
+      - name: Install current browser runtime
+        working-directory: dashboard
+        run: npx playwright install --with-deps chromium
+
+      - name: Current source handoff and authorization browser path
+        working-directory: dashboard
+        env:
+          E2E_PYTHON: python
+        run: npm run test:signin
+
+      - name: Public credit-free evidence replay
+        run: python -m scripts.public_replay
+
       - name: SLM Phase 0 probes (honest-baseline regression suite)
         run: make slm-probes
 
@@ -116,7 +129,7 @@ jobs:
           test -f dist/index.html
 
   hackathon-docker-smoke:
-    name: hackathon image and recorded proof
+    name: current judge image, campaign and review pages
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -124,7 +137,7 @@ jobs:
       - uses: docker/setup-buildx-action@v3
       - name: Build hackathon image
         run: docker build -f Dockerfile.hackathon -t tracex-hackathon:test .
-      - name: Seed without models and verify authenticated proof
+      - name: Seed without models and verify current judge path
         shell: bash
         run: |
           set -euo pipefail
@@ -145,12 +158,14 @@ jobs:
           done
           test "$READY" = 1
           curl -sf http://127.0.0.1:8001/ui/ >/dev/null
+          export HACKATHON_API_KEY
+          python3 -m scripts.submission_smoke --base-url http://127.0.0.1:8001 --key-env HACKATHON_API_KEY
           CODE=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/api/ai/demo/proof)
           test "$CODE" = 401
           curl -sf -H "X-API-Key: $HACKATHON_API_KEY" \
             http://127.0.0.1:8001/api/ai/demo/proof > /tmp/tracex-recorded-proof.json
           python3 -c 'import json; d=json.load(open("/tmp/tracex-recorded-proof.json")); assert d["ok"] and d["live_transport"]'
-          docker exec tracex-judge python -c 'from pathlib import Path; assert Path("/app/data/.hackathon_seeded").read_text().strip() == "2026-10-28-event"'
+          docker exec tracex-judge python -c 'from pathlib import Path; assert Path("/app/data/.hackathon_seeded").read_text().strip() == "2026-10-30-sourced-investigation-v3"'
           docker stop --time 15 tracex-judge
 
   docker-smoke:

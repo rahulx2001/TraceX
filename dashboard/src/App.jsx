@@ -5,6 +5,9 @@ import CaseQueue from "../routes/CaseQueue.jsx";
 import EarlyWarningBoard from "../routes/EarlyWarningBoard.jsx";
 import Settings from "../routes/Settings.jsx";
 import CommandCenter from "../routes/CommandCenter.jsx";
+import SafetyCampaigns from "../routes/SafetyCampaigns.jsx";
+import SignIn from "../routes/SignIn.jsx";
+import JudgeEntry from "../routes/JudgeEntry.jsx";
 import UserJourneyGuide from "../routes/UserJourneyGuide.jsx";
 import AnalyticsDesk from "../routes/AnalyticsDesk.jsx";
 import IssueDesk from "../routes/IssueDesk.jsx";
@@ -24,6 +27,7 @@ import AiStatus from "../routes/AiStatus.jsx"; // [AI-LAYER] AI status page: cal
 import DefectLevel from "../routes/DefectLevel.jsx"; // [AI-LAYER] defect-level early warning (#defect-level)
 import AiModeBadge from "./ai/AiModeBadge.jsx";
 import CommandPalette from "./ui/CommandPalette.jsx";
+import AccountSignIn from "./ui/AccountSignIn.jsx";
 import { ToastProvider, useToast } from "./ui/Toast.jsx";
 import { ErrorBoundary } from "./ui/Feedback.jsx";
 import { useHotkeys, useLocalStorage } from "./ui/hooks.js";
@@ -43,12 +47,6 @@ import {
 } from "./icons.jsx";
 import { packLabel } from "./ui/labels.js";
 
-// Use the server's access check. Judges on authenticated servers must be
-// able to enter operator credentials or an issued supervisor session.
-// [HACKATHON LOCAL DEMO] The sign-in / sign-up pages are removed from this
-// build. Backend auth is still enforced; this only removes the browser gate.
-const FORCE_OPEN_CONSOLE = true;
-
 const NAV_GROUPS = [
   {
     label: "Operate",
@@ -57,6 +55,7 @@ const NAV_GROUPS = [
       { id: "call", label: "Voice agent", Icon: IconMic, route: CallWidget, keywords: "call widget mic speak contact" },
       { id: "console", label: "Live console", Icon: IconHeadset, route: LiveContactConsole, keywords: "supervisor takeover transcript" },
       { id: "cases", label: "Case queue", Icon: IconFolder, route: CaseQueue, keywords: "tickets severity priority p1 critical" },
+      { id: "safety-campaigns", label: "Safety campaigns", Icon: IconShield, route: SafetyCampaigns, keywords: "road safety lotguard vehicle part traceability owners workshop repair recall" },
     ],
   },
   {
@@ -79,6 +78,8 @@ const NAV_GROUPS = [
 
 const ALL_NAV = NAV_GROUPS.flatMap((g) => g.items);
 const EXTRA_PAGES = [
+  { id: "signin", label: "Sign in", route: SignIn },
+  { id: "signup", label: "Create account", route: SignIn },
   { id: "guide", label: "User guide", route: UserJourneyGuide, keywords: "guide walkthrough journey onboarding" },
   { id: "issue", label: "Issue", route: IssueDesk, keywords: "issue cluster investigation failure" },
   { id: "insights", label: "Insights", route: InsightsBoard, keywords: "csat product gap analytics" },
@@ -89,7 +90,8 @@ const EXTRA_PAGES = [
   { id: "studio", label: "Feature studio", route: FeatureStudio, keywords: "features sandbox prompt test" },
   { id: "builder", label: "Pack builder", route: PackBuilder, keywords: "pack builder upload yaml" },
   // [AI-LAYER] hackathon demo path (#demo); not in the nav, existing screens unchanged
-  { id: "demo", label: "Demo tour", route: DemoMode, keywords: "demo hackathon hindi photo brief safety meta muse sam" },
+  { id: "demo", label: "Judge start", route: JudgeEntry, keywords: "demo hackathon report investigate review evidence" },
+  { id: "legacy-demo", label: "Earlier platform tour", route: DemoMode, keywords: "earlier intake lotguard tour" },
   // [AI-LAYER] road-safety tools hub (#ai-tools): vehicle risk, alerts, service centre, spread, WhatsApp mock
   { id: "ai-tools", label: "Road-safety tools", route: AiTools, keywords: "vehicle risk alerts service centre spread whatsapp video" },
   // [AI-LAYER] AI status page (#ai-status): Meta call health + supervisor review of AI severity raises
@@ -117,6 +119,7 @@ function useHashRoute() {
     (next) => {
       const { id: cur } = parseLocationHash();
       if (cur === next) return;
+      if (!window.dispatchEvent(new CustomEvent("tracex:before-route", { cancelable: true, detail: { next } }))) return;
       window.location.hash = next;
     },
     raw,
@@ -171,10 +174,9 @@ function Shell() {
   const [route, setRoute] = useHashRoute();
   const [health, setHealth] = useState(null);
   const [healthError, setHealthError] = useState(false);
-  // [HACKATHON LOCAL DEMO] An explicitly open server has no credential to ask
-  // for, so send visitors straight to the console. Auth-required servers keep
-  // the sign-in gate. FORCE_OPEN_CONSOLE is an escape hatch for a demo build.
-  const demoOpenConsole = FORCE_OPEN_CONSOLE || health?.auth_required === false;
+  // Open local servers need no credential. Authority still comes from the
+  // backend; authenticated servers validate a session or operator API key.
+  const demoOpenConsole = health?.auth_required === false;
   const [collapsed, setCollapsed] = useLocalStorage("fl.sidebar.collapsed", false);
   const [theme, setTheme] = useLocalStorage("fl.theme", "dark");
   const [density, setDensity] = useLocalStorage("fl.density", "comfortable");
@@ -248,14 +250,9 @@ function Shell() {
     if (!ALL_PAGES.some((n) => n.id === route)) setRoute("command");
   }, [route, setRoute, demoOpenConsole]);
 
-  // Mandatory auth gate: no session/key → no console (and no guide).
-  // [HACKATHON LOCAL DEMO] demoOpenConsole bypasses this gate on an explicitly
-  // open server. Auth-required servers keep the original check below.
+  // hasConsoleAccess handles explicit open mode and fails closed when health
+  // is unavailable. Keep the check subscribed to credential changes in both modes.
   useEffect(() => {
-    if (demoOpenConsole) {
-      setGate("allowed");
-      return undefined;
-    }
     if (route === "signin" || route === "signup") {
       setGate("allowed");
       return undefined;
@@ -276,7 +273,8 @@ function Shell() {
         setGate("allowed");
       } else {
         setGate("denied");
-        setRoute("signin");
+        const next = window.location.hash.slice(1) || "demo";
+        setRoute(`signin?next=${encodeURIComponent(next)}`);
       }
     };
     check();
@@ -285,14 +283,16 @@ function Shell() {
       cancelled = true;
       window.removeEventListener(AUTH_EVENT, check);
     };
-  }, [route]);
+  }, [route, demoOpenConsole]);
 
   useEffect(() => {
     const raw = window.location.hash.slice(1);
     const q = raw.includes("?") ? raw.slice(raw.indexOf("?") + 1) : "";
     const params = new URLSearchParams(q);
     const handoff = params.get("handoff");
-    if (handoff) {
+    // SignIn owns its own one-time handoff. Completing it from both mounted
+    // components would consume the same code twice.
+    if (handoff && route !== "signin" && route !== "signup") {
       completeGoogleHandoff(handoff)
         .then(() => {
           window.location.hash = raw.split("?")[0] || "command";
@@ -528,9 +528,6 @@ function Shell() {
   const statusTone = healthError ? "danger" : health?.status === "ok" ? "ok" : "warn";
   const statusText = healthError ? "unreachable" : health?.status || "connecting";
 
-  // [HACKATHON LOCAL DEMO] Sign-in / sign-up screens are intentionally absent.
-  // The console opens directly; backend auth is unchanged.
-
   // Never flash protected content to anonymous visitors while checking.
   if (gate !== "allowed") {
     return (
@@ -539,6 +536,10 @@ function Shell() {
         <p>Checking access…</p>
       </div>
     );
+  }
+
+  if (active.id === "signin" || active.id === "signup") {
+    return <Page initialMode={active.id} onNavigate={setRoute} />;
   }
 
   const navList = (
@@ -602,6 +603,13 @@ function Shell() {
           </button>
           <button
             type="button"
+            className="primary"
+            onClick={() => setRoute("demo")}
+          >
+            Judge start →
+          </button>
+          <button
+            type="button"
             className="rail-search"
             onClick={() => setPaletteOpen(true)}
             aria-label="Open command palette"
@@ -614,6 +622,7 @@ function Shell() {
         {navList}
 
         <div className="sidebar-foot">
+          <AccountSignIn />
           <button
             type="button"
             className="ghost collapse-btn"
@@ -655,7 +664,7 @@ function Shell() {
           <div className="topbar-right">
             {/* [AI-LAYER] AI mode badge (enhanced | deterministic) */}
             {route !== "signin" && route !== "signup" && <AiModeBadge />}
-            {!demoOpenConsole && route !== "signin" && (
+            {route !== "signin" && (
               me?.signed_in ? (
                 <span className="topbar-who" title={me.subject || ""}>
                   {me.subject}

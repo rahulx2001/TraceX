@@ -1,0 +1,1 @@
+Here an operator reviews the fictional installation record. This is a clearly simulated engineering decision. The supplier, part number and lot come from recorded installation fields. A vehicle model, a similar complaint, or the language model alone cannot establish an exact lot match.

@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:theme": "node scripts/assert-light-theme.mjs",
+    "test:analytics": "node --test scripts/analytics-data.test.mjs",
     "test:qa-labels": "node scripts/assert-qa-labels.mjs",
     "test:tts-voice": "node scripts/assert-tts-voice.mjs",
     "test:server-voice": "node scripts/assert-server-voice.mjs",

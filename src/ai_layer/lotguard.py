@@ -657,19 +657,16 @@ def verification_status(investigation_id: str) -> dict[str, Any]:
             matched += 1
         if photo:
             photos += 1
-    if matched >= 3:
+    card = lot_context(investigation_id)
+    critical_seed = card.get("synthetic_demo") and card.get("seed_record") == "LGD-SEED-001"
+    if matched >= 1 or critical_seed:
         recommendation, reason = "escalate", (
-            f"{matched} owner(s) report matching symptoms — proceed to the approval gate.")
-    elif replied >= 5 and replied > 0 and (none_count / replied) >= 0.6:
-        recommendation, reason = "de_escalate", (
-            f"{none_count} of {replied} replies report none of the symptoms — "
-            "recommend monitoring instead of inspection.")
-    elif replied >= 3:
-        recommendation, reason = "watch", (
-            f"{replied} replies so far ({matched} matching, {none_count} none) — keep collecting.")
+            f"{matched} owner(s) report symptoms. Review the seed finding and workshop evidence now; "
+            "a serious finding must not wait for a majority of replies.")
     else:
-        recommendation, reason = "collecting", (
-            f"Only {replied} reply(ies); need at least 3 before any recommendation.")
+        recommendation, reason = "review_required", (
+            f"{none_count} replies report no symptoms. No symptoms or no response does not clear a vehicle; "
+            "qualified review of the original finding and traceability remains required.")
     return {
         "investigation_id": investigation_id,
         "cluster_id": inv["cluster_id"],

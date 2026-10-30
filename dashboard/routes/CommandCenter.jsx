@@ -13,7 +13,8 @@ import {
 } from "../src/ui/opsActions.js";
 import { dayGreeting } from "../src/ui/greeting.js";
 import { formatSnapshotTs } from "../src/ui/formatTime.js";
-import { packLabel } from "../src/ui/labels.js";
+import { issueCategoryLabel, packLabel } from "../src/ui/labels.js";
+import "./command-center.css";
 
 async function dashboardJson(url, signal, timeout = 8000) {
   const ctrl = new AbortController();
@@ -235,400 +236,174 @@ export default function CommandCenter({ refreshKey }) {
   const openCaseCount = wall ? (wall.open_cases ?? 0) : "—";
   const draining = Boolean(drain?.draining);
 
-  const hotDollarsReal = fmtUSD(hot?._est?.total_risk_usd ?? hot?._dol?.dollar_impact);
-  const hotDollars = hotDollarsReal ?? (hot?._estDollars ? `${fmtUSD(hot._estDollars)} est.` : null);
+  const hotDollars = fmtUSD(hot?._est?.total_risk_usd ?? hot?._dol?.dollar_impact ?? hot?._estDollars);
   const hotLead = hot?.lead_time_weeks ?? hot?._dol?.lead_time_weeks ?? hot?._ctx?.backtest?.lead_time_weeks;
   const hotAdv = hot?.matched_advisory ?? hot?._dol?.matched_advisory ?? hot?._ctx?.backtest?.advisory_id;
-  const hotCategory = hot?._category || hot?._ctx?.category || `Cluster ${hot?.cluster_id}`;
-  const heroBits = hot
-    ? [
-        `${hotCategory} cluster`,
-        hotDollars ? `${hotDollars} at risk` : null,
-        hotLead !== null && hotLead !== undefined
-          ? `flagged ${hotLead}w before ${hotAdv || "the advisory"}`
-          : null,
-        cites ? `grounded ${cites.grounded}/${cites.total} citations` : null,
-      ].filter(Boolean)
-    : [];
+  const hotCategory = issueCategoryLabel(hot?._category || hot?._ctx?.category);
+  const maxClusterCases = Math.max(1, ...clusters.map((c) => Number(c.open_cases) || 0));
+  const readiness = [
+    ["API status", health?.status || "Awaiting status", health ? (health.status === "ok" ? "ok" : "warn") : "neutral"],
+    ["Authentication", health?.auth_required == null ? "—" : health.auth_required ? "API key required" : "Open local", "neutral"],
+    ["Database", health?.db_ok == null ? "—" : health.db_ok ? "Reachable" : "Check connection", health?.db_ok == null ? "neutral" : health.db_ok ? "ok" : "warn"],
+    ["Pack load", health?.pack_ok == null ? "—" : health.pack_ok ? "Loaded" : "Failed", health?.pack_ok == null ? "neutral" : health.pack_ok ? "ok" : "warn"],
+    ["LLM", health?.llm_available == null ? "—" : health.llm_available ? "Available" : "Off", health?.llm_available ? "ok" : "neutral"],
+    ["Embedding", health?.embedding?.mode || "—", "neutral"],
+  ];
+  const pilotMetrics = [
+    ["Open status", metrics?.cases?.open],
+    ["Critical open", metrics?.cases?.critical_open],
+    ["Pending follow-up", metrics?.cases?.pending_followup],
+    ["Investigations", metrics?.investigations?.open],
+    ["Active calls", metrics?.interactions_active],
+    ["Dead letters", metrics?.alert_dead_letters_pending],
+    ["Connector pending", metrics?.connector_deliveries_pending],
+    ["Case notes", metrics?.case_notes_in_window],
+    ["Fixes recorded", metrics?.fix_loop?.fixes_recorded],
+  ].filter(([, value]) => value != null);
+  const usageLabel = (key) => ({ contacts: "Contacts", llm_spend_usd: "LLM spend", alerts: "Alerts" }[key] || key.replaceAll("_", " "));
 
   return (
-    <div className="page-enter">
-      {hot ? (
-        <section className="panel cc-issue-hero" aria-label="Hottest fleet issue">
-          <p className="muted mono" style={{ margin: "0 0 6px", fontSize: 11 }}>
-            HOTTEST FLEET ISSUE · #{hot.cluster_id}
-            {hot?.critical_count > 0 && (
-              <> · <span className="chip red">{hot.critical_count} critical</span></>
-            )}
-          </p>
-          <h1 className="cc-issue-line">{heroBits.join(" · ")}</h1>
-          <p className="muted" style={{ fontSize: 11, margin: "6px 0 0" }}>
-            Incl. simulated rehearsal traffic (no-op when there is none).
-          </p>
-          <div className="row" style={{ marginTop: 12, gap: 8 }}>
-            <button type="button" className="btn btn-primary" onClick={() => openIssue(hot.cluster_id)}>
-              Open issue →
-            </button>
-            <button type="button" className="ghost" onClick={() => openWarning({ clusterId: hot.cluster_id, packId: hot.pack_id })}>
-              Early warning
-            </button>
+    <div className="command-page">
+      <header className="cc-overview-header">
+        <div>
+          <h1 className="cc-greeting">{dayGreeting(tick)}</h1>
+          <p className="cc-subtitle">Your live operations, priorities and system health.</p>
+        </div>
+        <div className="cc-header-actions">
+          <button type="button" className="ghost" onClick={() => load(true)} disabled={loading}>
+            {loading ? "Refreshing…" : "Refresh"}
+          </button>
+          <button type="button" className="primary" onClick={() => goHash("call")}>Start a contact <span aria-hidden="true">↗</span></button>
+          <button type="button" onClick={() => goHash("safety-campaigns")}>Safety campaigns <span aria-hidden="true">↗</span></button>
+        </div>
+      </header>
+
+      {msg && <div className="banner banner-ok" role="status">{msg}</div>}
+      {err && <div className="banner banner-error" role="alert">Could not load command center: <span className="mono">{err}</span></div>}
+
+      {hot && (
+        <section className="panel cc-priority" aria-labelledby="cc-priority-title">
+          <div className="cc-priority-copy">
+            <div className="cc-priority-label"><span className="cc-status-dot" aria-hidden="true" />Priority issue <span className="cc-muted">· Group #{hot.cluster_id}</span></div>
+            <h2 id="cc-priority-title">{hotCategory}</h2>
+            <p className="cc-subtitle">{hot.critical_count > 0 ? `${hot.critical_count} critical · ` : ""}{hot._corpus ? "Historical complaint sample" : "30-day issue window"} · includes test traffic</p>
+          </div>
+          {(hotDollars || hotLead != null) && <dl className="cc-priority-facts">
+            {hotDollars && <div><dt>Estimated risk</dt><dd>{hotDollars}</dd></div>}
+            {hotLead != null && <div><dt>Historical lead</dt><dd>{Number(hotLead) === 0 ? "Same week" : `${Math.abs(Number(hotLead))}w ${Number(hotLead) > 0 ? "early" : "later"}`}<span className="cc-muted">{hotAdv ? `vs ${hotAdv}` : "vs matched advisory"}</span></dd></div>}
+          </dl>}
+          <div className="cc-priority-actions">
+            <button type="button" onClick={() => openIssue(hot.cluster_id)}>Open issue <span aria-hidden="true">→</span></button>
+            <button type="button" className="cc-text-button" onClick={() => openWarning({ clusterId: hot.cluster_id, packId: hot.pack_id })}>Early warning</button>
           </div>
         </section>
-      ) : (
-        <section className="cc-hero" aria-label="Command center overview">
-          <div className="cc-hero-copy">
-            <h1 className="cc-greeting">{dayGreeting(tick)}</h1>
-          </div>
-          <div className="cc-hero-meta">
-            <button type="button" className="ghost" onClick={() => load(true)} disabled={loading}>
-              {loading ? "Refreshing…" : "Refresh"}
-            </button>
-          </div>
-        </section>
       )}
 
-      {msg && (
-        <div className="banner banner-ok" role="status">
-          {msg}
-        </div>
-      )}
-
-      {err && (
-        <div className="banner banner-error" role="alert">
-          Could not load command center: <span className="mono">{err}</span>
-        </div>
-      )}
-
-      {readIncludeSimulated() && (
-        <p className="faint" style={{ margin: "0 0 10px" }}>
-          Including simulated contacts (toggle on Early warning).
-        </p>
-      )}
-
-      <div className="stat-grid" style={{ marginBottom: 16 }}>
-        <button
-          type="button"
-          className="stat-card stat-card-btn"
-          onClick={() => openConsole()}
-          title="Open live console"
-        >
-          <div className="label">Live contacts</div>
-          <div className="value">{liveCount}</div>
-          <div className="hint">Active now</div>
+      <div className="cc-snapshot-line">
+        <span>{readIncludeSimulated() ? "Including test traffic · managed in Early warning" : "Live traffic overview"}</span>
+        <span>{wall?.ts ? `Updated ${formatSnapshotTs(wall.ts)}` : "Awaiting snapshot"}</span>
+      </div>
+      <div className="stat-grid cc-stat-grid">
+        <button type="button" className="stat-card stat-card-btn" onClick={() => openConsole()} title="Open live console">
+          <div className="label">Live contacts <span aria-hidden="true">↗</span></div>
+          <div className="value">{liveCount}</div><div className="hint">Active now</div>
         </button>
-        <button
-          type="button"
-          className={`stat-card ${Number(p1) > 0 ? "danger" : ""} stat-card-btn`}
-          onClick={() => openCases({ severity: "Critical", status: "open" })}
-          title="Open Critical case queue"
-        >
-          <div className="label">Critical open</div>
-          <div className="value">{p1}</div>
-          <div className="hint">Needs a look</div>
+        <button type="button" className={`stat-card ${Number(p1) > 0 ? "danger" : ""} stat-card-btn`} onClick={() => openCases({ severity: "Critical", status: "open" })} title="Open Critical case queue">
+          <div className="label">Critical open <span aria-hidden="true">↗</span></div>
+          <div className="value">{p1}</div><div className="hint">Open and follow-up</div>
         </button>
-        <button
-          type="button"
-          className="stat-card stat-card-btn"
-          onClick={() => openCases({ status: "open" })}
-          title="Open case queue"
-        >
-          <div className="label">Open cases</div>
-          <div className="value">{openCaseCount}</div>
-          <div className="hint">Open and follow-up</div>
+        <button type="button" className="stat-card stat-card-btn" onClick={() => openCases({ status: "open" })} title="Open case queue">
+          <div className="label">Open cases <span aria-hidden="true">↗</span></div>
+          <div className="value">{openCaseCount}</div><div className="hint">Open and follow-up</div>
         </button>
-        <button
-          type="button"
-          className={`stat-card ${draining ? "danger" : "ok"} stat-card-btn`}
-          onClick={() => goHash("settings?tab=lab&view=ops")}
-          title="Open drain controls in Feature lab"
-        >
-          <div className="label">Deploy drain</div>
-          <div className="value" style={{ fontSize: 24, letterSpacing: "-0.04em" }}>
-            {!drain ? "—" : draining ? "Draining" : "Ready"}
-          </div>
-          <div className="hint">
-            {!drain ? "Awaiting server status" : draining
-              ? `${drain?.active_count ?? 0} still active`
-              : "New contacts accepted"}
-          </div>
+        <button type="button" className={`stat-card ${draining ? "danger" : ""} stat-card-btn`} onClick={() => goHash("settings?tab=lab&view=ops")} title="Open drain controls in Feature lab">
+          <div className="label">Contact intake <span aria-hidden="true">↗</span></div>
+          <div className="value cc-intake-value">{!drain ? "—" : draining ? "Draining" : "Ready"}</div>
+          <div className="hint">{!drain ? "Awaiting server status" : draining ? `${drain.active_count ?? 0} still active` : "New contacts accepted"}</div>
         </button>
       </div>
 
-      <div className="cc-section-label">
-        <h2>Floor view</h2>
-        <span>Live contacts · top risk clusters</span>
-      </div>
-
-      <div className="grid-2">
-        <section className="panel">
-          <h2>
-            Live contacts
-            <span className="faint" style={{ fontWeight: 500, letterSpacing: 0 }}>
-              {wall ? `${live.length} active` : "Loading…"}
-            </span>
-          </h2>
-          {live.length === 0 ? (
-            <div className="empty-state">
-              <p className="empty-state-text">
-                {wall ? "No active contacts. Start one from Voice agent." : "Waiting for the live contact snapshot."}
-              </p>
-              <div className="row" style={{ marginTop: 12 }}>
-                <button type="button" className="primary" onClick={() => (window.location.hash = "call")}>
-                  Start a contact
-                </button>
+      <div className="cc-operations-grid">
+        <div className="cc-operations-main">
+          <section className="panel cc-live-panel" aria-labelledby="cc-live-title">
+            <div className="cc-panel-heading">
+              <h2 id="cc-live-title">Live contacts <span className="cc-count">{wall ? liveCount : "—"}</span></h2>
+              <button type="button" className="cc-text-button" onClick={() => openConsole()}>Open console <span aria-hidden="true">↗</span></button>
+            </div>
+            {live.length === 0 ? (
+              <div className="cc-live-empty">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3M4 12H3v6h3v-6H4Zm16 0h1v6h-3v-6h2ZM20 18a4 4 0 0 1-4 4h-4" /></svg>
+                <div><strong>{wall ? "No active contacts" : "Loading live activity"}</strong><p>{wall ? "New contacts will appear here as they start." : "Waiting for the latest contact snapshot."}</p></div>
               </div>
-            </div>
-          ) : (
-            <div className="live-feed">
-              {live.map((row) => (
-                <button
-                  type="button"
-                  className="live-row live-row-btn"
-                  key={row.interaction_id}
-                  onClick={() => openConsole(row.interaction_id)}
-                  title="Open in live console"
-                >
+            ) : (
+              <div className="live-feed">
+                {live.map((row) => <button type="button" className="live-row live-row-btn" key={row.interaction_id} onClick={() => openConsole(row.interaction_id)} title="Open in live console">
                   <span className="dot" aria-hidden="true" />
-                  <div className="id" title={row.interaction_id}>
-                    {row.interaction_id}
-                  </div>
-                  <div className="meta">
-                    {[row.pack_id, row.category].filter(Boolean).join(" · ") || "intake in progress"}
-                  </div>
-                  <div className="chan">
-                    {row.channel === "simulated" ? (
-                      <span className="chip purple" style={{ fontSize: 10, padding: "2px 6px" }}>simulated</span>
-                    ) : (
-                      row.channel || "open →"
-                    )}
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
-        </section>
+                  <div className="cc-live-details"><strong>{row.category || "Intake in progress"}</strong><span className="id" title={row.interaction_id}>{row.interaction_id}</span></div>
+                  <span className="meta">{packLabel(row.pack_id)}</span><span className="chan">{row.channel === "simulated" ? "Test traffic" : row.channel || "Open →"}</span>
+                </button>)}
+                {Number(liveCount) > live.length && <p className="cc-footnote">Showing {live.length} of {liveCount} active contacts.</p>}
+              </div>
+            )}
+          </section>
 
-        <section className="panel">
-          <h2>
-            Top risk clusters
-            <span className="faint" style={{ fontWeight: 500, letterSpacing: 0 }}>
-              by open cases
-            </span>
-          </h2>
-          {clusters.length === 0 ? (
-            <div className="empty-state">
-              <p className="empty-state-text">
-                {wall ? "No open clustered cases yet. Early warning lights up here when similar contacts share a cluster." : "Waiting for the risk cluster snapshot."}
-              </p>
-              <button
-                type="button"
-                className="ghost"
-                style={{ marginTop: 12 }}
-                onClick={() => (window.location.hash = "warning")}
-              >
-                Open early warning
+          <section className="panel cc-queue-panel" aria-labelledby="cc-queue-title">
+            <div className="cc-panel-heading">
+              <div><h2 id="cc-queue-title">Critical queue</h2><p className="cc-subtitle">{p1Cases ? `${p1Cases.length} latest cases with open status` : "Loading open Critical cases"}</p></div>
+              <button type="button" className="cc-text-button" onClick={() => openCases({ severity: "Critical", status: "open" })}>View queue <span aria-hidden="true">→</span></button>
+            </div>
+            {!p1Cases?.length ? (
+              <div className="cc-queue-empty">
+                <p>{p1Cases ? "No open Critical cases in this view." : "Waiting for the Critical case snapshot."}</p>
+                <div className="cc-header-actions"><button type="button" className="ghost" onClick={runSimulate} disabled={simBusy}>{simBusy ? "Seeding…" : "Seed demo traffic"}</button><button type="button" className="ghost" onClick={() => openCases({ status: "open" })}>All open cases</button></div>
+              </div>
+            ) : (
+              <div className="cc-queue-scroll"><table className="cc-queue-table">
+                <thead><tr><th scope="col">Case / category</th><th scope="col">Status</th><th scope="col"><span className="sr-only">Action</span></th></tr></thead>
+                <tbody>{p1Cases.map((c) => <tr key={c.case_id} onClick={() => openCases({ severity: "Critical", status: "open", caseId: c.case_id })}>
+                  <td><strong>{issueCategoryLabel(c.category)}</strong><span className="cc-case-id" title={c.case_id}>{c.case_id}</span></td>
+                  <td><span className="cc-case-status"><i aria-hidden="true" />{c.status}</span></td>
+                  <td><button type="button" className="cc-text-button" aria-label={`Open case ${c.case_id}`} onClick={(e) => { e.stopPropagation(); openCases({ severity: "Critical", status: "open", caseId: c.case_id }); }}>Open <span aria-hidden="true">↗</span></button></td>
+                </tr>)}</tbody>
+              </table></div>
+            )}
+          </section>
+        </div>
+
+        <section className="panel cc-clusters-panel" aria-labelledby="cc-clusters-title">
+          <div className="cc-panel-heading"><div><h2 id="cc-clusters-title">{clusters.length > 0 && clusters.every((c) => c.pack_id === "automotive_nhtsa") ? "Recurring vehicle issues" : "Recurring issues"}</h2><p className="cc-subtitle">Similar complaints grouped by problem. Most open cases first.</p></div></div>
+          {clusters.length === 0 ? <div className="cc-queue-empty"><p>{wall ? "No open cases grouped by issue yet." : "Loading recurring issues…"}</p><button type="button" className="ghost" onClick={() => openWarning()}>Open early warning</button></div> : (
+            <div className="cc-cluster-list">{clusters.map((c, i) => (
+              <button type="button" className="cc-cluster-row" key={`${c.pack_id}-${c.cluster_id}`} onClick={() => openWarning({ clusterId: c.cluster_id, packId: c.pack_id })} aria-label={`View ${issueCategoryLabel(c.category)}, group ${c.cluster_id}, ${packLabel(c.pack_id)}, ${c.open_cases} open cases including follow-up. Highest reported severity: ${c.max_severity || "unknown"}.`}>
+                <span className="cc-cluster-rank" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div className="cc-cluster-main">
+                  <div className="cc-cluster-title"><strong>{issueCategoryLabel(c.category)}</strong><span className={`cc-severity cc-severity-${String(c.max_severity || "").toLowerCase()}`}>{c.max_severity ? `${c.max_severity} reported` : "Severity unreported"}</span></div>
+                  <span className="cc-cluster-pack">Group #{c.cluster_id} · {packLabel(c.pack_id)}</span>
+                  <span className="cc-cluster-track" aria-hidden="true"><span style={{ width: `${Math.max(0, Number(c.open_cases) || 0) / maxClusterCases * 100}%` }} /></span>
+                </div>
+                <span className="cc-cluster-count">{Number(c.open_cases).toLocaleString()}<small>open {Number(c.open_cases) === 1 ? "case" : "cases"}</small><span className="cc-cluster-arrow" aria-hidden="true">↗</span></span>
               </button>
-            </div>
-          ) : (
-            <div className="risk-list">
-              {clusters.map((c, i) => (
-                <button
-                  type="button"
-                  className="risk-row"
-                  key={`${c.pack_id}-${c.cluster_id}`}
-                  onClick={() => openWarning({ clusterId: c.cluster_id, packId: c.pack_id })}
-                >
-                  <div className="risk-rank">#{String(i + 1).padStart(2, "0")}</div>
-                  <div className="risk-main">
-                    <div className="title">
-                      Cluster {c.cluster_id}{" "}
-                      <span className={`sev ${(c.max_severity || "").toLowerCase()}`}>
-                        {c.max_severity || "—"}
-                      </span>
-                    </div>
-                    <div className="hint">{packLabel(c.pack_id)}</div>
-                  </div>
-                  <div className="risk-count" title="Open cases">
-                    {c.open_cases}
-                  </div>
-                </button>
-              ))}
-            </div>
+            ))}</div>
           )}
+          {clusters.length > 0 && <p className="cc-footnote cc-cluster-note">Counts include cases awaiting follow-up. Severity shows the highest level reported in each group.</p>}
+          <button type="button" className="cc-text-button cc-cluster-more" onClick={() => openWarning()}>View all recurring issues <span aria-hidden="true">→</span></button>
         </section>
       </div>
 
-      <div className="cc-section-label">
-        <h2>Critical queue</h2>
-        <span>Open Critical cases — click a row to open the case queue</span>
-      </div>
-      <section className="panel" style={{ marginBottom: 16 }}>
-        {!p1Cases?.length ? (
-          <div className="empty-state">
-            <p className="empty-state-text">
-              {p1Cases ? "No open Critical cases. Simulate traffic or take live contacts to light this up." : "Waiting for the Critical case snapshot."}
-            </p>
-            <div className="row" style={{ marginTop: 10 }}>
-              <button type="button" className="ghost" onClick={runSimulate} disabled={simBusy}>
-                {simBusy ? "Seeding…" : "Seed demo traffic"}
-              </button>
-              <button type="button" className="ghost" onClick={() => openCases({ status: "open" })}>
-                All open cases
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Case</th>
-                  <th>Category</th>
-                  <th>Severity</th>
-                  <th>Status</th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {p1Cases.map((c) => (
-                  <tr
-                    key={c.case_id}
-                    style={{ cursor: "pointer" }}
-                    tabIndex={0}
-                    onClick={() =>
-                      openCases({
-                        severity: "Critical",
-                        status: "open",
-                        caseId: c.case_id,
-                      })
-                    }
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        openCases({
-                          severity: "Critical",
-                          status: "open",
-                          caseId: c.case_id,
-                        });
-                      }
-                    }}
-                  >
-                    <td className="mono">{c.case_id}</td>
-                    <td>{c.category || "—"}</td>
-                    <td>{c.severity || "Critical"}</td>
-                    <td>{c.status}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="ghost"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openCases({
-                            severity: "Critical",
-                            status: "open",
-                            caseId: c.case_id,
-                          });
-                        }}
-                      >
-                        Open
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+      <section className="panel cc-system-panel" aria-labelledby="cc-system-title">
+        <div className="cc-panel-heading"><div><h2 id="cc-system-title">System readiness</h2><p className="cc-subtitle">Service health at a glance</p></div></div>
+        <dl className="cc-readiness">{readiness.map(([label, value, tone]) => <div key={label}><dt>{label}</dt><dd><i className={`cc-health-dot cc-health-${tone}`} aria-hidden="true" />{value}</dd></div>)}</dl>
+        {cites && <p className="cc-footnote cc-audit-note">Audit sample · {cites.grounded.toLocaleString()} / {cites.total.toLocaleString()} grounded actions across up to 60 contacts, including test traffic.</p>}
       </section>
 
-      <div className="cc-section-label">
-        <h2>System readiness</h2>
-        <span>Health · metering · pilot metrics</span>
-      </div>
-
-      <div className="readiness-strip">
-        <div className="readiness-item">
-          <div className="k">API status</div>
-          <div className={`v ${health?.status === "ok" ? "ok-text" : "warn-text"}`}>
-            {health?.status || "connecting"}
-          </div>
-        </div>
-        <div className="readiness-item">
-          <div className="k">Auth</div>
-          <div className="v">{!health ? "—" : health.auth_required ? "API key required" : "open local"}</div>
-        </div>
-        <div className="readiness-item">
-          <div className="k">Database</div>
-          <div className="v">{!health ? "—" : health.db_ok ? "reachable" : "check connection"}</div>
-        </div>
-        <div className="readiness-item">
-          <div className="k">Pack load</div>
-          <div className="v">{!health ? "—" : health.pack_ok ? "ok" : "failed"}</div>
-        </div>
-        <div className="readiness-item">
-          <div className="k">LLM</div>
-          <div className={`v ${health?.llm_available ? "ok-text" : "warn-text"}`}>
-            {!health ? "—" : health.llm_available ? "available" : "off"}
-          </div>
-        </div>
-        <div className="readiness-item">
-          <div className="k">Embedding</div>
-          <div className="v">{health?.embedding?.mode || "—"}</div>
-        </div>
-      </div>
-
-      <div className="grid-2" style={{ marginTop: 16 }}>
-        <section className="panel">
-          <h2>Usage metering</h2>
-          {usage ? (
-            <div className="kvs">
-              <span className="k">tenant</span>
-              <span className="v mono">{usage.tenant_id}</span>
-              <span className="k">month</span>
-              <span className="v mono">{usage.month}</span>
-              {Object.entries(usage.metrics || {}).map(([k, v]) => (
-                <div key={k} style={{ display: "contents" }}>
-                  <span className="k">{k}</span>
-                  <span className="v mono">{v}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="empty">Waiting for the usage snapshot.</div>
-          )}
+      <div className="cc-details-grid">
+        <section className="panel" aria-labelledby="cc-usage-title">
+          <div className="cc-panel-heading"><div><h2 id="cc-usage-title">Usage metering</h2><p className="cc-subtitle">{usage ? `${usage.month} · ${usage.tenant_id}` : "Current billing period"}</p></div></div>
+          {usage ? <dl className="cc-usage-list">{Object.entries(usage.metrics || {}).map(([key, value]) => <div key={key}><dt>{usageLabel(key)}</dt><dd>{key === "llm_spend_usd" ? Number(value).toLocaleString(undefined, { style: "currency", currency: "USD", minimumFractionDigits: 2 }) : typeof value === "number" ? value.toLocaleString() : String(value)}</dd></div>)}</dl> : <div className="cc-queue-empty">Waiting for the usage snapshot.</div>}
         </section>
-
-        <section className="panel">
-          <div className="pilot-head">
-            <h2>Pilot metrics</h2>
-            {metrics?.ts ? (
-              <span className="pilot-asof">{formatSnapshotTs(metrics.ts)}</span>
-            ) : null}
-          </div>
-          {metrics ? (
-            <div className="kv-grid">
-              {[
-                ["Open cases", metrics.cases?.open],
-                ["Critical open", metrics.cases?.critical_open],
-                ["Pending follow-up", metrics.cases?.pending_followup],
-                ["Investigations", metrics.investigations?.open],
-                ["Active calls", metrics.interactions_active],
-                ["Dead-letters", metrics.alert_dead_letters_pending],
-                ["Connector pending", metrics.connector_deliveries_pending],
-                ["Case notes", metrics.case_notes_in_window],
-                ["Fixes recorded", metrics.fix_loop?.fixes_recorded],
-              ]
-                .filter(([k, v]) => k !== "ts" && v != null)
-                .map(([k, v]) => (
-                  <div className="kv-tile" key={k}>
-                    <div className="k">{k}</div>
-                    <div className="v mono">{String(v)}</div>
-                  </div>
-                ))}
-            </div>
-          ) : (
-            <div className="empty">Waiting for the metrics snapshot.</div>
-          )}
+        <section className="panel" aria-labelledby="cc-pilot-title">
+          <div className="cc-panel-heading"><div><h2 id="cc-pilot-title">Pilot metrics</h2><p className="cc-subtitle">{metrics?.window_days ? `${metrics.window_days}-day snapshot` : "Operational snapshot"}</p></div>{metrics?.ts && <span className="cc-asof">{formatSnapshotTs(metrics.ts)}</span>}</div>
+          {metrics ? <dl className="cc-pilot-list">{pilotMetrics.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{typeof value === "number" ? value.toLocaleString() : String(value)}</dd></div>)}</dl> : <div className="cc-queue-empty">Waiting for the metrics snapshot.</div>}
         </section>
       </div>
     </div>

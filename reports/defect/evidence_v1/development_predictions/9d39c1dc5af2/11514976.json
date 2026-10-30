@@ -1,0 +1,228 @@
+{
+  "record_id": "11514976",
+  "input_hash": "d76120522cb88cc69dc7de4923c2f034a0a1330d6177d7883b2d4cb4e179510b",
+  "pack_hash": "1d2c25af85e8b86975c0d6738ccf8479a3f1ddef174fa635823c85a4e1a0890b",
+  "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+  "student_label": "other_unclear",
+  "student_margin": 0.6298767316432923,
+  "meta": {
+    "version": "complaint-evidence-v1",
+    "mode": "meta",
+    "model_id": "meta-models/muse-spark-open-1026",
+    "review_required": true,
+    "model_calls": 1,
+    "sources": [
+      {
+        "source_id": "report-1",
+        "kind": "owner_report",
+        "text": "I believe The failure that i'm experiencing is with the vehicle's transmission.  The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.   I believe the safety for mine and others can be at risk at times because they would be times where the car will not accelerate, even when your foot is pushed all the way on the pedal and as a result the car begins to slow down. This is can be risk depending on where you're driving for an example if you're on the highway or a congested area going at a specified speed.   From my understanding after doing research I have found out that several others have been experiencing this same problem, so to my understanding this is a common issue and I'm not sure why it was never addressed. I have taken the car to a mechanic where they said the problem is the CVT Transmission.   The Check Engine Light is on. This vehicle has not been in an accident.",
+        "sha256": "472ada1461f90dd2ae2997286cf95c07b3c948a519cff67432c3bc342bacdf2a",
+        "sentences": [
+          {
+            "sentence_id": "report-1:1",
+            "quote": "I believe The failure that i'm experiencing is with the vehicle's transmission.",
+            "start": 0,
+            "end": 79
+          },
+          {
+            "sentence_id": "report-1:2",
+            "quote": "The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.",
+            "start": 81,
+            "end": 321
+          },
+          {
+            "sentence_id": "report-1:3",
+            "quote": "I believe the safety for mine and others can be at risk at times because they would be times where the car will not accelerate, even when your foot is pushed all the way on the pedal and as a result the car begins to slow down.",
+            "start": 324,
+            "end": 551
+          },
+          {
+            "sentence_id": "report-1:4",
+            "quote": "This is can be risk depending on where you're driving for an example if you're on the highway or a congested area going at a specified speed.",
+            "start": 552,
+            "end": 693
+          },
+          {
+            "sentence_id": "report-1:5",
+            "quote": "From my understanding after doing research I have found out that several others have been experiencing this same problem, so to my understanding this is a common issue and I'm not sure why it was never addressed.",
+            "start": 696,
+            "end": 908
+          },
+          {
+            "sentence_id": "report-1:6",
+            "quote": "I have taken the car to a mechanic where they said the problem is the CVT Transmission.",
+            "start": 909,
+            "end": 996
+          },
+          {
+            "sentence_id": "report-1:7",
+            "quote": "The Check Engine Light is on.",
+            "start": 999,
+            "end": 1028
+          },
+          {
+            "sentence_id": "report-1:8",
+            "quote": "This vehicle has not been in an accident.",
+            "start": 1029,
+            "end": 1070
+          }
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "field": "part",
+        "value": "transmission",
+        "polarity": "uncertain",
+        "sentence_id": "report-1:1",
+        "evidence": {
+          "sentence_id": "report-1:1",
+          "quote": "I believe The failure that i'm experiencing is with the vehicle's transmission.",
+          "start": 0,
+          "end": 79,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "car stalls",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:2",
+        "evidence": {
+          "sentence_id": "report-1:2",
+          "quote": "The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.",
+          "start": 81,
+          "end": 321,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "refuses to shift gears",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:2",
+        "evidence": {
+          "sentence_id": "report-1:2",
+          "quote": "The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.",
+          "start": 81,
+          "end": 321,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "has trouble accelerating and will not accelerate even with pedal pressed",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:3",
+        "evidence": {
+          "sentence_id": "report-1:3",
+          "quote": "I believe the safety for mine and others can be at risk at times because they would be times where the car will not accelerate, even when your foot is pushed all the way on the pedal and as a result the car begins to slow down.",
+          "start": 324,
+          "end": 551,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "unfamiliar loud noise when trying to accelerate",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:2",
+        "evidence": {
+          "sentence_id": "report-1:2",
+          "quote": "The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.",
+          "start": 81,
+          "end": 321,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "shake or pushes forward randomly",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:2",
+        "evidence": {
+          "sentence_id": "report-1:2",
+          "quote": "The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.",
+          "start": 81,
+          "end": 321,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "Check Engine Light is on",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:7",
+        "evidence": {
+          "sentence_id": "report-1:7",
+          "quote": "The Check Engine Light is on.",
+          "start": 999,
+          "end": 1028,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "part",
+        "value": "CVT Transmission",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:6",
+        "evidence": {
+          "sentence_id": "report-1:6",
+          "quote": "I have taken the car to a mechanic where they said the problem is the CVT Transmission.",
+          "start": 909,
+          "end": 996,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "negation",
+        "value": "has not been in an accident",
+        "polarity": "denied",
+        "sentence_id": "report-1:8",
+        "evidence": {
+          "sentence_id": "report-1:8",
+          "quote": "This vehicle has not been in an accident.",
+          "start": 1029,
+          "end": 1070,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "uncertainty",
+        "value": "I believe failure is with transmission",
+        "polarity": "uncertain",
+        "sentence_id": "report-1:1",
+        "evidence": {
+          "sentence_id": "report-1:1",
+          "quote": "I believe The failure that i'm experiencing is with the vehicle's transmission.",
+          "start": 0,
+          "end": 79,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      }
+    ],
+    "unknown_fields": [
+      "failure_mode",
+      "timing",
+      "vehicle"
+    ],
+    "defect_label_id": "other_unclear",
+    "label_evidence": [],
+    "lookups": [],
+    "followup_field": "none",
+    "followup_question": null,
+    "rejected": [],
+    "fallback_reason": null,
+    "elapsed_ms": 5258
+  }
+}

@@ -18,6 +18,7 @@ htmlcov
 
 # Dashboard sources are copied only into the node stage; exclude host modules/dist
 dashboard/node_modules
+dashboard/dist
 # dist is produced inside the image; do not ship host build
 
 # Local data, reports, secrets
@@ -25,12 +26,37 @@ data
 reports/*
 !reports/nhtsa
 !reports/hackathon
-reports/hackathon/*.webm
-reports/hackathon/*.mp4
+!reports/defect
+reports/defect/*
+!reports/defect/repair
+reports/defect/repair/*
+!reports/defect/repair/human_review.html
+!reports/defect/repair/human_validation_status.json
+!reports/defect/evidence_v1
+reports/defect/evidence_v1/*
+!reports/defect/evidence_v1/development_review.html
+!reports/defect/evidence_v1/fuel_complaint_review.html
+!reports/defect/evidence_v1/recall_review.html
+!reports/defect/evidence_v1/development_comparison.json
+!reports/defect/fuel_holdout
+reports/defect/fuel_holdout/*
+!reports/defect/fuel_holdout/holdout_results.json
+!reports/defect/fuel_holdout/protocol.json
+reports/hackathon/**/*.webm
+reports/hackathon/**/*.mp4
+reports/hackathon/**/*.wav
+reports/hackathon/**/*.aiff
+reports/hackathon/**/*.png
+reports/hackathon/**/*.jpg
+reports/hackathon/**/browser-failure*
 .env
 .env.*
 *.duckdb
 *.duckdb.wal
+**/*.webm
+**/*.mp4
+**/*.aiff
+**/*.wav
 
 # Docs / tests not needed in runtime image
 docs

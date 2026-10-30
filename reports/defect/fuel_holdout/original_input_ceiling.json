@@ -1,0 +1,353 @@
+{
+  "all_reports": {
+    "campaigns": 41,
+    "with_prior_evidence": 29,
+    "ceiling": 0.7073170731707317,
+    "matching": "make+specific_defect",
+    "diagnostic_only": true,
+    "rows": [
+      {
+        "campaign": "21V010000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V215000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "21V277000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "21V308000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V519000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "21V524000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V587000",
+        "prior_complaints": 37
+      },
+      {
+        "campaign": "21V617000",
+        "prior_complaints": 32
+      },
+      {
+        "campaign": "21V625000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V901000",
+        "prior_complaints": 2
+      },
+      {
+        "campaign": "21V976000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "22V013000",
+        "prior_complaints": 3
+      },
+      {
+        "campaign": "22V088000",
+        "prior_complaints": 3
+      },
+      {
+        "campaign": "22V228000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V258000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V380000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V414000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V685000",
+        "prior_complaints": 6
+      },
+      {
+        "campaign": "22V787000",
+        "prior_complaints": 8
+      },
+      {
+        "campaign": "22V859000",
+        "prior_complaints": 8
+      },
+      {
+        "campaign": "22V925000",
+        "prior_complaints": 10
+      },
+      {
+        "campaign": "23V027000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "23V028000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "23V071000",
+        "prior_complaints": 10
+      },
+      {
+        "campaign": "23V499000",
+        "prior_complaints": 25
+      },
+      {
+        "campaign": "23V566000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "23V634000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "23V858000",
+        "prior_complaints": 15
+      },
+      {
+        "campaign": "24V113000",
+        "prior_complaints": 22
+      },
+      {
+        "campaign": "24V185000",
+        "prior_complaints": 3
+      },
+      {
+        "campaign": "24V187000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "24V220000",
+        "prior_complaints": 15
+      },
+      {
+        "campaign": "24V528000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "24V634000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "24V761000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "24V763000",
+        "prior_complaints": 269
+      },
+      {
+        "campaign": "24V848000",
+        "prior_complaints": 13
+      },
+      {
+        "campaign": "24V864000",
+        "prior_complaints": 306
+      },
+      {
+        "campaign": "24V882000",
+        "prior_complaints": 2
+      },
+      {
+        "campaign": "24V900000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "24V957000",
+        "prior_complaints": 26
+      }
+    ]
+  },
+  "excluding_recall_mentions": {
+    "campaigns": 41,
+    "with_prior_evidence": 27,
+    "ceiling": 0.6585365853658537,
+    "matching": "make+specific_defect",
+    "diagnostic_only": true,
+    "rows": [
+      {
+        "campaign": "21V010000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V215000",
+        "prior_complaints": 3
+      },
+      {
+        "campaign": "21V277000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "21V308000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V519000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "21V524000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V587000",
+        "prior_complaints": 2
+      },
+      {
+        "campaign": "21V617000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "21V625000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "21V901000",
+        "prior_complaints": 2
+      },
+      {
+        "campaign": "21V976000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V013000",
+        "prior_complaints": 3
+      },
+      {
+        "campaign": "22V088000",
+        "prior_complaints": 2
+      },
+      {
+        "campaign": "22V228000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V258000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V380000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V414000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "22V685000",
+        "prior_complaints": 3
+      },
+      {
+        "campaign": "22V787000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "22V859000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "22V925000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "23V027000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "23V028000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "23V071000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "23V499000",
+        "prior_complaints": 6
+      },
+      {
+        "campaign": "23V566000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "23V634000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "23V858000",
+        "prior_complaints": 9
+      },
+      {
+        "campaign": "24V113000",
+        "prior_complaints": 8
+      },
+      {
+        "campaign": "24V185000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "24V187000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "24V220000",
+        "prior_complaints": 3
+      },
+      {
+        "campaign": "24V528000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "24V634000",
+        "prior_complaints": 0
+      },
+      {
+        "campaign": "24V761000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "24V763000",
+        "prior_complaints": 4
+      },
+      {
+        "campaign": "24V848000",
+        "prior_complaints": 11
+      },
+      {
+        "campaign": "24V864000",
+        "prior_complaints": 6
+      },
+      {
+        "campaign": "24V882000",
+        "prior_complaints": 1
+      },
+      {
+        "campaign": "24V900000",
+        "prior_complaints": 2
+      },
+      {
+        "campaign": "24V957000",
+        "prior_complaints": 23
+      }
+    ]
+  },
+  "target": {
+    "required_hits_for_above_86_percent": 36,
+    "campaigns": 41,
+    "note": "Evidence opportunity ceiling, not prediction performance; missed campaigns stay in the denominator."
+  }
+}

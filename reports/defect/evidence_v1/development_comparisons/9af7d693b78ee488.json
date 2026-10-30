@@ -1,0 +1,10 @@
+{
+  "status": "development only; no human accuracy result",
+  "rows": 8,
+  "meta_successes": 0,
+  "label_agreements": 3,
+  "human_reviewed": 0,
+  "accuracy": null,
+  "campaign_recall": null,
+  "note": "Agreement between models is not correctness. These examples are development diagnostics, not the reserved cohort."
+}

@@ -34,7 +34,7 @@ async def test_matched_replies_escalate(reset_ops_db, seed_automotive_pack, tmp_
 
     out, notices = await _seeded(owners=4)
     iid = out["investigation_id"]
-    assert verification_status(iid)["recommendation"] == "collecting"
+    assert verification_status(iid)["recommendation"] == "escalate"  # critical seed must not wait for replies
 
     for n in notices["notices"][:3]:
         record_owner_reply(investigation_id=iid, owner_id=n["owner_id"],
@@ -46,7 +46,7 @@ async def test_matched_replies_escalate(reset_ops_db, seed_automotive_pack, tmp_
     assert status["recommendation"] == "escalate"
 
 
-async def test_none_majority_de_escalates(reset_ops_db, seed_automotive_pack, tmp_path, monkeypatch):
+async def test_none_majority_does_not_clear_critical_seed(reset_ops_db, seed_automotive_pack, tmp_path, monkeypatch):
     monkeypatch.setenv("AI_EVIDENCE_DIR", str(tmp_path / "ev"))
     from src.ai_layer.lotguard import record_owner_reply, verification_status
 
@@ -58,7 +58,7 @@ async def test_none_majority_de_escalates(reset_ops_db, seed_automotive_pack, tm
     status = verification_status(iid)
     assert status["replied"] == 5
     assert status["none_count"] == 5
-    assert status["recommendation"] == "de_escalate"
+    assert status["recommendation"] == "escalate"
     # Investigation state itself is untouched: the supervisor applies this.
     from src.data.warehouse import ops_con
 

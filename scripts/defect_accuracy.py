@@ -67,7 +67,15 @@ def load_sample(path: Path) -> pd.DataFrame:
         raise SystemExit(f"sample CSV is missing columns: {sorted(missing)}")
     for col in required:
         df[col] = df[col].astype(str).str.strip()
+    if df.sample_id.duplicated().any() or df.duplicated(["odino", "component"]).any():
+        raise SystemExit("sample CSV contains duplicate sample or complaint identities")
     return df
+
+
+def immutable_sample_hash(df: pd.DataFrame) -> str:
+    frozen = df.drop(columns=["label", "notes"], errors="ignore").sort_values("sample_id")
+    return hashlib.sha256(json.dumps(frozen.to_dict("records"), sort_keys=True,
+                                    ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
 
 
 def label_lookup(allowed_ids: str, allowed_text: str) -> tuple[dict[str, str], dict[str, str]]:
@@ -77,14 +85,16 @@ def label_lookup(allowed_ids: str, allowed_text: str) -> tuple[dict[str, str], d
     for chunk in str(allowed_text or "").split(";"):
         if "=" not in chunk:
             continue
-        text, label_id = chunk.split("=", 1)
-        text, label_id = text.strip(), label_id.strip()
-        if label_id:
+        left, right = (x.strip() for x in chunk.split("=", 1))
+        # The exporter writes id=display text. Accept legacy display=id too,
+        # but never allow arbitrary text to introduce an out-of-taxonomy ID.
+        label_id, text = (left, right) if left in by_id else (right, left)
+        if label_id in by_id:
             by_text[norm_label(text)] = label_id
     # Accept the human spelling of the always-present fallback.
-    by_text.setdefault("other/unclear", OTHER_ID)
-    by_text.setdefault("other unclear", OTHER_ID)
-    by_text.setdefault("other", OTHER_ID)
+    if OTHER_ID in by_id:
+        for alias in ("other/unclear", "other unclear", "other"):
+            by_text.setdefault(alias, OTHER_ID)
     return by_id, by_text
 
 
@@ -188,7 +198,7 @@ def build_metrics(sample: pd.DataFrame, clf: pd.DataFrame, *, manifest: dict[str
         fn = support - tp
         precision = ratio(tp, predicted)
         recall = ratio(tp, support)
-        f1 = (2 * precision * recall / (precision + recall)) if precision is not None and recall is not None and (precision + recall) > 0 else None
+        f1 = (2 * tp / (2 * tp + fp + fn)) if 2 * tp + fp + fn else None
         per_label.append({
             "label_id": label,
             "support": support,
@@ -223,6 +233,9 @@ def build_metrics(sample: pd.DataFrame, clf: pd.DataFrame, *, manifest: dict[str
         "correct": int(correct),
         "accuracy": ratio(correct, len(scored)),
         "accuracy_all_labelled": ratio(correct, len(labelled)),
+        "macro_f1": (sum(x["f1"] or 0 for x in per_label if x["support"]) /
+                     sum(bool(x["support"]) for x in per_label)) if scored else None,
+        "always_other_unclear_accuracy": ratio(len(other), len(scored)),
         "specific_n": int(len(specific)),
         "specific_correct": int(specific_correct),
         "specific_accuracy": ratio(specific_correct, len(specific)),
@@ -286,6 +299,10 @@ def main(argv: list[str] | None = None) -> int:
         return 3
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
     sample = load_sample(csv_path)
+    expected_rows = manifest.get("immutable_rows_sha256")
+    if expected_rows and immutable_sample_hash(sample) != expected_rows:
+        print("REFUSED: narratives, IDs, taxonomy choices, or sample membership changed", file=sys.stderr)
+        return 3
     clf = load_classifications(clf_path)
     result = build_metrics(sample, clf, manifest=manifest, csv_path=csv_path, clf_path=clf_path,
                            manifest_path=manifest_path)

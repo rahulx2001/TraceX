@@ -1,0 +1,7 @@
+{
+  "sample_size": 300,
+  "model_predictions": 300,
+  "human_labels": 0,
+  "accuracy": null,
+  "status": "awaiting_blind_human_review"
+}

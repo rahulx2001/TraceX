@@ -1,0 +1,132 @@
+{
+  "status": "retrospective_reanalysis_after_inspecting_original_test_results",
+  "coverage": {
+    "complaints": 2203,
+    "recall_scope_rows": 360,
+    "model_labelled_complaints": 2203,
+    "model_labelled_recall_scopes": 360
+  },
+  "blocks": {
+    "all_reports": {
+      "detector": {
+        "campaigns": 41,
+        "hits": 22,
+        "misses": 19,
+        "campaign_recall": 0.5365853658536586,
+        "median_lead_weeks": 33.07142857142857,
+        "alerts": 47,
+        "mature_alerts": 31,
+        "confirmed_mature_alerts": 14,
+        "censored_alerts": 16,
+        "episode_precision": 0.45161290322580644,
+        "objective": 0.49044585987261147
+      },
+      "count": {
+        "campaigns": 41,
+        "hits": 15,
+        "misses": 26,
+        "campaign_recall": 0.36585365853658536,
+        "median_lead_weeks": 32.42857142857143,
+        "alerts": 47,
+        "mature_alerts": 31,
+        "confirmed_mature_alerts": 11,
+        "censored_alerts": 16,
+        "episode_precision": 0.3548387096774194,
+        "objective": 0.36026200873362446
+      },
+      "random_mean_recall": 0.40707317073170735,
+      "random_draws": 100,
+      "random_interval": [
+        0.3042682926829268,
+        0.4878048780487805
+      ],
+      "random_at_least_detector": 0.0
+    },
+    "excluding_explicit_recall_reports": {
+      "detector": {
+        "campaigns": 41,
+        "hits": 14,
+        "misses": 27,
+        "campaign_recall": 0.34146341463414637,
+        "median_lead_weeks": 31.428571428571427,
+        "alerts": 27,
+        "mature_alerts": 13,
+        "confirmed_mature_alerts": 7,
+        "censored_alerts": 14,
+        "episode_precision": 0.5384615384615384,
+        "objective": 0.41791044776119407
+      },
+      "count": {
+        "campaigns": 41,
+        "hits": 10,
+        "misses": 31,
+        "campaign_recall": 0.24390243902439024,
+        "median_lead_weeks": 31.285714285714285,
+        "alerts": 27,
+        "mature_alerts": 13,
+        "confirmed_mature_alerts": 6,
+        "censored_alerts": 14,
+        "episode_precision": 0.46153846153846156,
+        "objective": 0.3191489361702128
+      },
+      "random_mean_recall": 0.26195121951219513,
+      "random_draws": 100,
+      "random_interval": [
+        0.17073170731707318,
+        0.36585365853658536
+      ],
+      "random_at_least_detector": 0.07
+    }
+  },
+  "human_review": {
+    "reviewed": 0,
+    "total": 300
+  },
+  "source": "reports/defect/repair/prediction_results.json",
+  "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+  "scope": "Five makes · model years 2015–2024 · fuel system · 2021–2024 evaluation",
+  "note": "Training-selected thresholds on a previously examined historical window. Recall descriptions are model-labelled. Matches do not establish physical defect identity or accidents prevented. Human classification accuracy awaits review.",
+  "temporal_holdout": {
+    "period": [
+      "2025-01-01",
+      "2025-12-31"
+    ],
+    "target_met": false,
+    "method": {
+      "campaigns": 8,
+      "hits": 5,
+      "misses": 3,
+      "campaign_recall": 0.625,
+      "alerts": 24,
+      "mature_alerts": 18,
+      "confirmed_mature_alerts": 6,
+      "episode_precision": 0.3333333333333333,
+      "median_lead_weeks": 25.0,
+      "objective": 0.43478260869565216,
+      "recall_wilson95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ]
+    },
+    "count_baseline": {
+      "campaigns": 8,
+      "hits": 5,
+      "misses": 3,
+      "campaign_recall": 0.625,
+      "alerts": 24,
+      "mature_alerts": 18,
+      "confirmed_mature_alerts": 6,
+      "episode_precision": 0.3333333333333333,
+      "median_lead_weeks": 25.0,
+      "objective": 0.43478260869565216
+    },
+    "random_mean_recall": 0.44375,
+    "random_draws": 100,
+    "random_at_least_method": 0.19,
+    "outcome_end": "2026-09-30",
+    "source": "reports/defect/fuel_holdout/holdout_results.json",
+    "note": "Locally untouched 2025 temporal holdout, using model-labelled recalls. No human accuracy or prospective accident-prevention claim.",
+    "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+    "protocol_qualified": false
+  }
+}

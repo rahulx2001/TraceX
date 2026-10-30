@@ -240,7 +240,15 @@ def decode_user_audio(msg: dict[str, Any]) -> tuple[bytes, str]:
     return data, mime
 
 
-def transcribe_audio(data: bytes, *, mime: str = "audio/webm") -> dict[str, Any]:
+def transcription_language(locale: str | None) -> str:
+    """Validated UI locales map to the provider's language codes, never a query fragment."""
+    values = {None: "en", "": "en", "en-US": "en", "en-IN": "en", "hi-IN": "hi"}
+    if locale not in values:
+        raise DeepgramError("unsupported speech language")
+    return values[locale]
+
+
+def transcribe_audio(data: bytes, *, mime: str = "audio/webm", locale: str | None = None) -> dict[str, Any]:
     """Transcribe one utterance. Returns {"text", "confidence"}.
 
     Raises DeepgramNoSpeech when the provider heard silence, DeepgramError
@@ -249,7 +257,7 @@ def transcribe_audio(data: bytes, *, mime: str = "audio/webm") -> dict[str, Any]
     if not data:
         raise DeepgramError("no audio to transcribe")
     content_type = normalize_audio_mime(mime)
-    query = urllib.parse.urlencode({"model": stt_model(), "smart_format": "true"})
+    query = urllib.parse.urlencode({"model": stt_model(), "smart_format": "true", "language": transcription_language(locale)})
     resp = _post(f"/v1/listen?{query}", bytes(data), content_type)
     try:
         payload = json.loads((resp.body or b"").decode("utf-8", "replace"))

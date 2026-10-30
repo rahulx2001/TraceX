@@ -1,13 +1,19 @@
 # TraceX
 
 <!-- [AI-LAYER] mission line -->
-> **Mission: help vehicle manufacturers reduce road accidents by recording vehicle faults from every customer contact and predicting defects early.**
+> **TraceX helps automotive quality and service engineers turn multilingual owner reports into source-cited investigations, reviewed next steps and inspectable repair evidence.**
 > 
 > **Meta Global AI Developer Hackathon:** **Indie developer track**, primarily **Build for Your World**. Muse Spark text intake has a recorded live proof; SAM/photo analysis and image generation are separate optional capabilities. See [HACKATHON.md](HACKATHON.md), [ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
 
-TraceX is a single-tenant pilot for live customer contacts. A **domain pack** (YAML + CSV) supplies the questions, safety rules, and known issues. The same agents then run the contact, write an audit ledger, and hand a supervisor a live console.
+The primary user is an **automotive quality or service engineer** reviewing an owner complaint against installation and workshop records. TraceX is a single-tenant pilot: a **domain pack** (YAML + CSV) supplies the intake questions, safety rules and known issues. Prediction remains a scoped historical research result; accident reduction and investigator time savings have not been established.
 
 The product name is TraceX. API paths and environment variables still use `frontline` (`/api/frontline/*`, `FRONTLINE_*`).
+
+**Safety campaigns:** the console now supports component-lot traceability, reviewed simulated owner outreach, repeat symptom reports, workshop inspections, exact-part repair verification, follow-up and evidence export. Start at `#safety-campaigns`; see the [build and demo guide](docs/safety-campaigns.md). Outreach is simulated, and accident reduction is an objective rather than a measured product result.
+
+**Sourced Meta investigations:** the campaign's **Meta investigation** tab extracts cited observations, selects read-only evidence lookups, asks for missing information and updates a reviewable brief. Independent review packs and a timed reviewer study are prepared; human results are pending. See [the feature, comparison protocol and three-minute demo](docs/sourced-investigation.md).
+
+**Judge entry:** open `#demo` for **Report → Investigate → Review → Evidence**. Finish a voice or typed report, choose **Investigate this report**, review the stored customer turns and confirm the campaign vehicle. The investigation keeps original turn IDs and source hashes without retyping. Correct a draft claim, record the review, and create a linked revision. Imported CSV assertions remain unverified until a reviewer attaches installation-record contents. Fictional seed reviews and saved Meta replays remain labelled; they are not participant results.
 
 Two packs ship with small offline fixtures (10 records, 2 advisories, 3 clusters each):
 
@@ -295,6 +301,16 @@ Live Muse Spark text intake is recorded in
 `db34ee978a5c8455cc43cb143fd02cc119be0dc019a39e088058a74c6f875fe3`).
 Vision and SAM image analysis have **not** been called against the live API and
 remain unverified. See [HACKATHON.md](HACKATHON.md) §6.
+
+The separate [defect prediction repair](reports/defect/repair/README.md) completes
+the five-make fuel-system classification scope and preserves full recall vehicle
+coverage. A training-selected rolling detector is compared with equal-budget
+count/random references, including a sensitivity excluding explicit recall
+mentions. This is a retrospective reanalysis of a previously examined window;
+the old partial experiment is preserved. All 300 human-review examples have
+model predictions, and the blind review page is ready; human accuracy remains
+unmeasured until a person supplies the labels. Open `#defect-level` for the
+recorded comparison or run `python -m scripts.defect_verify` to replay it.
 
 ## Operating limits
 

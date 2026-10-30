@@ -130,7 +130,7 @@ def _iter_complaint_rows(zip_path: Path, *, start: str, end: str, limit: int) ->
     return records, tally
 
 
-def _iter_recall_rows(zip_path: Path, *, limit: int) -> tuple[list[dict[str, Any]], dict[str, int]]:
+def _iter_recall_rows(zip_path: Path, *, limit: int, preserve_scopes: bool = False) -> tuple[list[dict[str, Any]], dict[str, int]]:
     """Convert FLAT_RCL lines to taxonomy/classifier rows, deduplicated."""
     by_key: dict[str, dict[str, Any]] = {}
     tally = {
@@ -161,6 +161,10 @@ def _iter_recall_rows(zip_path: Path, *, limit: int) -> tuple[list[dict[str, Any
             year = None
         digest = hashlib.sha256(description.encode("utf-8", errors="replace")).hexdigest()[:12]
         key = f"{campno}|{component}|{digest}"
+        if preserve_scopes:
+            # Description identity is sufficient for one model call, but not
+            # for evaluation: a campaign can cover several makes/model years.
+            key += "|" + "|".join(raw.get(k, "") for k in ("MAKETXT", "MODELTXT", "YEARTXT", "RCLTYPECD"))
         if key in by_key:
             tally["collapsed"] += 1
             continue
@@ -174,6 +178,8 @@ def _iter_recall_rows(zip_path: Path, *, limit: int) -> tuple[list[dict[str, Any
             "model": raw.get("MODELTXT") or "",
             "year": year,
         }
+        if preserve_scopes:
+            by_key[key]["rcl_type"] = raw.get("RCLTYPECD") or ""
         if limit and len(by_key) >= limit:
             break
     records = sorted(by_key.values(), key=lambda r: (r["component"], r["rcdate"], r["campno"]))
@@ -219,6 +225,7 @@ def prepare(
 
     complaints, ctally = _iter_complaint_rows(cpath, start=start, end=end, limit=complaints_limit)
     recalls, rtally = _iter_recall_rows(rpath, limit=recalls_limit)
+    scopes, stally = _iter_recall_rows(rpath, limit=recalls_limit, preserve_scopes=True)
     if not complaints:
         raise SystemExit(
             f"No complaint rows in {cpath} for {start}..{end}. "
@@ -237,6 +244,8 @@ def prepare(
     recalls_out = out_dir / "recall_descriptions.parquet"
     cdf.to_parquet(complaints_out, index=False)
     rdf.to_parquet(recalls_out, index=False)
+    scopes_out = out_dir / "recall_scopes.parquet"
+    pd.DataFrame(scopes).to_parquet(scopes_out, index=False)
 
     manifest = {
         "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -271,7 +280,9 @@ def prepare(
             "sha256": file_sha256(recalls_out),
             "tally": rtally,
         },
-        "note": "No model call was made. Complaint rows are unique on ODINO|component; longest narrative wins.",
+        "recall_scopes": {"path": str(scopes_out), "rows": len(scopes),
+                          "sha256": file_sha256(scopes_out), "tally": stally},
+        "note": "No model call was made. Complaint rows are unique on ODINO|component; longest narrative wins. Use recall_scopes.parquet for make/model-year evaluation; recall_descriptions.parquet deduplicates model inputs only.",
     }
     (out_dir / "defect_input_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     return manifest

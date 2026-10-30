@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-30T06:49:35.832Z",
+  "manifest_sha256": "3098ba265d41674e2f5e51ea9044c3b733747d9f47884bc30f837a23e2fffb07",
+  "browser": "fresh Playwright context; no user cookies or credentials; GET/HEAD only",
+  "results": [
+    {
+      "kind": "repository",
+      "url": "https://github.com/rahulx2001/TraceX",
+      "final_url": "https://github.com/rahulx2001/TraceX",
+      "http_status": 200,
+      "title": "GitHub - rahulx2001/TraceX: TraceLogic is an autonomous frontline intelligence platform that bridges customer voice complaints directly to component-level engineering defects and early recall warnings. · GitHub",
+      "status": "anonymous_page_access_verified",
+      "fresh_browser_context": true,
+      "repository_login_link_visible": true
+    },
+    {
+      "kind": "video",
+      "status": "pending_missing_url"
+    },
+    {
+      "kind": "hosted_demo",
+      "status": "pending_missing_url"
+    }
+  ],
+  "submitted_commit_verified": false,
+  "portal": {
+    "status": "pending_owner_portal_access",
+    "configured_url": null,
+    "team_list_present": false
+  },
+  "complete": false
+}

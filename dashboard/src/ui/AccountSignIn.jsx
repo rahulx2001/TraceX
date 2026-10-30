@@ -43,7 +43,7 @@ export default function AccountSignIn() {
 
   const signedIn = Boolean(me?.signed_in);
   const who = signedIn ? me.subject || getStoredSubject() || "Signed in" : "Sign in";
-  const sub = signedIn ? me.role || "agent" : "Google account";
+  const sub = signedIn ? me.role || "agent" : "Account / operator credentials";
 
   function onFoot() {
     if (signedIn) {
@@ -60,7 +60,7 @@ export default function AccountSignIn() {
         className={"account-foot" + (signedIn ? " signed-in" : "")}
         onClick={onFoot}
         aria-expanded={signedIn ? open : undefined}
-        title={signedIn ? `${who} · ${sub}` : "Sign in with Google"}
+        title={signedIn ? `${who} · ${sub}` : "Sign in or enter operator credentials"}
       >
         <div className="account-meta">
           <div className="who">{who}</div>
@@ -72,10 +72,13 @@ export default function AccountSignIn() {
         <div className="account-menu" role="dialog" aria-label="Account">
           <div className="account-menu-head">
             Signed in as <strong>{who}</strong>
-            <div className="faint">Google / OIDC session</div>
+            <div className="faint">Authenticated session · {sub}</div>
           </div>
           <button type="button" className="ghost" onClick={() => (window.location.hash = "settings")}>
             Open Settings
+          </button>
+          <button type="button" className="ghost" onClick={() => (window.location.hash = "signin")}>
+            Use another issued session
           </button>
           <button
             type="button"

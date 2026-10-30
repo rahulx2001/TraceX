@@ -1,0 +1,88 @@
+{
+  "created_at": "2026-10-29T17:41:29.543326+00:00",
+  "target_campaign_recall": 0.86,
+  "target_comparison": "strictly greater than",
+  "scope": {
+    "makes": [
+      "FORD",
+      "HONDA",
+      "HYUNDAI",
+      "KIA",
+      "TOYOTA"
+    ],
+    "model_years": [
+      2015,
+      2024
+    ],
+    "complaint_sources": [
+      "FUEL SYSTEM",
+      "FUEL/PROPULSION SYSTEM"
+    ],
+    "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+  },
+  "primary_input": "exclude explicit recall/campaign mentions, deduplicate ODINO across fuel codes",
+  "development_folds": [
+    [
+      "2021-01-01",
+      "2022-12-31"
+    ],
+    [
+      "2023-01-01",
+      "2024-12-31"
+    ]
+  ],
+  "development_student_training_end": "2020-12-31",
+  "final_student_training_end": "2024-12-31",
+  "holdout": [
+    "2025-01-01",
+    "2025-12-31"
+  ],
+  "outcome_end": "2026-09-30",
+  "selection": "Require >=50% mature episode precision in BOTH development folds and >=3 mature alerts/fold. Maximise worst-fold campaign recall; tie: mean F1, then fewer alerts. If none qualify, retain best mean-F1 diagnostic and mark unqualified.",
+  "workload": "max 1 alert/week, 2/month, 13-week cooldown per make/defect",
+  "evaluation": "7-364 days between complete-week availability and recall; unknown labels never match; one hit per campaign; precision only on full 364-day follow-up",
+  "students": [
+    "ridge",
+    "centroid"
+  ],
+  "detectors": [
+    "bayes",
+    "count",
+    "cusum"
+  ],
+  "guardrails": [
+    "no dropping missed campaigns",
+    "no reclassifying human labels",
+    "no tuning after opening 2025 outcomes",
+    "student labels and recall labels are model hypotheses, not human validation",
+    "2025 is unseen locally, but historical Meta labels can carry model pretraining leakage",
+    "a contemporary flat-file snapshot can contain revised historical narratives"
+  ],
+  "inputs": {
+    "development": {
+      "path": "data/defect/fuel_holdout/development.parquet",
+      "sha256": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf"
+    },
+    "holdout": {
+      "path": "data/defect/fuel_holdout/holdout.parquet",
+      "sha256": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a"
+    },
+    "teacher": {
+      "path": "data/defect/fuel_holdout/teacher.parquet",
+      "sha256": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c"
+    },
+    "development_recalls": {
+      "path": "data/defect/fuel_holdout/development_recalls.parquet",
+      "sha256": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5"
+    },
+    "holdout_recalls": {
+      "path": "data/defect/fuel_holdout/holdout_recalls.parquet",
+      "sha256": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+    }
+  },
+  "sources": {
+    "FLAT_CMPL.zip": "dbbe24161ba94c56b4bc8acbf6aee995225bd42a8261f03b7efcc5ed3ac4e3b4",
+    "FLAT_RCL_POST_2010.zip": "6e886e1076d33dc457f44deafb848c28a791ec406022d6e67d1cc3662e3cbebc"
+  },
+  "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1"
+}

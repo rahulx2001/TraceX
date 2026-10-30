@@ -1,0 +1,337 @@
+{
+  "name": "development_review",
+  "labels": {
+    "fuel_pump_failure": "A defect in the fuel pump whose train-window recalls are dominated by failure.",
+    "fuel_system_other_electrical": "A defect in the fuel system other whose train-window recalls are dominated by electrical.",
+    "hoses_lines_piping_and_fittings_leak": "A defect in the hoses lines/piping and fittings whose train-window recalls are dominated by leak.",
+    "tank_assembly_leak": "A defect in the tank assembly whose train-window recalls are dominated by leak.",
+    "fuel_system_diesel_detachment": "A defect in the fuel system diesel whose train-window recalls are dominated by detachment.",
+    "canister_failure": "A defect in the canister whose train-window recalls are dominated by failure.",
+    "other_unclear": "No specific label fits, or the narrative is too vague."
+  },
+  "rows": [
+    {
+      "record_id": "11514976",
+      "kind": "complaint",
+      "datea": "2023-04-02",
+      "make": "NISSAN",
+      "model": "ALTIMA",
+      "year": 2016,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "I believe The failure that i'm experiencing is with the vehicle's transmission.  The car stalls or refuses to shift gears, has trouble accelerating, and when the car is trying to accelerating the car makes an unfamiliar noise which is quiet loud and noticeable and sometimes shake or full on just pushes forward randomly.   I believe the safety for mine and others can be at risk at times because they would be times where the car will not accelerate, even when your foot is pushed all the way on the pedal and as a result the car begins to slow down. This is can be risk depending on where you're driving for an example if you're on the highway or a congested area going at a specified speed.   From my understanding after doing research I have found out that several others have been experiencing this same problem, so to my understanding this is a common issue and I'm not sure why it was never addressed. I have taken the car to a mechanic where they said the problem is the CVT Transmission.   The Check Engine Light is on. This vehicle has not been in an accident."
+    },
+    {
+      "record_id": "11420261",
+      "kind": "complaint",
+      "datea": "2021-06-09",
+      "make": "CHEVROLET",
+      "model": "SILVERADO 1500",
+      "year": 2015,
+      "source_component": "FUEL SYSTEM",
+      "text": "The contact owns a 2015 Chevrolet Silverado 1500. The contact stated that after taking the vehicle to a local dealer for an oil change, while driving at an undisclosed speed, the vehicle shuddered and lost motive power. The vehicle was restarted and while driving back to the residence the failure recurred several times. The contact took the vehicle back to the local dealer to be diagnosed. The contact was informed that the fuel pump needed to be replaced. The fuel pump was replaced and the vehicle was fixed. The manufacturer was made aware of the failure. The failure mileage was 87,000."
+    },
+    {
+      "record_id": "11500185",
+      "kind": "complaint",
+      "datea": "2023-01-04",
+      "make": "CHEVROLET",
+      "model": "EQUINOX",
+      "year": 2022,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "December 17th, 2022 - Check engine light came on with an onstar message to have my engine/transmission system serviced within 7 days.   Dealership replaced fuel pump module on December 23rd.   Drove the car to a basketball game that evening (14 miles) and check engine light came back on with same onstar message.   Took car to dealership on January 3rd (due to holiday, didn't drive vehicle after check engine light came on).  Dealership advised it was a low battery.  So battery was replaced and advised we should come get the car.  When they were driving the car from the back of the lot to the front of the lot - the check engine light came on again.  They called us to tell us not to come get the car that they found a new code issue.  They advised they would call us tomorrow."
+    },
+    {
+      "record_id": "10939189",
+      "kind": "complaint",
+      "datea": "2017-01-03",
+      "make": "CHEVROLET",
+      "model": "SILVERADO 3500",
+      "year": 2016,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "TL* THE CONTACT OWNS A 2016 CHEVROLET SILVERADO 3500. THE CONTACT STATED THAT FUEL MONITORING SYSTEM MALFUNCTIONED DUE TO TRANSFER FUEL PUMPS. THE VEHICLE WAS TAKEN TO THE DEALER WHERE IT WAS DIAGNOSED THAT THE FUEL SYSTEM SOFTWARE NEEDED TO BE UPDATED. THE MANUFACTURER WAS MADE AWARE OF THE FAILURE. THE FAILURE MILEAGE WAS 20,000."
+    },
+    {
+      "record_id": "11060885",
+      "kind": "complaint",
+      "datea": "2018-01-06",
+      "make": "CHEVROLET",
+      "model": "COLORADO",
+      "year": 2017,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "IN COLD TEMPERATURES THAT THE NORTHERN STATES EXPERIENCE (AROUND 4 DEGREES F) THE TRUCK WILL INTERMITTENTLY DIE IN THE MIDDLE OF THE ROAD WHILE DRIVING.  COMPLETE POWER LOSS WITH NO WARNING, WHICH SEEMS TO HAPPEN AT ANY TIME.  WHEN THE WEATHER IS ABOVE 10F CONSISTENTLY IT SEEMS THERE ARE NO ISSUES.  EXTREMELY DANGEROUS AND CAN LEAVE YOU SUDDENLY WITHOUT POWER WHILE DRIVING."
+    },
+    {
+      "record_id": "11608269",
+      "kind": "complaint",
+      "datea": "2024-08-13",
+      "make": "NISSAN",
+      "model": "PATHFINDER",
+      "year": 2020,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "Car does not display the correct amount of fuel remaining once it hits half a tank left.  Can read quarter of a tank remaining, and the distance to empty meter shows 40 miles.  Or it will show 97 miles to empty and car will be on empty on fuel gauge.  Then once I arrive at my destination, they flip.  Driving 3 miles reports driving over 10-15 miles from distance to empty, the gauge starts moving.  Never an accurate reading."
+    },
+    {
+      "record_id": "11490006",
+      "kind": "complaint",
+      "datea": "2022-10-19",
+      "make": "CHEVROLET",
+      "model": "EQUINOX",
+      "year": 2019,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "Gas gauge will not go all the way to full.  It stops just over 3/4 of a tank, no matter how much fuel you put in the tank.  There is no way to accurately determine how much fuel is in the vehicle at any point and time.  This is a safety hazard because we could be stranded on the side of the road, not knowing the vehicle would run out of fuel.    Also, occasionally when you crank the vehicle, you get a strong odor of fuel in the cabin, when running the A/C.  There is nothing specific that is being done differently, and it does not happen every time.  We bought this vehicle on 9/18/22 with 27,602 miles on it and as of today, it has 28,594 miles on it.  After purchasing it, we noticed the fuel gauge issue and I researched it online, finding out it is a common issue and GM claims to have no idea how to fix it."
+    },
+    {
+      "record_id": "11550955",
+      "kind": "complaint",
+      "datea": "2023-10-20",
+      "make": "CHEVROLET",
+      "model": "SILVERADO 1500",
+      "year": 2019,
+      "source_component": "FUEL SYSTEM",
+      "text": "The contact owns a 2019 Chevrolet Silverado 1500. The contact stated that while driving at various speeds, the vehicle shuddered. Several unknown warning lights were illuminated. The local dealer was contacted, and the vehicle was diagnosed, and it was determined that the purge valve and EVAP system needed to be replaced. The vehicle was repaired, but the failure recurred. The vehicle was taken back to the dealer, where it was determined that the fuel pump control module needed to be replaced. The vehicle was not repaired due to parts not being available. The manufacturer was contacted, but no assistance was provided. The failure mileage was approximately 80,000."
+    },
+    {
+      "record_id": "11279140",
+      "kind": "complaint",
+      "datea": "2019-11-09",
+      "make": "CHEVROLET",
+      "model": "CITY EXPRESS",
+      "year": 2015,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "MY 2015 CHEVY CITY EXPRESS VAN HAS 25,000 MILES TO THIS DAY, IN AUGUST 2019 I TOOK MY VEHICLE TO CHEVROLET AUTHORIZED DEALER AT MATHEWS-HARGREAVES IN THE CITY OF ROYAL OAK MICHIGAN 48067, WHEN THE WARRANTY WAS STILL EFFECTIVE, MY COMPLAINT WAS THE CHECK ENGINE LIGHT ON THE DASHBOARD KEEPS COMING ON FROM A CODE RELATED TO EMISSION PROBLEM, AFTER 5 VISITS, AND COUPLE OF PARTS WERE REPLACED BY THE WARRANTY, THE SERVICE MANAGER TOLD ME THAT THEY CAN NOT DO ANYTHING FOR ME, AND I SHOULD TAKE IT SOMEWHERE ELSE, I HAVE ALL THE SERVICE PAPER WORK, DATES, WITH ME, IT IS AWFUL TO HAVE A NEW CAR WITH WARRANTY THAT THE AUTHORIZED DEALER CAN NOT AND WILL NOT RESOLVE THE PROBLEM. NOW THE SAME VEHICLE IS NOT COVERED BY THE WARRANTY, BUT THE COMPLAINT AND THE INITIAL PROBLEM HAPPENED WHEN MY VEHICLE WAS UNDER WARRANTY,"
+    },
+    {
+      "record_id": "11597572",
+      "kind": "complaint",
+      "datea": "2024-06-28",
+      "make": "NISSAN",
+      "model": "ROGUE",
+      "year": 2017,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "I was driving on [XXX], close to [XXX]  but my lights ( engine and tire were on ),when suddenly I lost the control and I hit on the wall. The steering wheel was a little hard and the mechanic told me my CATALYST wasn't good( engine and tire sensor aren't working correctly ). I thought it was my last day because that freeway is a little hight. I imaged my car flying.  ALSO I HAVE 1 ACCIDENT . I CRASHED ONE CAR BUT IT WASNT MY BLAME. The car lost the control. Now I have to pay but it is expensive for me INFORMATION REDACTED PURSUANT TO THE FREEDOM OF INFORMATION ACT (FOIA), 5 U.S.C. 552(B)(6)"
+    },
+    {
+      "record_id": "11618037",
+      "kind": "complaint",
+      "datea": "2024-10-04",
+      "make": "CHEVROLET",
+      "model": "COLORADO",
+      "year": 2019,
+      "source_component": "FUEL SYSTEM",
+      "text": "The contact owns a 2019 Chevrolet Colorado. The contact stated that while driving approximately 30 MPH and depressing the brake pedal, the brake pedal was stiff. The contact pulled to the side of the road and restarted the vehicle. The message \"Brake Assist - Service Required'' was displayed. The vehicle was taken to the residence. The vehicle was then towed to the dealer, where it was diagnosed that the brake assist vacuum pump and the carburetor cap needed to be replaced. The vehicle was not repaired. The manufacturer was not notified of the failure. The failure mileage was 87,000."
+    },
+    {
+      "record_id": "11376012",
+      "kind": "complaint",
+      "datea": "2020-11-23",
+      "make": "CHEVROLET",
+      "model": "CRUZE",
+      "year": 2015,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "HAD TO REPLACE THE CATALYTIC CONVERTER AND MY ENGINE LIGHT CAME BACK ON AND IT'S SHOWING THAT THAT IS STILL AN ISSUE. A MECHANIC TOLD ME THIS HAS BEEN A COMMON ISSUE WITH OTHER CHEVY CRUZE."
+    },
+    {
+      "record_id": "11578368",
+      "kind": "complaint",
+      "datea": "2024-03-19",
+      "make": "CHEVROLET",
+      "model": "TAHOE",
+      "year": 2022,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "While driving the car, going 50 miles an hour down the highway the car slowly comes to a stop goes in the park and stops in the middle of the road. Wouldnât go into any gear for me to get the vehicle out of the roadway kept flashing message about going into low power mode And vehicle had to be towed to the dealer"
+    },
+    {
+      "record_id": "11588130",
+      "kind": "complaint",
+      "datea": "2024-05-10",
+      "make": "CHEVROLET",
+      "model": "TRAVERSE",
+      "year": 2023,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "The contact owns a 2023 Chevrolet Traverse. The contact stated that while starting the vehicle, a strong unknown sound was noticed coming from the pipes in the front area. No warning lights were illuminated. The vehicle was taken to an independent mechanic who inspected the vehicle and advised to take it to the dealer. The vehicle was not diagnosed or repaired by an independent mechanic or dealer. The manufacturer was not made aware of the failure. The failure mileage was approximately 30,000."
+    },
+    {
+      "record_id": "11513715",
+      "kind": "complaint",
+      "datea": "2023-03-25",
+      "make": "NISSAN",
+      "model": "LEAF",
+      "year": 2018,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "The PTC Heater and A/C compressor failed on my 2018 Nissan Leaf, just as the winter of 2022 was getting started.  The vehicle passed prior service inspections, with no mention of issues on either of these components. The failure of the PTC heater and A/C compressor results in a \"Service EV System\" error message, and indication that the vehicle would not restart after powering off.  When this error message appeared, the heating and defrost capabilities of the vehicle were lost.  The fans would continue to blow air, but windows would fog up. I could not charge my vehicle in this error state either, so if I hadn't been close to home, I would've been in a potentially dangerous situation because it was cold out. The local Nissan dealership confirmed the error codes of P0AA6-1A (HV battery voltage system isolation) and P31E7 (restart inhibition) were present. They initially fixed this issue after nearly 5 months of the vehicle being in their shop. These codes, paired with the information I've read on the Internet, indicates others have had this issue before, and the normal repair involved replacing the traction battery (400v high-voltage battery), not these two components.  The \"Service EV System\" came back less than 36 hours after paying for the repair.  The 12v battery was also at a low voltage, which may have been related to the vehicle sitting for so long for service without being charged."
+    },
+    {
+      "record_id": "11152257",
+      "kind": "complaint",
+      "datea": "2018-11-18",
+      "make": "GMC",
+      "model": "YUKON XL",
+      "year": 2016,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "VERY STRONG SMELL OF A GAS LEAK ON THE DRIVER SIDE OF THE VEHICLE. NO MATTER THE FUEL LEVEL, RUNNING OR STOPPED FOR HOURS."
+    },
+    {
+      "record_id": "10928085",
+      "kind": "complaint",
+      "datea": "2016-11-26",
+      "make": "CHEVROLET",
+      "model": "CORVETTE",
+      "year": 2016,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "STRONG FUEL LEAK SMELL WHEN PARKED IN THE GARAGE"
+    },
+    {
+      "record_id": "11601044",
+      "kind": "complaint",
+      "datea": "2024-07-10",
+      "make": "CHEVROLET",
+      "model": "EQUINOX",
+      "year": 2022,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "After going very slow, mostly stopped, in stop-and-go traffic for 2 hours, my Chevy Equinox suddenly started to shake and would not respond.  The car/engine was on and in Drive but the gas petal would not propel the car forward. My steering wheel locked and I could not turn it in any way. The Engine Light came on and a message came on the dash that said \"Push Brake to Start Engine\" but pushing the brake did not change anything, and the engine had never turned off.  I tried to turn the car off by mashing the brake and pushing the engine stop button but my car would not turn off.  I rolled backward into the car behind me as could not go forward and traffic had to be routed around me.  About 20 minutes later, I tried to turn my car off and it did cut off completely. About 30 minutes later a police officer was able to turn my car on, put it in neutral, and roll it to the side of the road. The check engine light was still on. My car was towed 200 miles back home and I was able to drive it off the tow truck and into our driveway but the engine light was still on. The next day, the car turned on and the engine light was not on.  I did not feel safe to drive it so we had it towed to the Carmax where we purchased it.  Carmax towed it to a local chevy dealership and they said it was the fuel nodule. It is currently awaiting those repairs."
+    },
+    {
+      "record_id": "11424776",
+      "kind": "complaint",
+      "datea": "2021-07-14",
+      "make": "CHEVROLET",
+      "model": "TAHOE",
+      "year": 2021,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "After turning off a major highway (65 mph) onto a side road after driving for approximately eight hours, the transmission shifted into N...on its own.  The engine continued to run but the vehicle would not move.  We could not shift into P, R or D.  When attempting to shift into P, R or D, an error message appeared on the dashboard that said \"Conditions not right for shifting.\"  We turned the vehicle off and then back on and the error cleared.  The vehicle continued to drive \"normally\" for another two hours and the end of the journey.  Had this happened in the middle of heavy traffic, a deadly accident could have occurred.  Mileage on vehicle is 4,900.  Date: 13 July 2021 at 1800 hours.  Dealer has been notified but has taken no action to date.  There were no warning signs or messages prior to the incident.  I'm guessing it is a sensor or software problem related to the engine/transmission.  There is a paragraph in the Owner's Manual that states: \"Under certain conditions, propulsion will be disabled.  Try restarting after the ignition has been off for two minutes.\"  It offers no other explanation as to what \"under certain conditions\" means."
+    },
+    {
+      "record_id": "11612274",
+      "kind": "complaint",
+      "datea": "2024-09-03",
+      "make": "GMC",
+      "model": "YUKON",
+      "year": 2015,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "Gas line leak"
+    },
+    {
+      "record_id": "11172267",
+      "kind": "complaint",
+      "datea": "2019-01-26",
+      "make": "CHEVROLET",
+      "model": "MALIBU",
+      "year": 2016,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "THROTTLE POSITION SENSOR HAS GONE BAD ON MY 2016 MALIBU IT HAS TO BE A KNOWN PROBLEM BECAUSE THERE ARE THOUSANDS OF VIDEOS OF PEOPLE SHOWING HOW TO FIX THE PROBLEM AND INSTALLING A NEW TPS AND PEDAL."
+    },
+    {
+      "record_id": "11520404",
+      "kind": "complaint",
+      "datea": "2023-05-04",
+      "make": "CHEVROLET",
+      "model": "TAHOE",
+      "year": 2017,
+      "source_component": "FUEL SYSTEM",
+      "text": "The contact owns a 2017 Chevrolet Tahoe. The contact stated that while driving approximately 80-85 MPH, the vehicle inadvertently started to decelerate with the check engine warning light illuminated. The contact coasted to the side of the roadway and waited before restarting the vehicle and continued driving. The failure reoccurred several times. The contact took the vehicle to the dealer who diagnosed that the fuel pump failed and needed to be replaced. The vehicle was repaired. The manufacturer was made aware of the failure. The approximate failure mileage was 46,494."
+    },
+    {
+      "record_id": "11339337",
+      "kind": "complaint",
+      "datea": "2020-07-14",
+      "make": "CHEVROLET",
+      "model": "MALIBU",
+      "year": 2018,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "MY CAR SHUTS OFF WHILE I AM DRIVING (AT A STOP OR IDLING) STATIONARY"
+    },
+    {
+      "record_id": "11414121",
+      "kind": "complaint",
+      "datea": "2021-04-27",
+      "make": "CHEVROLET",
+      "model": "COLORADO",
+      "year": 2016,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "AFTER FUELING, THE VEHICLE CRANKS BUT DOES NOT START.  AFTER SITTING FOR APPROXIMATELY 10 MINUTES, THE ENGINE WILL START BUT IDLES ROUGHLY FOR A FEW MORE MINUTES.  ALSO AFTER LONG HIGHWAY DRIVES, THE ENGINE WILL RUN ROUGHLY AND OCCASIONALLY STALL WHEN THE VEHICLE IS STOPPED.  VEHICLE WAS BROUGHT TO DEALER WHO DIAGNOSED AS A FAULTY PURGE SOLENOID.  THIS IS A KNOWN PROBLEM IN 2015 MODELS AS DETAILED IN GM SPECIAL COVERAGE ADJUSTMENT LETTER #18029.  THIS 2016 MODEL YEAR IS NOT INCLUDED."
+    },
+    {
+      "record_id": "11461527",
+      "kind": "complaint",
+      "datea": "2022-04-20",
+      "make": "CHEVROLET",
+      "model": "MALIBU",
+      "year": 2020,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "while driving down a mountain in monterey tenessee from visiting a friend the car started blowing white smoke and all dash lights flickered before car shut off no brakes or steering  while coasting down mountain almost got rear ended by pickup this was around 9pm it was dark i coasted into a gas station after a few attempts to start car . i called roadside assistance that night and got towed to dave kirk chevy dealer next town over after having issues with car i encountered issues with manager of dealer ship and roadside assistance neither could help til i started raising my voice i was stranded there in town for 2 days my friends felt bad the paid for my motel since i was so stressed out they didnt want to look at my car that manager said he knew nothing about after diagnosing my car they found a bad fuel injector that he said was open 100 percent so after 2 days i was on my way back to florida bad experience all the way around"
+    },
+    {
+      "record_id": "11558332",
+      "kind": "complaint",
+      "datea": "2023-12-04",
+      "make": "CHEVROLET",
+      "model": "VOLT",
+      "year": 2017,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "1. 2 BECM failures: The original BECM failed and the replacement BECM failed as well.   2. Sudden loss of electric propulsion on the freeway while my wife (pregnant at the time), my son (1 year and a half) and I were driving. The car was still driving but was unstable when steering and with weak braking. The dealership identified the issue as BECM failure and the part was changed.  3. A couple of months later the car would not start at all leaving me stranded at work. The car was towed to the repair shop. The dealership diagnosed BECM failure again.   4. There was no warning indication or message prior to these issues.  5. The vehicle was only inspected by the dealership to the best of my knowledge."
+    },
+    {
+      "record_id": "11307998",
+      "kind": "complaint",
+      "datea": "2020-02-09",
+      "make": "CHEVROLET",
+      "model": "EQUINOX",
+      "year": 2015,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "MY 2015 CHEVY EQUINOX BEGAN STALLING AND IDLING LOW TO THE POINT THAT SLOWING DOWN OR STOPPING WOULD CAUSE A STALLING ISSUE; GOING IN REVERSE WOULD CAUSE A STALLING ISSUE; PUTTING IT IN PARK WOULD CAUSE A STALLING ISSUE.  SOMETIMES THE CHECK ENGINE LIGHT WOULD COME ON, BUT MOST TIMES IT DID NOT.  THE VEHICLE MAINTAINS A REGULAR OIL CHANGE AND MAINTENANCE SCHEDULE YET THIS PROBLEM, WHICH WAS INTERMITTENT AT FIRST, BEGAN HAPPENING EVERY TIME THE VEHICLE WAS DRIVEN.  COULD NOT BE DRIVEN DUE TO SAFETY CONCERNS.  VERY SCARY IN TRAFFIC!"
+    },
+    {
+      "record_id": "11562945",
+      "kind": "complaint",
+      "datea": "2024-01-01",
+      "make": "GMC",
+      "model": "TERRAIN",
+      "year": 2015,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "Oil drained and no oil after oil change ra about 2300 miles and there is no indicator for low oil level or anything. Engine started rattling and engine sounded so that I pour oil then no more sound and working  About month ago engine stopped while going slow in school line and after resting it worked and same rattling sound because of no oil"
+    },
+    {
+      "record_id": "11576113",
+      "kind": "complaint",
+      "datea": "2024-03-07",
+      "make": "CHEVROLET",
+      "model": "MALIBU",
+      "year": 2017,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "The warning light comes on and off and is showing (P0498/P0449) which is the evaporative emission system vent control electrical circuit signal has low voltage for a predetermined period of time. Its calling to replace the evaporative emissions canister vent solenoid and I have seen 3 vehicles the same as mine needed the same thing fixed. When the vehicle is in park you can feel it jerk and also while pressing gas when you pull off it stalls. When cranking you can smell fumes ."
+    },
+    {
+      "record_id": "11219219",
+      "kind": "complaint",
+      "datea": "2019-06-11",
+      "make": "CHEVROLET",
+      "model": "BOLT EV",
+      "year": 2017,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "WHILE IN MOTION THE CAR BEGAN TO ERRATICALLY SPEED UP & SLOW DOWN WITHOUT THE DRIVER DEPRESSING EITHER THE ACCELERATION PEDAL OR THE BRAKE. THE RESULT WAS THE JUMPING & BUCKING OF THE CAR & PASSENGERS WITHIN. UPON TAKING THE CAR TO CHEVY REPAIR, IT WAS DISCOVERED THAT THE WHEEL SPEED SENSOR WAS DAMAGED BECAUSE OF A FAULTY WASHER IN THE AXLE THAT BROKE.  THE BROKEN WASHER PARTS ENTERED THE WHEEL HUB, DAMAGING BOTH THE WHEEL HUB & THE SPEED SENSOR."
+    },
+    {
+      "record_id": "11587376",
+      "kind": "complaint",
+      "datea": "2024-05-07",
+      "make": "CHEVROLET",
+      "model": "EQUINOX",
+      "year": 2023,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "Fuel pump quit on 12/24/23.  Dealer had vehicle four months while GM designed new pump. Notified vehicle was ready but later same day was notified the catalytic converter was bad - one ordered. Another week. Picked up vehicle mid April 24 and drove about three miles and warning light came on. Returned to dealer, mechanic made adjustments and said all fixed. Been dealing w/GM for buy back or higher trade in. Battle all the way. Bought as tow vehicle with RV. About to leave on 2 to 3,000 mile trip. Do not trust Equinox and want to return/trade for another Equinox or Blazer. Have also looked at Ford products.       BTW I was in the inside lane of a busy four lane highway when this happened and speed reduced to about 5 miles per hour. People love their horns when you try to get in outside lane in heavy traffic."
+    },
+    {
+      "record_id": "11396869",
+      "kind": "complaint",
+      "datea": "2021-02-18",
+      "make": "NISSAN",
+      "model": "VERSA",
+      "year": 2020,
+      "source_component": "FUEL/PROPULSION SYSTEM",
+      "text": "THE VEHICLE WAS STATIONARY, IT WILL NOT START, IT WILL NOT TURN ON. NONE OF MY LIGHTS HAVE BEEN LEFT ON, NOTHING HAS BEEN PLUGGED IN. THE FIRST TIME I HAD IT JUMPED IT STARTED AND TURNED ON. THE BELT WAS MAKING A HIGH PITCHED SQUEALING NOISE. AFTER IT WAS INITIALLY JUMPED AND AFTER IT WAS ON & DROVE AROUND & PUT BACK IN PARK AND TURNED BACK OFF. IT NO LONGER WOULD START. I HAVE TRIED TO HAVE IT JUMPED AGAIN & IT WOULD NOT JUMP. I AM CONCERNED WITH THE ENGINE AND FUEL SYSTEM. WHEN I'VE TRIED TO TURN IT ON AND IT WOULDN'T IT MADE SORT OF LIKE A GARGLING NOISE AFTER I HAD HIT THE START BUTTON AS WELL AS THE GAUGES COMING VERY SLIGHTLY & SHAKING"
+    }
+  ],
+  "annotation_source": "pending_human",
+  "model_predictions_included": false,
+  "sample_hash": "1d2c25af85e8b86975c0d6738ccf8479a3f1ddef174fa635823c85a4e1a0890b"
+}

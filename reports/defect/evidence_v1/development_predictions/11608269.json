@@ -1,0 +1,79 @@
+{
+  "record_id": "11608269",
+  "input_hash": "49720a9b42ae02c3bb2fcc531e9ea295377cb62bae00e11630fa975016c3aad8",
+  "pack_hash": "1d2c25af85e8b86975c0d6738ccf8479a3f1ddef174fa635823c85a4e1a0890b",
+  "extractor_sha256": "913762093e002bad3af4257e7d5014d805d2e0c1065a6020c0a7c624779fd414",
+  "student_label": "fuel_system_other_electrical",
+  "student_margin": 0.6392970979963223,
+  "meta": {
+    "version": "complaint-evidence-v1",
+    "mode": "manual",
+    "model_id": "meta-models/muse-spark-open-1026",
+    "review_required": true,
+    "model_calls": 1,
+    "sources": [
+      {
+        "source_id": "report-1",
+        "kind": "owner_report",
+        "text": "Car does not display the correct amount of fuel remaining once it hits half a tank left.  Can read quarter of a tank remaining, and the distance to empty meter shows 40 miles.  Or it will show 97 miles to empty and car will be on empty on fuel gauge.  Then once I arrive at my destination, they flip.  Driving 3 miles reports driving over 10-15 miles from distance to empty, the gauge starts moving.  Never an accurate reading.",
+        "sha256": "5d30f66d03ee83b894193d8c33d2b4285bccc96abe1ed02ab2c17249b4a90a41",
+        "sentences": [
+          {
+            "sentence_id": "report-1:1",
+            "quote": "Car does not display the correct amount of fuel remaining once it hits half a tank left.",
+            "start": 0,
+            "end": 88
+          },
+          {
+            "sentence_id": "report-1:2",
+            "quote": "Can read quarter of a tank remaining, and the distance to empty meter shows 40 miles.",
+            "start": 90,
+            "end": 175
+          },
+          {
+            "sentence_id": "report-1:3",
+            "quote": "Or it will show 97 miles to empty and car will be on empty on fuel gauge.",
+            "start": 177,
+            "end": 250
+          },
+          {
+            "sentence_id": "report-1:4",
+            "quote": "Then once I arrive at my destination, they flip.",
+            "start": 252,
+            "end": 300
+          },
+          {
+            "sentence_id": "report-1:5",
+            "quote": "Driving 3 miles reports driving over 10-15 miles from distance to empty, the gauge starts moving.",
+            "start": 302,
+            "end": 399
+          },
+          {
+            "sentence_id": "report-1:6",
+            "quote": "Never an accurate reading.",
+            "start": 401,
+            "end": 427
+          }
+        ]
+      }
+    ],
+    "observations": [],
+    "unknown_fields": [
+      "vehicle",
+      "part",
+      "symptom",
+      "failure_mode",
+      "timing",
+      "negation",
+      "uncertainty"
+    ],
+    "defect_label_id": "other_unclear",
+    "label_evidence": [],
+    "lookups": [],
+    "followup_field": "uncertainty",
+    "followup_question": "Which details did you observe yourself, and which were suggested by someone else?",
+    "rejected": [],
+    "fallback_reason": "meta_schema_invalid:$: missing required 'unknown_fields'",
+    "elapsed_ms": 3015
+  }
+}

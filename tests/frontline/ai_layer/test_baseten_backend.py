@@ -184,10 +184,22 @@ def test_json_schema_fallback_then_remembered(baseten_env, capture_transport, mo
     assert _chat(calls, queue) == {"x": 2}
     assert calls[0]["payload"]["response_format"]["type"] == "json_schema"
     assert calls[1]["payload"]["response_format"] == {"type": "json_object"}
+    fallback_prompt = calls[1]["payload"]["messages"][0]["content"]
+    assert json.loads(fallback_prompt.split("JSON schema:\n", 1)[1]) == SCHEMA
     # Second call goes straight to the plain format (no wasted round trip).
     queue.append((200, ok))
     assert _chat(calls, queue) == {"x": 2}
     assert calls[2]["payload"]["response_format"] == {"type": "json_object"}
+    assert calls[2]["payload"]["messages"][0]["content"] == fallback_prompt
+
+
+def test_plain_json_fallback_still_rejects_missing_fields(baseten_env, capture_transport):
+    calls, queue = capture_transport
+    queue.append((422, {"error": "unknown response_format"}))
+    queue.append((200, {"choices": [{"message": {"content": "{}"}}]}))
+    with pytest.raises(MetaError, match="missing required 'x'"):
+        _chat(calls, queue)
+    assert len(calls) == 2
 
 
 def test_no_fallback_on_auth_errors(baseten_env, capture_transport, monkeypatch):

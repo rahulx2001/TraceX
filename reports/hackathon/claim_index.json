@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "indexed_at": "2026-10-30T06:44:06.346791+00:00",
+  "verification": "python -m scripts.public_replay",
+  "scope": "saved public artifacts; no new inference or human grading",
+  "claims": [
+    {
+      "id": "historical-campaign-recall",
+      "claim": "5/8 campaigns matched (62.5%); count baseline also 5/8",
+      "artifact": "reports/defect/fuel_holdout/holdout_results.json",
+      "pointers": [
+        "/method/hits",
+        "/method/campaigns",
+        "/count_baseline/hits"
+      ],
+      "recorded_at": "2026-10-29T18:04:56.052354+00:00",
+      "model_version": "ridge student with 13-week count policy; frozen selection in artifact",
+      "limits": "Make/category historical association; model-labelled references; not exact part prediction, superiority or accidents prevented."
+    },
+    {
+      "id": "historical-alert-precision",
+      "claim": "6/18 mature alerts matched later campaigns (33.3%)",
+      "artifact": "reports/defect/fuel_holdout/holdout_results.json",
+      "pointers": [
+        "/method/confirmed_mature_alerts",
+        "/method/mature_alerts"
+      ],
+      "recorded_at": "2026-10-29T18:04:56.052354+00:00",
+      "model_version": "same frozen ridge/count method",
+      "limits": "24 alerts total, 18 with full follow-up through 2026-09-30; no human mechanical-defect validation."
+    },
+    {
+      "id": "random-reference",
+      "claim": "19/100 workload-matched random runs reached or exceeded 62.5% recall",
+      "artifact": "reports/defect/fuel_holdout/holdout_results.json",
+      "pointers": [
+        "/random_reference/draws",
+        "/random_reference/fraction_at_least_method"
+      ],
+      "recorded_at": "2026-10-29T18:04:56.052354+00:00",
+      "model_version": "recorded retrospective random seeds",
+      "limits": "Conditional historical reference, not an online policy or new experiment."
+    },
+    {
+      "id": "development-agreement",
+      "claim": "Eight valid direct-Meta development outputs; four label agreements with the student",
+      "artifact": "reports/defect/evidence_v1/development_comparison.json",
+      "pointers": [
+        "/rows",
+        "/meta_successes",
+        "/label_agreements",
+        "/extractor_version"
+      ],
+      "recorded_at": "2026-10-29 (development artifact)",
+      "model_version": "recorded extractor fingerprint 9d39c1dc5af2",
+      "limits": "Agreement is not accuracy; distinct from the reserved 100 complaints and five recall descriptions."
+    },
+    {
+      "id": "original-human-review",
+      "claim": "Original 300-example sample: 0 human labels; accuracy unavailable",
+      "artifact": "reports/defect/repair/human_validation_status.json",
+      "pointers": [
+        "/human_labels",
+        "/sample_size",
+        "/accuracy"
+      ],
+      "recorded_at": "Status snapshot indexed 2026-10-30",
+      "model_version": "not applicable; pending human review",
+      "limits": "A prepared review workflow is not a completed human evaluation."
+    },
+    {
+      "id": "reviewer-study",
+      "claim": "Prepared study: 0 participants, 0 completed tasks; time savings unavailable",
+      "artifact": "reports/hackathon/reviewer_study/results.json",
+      "pointers": [
+        "/participants",
+        "/completed_tasks",
+        "/time_saved_percent"
+      ],
+      "recorded_at": "Status snapshot indexed 2026-10-30",
+      "model_version": "prepared recorded-assistance study",
+      "limits": "No participant, usefulness, quality or productivity result exists in this artifact."
+    },
+    {
+      "id": "recorded-investigation",
+      "claim": "Two saved synthetic scenarios, each with an initial and follow-up investigation",
+      "artifact": "reports/hackathon/investigation_live_smoke.json",
+      "additional_artifacts": [
+        "reports/hackathon/investigation_followup_smoke.json"
+      ],
+      "pointers": [
+        "/initial",
+        "/followup",
+        "/model_id",
+        "/recorded_at"
+      ],
+      "recorded_at": "2026-10-29T19:09:48.694663+00:00 and 2026-10-29T19:25:16.974209+00:00",
+      "model_version": "meta-models/muse-spark-open-1026; complaint-evidence-v1",
+      "limits": "Recorded real model transport on fictional data; quotation fidelity checks do not prove interpretation accuracy, new code validation or general reliability."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "reports/defect/fuel_holdout/holdout_results.json",
+      "sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1"
+    },
+    {
+      "path": "reports/defect/fuel_holdout/protocol.json",
+      "sha256": "e57442b4d001a20ccaefe9f46f77bff71be7cda01a4b692b1afec8b81ac7ec80"
+    },
+    {
+      "path": "reports/defect/evidence_v1/development_comparison.json",
+      "sha256": "eddfe67c69d8782e07217bb80c1205e11189fba80ea1649369fc433666ed7014"
+    },
+    {
+      "path": "reports/defect/repair/human_validation_status.json",
+      "sha256": "8e5e2549cd4d48c1d8b44c48161febaeacb70d2a884d19eec1dde267b804e17d"
+    },
+    {
+      "path": "reports/hackathon/reviewer_study/results.json",
+      "sha256": "bb058b538f2d680f104534e072bcfb9c55264bd9eab1ee9c1ca4db53db227349"
+    },
+    {
+      "path": "reports/hackathon/investigation_live_smoke.json",
+      "sha256": "9e72907469559a7986bf790a63ea449632f21f9c5f2fe7f7c4a7a14e9da860af"
+    },
+    {
+      "path": "reports/hackathon/investigation_followup_smoke.json",
+      "sha256": "4aeae9f0c2d538fe0e69153342d267078eee3821aa21e8ba8e9e0b1b4de99a2b"
+    }
+  ],
+  "full_reproduction": "Full experiment replay needs frozen gitignored inputs, source ZIPs, embeddings and weights listed by reports/defect/fuel_holdout/protocol.json. A new public download can differ. The small replay checks published arithmetic and citations only."
+}

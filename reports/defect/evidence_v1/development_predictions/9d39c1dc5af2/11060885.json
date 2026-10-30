@@ -1,0 +1,176 @@
+{
+  "record_id": "11060885",
+  "input_hash": "00272de107592ee9079a0cb4f0c5241971c6b68927804e9db1e37170ed860fcf",
+  "pack_hash": "1d2c25af85e8b86975c0d6738ccf8479a3f1ddef174fa635823c85a4e1a0890b",
+  "extractor_sha256": "9d39c1dc5af2e0a78ca432a3ddd0e11f97c1b96822e8d32b9866e2b22f9fe7c3",
+  "student_label": "other_unclear",
+  "student_margin": 0.516586537865646,
+  "meta": {
+    "version": "complaint-evidence-v1",
+    "mode": "meta",
+    "model_id": "meta-models/muse-spark-open-1026",
+    "review_required": true,
+    "model_calls": 1,
+    "sources": [
+      {
+        "source_id": "report-1",
+        "kind": "owner_report",
+        "text": "IN COLD TEMPERATURES THAT THE NORTHERN STATES EXPERIENCE (AROUND 4 DEGREES F) THE TRUCK WILL INTERMITTENTLY DIE IN THE MIDDLE OF THE ROAD WHILE DRIVING.  COMPLETE POWER LOSS WITH NO WARNING, WHICH SEEMS TO HAPPEN AT ANY TIME.  WHEN THE WEATHER IS ABOVE 10F CONSISTENTLY IT SEEMS THERE ARE NO ISSUES.  EXTREMELY DANGEROUS AND CAN LEAVE YOU SUDDENLY WITHOUT POWER WHILE DRIVING.",
+        "sha256": "e1772f846fcefac6053efa6b378e5b5e9e3e3cff5ceb843cd75ec3d8651b74de",
+        "sentences": [
+          {
+            "sentence_id": "report-1:1",
+            "quote": "IN COLD TEMPERATURES THAT THE NORTHERN STATES EXPERIENCE (AROUND 4 DEGREES F) THE TRUCK WILL INTERMITTENTLY DIE IN THE MIDDLE OF THE ROAD WHILE DRIVING.",
+            "start": 0,
+            "end": 152
+          },
+          {
+            "sentence_id": "report-1:2",
+            "quote": "COMPLETE POWER LOSS WITH NO WARNING, WHICH SEEMS TO HAPPEN AT ANY TIME.",
+            "start": 154,
+            "end": 225
+          },
+          {
+            "sentence_id": "report-1:3",
+            "quote": "WHEN THE WEATHER IS ABOVE 10F CONSISTENTLY IT SEEMS THERE ARE NO ISSUES.",
+            "start": 227,
+            "end": 299
+          },
+          {
+            "sentence_id": "report-1:4",
+            "quote": "EXTREMELY DANGEROUS AND CAN LEAVE YOU SUDDENLY WITHOUT POWER WHILE DRIVING.",
+            "start": 301,
+            "end": 376
+          }
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "field": "vehicle",
+        "value": "truck",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:1",
+        "evidence": {
+          "sentence_id": "report-1:1",
+          "quote": "IN COLD TEMPERATURES THAT THE NORTHERN STATES EXPERIENCE (AROUND 4 DEGREES F) THE TRUCK WILL INTERMITTENTLY DIE IN THE MIDDLE OF THE ROAD WHILE DRIVING.",
+          "start": 0,
+          "end": 152,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "will intermittently die in the middle of the road while driving",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:1",
+        "evidence": {
+          "sentence_id": "report-1:1",
+          "quote": "IN COLD TEMPERATURES THAT THE NORTHERN STATES EXPERIENCE (AROUND 4 DEGREES F) THE TRUCK WILL INTERMITTENTLY DIE IN THE MIDDLE OF THE ROAD WHILE DRIVING.",
+          "start": 0,
+          "end": 152,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "complete power loss with no warning",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:2",
+        "evidence": {
+          "sentence_id": "report-1:2",
+          "quote": "COMPLETE POWER LOSS WITH NO WARNING, WHICH SEEMS TO HAPPEN AT ANY TIME.",
+          "start": 154,
+          "end": 225,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "symptom",
+        "value": "suddenly without power while driving",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:4",
+        "evidence": {
+          "sentence_id": "report-1:4",
+          "quote": "EXTREMELY DANGEROUS AND CAN LEAVE YOU SUDDENLY WITHOUT POWER WHILE DRIVING.",
+          "start": 301,
+          "end": 376,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "timing",
+        "value": "in cold temperatures around 4 degrees F",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:1",
+        "evidence": {
+          "sentence_id": "report-1:1",
+          "quote": "IN COLD TEMPERATURES THAT THE NORTHERN STATES EXPERIENCE (AROUND 4 DEGREES F) THE TRUCK WILL INTERMITTENTLY DIE IN THE MIDDLE OF THE ROAD WHILE DRIVING.",
+          "start": 0,
+          "end": 152,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "timing",
+        "value": "when the weather is above 10F consistently",
+        "polarity": "affirmed",
+        "sentence_id": "report-1:3",
+        "evidence": {
+          "sentence_id": "report-1:3",
+          "quote": "WHEN THE WEATHER IS ABOVE 10F CONSISTENTLY IT SEEMS THERE ARE NO ISSUES.",
+          "start": 227,
+          "end": 299,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "uncertainty",
+        "value": "seems to happen at any time",
+        "polarity": "uncertain",
+        "sentence_id": "report-1:2",
+        "evidence": {
+          "sentence_id": "report-1:2",
+          "quote": "COMPLETE POWER LOSS WITH NO WARNING, WHICH SEEMS TO HAPPEN AT ANY TIME.",
+          "start": 154,
+          "end": 225,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      },
+      {
+        "field": "uncertainty",
+        "value": "seems there are no issues when above 10F",
+        "polarity": "uncertain",
+        "sentence_id": "report-1:3",
+        "evidence": {
+          "sentence_id": "report-1:3",
+          "quote": "WHEN THE WEATHER IS ABOVE 10F CONSISTENTLY IT SEEMS THERE ARE NO ISSUES.",
+          "start": 227,
+          "end": 299,
+          "source_id": "report-1",
+          "kind": "owner_report"
+        }
+      }
+    ],
+    "unknown_fields": [
+      "failure_mode",
+      "negation",
+      "part"
+    ],
+    "defect_label_id": "other_unclear",
+    "label_evidence": [],
+    "lookups": [],
+    "followup_field": "part",
+    "followup_question": "Do you have an existing workshop or installation record that identifies the part? Please share its reference; do not inspect or test the vehicle yourself.",
+    "rejected": [],
+    "fallback_reason": null,
+    "elapsed_ms": 3890
+  }
+}

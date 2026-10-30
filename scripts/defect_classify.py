@@ -689,10 +689,10 @@ def main(argv: list[str] | None = None) -> int:
 
     from dotenv import load_dotenv
     load_dotenv(REPO_ROOT / ".env", override=False)
-    if not (os.getenv("META_API_KEY") or os.getenv("MODEL_API_KEY")):
-        print("REFUSED: no META_API_KEY or MODEL_API_KEY in the environment; source .env first", file=sys.stderr)
-        return 2
     from src.ai_layer import config
+    if not config.meta_enabled():
+        print("REFUSED: no enabled Meta/Baseten backend; configure its server-side key first", file=sys.stderr)
+        return 2
     if args.model != config.model_text():
         print(f"note: script model {args.model!r} overrides META_MODEL_TEXT {config.model_text()!r}")
 

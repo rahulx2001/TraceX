@@ -1,0 +1,12 @@
+{
+  "status": "development only; no human accuracy result",
+  "rows": 8,
+  "extractor_version": "9d39c1dc5af2",
+  "predictions_directory": "reports/defect/evidence_v1/development_predictions/9d39c1dc5af2",
+  "meta_successes": 8,
+  "label_agreements": 4,
+  "human_reviewed": 0,
+  "accuracy": null,
+  "campaign_recall": null,
+  "note": "Agreement between models is not correctness. These examples are development diagnostics, not the reserved cohort."
+}

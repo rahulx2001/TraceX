@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "page_errors": [],
+  "checks": [
+    "recorded Meta result",
+    "source observations",
+    "missing-record question",
+    "authenticated review document",
+    "zero prefilled labels"
+  ]
+}
