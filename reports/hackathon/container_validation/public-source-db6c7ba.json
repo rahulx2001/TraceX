@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-30T09:56:17.841Z",
+  "commit": "db6c7bade673006806a4e294c13c7021ca373948",
+  "scope": "Anonymous public source access only; hosted demo, video and portal excluded.",
+  "results": [
+    {
+      "url": "https://github.com/rahulx2001/TraceX",
+      "final_url": "https://github.com/rahulx2001/TraceX",
+      "http_status": 200,
+      "login_link_visible": true,
+      "signed_in": false,
+      "passed": true
+    },
+    {
+      "url": "https://github.com/rahulx2001/TraceX/tree/db6c7bade673006806a4e294c13c7021ca373948",
+      "final_url": "https://github.com/rahulx2001/TraceX/tree/db6c7bade673006806a4e294c13c7021ca373948",
+      "http_status": 200,
+      "login_link_visible": true,
+      "signed_in": false,
+      "passed": true
+    }
+  ]
+}

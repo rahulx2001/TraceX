@@ -1,7 +1,7 @@
 {
   "repository_url": "https://github.com/rahulx2001/TraceX",
   "submitted_source_commit": null,
-  "candidate_source_commit": "edfda13e616314480c3501ba9b1a600c1e42ff88",
+  "candidate_source_commit": "db6c7bade673006806a4e294c13c7021ca373948",
   "video_url": null,
   "hosted_demo_url": null,
   "portal_url": null,
@@ -15,5 +15,7 @@
     "portal_upload_or_submission"
   ],
   "portal_submission_confirmed": false,
-  "note": "Set final public URLs, actual team names and the submitted commit only after they exist. A packaged candidate is not a submitted entry. Video is an owner task outside the 30 October readiness pass and does not gate these checks. Never store credentials here."
+  "note": "Set final public URLs, actual team names and the submitted commit only after they exist. A packaged candidate is not a submitted entry. Video is an owner task outside the 30 October readiness pass and does not gate these checks. Never store credentials here.",
+  "candidate_verification": "reports/hackathon/container_validation/ci-db6c7ba.json",
+  "public_source_verification": "reports/hackathon/container_validation/public-source-db6c7ba.json"
 }

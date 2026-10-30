@@ -12,6 +12,8 @@ mechanical-defect, hosted-demo or productivity result.
 | Same image through documented Compose service, Compose 5.6.1, new isolated data volume | [result](edfda13-compose-arm64-attempt1.json), [browser log](edfda13-compose-arm64-attempt1.browser.log), [container log](edfda13-compose-arm64-attempt1.container.log) | Passed |
 | Compose with an added visible forbidden-action check | [result](edfda13-compose-arm64-attempt2.json), [browser log](edfda13-compose-arm64-attempt2.browser.log), [container log](edfda13-compose-arm64-attempt2.container.log) | Passed; operator campaign creation returned 403 and showed a permission error |
 | GitHub Ubuntu runner, clean image and Chromium browser | [public CI run](https://github.com/rahulx2001/TraceX/actions/runs/41035375574), [retrieved job/step results](ci-edfda13.json) | Passed |
+| Packaged candidate `db6c7ba`: clean Compose image, Chromium and visible operator 403 | [public CI run](https://github.com/rahulx2001/TraceX/actions/runs/41036898751), [job/step results](ci-db6c7ba.json) | Passed |
+| Public repository and exact packaged candidate in a fresh signed-out browser | [anonymous source check](public-source-db6c7ba.json) | Both HTTP 200; no saved user cookies or account |
 | Trust bootstrap, legacy migration, existing-row preservation and voice software contracts | [60 focused Python tests](focused-tests.log) | Passed; one Starlette deprecation warning |
 
 All local browser executions verified visible sign-in, refused invalid key,
@@ -35,6 +37,9 @@ The Compose result fingerprints the extended verification runner separately
 from the image commit. CI now uses that Compose route on every readiness-branch
 commit, including packaging commits. The latest public workflow result identifies
 the exact checked SHA; the saved run above remains evidence for its own SHA.
+The clean checkout of `db6c7ba` also passed the standard-library public replay
+and the source manifest's working-tree verification (1,170 files). Subsequent
+evidence/manifest commits package these records; they do not change runtime code.
 
 ## Failures retained and fixes
 
