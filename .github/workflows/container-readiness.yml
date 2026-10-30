@@ -7,10 +7,13 @@ on:
     paths:
       - 'Dockerfile.hackathon*'
       - 'requirements*.txt'
+      - 'migrations/**'
       - 'docker/**'
       - 'src/**'
       - 'dashboard/**'
       - 'scripts/docker_readiness.py'
+      - 'scripts/bootstrap_container_trust.py'
+      - 'scripts/container_bootstrap.py'
       - 'scripts/submission_smoke.py'
       - 'scripts/prepare_review_assets.py'
       - 'scripts/templates/**'
@@ -26,10 +29,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser check dependencies
+        working-directory: dashboard
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
       - name: Build the current source with no developer cache
         run: docker build --pull --no-cache --label "org.opencontainers.image.revision=$GITHUB_SHA" -f Dockerfile.hackathon -t tracex-readiness:ci .
-      - name: Current campaign, authentication, review assets and restart
-        run: python3 -m scripts.docker_readiness --image tracex-readiness:ci --expected-revision "$GITHUB_SHA" --output reports/hackathon/container_validation/ci.json
+      - name: Entry, report, correction, review, export, assets and restart
+        run: python3 -m scripts.docker_readiness --image tracex-readiness:ci --expected-revision "$GITHUB_SHA" --browser --output reports/hackathon/container_validation/ci.json
       - name: Retain actual container result and logs
         if: always()
         uses: actions/upload-artifact@v4

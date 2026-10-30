@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 import secrets
 import subprocess
-import sys
 import tempfile
 import time
 import urllib.request
@@ -50,6 +49,9 @@ def main():
               'image_os': image['Os'], 'docker_server': run('version', '--format', '{{.Server.Version}}'),
               'scope': 'Disposable container integration checks on fictional seed/text data; no live inference or real audio.',
               'host_data_mounts': False, 'model_calls': 0, 'checks': []}
+    result['verification_files'] = {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in (Path(__file__), ROOT/'scripts/submission_smoke.py',
+                     ROOT/'dashboard/scripts/container-readiness.test.mjs', ROOT/'dashboard/scripts/report-handoff.test.mjs')}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     created = False
@@ -59,10 +61,12 @@ def main():
                  for flag in ('--env', key)]
         run('run', '-d', '--name', name, '-p', '127.0.0.1::8000', *flags, args.image, env=env)
         created = True
-        endpoint = run('port', name, '8000/tcp').splitlines()[0]
-        if not endpoint.startswith('127.0.0.1:'):
-            raise ValueError('Test container must be exposed only on loopback')
-        base = 'http://' + endpoint
+        def container_base():
+            endpoint = run('port', name, '8000/tcp').splitlines()[0]
+            if not endpoint.startswith('127.0.0.1:'):
+                raise ValueError('Test container must be exposed only on loopback')
+            return 'http://' + endpoint
+        base = container_base()
         def ready():
             for _ in range(120):
                 if run('inspect', '--format', '{{.State.Running}}', name) != 'true':
@@ -91,7 +95,7 @@ def main():
         assert files == [], 'Local media must not enter the image'
         result['checks'].append({'name': 'no_local_media', 'files': files})
         if args.browser:
-            token = subprocess.check_output([sys.executable, '-c', "from src.api.rbac import issue_session; print(issue_session('browser-test-supervisor', 'supervisor', issuer_role='admin')['token'])"], cwd=ROOT, env=env, text=True).strip()
+            token = run('exec', name, 'python', '-c', "from src.api.rbac import issue_session; print(issue_session('browser-test-supervisor', 'supervisor', issuer_role='admin')['token'])")
             with tempfile.TemporaryDirectory(prefix='tracex-container-browser-') as private:
                 fixture = Path(private)/'fixture.json'
                 fixture.write_text(json.dumps({'base': base, 'api_key': env['FRONTLINE_API_KEY'], 'supervisor_token': token, 'campaign_id': first['campaign_id']}))
@@ -103,6 +107,8 @@ def main():
                 if browser.returncode:
                     raise RuntimeError('Container browser check failed; see retained browser log')
         run('restart', '--time', '15', name)
+        # Docker can allocate a different ephemeral host port on restart.
+        base = container_base()
         ready()
         second = check(base, env['FRONTLINE_API_KEY'], True)
         assert second['campaign_id'] == first['campaign_id'], 'Restart silently reseeded the campaign'
