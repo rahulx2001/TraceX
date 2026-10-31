@@ -1,9 +1,11 @@
 .ml-improvement-evidence .table th[scope="row"] {
+  color: var(--ink);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: normal;
   text-transform: none;
 }
+.ml-improvement-evidence .table thead th { color: var(--ink-soft); }
 .ml-improvement-evidence td { white-space: nowrap; }
 .ml-improvement-evidence details { margin-top: 6px; }
 .ml-improvement-evidence details p { overflow-wrap: anywhere; }
@@ -18,7 +20,7 @@
   }
   .ml-improvement-evidence tr {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--border);
+    gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--edge);
   }
   .ml-improvement-evidence th[scope="row"] { grid-column: 1 / -1; }
   .ml-improvement-evidence th,
@@ -26,6 +28,6 @@
   .ml-improvement-evidence td:last-child { grid-column: 1 / -1; }
   .ml-improvement-evidence td::before {
     content: attr(data-label); display: block; white-space: normal;
-    font-size: 11px; color: var(--text-muted, #858783); margin-bottom: 4px;
+    font-size: 11px; color: var(--ink-soft); margin-bottom: 4px;
   }
 }

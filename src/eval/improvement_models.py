@@ -31,10 +31,18 @@ def embedding_model(seed):
 
 
 def fit_calibrator(scores, y, *, method, fit_ids, calibration_ids, evaluation_ids):
+    """Fit on unique calibration examples, disjoint from fitting and evaluation.
+
+    Each calibration identifier corresponds to one score/outcome row. Callers
+    must also enforce campaign/time-group separation before constructing rows.
+    """
+    calibration_ids=list(calibration_ids)
     require_disjoint(fit_ids,calibration_ids,evaluation_ids)
     scores=np.asarray(scores,dtype=float); y=np.asarray(y)
-    if len(scores)!=len(y) or not np.isfinite(scores).all() or not np.isin(y,[0,1]).all():
+    if scores.ndim!=1 or y.ndim!=1 or scores.shape!=y.shape or not np.isfinite(scores).all() or not np.isin(y,[0,1]).all():
         raise ValueError("Invalid calibration data")
+    if len(calibration_ids)!=len(y) or len(set(calibration_ids))!=len(y):
+        raise ValueError("One unique calibration identity is required per outcome")
     if len(y)<10 or min(int(y.sum()),int((1-y).sum()))<2:
         raise ValueError("Insufficient independent calibration support (10 rows and 2 of each outcome required)")
     if method == "platt":

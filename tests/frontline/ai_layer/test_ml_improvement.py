@@ -125,12 +125,19 @@ def test_local_models_and_calibration_on_disjoint_toy_groups(monkeypatch):
         fitted=binary_model(kind,17).fit(x,y)
         p=fitted.predict_proba([[0],[39]])[:,1]
         assert 0<=p[0]<p[1]<=1
-    fit=fit_calibrator(np.arange(20),[0]*10+[1]*10,method="platt",fit_ids=["fit"],calibration_ids=["cal"],evaluation_ids=["eval"])
+    fit=fit_calibrator(np.arange(20),[0]*10+[1]*10,method="platt",fit_ids=["fit"],calibration_ids=[f"cal-{i}" for i in range(20)],evaluation_ids=["eval"])
     probs=fit([0,19]);assert 0<=probs[0]<probs[1]<=1
     with pytest.raises(ValueError,match="overlap"):
         fit_calibrator([0,1],[0,1],method="platt",fit_ids=["x"],calibration_ids=["x"],evaluation_ids=[])
     with pytest.raises(ValueError,match="support"):
-        fit_calibrator([0,1],[0,1],method="platt",fit_ids=[],calibration_ids=["cal"],evaluation_ids=[])
+        fit_calibrator([0,1],[0,1],method="platt",fit_ids=[],calibration_ids=["cal-0","cal-1"],evaluation_ids=[])
+
+
+@pytest.mark.parametrize("identities", [["repeated"]*20, ["one-group-is-not-20-independent-examples"]])
+def test_calibration_support_cannot_be_inflated_with_missing_or_repeated_identities(identities):
+    from src.eval.improvement_models import fit_calibrator
+    with pytest.raises(ValueError,match="unique calibration identity"):
+        fit_calibrator(np.arange(20),[0]*10+[1]*10,method="platt",fit_ids=["fit"],calibration_ids=identities,evaluation_ids=["eval"])
 
 
 def test_monitoring_volume_includes_zero_report_days():
