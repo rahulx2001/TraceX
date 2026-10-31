@@ -1,0 +1,203 @@
+{
+  "body": {
+    "targets": {
+      "human_accuracy": 0.8,
+      "accepted_precision": 0.85,
+      "minimum_coverage": 0.6,
+      "defect_precision": 0.8,
+      "defect_recall": 0.7,
+      "sensitivity_precision": 0.75,
+      "sensitivity_recall": 0.6,
+      "ece_max": 0.05,
+      "brier": "beat training-prevalence reference",
+      "retrieval": "pending an independently labelled mixed-candidate benchmark"
+    },
+    "authorization": {
+      "targets": "explicit_user_approved",
+      "human_label_work": "waived for this run; no human accuracy claims",
+      "paid_model_calls": false,
+      "production_promotion": false,
+      "prospective_development_permission": "pending async answer"
+    },
+    "development_cutoff": "2020-12-31",
+    "scope": {
+      "makes": [
+        "FORD",
+        "HONDA",
+        "HYUNDAI",
+        "KIA",
+        "TOYOTA"
+      ],
+      "model_years": [
+        2015,
+        2024
+      ],
+      "components": [
+        "FUEL SYSTEM"
+      ]
+    },
+    "folds": [
+      {
+        "name": "A",
+        "fit_end": "2016-12-31",
+        "validation": [
+          "2017-01-01",
+          "2018-12-31"
+        ]
+      },
+      {
+        "name": "B",
+        "fit_end": "2018-12-31",
+        "validation": [
+          "2019-01-01",
+          "2020-12-31"
+        ]
+      }
+    ],
+    "seeds": [
+      17,
+      29,
+      43,
+      71,
+      101
+    ],
+    "random_seeds": [
+      2026103100,
+      2026103101,
+      2026103102,
+      2026103103,
+      2026103104,
+      2026103105,
+      2026103106,
+      2026103107,
+      2026103108,
+      2026103109,
+      2026103110,
+      2026103111,
+      2026103112,
+      2026103113,
+      2026103114,
+      2026103115,
+      2026103116,
+      2026103117,
+      2026103118,
+      2026103119,
+      2026103120,
+      2026103121,
+      2026103122,
+      2026103123,
+      2026103124,
+      2026103125,
+      2026103126,
+      2026103127,
+      2026103128,
+      2026103129,
+      2026103130,
+      2026103131,
+      2026103132,
+      2026103133,
+      2026103134,
+      2026103135,
+      2026103136,
+      2026103137,
+      2026103138,
+      2026103139,
+      2026103140,
+      2026103141,
+      2026103142,
+      2026103143,
+      2026103144,
+      2026103145,
+      2026103146,
+      2026103147,
+      2026103148,
+      2026103149,
+      2026103150,
+      2026103151,
+      2026103152,
+      2026103153,
+      2026103154,
+      2026103155,
+      2026103156,
+      2026103157,
+      2026103158,
+      2026103159,
+      2026103160,
+      2026103161,
+      2026103162,
+      2026103163,
+      2026103164,
+      2026103165,
+      2026103166,
+      2026103167,
+      2026103168,
+      2026103169,
+      2026103170,
+      2026103171,
+      2026103172,
+      2026103173,
+      2026103174,
+      2026103175,
+      2026103176,
+      2026103177,
+      2026103178,
+      2026103179,
+      2026103180,
+      2026103181,
+      2026103182,
+      2026103183,
+      2026103184,
+      2026103185,
+      2026103186,
+      2026103187,
+      2026103188,
+      2026103189,
+      2026103190,
+      2026103191,
+      2026103192,
+      2026103193,
+      2026103194,
+      2026103195,
+      2026103196,
+      2026103197,
+      2026103198,
+      2026103199
+    ],
+    "thresholds": [
+      0.25,
+      0.5,
+      0.75,
+      0.85
+    ],
+    "models": [
+      "count",
+      "gamma_poisson",
+      "logistic",
+      "gradient_boosting"
+    ],
+    "features": "src/eval/improvement_detection.py::FEATURES",
+    "matching": "unchanged make + component + specific model label; 7-364 days, complete weeks, full follow-up precision, 91-day cooldown",
+    "baseline": "frozen Gamma-Poisson config; fixed count plus equal-budget count and all random draws",
+    "utility": {
+      "campaign_hit": 5,
+      "unconfirmed_mature_alert": -2,
+      "any_alert": -0.1,
+      "note": "explicit investigation utility assumption, not accident/currency value; targets must also pass"
+    },
+    "minimum_mature_alerts_for_selection": 10,
+    "selection": "Only a method passing joint precision/recall gates in every declared fold and sensitivity may be proposed. No fallback promotion. Independent final test and human signoff required.",
+    "calibration": "independent validation IDs only; no post-2020 outcomes; Platt minimum 10 outcomes and two per class, isotonic minimum 100; report not estimable when absent",
+    "locked_windows": [
+      "2021-2024",
+      "2025",
+      "inspected portions of 2026"
+    ],
+    "proposed_prospective_test": [
+      "2027-01-01",
+      "2027-12-31"
+    ],
+    "proposed_outcome_end": "2028-12-30",
+    "test_status": "not available or frozen; prospective reservation approval pending"
+  },
+  "sha256": "21ac9a80cf382cc3c51182b0c263257d43b5af6791a15fb5addb421059cc40de"
+}

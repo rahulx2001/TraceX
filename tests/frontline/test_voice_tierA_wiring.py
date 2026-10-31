@@ -213,7 +213,9 @@ async def test_spoken_human_request_creates_a_real_handoff(orchestrator_factory)
     await orch.start()
     await orch.handle_customer_turn("Please get me a human now")
     assert orch.ctx.state == "HANDOFF_PENDING"
-    assert any("connecting you to a human" in t.lower() for t in hooks.agent_texts())
+    assert any("specialist request is queued" in t.lower() for t in hooks.agent_texts())
+    assert any("specialist has not joined yet" in t.lower() for t in hooks.agent_texts())
+    assert not any("connecting you to a human" in t.lower() for t in hooks.agent_texts())
     again = await orch.accept_handoff(force=True, source="caller_control")
     assert again["accepted"] is True
     assert again["already_pending"] is True

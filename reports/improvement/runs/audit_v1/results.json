@@ -1,0 +1,2940 @@
+{
+  "status": "development_audit_not_held_out_improvement",
+  "manifest": {
+    "scope": {
+      "makes": [
+        "FORD",
+        "HONDA",
+        "HYUNDAI",
+        "KIA",
+        "TOYOTA"
+      ],
+      "model_years": [
+        2015,
+        2024
+      ],
+      "components": [
+        "FUEL SYSTEM"
+      ],
+      "recall_type": "V",
+      "complaint_window": [
+        "2015-01-01",
+        "2024-12-31"
+      ]
+    },
+    "label_source": "frozen model hypotheses, not human ground truth",
+    "cutoff": "2020-12-31",
+    "complaints": 263,
+    "campaigns": 36,
+    "recall_scopes": 136,
+    "severity_source": {
+      "path": "../v2_ai_rca_tool/data/defect/source_cache/FLAT_CMPL.zip",
+      "sha256": "dbbe24161ba94c56b4bc8acbf6aee995225bd42a8261f03b7efcc5ed3ac4e3b4"
+    },
+    "severity_coverage": {
+      "numerator": 263,
+      "denominator": 263,
+      "value": 1.0,
+      "ci95": [
+        0.9856039655993808,
+        1.0
+      ],
+      "unit": "complaints",
+      "interval_method": "descriptive Wilson; correlated units limit inference"
+    },
+    "inputs": {
+      "data/ml_improvement/complaints.parquet": "bfda61fcb22d6d70d8a8bb692094247901ed56466bb4722236033890182db6b9",
+      "data/ml_improvement/recalls.parquet": "63577ea14c59acc7d8bb9c32c86bf3efe65762dc0c148b107ef2ed6cff1db809"
+    }
+  },
+  "blocks": {
+    "all_reports": {
+      "metrics": {
+        "recall": {
+          "numerator": 3,
+          "denominator": 36,
+          "value": 0.08333333333333333,
+          "ci95": [
+            0.02874861133599338,
+            0.2182669124927263
+          ],
+          "unit": "campaigns",
+          "interval_method": "descriptive Wilson; correlated units limit inference"
+        },
+        "precision": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333333333333333,
+          "ci95": [
+            0.06149194472039621,
+            0.7923403991979522
+          ],
+          "unit": "mature alert episodes",
+          "interval_method": "descriptive Wilson; correlated units limit inference"
+        },
+        "harmonic_objective": 0.13333333333333333,
+        "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+        "alerts": 10,
+        "mature_alerts": 3,
+        "censored_alerts": 7,
+        "median_lead_weeks": 18.142857142857142,
+        "lead_support": 3,
+        "utility": 10.0
+      },
+      "per_slice": {
+        "make": {
+          "FORD": {
+            "recall": {
+              "numerator": 2,
+              "denominator": 16,
+              "value": 0.125,
+              "ci95": [
+                0.03497748774324047,
+                0.36022827265758695
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 1,
+              "denominator": 3,
+              "value": 0.3333333333333333,
+              "ci95": [
+                0.06149194472039621,
+                0.7923403991979522
+              ],
+              "unit": "mature alert episodes",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "harmonic_objective": 0.18181818181818182,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 7,
+            "mature_alerts": 3,
+            "censored_alerts": 4,
+            "median_lead_weeks": 16.857142857142858,
+            "lead_support": 2,
+            "utility": 5.3
+          },
+          "HONDA": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 12,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.24249400665524085
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "KIA": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 2,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "TOYOTA": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 6,
+              "value": 0.16666666666666666,
+              "ci95": [
+                0.030053369748306635,
+                0.5635028221864702
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 3,
+            "mature_alerts": 0,
+            "censored_alerts": 3,
+            "median_lead_weeks": 35.285714285714285,
+            "lead_support": 1,
+            "utility": 4.7
+          }
+        },
+        "component": {
+          "FUEL SYSTEM": {
+            "recall": {
+              "numerator": 3,
+              "denominator": 36,
+              "value": 0.08333333333333333,
+              "ci95": [
+                0.02874861133599338,
+                0.2182669124927263
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 1,
+              "denominator": 3,
+              "value": 0.3333333333333333,
+              "ci95": [
+                0.06149194472039621,
+                0.7923403991979522
+              ],
+              "unit": "mature alert episodes",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "harmonic_objective": 0.13333333333333333,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 10,
+            "mature_alerts": 3,
+            "censored_alerts": 7,
+            "median_lead_weeks": 18.142857142857142,
+            "lead_support": 3,
+            "utility": 10.0
+          }
+        },
+        "label_id": {
+          "canister_failure": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 2,
+              "value": 0.5,
+              "ci95": [
+                0.09453120573423074,
+                0.9054687942657693
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0,
+              "ci95": [
+                0.20654931437723745,
+                1.0
+              ],
+              "unit": "mature alert episodes",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "harmonic_objective": 0.6666666666666666,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 2,
+            "mature_alerts": 1,
+            "censored_alerts": 1,
+            "median_lead_weeks": 15.571428571428571,
+            "lead_support": 1,
+            "utility": 4.8
+          },
+          "fuel_pump_failure": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 9,
+              "value": 0.1111111111111111,
+              "ci95": [
+                0.019890887638544907,
+                0.434999705576656
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 2,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ],
+              "unit": "mature alert episodes",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 7,
+            "mature_alerts": 2,
+            "censored_alerts": 5,
+            "median_lead_weeks": 35.285714285714285,
+            "lead_support": 1,
+            "utility": 0.29999999999999993
+          },
+          "fuel_system_diesel_detachment": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 2,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "fuel_system_other_electrical": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 5,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "hoses_lines_piping_and_fittings_leak": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 7,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.35433043506668743
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "other_unclear": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 3,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.5614970317550454
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "tank_assembly_leak": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.02241749145005667,
+                0.4708881822128535
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 1,
+            "mature_alerts": 0,
+            "censored_alerts": 1,
+            "median_lead_weeks": 18.142857142857142,
+            "lead_support": 1,
+            "utility": 4.9
+          }
+        },
+        "campaign_issue_year": {
+          "2015": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 5,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2016": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 6,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.3903342879021653
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2017": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 6,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.3903342879021653
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2018": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 5,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2019": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 6,
+              "value": 0.16666666666666666,
+              "ci95": [
+                0.030053369748306635,
+                0.5635028221864702
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2020": {
+            "recall": {
+              "numerator": 2,
+              "denominator": 8,
+              "value": 0.25,
+              "ci95": [
+                0.071479212752109,
+                0.5907245696898311
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          }
+        },
+        "alert_issue_year": {
+          "2018": {
+            "precision": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.7934506856227626
+              ],
+              "unit": "mature alerts issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "alerts": 1
+          },
+          "2019": {
+            "precision": {
+              "numerator": 1,
+              "denominator": 2,
+              "value": 0.5,
+              "ci95": [
+                0.09453120573423074,
+                0.9054687942657693
+              ],
+              "unit": "mature alerts issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "alerts": 2
+          },
+          "2020": {
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alerts issued in year"
+            },
+            "alerts": 7
+          }
+        }
+      },
+      "errors": {
+        "false_positives": [
+          {
+            "alert_id": "2018-06-18|FORD|FUEL SYSTEM|fuel_pump_failure",
+            "make": "FORD",
+            "label_id": "fuel_pump_failure",
+            "evidence_ids": [
+              "11100320",
+              "11101818"
+            ],
+            "observations": {
+              "recall_mention": 0,
+              "weak_evidence": true,
+              "duplicate": false
+            },
+            "review_status": "machine_inspected; human cause unassigned",
+            "cause_candidates": [
+              "wrong category",
+              "recall mention",
+              "duplicate",
+              "weak evidence",
+              "wrong scope",
+              "timing/leakage",
+              "label ambiguity"
+            ]
+          },
+          {
+            "alert_id": "2019-08-26|FORD|FUEL SYSTEM|fuel_pump_failure",
+            "make": "FORD",
+            "label_id": "fuel_pump_failure",
+            "evidence_ids": [
+              "11244955",
+              "11245636"
+            ],
+            "observations": {
+              "recall_mention": 1,
+              "weak_evidence": true,
+              "duplicate": false
+            },
+            "review_status": "machine_inspected; human cause unassigned",
+            "cause_candidates": [
+              "wrong category",
+              "recall mention",
+              "duplicate",
+              "weak evidence",
+              "wrong scope",
+              "timing/leakage",
+              "label ambiguity"
+            ]
+          }
+        ],
+        "false_negatives": [
+          {
+            "campaign": "15V005000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V339000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V475000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V605000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "other_unclear"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": true,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V618000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V417000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V618000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "other_unclear"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": true,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V621000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V661000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V778000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_diesel_detachment"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V945000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_diesel_detachment"
+            ],
+            "prior_any_fuel_complaints": 8,
+            "prior_matching_label_complaints": 1,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V170000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 10,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V219000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 2,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V269000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 10,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V442000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V681000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V805000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V108000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V392000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 2,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V735000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "canister_failure"
+            ],
+            "prior_any_fuel_complaints": 5,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V807000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 5,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V907000",
+            "make": [
+              "KIA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V053000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 14,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V060000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 14,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V097000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 2,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V569000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 14,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V859000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 23,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V012000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 3,
+            "prior_matching_label_complaints": 1,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V162000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 3,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V314000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 7,
+            "prior_matching_label_complaints": 1,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V560000",
+            "make": [
+              "KIA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 2,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V700000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 103,
+            "prior_matching_label_complaints": 1,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V797000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "other_unclear"
+            ],
+            "prior_any_fuel_complaints": 13,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": true,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          }
+        ],
+        "requested_each": 50,
+        "available_fp": 2,
+        "available_fn": 33,
+        "complete_50_each": false,
+        "note": "No unique errors were invented or repeated to meet the requested quota."
+      },
+      "label_conditional_opportunity": {
+        "campaigns": 36,
+        "with_prior_evidence": 7,
+        "ceiling": 0.19444444444444445,
+        "matching": "make+specific_defect",
+        "diagnostic_only": true,
+        "rows": [
+          {
+            "campaign": "15V005000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V339000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V475000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V605000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V618000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V417000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V618000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V621000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V661000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V778000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V945000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "17V170000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V219000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V269000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V442000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V681000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V805000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V108000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V392000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V735000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V807000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V907000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V053000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V060000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V097000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V515000",
+            "prior_complaints": 3
+          },
+          {
+            "campaign": "19V569000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V859000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V012000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "20V162000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V314000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "20V560000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V682000",
+            "prior_complaints": 28
+          },
+          {
+            "campaign": "20V700000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "20V730000",
+            "prior_complaints": 3
+          },
+          {
+            "campaign": "20V797000",
+            "prior_complaints": 0
+          }
+        ]
+      },
+      "any_fuel_opportunity": {
+        "campaigns": 36,
+        "with_prior_evidence": 29,
+        "ceiling": 0.8055555555555556,
+        "matching": "make+any_fuel_complaint_not_defect_evidence",
+        "diagnostic_only": true,
+        "rows": [
+          {
+            "campaign": "15V005000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V339000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V475000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V605000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V618000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V417000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V618000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "16V621000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "16V661000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "16V778000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "16V945000",
+            "prior_complaints": 8
+          },
+          {
+            "campaign": "17V170000",
+            "prior_complaints": 10
+          },
+          {
+            "campaign": "17V219000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "17V269000",
+            "prior_complaints": 10
+          },
+          {
+            "campaign": "17V442000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "17V681000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "17V805000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "18V108000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V392000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "18V735000",
+            "prior_complaints": 5
+          },
+          {
+            "campaign": "18V807000",
+            "prior_complaints": 5
+          },
+          {
+            "campaign": "18V907000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "19V053000",
+            "prior_complaints": 14
+          },
+          {
+            "campaign": "19V060000",
+            "prior_complaints": 14
+          },
+          {
+            "campaign": "19V097000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "19V515000",
+            "prior_complaints": 14
+          },
+          {
+            "campaign": "19V569000",
+            "prior_complaints": 14
+          },
+          {
+            "campaign": "19V859000",
+            "prior_complaints": 23
+          },
+          {
+            "campaign": "20V012000",
+            "prior_complaints": 3
+          },
+          {
+            "campaign": "20V162000",
+            "prior_complaints": 3
+          },
+          {
+            "campaign": "20V314000",
+            "prior_complaints": 7
+          },
+          {
+            "campaign": "20V560000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "20V682000",
+            "prior_complaints": 102
+          },
+          {
+            "campaign": "20V700000",
+            "prior_complaints": 103
+          },
+          {
+            "campaign": "20V730000",
+            "prior_complaints": 29
+          },
+          {
+            "campaign": "20V797000",
+            "prior_complaints": 13
+          }
+        ]
+      },
+      "candidates": 60,
+      "mature_candidate_outcomes": 12
+    },
+    "excluding_explicit_recall_reports": {
+      "metrics": {
+        "recall": {
+          "numerator": 1,
+          "denominator": 36,
+          "value": 0.027777777777777776,
+          "ci95": [
+            0.004920407139810443,
+            0.14169718653273855
+          ],
+          "unit": "campaigns",
+          "interval_method": "descriptive Wilson; correlated units limit inference"
+        },
+        "precision": {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ],
+          "unit": "mature alert episodes",
+          "interval_method": "descriptive Wilson; correlated units limit inference"
+        },
+        "harmonic_objective": 0.0,
+        "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+        "alerts": 4,
+        "mature_alerts": 1,
+        "censored_alerts": 3,
+        "median_lead_weeks": 12.285714285714286,
+        "lead_support": 1,
+        "utility": 2.6
+      },
+      "per_slice": {
+        "make": {
+          "FORD": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 16,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.1936076805344365
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.7934506856227626
+              ],
+              "unit": "mature alert episodes",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 3,
+            "mature_alerts": 1,
+            "censored_alerts": 2,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": -2.3
+          },
+          "HONDA": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 12,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.24249400665524085
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "KIA": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 2,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "TOYOTA": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 6,
+              "value": 0.16666666666666666,
+              "ci95": [
+                0.030053369748306635,
+                0.5635028221864702
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 1,
+            "mature_alerts": 0,
+            "censored_alerts": 1,
+            "median_lead_weeks": 12.285714285714286,
+            "lead_support": 1,
+            "utility": 4.9
+          }
+        },
+        "component": {
+          "FUEL SYSTEM": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 36,
+              "value": 0.027777777777777776,
+              "ci95": [
+                0.004920407139810443,
+                0.14169718653273855
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.7934506856227626
+              ],
+              "unit": "mature alert episodes",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 4,
+            "mature_alerts": 1,
+            "censored_alerts": 3,
+            "median_lead_weeks": 12.285714285714286,
+            "lead_support": 1,
+            "utility": 2.6
+          }
+        },
+        "label_id": {
+          "canister_failure": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 2,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 1,
+            "mature_alerts": 0,
+            "censored_alerts": 1,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": -0.1
+          },
+          "fuel_pump_failure": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 9,
+              "value": 0.1111111111111111,
+              "ci95": [
+                0.019890887638544907,
+                0.434999705576656
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.7934506856227626
+              ],
+              "unit": "mature alert episodes",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 3,
+            "mature_alerts": 1,
+            "censored_alerts": 2,
+            "median_lead_weeks": 12.285714285714286,
+            "lead_support": 1,
+            "utility": 2.7
+          },
+          "fuel_system_diesel_detachment": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 2,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "fuel_system_other_electrical": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 5,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "hoses_lines_piping_and_fittings_leak": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 7,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.35433043506668743
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "other_unclear": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 3,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.5614970317550454
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          },
+          "tank_assembly_leak": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.32440756488388023
+              ],
+              "unit": "campaigns",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alert episodes"
+            },
+            "harmonic_objective": 0.0,
+            "harmonic_note": "Different evaluation units; not per-example F1; no joint interval estimated",
+            "alerts": 0,
+            "mature_alerts": 0,
+            "censored_alerts": 0,
+            "median_lead_weeks": null,
+            "lead_support": 0,
+            "utility": 0.0
+          }
+        },
+        "campaign_issue_year": {
+          "2015": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 5,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2016": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 6,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.3903342879021653
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2017": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 6,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.3903342879021653
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2018": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 5,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2019": {
+            "recall": {
+              "numerator": 0,
+              "denominator": 6,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.3903342879021653
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          },
+          "2020": {
+            "recall": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.02241749145005667,
+                0.4708881822128535
+              ],
+              "unit": "campaigns issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "note": "Alerts across the full evaluation period may lead this year's recalls; precision by alert year is separate."
+          }
+        },
+        "alert_issue_year": {
+          "2018": {
+            "precision": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.7934506856227626
+              ],
+              "unit": "mature alerts issued in year",
+              "interval_method": "descriptive Wilson; correlated units limit inference"
+            },
+            "alerts": 1
+          },
+          "2020": {
+            "precision": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null,
+              "ci95": null,
+              "unit": "mature alerts issued in year"
+            },
+            "alerts": 3
+          }
+        }
+      },
+      "errors": {
+        "false_positives": [
+          {
+            "alert_id": "2018-06-18|FORD|FUEL SYSTEM|fuel_pump_failure",
+            "make": "FORD",
+            "label_id": "fuel_pump_failure",
+            "evidence_ids": [
+              "11100320",
+              "11101818"
+            ],
+            "observations": {
+              "recall_mention": 0,
+              "weak_evidence": true,
+              "duplicate": false
+            },
+            "review_status": "machine_inspected; human cause unassigned",
+            "cause_candidates": [
+              "wrong category",
+              "recall mention",
+              "duplicate",
+              "weak evidence",
+              "wrong scope",
+              "timing/leakage",
+              "label ambiguity"
+            ]
+          }
+        ],
+        "false_negatives": [
+          {
+            "campaign": "15V005000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V339000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V475000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V605000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "other_unclear"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": true,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "15V618000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V417000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V618000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "other_unclear"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": true,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V621000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V661000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V778000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_diesel_detachment"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "16V945000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_diesel_detachment"
+            ],
+            "prior_any_fuel_complaints": 7,
+            "prior_matching_label_complaints": 1,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V170000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 9,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V219000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 2,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V269000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 9,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V442000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V681000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "17V805000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V108000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V392000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V735000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "canister_failure"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V807000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 5,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "18V907000",
+            "make": [
+              "KIA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 1,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V053000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 14,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V060000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 14,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V097000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 2,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V515000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "canister_failure"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V569000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 13,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "19V859000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "hoses_lines_piping_and_fittings_leak"
+            ],
+            "prior_any_fuel_complaints": 9,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V012000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 2,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V162000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "fuel_system_other_electrical"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V314000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 5,
+            "prior_matching_label_complaints": 1,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V560000",
+            "make": [
+              "KIA"
+            ],
+            "labels": [
+              "fuel_pump_failure"
+            ],
+            "prior_any_fuel_complaints": 0,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": true,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V700000",
+            "make": [
+              "TOYOTA"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 4,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V730000",
+            "make": [
+              "FORD"
+            ],
+            "labels": [
+              "tank_assembly_leak"
+            ],
+            "prior_any_fuel_complaints": 15,
+            "prior_matching_label_complaints": 1,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": false,
+              "matching_label_gap": false
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          },
+          {
+            "campaign": "20V797000",
+            "make": [
+              "HONDA"
+            ],
+            "labels": [
+              "other_unclear"
+            ],
+            "prior_any_fuel_complaints": 7,
+            "prior_matching_label_complaints": 0,
+            "observations": {
+              "no_prior_evidence": false,
+              "label_ambiguity": true,
+              "matching_label_gap": true
+            },
+            "review_status": "machine_inspected; human cause unassigned"
+          }
+        ],
+        "requested_each": 50,
+        "available_fp": 1,
+        "available_fn": 35,
+        "complete_50_each": false,
+        "note": "No unique errors were invented or repeated to meet the requested quota."
+      },
+      "label_conditional_opportunity": {
+        "campaigns": 36,
+        "with_prior_evidence": 4,
+        "ceiling": 0.1111111111111111,
+        "matching": "make+specific_defect",
+        "diagnostic_only": true,
+        "rows": [
+          {
+            "campaign": "15V005000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V339000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V475000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V605000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V618000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V417000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V618000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V621000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V661000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V778000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V945000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "17V170000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V219000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V269000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V442000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V681000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "17V805000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V108000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V392000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V735000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V807000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V907000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V053000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V060000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V097000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V515000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V569000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "19V859000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V012000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V162000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V314000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "20V560000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V682000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "20V700000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V730000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "20V797000",
+            "prior_complaints": 0
+          }
+        ]
+      },
+      "any_fuel_opportunity": {
+        "campaigns": 36,
+        "with_prior_evidence": 27,
+        "ceiling": 0.75,
+        "matching": "make+any_fuel_complaint_not_defect_evidence",
+        "diagnostic_only": true,
+        "rows": [
+          {
+            "campaign": "15V005000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V339000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V475000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V605000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "15V618000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V417000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "16V618000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "16V621000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "16V661000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "16V778000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "16V945000",
+            "prior_complaints": 7
+          },
+          {
+            "campaign": "17V170000",
+            "prior_complaints": 9
+          },
+          {
+            "campaign": "17V219000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "17V269000",
+            "prior_complaints": 9
+          },
+          {
+            "campaign": "17V442000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "17V681000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "17V805000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "18V108000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "18V392000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "18V735000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "18V807000",
+            "prior_complaints": 5
+          },
+          {
+            "campaign": "18V907000",
+            "prior_complaints": 1
+          },
+          {
+            "campaign": "19V053000",
+            "prior_complaints": 14
+          },
+          {
+            "campaign": "19V060000",
+            "prior_complaints": 14
+          },
+          {
+            "campaign": "19V097000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "19V515000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "19V569000",
+            "prior_complaints": 13
+          },
+          {
+            "campaign": "19V859000",
+            "prior_complaints": 9
+          },
+          {
+            "campaign": "20V012000",
+            "prior_complaints": 2
+          },
+          {
+            "campaign": "20V162000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V314000",
+            "prior_complaints": 5
+          },
+          {
+            "campaign": "20V560000",
+            "prior_complaints": 0
+          },
+          {
+            "campaign": "20V682000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "20V700000",
+            "prior_complaints": 4
+          },
+          {
+            "campaign": "20V730000",
+            "prior_complaints": 15
+          },
+          {
+            "campaign": "20V797000",
+            "prior_complaints": 7
+          }
+        ]
+      },
+      "candidates": 18,
+      "mature_candidate_outcomes": 5
+    }
+  }
+}

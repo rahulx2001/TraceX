@@ -1,0 +1,44 @@
+{
+  "run_id": "prepare_v1",
+  "config": {
+    "phase": "prepare",
+    "cutoff": "2020-12-31",
+    "scope": {
+      "makes": [
+        "FORD",
+        "HONDA",
+        "HYUNDAI",
+        "KIA",
+        "TOYOTA"
+      ],
+      "model_years": [
+        2015,
+        2024
+      ],
+      "components": [
+        "FUEL SYSTEM"
+      ],
+      "recall_type": "V",
+      "complaint_window": [
+        "2015-01-01",
+        "2024-12-31"
+      ]
+    }
+  },
+  "config_hash": "b80fe1c6dfbc5019c17b72f62e222d72d53c1df7fc4fb7ef122df61d1483d66a",
+  "input_hashes": {
+    "data/defect/repair/complaints.parquet": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+    "data/defect/repair/recall_scopes.parquet": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+    "data/defect/repair/classification_inputs.parquet": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+    "data/defect/repair/pending_complaints.parquet": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8",
+    "reports/defect/repair/classifications.parquet": "ce3977cbe22e410775a9527cabfb5acb5191a4bc5134371369f98d5fddbd739b",
+    "reports/defect/repair/recall_labels.parquet": "c00b3c6f5aa1730fff07719f2984272d20795c32889759903f2440ef0b4a134c"
+  },
+  "data_hash": "8aeb63f930759dd5e4ee92670ace0326eed95f4d8764efa0d58f95d2655a58d8",
+  "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+  "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+  "seed": null,
+  "split": "development",
+  "exact_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py prepare --run-id prepare_v1 --source-zip ../v2_ai_rca_tool/data/defect/source_cache/FLAT_CMPL.zip",
+  "started_at": "2026-10-31T12:01:35.371559+00:00"
+}

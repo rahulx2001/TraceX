@@ -1,0 +1,45 @@
+
+> tracex-ops-console@2.0.0 test:signin
+> node scripts/assert-signin-reachable.mjs
+
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 97 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/index.html                              0.71 kB │ gzip:   0.41 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/assets/index-Cl6MPf0i.css             123.87 kB │ gzip:  22.14 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk/ui/assets/index-228Dz1Np.js              720.91 kB │ gzip: 192.03 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/apiAuth.js is dynamically imported by src/ai/tools/Alerts.jsx but also statically imported by routes/AnalyticsDesk.jsx, routes/AuditReports.jsx, routes/CallWidget.jsx, routes/CaseQueue.jsx, routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 117ms
+Isolated failure artifacts: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-qMqnzk
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+browserType.launch: Executable doesn't exist at /Users/rahulkumarsinghj/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     npx playwright install                                 ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+    at /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard/scripts/assert-signin-reachable.mjs:84:28 {
+  log: [],
+  name: 'Error'
+}
+
+Node.js v25.1.0

@@ -13,7 +13,11 @@ def add_case(cid, pack, cluster, category, severity="Medium", status="open"):
         )
 
 
-def test_names_are_pack_scoped_and_counts_keep_followups(reset_ops_db, seed_automotive_pack):
+def test_names_are_pack_scoped_and_counts_keep_followups(reset_ops_db, tmp_path, monkeypatch):
+    # Both packs must be isolated from preceding tests, including finance.
+    monkeypatch.setenv("DOMAIN_DB_PATH", str(tmp_path / "domains"))
+    from scripts.seed_domains import build
+    build("automotive_nhtsa")
     # Same numeric ID in two packs must retain distinct names and volumes.
     with domain_con("finance_cfpb", read_only=False) as con:
         con.execute("INSERT INTO clusters (cluster_id, pack_id, category) VALUES (14, 'finance_cfpb', 'Credit reporting')")

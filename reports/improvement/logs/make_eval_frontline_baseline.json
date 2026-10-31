@@ -1,0 +1,18 @@
+{
+  "command": [
+    "make",
+    "-f",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/Makefile",
+    "PY=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python",
+    "eval-frontline"
+  ],
+  "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/runtime/baseline_eval",
+  "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+  "config_hash": "343402c9b50ffdd12f59cb474c03e5673f261c7e5ff42bbe4a44e92c17ee56f8",
+  "data_hash": "c900b68f825c996e192054d182fd836183c1bcbd11ae8e91329d7687a2c3d858",
+  "split": "technical validation, not ML model selection",
+  "seed": null,
+  "started_at": "2026-10-31T11:32:51.141200+00:00",
+  "exit_code": 0,
+  "finished_at": "2026-10-31T11:33:53.489098+00:00"
+}

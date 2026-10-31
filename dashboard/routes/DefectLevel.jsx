@@ -8,6 +8,7 @@
 import { useState } from "react";
 import defectFlags from "../src/ai/defectFlags.json";
 import prediction from "../src/ai/defectPrediction.json";
+import MlImprovementEvidence from "../src/ai/MlImprovementEvidence.jsx";
 import "./defect-level.css";
 
 function ModelTag() {
@@ -137,6 +138,7 @@ export default function DefectLevel() {
         )}
       </header>
 
+      <MlImprovementEvidence />
       <PredictionEvidence />
 
       {notRun ? (

@@ -39,8 +39,9 @@ async def test_menu_digit_connects_only_after_queue(orchestrator_factory):
     assert row is not None
     assert row[0] == "pending"
     spoken = _agent_blob(hooks)
-    assert "connecting you to a human" in spoken
-    assert "not connected yet" not in spoken
+    assert "specialist request is queued" in spoken
+    assert "specialist has not joined yet" in spoken
+    assert "connecting you to a human" not in spoken
 
 
 @pytest.mark.asyncio

@@ -1,0 +1,45 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+________________ test_no_primary_json_stringify_dumps_in_routes ________________
+tests/frontline/test_dashboard_ui_surface.py:51: in test_no_primary_json_stringify_dumps_in_routes
+    assert not offenders, "Primary JSON dumps remain:\n" + "\n".join(offenders)
+E   AssertionError: Primary JSON dumps remain:
+E     SafetyCampaigns.jsx:170: {v.import_provenance && <details><summary>Import provenance</summary><pre>{JSON.stringify(v.import_provenance, null, 2)}</pre></details>}
+E     SafetyCampaigns.jsx:245: try { const packet = await request(`${API}/${c.campaign_id}/packet`); download(`${c.campaign_id}-evidence.json`, JSON.stringify(packet, null, 2)); }
+E     SafetyCampaigns.jsx:360: <ol className="sc-audit">{[...(c.events || [])].reverse().map((event) => <li key={event.event_id}><span className="sc-audit-revision">{event.revision}</span><div><strong>{label(event.kind)}{event.payload.simulated || c.synthetic_demo ? " · demo" : ""}</strong><p>{event.payload.input?.vehicle_id || c.component.lot_id} · {event.actor} ({event.actor_role})</p><details><summary>Evidence details</summary><pre>{JSON.stringify(event.payload, null, 2)}</pre></details></div><time>{time(event.at)}</time></li>)}</ol>
+E   assert not ['SafetyCampaigns.jsx:170: {v.import_provenance && <details><summary>Import provenance</summary><pre>{JSON.stringify(v.../summary><pre>{JSON.stringify(event.payload, null, 2)}</pre></details></div><time>{time(event.at)}</time></li>)}</ol>']
+_______________ test_ingest_mapped_csv_writes_canonical_records ________________
+tests/frontline/test_mapping_ingest.py:104: in test_ingest_mapped_csv_writes_canonical_records
+    assert result["upserted"] == 2
+E   assert 0 == 2
+_____________________ test_assert_qa_labels_script_passes ______________________
+tests/frontline/test_ui_label_maps.py:28: in test_assert_qa_labels_script_passes
+    assert r.returncode == 0, f"assert-qa-labels failed:\n{r.stdout}\n{r.stderr}"
+E   AssertionError: assert-qa-labels failed:
+E     OK: Open
+E     OK: Pending follow-up
+E     OK: Closed
+E     OK: Abandoned or incomplete
+E     OK: Speech to text
+E     OK: Barge-in
+E     OK: proposalTitle: Abandoned or incomplete — …29jvyzh6tk
+E     OK: proposalDetailParts parsed
+E     OK: formatDetailValue
+E     OK: CaseQueue uses statusLabel
+E     OK: Enterprise no dark fallback
+E     OK: Settings brand
+E     OK: App shell strings
+E     OK: Command center error
+E     OK: Platform OS
+E     
+E     FAIL: Voice CTA + caps
+E     
+E     assert-qa-labels: FAILED
+E     
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['node', '/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashb...l strings\nOK: Command center error\nOK: Platform OS\n', stderr='FAIL: Voice CTA + caps\n\nassert-qa-labels: FAILED\n').returncode
+=========================== short test summary info ============================
+FAILED tests/frontline/test_dashboard_ui_surface.py::test_no_primary_json_stringify_dumps_in_routes
+FAILED tests/frontline/test_mapping_ingest.py::test_ingest_mapped_csv_writes_canonical_records
+FAILED tests/frontline/test_ui_label_maps.py::test_assert_qa_labels_script_passes
+3 failed in 0.54s

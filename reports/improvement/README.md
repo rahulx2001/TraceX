@@ -151,3 +151,12 @@ explicit Phase 0 and stop-condition gates. Until then modeling remains blocked.
 Later-phase deliverables (`results.json`, completed error review, model card,
 generated dashboard results, and a before/after claim) are intentionally pending
 the evidence required to produce them honestly.
+
+## Approved ambition and execution update
+
+The user approved the revised stretch targets and waived performing human
+annotation in this run. The approved target values and prespecified methods are
+in `research_protocol.json`. Earlier target tables and pending-approval language
+above are preserved as history. No human accuracy claim is authorized. The
+prospective-test/development authorization question remains pending; preparation,
+read-only development audit and engineering tests can proceed independently.

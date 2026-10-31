@@ -1,0 +1,93 @@
+cd dashboard && npm run build && test -f dist/index.html
+
+> tracex-ops-console@2.0.0 build
+> vite build
+
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 97 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.71 kB │ gzip:   0.41 kB
+dist/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+dist/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+dist/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+dist/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+dist/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+dist/assets/index-Cl6MPf0i.css             123.87 kB │ gzip:  22.14 kB
+dist/assets/index-228Dz1Np.js              720.91 kB │ gzip: 192.03 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/apiAuth.js is dynamically imported by src/ai/tools/Alerts.jsx but also statically imported by routes/AnalyticsDesk.jsx, routes/AuditReports.jsx, routes/CallWidget.jsx, routes/CaseQueue.jsx, routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 175ms
+.venv-hackathon/bin/python -m scripts.prepare_minilm_onnx --verify-only || .venv-hackathon/bin/python -m scripts.prepare_minilm_onnx
+Pinned MiniLM artifact verified
+test data root: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T//tracex-pytest-5Hm2Bs
+........................................................................ [  3%]
+........................................................................ [  7%]
+........................................................................ [ 11%]
+........................................................................ [ 14%]
+........................................................................ [ 18%]
+........................................................................ [ 22%]
+......................................F................................. [ 25%]
+........................................................................ [ 29%]
+.........F..F........................................................... [ 33%]
+.............F.......................................................... [ 37%]
+........................................................................ [ 40%]
+........................................................................ [ 44%]
+........................................................................ [ 48%]
+..................................................F..................... [ 51%]
+...................F.................................................... [ 55%]
+........................................................................ [ 59%]
+........................................................................ [ 62%]
+........................................................................ [ 66%]
+........................................................................ [ 70%]
+........................................................................ [ 74%]
+........................................................................ [ 77%]
+............................F............F.............................. [ 81%]
+........................................................................ [ 85%]
+........................................................................ [ 88%]
+........................................................................ [ 92%]
+F....................................................................... [ 96%]
+...........F....................F......................................  [100%]
+=================================== FAILURES ===================================
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_backlog_p0_p1.py:395: IndexError: list index out of range
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_dashboard_ui_surface.py:51: AssertionError: Primary JSON dumps remain:
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_dashboard_ui_surface.py:81: assert ('k !== "ts"' in 'import { useCallback, useEffect, useRef, useState } from "react";\nimport { apiHeaders } from "../src/apiAuth.js";\ni...ame="cc-queue-empty">Waiting for the metrics snapshot.</div>}\n        </section>\n      </div>\n    </div>\n  );\n}\n' or "k !== 'ts'" in 'import { useCallback, useEffect, useRef, useState } from "react";\nimport { apiHeaders } from "../src/apiAuth.js";\ni...ame="cc-queue-empty">Waiting for the metrics snapshot.</div>}\n        </section>\n      </div>\n    </div>\n  );\n}\n')
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_deploy_hygiene.py:56: AssertionError: compose up without profile: docker compose -f docker-compose.hackathon.yml up --build
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_live_handoff_outcomes.py:42: assert 'connecting you to a human' in "thanks for calling support. what's going on with your vehicle? is anyone hurt? are you in a safe location right now? ...hicle? your specialist request is queued. a specialist has not joined yet; please keep this report open while waiting."
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_mapping_ingest.py:104: assert 0 == 2
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_runtime_responsiveness.py:21: PermissionError: [Errno 1] Operation not permitted
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_safety_gate_preemption.py:216: assert 'connecting you to a human specialist' in "thanks for calling support. what's going on with your vehicle? your specialist request is queued. a specialist has not joined yet; please keep this report open while waiting."
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_ui_label_maps.py:28: AssertionError: assert-qa-labels failed:
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_voice_tierA_wiring.py:216: assert False
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/test_wallboard_labels.py:19: _duckdb.ConstraintException: Constraint Error: Duplicate key "cluster_id: 14" violates primary key constraint.
+=============================== warnings summary ===============================
+../v2_ai_rca_tool/.venv-hackathon/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/.venv-hackathon/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/frontline/ai_layer/test_campaign_investigator.py::test_api_routes_auth_packets_and_csp
+tests/frontline/ai_layer/test_safety_campaigns.py::test_api_permissions_validation_and_demo
+  /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/.venv-hackathon/lib/python3.12/site-packages/starlette/_exception_handler.py:59: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    response = await handler(conn, exc)  # type: ignore[arg-type]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/frontline/test_backlog_p0_p1.py::test_start_call_resets_stale_call_state
+FAILED tests/frontline/test_dashboard_ui_surface.py::test_no_primary_json_stringify_dumps_in_routes
+FAILED tests/frontline/test_dashboard_ui_surface.py::test_pilot_metrics_does_not_spill_iso_timestamp
+FAILED tests/frontline/test_deploy_hygiene.py::test_readme_documents_profile_based_compose
+FAILED tests/frontline/test_live_handoff_outcomes.py::test_menu_digit_connects_only_after_queue
+FAILED tests/frontline/test_mapping_ingest.py::test_ingest_mapped_csv_writes_canonical_records
+FAILED tests/frontline/test_runtime_responsiveness.py::test_analytics_leaves_live_sockets_responsive_and_sigterm_exits
+FAILED tests/frontline/test_safety_gate_preemption.py::test_fire_drill_does_not_escalate_on_human_request
+FAILED tests/frontline/test_ui_label_maps.py::test_assert_qa_labels_script_passes
+FAILED tests/frontline/test_voice_tierA_wiring.py::test_spoken_human_request_creates_a_real_handoff
+FAILED tests/frontline/test_wallboard_labels.py::test_names_are_pack_scoped_and_counts_keep_followups
+11 failed, 1932 passed, 3 warnings in 546.66s (0:09:06)
+make: *** [test] Error 1

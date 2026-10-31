@@ -53,6 +53,11 @@ def test_readme_documents_profile_based_compose():
         # Every docker compose up line in quick-start fences must include --profile
         for line in block.splitlines():
             if "docker compose" in line and "up" in line and not line.strip().startswith("#"):
+                # The separately named hackathon file defines an unprofiled
+                # service. Default-compose instructions must still use profiles.
+                if "-f docker-compose.hackathon.yml" in line:
+                    assert "profiles:" not in (REPO / "docker-compose.hackathon.yml").read_text()
+                    continue
                 assert "--profile" in line, f"compose up without profile: {line}"
 
 

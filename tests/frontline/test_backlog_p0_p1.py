@@ -392,7 +392,8 @@ def test_call_widget_reconnect_does_not_spam_ws_error():
 
 def test_start_call_resets_stale_call_state():
     src = Path("dashboard/routes/CallWidget.jsx").read_text(encoding="utf-8")
-    fn = src.split("async function startCall()")[1].split("let startRes")[0]
+    # The entry point now accepts textOnly options; still verify state reset.
+    fn = src.split("async function startCall(")[1].split("let startRes")[0]
     assert "setMicGranted(null)" in fn
     assert 'setWsStatus("connecting")' in fn
     assert "speakPhaseRef.current" in fn

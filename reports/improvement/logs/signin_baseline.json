@@ -1,0 +1,16 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "test:signin"
+  ],
+  "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard",
+  "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+  "config_hash": "371e374698e0ec8bb3876bd82a90221deffc566eb52734a05be060130860edfb",
+  "data_hash": "c900b68f825c996e192054d182fd836183c1bcbd11ae8e91329d7687a2c3d858",
+  "split": "technical validation, not ML model selection",
+  "seed": null,
+  "started_at": "2026-10-31T11:32:51.141236+00:00",
+  "exit_code": 1,
+  "finished_at": "2026-10-31T11:32:51.766659+00:00"
+}

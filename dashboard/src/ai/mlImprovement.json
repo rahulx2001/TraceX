@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "status": "research_targets_not_demonstrated",
+  "notice": "Retrospective, model-labelled, not production-validated",
+  "targets": {
+    "human_accuracy": 0.8,
+    "accepted_precision": 0.85,
+    "minimum_coverage": 0.6,
+    "defect_precision": 0.8,
+    "defect_recall": 0.7,
+    "sensitivity_precision": 0.75,
+    "sensitivity_recall": 0.6,
+    "ece_max": 0.05,
+    "brier": "beat training-prevalence reference",
+    "retrieval": "pending an independently labelled mixed-candidate benchmark"
+  },
+  "human_validation": {
+    "status": "annotation waived by user; accuracy unavailable",
+    "labelled": 0,
+    "total": 300,
+    "accuracy": null
+  },
+  "untouched_test": "not frozen; authorization pending",
+  "source": "reports/improvement/results.json",
+  "source_sha256": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+  "metrics": [
+    {
+      "metric": "defect.all_reports.rolling_defect.recall",
+      "numerator": 22,
+      "denominator": 41,
+      "value": 0.5365853658536586,
+      "confidence_interval_95": [
+        0.38746471267669474,
+        0.6794376602366394
+      ],
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "source": "reports/defect/repair/prediction_results.json"
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.mature_episode_precision",
+      "numerator": 14,
+      "denominator": 31,
+      "value": 0.45161290322580644,
+      "confidence_interval_95": [
+        0.29161735980520015,
+        0.6222783236264549
+      ],
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "source": "reports/defect/repair/prediction_results.json"
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.recall",
+      "numerator": 14,
+      "denominator": 41,
+      "value": 0.34146341463414637,
+      "confidence_interval_95": [
+        0.21558808257384846,
+        0.49450163480170306
+      ],
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "source": "reports/defect/repair/prediction_results.json"
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.mature_episode_precision",
+      "numerator": 7,
+      "denominator": 13,
+      "value": 0.5384615384615384,
+      "confidence_interval_95": [
+        0.29143795714506004,
+        0.7679393219046169
+      ],
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "source": "reports/defect/repair/prediction_results.json"
+    },
+    {
+      "metric": "fuel_holdout.method.recall",
+      "numerator": 5,
+      "denominator": 8,
+      "value": 0.625,
+      "confidence_interval_95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ],
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "source": "reports/defect/fuel_holdout/holdout_results.json"
+    },
+    {
+      "metric": "fuel_holdout.method.mature_episode_precision",
+      "numerator": 6,
+      "denominator": 18,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.1627877475083369,
+        0.5625053270405489
+      ],
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "source": "reports/defect/fuel_holdout/holdout_results.json"
+    },
+    {
+      "metric": "category.labels.accuracy",
+      "numerator": 4,
+      "denominator": 76,
+      "value": 0.05263157894736842,
+      "confidence_interval_95": [
+        0.020655429299384284,
+        0.12765672575889647
+      ],
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "source": "reports/improvement/pipeline_recheck.json"
+    },
+    {
+      "metric": "category.descriptions.accuracy",
+      "numerator": 22,
+      "denominator": 76,
+      "value": 0.2894736842105263,
+      "confidence_interval_95": [
+        0.19961016825622824,
+        0.3995955517711981
+      ],
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "source": "reports/improvement/pipeline_recheck.json"
+    }
+  ],
+  "development_ceiling": {
+    "all_reports": {
+      "eligible_campaigns": 36,
+      "campaigns_with_matching_evidence": 7,
+      "note": "Input opportunity under fixed labels, not achieved recall or universal model ceiling"
+    },
+    "excluding_explicit_recall_reports": {
+      "eligible_campaigns": 36,
+      "campaigns_with_matching_evidence": 4,
+      "note": "Input opportunity under fixed labels, not achieved recall or universal model ceiling"
+    }
+  }
+}
