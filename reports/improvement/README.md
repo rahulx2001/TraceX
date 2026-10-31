@@ -160,3 +160,33 @@ in `research_protocol.json`. Earlier target tables and pending-approval language
 above are preserved as history. No human accuracy claim is authorized. The
 prospective-test/development authorization question remains pending; preparation,
 read-only development audit and engineering tests can proceed independently.
+
+## Current review package
+
+The current outcome and the disposition of all original problems are in
+[`FINAL_REVIEW.md`](FINAL_REVIEW.md). The original Phase 0 text above is retained
+as history. Targets were approved and human annotation was deferred. No candidate
+model was trained, no untouched-test improvement was demonstrated, and no merge
+or promotion occurred. The prospective-test/development decision is still pending.
+
+Delivered: immutable baseline and run ledger; pre-2021 manifest/split audit;
+labeling guide; causal feature and baseline-model tooling; calibrated-metric,
+abstention and retrieval evaluators; complete available machine error inventory;
+model card and monitoring plan; source-generated dashboard with definitions,
+denominators, intervals and the retrospective/model-labelled notice. The error
+inventory is smaller than the requested review quota, and toy model tests do
+not establish real-world accuracy.
+
+[`before_after.md`](before_after.md) and [`before_after.json`](before_after.json)
+show unchanged scores with provenance. [`final_validation.json`](final_validation.json)
+records software checks separately from ML evidence. The reproducibility check
+uses a fresh Python environment with pinned dependencies, copied immutable
+data/model inputs and semantic equality of full audit/calibration outputs;
+pipeline comparisons exclude only runtime timings/throughput and commit ID.
+See [`clean_reproduction_comparison.json`](clean_reproduction_comparison.json).
+
+All original inventoried artifacts are checked at their actual source location
+in [`artifact_integrity_release.json`](artifact_integrity_release.json). The
+earlier `integrity_release_pre_docs.json` records files absent from the sibling
+worktree: those are untracked/ignored originals that were never copied, not
+deleted artifacts. Existing claims-audit content is preserved as an exact prefix.

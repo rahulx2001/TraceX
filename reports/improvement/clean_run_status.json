@@ -1,0 +1,37 @@
+[
+  {
+    "run_id": "clean_defect_replay",
+    "exit_code": 0,
+    "log": "reports/improvement/logs/clean_defect_replay.txt"
+  },
+  {
+    "run_id": "clean_fuel_replay",
+    "exit_code": 0,
+    "log": "reports/improvement/logs/clean_fuel_replay.txt"
+  },
+  {
+    "run_id": "clean_targeted",
+    "exit_code": 0,
+    "log": "reports/improvement/logs/clean_targeted.txt"
+  },
+  {
+    "run_id": "clean_pipeline",
+    "exit_code": 0,
+    "log": "reports/improvement/logs/clean_pipeline.txt"
+  },
+  {
+    "run_id": "clean_audit_command",
+    "exit_code": 0,
+    "log": "reports/improvement/logs/clean_audit_command.txt"
+  },
+  {
+    "run_id": "clean_calibration_command",
+    "exit_code": 0,
+    "log": "reports/improvement/logs/clean_calibration_command.txt"
+  },
+  {
+    "run_id": "clean_report_check",
+    "exit_code": 0,
+    "log": "reports/improvement/logs/clean_report_check.txt"
+  }
+]

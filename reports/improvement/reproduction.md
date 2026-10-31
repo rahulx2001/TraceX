@@ -59,3 +59,31 @@ Changes to old operational tests correct stale UI structure/wording, freeze the
 freshness test clock, and isolate both domain fixtures. No historical ML scoring
 test, denominator, threshold or frozen scorer was altered. The original failed
 full-suite log is retained for comparison.
+
+## Fresh-environment verification addendum
+
+A detached checkout was created at `/private/tmp/ml-score-repro-19bd5cf` and
+advanced to the verified implementation commits. It has a fresh Python virtual
+environment, not a symlink. Application dependencies were installed with
+`pip install -r requirements.txt -c requirements-lock.txt`; research dependencies
+were independently installed into `.ml-deps` using the pinned file. Install
+attempts and dependency freezes are retained in `logs/clean_*`.
+
+The clean checkout replays the frozen repair and fuel reports, runs the selected
+regression tests, checks report/dashboard integrity, and reproduces the development
+audit and uncalibrated diagnostic. Numeric equality is recorded in
+`clean_reproduction_comparison.json`. Calibration now accepts a fresh run ID:
+
+```bash
+FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_clean_replay
+FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration --run-id calibration_clean_replay
+FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_clean.json
+```
+
+Those example output names now exist; choose new names for another attempt.
+No seed, model, matching rule or threshold changes between replays. Calibration
+adapters additionally require one unique example ID per calibration row; callers
+must still enforce campaign/time-group independence. This guard was checked in
+the fresh environment after it was added. The final browser build/sign-in checks
+used the existing Node installation; a fresh Node dependency install is not
+claimed. Chromium was installed and actual browser tests ran.

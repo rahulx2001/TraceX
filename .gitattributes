@@ -1,0 +1,4 @@
+# Preserve captured tool output byte-for-byte, including emitted trailing spaces.
+reports/improvement/logs/*.txt -whitespace
+# The append-only experiment ledger uses the CSV writer's standard CRLF endings.
+reports/improvement/experiments.csv whitespace=cr-at-eol

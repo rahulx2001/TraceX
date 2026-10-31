@@ -1,0 +1,3401 @@
+{
+  "status": "diagnostic_not_new_improvement",
+  "records": [
+    {
+      "metric": "all_reports.metrics.recall",
+      "numerator": 3,
+      "denominator": 36,
+      "value": 0.08333333333333333,
+      "confidence_interval_95": [
+        0.02874861133599338,
+        0.2182669124927263
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.metrics.precision",
+      "numerator": 1,
+      "denominator": 3,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.06149194472039621,
+        0.7923403991979522
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.make.FORD.recall",
+      "numerator": 2,
+      "denominator": 16,
+      "value": 0.125,
+      "confidence_interval_95": [
+        0.03497748774324047,
+        0.36022827265758695
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.make.FORD.precision",
+      "numerator": 1,
+      "denominator": 3,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.06149194472039621,
+        0.7923403991979522
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.make.HONDA.recall",
+      "numerator": 0,
+      "denominator": 12,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.24249400665524085
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.make.HONDA.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.make.KIA.recall",
+      "numerator": 0,
+      "denominator": 2,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.6576197724933469
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.make.KIA.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.make.TOYOTA.recall",
+      "numerator": 1,
+      "denominator": 6,
+      "value": 0.16666666666666666,
+      "confidence_interval_95": [
+        0.030053369748306635,
+        0.5635028221864702
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.make.TOYOTA.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.component.FUEL SYSTEM.recall",
+      "numerator": 3,
+      "denominator": 36,
+      "value": 0.08333333333333333,
+      "confidence_interval_95": [
+        0.02874861133599338,
+        0.2182669124927263
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.component.FUEL SYSTEM.precision",
+      "numerator": 1,
+      "denominator": 3,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.06149194472039621,
+        0.7923403991979522
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.canister_failure.recall",
+      "numerator": 1,
+      "denominator": 2,
+      "value": 0.5,
+      "confidence_interval_95": [
+        0.09453120573423074,
+        0.9054687942657693
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.canister_failure.precision",
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1.0,
+      "confidence_interval_95": [
+        0.20654931437723745,
+        1.0
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.fuel_pump_failure.recall",
+      "numerator": 1,
+      "denominator": 9,
+      "value": 0.1111111111111111,
+      "confidence_interval_95": [
+        0.019890887638544907,
+        0.434999705576656
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.fuel_pump_failure.precision",
+      "numerator": 0,
+      "denominator": 2,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.6576197724933469
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.fuel_system_diesel_detachment.recall",
+      "numerator": 0,
+      "denominator": 2,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.6576197724933469
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.fuel_system_diesel_detachment.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.fuel_system_other_electrical.recall",
+      "numerator": 0,
+      "denominator": 5,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.43448246478317476
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.fuel_system_other_electrical.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.hoses_lines_piping_and_fittings_leak.recall",
+      "numerator": 0,
+      "denominator": 7,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.35433043506668743
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.hoses_lines_piping_and_fittings_leak.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.other_unclear.recall",
+      "numerator": 0,
+      "denominator": 3,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.5614970317550454
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.other_unclear.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.tank_assembly_leak.recall",
+      "numerator": 1,
+      "denominator": 8,
+      "value": 0.125,
+      "confidence_interval_95": [
+        0.02241749145005667,
+        0.4708881822128535
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.label_id.tank_assembly_leak.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.per_slice.campaign_issue_year.2015.recall",
+      "numerator": 0,
+      "denominator": 5,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.43448246478317476
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.campaign_issue_year.2016.recall",
+      "numerator": 0,
+      "denominator": 6,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.3903342879021653
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.campaign_issue_year.2017.recall",
+      "numerator": 0,
+      "denominator": 6,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.3903342879021653
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.campaign_issue_year.2018.recall",
+      "numerator": 0,
+      "denominator": 5,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.43448246478317476
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.campaign_issue_year.2019.recall",
+      "numerator": 1,
+      "denominator": 6,
+      "value": 0.16666666666666666,
+      "confidence_interval_95": [
+        0.030053369748306635,
+        0.5635028221864702
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.campaign_issue_year.2020.recall",
+      "numerator": 2,
+      "denominator": 8,
+      "value": 0.25,
+      "confidence_interval_95": [
+        0.071479212752109,
+        0.5907245696898311
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.alert_issue_year.2018.precision",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "unit": "mature alerts issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.alert_issue_year.2019.precision",
+      "numerator": 1,
+      "denominator": 2,
+      "value": 0.5,
+      "confidence_interval_95": [
+        0.09453120573423074,
+        0.9054687942657693
+      ],
+      "unit": "mature alerts issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "all_reports.per_slice.alert_issue_year.2020.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alerts issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "all_reports.label_conditional_opportunity",
+      "numerator": 7,
+      "denominator": 36,
+      "value": 0.19444444444444445,
+      "confidence_interval_95": null,
+      "unit": "campaigns with preceding evidence",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "Census of this fixed corpus; no statistical CI or universal model ceiling. Broader any-fuel evidence is not a qualifying defect match."
+    },
+    {
+      "metric": "all_reports.any_fuel_opportunity",
+      "numerator": 29,
+      "denominator": 36,
+      "value": 0.8055555555555556,
+      "confidence_interval_95": null,
+      "unit": "campaigns with preceding evidence",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "Census of this fixed corpus; no statistical CI or universal model ceiling. Broader any-fuel evidence is not a qualifying defect match."
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.metrics.recall",
+      "numerator": 1,
+      "denominator": 36,
+      "value": 0.027777777777777776,
+      "confidence_interval_95": [
+        0.004920407139810443,
+        0.14169718653273855
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.metrics.precision",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.FORD.recall",
+      "numerator": 0,
+      "denominator": 16,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.1936076805344365
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.FORD.precision",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.HONDA.recall",
+      "numerator": 0,
+      "denominator": 12,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.24249400665524085
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.HONDA.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.KIA.recall",
+      "numerator": 0,
+      "denominator": 2,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.6576197724933469
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.KIA.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.TOYOTA.recall",
+      "numerator": 1,
+      "denominator": 6,
+      "value": 0.16666666666666666,
+      "confidence_interval_95": [
+        0.030053369748306635,
+        0.5635028221864702
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.make.TOYOTA.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.component.FUEL SYSTEM.recall",
+      "numerator": 1,
+      "denominator": 36,
+      "value": 0.027777777777777776,
+      "confidence_interval_95": [
+        0.004920407139810443,
+        0.14169718653273855
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.component.FUEL SYSTEM.precision",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.canister_failure.recall",
+      "numerator": 0,
+      "denominator": 2,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.6576197724933469
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.canister_failure.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.fuel_pump_failure.recall",
+      "numerator": 1,
+      "denominator": 9,
+      "value": 0.1111111111111111,
+      "confidence_interval_95": [
+        0.019890887638544907,
+        0.434999705576656
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.fuel_pump_failure.precision",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.fuel_system_diesel_detachment.recall",
+      "numerator": 0,
+      "denominator": 2,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.6576197724933469
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.fuel_system_diesel_detachment.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.fuel_system_other_electrical.recall",
+      "numerator": 0,
+      "denominator": 5,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.43448246478317476
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.fuel_system_other_electrical.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.hoses_lines_piping_and_fittings_leak.recall",
+      "numerator": 0,
+      "denominator": 7,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.35433043506668743
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.hoses_lines_piping_and_fittings_leak.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.other_unclear.recall",
+      "numerator": 0,
+      "denominator": 3,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.5614970317550454
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.other_unclear.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.tank_assembly_leak.recall",
+      "numerator": 0,
+      "denominator": 8,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.32440756488388023
+      ],
+      "unit": "campaigns",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.label_id.tank_assembly_leak.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alert episodes",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.campaign_issue_year.2015.recall",
+      "numerator": 0,
+      "denominator": 5,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.43448246478317476
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.campaign_issue_year.2016.recall",
+      "numerator": 0,
+      "denominator": 6,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.3903342879021653
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.campaign_issue_year.2017.recall",
+      "numerator": 0,
+      "denominator": 6,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.3903342879021653
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.campaign_issue_year.2018.recall",
+      "numerator": 0,
+      "denominator": 5,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.43448246478317476
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.campaign_issue_year.2019.recall",
+      "numerator": 0,
+      "denominator": 6,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.3903342879021653
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.campaign_issue_year.2020.recall",
+      "numerator": 1,
+      "denominator": 8,
+      "value": 0.125,
+      "confidence_interval_95": [
+        0.02241749145005667,
+        0.4708881822128535
+      ],
+      "unit": "campaigns issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.alert_issue_year.2018.precision",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "unit": "mature alerts issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "descriptive Wilson; correlated units limit inference"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.per_slice.alert_issue_year.2020.precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "unit": "mature alerts issued in year",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": ""
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.label_conditional_opportunity",
+      "numerator": 4,
+      "denominator": 36,
+      "value": 0.1111111111111111,
+      "confidence_interval_95": null,
+      "unit": "campaigns with preceding evidence",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "Census of this fixed corpus; no statistical CI or universal model ceiling. Broader any-fuel evidence is not a qualifying defect match."
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.any_fuel_opportunity",
+      "numerator": 27,
+      "denominator": 36,
+      "value": 0.75,
+      "confidence_interval_95": null,
+      "unit": "campaigns with preceding evidence",
+      "split": "pre-2021 development diagnostic; not held out",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_improvement audit --run-id audit_v1",
+      "original_logged_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+      "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+      "seed": null,
+      "source": "reports/improvement/runs/audit_v1/results.json",
+      "source_sha256": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+      "note": "Census of this fixed corpus; no statistical CI or universal model ceiling. Broader any-fuel evidence is not a qualifying defect match."
+    },
+    {
+      "metric": "all_reports.uncalibrated_ece",
+      "numerator": 3.0421669745459172,
+      "denominator": 9,
+      "value": 0.3380185527273241,
+      "confidence_interval_95": [
+        0.21104626893082395,
+        0.5123934991669097
+      ],
+      "unit": "mature candidate weeks",
+      "split": "2019-2020 development validation diagnostic; uncalibrated frozen heuristic",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "original_logged_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "config_hash": "8af27cfd98dff43f359642e2651c233f48b006ef85847a4d45e1be76f78776f7",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "03e313b77881779825cf715a69788b8e7fabedf80bbbf437841a81d665d33488",
+      "seed": 17,
+      "source": "reports/improvement/runs/baseline_calibration_v1/results.json",
+      "source_sha256": "b9be688b51641364300c75d8ef36f44510c891f8d6bfa0f438a99e8b5dcd0b82",
+      "note": "row bootstrap; temporal/episode dependence requires caution; no calibrator fitted; tiny-support bootstrap is not a generalization guarantee"
+    },
+    {
+      "metric": "all_reports.uncalibrated_brier",
+      "numerator": 1.684966479644735,
+      "denominator": 9,
+      "value": 0.1872184977383039,
+      "confidence_interval_95": [
+        0.05469629100618463,
+        0.3740370521995532
+      ],
+      "unit": "mature candidate weeks",
+      "split": "2019-2020 development validation diagnostic; uncalibrated frozen heuristic",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "original_logged_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "config_hash": "8af27cfd98dff43f359642e2651c233f48b006ef85847a4d45e1be76f78776f7",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "03e313b77881779825cf715a69788b8e7fabedf80bbbf437841a81d665d33488",
+      "seed": 17,
+      "source": "reports/improvement/runs/baseline_calibration_v1/results.json",
+      "source_sha256": "b9be688b51641364300c75d8ef36f44510c891f8d6bfa0f438a99e8b5dcd0b82",
+      "note": "row bootstrap; temporal/episode dependence requires caution; no calibrator fitted; tiny-support bootstrap is not a generalization guarantee"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.uncalibrated_ece",
+      "numerator": 1.632993161855452,
+      "denominator": 2,
+      "value": 0.816496580927726,
+      "confidence_interval_95": [
+        0.816496580927726,
+        0.816496580927726
+      ],
+      "unit": "mature candidate weeks",
+      "split": "2019-2020 development validation diagnostic; uncalibrated frozen heuristic",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "original_logged_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "config_hash": "8af27cfd98dff43f359642e2651c233f48b006ef85847a4d45e1be76f78776f7",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "03e313b77881779825cf715a69788b8e7fabedf80bbbf437841a81d665d33488",
+      "seed": 17,
+      "source": "reports/improvement/runs/baseline_calibration_v1/results.json",
+      "source_sha256": "b9be688b51641364300c75d8ef36f44510c891f8d6bfa0f438a99e8b5dcd0b82",
+      "note": "row bootstrap; temporal/episode dependence requires caution; no calibrator fitted; tiny-support bootstrap is not a generalization guarantee"
+    },
+    {
+      "metric": "excluding_explicit_recall_reports.uncalibrated_brier",
+      "numerator": 1.3333333333333333,
+      "denominator": 2,
+      "value": 0.6666666666666666,
+      "confidence_interval_95": [
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "unit": "mature candidate weeks",
+      "split": "2019-2020 development validation diagnostic; uncalibrated frozen heuristic",
+      "label_source": "frozen model labels plus official recall outcomes; no independent human truth",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "diagnosis of unchanged baseline; no candidate improvement comparison",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "original_logged_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",
+      "config_hash": "8af27cfd98dff43f359642e2651c233f48b006ef85847a4d45e1be76f78776f7",
+      "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+      "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+      "code_hash": "03e313b77881779825cf715a69788b8e7fabedf80bbbf437841a81d665d33488",
+      "seed": 17,
+      "source": "reports/improvement/runs/baseline_calibration_v1/results.json",
+      "source_sha256": "b9be688b51641364300c75d8ef36f44510c891f8d6bfa0f438a99e8b5dcd0b82",
+      "note": "row bootstrap; temporal/episode dependence requires caution; no calibrator fitted; tiny-support bootstrap is not a generalization guarantee"
+    }
+  ]
+}

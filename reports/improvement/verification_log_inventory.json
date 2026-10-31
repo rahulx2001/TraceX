@@ -1,0 +1,457 @@
+[
+  {
+    "path": "reports/improvement/logs/audit_v1.txt",
+    "sha256": "1b2b8a551e2573692b09d0263205389ce088fe5167653900639b3c6701ea454d",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/baseline_calibration_v1.txt",
+    "sha256": "9684c39fc797121641af9579b3dd550858a2440833443a3921644508e45d7b0a",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/baseline_failure_details.txt",
+    "sha256": "bc47ea66ba2b2b8bc052b95cae1358d430261cd61281355d0d9a0a590b53f430",
+    "passed": null,
+    "failed": 3,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/calibration_identity_guard.txt",
+    "sha256": "6833a6348a5b437d1f813d49e131c39731f411016ffa6e30cdeae8a98bb00bcf",
+    "passed": 17,
+    "failed": null,
+    "ledger_run_ids": [
+      "calibration_identity_guard"
+    ],
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m pytest -q tests/frontline/ai_layer/test_ml_improvement.py",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/clean_audit_command.txt",
+    "sha256": "43e119414c9a83224af72d4ee874f35c29dc0789dd8f0d797fc50ea65da973e9",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_calibration_command.txt",
+    "sha256": "88588f8841f9e6b902bbd7a07a8d2e0fd386e69c2262df1172e4c6ed6d89713f",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_defect_replay.txt",
+    "sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_dependency_freeze.txt",
+    "sha256": "c4e763e90db1dabd4df01f496ef04bfa165477f3e560bd3d450156e06cc347ca",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_fuel_replay.txt",
+    "sha256": "dca69f81bbdc1cc429f29f6022d5cc70a285f9fa4d00677a9a1f94f3e4106574",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_identity_guard.txt",
+    "sha256": "1f5c3977f01cfb55fffc7c4a85835e25acc01827237a6f6c1f8a3b99f126fe36",
+    "passed": 17,
+    "failed": null,
+    "ledger_run_ids": [
+      "clean_identity_guard"
+    ],
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m pytest -q tests/frontline/ai_layer/test_ml_improvement.py",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/clean_install.txt",
+    "sha256": "ee69d366f71b7f493a16df6a11728c32078ccdd14f7979baaa8aa0daeed3009e",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_install_attempt.txt",
+    "sha256": "aa7d0e692039c2338e0f8b43005871f1f0caeef042b59146b9e2a4a784ef82ca",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_pipeline.txt",
+    "sha256": "0fae19105f4fd4b1449750d52f0cf99779ceaf5c9fc87bf6f05964cd736bfb9e",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_report_check.txt",
+    "sha256": "4796b0565925d249544fb671d18bdfdea1fc3109c81e87d910248fa3d149449c",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_research_freeze.txt",
+    "sha256": "5437203101cd155cb6b8549fa58e7b358fd0cbb9096a1828b263c9311ae001b5",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_research_install.txt",
+    "sha256": "4ba475e41438d17e6bb4d714a5a23e4252e419252ae589c1509e1695dfbfc28b",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_research_install_attempt.txt",
+    "sha256": "98420da948066bbd51357dbda3a71fa84190a08df3bbaa38374f628c206b7494",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/clean_targeted.txt",
+    "sha256": "e882e5bd8d6dc50fb11dbc8cfdaebf1298f392fb8c436bd4aedd087a4546fefd",
+    "passed": 77,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/dashboard_build.txt",
+    "sha256": "6d0b3da6fb35ee0d541888e3289654954d3acf73fb53bda0539303fcf76af247",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "dashboard_build"
+    ],
+    "exact_command": "cd dashboard && npm run build",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/dashboard_build_final.txt",
+    "sha256": "e292eafdffd2ca53c724028a38849c72ef5f2b0a8109dd111f1ad683ceca975c",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/dashboard_build_release.txt",
+    "sha256": "c07b06ac7169ef50c732b572628bded96f9af81e8869e030a32476d00f62ce75",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/defect_replay.txt",
+    "sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "defect_replay"
+    ],
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/final_defect_replay.txt",
+    "sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/final_frontline_eval.txt",
+    "sha256": "58f016a6d2decd71c85a25a93c8c5ab83f878b31cb4abc8bd1958f1439fb1f1a",
+    "passed": null,
+    "failed": 3,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/final_fuel_replay.txt",
+    "sha256": "dca69f81bbdc1cc429f29f6022d5cc70a285f9fa4d00677a9a1f94f3e4106574",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/final_pipeline.txt",
+    "sha256": "7ad8781c751b35770217a6733d8a72626ad6114c317db7ecd92cf63fde83b199",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/final_targeted.txt",
+    "sha256": "54f677023a71771759975297ee18871acc7bf06cccecb058ae3e7d306385ab98",
+    "passed": 77,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/fuel_replay.txt",
+    "sha256": "dca69f81bbdc1cc429f29f6022d5cc70a285f9fa4d00677a9a1f94f3e4106574",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "fuel_replay"
+    ],
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/human_accuracy.txt",
+    "sha256": "2be42e25f802f6bef8f925ce04b395db1953349f72fd6b2edb9b76bcee36011d",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "human_accuracy"
+    ],
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_accuracy --csv reports/defect/defect_label_sample_300.csv --classifications reports/defect/repair/classifications.parquet",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/make_eval_frontline_baseline.txt",
+    "sha256": "e776d3cf867437037bf46223f24c698d24b13313bb85d0bad3610e3a73974879",
+    "passed": null,
+    "failed": 3,
+    "ledger_run_ids": [
+      "history_make_eval_frontline_baseline"
+    ],
+    "exact_command": "make -f /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/Makefile PY=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python eval-frontline",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/make_test_baseline.txt",
+    "sha256": "155d6b0ffcd6930c980ce7d468f12a1e8eb11c83eb3e1df27f06a69a8c0596ab",
+    "passed": 1932,
+    "failed": 11,
+    "ledger_run_ids": [
+      "history_make_test_baseline"
+    ],
+    "exact_command": "make test",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/make_test_final.txt",
+    "sha256": "0a57cd2742cb30babe052e1bf75eb55011c81416baefd8bf0893c89a6735dbdb",
+    "passed": 1958,
+    "failed": null,
+    "ledger_run_ids": [
+      "make_test_final"
+    ],
+    "exact_command": "make test",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/make_test_release.txt",
+    "sha256": "d29cfa28a91dbb517bdeae8b7556c5c262c3d4c7d37aae105754a247463802a9",
+    "passed": 1960,
+    "failed": null,
+    "ledger_run_ids": [
+      "make_test_release"
+    ],
+    "exact_command": "make test",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/new_and_repaired_tests_v2.txt",
+    "sha256": "4cde53090e9ca645d8dff79d5b990c8d1356d877de4e10ab931658542a4f8923",
+    "passed": 30,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/new_and_repaired_tests_v3.txt",
+    "sha256": "1b47e1f702cf689232b8b56f369d97f3837e8b6681319844e0672b3075f7c390",
+    "passed": 29,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/operational_recheck_v1.txt",
+    "sha256": "88a3b06c6ccfb894fcbee61d0350599de88eb6aff444b38f6bfa0ebb7ba270e3",
+    "passed": 18,
+    "failed": 2,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/pipeline.txt",
+    "sha256": "e88e0317cf3606812fffc86f8746a616547cbf42ec55b805cd81f38871752ebc",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "pipeline"
+    ],
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_recheck.json",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/prepare_v1.txt",
+    "sha256": "36c81746e9e30c5c4d66fc7dc17e7acebcbfe7f49b460d6cfc4c3f6c95ba33fd",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/release_frontline_eval.txt",
+    "sha256": "90e16faa1fe7bfe484bf0ee8346026195946bf86b2724bb069e914c0c037dbc5",
+    "passed": null,
+    "failed": 3,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/report_validation.txt",
+    "sha256": "188564933b512a2e8db788069084a42ad5ab501061cc78aadb9a1a9af9500587",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/signin_baseline.txt",
+    "sha256": "02f565e6550ed671f97da25049012fc4016c7ed0b42993a98b44646bab733b6b",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "history_signin_baseline"
+    ],
+    "exact_command": "npm run test:signin",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/signin_final.txt",
+    "sha256": "53e73d008b2bfebe3dc5c21f9c0e3099f889db5a0af7c31ed00072fc240db925",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "signin_final"
+    ],
+    "exact_command": "npm run test:signin",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/signin_installed.txt",
+    "sha256": "7a01e778705cd0fbca72692a484e2aa42ae7e850152ef9522cef82ce2a07b5ca",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/signin_mobile_final.txt",
+    "sha256": "35e0b70898dd8dad390b5f079bdd2d8136fbc6b3c7b9a0c27ea7243cc231ed21",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "signin_mobile_final"
+    ],
+    "exact_command": "npm run test:signin",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/signin_release.txt",
+    "sha256": "f08a54974fe6b2822344359c690e84941a5f5961cd5813f90d669f8fee3049b7",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [
+      "signin_release"
+    ],
+    "exact_command": "npm run test:signin",
+    "note": null
+  },
+  {
+    "path": "reports/improvement/logs/signin_unsandboxed.txt",
+    "sha256": "1738154b504c1004e4352134c84b318ccea5ceaa031da46fb12d9b59a69d6ced",
+    "passed": null,
+    "failed": null,
+    "ledger_run_ids": [],
+    "exact_command": null,
+    "note": "Consult run metadata where available; log retained without inventing an uncaptured shell invocation"
+  },
+  {
+    "path": "reports/improvement/logs/targeted_tests.txt",
+    "sha256": "ca64262cfc7c936feb6d4ca6941876edf84cf2b6218c1b892d20f3a55950ff7d",
+    "passed": 62,
+    "failed": null,
+    "ledger_run_ids": [
+      "targeted_tests"
+    ],
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m pytest -q tests/frontline/ai_layer/test_defect_prediction_repair.py tests/frontline/ai_layer/test_fuel_holdout.py tests/frontline/ai_layer/test_safety_backtest.py tests/frontline/ai_layer/test_oos_backtest.py tests/frontline/test_onnx_embedder.py tests/frontline/test_embedding_eval_paraphrase.py tests/frontline/test_ml_pipeline_hardening.py tests/frontline/test_audit_readiness_ml.py",
+    "note": null
+  }
+]

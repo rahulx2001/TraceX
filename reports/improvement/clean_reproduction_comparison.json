@@ -1,0 +1,24 @@
+{
+  "software_commit": "1590fb5c41bed282b9d82fa8cbdc472e8bfed8ca",
+  "scope": "fresh Python environment; exact copied data/model artifacts; no model training",
+  "checks": {
+    "audit": true,
+    "calibration": true,
+    "pipeline": true
+  },
+  "comparison": "full parsed JSON equality for audit/calibration; pipeline excludes only measured runtime fields and code-commit identity",
+  "pipeline_excluded_keys": [
+    "latency_ms",
+    "duration_s",
+    "throughput_per_s",
+    "git_sha"
+  ],
+  "hashes": {
+    "runs/audit_v1/results.json": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+    "runs/audit_clean_replay/results.json": "115e02099eda0edb01996257badd74d5c174da934df6220126174ec40613259a",
+    "runs/baseline_calibration_v1/results.json": "b9be688b51641364300c75d8ef36f44510c891f8d6bfa0f438a99e8b5dcd0b82",
+    "runs/calibration_clean_replay/results.json": "b9be688b51641364300c75d8ef36f44510c891f8d6bfa0f438a99e8b5dcd0b82",
+    "pipeline_recheck.json": "62cb6d1377ca99ace355db26a7cdee3ee147e081364935e12ba739affa11cff5",
+    "pipeline_clean.json": "6daf1b83bf73f35926ff5ef76d4cf5379accb74a68e2250f23d92572f03f75bd"
+  }
+}

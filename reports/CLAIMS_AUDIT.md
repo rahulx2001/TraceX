@@ -227,3 +227,49 @@ P@5 cannot establish novel-match retrieval quality. Frozen figures are preserved
 a new independent benchmark needs mixed relevant and irrelevant candidates.
 All further training is gated on target approval, human labels and a verifiably
 untouched test window.
+
+## 11. ML research and verification addendum — 2026-10-31
+
+The approved research ambition is 80% mature-alert precision and 70% campaign
+recall together, with the other targets recorded in
+[`improvement/research_protocol.json`](improvement/research_protocol.json).
+Targets are not achieved results. Human annotation was deferred by the user;
+0/300 review rows have human labels and no human accuracy score exists.
+The pending untouched-test decision prevented candidate fitting and tuning.
+
+The definitive current result is
+[`improvement/results.json`](improvement/results.json), status
+`research_targets_not_demonstrated`, `promoted=false`, `improvement_claim=null`.
+[`improvement/before_after.json`](improvement/before_after.json) retains unchanged
+baseline numerators, denominators, intervals and source keys; it must not be cited
+as evidence of a score increase. The dashboard improvement panel is generated
+from this result, verifies its source hashes and metric values, and displays
+“Retrospective, model-labelled, not production-validated”. The old dashboard
+evidence JSON remains unchanged.
+
+Pre-2021 development opportunity counts, per-slice metrics and the complete
+available machine error inventory come from
+[`improvement/runs/audit_v1/results.json`](improvement/runs/audit_v1/results.json).
+They use different evaluation periods and campaign denominators from the repair
+and holdout reports. Opportunity counts are not detector recalls or universal
+model ceilings. Calibration/ECE/Brier diagnostics are sourced from
+[`improvement/runs/baseline_calibration_v1/results.json`](improvement/runs/baseline_calibration_v1/results.json),
+with full commands, input/config hashes, seed and code identity in `started.json`.
+The heuristic is uncalibrated; no superiority to a training-prevalence reference
+is claimed because that reference has no eligible outcomes.
+
+Software validation results are recorded separately in
+[`improvement/final_validation.json`](improvement/final_validation.json).
+Frozen repair and holdout results replay exactly. A fresh Python environment
+reproduced audit/calibration outputs and pipeline scores; raw timings and code
+IDs are expected to differ. Browser verification includes the visible evidence
+panel on desktop/mobile and sign-in; synthetic speech tests do not prove audio
+quality. Earlier failing test logs remain retained. No historical frozen scoring
+rule, denominator or model configuration was changed.
+
+[`improvement/artifact_integrity_release.json`](improvement/artifact_integrity_release.json)
+checks the original artifact inventory at its actual source checkout and confirms
+unchanged originals. The sibling branch appends this audit without rewriting the
+historical text. The all-points disposition and outstanding decisions are in
+[`improvement/FINAL_REVIEW.md`](improvement/FINAL_REVIEW.md). No merge, deployment,
+paid model call or production performance claim is authorized by this addendum.
