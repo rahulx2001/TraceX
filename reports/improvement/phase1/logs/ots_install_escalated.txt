@@ -1,0 +1,34 @@
+Collecting opentimestamps-client
+  Downloading opentimestamps_client-0.8.0-py3-none-any.whl.metadata (9.3 kB)
+Collecting opentimestamps<0.6.0,>=0.5.0 (from opentimestamps-client)
+  Downloading opentimestamps-0.5.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting platformdirs>=3.0.0 (from opentimestamps-client)
+  Downloading platformdirs-4.14.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting GitPython>=2.0.8 (from opentimestamps-client)
+  Downloading gitpython-3.2.1-py3-none-any.whl.metadata (13 kB)
+Collecting PySocks>=1.5.0 (from opentimestamps-client)
+  Downloading PySocks-1.7.1-py3-none-any.whl.metadata (13 kB)
+Collecting python-bitcoinlib<0.13.0,>=0.9.0 (from opentimestamps<0.6.0,>=0.5.0->opentimestamps-client)
+  Downloading python_bitcoinlib-0.12.2-py3-none-any.whl.metadata (4.4 kB)
+Collecting pycryptodomex>=3.3.1 (from opentimestamps<0.6.0,>=0.5.0->opentimestamps-client)
+  Downloading pycryptodomex-3.24.1-cp37-abi3-macosx_10_9_universal2.whl.metadata (3.4 kB)
+Collecting gitdb<5,>=4.0.1 (from GitPython>=2.0.8->opentimestamps-client)
+  Downloading gitdb-4.0.12-py3-none-any.whl.metadata (1.2 kB)
+Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->GitPython>=2.0.8->opentimestamps-client)
+  Downloading smmap-5.0.3-py3-none-any.whl.metadata (4.6 kB)
+Downloading opentimestamps_client-0.8.0-py3-none-any.whl (33 kB)
+Downloading opentimestamps-0.5.0-py3-none-any.whl (51 kB)
+Downloading python_bitcoinlib-0.12.2-py3-none-any.whl (106 kB)
+Downloading gitpython-3.2.1-py3-none-any.whl (231 kB)
+Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
+Downloading smmap-5.0.3-py3-none-any.whl (24 kB)
+Downloading platformdirs-4.14.2-py3-none-any.whl (35 kB)
+Downloading pycryptodomex-3.24.1-cp37-abi3-macosx_10_9_universal2.whl (2.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.5/2.5 MB 4.6 MB/s  0:00:00
+Downloading PySocks-1.7.1-py3-none-any.whl (16 kB)
+Installing collected packages: python-bitcoinlib, smmap, PySocks, pycryptodomex, platformdirs, opentimestamps, gitdb, GitPython, opentimestamps-client
+
+Successfully installed GitPython-3.2.1 PySocks-1.7.1 gitdb-4.0.12 opentimestamps-0.5.0 opentimestamps-client-0.8.0 platformdirs-4.14.2 pycryptodomex-3.24.1 python-bitcoinlib-0.12.2 smmap-5.0.3
+
+[notice] A new release of pip is available: 26.1.2 -> 26.2.2
+[notice] To update, run: /private/tmp/rca-ots-20261031/bin/python -m pip install --upgrade pip

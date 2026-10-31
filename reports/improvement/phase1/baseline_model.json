@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "type": "baseline",
+  "detector": "gamma_poisson",
+  "window": 13,
+  "min_count": 2,
+  "max_tail": 0.2,
+  "cooldown_days": 91,
+  "match_days": [
+    7,
+    364
+  ],
+  "full_followup_days": 364,
+  "grouping": [
+    "make",
+    "component",
+    "label_id"
+  ],
+  "prior_weeks": 26,
+  "minimum_prior_weeks": 4,
+  "prior": "Jeffreys Gamma(1/2, 0)",
+  "feature_order": [
+    "record_count",
+    "tail_score"
+  ],
+  "coefficients": null,
+  "intercept": null,
+  "threshold": {
+    "record_count_min": 2,
+    "tail_score_max": 0.2
+  },
+  "calibrated": false,
+  "classifier": {
+    "model": "meta-models/muse-spark-open-1026",
+    "prompt_version": "defect-cls-v2",
+    "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1"
+  },
+  "selection": "mode_b_baseline",
+  "weights": "No trainable weights; causal empirical Bayes count model"
+}
