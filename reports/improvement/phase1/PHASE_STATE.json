@@ -1,0 +1,10 @@
+{
+  "current_phase": 1,
+  "completed_phases": [
+    0
+  ],
+  "blocked_reason": null,
+  "last_commit": "b490dd511ce32ab2de5552b6ec3012f439a11bdb",
+  "updated_at": "2026-10-31T15:06:59.398594+00:00",
+  "last_commit_definition": "Verified source commit at time of phase record; the containing phase commit is resolved from git history."
+}
