@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "tests": 45,
+  "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m pytest -q tests/frontline/ai_layer/test_ml_improvement.py tests/frontline/ai_layer/test_prospective_seal.py tests/frontline/ai_layer/test_final_prospective_eval.py",
+  "log_sha256": "d72c069a354f1144c756f434dbb6c88f8f78eb2b7d66c8a61b3961e7339d9088",
+  "real_prospective_data_collected": false,
+  "custody": "procedural; tests do not demonstrate cross-identity enforcement"
+}
