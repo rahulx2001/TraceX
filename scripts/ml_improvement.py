@@ -14,7 +14,7 @@ import sys
 import shlex
 
 ROOT=Path(__file__).resolve().parents[1]
-if (ROOT/".ml-deps").exists():sys.path.insert(0,str(ROOT/".ml-deps"))
+if (ROOT/".ml-deps").exists() and "prospective-develop" not in sys.argv:sys.path.insert(0,str(ROOT/".ml-deps"))
 
 import numpy as np
 import pandas as pd
@@ -182,11 +182,15 @@ def develop(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("phase",choices=["prepare","audit","develop"])
+    parser.add_argument("phase",choices=["prepare","audit","develop","prospective-develop"])
     parser.add_argument("--run-id",required=True)
     parser.add_argument("--source-zip")
     args=parser.parse_args()
-    {"prepare":prepare,"audit":audit,"develop":develop}[args.phase](args)
+    if args.phase == "prospective-develop":
+        from src.eval.prospective_research import develop as prospective_develop
+        prospective_develop(ROOT,args.run_id,invocation())
+    else:
+        {"prepare":prepare,"audit":audit,"develop":develop}[args.phase](args)
 
 
 if __name__=="__main__":main()

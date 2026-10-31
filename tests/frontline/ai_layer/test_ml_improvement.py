@@ -157,3 +157,33 @@ def test_dashboard_rejects_hand_edited_scores_and_promotion_claims():
     with pytest.raises(ValueError,match="values"):publisher.dashboard_payload(changed,path)
     changed=copy.deepcopy(report);changed["promoted"]=True
     with pytest.raises(ValueError,match="unpromoted"):publisher.dashboard_payload(changed,path)
+
+
+def test_prospective_development_counts_are_causal_and_reject_opened_rows():
+    from src.eval.prospective_research import structured_rows
+    c=complaints();before=structured_rows(c,end="2017-07-01")
+    future=c.iloc[:1].copy();future['datea']='2020-01-01';future['odino']='later'
+    assert before==structured_rows(pd.concat([c,future],ignore_index=True),end="2017-07-01")
+    future['datea']='2021-01-01'
+    with pytest.raises(ValueError,match="Opened"):
+        structured_rows(pd.concat([c,future],ignore_index=True),end="2020-12-31")
+
+
+def test_numpy_logistic_roundtrips_json_without_pickle():
+    import json
+    from src.eval.prospective_research import FEATURES,fit_logistic,predict_json
+    rows=[dict(zip(FEATURES,[float(i)]*len(FEATURES)),outcome=int(i>=20)) for i in range(40)]
+    model=json.loads(json.dumps(fit_logistic(rows)))
+    p=predict_json(model,[rows[0],rows[-1]])
+    assert 0<=p[0]<.5<p[1]<=1
+    with pytest.raises(ValueError,match="support"):fit_logistic(rows[:4])
+
+
+def test_cluster_difference_keeps_unmatched_mature_alerts():
+    from src.eval.prospective_research import cluster_difference,select_mode
+    a=dict(available_at='2017-01-02',make='FORD',component='FUEL SYSTEM',label_id='pump',full_followup=True)
+    baseline=dict(campaign_hits={'a':10},alert_details=[dict(a,matched_campaigns=['a']),dict(a,available_at='2017-05-01',matched_campaigns=[])])
+    candidate=dict(campaign_hits={'a':10},alert_details=[dict(a,matched_campaigns=['a'])])
+    d=cluster_difference(baseline,candidate,['a','b'],seeds=[17],draws=2000)
+    assert d['precision']['value']==.5 and d['recall']['value']==0
+    assert select_mode([],['count_2'])==('mode_b_baseline','gamma_poisson')
