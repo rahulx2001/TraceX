@@ -58,3 +58,10 @@ record, its hashes and command logs were added. No prospective data was fetched,
 no labels were filled, and no model experiments or paid calls were run. The
 full test suite was not rerun because implementation stopped at this gate;
 previous passing tests are not a Phase 1 completion claim.
+
+## Resolution — 2026-10-31T15:10:06.484940+00:00
+
+The human amended the custody requirement to procedural custody. The former
+independent-identity requirement no longer blocks this task. Public outcomes
+cannot be made inaccessible to a determined process; no-peeking is explicitly
+honor-system. CUSTODY.md and protocol.json record the replacement model.

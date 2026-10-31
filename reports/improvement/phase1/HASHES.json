@@ -1,0 +1,7 @@
+{
+  "preregistration_sha256": "a462493785c582e03930d7ab81027a7aa221943006f19c06cad083ecd38b7469",
+  "protocol_sha256": "a8bc1e0374a3f3871678527ac260b13bebb0562217632200d2328e80ee2cc06d",
+  "created_at": "2026-10-31T15:10:06.484940+00:00",
+  "commit": "0d088f6ddcb869482427578cb0c02a6758fdbe17",
+  "commit_note": "Recorded source parent; containing commit supplies preregistration event."
+}
