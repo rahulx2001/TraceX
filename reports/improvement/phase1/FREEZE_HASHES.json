@@ -1,0 +1,11 @@
+{
+  "freeze_commit": "b3aaaede66678096d0572413039956dad62ac668",
+  "freeze_tree": "0cc64f07bb3d523275c3c469830cfd7f1ce41390",
+  "freeze_manifest_sha256": "d1bcaf6403bb2cf600c1ea1aa4748f044eeb4b9928c166f06a7e0b7126116855",
+  "preregistration_sha256": "a462493785c582e03930d7ab81027a7aa221943006f19c06cad083ecd38b7469",
+  "protocol_sha256": "a8bc1e0374a3f3871678527ac260b13bebb0562217632200d2328e80ee2cc06d",
+  "collector_sha256": "1c5a50b17bedafef117dd51f98e2f88d21ee89e2d773dac5f4f2d1e849b7c5ce",
+  "analysis_script_sha256": "bda0bc887a047994d33fa58296673c010041d5345df8eb1b53e36c56533cd71d",
+  "candidate_sha256": "350cf20b75ef4e2b3dbcae0b4b9ef3d7706a9889f34393f93f815defada96b29",
+  "created_at": "2026-10-31T16:18:04.711078+00:00"
+}
