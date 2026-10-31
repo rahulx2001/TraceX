@@ -20,11 +20,15 @@ export async function runMlEvidenceUiTest({ page, base }) {
   await expect(section.getByText("reports/improvement/results.json", { exact: true })).toBeVisible();
   const folder = process.env.ML_UI_ARTIFACT_DIR || path.join(os.tmpdir(), "tracex-ml-evidence-review");
   await fs.mkdir(folder, { recursive: true });
+  await section.getByRole("heading", { name: "ML evidence and research targets" }).scrollIntoViewIfNeeded();
   await page.screenshot({ path: path.join(folder, "desktop.png"), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
+  await section.getByRole("heading", { name: "ML evidence and research targets" }).scrollIntoViewIfNeeded();
   await expect(section).toBeVisible();
   const fits = await section.evaluate(el => el.getBoundingClientRect().right <= innerWidth + 1);
   expect(fits).toBe(true);
+  const intervalsFit = await section.locator("td:last-child").evaluateAll(cells => cells.every(cell => cell.getBoundingClientRect().right <= innerWidth + 1));
+  expect(intervalsFit).toBe(true);
   await page.screenshot({ path: path.join(folder, "mobile.png"), fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
   console.log("PASS: ML evidence renders source-checked denominators, intervals, unachieved targets and unavailable human accuracy; mobile section fits.");

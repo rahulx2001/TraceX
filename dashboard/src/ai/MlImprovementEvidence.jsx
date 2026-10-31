@@ -1,4 +1,5 @@
 import evidence from "./mlImprovement.json";
+import "./ml-improvement-evidence.css";
 
 const labels = {
   "defect.all_reports.rolling_defect.recall": "Campaign recall · all reports",
@@ -13,7 +14,7 @@ const labels = {
 const percent = value => value == null ? "Unavailable" : `${(100 * value).toFixed(1)}%`;
 
 export default function MlImprovementEvidence() {
-  return <section className="card" style={{ padding: 20, marginBottom: 20 }} aria-labelledby="ml-evidence-title" data-testid="ml-improvement-evidence">
+  return <section className="card ml-improvement-evidence" style={{ padding: 20, marginBottom: 20 }} aria-labelledby="ml-evidence-title" data-testid="ml-improvement-evidence">
     <h2 id="ml-evidence-title">ML evidence and research targets</h2>
     <p role="note"><strong>{evidence.notice}</strong></p>
     <p>Research ambition: {percent(evidence.targets.defect_precision)} mature-alert precision and {percent(evidence.targets.defect_recall)} campaign recall together. These targets have not been demonstrated.</p>
@@ -25,8 +26,8 @@ export default function MlImprovementEvidence() {
         <thead><tr><th>Metric</th><th>Numerator / denominator</th><th>Value</th><th>Descriptive 95% interval</th></tr></thead>
         <tbody>{evidence.metrics.map(m => <tr key={m.metric}>
           <th scope="row">{labels[m.metric] || m.metric}<details><summary>Definition and source</summary><p>{m.split}</p><p>Labels: {m.label_source}</p><p className="mono">{m.source}</p></details></th>
-          <td>{m.numerator}/{m.denominator}</td><td>{percent(m.value)}</td>
-          <td>{m.confidence_interval_95 ? m.confidence_interval_95.map(percent).join("–") : "Unavailable"}</td>
+          <td data-label="Numerator / denominator">{m.numerator}/{m.denominator}</td><td data-label="Value">{percent(m.value)}</td>
+          <td data-label="Descriptive 95% interval">{m.confidence_interval_95 ? m.confidence_interval_95.map(percent).join("–") : "Unavailable"}</td>
         </tr>)}</tbody>
       </table>
     </div>

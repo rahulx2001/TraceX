@@ -4,8 +4,10 @@ No calibrator is fitted and no threshold is chosen. These candidate-level
 diagnostics have different units from mature-alert episode precision.
 """
 from __future__ import annotations
+import argparse
 import json
 from pathlib import Path
+import shlex
 import sys
 ROOT=Path(__file__).resolve().parents[1]
 if (ROOT/".ml-deps").exists():sys.path.insert(0,str(ROOT/".ml-deps"))
@@ -20,9 +22,14 @@ from src.eval.improvement_protocol import Run,write_once
 
 
 def main():
-    run=Run(ROOT,"baseline_calibration_v1",{"bins":10,"transform":"1 - frozen predictive tail","seed":17,"selection":"none"},
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-id",default="baseline_calibration_v1",help="New immutable output directory for this attempt")
+    args=parser.parse_args()
+    command="FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration"
+    if sys.argv[1:]:command+=" "+shlex.join(sys.argv[1:])
+    run=Run(ROOT,args.run_id,{"bins":10,"transform":"1 - frozen predictive tail","seed":17,"selection":"none"},
             [DATA/"complaints.parquet",DATA/"recalls.parquet"],
-            "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration",seed=17)
+            command,seed=17)
     try:
         c,r,manifest=data();blocks={}
         for name,frame in [("all_reports",c),("excluding_explicit_recall_reports",c[~c.text.str.contains(r"\brecall\w*\b|\bcampaign\b",case=False,regex=True)])]:
