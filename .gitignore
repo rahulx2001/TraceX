@@ -84,6 +84,12 @@ models/minilm/tokenizer.json
 models/minilm/vocab.txt
 models/minilm/*.bin
 
+# Isolated improvement worktrees may reuse dependency directories via symlinks.
+.venv-hackathon
+dashboard/node_modules
+data/ml_improvement/
+.ml-deps/
+
 # Docker / local tooling
 *.log
 .docker/

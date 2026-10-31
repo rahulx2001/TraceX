@@ -205,3 +205,25 @@ touched; no product thresholds, regexes, lexicons, tests or data were changed.
   `4 failed, 1711 passed, 1 skipped, 1 deselected` in 16:02; all four failures
   reproduce individually and were left unmodified. The very slow cluster test
   is not counted as a pass. Details: `reports/TEST_RESULTS.md`.
+
+## 10. ML improvement baseline addendum — 2026-10-31
+
+The historical audit above is preserved. The new score inventory is
+[`improvement/baseline.json`](improvement/baseline.json), with exact source JSON
+keys, denominators, descriptive confidence intervals, provenance limitations
+and replay commands. See [`improvement/README.md`](improvement/README.md) for
+the proposed protocol and [`improvement/verification_runs.json`](improvement/verification_runs.json)
+for executed checks and logs. No model improvement or production promotion
+is claimed. Human accuracy is undefined while review labels remain blank.
+
+Repair and fuel-holdout replay succeeded; category diagnostics reproduced their
+recorded scores. Safety/OOS are cited historical results, not newly rerun tests.
+For this snapshot the safety recent-recall fields are under `summary.recent`;
+`summary` contains first-ever flags. The old audit's unqualified `summary` paths
+must not be used to select the recent metric from the current JSON.
+
+The embedding fixture's `novel_true` class has no positive labels. Its recorded
+P@5 cannot establish novel-match retrieval quality. Frozen figures are preserved;
+a new independent benchmark needs mixed relevant and irrelevant candidates.
+All further training is gated on target approval, human labels and a verifiably
+untouched test window.
