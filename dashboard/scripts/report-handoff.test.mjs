@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { expect } from "@playwright/test";
 
-export async function runReportHandoffTest({ page, context, base, fixture }) {
+export async function runReportHandoffTest({ page, context, base, fixture, expectedActor = "browser-test-supervisor" }) {
   await page.goto(`${base}/ui/#call`);
   const startResponse = page.waitForResponse(r => r.url().includes("/api/interactions/start?") && r.request().method() === "POST");
   await page.getByRole("button", { name: "Type instead", exact: true }).click();
@@ -84,7 +84,7 @@ export async function runReportHandoffTest({ page, context, base, fixture }) {
   assert.equal(exported.correction_context.review.note, correction);
   assert.equal(exported.parent_run_id, draft.run_id);
   assert.deepEqual(exported.report_sources[0].source_ref, original.source_ref);
-  assert.equal(exported.review.actor, "browser-test-supervisor");
+  assert.equal(exported.review.actor, expectedActor);
   for (const text of reports) assert.equal(exported.report_sources[0].sentences.filter(s => s.quote === text).length, 1);
-  console.log("PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → supervisor review → downloaded original/revised packet. No mocked transport, model or real-audio claim.");
+  console.log(`PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → authorized review (${expectedActor}) → downloaded original/revised packet. No mocked transport, model or real-audio claim.`);
 }

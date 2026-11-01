@@ -175,6 +175,8 @@ try {
   const principal = await (await local.context.request.get(`${open.base}/api/frontline/auth/verify`)).json();
   assert.equal(principal.role, "agent", "open local access must not grant supervisor authority");
   console.log("PASS: local demo skips sign-in/signup, preserves internal destinations, hides desktop/mobile account controls and retains agent authority.");
+  const { runDemoRuntimeUiTest } = await import("./demo-runtime-ui.test.mjs");
+  await runDemoRuntimeUiTest({ page: local.page, context: local.context, base: open.base });
   const { runMlEvidenceUiTest } = await import("./ml-evidence-ui.test.mjs");
   await runMlEvidenceUiTest({ page: local.page, base: open.base });
   const { runVoiceUiTest } = await import("./voice-ui.test.mjs");

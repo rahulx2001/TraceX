@@ -185,3 +185,28 @@ windows, sample floor, metrics and denominators remain unchanged. No real
 - Snapshot note: the earlier handover hash inventory remains the record of
   commit `52bb4d4`. This log has intentionally gained this entry since that
   snapshot; its earlier bytes remain verifiable at that commit.
+
+## DEV-20261101-09 — working local demo and accurate runtime status
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, requesting a working local demo without sign-in.
+- Files affected: `dashboard/routes/CommandCenter.jsx`,
+  `dashboard/routes/JudgeEntry.jsx`, `dashboard/src/ai/AiModeBadge.jsx`,
+  dashboard browser tests, `reports/improvement/demo_runtime_v1/`, and this log.
+- Reason: the healthy API was described as "Server: offline / deterministic"
+  because hosted inference was disabled. Seeding test contacts also left them
+  excluded from the operations view.
+- Change: identify AI configuration separately from API availability, describe
+  supported local/manual workflows honestly, show a test-traffic filter on the
+  command center, and enable it after seeding. Report simulator errors and
+  abandoned contacts rather than assuming every simulation succeeds.
+- Runtime: use only the existing isolated localhost database; seed through the
+  existing simulator. No original/pilot database reset and no external model
+  calls, messages, prospective collection or global supervisor privileges.
+- Validation: real API/browser simulation and source-handoff checks in both
+  account-required and open modes; separate configuration-display mocks;
+  relevant auth checks, build and preservation checks. Exact outcomes and
+  retained initial test failures are recorded in `demo_runtime_v1/`.
+- Effect on claims: demo usability only. Fictional software-test reviews do
+  not add human labels. Scores, models, data splits and both prospective freeze
+  sets are unchanged. No merge, promotion or improved-score claim.

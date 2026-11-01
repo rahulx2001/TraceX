@@ -4,6 +4,7 @@ import {
   fetchOpenP1Cases,
   goHash,
   includeSimQuery,
+  INCLUDE_SIM_KEY,
   openCases,
   openConsole,
   openIssue,
@@ -12,6 +13,7 @@ import {
   simulateTraffic,
 } from "../src/ui/opsActions.js";
 import { dayGreeting } from "../src/ui/greeting.js";
+import { useLocalStorage } from "../src/ui/hooks.js";
 import { formatSnapshotTs } from "../src/ui/formatTime.js";
 import { issueCategoryLabel, packLabel } from "../src/ui/labels.js";
 import "./command-center.css";
@@ -76,6 +78,7 @@ function pickHottest(liveRisk, dollarRows, estimates, gaps) {
  * One glance at live ops before diving into voice / cases.
  */
 export default function CommandCenter({ refreshKey }) {
+  const [includeSimulated, setIncludeSimulated] = useLocalStorage(INCLUDE_SIM_KEY, readIncludeSimulated());
   const [health, setHealth] = useState(null);
   const [wall, setWall] = useState(null);
   const [metrics, setMetrics] = useState(null);
@@ -88,6 +91,7 @@ export default function CommandCenter({ refreshKey }) {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(true);
   const [simBusy, setSimBusy] = useState(false);
+  const [simErrors, setSimErrors] = useState([]);
   const [tick, setTick] = useState(() => new Date());
   const pending = useRef(null);
   const [coreReady, setCoreReady] = useState(false);
@@ -190,7 +194,7 @@ export default function CommandCenter({ refreshKey }) {
       pending.current?.abort();
       pending.current = null;
     };
-  }, [load, refreshKey]);
+  }, [load, refreshKey, includeSimulated]);
 
   // Grounded-citation count streams in once (slow export — never on the 12s tick).
   useEffect(() => {
@@ -214,13 +218,18 @@ export default function CommandCenter({ refreshKey }) {
   async function runSimulate() {
     setSimBusy(true);
     setMsg("");
+    setSimErrors([]);
     setErr("");
     try {
       const d = await simulateTraffic({ count: 15 });
+      setSimErrors(d.errors || []);
       setMsg(
-        `Simulated traffic loaded · completed ${d.completed ?? d.count ?? "?"} · cases created ${d.cases_created ?? "—"}`,
+        `Test traffic · completed ${d.completed ?? d.count ?? "?"} · cases created ${d.cases_created ?? "—"} · abandoned ${d.abandoned ?? 0}`,
       );
-      await load(true);
+      // Turning on the filter triggers a reload after its storage effect.
+      // Otherwise refresh immediately so newly seeded cases are visible.
+      setIncludeSimulated(true);
+      if (includeSimulated) await load(true);
     } catch (e) {
       setErr(String(e.message || e));
     } finally {
@@ -246,8 +255,8 @@ export default function CommandCenter({ refreshKey }) {
     ["Authentication", health?.auth_required == null ? "—" : health.auth_required ? "API key required" : "Open local", "neutral"],
     ["Database", health?.db_ok == null ? "—" : health.db_ok ? "Reachable" : "Check connection", health?.db_ok == null ? "neutral" : health.db_ok ? "ok" : "warn"],
     ["Pack load", health?.pack_ok == null ? "—" : health.pack_ok ? "Loaded" : "Failed", health?.pack_ok == null ? "neutral" : health.pack_ok ? "ok" : "warn"],
-    ["LLM", health?.llm_available == null ? "—" : health.llm_available ? "Available" : "Off", health?.llm_available ? "ok" : "neutral"],
-    ["Embedding", health?.embedding?.mode || "—", "neutral"],
+    ["Hosted LLM", health?.llm_available == null ? "—" : health.llm_available ? "Available" : "Not enabled", health?.llm_available ? "ok" : "neutral"],
+    ["Search", health?.embedding?.mode === "legacy" && health?.embedding?.visible_provider === "hash" ? "Local keyword matching" : health?.embedding?.mode || "—", "neutral"],
   ];
   const pilotMetrics = [
     ["Open status", metrics?.cases?.open],
@@ -279,6 +288,7 @@ export default function CommandCenter({ refreshKey }) {
       </header>
 
       {msg && <div className="banner banner-ok" role="status">{msg}</div>}
+      {simErrors.length > 0 && <div className="banner banner-error" role="alert">Some test contacts failed: {simErrors.join(" · ")}</div>}
       {err && <div className="banner banner-error" role="alert">Could not load command center: <span className="mono">{err}</span></div>}
 
       {hot && (
@@ -300,7 +310,8 @@ export default function CommandCenter({ refreshKey }) {
       )}
 
       <div className="cc-snapshot-line">
-        <span>{readIncludeSimulated() ? "Including test traffic · managed in Early warning" : "Live traffic overview"}</span>
+        <label><input type="checkbox" checked={Boolean(includeSimulated)} onChange={event => setIncludeSimulated(event.target.checked)} /> Include test traffic</label>
+        <span>{includeSimulated ? "Includes simulated contacts and cases" : "Live traffic overview"}</span>
         <span>{wall?.ts ? `Updated ${formatSnapshotTs(wall.ts)}` : "Awaiting snapshot"}</span>
       </div>
       <div className="stat-grid cc-stat-grid">

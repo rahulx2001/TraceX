@@ -1,0 +1,204 @@
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 100 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/index.html                              0.71 kB │ gzip:   0.41 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/assets/index-WHT8lY2Z.css             125.04 kB │ gzip:  22.34 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt/ui/assets/index-D7lwOq5p.js              731.25 kB │ gzip: 195.05 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../src/apiAuth.js is dynamically imported by ../src/ai/tools/Alerts.jsx but also statically imported by ../routes/AnalyticsDesk.jsx, ../routes/AuditReports.jsx, ../routes/CallWidget.jsx, ../routes/CaseQueue.jsx, ../routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 195ms
+Starting isolated auth-mode API…
+PASS: clean browser reaches credential entry, rejects invalid key and refuses unauthorized review.
+PASS: issued supervisor session signs in and records the permitted review with the actual actor.
+PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → supervisor review → downloaded original/revised packet. No mocked transport, model or real-audio claim.
+PASS: UI fixtures verify reviewed source handoff, vehicle reconfirmation, original citations, correction-only revision and trace-review routing (no model calls).
+Starting isolated open-mode API…
+PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.
+PASS: local demo skips sign-in/signup, preserves internal destinations, hides desktop/mobile account controls and retains agent authority.
+Isolated failure artifacts: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-IAMhTt
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toBeVisible() failed
+
+Locator: getByText('case_01m6bqeb6jf9xt6qv5xawze14s', { exact: true }).first()
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "to.be.visible" with timeout 5000ms
+  - waiting for getByText('case_01m6bqeb6jf9xt6qv5xawze14s', { exact: true }).first()
+
+    at captureRawStack (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright-core/lib/coreBundle.js:9681:17)
+    at callMatcherAsStep (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright/lib/matchers/expect.js:13310:57)
+    at Object.toBeVisible (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/dashboard/node_modules/playwright/lib/matchers/expect.js:13300:23)
+    at runDemoRuntimeUiTest (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard/scripts/demo-runtime-ui.test.mjs:34:81)
+    at async file:///Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard/scripts/[eval1]:179:3 {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: getByText('case_01m6bqeb6jf9xt6qv5xawze14s', { exact: true }).first()\n" +
+      'Expected: visible\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.visible" with timeout 5000ms\n' +
+      "  - waiting for getByText('case_01m6bqeb6jf9xt6qv5xawze14s', { exact: true }).first()\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "to.be.visible" with timeout 5000ms',
+      "  - waiting for getByText('case_01m6bqeb6jf9xt6qv5xawze14s', { exact: true }).first()"
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- link "Skip to main content":\n' +
+      '  - /url: "#main"\n' +
+      '- complementary "Primary":\n' +
+      '  - text: Trace\n' +
+      '  - emphasis: X\n' +
+      '  - button "Automotive"\n' +
+      '  - button "Judge start →"\n' +
+      '  - button "Open command palette": Search Console… ⌘K\n' +
+      '  - navigation "Engineer workflow":\n' +
+      '    - text: Investigation workflow\n' +
+      '    - button "Report"\n' +
+      '    - button "Investigate"\n' +
+      '    - button "Review"\n' +
+      '    - button "Evidence"\n' +
+      '  - group:\n' +
+      '    - text: Advanced tools Operate\n' +
+      '    - button "Command center"\n' +
+      '    - button "Live console"\n' +
+      '    - button "Case queue"\n' +
+      '    - text: Intelligence\n' +
+      '    - button "Early warning"\n' +
+      '    - button "Defect early warning"\n' +
+      '    - button "Analytics"\n' +
+      '    - text: Trust & platform\n' +
+      '    - button "Trust"\n' +
+      '    - button "Platform"\n' +
+      '    - button "Settings"\n' +
+      '  - button "Collapse sidebar": Collapse\n' +
+      '- banner:\n' +
+      '  - text: Operate Case queue\n' +
+      `  - 'link "AI: local rules"':\n` +
+      '    - /url: "#demo"\n' +
+      '  - button "Guide"\n' +
+      '  - button "ok Automotive"\n' +
+      '  - button "Refresh current view": ↻\n' +
+      '  - button "Change theme, currently dark": Light\n' +
+      '- main:\n' +
+      '  - heading "Case queue" [level=1]\n' +
+      '  - paragraph: Triage open cases with severity chips, open the drawer for follow-ups, export CSV for ops.\n' +
+      '  - checkbox "Include simulated traffic" [checked]\n' +
+      '  - text: Include simulated\n' +
+      '  - button "Export CSV"\n' +
+      '  - button "Refresh"\n' +
+      '  - text: Search\n' +
+      '  - textbox "Search cases":\n' +
+      '    - /placeholder: case id, category, text…\n' +
+      '  - text: Severity\n' +
+      '  - group "Severity filter":\n' +
+      '    - button "All"\n' +
+      '    - button "Critical"\n' +
+      '    - button "Medium"\n' +
+      '    - button "Low"\n' +
+      '  - text: Status\n' +
+      '  - group "Status filter":\n' +
+      '    - button "All"\n' +
+      '    - button "Open"\n' +
+      '    - button "Pending follow-up"\n' +
+      '    - button "Closed"\n' +
+      '  - button "Search"\n' +
+      '  - text: 5 cases\n' +
+      '  - table:\n' +
+      '    - rowgroup:\n' +
+      '      - row "Case ID Category Severity Priority Safety flags Advisory Cluster Investigation Peak frustration Channel":\n' +
+      '        - columnheader "Case ID"\n' +
+      '        - columnheader "Category"\n' +
+      '        - columnheader "Severity"\n' +
+      '        - columnheader "Priority"\n' +
+      '        - columnheader "Safety flags"\n' +
+      '        - columnheader "Advisory"\n' +
+      '        - columnheader "Cluster"\n' +
+      '        - columnheader "Investigation"\n' +
+      '        - columnheader "Peak frustration"\n' +
+      '        - columnheader "Channel"\n' +
+      '    - rowgroup:\n' +
+      '      - row "case_01m6bqc7qkkhenyqz1mmm9x9e3 ELECTRICAL SYSTEM Medium P2 — — cluster 31 — 0.00 simulated":\n' +
+      '        - cell "case_01m6bqc7qkkhenyqz1mmm9x9e3"\n' +
+      '        - cell "ELECTRICAL SYSTEM"\n' +
+      '        - cell "Medium"\n' +
+      '        - cell "P2"\n' +
+      '        - cell "—"\n' +
+      '        - cell "—"\n' +
+      '        - cell "cluster 31"\n' +
+      '        - cell "—"\n' +
+      '        - cell "0.00"\n' +
+      '        - cell "simulated"\n' +
+      '      - row "case_01m6bqc12jn0magcwvakbqzayb AIR BAGS Critical P1 — 20V-67890 cluster 22 — 0.00 simulated":\n' +
+      '        - cell "case_01m6bqc12jn0magcwvakbqzayb"\n' +
+      '        - cell "AIR BAGS"\n' +
+      '        - cell "Critical"\n' +
+      '        - cell "P1"\n' +
+      '        - cell "—"\n' +
+      '        - cell "20V-67890"\n' +
+      '        - cell "cluster 22"\n' +
+      '        - cell "—"\n' +
+      '        - cell "0.00"\n' +
+      '        - cell "simulated"\n' +
+      '      - row "case_01m6bqbtk3bjqdw6ky3hq862tj SERVICE BRAKES Medium P2 — 19V-12345 cluster 14 — 0.00 simulated":\n' +
+      '        - cell "case_01m6bqbtk3bjqdw6ky3hq862tj"\n' +
+      '        - cell "SERVICE BRAKES"\n' +
+      '        - cell "Medium"\n' +
+      '        - cell "P2"\n' +
+      '        - cell "—"\n' +
+      '        - cell "19V-12345"\n' +
+      '        - cell "cluster 14"\n' +
+      '        - cell "—"\n' +
+      '        - cell "0.00"\n' +
+      '        - cell "simulated"\n' +
+      '      - row "case_01m6bqbm7t2z5j3gchr75wg4ms AIR BAGS Critical P1 Escalation Safety check 0 20V-67890 cluster 22 — 0.00 simulated":\n' +
+      '        - cell "case_01m6bqbm7t2z5j3gchr75wg4ms"\n' +
+      '        - cell "AIR BAGS"\n' +
+      '        - cell "Critical"\n' +
+      '        - cell "P1"\n' +
+      '        - cell "Escalation Safety check 0"\n' +
+      '        - cell "20V-67890"\n' +
+      '        - cell "cluster 22"\n' +
+      '        - cell "—"\n' +
+      '        - cell "0.00"\n' +
+      '        - cell "simulated"\n' +
+      '      - row "case_01m6bqbej10hs7z7hegmgar9aj SERVICE BRAKES Medium P2 — 19V-12345 cluster 14 — 0.00 simulated":\n' +
+      '        - cell "case_01m6bqbej10hs7z7hegmgar9aj"\n' +
+      '        - cell "SERVICE BRAKES"\n' +
+      '        - cell "Medium"\n' +
+      '        - cell "P2"\n' +
+      '        - cell "—"\n' +
+      '        - cell "19V-12345"\n' +
+      '        - cell "cluster 14"\n' +
+      '        - cell "—"\n' +
+      '        - cell "0.00"\n' +
+      '        - cell "simulated"\n' +
+      '- region "Notifications"'
+  }
+}
+
+Node.js v25.1.0

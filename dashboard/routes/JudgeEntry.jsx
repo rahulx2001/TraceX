@@ -1,13 +1,26 @@
 import { goHash } from "../src/ui/opsActions.js";
+import { useEffect, useState } from "react";
+import { aiStatus } from "../src/ai/aiApi.js";
 
 export default function JudgeEntry() {
+  const [ai, setAi] = useState(null);
+  useEffect(() => {
+    let live = true;
+    aiStatus().then(value => { if (live) setAi(value); });
+    return () => { live = false; };
+  }, []);
   return <section className="sc-panel" style={{ maxWidth: 980, margin: "0 auto" }}>
     <p className="sc-muted">TraceX · For automotive quality and service engineers</p>
     <h1>From an owner report to a reviewable investigation</h1>
     <p>Capture a multilingual report, inspect cited evidence, resolve missing information and document the reviewed next action.</p>
     <div className="sc-mode-note">
       <strong>Before the demonstration</strong>
-      <p>The prepared campaign and installation records are fictional. The local replay server shows saved Meta output and makes no new model call. Each saved investigation identifies its mode, model and time; deterministic or fallback handling remains labelled.</p>
+      <p>The prepared campaign and installation records are fictional. In the open local demo, no sign-in is needed to report, investigate, review demo records or open evidence.</p>
+      <p data-testid="demo-ai-notice">{!ai ? "Checking AI configuration…" : ai.unavailable
+        ? "AI configuration is unavailable. Check API status in Command center and refresh."
+        : ai.mode === "enhanced"
+          ? "Meta is configured. Each investigation records whether a model was actually called, along with its model, time and provenance."
+          : "Local rules mode: typed reports, record lookups and manual evidence review work without hosted AI. New model-generated interpretations and photo analysis are unavailable in this mode."} Historical replays, when present, are labelled with their original source and time.</p>
     </div>
     <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 24, padding: 24 }}>
       <li><h2>Report</h2><p>Start voice or type a report. Confirm the words and the vehicle before handing it over.</p><button className="primary" onClick={() => goHash("call")}>Start a report →</button></li>

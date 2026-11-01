@@ -1,0 +1,42 @@
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 100 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/index.html                              0.71 kB │ gzip:   0.41 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/assets/index-WHT8lY2Z.css             125.04 kB │ gzip:  22.34 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py/ui/assets/index-D7lwOq5p.js              731.25 kB │ gzip: 195.05 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../src/apiAuth.js is dynamically imported by ../src/ai/tools/Alerts.jsx but also statically imported by ../routes/AnalyticsDesk.jsx, ../routes/AuditReports.jsx, ../routes/CallWidget.jsx, ../routes/CaseQueue.jsx, ../routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 240ms
+Starting isolated auth-mode API…
+PASS: clean browser reaches credential entry, rejects invalid key and refuses unauthorized review.
+PASS: issued supervisor session signs in and records the permitted review with the actual actor.
+PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → supervisor review → downloaded original/revised packet. No mocked transport, model or real-audio claim.
+PASS: UI fixtures verify reviewed source handoff, vehicle reconfirmation, original citations, correction-only revision and trace-review routing (no model calls).
+Starting isolated open-mode API…
+PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.
+PASS: local demo skips sign-in/signup, preserves internal destinations, hides desktop/mobile account controls and retains agent authority.
+Isolated failure artifacts: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-QvC2py
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForResponse: Timeout 30000ms exceeded while waiting for event "response"
+    at runDemoRuntimeUiTest (/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard/scripts/demo-runtime-ui.test.mjs:13:23)
+    at async file:///Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard/scripts/[eval1]:179:3 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v25.1.0

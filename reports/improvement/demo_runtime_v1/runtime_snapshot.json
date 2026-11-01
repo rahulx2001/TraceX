@@ -1,0 +1,286 @@
+{
+  "checked_at": "2026-11-01T14:18:50.764221+00:00",
+  "base": "http://127.0.0.1:60861",
+  "data_origin": "Existing scripts.seed_domains fictional fixture; replayed only through the existing simulator into the isolated temporary demo database.",
+  "raw_outcomes_inspected": false,
+  "endpoints": {
+    "/health": {
+      "status": 200
+    },
+    "/api/ai/status": {
+      "status": 200
+    },
+    "/api/frontline/wallboard?include_simulated=true": {
+      "status": 200
+    },
+    "/api/frontline/metrics?include_simulated=true": {
+      "status": 200
+    },
+    "/api/frontline/usage": {
+      "status": 200
+    },
+    "/api/frontline/ops/drain": {
+      "status": 200
+    },
+    "/api/frontline/early-warning?window_days=30&include_simulated=true": {
+      "status": 200
+    },
+    "/api/frontline/copq/rank?window_days=30&include_simulated=true": {
+      "status": 200
+    },
+    "/api/frontline/analytics/financial-impact": {
+      "status": 200
+    },
+    "/api/frontline/insights/product-gap?window_days=30&limit=8&include_simulated=true": {
+      "status": 200
+    },
+    "/api/safety-campaigns": {
+      "status": 200
+    }
+  },
+  "health": {
+    "status": "ok",
+    "api_version": "1",
+    "active_pack": "automotive_nhtsa",
+    "frontline_enabled": true,
+    "db_ok": true,
+    "pack_ok": true,
+    "single_worker": true,
+    "worker_count": 1,
+    "orchestrator_registry": "in_process_ws+distributed_close_claims",
+    "worker_registry": "duckdb",
+    "security": {
+      "auth_required": false,
+      "production_like": false,
+      "audit_log": true,
+      "note": "Engineering controls only. Not a SOC 2 Type II attestation."
+    },
+    "llm_available": false,
+    "auth_required": false,
+    "v3_runtime_routing": false,
+    "ml_severity_shipped": false,
+    "enterprise_readiness": "single_tenant_pilot_open",
+    "embedding": {
+      "mode": "legacy",
+      "visible_provider": "hash",
+      "hash_version": "blake2b-512-v1:feature-hash:tok2.0-bi0.5:sublinear-tf:idf-optional:l2:dim512",
+      "shadow": false,
+      "shadow_killed": false,
+      "artifact_configured": true,
+      "active_cluster_build_id": null,
+      "semantic_ready": false,
+      "semantic_required": false
+    },
+    "readiness": {
+      "ready": true,
+      "checks": {
+        "database": {
+          "ok": true,
+          "waived": false,
+          "note": "ops warehouse reachable"
+        },
+        "pack": {
+          "ok": true,
+          "waived": false,
+          "note": "pack automotive_nhtsa loaded"
+        },
+        "gazetteers": {
+          "ok": true,
+          "waived": false,
+          "note": "123 gazetteer terms"
+        },
+        "gazetteer_lookup": {
+          "ok": true,
+          "waived": false,
+          "note": "lookup('ACURA') -> 'ACURA'"
+        },
+        "triage": {
+          "ok": true,
+          "waived": false,
+          "note": "model artifact automotive_nhtsa/models/severity_rules.json"
+        },
+        "cost_model": {
+          "ok": true,
+          "waived": false,
+          "note": "pack cost_model present"
+        },
+        "semantic_embedder": {
+          "ok": true,
+          "waived": false,
+          "note": "not required in legacy mode"
+        },
+        "merkle_log": {
+          "ok": true,
+          "waived": false,
+          "note": "tree-head table reachable"
+        },
+        "domain_warehouse": {
+          "ok": true,
+          "waived": false,
+          "note": "domain warehouse queryable"
+        },
+        "secrets": {
+          "ok": true,
+          "waived": false,
+          "note": "not required outside production-like"
+        }
+      },
+      "failing_components": [],
+      "failing_component": null
+    }
+  },
+  "ai": {
+    "mode": "deterministic",
+    "provider": null,
+    "key_configured": false,
+    "layer_switch": "off",
+    "api_host": "api.meta.ai",
+    "api_host_allowed": true,
+    "models": {
+      "text": "muse-spark-1.3",
+      "vision": "muse-spark-1.3",
+      "segmentation": "sam-3.1",
+      "image": "muse-image-1.0"
+    },
+    "features": {
+      "enhanced_intake": false,
+      "hindi_hinglish_normalisation": false,
+      "grounded_brief": false,
+      "severity_sentiment_raise_only": false,
+      "photo_evidence_upload": true,
+      "photo_evidence_analysis": false
+    },
+    "fallback": "deterministic regex/gazetteer/rules path (always on)",
+    "verified_against_live_api": false,
+    "verified_features": {
+      "text": false,
+      "vision": false,
+      "segmentation": false,
+      "image": false
+    },
+    "budget_limit_usd": 30,
+    "calls_today": 0
+  },
+  "wallboard": {
+    "ts": "2026-11-01T14:18:50.564147Z",
+    "active_contacts": 0,
+    "completed_contacts": 15,
+    "open_cases": 15,
+    "p1_open": 8,
+    "critical_open": 8,
+    "top_risk_clusters": [
+      {
+        "cluster_id": 14,
+        "pack_id": "automotive_nhtsa",
+        "open_cases": 8,
+        "max_severity": "Critical",
+        "category": "SERVICE BRAKES"
+      },
+      {
+        "cluster_id": 31,
+        "pack_id": "automotive_nhtsa",
+        "open_cases": 4,
+        "max_severity": "Critical",
+        "category": "ELECTRICAL SYSTEM"
+      },
+      {
+        "cluster_id": 22,
+        "pack_id": "automotive_nhtsa",
+        "open_cases": 3,
+        "max_severity": "Critical",
+        "category": "AIR BAGS"
+      }
+    ],
+    "live_contacts": []
+  },
+  "metrics": {
+    "window_days": 7,
+    "cases": {
+      "open": 5,
+      "pending_followup": 10,
+      "closed": 0,
+      "critical_open": 8,
+      "created_in_window": 15
+    },
+    "investigations": {
+      "open": 3,
+      "monitoring": 0
+    },
+    "interactions_active": 0,
+    "alert_dead_letters_pending": 0,
+    "connector_deliveries_pending": 16,
+    "case_notes_in_window": 0,
+    "fix_loop": {
+      "fixes_recorded": 0,
+      "resolved": 0,
+      "reopened": 0,
+      "reopen_rate": 0.0,
+      "series": []
+    },
+    "ts": "2026-11-01T14:18:50.598913"
+  },
+  "usage": {
+    "tenant_id": "default",
+    "plan": "trial",
+    "limits": {
+      "seats": 2,
+      "contacts_month": 50,
+      "roles": [
+        "agent"
+      ]
+    },
+    "seats_used": 0,
+    "metrics": {
+      "contacts": 15.0,
+      "llm_spend_usd": 0.0,
+      "alerts": 0.0
+    },
+    "month": "2026-11",
+    "capabilities": [
+      {
+        "capability": "audits",
+        "availability": "production",
+        "backend": "qubot auditor",
+        "note": ""
+      },
+      {
+        "capability": "biometrics",
+        "availability": "stub",
+        "backend": "ANI/feature hash proxy; no real speaker model",
+        "note": "Pilot stub: voiceprint is a hash proxy, not speaker recognition."
+      },
+      {
+        "capability": "booking",
+        "availability": "stub",
+        "backend": "ops appointments table only; no Cal.com, no double-book check",
+        "note": "Pilot stub: books into the local ops table. Not a real calendar."
+      },
+      {
+        "capability": "cases",
+        "availability": "production",
+        "backend": "ops warehouse",
+        "note": ""
+      },
+      {
+        "capability": "early_warning",
+        "availability": "production",
+        "backend": "live_risk retriever",
+        "note": ""
+      },
+      {
+        "capability": "investigations",
+        "availability": "production",
+        "backend": "ops warehouse",
+        "note": ""
+      },
+      {
+        "capability": "simulate",
+        "availability": "production",
+        "backend": "simulator",
+        "note": ""
+      }
+    ],
+    "as_of": "2026-11-01T14:18:50.631649"
+  },
+  "synthetic_campaign_count": 1
+}
