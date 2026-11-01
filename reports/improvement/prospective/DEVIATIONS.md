@@ -83,3 +83,25 @@ windows, sample floor, metrics and denominators remain unchanged. No real
   preparation limitation remains recorded in DEV-20261101-01.
 - Human labels: the ID-only review queue is blank. Review remains deferred;
   human semantic validation remains 0/300.
+
+## DEV-20261101-04 — campaign census and a separate fixed comparison
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, through the request to complete more independent
+  campaigns with full follow-up and a separately pre-registered comparison.
+- Reason: establish whether uncounted pre-2021 campaigns are available within
+  the unchanged scope, and reserve a separate comparison of the already fitted
+  logistic prototype against the original baseline before future outcomes exist.
+- Files affected: new census/comparison scripts, tests and
+  `reports/improvement/comparison_v1/`; this append-only log.
+- Data boundary: the census inspects date headers of the pinned local recall
+  archive, retaining only 2015–2020 identity/scope fields. It never parses recall
+  descriptions or constructs a post-2020 development frame. It does not create
+  new campaign observations or make previously opened history untouched.
+- Effect on claims: the separate study is a fixed research comparison, not
+  retroactive qualification under the original Phase 2 selector. The original
+  Mode B protocol, decision, freeze/tag, dashboard and 0/300 human label count
+  remain unchanged. The new comparison shares the reserved future cohort;
+  it is not a second independent dataset or an independent replication of
+  results from that cohort. No future collection or final analysis is authorized
+  for execution now. No improvement or promotion is claimed.
