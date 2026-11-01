@@ -105,3 +105,21 @@ windows, sample floor, metrics and denominators remain unchanged. No real
   it is not a second independent dataset or an independent replication of
   results from that cohort. No future collection or final analysis is authorized
   for execution now. No improvement or promotion is claimed.
+
+## DEV-20261101-05 — synthetic label-workflow fixtures
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, through the request to generate testing data
+  because 300 people were unavailable.
+- Interpretation: 300 is a record count, not a participant count. Generate
+  clearly fictional software fixtures; do not invent human labels, reviewers
+  or attestations and do not claim human validation is complete.
+- Files affected: new `scripts/synthetic_label_checks.py`, its tests and
+  `reports/improvement/synthetic_review_v1/`; this append-only log.
+- Effect on claims: 300 template variants, zero real independent observations,
+  zero new human labels and no classifier inference or accuracy estimate.
+  Fixtures are excluded from fitting, selection, human review, dashboard
+  metrics and both prospective studies. Existing second-reviewer/50-record
+  overlap requirements remain unchanged; no review protocol is waived.
+- Integrity: preserve both freeze tags/artifact sets, the original 300-row
+  blank sample, all real score values, `main` and the original checkout.
