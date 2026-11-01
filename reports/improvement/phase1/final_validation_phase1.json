@@ -1,0 +1,750 @@
+{
+  "schema_version": 1,
+  "status": "passed_with_documented_historical_preparation_amendment",
+  "created_at": "2026-11-01T07:28:05.280505+00:00",
+  "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+  "validation_input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+  "validation_input_manifest_sha256": "6438668e2f7854dca3c3860331c42ee4a7fe49b554d05dd851a55f3cb48c402c",
+  "commands": [
+    {
+      "name": "artifact_precheck",
+      "exact_command": ".venv-hackathon/bin/python -m scripts.prepare_minilm_onnx --verify-only",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:02:26.993267+00:00",
+      "ended_at": "2026-11-01T06:02:27.397964+00:00",
+      "exit_code": 0,
+      "observed_counts": null,
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/artifact_precheck_resume_20261101.txt",
+      "log_sha256": "1135e14cb63e4a9679fedec5d6664af0610c6412e1e5f936785e4248cae2278d"
+    },
+    {
+      "name": "defect_verify",
+      "exact_command": ".venv-hackathon/bin/python -m scripts.defect_verify",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:02:27.418123+00:00",
+      "ended_at": "2026-11-01T06:02:47.652779+00:00",
+      "exit_code": 0,
+      "observed_counts": null,
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/defect_verify_resume_20261101.txt",
+      "log_sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5"
+    },
+    {
+      "name": "pipeline",
+      "exact_command": ".venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/phase1/pipeline_resume_20261101.json",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:02:47.673595+00:00",
+      "ended_at": "2026-11-01T06:02:52.500273+00:00",
+      "exit_code": 0,
+      "observed_counts": null,
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/pipeline_resume_20261101.txt",
+      "log_sha256": "726a278c15de38ba2e5adb377c8c46238bce67f57c52cfc022ffbe0b4429e770",
+      "output_note": "Explicit new --out path preserves the frozen/default report."
+    },
+    {
+      "name": "targeted",
+      "exact_command": ".venv-hackathon/bin/python -m pytest -q tests/frontline/ai_layer/test_ml_improvement.py tests/frontline/ai_layer/test_prospective_seal.py tests/frontline/ai_layer/test_final_prospective_eval.py",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:02:52.521076+00:00",
+      "ended_at": "2026-11-01T06:03:17.567946+00:00",
+      "exit_code": 0,
+      "observed_counts": {
+        "passed": 46
+      },
+      "observed_summary": "46 passed in 23.98s",
+      "log": "reports/improvement/phase1/logs/targeted_resume_20261101.txt",
+      "log_sha256": "01c7bb670577521c990a72172c4acd4b72bee5ff4069acea1a1d288524bf9003"
+    },
+    {
+      "name": "dashboard_source",
+      "exact_command": ".venv-hackathon/bin/python -m scripts.ml_improvement_report check",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:03:17.588495+00:00",
+      "ended_at": "2026-11-01T06:03:22.900498+00:00",
+      "exit_code": 0,
+      "observed_counts": null,
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/dashboard_source_resume_20261101.txt",
+      "log_sha256": "4796b0565925d249544fb671d18bdfdea1fc3109c81e87d910248fa3d149449c"
+    },
+    {
+      "name": "dashboard_ui",
+      "exact_command": "node --test scripts/ml-evidence-ui.test.mjs",
+      "cwd": "dashboard",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded",
+        "ML_UI_ARTIFACT_DIR": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/phase1/logs/ui_resume_20261101"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:03:22.920356+00:00",
+      "ended_at": "2026-11-01T06:03:24.408962+00:00",
+      "exit_code": 1,
+      "observed_counts": {},
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/dashboard_ui_resume_20261101.txt",
+      "log_sha256": "84f16ebd5a9187378d0fcc1f606cd0bd57a0af3afb24d52761f7317cad568042"
+    },
+    {
+      "name": "dashboard_ui",
+      "exact_command": "node --test scripts/ml-evidence-ui.test.mjs",
+      "cwd": "dashboard",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded",
+        "ML_UI_ARTIFACT_DIR": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/phase1/logs/ui_resume_20261101"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:07:27.831835+00:00",
+      "ended_at": "2026-11-01T06:07:55.910013+00:00",
+      "exit_code": 0,
+      "observed_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/dashboard_ui_resume_20261101_attempt2.txt",
+      "log_sha256": "6146c485427b3ac4ac206ce685fe801c5657c54651325b9e3927e31b31fe0e8c"
+    },
+    {
+      "name": "dashboard_build",
+      "exact_command": "npm run build",
+      "cwd": "dashboard",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:07:55.929320+00:00",
+      "ended_at": "2026-11-01T06:07:56.534868+00:00",
+      "exit_code": 0,
+      "observed_counts": null,
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/dashboard_build_resume_20261101.txt",
+      "log_sha256": "dad65700935e2b1ebd72850f828981b2bdda36511d16a2df7912eba60c4a3c06"
+    },
+    {
+      "name": "full_frontline",
+      "exact_command": ".venv-hackathon/bin/python -m pytest -q tests/frontline",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:07:56.554187+00:00",
+      "ended_at": "2026-11-01T06:55:46.858879+00:00",
+      "exit_code": 0,
+      "observed_counts": {
+        "passed": 1989
+      },
+      "observed_summary": "1989 passed, 3 warnings in 1110.56s (0:18:30)",
+      "log": "reports/improvement/phase1/logs/full_frontline_resume_20261101.txt",
+      "log_sha256": "4c33d8efcced878c8d498130ecec04c5c5a2c47332e0b266ba3e38869c78b3f0"
+    },
+    {
+      "name": "make_test",
+      "exact_command": "make test",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T06:55:46.884320+00:00",
+      "ended_at": "2026-11-01T07:17:24.053552+00:00",
+      "exit_code": 0,
+      "observed_counts": {
+        "passed": 1989
+      },
+      "observed_summary": "1989 passed, 3 warnings in 1109.68s (0:18:29)",
+      "log": "reports/improvement/phase1/logs/make_test_resume_20261101.txt",
+      "log_sha256": "60be4c7c45fa9574bcc647988ba42b9d348486f91b0992e49bc50ff998d24982"
+    },
+    {
+      "name": "make_eval",
+      "exact_command": "make -f /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/Makefile PY=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python eval-frontline",
+      "cwd": "reports/improvement/phase1/validation_runtime_resume_20261101",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded",
+        "PYTHONPATH": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T07:17:24.085979+00:00",
+      "ended_at": "2026-11-01T07:19:24.331779+00:00",
+      "exit_code": 0,
+      "observed_counts": {
+        "gates_passed": 23,
+        "gates_total": 23
+      },
+      "observed_summary": [
+        {
+          "passed": 12,
+          "total": 12
+        },
+        {
+          "passed": 11,
+          "total": 11
+        }
+      ],
+      "log": "reports/improvement/phase1/logs/make_eval_resume_20261101.txt",
+      "log_sha256": "b1b6e2572c5bb945fdf6592f3bfe1220aa8206bd3a6ed98cc696731c30c69b9b",
+      "isolation_note": "Same Makefile target from a dedicated runtime directory to preserve existing report files."
+    },
+    {
+      "name": "compileall",
+      "exact_command": "make compileall",
+      "cwd": ".",
+      "environment_overrides": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "provider_keys": "cleared; no credentials recorded"
+      },
+      "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+      "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+      "started_at": "2026-11-01T07:19:24.353490+00:00",
+      "ended_at": "2026-11-01T07:19:24.489621+00:00",
+      "exit_code": 0,
+      "observed_counts": null,
+      "observed_summary": null,
+      "log": "reports/improvement/phase1/logs/compileall_resume_20261101.txt",
+      "log_sha256": "4278e5a9736af337e17d300781de038a7ddfac56a69c309e3d27dc4d6fb01beb"
+    }
+  ],
+  "latest_required_command_status": {
+    "defect_verify": {
+      "exit_code": 0,
+      "counts": null
+    },
+    "pipeline": {
+      "exit_code": 0,
+      "counts": null
+    },
+    "targeted": {
+      "exit_code": 0,
+      "counts": {
+        "passed": 46
+      }
+    },
+    "full_frontline": {
+      "exit_code": 0,
+      "counts": {
+        "passed": 1989
+      }
+    },
+    "make_test": {
+      "exit_code": 0,
+      "counts": {
+        "passed": 1989
+      }
+    },
+    "make_eval": {
+      "exit_code": 0,
+      "counts": {
+        "gates_passed": 23,
+        "gates_total": 23
+      }
+    },
+    "compileall": {
+      "exit_code": 0,
+      "counts": null
+    },
+    "dashboard_ui": {
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "dashboard_build": {
+      "exit_code": 0,
+      "counts": null
+    },
+    "dashboard_source": {
+      "exit_code": 0,
+      "counts": null
+    }
+  },
+  "gate_amendment": "reports/improvement/prospective/DEVIATIONS.md#dev-20261101-01--historical-preparation-read-acknowledged",
+  "historical_record_correction": "The earlier phase5_command_records.json regex misread unconfirmed=3 failed=none as 3 failed. The old record is preserved; fresh make_eval records the actual 23/23 gate summary.",
+  "sandbox_attempt": "Initial browser attempt failed at Chromium macOS MachPort permission checks. The retained retry outside the sandbox passes; no source change was needed.",
+  "replay_status": "exact, including all 100 random references for both variants",
+  "replay_log_sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5",
+  "hashes_verified": {
+    "timestamp": "2026-11-01T07:27:24.529874+00:00",
+    "HEAD": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+    "commits_ahead": 29,
+    "worktree_status": "## ml-score-improvement\n M dashboard/scripts/ml-evidence-ui.test.mjs\n M dashboard/src/ai/MlImprovementEvidence.jsx\n M dashboard/src/ai/mlImprovement.json\n M scripts/ml_improvement_report.py\n M tests/frontline/ai_layer/test_ml_improvement.py\n?? reports/improvement/phase1/logs/artifact_precheck_resume_20261101.txt\n?? reports/improvement/phase1/logs/command_records_resume_20261101.json\n?? reports/improvement/phase1/logs/compileall_phase5.txt\n?? reports/improvement/phase1/logs/compileall_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_build_phase5.txt\n?? reports/improvement/phase1/logs/dashboard_build_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_source_phase5.txt\n?? reports/improvement/phase1/logs/dashboard_source_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_ui_phase5.txt\n?? reports/improvement/phase1/logs/dashboard_ui_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_ui_resume_20261101_attempt2.txt\n?? reports/improvement/phase1/logs/defect_verify_phase5.txt\n?? reports/improvement/phase1/logs/defect_verify_resume_20261101.txt\n?? reports/improvement/phase1/logs/full_frontline_phase5.txt\n?? reports/improvement/phase1/logs/full_frontline_resume_20261101.txt\n?? reports/improvement/phase1/logs/inputs_resume_20261101.json\n?? reports/improvement/phase1/logs/make_eval_phase5.txt\n?? reports/improvement/phase1/logs/make_eval_resume_20261101.txt\n?? reports/improvement/phase1/logs/make_test_phase5.txt\n?? reports/improvement/phase1/logs/make_test_resume_20261101.txt\n?? reports/improvement/phase1/logs/phase5_command_records.json\n?? reports/improvement/phase1/logs/phase5_targeted.txt\n?? reports/improvement/phase1/logs/pipeline_phase5.txt\n?? reports/improvement/phase1/logs/pipeline_resume_20261101.txt\n?? reports/improvement/phase1/logs/targeted_resume_20261101.txt\n?? reports/improvement/phase1/logs/ui_resume_20261101/\n?? reports/improvement/phase1/phase5_resume_audit.json\n?? reports/improvement/phase1/pipeline_resume_20261101.json\n?? reports/improvement/phase1/pipeline_verification.json\n?? reports/improvement/phase1/validation_runtime/\n?? reports/improvement/phase1/validation_runtime_resume_20261101/\n?? reports/improvement/prospective/DEVIATIONS.md",
+    "phase2_gate_amendment": "DEV-20261101-01",
+    "starting_state_hashes": {
+      "checked": 2,
+      "changed_or_missing": [],
+      "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+    },
+    "protected_artifacts": {
+      "checked": 5,
+      "changed_or_missing": [],
+      "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+    },
+    "authorized_dashboard_metadata_change": "Phase 5 explicitly updates the dashboard JSON. Its scores, source hash, targets and human-validation values are checked separately against the freeze-tag version.",
+    "original_inventory": {
+      "checked": 819,
+      "changed_or_missing": [],
+      "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool"
+    },
+    "original_checkout_status_matches_starting": true,
+    "frozen_files": {
+      "checked": 339,
+      "changed_or_missing": [],
+      "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+    },
+    "freeze_tag_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "freeze_verification": "verify_freeze passed, including tagged index, C1 tree, and tagged frozen file bytes",
+    "manifest_status": "reserved",
+    "snapshots": 0,
+    "real_prospective_data_accessed": false,
+    "human_labels": {
+      "labelled": 0,
+      "total": 300
+    },
+    "development_inputs": {
+      "checked": 2,
+      "changed_or_missing": [],
+      "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+    },
+    "phase2_record_verification": {
+      "read_paths": [
+        "data/ml_improvement/complaints.parquet",
+        "data/ml_improvement/recalls.parquet"
+      ],
+      "complaints": 263,
+      "complaint_date_range": [
+        "2015-12-30",
+        "2020-12-30"
+      ],
+      "recall_scopes": 136,
+      "campaigns": 36,
+      "recall_date_range": [
+        "2015-01-09",
+        "2020-12-17"
+      ],
+      "folds": [
+        {
+          "fold": "A",
+          "fit_campaigns": 11,
+          "validation_campaigns": 11,
+          "campaign_ids_disjoint": true
+        },
+        {
+          "fold": "B",
+          "fit_campaigns": 22,
+          "validation_campaigns": 14,
+          "campaign_ids_disjoint": true
+        }
+      ],
+      "selection_reproduced": true,
+      "decision": {
+        "mode": "mode_b_baseline",
+        "selected": "gamma_poisson",
+        "rule": "A candidate is defensible only if it does not lose on either primary metric in either fold; and it improves at least one primary metric in both folds; and the lower bound of the paired campaign-cluster bootstrap difference for that metric is greater than 0. Otherwise freeze the baseline.",
+        "reason": "No method satisfies all fold, denominator and bootstrap conditions",
+        "is_candidate_result": false,
+        "notice": "Development-only evidence; not a candidate result and not a prospective estimate.",
+        "preregistration_commit": "440b90e5452f199dd9cf6e08ae3be640d59b7300"
+      },
+      "trials": 36,
+      "evaluated_trials": 16,
+      "insufficient_training_support_records": 20,
+      "bootstrap_draws_and_all_reference_seeds_verified": true,
+      "new_experiment_run": false,
+      "run_ledger_entry_verified": true,
+      "preregistration_precedes_recorded_phase2_run": true,
+      "limitation": "Historical preparation read acknowledged by DEV-20261101-01; no universal historical no-read claim."
+    },
+    "dashboard_scores_unchanged": true,
+    "dashboard_source_sha256": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+    "validation_source_inputs_unchanged": true
+  },
+  "baseline_metrics": [
+    {
+      "metric": "defect.all_reports.rolling_defect.recall",
+      "numerator": 22,
+      "denominator": 41,
+      "value": 0.5365853658536586,
+      "confidence_interval_95": [
+        0.38746471267669474,
+        0.6794376602366394
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.mature_episode_precision",
+      "numerator": 14,
+      "denominator": 31,
+      "value": 0.45161290322580644,
+      "confidence_interval_95": [
+        0.29161735980520015,
+        0.6222783236264549
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.recall",
+      "numerator": 14,
+      "denominator": 41,
+      "value": 0.34146341463414637,
+      "confidence_interval_95": [
+        0.21558808257384846,
+        0.49450163480170306
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.mature_episode_precision",
+      "numerator": 7,
+      "denominator": 13,
+      "value": 0.5384615384615384,
+      "confidence_interval_95": [
+        0.29143795714506004,
+        0.7679393219046169
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "fuel_holdout.method.recall",
+      "numerator": 5,
+      "denominator": 8,
+      "value": 0.625,
+      "confidence_interval_95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.hits/campaigns",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "",
+      "original_split_description": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "fuel_holdout.method.mature_episode_precision",
+      "numerator": 6,
+      "denominator": 18,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.1627877475083369,
+        0.5625053270405489
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "",
+      "original_split_description": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    }
+  ],
+  "no_improved_score_demonstrated": true,
+  "human_labels": {
+    "labelled": 0,
+    "total": 300
+  },
+  "frozen_mode": "baseline_replication",
+  "custody": "procedural; tamper-evident, not enforced; no-peeking honor-system",
+  "new_model_fitting": false,
+  "real_2027_data_accessed": false,
+  "merge_or_promotion": false,
+  "paid_calls": 0
+}

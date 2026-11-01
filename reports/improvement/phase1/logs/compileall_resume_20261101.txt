@@ -1,0 +1,1 @@
+.venv-hackathon/bin/python -m compileall -q src scripts eval

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "research_targets_not_demonstrated",
-  "notice": "Retrospective, model-labelled, not production-validated",
+  "status": "prospective_reserved_no_improvement_demonstrated",
+  "notice": "Prospective 2027-2028 test reserved. No improved score has been demonstrated. Human semantic validation remains pending.",
   "targets": {
     "human_accuracy": 0.8,
     "accepted_precision": 0.85,
@@ -20,7 +20,7 @@
     "total": 300,
     "accuracy": null
   },
-  "untouched_test": "not frozen; authorization pending",
+  "untouched_test": "reserved: 2027-01-01 to 2028-12-31; outcome cutoff 2029-12-31; minimum 25 campaigns; no data collected yet",
   "source": "reports/improvement/results.json",
   "source_sha256": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
   "metrics": [
@@ -140,5 +140,22 @@
       "campaigns_with_matching_evidence": 4,
       "note": "Input opportunity under fixed labels, not achieved recall or universal model ceiling"
     }
+  },
+  "custody_notice": "Procedural custody is tamper-evident, not enforced access control. No-peeking is honor-system; public outcomes can be re-fetched.",
+  "historical_notice": "Retrospective, model-labelled, not production-validated",
+  "prospective_test": {
+    "status": "reserved",
+    "flag_start": "2027-01-01",
+    "flag_end": "2028-12-31",
+    "outcome_cutoff": "2029-12-31",
+    "minimum_campaigns": 25,
+    "preregistration_path": "reports/improvement/phase1/PREREGISTRATION.md",
+    "freeze_tag": "ml-prospective-freeze-2026",
+    "data_collected": false,
+    "mode": "baseline_replication",
+    "preregistration_sha256": "a462493785c582e03930d7ab81027a7aa221943006f19c06cad083ecd38b7469",
+    "protocol_sha256": "a8bc1e0374a3f3871678527ac260b13bebb0562217632200d2328e80ee2cc06d",
+    "freeze_tag_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "manifest_sha256": "03b3ea87031bcc1170f6366e7fe0421c4cfe35760244110aa37606871ec2fc36"
   }
 }

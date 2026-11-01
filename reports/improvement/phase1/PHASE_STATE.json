@@ -1,14 +1,22 @@
 {
-  "current_phase": 5,
+  "current_phase": 6,
   "completed_phases": [
     0,
     1,
     2,
     3,
-    4
+    4,
+    5
   ],
   "blocked_reason": null,
-  "last_commit": "b3aaaede66678096d0572413039956dad62ac668",
-  "updated_at": "2026-10-31T16:26:24.247264+00:00",
-  "last_commit_definition": "Verified source commit at time of phase record; the containing phase commit is resolved from git history."
+  "last_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+  "updated_at": "2026-11-01T07:28:05.540575+00:00",
+  "last_commit_definition": "Verified parent at phase record creation; containing phase commit is resolved from git history.",
+  "acceptance_amendments": [
+    "DEV-20261101-01"
+  ],
+  "human_only_phases": [
+    7,
+    8
+  ]
 }

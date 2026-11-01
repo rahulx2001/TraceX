@@ -1,0 +1,258 @@
+[
+  {
+    "name": "artifact_precheck",
+    "exact_command": ".venv-hackathon/bin/python -m scripts.prepare_minilm_onnx --verify-only",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:02:26.993267+00:00",
+    "ended_at": "2026-11-01T06:02:27.397964+00:00",
+    "exit_code": 0,
+    "observed_counts": null,
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/artifact_precheck_resume_20261101.txt",
+    "log_sha256": "1135e14cb63e4a9679fedec5d6664af0610c6412e1e5f936785e4248cae2278d"
+  },
+  {
+    "name": "defect_verify",
+    "exact_command": ".venv-hackathon/bin/python -m scripts.defect_verify",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:02:27.418123+00:00",
+    "ended_at": "2026-11-01T06:02:47.652779+00:00",
+    "exit_code": 0,
+    "observed_counts": null,
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/defect_verify_resume_20261101.txt",
+    "log_sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5"
+  },
+  {
+    "name": "pipeline",
+    "exact_command": ".venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/phase1/pipeline_resume_20261101.json",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:02:47.673595+00:00",
+    "ended_at": "2026-11-01T06:02:52.500273+00:00",
+    "exit_code": 0,
+    "observed_counts": null,
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/pipeline_resume_20261101.txt",
+    "log_sha256": "726a278c15de38ba2e5adb377c8c46238bce67f57c52cfc022ffbe0b4429e770",
+    "output_note": "Explicit new --out path preserves the frozen/default report."
+  },
+  {
+    "name": "targeted",
+    "exact_command": ".venv-hackathon/bin/python -m pytest -q tests/frontline/ai_layer/test_ml_improvement.py tests/frontline/ai_layer/test_prospective_seal.py tests/frontline/ai_layer/test_final_prospective_eval.py",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:02:52.521076+00:00",
+    "ended_at": "2026-11-01T06:03:17.567946+00:00",
+    "exit_code": 0,
+    "observed_counts": {
+      "passed": 46
+    },
+    "observed_summary": "46 passed in 23.98s",
+    "log": "reports/improvement/phase1/logs/targeted_resume_20261101.txt",
+    "log_sha256": "01c7bb670577521c990a72172c4acd4b72bee5ff4069acea1a1d288524bf9003"
+  },
+  {
+    "name": "dashboard_source",
+    "exact_command": ".venv-hackathon/bin/python -m scripts.ml_improvement_report check",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:03:17.588495+00:00",
+    "ended_at": "2026-11-01T06:03:22.900498+00:00",
+    "exit_code": 0,
+    "observed_counts": null,
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/dashboard_source_resume_20261101.txt",
+    "log_sha256": "4796b0565925d249544fb671d18bdfdea1fc3109c81e87d910248fa3d149449c"
+  },
+  {
+    "name": "dashboard_ui",
+    "exact_command": "node --test scripts/ml-evidence-ui.test.mjs",
+    "cwd": "dashboard",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded",
+      "ML_UI_ARTIFACT_DIR": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/phase1/logs/ui_resume_20261101"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:03:22.920356+00:00",
+    "ended_at": "2026-11-01T06:03:24.408962+00:00",
+    "exit_code": 1,
+    "observed_counts": {},
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/dashboard_ui_resume_20261101.txt",
+    "log_sha256": "84f16ebd5a9187378d0fcc1f606cd0bd57a0af3afb24d52761f7317cad568042"
+  },
+  {
+    "name": "dashboard_ui",
+    "exact_command": "node --test scripts/ml-evidence-ui.test.mjs",
+    "cwd": "dashboard",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded",
+      "ML_UI_ARTIFACT_DIR": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/phase1/logs/ui_resume_20261101"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:07:27.831835+00:00",
+    "ended_at": "2026-11-01T06:07:55.910013+00:00",
+    "exit_code": 0,
+    "observed_counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/dashboard_ui_resume_20261101_attempt2.txt",
+    "log_sha256": "6146c485427b3ac4ac206ce685fe801c5657c54651325b9e3927e31b31fe0e8c"
+  },
+  {
+    "name": "dashboard_build",
+    "exact_command": "npm run build",
+    "cwd": "dashboard",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:07:55.929320+00:00",
+    "ended_at": "2026-11-01T06:07:56.534868+00:00",
+    "exit_code": 0,
+    "observed_counts": null,
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/dashboard_build_resume_20261101.txt",
+    "log_sha256": "dad65700935e2b1ebd72850f828981b2bdda36511d16a2df7912eba60c4a3c06"
+  },
+  {
+    "name": "full_frontline",
+    "exact_command": ".venv-hackathon/bin/python -m pytest -q tests/frontline",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:07:56.554187+00:00",
+    "ended_at": "2026-11-01T06:55:46.858879+00:00",
+    "exit_code": 0,
+    "observed_counts": {
+      "passed": 1989
+    },
+    "observed_summary": "1989 passed, 3 warnings in 1110.56s (0:18:30)",
+    "log": "reports/improvement/phase1/logs/full_frontline_resume_20261101.txt",
+    "log_sha256": "4c33d8efcced878c8d498130ecec04c5c5a2c47332e0b266ba3e38869c78b3f0"
+  },
+  {
+    "name": "make_test",
+    "exact_command": "make test",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T06:55:46.884320+00:00",
+    "ended_at": "2026-11-01T07:17:24.053552+00:00",
+    "exit_code": 0,
+    "observed_counts": {
+      "passed": 1989
+    },
+    "observed_summary": "1989 passed, 3 warnings in 1109.68s (0:18:29)",
+    "log": "reports/improvement/phase1/logs/make_test_resume_20261101.txt",
+    "log_sha256": "60be4c7c45fa9574bcc647988ba42b9d348486f91b0992e49bc50ff998d24982"
+  },
+  {
+    "name": "make_eval",
+    "exact_command": "make -f /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/Makefile PY=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python eval-frontline",
+    "cwd": "reports/improvement/phase1/validation_runtime_resume_20261101",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded",
+      "PYTHONPATH": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T07:17:24.085979+00:00",
+    "ended_at": "2026-11-01T07:19:24.331779+00:00",
+    "exit_code": 0,
+    "observed_counts": {
+      "gates_passed": 23,
+      "gates_total": 23
+    },
+    "observed_summary": [
+      {
+        "passed": 12,
+        "total": 12
+      },
+      {
+        "passed": 11,
+        "total": 11
+      }
+    ],
+    "log": "reports/improvement/phase1/logs/make_eval_resume_20261101.txt",
+    "log_sha256": "b1b6e2572c5bb945fdf6592f3bfe1220aa8206bd3a6ed98cc696731c30c69b9b",
+    "isolation_note": "Same Makefile target from a dedicated runtime directory to preserve existing report files."
+  },
+  {
+    "name": "compileall",
+    "exact_command": "make compileall",
+    "cwd": ".",
+    "environment_overrides": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "provider_keys": "cleared; no credentials recorded"
+    },
+    "code_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "input_manifest": "reports/improvement/phase1/logs/inputs_resume_20261101.json",
+    "started_at": "2026-11-01T07:19:24.353490+00:00",
+    "ended_at": "2026-11-01T07:19:24.489621+00:00",
+    "exit_code": 0,
+    "observed_counts": null,
+    "observed_summary": null,
+    "log": "reports/improvement/phase1/logs/compileall_resume_20261101.txt",
+    "log_sha256": "4278e5a9736af337e17d300781de038a7ddfac56a69c309e3d27dc4d6fb01beb"
+  }
+]

@@ -17,9 +17,11 @@ export default function MlImprovementEvidence() {
   return <section className="card ml-improvement-evidence" style={{ padding: 20, marginBottom: 20 }} aria-labelledby="ml-evidence-title" data-testid="ml-improvement-evidence">
     <h2 id="ml-evidence-title">ML evidence and research targets</h2>
     <p role="note"><strong>{evidence.notice}</strong></p>
+    <p data-testid="prospective-custody"><strong>{evidence.custody_notice}</strong></p>
+    <p><strong>Prospective test: {evidence.untouched_test}.</strong> Frozen mode: baseline replication; this test estimates performance and cannot demonstrate improvement.</p>
     <p>Research ambition: {percent(evidence.targets.defect_precision)} mature-alert precision and {percent(evidence.targets.defect_recall)} campaign recall together. These targets have not been demonstrated.</p>
     <p>Human classification accuracy: <strong>Unavailable</strong> · {evidence.human_validation.labelled}/{evidence.human_validation.total} review rows labelled.</p>
-    <p>Untouched evaluation: {evidence.untouched_test}.</p>
+    <p>{evidence.historical_notice}</p>
     <div className="defect-table-scroll">
       <table className="table">
         <caption style={{ textAlign: "left" }}>Verified baseline evidence; each row retains its own denominator and evaluation period</caption>

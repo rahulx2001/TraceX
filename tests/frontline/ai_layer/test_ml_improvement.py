@@ -159,6 +159,26 @@ def test_dashboard_rejects_hand_edited_scores_and_promotion_claims():
     with pytest.raises(ValueError,match="unpromoted"):publisher.dashboard_payload(changed,path)
 
 
+def test_prospective_dashboard_preserves_scores_and_rejects_mutation(tmp_path):
+    from scripts import ml_improvement_report as publisher
+    import copy,json
+    path=publisher.ROOT/"reports/improvement/results.json"
+    base=publisher.dashboard_payload(json.loads(path.read_text()),path)
+    overlay=publisher.prospective_payload(base)
+    assert overlay["metrics"]==base["metrics"]
+    assert overlay["source_sha256"]==publisher.digest(path)
+    assert overlay["prospective_test"]["data_collected"] is False
+    assert overlay["prospective_test"]["mode"]=="baseline_replication"
+    assert "honor-system" in overlay["custody_notice"]
+    dest=tmp_path/"dashboard.json";dest.write_text(json.dumps(base))
+    changed=copy.deepcopy(overlay);changed["metrics"][0]["value"]=1.0
+    with pytest.raises(ValueError,match="verified scores"):
+        publisher.publish_metadata(dest,changed)
+    assert json.loads(dest.read_text())==base
+    publisher.publish_metadata(dest,overlay)
+    assert json.loads(dest.read_text())==overlay
+
+
 def test_prospective_development_counts_are_causal_and_reject_opened_rows():
     from src.eval.prospective_research import structured_rows
     c=complaints();before=structured_rows(c,end="2017-07-01")

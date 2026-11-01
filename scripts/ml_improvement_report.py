@@ -93,16 +93,49 @@ def dashboard_payload(result,path):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("phase",choices=["build","publish","check"])
+    p.add_argument("phase",choices=["build","publish","publish-prospective","check"])
     p.add_argument("--audit",default="reports/improvement/runs/audit_v1/results.json")
     args=p.parse_args();path=ROOT/"reports/improvement/results.json"
     if args.phase=="build":build(ROOT/args.audit);print(path);return
     expected=dashboard_payload(load(path),path);dest=ROOT/"dashboard/src/ai/mlImprovement.json"
+    if (ROOT/"reports/improvement/phase1/FREEZE_HASHES.json").exists():
+        expected=prospective_payload(expected)
     if args.phase=="check":
         if load(dest)!=expected:raise ValueError("Dashboard has drifted from verified results")
         print("Dashboard source hash and values verified")
+    elif args.phase=="publish-prospective":
+        publish_metadata(dest,expected);print(dest)
     else:
         write_once(dest,expected);print(dest)
+
+
+def prospective_payload(payload):
+    """Verified metadata overlay; frozen numerical evidence is never regenerated."""
+    from src.eval.prospective_io import verify_freeze,manifest_chain,PHASE
+    frozen,hashes,tag=verify_freeze(ROOT)
+    protocol=load(ROOT/PHASE/"protocol.json")
+    manifest,chain=manifest_chain(ROOT,"HEAD")
+    if manifest["status"]!="reserved" or manifest["snapshots"] or manifest.get("final_analysis"):
+        raise ValueError("This publication is only for a reservation with no collected data")
+    if frozen["mode"]!="baseline_replication":raise ValueError("Expected verified baseline replication")
+    w=protocol["prospective"]
+    return payload | dict(
+        status="prospective_reserved_no_improvement_demonstrated",
+        notice="Prospective 2027-2028 test reserved. No improved score has been demonstrated. Human semantic validation remains pending.",
+        custody_notice="Procedural custody is tamper-evident, not enforced access control. No-peeking is honor-system; public outcomes can be re-fetched.",
+        historical_notice="Retrospective, model-labelled, not production-validated",
+        untouched_test=f"reserved: {w['flag_start']} to {w['flag_end']}; outcome cutoff {w['outcome_cutoff']}; minimum {w['min_campaigns']} campaigns; no data collected yet",
+        prospective_test=dict(status="reserved",flag_start=w["flag_start"],flag_end=w["flag_end"],outcome_cutoff=w["outcome_cutoff"],minimum_campaigns=w["min_campaigns"],
+                             preregistration_path=PHASE+"/PREREGISTRATION.md",freeze_tag=frozen["freeze_tag"],data_collected=False,mode=frozen["mode"],
+                             preregistration_sha256=hashes["preregistration_sha256"],protocol_sha256=hashes["protocol_sha256"],freeze_tag_commit=tag,manifest_sha256=chain[-1]["sha256"]))
+
+
+def publish_metadata(dest,expected):
+    from src.eval.prospective_io import atomic_json
+    existing=load(dest)
+    for field in ["metrics","targets","human_validation","source","source_sha256","development_ceiling"]:
+        if existing[field]!=expected[field]:raise ValueError("Metadata publication would change verified scores or source")
+    atomic_json(dest,expected)
 
 
 if __name__=="__main__":main()
