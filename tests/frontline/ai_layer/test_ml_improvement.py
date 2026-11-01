@@ -146,7 +146,11 @@ def test_monitoring_volume_includes_zero_report_days():
     assert m["alerts_per_week"]["value"]==0
 
 
-def test_dashboard_rejects_hand_edited_scores_and_promotion_claims():
+def test_dashboard_rejects_hand_edited_scores_and_promotion_claims(monkeypatch):
+    # The legacy publisher prepends optional research dependencies at import.
+    # Keep that mutation local so later frozen-runtime checks see the real venv.
+    import sys
+    monkeypatch.setattr(sys, "path", sys.path.copy())
     from scripts import ml_improvement_report as publisher
     import copy,json
     path=publisher.ROOT/"reports/improvement/results.json"
@@ -159,7 +163,9 @@ def test_dashboard_rejects_hand_edited_scores_and_promotion_claims():
     with pytest.raises(ValueError,match="unpromoted"):publisher.dashboard_payload(changed,path)
 
 
-def test_prospective_dashboard_preserves_scores_and_rejects_mutation(tmp_path):
+def test_prospective_dashboard_preserves_scores_and_rejects_mutation(tmp_path, monkeypatch):
+    import sys
+    monkeypatch.setattr(sys, "path", sys.path.copy())
     from scripts import ml_improvement_report as publisher
     import copy,json
     path=publisher.ROOT/"reports/improvement/results.json"

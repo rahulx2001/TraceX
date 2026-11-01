@@ -145,3 +145,20 @@ windows, sample floor, metrics and denominators remain unchanged. No real
 - Scope of closure: engineering handover after successful software checks;
   future human Phases 7–8 remain unexecuted. No merge or promotion. Both freezes,
   the dashboard scores, `main` and the original checkout must remain unchanged.
+
+## DEV-20261101-07 — isolate dashboard-test dependency imports
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, through the request to complete and test the
+  project; routine correction to test isolation within that scope.
+- File affected: `tests/frontline/ai_layer/test_ml_improvement.py` only, plus
+  this append-only record. The test file is outside both frozen inventories.
+- Reason: importing the legacy report publisher prepends `.ml-deps` to
+  `sys.path`. Two dashboard tests did not restore it, so later prospective
+  runtime checks saw NumPy 2.3.4 metadata instead of the registered 2.5.4.
+- Change: each affected test uses a monkeypatch-managed copy of `sys.path`;
+  teardown restores the previous path. No gate, assertion or version check is
+  weakened. Preserve the initial failing run and the verification after repair.
+- Effect on claims: test isolation only. No production/frozen code, dependency
+  installation, model, threshold, denominator, score or prospective protocol
+  changes. No improved-model or completed-human-validation claim.
