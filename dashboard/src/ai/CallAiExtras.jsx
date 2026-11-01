@@ -70,12 +70,12 @@ function SpeechVoiceSelect({ lang }) {
   );
 }
 
-export function SpeechLangSelect({ showVoice = false } = {}) {
+export function SpeechLangSelect({ showVoice = false, compact = false } = {}) {
   const [lang, setLang] = useState(aiSpeechLang() || "en-US");
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <label className="small muted" style={{ display: "inline-flex", gap: 6, alignItems: "center" }}>
-        Report recognition language
+    <div className={compact ? "voice-language" : undefined} style={compact ? undefined : { display: "flex", flexDirection: "column", gap: 8 }}>
+      <label className={compact ? "voice-field-label" : "small muted"} style={compact ? undefined : { display: "inline-flex", gap: 6, alignItems: "center" }}>
+        {compact ? "Report language" : "Report recognition language"}
         <select
           value={lang}
           aria-label="Speech recognition language"
@@ -88,7 +88,7 @@ export function SpeechLangSelect({ showVoice = false } = {}) {
           <option value="en-IN">English (India)</option>
           <option value="hi-IN">हिन्दी (India)</option>
         </select>
-        <span>saved for browser/server recognition when the report starts</span>
+        {!compact && <span>saved for browser/server recognition when the report starts</span>}
       </label>
       {showVoice && <SpeechVoiceSelect lang={lang} />}
     </div>

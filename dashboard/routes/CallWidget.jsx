@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { apiHeaders, sendWsAuth } from "../src/apiAuth.js";
 import { openCases } from "../src/ui/opsActions.js";
-import { IconHangup, IconMic, IconSpeaker } from "../src/icons.jsx";
+import { IconFolder, IconGear, IconHangup, IconMic, IconShield, IconSpeaker } from "../src/icons.jsx";
 import {
   BARGE_IN_GRACE_MS,
   CALL_STATE,
@@ -2109,11 +2109,12 @@ export default function CallWidget() {
   }
 
   return (
-    <div className="voice-page page-enter" data-testid="voice-report">
+    <div className={"voice-page page-enter" + (inCall ? " report-active" : "")} data-testid="voice-report">
       <header className="page-header">
         <div>
+          <div className="voice-eyebrow"><span aria-hidden="true" />OWNER INTAKE <span className="voice-eyebrow-divider">/</span> QUALITY ENGINEERING</div>
           <h1>Voice report</h1>
-          <p className="sub">Describe the owner's experience, review what was captured, then pass the report to an engineer for investigation.</p>
+          <p className="sub">Every investigation starts with a clear account of what happened.</p>
         </div>
         <div className="page-actions voice-controls" aria-label="Report controls">
           {canStart ? <>
@@ -2131,29 +2132,35 @@ export default function CallWidget() {
         </div>
       </header>
 
-      {canStart && <section className="voice-start-options" aria-label="Before starting">
-        <SpeechLangSelect />
-        <p>Type instead does not request a microphone. Chrome is the tested UI browser; real speech quality on devices remains unmeasured. Replies use the installed script, currently English; Hindi and Hinglish recognition need real-audio validation.</p>
-        <button type="button" disabled={preflight.busy} onClick={checkMicrophone}>{preflight.busy ? "Checking microphone…" : "Check microphone"}</button>
-        {preflight.note && <p role="status">{preflight.note}</p>}
-        <details><summary>Interruption settings</summary><label><input type="checkbox" checked={automaticInterrupt} onChange={e => setAutomaticInterrupt(e.target.checked)} />Automatic speech interruption (experimental; headphones recommended)</label>
-          <p>Default: select Interrupt playback, then speak. Optional server PCM capture keeps 450 ms before an automatic interruption. Browser recognition cannot recover words spoken while it was paused.</p></details>
-      </section>}
-      {!textOnly && <section className="voice-start-options" aria-label="Speech capture settings">
-        <label>Pause before sending <select aria-label="Pause before sending" value={pauseMs} onChange={e => {
+      <section className="voice-setup" aria-label="Report setup">
+        {canStart ? <SpeechLangSelect compact /> : <div className="voice-session-language"><span className="voice-field-label">Report language</span><strong>{reportLocaleRef.current === "hi-IN" ? "हिन्दी (India)" : reportLocaleRef.current === "en-IN" ? "English (India)" : "English"}</strong></div>}
+        {!textOnly && <label className="voice-field-label">Pause before sending <select aria-label="Pause before sending" value={pauseMs} onChange={e => {
           const value = speechPause(e.target.value); setPauseMs(value); pauseMsRef.current = value;
           if (stateRef.current === CALL_STATE.LISTENING) scheduleSpeechDecision();
         }}>
           <option value={2200}>Allow pauses · 2.2 seconds</option>
           <option value={1400}>Short answers · 1.4 seconds</option>
           <option value={0}>Only when I select Finish speaking</option>
-        </select></label>
-        <p>Use your headset microphone and select the language you will speak. Choose manual finish if words are cut off; the recognized draft stays visible until you send it.</p>
-      </section>}
+        </select></label>}
+        <div className="voice-setup-actions">
+          <span className="voice-language-note">Replies in English</span>
+          {canStart && <button type="button" className="ghost voice-mic-check" disabled={preflight.busy} onClick={checkMicrophone}><IconMic />{preflight.busy ? "Checking microphone…" : "Check microphone"}</button>}
+          <details className="voice-options">
+            <summary><IconGear />Voice options</summary>
+            <div className="voice-options-body">
+              <p>Choose the language you will speak and check your headset input. Use manual finish if words are cut off; the recognized draft stays visible until you send it. Type instead keeps the microphone off.</p>
+              <details><summary>Interruption settings</summary><label><input type="checkbox" checked={automaticInterrupt} disabled={inCall} onChange={e => setAutomaticInterrupt(e.target.checked)} />Automatic speech interruption (experimental; headphones recommended)</label>
+                <p>Select Interrupt playback, then speak. Optional server PCM capture keeps 450 ms before an automatic interruption. Browser recognition cannot recover words spoken while it was paused.</p></details>
+              <p>Chrome is the tested UI browser. Real speech quality on devices remains unmeasured; Hindi and Hinglish recognition need real-audio validation.</p>
+            </div>
+          </details>
+        </div>
+        {preflight.note && <p className="voice-preflight-note" role="status">{preflight.note}</p>}
+      </section>
       {(preflight.busy || (inCall && !textOnly && micGranted)) && <section className="voice-input-meter" aria-label="Microphone input">
         <label>Input level <meter aria-label="Microphone input level" min="0" max="0.25" value={Math.min(.25, inputLevel)} /></label>
         <span>{muted ? "Muted" : inputLevel < .003 ? "Very quiet / no input" : "Microphone samples arriving"}</span>
-        <p className="voice-note">If quiet speech is not detected, finish manually or type. The meter is input feedback, not transcription-quality evidence.</p>
+        <span className="voice-note">Input level only · finish manually or type if speech is missed.</span>
       </section>}
       {error && <div className="banner banner-error" role="alert">{error}{" "}<button type="button" className="ghost" onClick={() => setError(null)}>Dismiss</button></div>}
       {info && !error && <div className="banner banner-ok" role="status">{info}{" "}<button type="button" className="ghost" onClick={() => setInfo(null)}>Dismiss</button></div>}
@@ -2169,30 +2176,37 @@ export default function CallWidget() {
 
       <div className="call-layout">
         <section className="call-stage" aria-labelledby="report-transcript-title">
-          <div className="voice-status" role="status">
+          <div className="voice-conversation-header">
+            <div><span className="voice-section-kicker">CONVERSATION</span><h2 id="report-transcript-title">Report transcript</h2></div>
+            <div className={"voice-status " + (state === CALL_STATE.LISTENING && !muted ? "is-listening" : "")} role="status">
             <span className={"status-pip " + (wsStatus === "live" ? "ok" : "")} aria-hidden="true" />
             <strong>{muted && inCall && !needsText ? "Microphone muted" : callStateLabel(state, { speakPhase, textOnly: needsText })}</strong>
             {inCall && <span>{Math.floor(callSecs / 60)}:{String(callSecs % 60).padStart(2, "0")}</span>}
             {humanControl && inCall && <span>Specialist joined</span>}
+            </div>
           </div>
-          <h2 id="report-transcript-title">Report transcript</h2>
-          {inCall && !needsText && <button type="button" className="ghost" disabled={muted || state !== CALL_STATE.LISTENING} onClick={finishSpeaking}>Finish speaking</button>}
           <div className="transcript" role="log" aria-label="Report transcript" tabIndex={0}
             ref={node => { transcriptScrollRef.current = node; transcriptEndRef.current = node; }} aria-live="polite" aria-relevant="additions">
-            {transcript.length === 0 && <div className="empty-state"><p className="empty-state-text">
-              {canStart ? "Your conversation will appear here. Start a voice report or choose Type instead above." : "Opening the report and waiting for the first question…"}
-            </p></div>}
+            {transcript.length === 0 && <div className="voice-empty">
+              <div className="voice-empty-mark" aria-hidden="true"><IconMic /><div className="voice-empty-wave">{[10, 20, 30, 17, 36, 24, 12].map((height, i) => <span key={i} style={{ height }} />)}</div></div>
+              <span className="voice-section-kicker">YOUR WORDS. A CLEARER START.</span>
+              <h3>{canStart ? "Tell us what happened." : "Opening your report…"}</h3>
+              <p>{canStart ? "Describe the symptoms in your own words. Your conversation and captured details will stay here for review." : "Connecting and waiting for the first question."}</p>
+              {canStart && <div className="voice-empty-hint"><span aria-hidden="true">↳</span> Start with what changed, when, and which vehicle.</div>}
+            </div>}
             {transcript.map(t => <div key={t.id || `${t.speaker}-${t.text.slice(0, 12)}`} className={"turn " + t.speaker + (t.interim ? " interim" : "")}>
-              <div className="who">{t.speaker === "customer" ? "Owner report" : t.speaker === "supervisor" ? "Specialist" : "Assistant"}{t.interim ? " · being recognized" : ""}</div>
-              <div>{t.text}</div>
+              <div className="voice-turn-avatar" aria-hidden="true">{t.speaker === "customer" ? "Y" : t.speaker === "supervisor" ? "S" : <IconMic />}</div>
+              <div className="voice-turn-content"><div className="who">{t.speaker === "customer" ? "Owner report" : t.speaker === "supervisor" ? "Specialist" : "Assistant"}{t.interim ? " · draft, not sent" : ""}</div>
+                <div>{t.text}</div></div>
             </div>)}
           </div>
+          {inCall && !needsText && <div className="voice-finish-row"><span>{state === CALL_STATE.LISTENING ? pauseMs === 0 ? "Take your time. Select Finish speaking to send." : "Listening. Your answer sends after the selected pause." : "You can type a reply or correction below."}</span><button type="button" className="ghost" disabled={muted || state !== CALL_STATE.LISTENING} onClick={finishSpeaking}><IconMic />Finish speaking</button></div>}
           <form className="call-compose" onSubmit={submitTextFallback}>
             <input ref={composeRef} aria-label="Type a reply or correction" placeholder={canStart ? "Choose a start option above" : "Type a reply or correction — Enter to send"}
               value={textFallback} onChange={e => setTextFallback(e.target.value)} disabled={canStart || state === CALL_STATE.CONNECTING} autoComplete="off" />
             <button type="submit" className="primary" disabled={!inCall || state === CALL_STATE.CONNECTING || !textFallback.trim()}>Send</button>
           </form>
-          {inCall && <p className="voice-note">Leaving this page or refreshing ends the report. A temporary connection drop on this page can reconnect.</p>}
+          <div className="voice-conversation-footer"><IconShield /><p className="voice-note">{inCall ? "Leaving or refreshing ends this report. Stored turns remain available for review." : "Captured facts stay provisional until reviewed. Investigation and action require a separate review."}</p></div>
 
           {handoff && inCall && <div className="banner banner-ok" role="status">
             {humanControl ? "Specialist joined." : handoffStatus === "queued" ? "Specialist request queued. No pickup time is guaranteed." : handoffStatus === "unavailable" ? "Specialist request unavailable. You can retry from Next step." : "A specialist can review this report. Request support to join the queue."}{" "}
@@ -2219,27 +2233,31 @@ export default function CallWidget() {
         </section>
 
         <aside className="stack" aria-label="Report details">
-          <section className="panel">
+          <section className="panel voice-brief">
+            <div className="voice-brief-heading"><span className="voice-section-kicker">REPORT BRIEF</span><IconFolder /></div>
             <h2>What we understood</h2>
-            <p className="voice-note">Captured details are provisional. Correct them through the conversation to preserve the original report.</p>
-            {!captured.length ? <p>No details captured yet.</p> : captured.map(s => <div className="voice-fact" key={s.key || s.label}>
+            <p className="voice-note">Captured from the conversation. Review and correct each detail.</p>
+            {(slots.reported_problems || []).length > 0 && <div aria-label="Reported problems"><h3>Reported problems</h3>{slots.reported_problems.map(problem => <details key={problem.problem_id}><summary>{problem.system} · {problem.polarity}</summary><p>{problem.symptom}</p><blockquote>{problem.quote}</blockquote></details>)}</div>}
+            {!captured.length ? <div className="voice-brief-empty"><div className="voice-document-mark" aria-hidden="true"><span /><span /><span /></div><p>No details captured yet.</p><span>Vehicle and symptom details appear as the report takes shape.</span></div> : captured.map(s => <div className="voice-fact" key={s.key || s.label}>
               <span>{s.label}</span><strong>{String(s.value)}</strong>
               {inCall && <button type="button" className="ghost" disabled={state === CALL_STATE.CONNECTING} aria-label={`Correct ${s.label}`} onClick={() => correctDetail(s.label)}>Correct</button>}
             </div>)}
-            {progress.total > 0 && <p>{progress.filled} of {progress.total} requested details captured</p>}
+            {progress.total > 0 && <div className="voice-progress"><span>{progress.filled} of {progress.total} requested details captured</span><progress aria-label="Requested details captured" value={progress.filled} max={progress.total} /></div>}
           </section>
-          <section className="panel">
-            <h2>Still needed</h2>
-            {missing.length ? <ul>{missing.map(s => <li key={s.key || s.label}>{s.label}</li>)}</ul> : <p>{inCall ? "Review the transcript for missing or incorrect details." : "The report's questions will identify what is needed."}</p>}
+          <section className="panel voice-needed">
+            <div className="voice-panel-title"><h2>Still needed</h2>{missing.length > 0 && <span className="voice-count">{missing.length}</span>}</div>
+            {missing.length ? <ul>{missing.map(s => <li key={s.key || s.label}>{s.label}</li>)}</ul> : <p>{inCall ? "Review the transcript for missing or incorrect details." : "The first questions establish safety and vehicle details."}</p>}
           </section>
-          <section className="panel">
-            <h2>Next step</h2><p>{nextStep}</p>
+          <section className="panel voice-next">
+            <div className="voice-panel-title"><h2>Next step</h2><span aria-hidden="true">↗</span></div><p>{nextStep}</p>
             {inCall && <div className="voice-secondary-actions">
               <button type="button" className={driving ? "primary" : "ghost"} onClick={() => setDriving(d => !d)} aria-pressed={driving}>{driving ? "Driving reported" : "I'm driving"}</button>
               <button type="button" className="ghost" disabled={humanControl} onClick={requestHuman}>{humanControl ? "Specialist joined" : "Request specialist"}</button>
             </div>}
           </section>
-          <details className="panel voice-diagnostics">
+        </aside>
+      </div>
+          <details className="voice-diagnostics">
             <summary>Voice settings and diagnostics</summary>
             <p>These describe the speech connection, not a new Meta investigation.</p>
             <div className="kvs">
@@ -2261,8 +2279,6 @@ export default function CallWidget() {
             <label>Region for consent <input aria-label="Region for consent" value={region} onChange={e => setRegion(e.target.value)} placeholder="CA" /></label>
             <CallAiExtras interactionId={interactionId} caseId={ended?.case_id} showLanguage={false} serverVoice={serverVoice} textOnly={textOnly} />
           </details>
-        </aside>
-      </div>
     </div>
   );
 }

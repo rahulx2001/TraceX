@@ -1,0 +1,25 @@
+{
+  "step": "browser",
+  "started_at": "2026-11-01T18:19:15.025176+00:00",
+  "finished_at": "2026-11-01T18:20:38.164474+00:00",
+  "duration_seconds": 83.138,
+  "cwd": "dashboard/scripts",
+  "command": "node --input-type=module",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": "browser_harness_native.mjs",
+  "note": "Original browser harness and imported ML evidence assertions run via stdin from dashboard/scripts. Only build configLoader is changed to native in memory; this is not a bare node --test invocation.",
+  "exit_code": 0,
+  "log": "logs/browser.txt",
+  "log_sha256": "47834c12d174aee5be46cf966938cca599fca48492b49f778a3b48dd5fa5ccb2",
+  "observed_pytest_counts": [],
+  "code_commit": "1285749551cbebd767eb331f0c201e33541776e6",
+  "completion_commit": "1285749551cbebd767eb331f0c201e33541776e6",
+  "runner_sha256": "086ed2e2e3b714b10083ea5bb8e2af03f1113eff1dcc84443fb01052854dc29e"
+}

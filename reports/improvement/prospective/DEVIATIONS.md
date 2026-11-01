@@ -210,3 +210,28 @@ windows, sample floor, metrics and denominators remain unchanged. No real
 - Effect on claims: demo usability only. Fictional software-test reviews do
   not add human labels. Scores, models, data splits and both prospective freeze
   sets are unchanged. No merge, promotion or improved-score claim.
+
+## DEV-20261101-10 — restore the owner's voice-page design
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, explicitly selecting “This is the changed
+  layout; restore my earlier design.”
+- Files affected: `dashboard/routes/CallWidget.jsx`,
+  `dashboard/routes/voice-report.css`, `dashboard/src/ai/CallAiExtras.jsx`,
+  `reports/improvement/voice_design_restore_v1/`, and this log.
+- Cause: the local demo served the worktree's older voice presentation. The
+  original checkout already held the owner's uncommitted visual redesign;
+  neither the sign-in removal nor the runtime-status fix had changed the
+  worktree's voice component or stylesheet.
+- Scope: bring the requested voice presentation into the demo worktree:
+  compact setup, conversation cards, report brief, green theme accents and
+  responsive styling. The original checkout is read only and remains unchanged.
+  Preserve the working call runtime, source handoff and account-free demo.
+- Exclusions: do not import unrelated session/auth changes or the unfinished
+  model-review API feature from the original checkout.
+- Validation: production build, existing real API/browser report and evidence
+  flow, account-free navigation, speech-control fixtures, contrast and reflow.
+  Screenshots and exact outcomes are recorded in the restoration report.
+- Effect on claims: presentation only; no change to frozen models, research
+  scores, labels, prospective data, `main`, or either freeze tag. No paid model
+  calls, merge or promotion.
