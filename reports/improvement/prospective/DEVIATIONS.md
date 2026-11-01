@@ -123,3 +123,25 @@ windows, sample floor, metrics and denominators remain unchanged. No real
   overlap requirements remain unchanged; no review protocol is waived.
 - Integrity: preserve both freeze tags/artifact sets, the original 300-row
   blank sample, all real score values, `main` and the original checkout.
+
+## DEV-20261101-06 — supplied synthetic pack replay and software handover
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, through the request to use the saved synthetic
+  cases and project closeout to complete the project.
+- Files affected: new `scripts/synthetic_project_smoke.py`, its tests and
+  `reports/improvement/final_handover/`; this append-only log.
+- Reason: exercise the saved 300 fixtures through the unchanged feature
+  builder, baseline detector and registered logistic inference, then verify
+  the software handover. The fixture pack and its earlier closeout are retained.
+- Method: inject the agent-authored expected labels, bypassing text
+  classification. Assign a fixed fictional 2019 schedule solely to exercise
+  prior-count features and alert episodes. No fitting, calibration, threshold
+  selection, recall outcomes or synthetic accuracy computation is performed.
+- Effect on claims: software execution evidence only, with zero additional
+  human labels or independent campaigns. This does not establish semantic
+  accuracy, model improvement or completed prospective validation. The
+  original Mode B freeze and separate fixed comparison remain unchanged.
+- Scope of closure: engineering handover after successful software checks;
+  future human Phases 7–8 remain unexecuted. No merge or promotion. Both freezes,
+  the dashboard scores, `main` and the original checkout must remain unchanged.
