@@ -50,3 +50,14 @@ been collected or inspected in this work.
   matching rules, windows, denominators, thresholds and frozen artifacts are
   unchanged. Validation counts describe engineering tests, not ML accuracy.
   The final analysis must run code from the immutable freeze tag.
+
+
+### DEV-20261101-02 completion — Phase 6
+
+Date: 2026-11-01. Approver: Rahul Kumar Singh via the Phase 6 instruction.
+Phase 5 was committed as `3a50479260598d48891aa883006d6fcbf61226e5`. Phase 6 adds the human runbook and blank
+attestation template, appends links to `data/prospective/README.md`, and updates
+phase/verification metadata. Five shell examples and their embedded Python
+snippets were syntax-checked without execution. Frozen files/tag, source
+windows, sample floor, metrics and denominators remain unchanged. No real
+2027+ data was accessed. No future attestation was made on the human's behalf.

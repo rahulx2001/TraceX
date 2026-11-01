@@ -833,3 +833,10 @@ to review the demo and operate the future test. Pre-production requirements:
 independent human labels, the prospective result, monitoring, security review,
 and separate explicit human approval. No merge may rewrite frozen commits or
 move `ml-prospective-freeze-2026`.
+
+## Final engineering topology
+
+Phase 5 commit `3a50479260598d48891aa883006d6fcbf61226e5` is 30 commits ahead of unchanged main.
+The containing Phase 6 documentation commit adds one, yielding 31.
+The 17 unrelated readiness commits remain included. The freeze tag still
+resolves to `e96338df3cce113a182b0cf1be5bf760abc00b31`. No merge or promotion occurred.

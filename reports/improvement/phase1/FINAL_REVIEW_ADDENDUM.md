@@ -36,3 +36,7 @@ report inventory match; baseline score values are unchanged.
 No merge or promotion occurred. Tiny support, missing human labels, public
 outcomes, delayed follow-up and future classifier availability remain limits.
 See `README.md` for baseline denominators/CIs and full metric provenance.
+
+## Phase 6 documentation completion
+
+The human runbook, attestation template and deviations documentation are complete. Phases 0–6 are complete under the stated amendment. Phases 7–8 remain future human-only work; no prospective collection, final analysis or merge occurred.

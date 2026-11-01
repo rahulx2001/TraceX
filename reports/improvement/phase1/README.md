@@ -111,3 +111,11 @@ No merge, push, tag movement, or production promotion occurred. See
 `merge_readiness.md`, `FINAL_REVIEW_ADDENDUM.md`, `claims_addendum.md`, and the
 Phase 6 [`human runbook`](../prospective/RUNBOOK.md). Phases 7–8 are human-only;
 they are not executed or marked complete by this engineering record.
+
+## Phase 6 completion
+
+The human operations runbook and attestation template are complete; shell
+examples were syntax-checked without execution. Engineering/documentation
+Phases 0–6 are complete under DEV-20261101-01. Phase 5 commit: `3a50479260598d48891aa883006d6fcbf61226e5`.
+Phases 7–8 remain human-only and are not executed or marked complete. See
+`phase6_verification.json` and `PHASE_STATE.json`.
