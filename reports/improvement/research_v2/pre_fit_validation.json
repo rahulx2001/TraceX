@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-01T08:34:46.320975+00:00",
+  "code_status": "pre-fit recipe; no real-data fitting run yet",
+  "command": "env FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= .venv-hackathon/bin/python -B -m pytest -q tests/frontline/ai_layer/test_ml_candidate_research.py tests/frontline/ai_layer/test_ml_improvement.py tests/frontline/ai_layer/test_prospective_seal.py tests/frontline/ai_layer/test_final_prospective_eval.py",
+  "exit_code": 0,
+  "observed_summary": "63 passed in 23.77s",
+  "passed": 63,
+  "log": "reports/improvement/research_v2/logs/targeted_tests.txt",
+  "log_sha256": "07dd766245ece1eac91f6be94ac7fc2477cd56a3b866503b89c476fe02d4096d",
+  "tested_files": {
+    "scripts/ml_candidate_research.py": "21bd2b467e8d543f72fece08a2da82b89a17074b54b7fc2bc01c9c8e37a83086",
+    "tests/frontline/ai_layer/test_ml_candidate_research.py": "55e89ac8cfd04b6ba175d6b79a60152eb287dc316f4efce11651955ae422214e",
+    "reports/improvement/research_v2/PROTOCOL.json": "2fc6ede2afb422b1a04fcf6bc0da6e2d8192b8c9151a874a7b3f99f791a46b67"
+  },
+  "tests_use_synthetic_fixtures": true,
+  "performance_validation": false
+}

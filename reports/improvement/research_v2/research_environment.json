@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-01T08:34:46.290760+00:00",
+  "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "pyarrow": "22.0.0",
+    "pytest": "8.4.2"
+  },
+  "fitting": "existing fixed numpy logistic implementation",
+  "sklearn_used": false,
+  "scipy_used": false,
+  "venv_modified": false,
+  "new_dependencies_installed": false,
+  "pip_freeze_command": ".venv-hackathon/bin/python -B -m pip freeze --all",
+  "pip_freeze_exit_code": 0,
+  "pip_freeze_sha256": "5a38a83520a9ddc12eabcbe5fc6b2b4d7185404a9452873aca60b368adca57b5",
+  "bytecode_writes_disabled": true
+}

@@ -61,3 +61,25 @@ phase/verification metadata. Five shell examples and their embedded Python
 snippets were syntax-checked without execution. Frozen files/tag, source
 windows, sample floor, metrics and denominators remain unchanged. No real
 2027+ data was accessed. No future attestation was made on the human's behalf.
+
+## DEV-20261101-03 — separate unvalidated trained prototype
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, via the follow-up request for better modeling
+  work ("please make it best"). This authorizes exploratory work within the
+  existing data limits, not a change to the frozen selection or test.
+- Reason: both original fit folds lacked mature outcomes; the full 2015–2020
+  development period supports fitting one small model, without a permitted
+  untouched validation set. Record that distinction and a fixed recipe.
+- Files affected: new `scripts/ml_candidate_research.py`, its tests,
+  `reports/improvement/research_v2/`, a new immutable Run directory and an
+  append-only `reports/improvement/experiments.csv` row.
+- Effect on claims: trained but unvalidated prototype only. No training score
+  is presented as validation. Frozen artifacts/tag, original decision/results,
+  dashboard scores and human-only Phase 7 state remain unchanged. The prototype
+  is excluded from the existing Mode B prospective test and from production.
+- Data boundary: use only the two pinned prepared pre-2021 files; do not rerun
+  preparation or access opened-period/prospective outcomes. The historical
+  preparation limitation remains recorded in DEV-20261101-01.
+- Human labels: the ID-only review queue is blank. Review remains deferred;
+  human semantic validation remains 0/300.
