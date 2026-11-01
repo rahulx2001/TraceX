@@ -1,0 +1,51 @@
+{
+  "updated_at": "2026-11-01T10:24:53.243392+00:00",
+  "study_id": "fixed-logistic-comparison-v1",
+  "point_2": {
+    "status": "awaiting_real_campaigns_and_followup",
+    "historical_source_campaigns": 36,
+    "additional_campaigns_in_pinned_source": 0,
+    "new_campaigns_acquired": 0,
+    "minimum_evaluable_campaigns": 25,
+    "preferred_campaigns": 30,
+    "flag_window": [
+      "2027-01-01",
+      "2028-12-31"
+    ],
+    "outcome_cutoff": "2029-12-31",
+    "completion_claim": false
+  },
+  "point_3": {
+    "status": "locally_preregistered_and_frozen",
+    "registration_commit": "5d0a44b5f1d82a84e76267f7a209b9a03511a1df",
+    "freeze_tag": "ml-logistic-comparison-freeze-2026-v1",
+    "pinned_files_verified": 13,
+    "original_freeze_verified": true,
+    "external_registry_or_timestamp": false
+  },
+  "synthetic_validation": {
+    "passed": 60,
+    "log": "reports/improvement/comparison_v1/logs/targeted_tests_final.txt"
+  },
+  "real_prospective_data_collected": false,
+  "real_final_analysis_executed": false,
+  "human_only_future_steps": [
+    "collect snapshots",
+    "verify sufficient campaign support and complete follow-up",
+    "provide pinned-version classification artifacts",
+    "commit untouched attestation and study authorization",
+    "run each registered final analysis once after cutoff"
+  ],
+  "original_study": {
+    "mode": "baseline_replication",
+    "tag": "ml-prospective-freeze-2026",
+    "unchanged": true
+  },
+  "no_improved_score_demonstrated": true,
+  "human_semantic_labels": {
+    "labelled": 0,
+    "total": 300
+  },
+  "main_unchanged": true,
+  "note": "The two protocols share one future cohort; they do not provide two independent replications. No merge, promotion or tag push occurred."
+}
