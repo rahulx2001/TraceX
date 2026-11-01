@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-01T10:39:25.715238+00:00",
+  "hash_command": "shasum -a 256",
+  "files": {
+    "reports/improvement/synthetic_review_v1/PROJECT_CLOSEOUT.md": "450ae2e75e25ccc216906afc32eae415c4e8f2bdea030b812539d7616a84f21e",
+    "reports/improvement/synthetic_review_v1/README.md": "ce9f03256e115ff4246f9f51e63040a190af1b1a13d74ff76a35d120d21c7d5a",
+    "reports/improvement/synthetic_review_v1/fixtures/manifest.json": "9a9f67cdcc656f7e56209a94f8105595e2e2358643e03b426b109ae48b06bb1e",
+    "reports/improvement/synthetic_review_v1/fixtures/software_checks.json": "0206762859fe5293b49c5000521c5d42bda5e070d7d833e41f2dbe15b8198af9",
+    "reports/improvement/synthetic_review_v1/fixtures/synthetic_cases.jsonl": "b61f887acc850867456526cdb3c8a912b2e4551feada772c4c3686af99fb144f",
+    "reports/improvement/synthetic_review_v1/logs/generate.txt": "0206762859fe5293b49c5000521c5d42bda5e070d7d833e41f2dbe15b8198af9",
+    "reports/improvement/synthetic_review_v1/logs/targeted_tests.txt": "df91b95196762222f3e0c4567d68b53e94849d5205f72378136bee97070c48d3",
+    "reports/improvement/synthetic_review_v1/validation.json": "965e16d013093fb0293861d253e93ddd0bc7708ee94675368e2d70241f7fe633",
+    "scripts/synthetic_label_checks.py": "c0b2f6dfbba25da16b3a514a6f2043bbc547cdd60fc3c1e1c154c863f0ec7a78",
+    "tests/frontline/ai_layer/test_synthetic_label_checks.py": "c2299cc73ae58ba0867c1837f571a53f9bae284b6b4fb74c63093f07146b5aef"
+  },
+  "note": "Excludes this index itself."
+}

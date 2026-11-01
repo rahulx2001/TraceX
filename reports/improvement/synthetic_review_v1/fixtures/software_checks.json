@@ -1,0 +1,34 @@
+{
+  "status": "software_checks_passed",
+  "fixture_records": 300,
+  "underlying_scenario_families": 12,
+  "valid_fixture_label_ids": 300,
+  "explicit_synthetic_markers": 300,
+  "template_variant_counts": {
+    "confirmed_canister": 25,
+    "confirmed_diesel_detachment": 25,
+    "confirmed_electrical": 25,
+    "confirmed_hose_leak": 25,
+    "confirmed_pump": 25,
+    "confirmed_tank_leak": 25,
+    "negated_pump_failure": 25,
+    "odor_without_source": 25,
+    "recall_mention_only": 25,
+    "unresolved_alternatives": 25,
+    "vague_stall": 25,
+    "wrong_component": 25
+  },
+  "parser_and_denominator_control": "passed; parser accepts registered labels and missing predictions retain denominator mass",
+  "model_classifier_called": false,
+  "model_predictions_generated": false,
+  "semantic_correctness_verified": false,
+  "human_accuracy": null,
+  "human_validation": {
+    "labelled": 0,
+    "total": 300
+  },
+  "is_candidate_result": false,
+  "confidence_interval": null,
+  "limitation": "300 template variants from 12 authored stories are not 300 independent observations. Expected labels are agent-authored expectations, not verified truth.",
+  "notice": "SYNTHETIC SOFTWARE FIXTURES \u2014 not real complaints, human labels, model accuracy, or prospective evidence."
+}
