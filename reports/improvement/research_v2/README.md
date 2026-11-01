@@ -7,6 +7,9 @@ This track fits one small logistic model using the already prepared, hash-pinned
 replace the immutable baseline, amend the original selection result, or enter
 the existing Mode B prospective test.
 
+The completed run, observed support counts, numerical checks and limitations
+are recorded in [RESULTS.md](RESULTS.md) and [RESULTS.json](RESULTS.json).
+
 The support audit found zero mature training rows in both registered folds.
 The full development period has 12 mature candidate rows, including 4 positive
 rows. That meets the existing fitting minimum but leaves no untouched permitted
