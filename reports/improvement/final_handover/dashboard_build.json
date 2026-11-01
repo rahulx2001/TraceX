@@ -1,0 +1,24 @@
+{
+  "step": "dashboard_build",
+  "started_at": "2026-11-01T11:08:40.664635+00:00",
+  "finished_at": "2026-11-01T11:08:41.246280+00:00",
+  "duration_seconds": 0.582,
+  "cwd": "dashboard",
+  "command": "npm run build -- --configLoader native",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": null,
+  "note": "Native config loading avoids .vite-temp writes through shared node_modules.",
+  "exit_code": 0,
+  "log": "logs/dashboard_build.txt",
+  "log_sha256": "123fce904b167b9a6e972bc78afede89c8a062c421ea80294f6b5842d9bdfc43",
+  "observed_pytest_counts": [],
+  "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+  "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+}

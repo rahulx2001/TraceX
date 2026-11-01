@@ -1,0 +1,24 @@
+{
+  "step": "frozen_replay",
+  "started_at": "2026-11-01T11:08:20.231103+00:00",
+  "finished_at": "2026-11-01T11:08:40.610620+00:00",
+  "duration_seconds": 20.379,
+  "cwd": ".",
+  "command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python -B -m scripts.defect_verify",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": null,
+  "note": null,
+  "exit_code": 0,
+  "log": "logs/frozen_replay.txt",
+  "log_sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5",
+  "observed_pytest_counts": [],
+  "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+  "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+}

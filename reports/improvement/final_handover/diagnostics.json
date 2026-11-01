@@ -1,0 +1,32 @@
+[
+  {
+    "name": "comparison_diagnosis",
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= META_API_KEY= .venv-hackathon/bin/python -B -m pytest -q tests/frontline/ai_layer/test_prospective_comparison.py -x --tb=short",
+    "exit_code": 0,
+    "observed_passed": 15,
+    "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+    "log": "reports/improvement/final_handover/logs/comparison_diagnosis.txt",
+    "log_sha256": "eb6ce1ac7dc9115ec011ee914c3351553d3c47021285dcffaf7a96ce5b803cd3",
+    "note": "Read-only diagnosis of suite ordering"
+  },
+  {
+    "name": "full_collection_diagnosis",
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= META_API_KEY= .venv-hackathon/bin/python -B -m pytest -q tests/frontline -k test_refuses_before_reading_outcomes -x --tb=short",
+    "exit_code": 0,
+    "observed_passed": 6,
+    "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+    "log": "reports/improvement/final_handover/logs/full_collection_diagnosis.txt",
+    "log_sha256": "d5e52cce2ea236f1b2201aad16ee4582fb87b25abb211ab135865a6619354a9e",
+    "note": "Read-only diagnosis of suite ordering"
+  },
+  {
+    "name": "isolation_fix_tests",
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= META_API_KEY= .venv-hackathon/bin/python -B -m pytest -q tests/frontline/ai_layer/test_ml_improvement.py tests/frontline/ai_layer/test_prospective_comparison.py tests/frontline/ai_layer/test_synthetic_project_smoke.py --tb=short",
+    "exit_code": 0,
+    "observed_passed": 42,
+    "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+    "log": "reports/improvement/final_handover/logs/isolation_fix_tests.txt",
+    "log_sha256": "da20ca992464e568a757b7e36e10eaa50708602ad6cc13a4cb8bad6761953e2d",
+    "note": "Fix sequence executed before commit; a08010c identifies the exact subsequently committed test changes."
+  }
+]

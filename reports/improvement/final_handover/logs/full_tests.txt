@@ -1,0 +1,66 @@
+.venv-hackathon/bin/python -m scripts.prepare_minilm_onnx --verify-only || .venv-hackathon/bin/python -m scripts.prepare_minilm_onnx
+Pinned MiniLM artifact verified
+test data root: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T//tracex-pytest-4TUD7f
+........................................................................ [  3%]
+........................................................................ [  7%]
+........................................................................ [ 10%]
+................................................................FF.FFFFF [ 14%]
+FFF..................................................................... [ 17%]
+...........................F............................................ [ 21%]
+........................................................................ [ 24%]
+........................................................................ [ 28%]
+........................................................................ [ 31%]
+........................................................................ [ 35%]
+........................................................................ [ 38%]
+........................................................................ [ 42%]
+........................................................................ [ 45%]
+........................................................................ [ 49%]
+........................................................................ [ 52%]
+........................................................................ [ 56%]
+........................................................................ [ 60%]
+........................................................................ [ 63%]
+........................................................................ [ 67%]
+........................................................................ [ 70%]
+........................................................................ [ 74%]
+........................................................................ [ 77%]
+..............................
+=================================== FAILURES ===================================
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:59: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:59: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:59: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:59: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:79: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:79: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:79: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/tests/frontline/ai_layer/test_prospective_comparison.py:79: AssertionError: Regex pattern did not match.
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/prospective_comparison.py:51: ValueError: Runtime differs from registered Python/dependency versions
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/prospective_comparison.py:51: ValueError: Runtime differs from registered Python/dependency versions
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/prospective_comparison.py:51: ValueError: Runtime differs from registered Python/dependency versions
+=============================== warnings summary ===============================
+../v2_ai_rca_tool/.venv-hackathon/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/.venv-hackathon/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/frontline/ai_layer/test_campaign_investigator.py::test_api_routes_auth_packets_and_csp
+tests/frontline/ai_layer/test_safety_campaigns.py::test_api_permissions_validation_and_demo
+  /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/.venv-hackathon/lib/python3.12/site-packages/starlette/_exception_handler.py:59: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    response = await handler(conn, exc)  # type: ignore[arg-type]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_refuses_before_reading_outcomes[early-Before outcome]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_refuses_before_reading_outcomes[dirty-Dirty]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_refuses_before_reading_outcomes[marker-marker]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_refuses_before_reading_outcomes[clock_override-synthetic]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_committed_custody_and_study_gates[authorization-authorization]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_committed_custody_and_study_gates[attestation-attestation]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_committed_custody_and_study_gates[chain-chain]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_committed_custody_and_study_gates[coverage-follow-up]
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_insufficient_sample_never_loads_labels_or_computes_metrics
+FAILED tests/frontline/ai_layer/test_prospective_comparison.py::test_synthetic_final_comparison_writes_all_outputs_and_reserves_one_run
+FAILED tests/frontline/ai_layer/test_synthetic_project_smoke.py::test_saved_cases_execute_frozen_detector_without_claiming_accuracy
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KeyboardInterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/src/data/warehouse.py:81: KeyboardInterrupt
+(to show a full traceback on KeyboardInterrupt use --full-trace)
+11 failed, 1603 passed, 3 warnings in 868.16s (0:14:28)
+make: *** [test] Error 2

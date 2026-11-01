@@ -1,0 +1,304 @@
+{
+  "created_at": "2026-11-01T12:17:07.695062+00:00",
+  "status": "passed_after_test_isolation_fix",
+  "commands": [
+    {
+      "step": "replay",
+      "started_at": "2026-11-01T11:08:13.261429+00:00",
+      "finished_at": "2026-11-01T11:08:20.176688+00:00",
+      "duration_seconds": 6.915,
+      "cwd": ".",
+      "command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python -B -m scripts.synthetic_project_smoke --out /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/final_handover/replay",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": null,
+      "note": null,
+      "exit_code": 0,
+      "log": "logs/replay.txt",
+      "log_sha256": "7e086e8b48c776a57eefb028b2e29c92dcbeda8b298a19033033d55e6e903b06",
+      "observed_pytest_counts": [],
+      "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+      "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+    },
+    {
+      "step": "frozen_replay",
+      "started_at": "2026-11-01T11:08:20.231103+00:00",
+      "finished_at": "2026-11-01T11:08:40.610620+00:00",
+      "duration_seconds": 20.379,
+      "cwd": ".",
+      "command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python -B -m scripts.defect_verify",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": null,
+      "note": null,
+      "exit_code": 0,
+      "log": "logs/frozen_replay.txt",
+      "log_sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5",
+      "observed_pytest_counts": [],
+      "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+      "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+    },
+    {
+      "step": "dashboard_build",
+      "started_at": "2026-11-01T11:56:47.896097+00:00",
+      "finished_at": "2026-11-01T11:56:48.661109+00:00",
+      "duration_seconds": 0.765,
+      "cwd": "dashboard",
+      "command": "npm run build -- --configLoader native",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": null,
+      "note": "Native config loading avoids .vite-temp writes through shared node_modules.",
+      "exit_code": 0,
+      "log": "logs/dashboard_build.txt",
+      "log_sha256": "b867696b585493798f19b482b35d6b390392158eeb944152dc15129335236367",
+      "observed_pytest_counts": [],
+      "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "completion_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "runner_sha256": "086ed2e2e3b714b10083ea5bb8e2af03f1113eff1dcc84443fb01052854dc29e"
+    },
+    {
+      "step": "full_tests",
+      "started_at": "2026-11-01T11:56:48.737348+00:00",
+      "finished_at": "2026-11-01T12:16:00.327469+00:00",
+      "duration_seconds": 1136.362,
+      "cwd": ".",
+      "command": "make test -o dashboard-build",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": null,
+      "note": "Uses the separately verified native-loader build; all make test Python setup and tests execute.",
+      "exit_code": 0,
+      "log": "logs/full_tests.txt",
+      "log_sha256": "1c5897438859dff569d186e8f31f470d76347295021ff98fb6ec92b257a21375",
+      "observed_pytest_counts": [
+        "2039 passed"
+      ],
+      "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "completion_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "runner_sha256": "086ed2e2e3b714b10083ea5bb8e2af03f1113eff1dcc84443fb01052854dc29e"
+    },
+    {
+      "step": "eval_frontline",
+      "started_at": "2026-11-01T11:17:32.783621+00:00",
+      "finished_at": "2026-11-01T11:19:44.964312+00:00",
+      "duration_seconds": 132.179,
+      "cwd": ".",
+      "command": "make eval-frontline",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": null,
+      "note": null,
+      "exit_code": 0,
+      "log": "logs/eval_frontline.txt",
+      "log_sha256": "38c566fc7ae781c7b918b47699c2f281c56ae554881ef91c58d56c94ce8a3fdc",
+      "observed_pytest_counts": [],
+      "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+      "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128",
+      "completion_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "metadata_corrections": [
+        "Initial runner captured HEAD at completion. Start commit is restored here from the recorded launch sequence; test-only commit a08010c occurred during this command. Raw log is unchanged.",
+        "This is not pytest; the initial generic parser falsely matched the phrase unconfirmed=3 failed=none. Gate counts are taken from the actual final report."
+      ],
+      "observed_gate_counts": {
+        "automotive_nhtsa": {
+          "passed": 12,
+          "total": 12
+        },
+        "finance_cfpb": {
+          "passed": 11,
+          "total": 11
+        }
+      }
+    },
+    {
+      "step": "dashboard_source",
+      "started_at": "2026-11-01T11:19:45.019010+00:00",
+      "finished_at": "2026-11-01T11:19:50.389569+00:00",
+      "duration_seconds": 5.371,
+      "cwd": ".",
+      "command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python -B -m scripts.ml_improvement_report check",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": null,
+      "note": null,
+      "exit_code": 0,
+      "log": "logs/dashboard_source.txt",
+      "log_sha256": "4796b0565925d249544fb671d18bdfdea1fc3109c81e87d910248fa3d149449c",
+      "observed_pytest_counts": [],
+      "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+    },
+    {
+      "step": "pipeline",
+      "started_at": "2026-11-01T11:30:54.385692+00:00",
+      "finished_at": "2026-11-01T11:30:59.838802+00:00",
+      "duration_seconds": 5.453,
+      "cwd": ".",
+      "command": ".venv-hackathon/bin/python -B -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/final_handover/pipeline_report.json",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "exit_code": 0,
+      "log": "logs/pipeline_report_check.txt",
+      "log_sha256": "229cce6dab764d550ec67d31189c2f0e5cd56012649572dc4133c28bc2609ca4",
+      "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "observed_pytest_counts": [],
+      "note": "Re-recorded with separate output and command-metadata filenames; the first runner accidentally reused pipeline.json for both. Original stdout is preserved in logs/pipeline.txt. Uses the existing 76 diagnostic examples, not the supplied 300 records."
+    },
+    {
+      "step": "compileall",
+      "started_at": "2026-11-01T11:19:56.113197+00:00",
+      "finished_at": "2026-11-01T11:19:57.261338+00:00",
+      "duration_seconds": 1.148,
+      "cwd": ".",
+      "command": "make compileall",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": null,
+      "note": null,
+      "exit_code": 0,
+      "log": "logs/compileall.txt",
+      "log_sha256": "4278e5a9736af337e17d300781de038a7ddfac56a69c309e3d27dc4d6fb01beb",
+      "observed_pytest_counts": [],
+      "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128",
+      "bytecode_destination": "Disposable external PYTHONPYCACHEPREFIX; cleaned after command"
+    },
+    {
+      "step": "browser",
+      "started_at": "2026-11-01T11:09:54.519312+00:00",
+      "finished_at": "2026-11-01T11:10:23.890683+00:00",
+      "duration_seconds": 29.371,
+      "cwd": "dashboard/scripts",
+      "command": "node --input-type=module",
+      "environment": {
+        "FRONTLINE_TEST_ISOLATION": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OPENAI_API_KEY": "",
+        "ANTHROPIC_API_KEY": "",
+        "BASETEN_API_KEY": "",
+        "META_API_KEY": ""
+      },
+      "stdin_artifact": "browser_harness_native.mjs",
+      "note": "Original browser harness and imported ML evidence assertions run via stdin from dashboard/scripts. Only build configLoader is changed to native in memory; this is not a bare node --test invocation.",
+      "exit_code": 0,
+      "log": "logs/browser.txt",
+      "log_sha256": "d658a7fa4df0b7602d0e4b0a5de48bd661f51607b278b7cabfc426399b8df223",
+      "observed_pytest_counts": [],
+      "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+      "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+    }
+  ],
+  "full_suite": {
+    "passed": 2039,
+    "failed": 0,
+    "command": "make test -o dashboard-build",
+    "native_dashboard_build_verified_first": true
+  },
+  "functional_gates": {
+    "passed": 23,
+    "total": 23
+  },
+  "frozen_replay": {
+    "exact": true,
+    "log_sha256": "bc6ab4172d7d3e1908825605a81b7b7e904456c3c9ee266403d0d68e3a5629e5"
+  },
+  "resolved_failures": [
+    {
+      "record": "full_tests.json",
+      "reason": "Dashboard-test sys.path leak caused 11 runtime-metadata failures; run interrupted after diagnosis.",
+      "fix_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+      "verified_by": "full_unrestricted/full_tests.json"
+    },
+    {
+      "record": "full_retry/full_tests.json",
+      "reason": "2038 passed; one localhost socket bind denied by sandbox.",
+      "verified_by": "full_unrestricted/full_tests.json"
+    },
+    {
+      "record": "browser.json",
+      "reason": "Sandbox prevented Chromium startup.",
+      "verified_by": "browser_retry/browser.json"
+    }
+  ],
+  "integrity": {
+    "created_at": "2026-11-01T12:17:07.602227+00:00",
+    "status": "verified",
+    "checks": {
+      "main_unchanged": true,
+      "original_checkout_head_unchanged": true,
+      "original_checkout_status_unchanged": true,
+      "worktree_branch": true,
+      "comparison_tag_unchanged": true,
+      "prospective_reserved_without_snapshots": true,
+      "collection_log_empty": true,
+      "baseline_replication_unchanged": true
+    },
+    "hashes_verified": {
+      "original_freeze_files": 339,
+      "comparison_freeze_files": 13,
+      "protected_artifacts": 4,
+      "development_input_hashes": 2,
+      "preserved_files": 3,
+      "research_v2/ARTIFACT_HASHES.json": 21,
+      "synthetic_review_v1/HASHES.json": 10,
+      "original_reports": 819,
+      "original_changed_files": 59
+    },
+    "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+    "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+    "original_freeze_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "comparison_freeze_commit": "5d0a44b5f1d82a84e76267f7a209b9a03511a1df",
+    "worktree_status": "## ml-score-improvement\n?? reports/improvement/final_handover/\n?? reports/qubot/eval/eval_2026-11-01.md",
+    "note": "Only task-owned additions may be uncommitted during report creation; final commit is checked separately.",
+    "discrepancies": []
+  }
+}

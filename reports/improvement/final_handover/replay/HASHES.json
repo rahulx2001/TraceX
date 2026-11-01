@@ -1,0 +1,10 @@
+{
+  "command": "shasum -a 256",
+  "files": {
+    "baseline_alerts.jsonl": "479e0aa94bed7e349410899e029ab1e971e0e0e9097db763e31e23728fdffdcd",
+    "config.json": "450ce881dc0b14825a4c787a076dbd632df19d5cf7451b46a35613347e2a7b12",
+    "feature_scores.jsonl": "197931c52c280f6c9d34ae0a2a02393e518a82dae1e6dbfc913d593d592b031a",
+    "logistic_alerts.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "replay.json": "7e086e8b48c776a57eefb028b2e29c92dcbeda8b298a19033033d55e6e903b06"
+  }
+}

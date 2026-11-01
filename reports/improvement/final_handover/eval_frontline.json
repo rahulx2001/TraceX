@@ -1,0 +1,39 @@
+{
+  "step": "eval_frontline",
+  "started_at": "2026-11-01T11:17:32.783621+00:00",
+  "finished_at": "2026-11-01T11:19:44.964312+00:00",
+  "duration_seconds": 132.179,
+  "cwd": ".",
+  "command": "make eval-frontline",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": null,
+  "note": null,
+  "exit_code": 0,
+  "log": "logs/eval_frontline.txt",
+  "log_sha256": "38c566fc7ae781c7b918b47699c2f281c56ae554881ef91c58d56c94ce8a3fdc",
+  "observed_pytest_counts": [],
+  "code_commit": "824ff97a9551543faadc21579fed3e4be117328b",
+  "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128",
+  "completion_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "metadata_corrections": [
+    "Initial runner captured HEAD at completion. Start commit is restored here from the recorded launch sequence; test-only commit a08010c occurred during this command. Raw log is unchanged.",
+    "This is not pytest; the initial generic parser falsely matched the phrase unconfirmed=3 failed=none. Gate counts are taken from the actual final report."
+  ],
+  "observed_gate_counts": {
+    "automotive_nhtsa": {
+      "passed": 12,
+      "total": 12
+    },
+    "finance_cfpb": {
+      "passed": 11,
+      "total": 11
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "split": "synthetic_software_test",
+  "start": "2019-01-01",
+  "end": "2019-12-31",
+  "first_day": "2019-01-07",
+  "weeks_by_fictional_model_year": {
+    "2015": 0,
+    "2016": 26,
+    "2017": 27,
+    "2018": 28,
+    "2019": 29
+  },
+  "schedule_reason": "An authored isolated observation followed by a weekly burst exercises count features and episode filtering; dates are fictional, not outcomes.",
+  "label_source": "agent_authored_fixture.expected_label injected directly as label_id",
+  "fitting": false,
+  "calibration": false,
+  "selection": false,
+  "campaign_outcomes": false,
+  "performance_metrics": false
+}

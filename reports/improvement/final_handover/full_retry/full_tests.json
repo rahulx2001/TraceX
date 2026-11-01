@@ -1,0 +1,28 @@
+{
+  "step": "full_tests",
+  "started_at": "2026-11-01T11:23:38.388973+00:00",
+  "finished_at": "2026-11-01T11:47:16.504945+00:00",
+  "duration_seconds": 1125.307,
+  "cwd": ".",
+  "command": "make test -o dashboard-build",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": null,
+  "note": "Uses the separately verified native-loader build; all make test Python setup and tests execute.",
+  "exit_code": 2,
+  "log": "logs/full_tests.txt",
+  "log_sha256": "f3c0996db5fe8fa7045adbd650666423372ed53738907521e79ffaa222abe621",
+  "observed_pytest_counts": [
+    "1 failed",
+    "2038 passed"
+  ],
+  "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "completion_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "runner_sha256": "79c963f224a81236f316a7185130e02ad8cffa5b0cb6e3f972fc932eee6ae56d"
+}
