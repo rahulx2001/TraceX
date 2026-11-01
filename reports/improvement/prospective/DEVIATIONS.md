@@ -162,3 +162,26 @@ windows, sample floor, metrics and denominators remain unchanged. No real
 - Effect on claims: test isolation only. No production/frozen code, dependency
   installation, model, threshold, denominator, score or prospective protocol
   changes. No improved-model or completed-human-validation claim.
+
+## DEV-20261101-08 — remove account entry from the local demo
+
+- Date: 2026-11-01.
+- Approver: Rahul Kumar Singh, explicitly requesting removal of the demo
+  sign-in page.
+- Files affected: `dashboard/src/App.jsx`, the dashboard browser regression
+  harness, `reports/improvement/demo_entry_v1/`, and this append-only log.
+- Behavior: when server health explicitly reports `auth_required: false`,
+  sign-in/sign-up bookmarks redirect into the demo, internal destinations are
+  retained, and desktop/mobile account controls are hidden. Account forms do
+  not mount while the demo mode is being established.
+- Boundary: authentication-required deployments retain their sign-in flow;
+  server permissions and supervisor authorization are unchanged. No credentials
+  or sessions are fabricated, and no frozen analysis/model file is edited.
+- Validation: fresh-page redirects, absence of account forms/controls,
+  mobile Report navigation, authenticated access and rejection paths, existing
+  ML evidence/voice workflow checks, build, and seven auth-wiring tests.
+- Effect on claims: presentation only. Baseline scores and both prospective
+  freezes remain unchanged; no new accuracy or human-validation evidence.
+- Snapshot note: the earlier handover hash inventory remains the record of
+  commit `52bb4d4`. This log has intentionally gained this entry since that
+  snapshot; its earlier bytes remain verifiable at that commit.

@@ -143,14 +143,38 @@ try {
   await navigation.getByRole("button", { name: "Judge start →", exact: true }).click();
   console.log("PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.");
   await local.page.screenshot({ path: path.join(visuals, "judge-entry.png"), fullPage: true });
-  await local.page.goto(`${open.base}/ui/#signin`);
-  await expect(local.page.getByTestId("signin-page")).toBeVisible();
-  await expect(local.page.getByRole("button", { name: /Have a supervisor session/ })).toBeVisible();
-  await local.page.getByRole("button", { name: "Open local console →", exact: true }).click();
-  await expect(local.page.getByRole("heading", { name: "From an owner report to a reviewable investigation" })).toBeVisible();
+  // Old account bookmarks must enter the demo without mounting account forms.
+  await local.page.addInitScript(() => {
+    window.__accountPageMounted = false;
+    new MutationObserver(() => {
+      if (document.querySelector('[data-testid="signin-page"]')) window.__accountPageMounted = true;
+    }).observe(document, { childList: true, subtree: true });
+  });
+  for (const [index, route] of ["signin", "signup", "signin?next=signup", "signup?next=https%3A%2F%2Fexample.invalid"].entries()) {
+    // A different query forces a fresh document and tests the initial health check.
+    const entry = `${open.base}/ui/?entry=${index}`;
+    await local.page.goto(`${entry}#${route}`);
+    await expect(local.page).toHaveURL(`${entry}#demo`);
+    await expect(local.page.getByRole("heading", { name: "From an owner report to a reviewable investigation" })).toBeVisible();
+    await expect(local.page.getByTestId("signin-page")).toHaveCount(0);
+    await expect(local.page.getByRole("button", { name: "Sign in", exact: true })).toHaveCount(0);
+    await expect(local.page.locator(".account-wrap")).toHaveCount(0);
+    assert.equal(await local.page.evaluate(() => window.__accountPageMounted), false, "demo must not flash account forms");
+  }
+  await local.page.goto(`${open.base}/ui/#signin?next=defect-level`);
+  await expect(local.page).toHaveURL(`${open.base}/ui/#defect-level`);
+  await expect(local.page.getByTestId("ml-improvement-evidence")).toBeVisible();
+  await local.page.setViewportSize({ width: 390, height: 844 });
+  await local.page.getByRole("button", { name: "Toggle navigation", exact: true }).click();
+  await expect(local.page.getByRole("navigation", { name: "Mobile navigation", exact: true })).toBeVisible();
+  await expect(local.page.getByRole("button", { name: "Sign in", exact: true })).toHaveCount(0);
+  await local.page.getByRole("navigation", { name: "Mobile navigation", exact: true })
+    .getByRole("button", { name: "Report", exact: true }).click();
+  await expect(local.page.getByRole("button", { name: "Start voice report", exact: true })).toBeVisible();
+  await local.page.setViewportSize({ width: 1280, height: 720 });
   const principal = await (await local.context.request.get(`${open.base}/api/frontline/auth/verify`)).json();
   assert.equal(principal.role, "agent", "open local access must not grant supervisor authority");
-  console.log("PASS: open mode needs no credentials, still renders sign-in, and retains agent authority.");
+  console.log("PASS: local demo skips sign-in/signup, preserves internal destinations, hides desktop/mobile account controls and retains agent authority.");
   const { runMlEvidenceUiTest } = await import("./ml-evidence-ui.test.mjs");
   await runMlEvidenceUiTest({ page: local.page, base: open.base });
   const { runVoiceUiTest } = await import("./voice-ui.test.mjs");

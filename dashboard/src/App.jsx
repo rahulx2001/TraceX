@@ -180,6 +180,7 @@ function Shell() {
   // Open local servers need no credential. Authority still comes from the
   // backend; authenticated servers validate a session or operator API key.
   const demoOpenConsole = health?.auth_required === false;
+  const authenticationRequired = health?.auth_required === true;
   const [collapsed, setCollapsed] = useLocalStorage("fl.sidebar.collapsed", false);
   const [theme, setTheme] = useLocalStorage("fl.theme", "dark");
   const [density, setDensity] = useLocalStorage("fl.density", "comfortable");
@@ -241,10 +242,18 @@ function Shell() {
   }, [loadHealth, route]);
 
   useEffect(() => {
-    // #signin stays reachable even with an open console: it is the only
-    // place a supervisor session can be pasted, and supervisor-only actions
-    // (Analyze evidence, approvals) 403 without it. Never bounce it away.
-    if (route === "signin" || route === "signup" || route === "guide") return;
+    // A keyless demo has no account-entry step. Replace stale account links
+    // so Back cannot trap the visitor in a sign-in/redirect loop.
+    if (route === "signin" || route === "signup") {
+      if (demoOpenConsole) {
+        const requested = parseLocationHash().params.get("next") || "demo";
+        const next = /^[a-z][a-z0-9/-]*(?:\?[^#]*)?$/.test(requested)
+          && !/^(signin|signup)(?:[/?]|$)/.test(requested) ? requested : "demo";
+        window.location.replace(`#${next}`);
+      }
+      return;
+    }
+    if (route === "guide") return;
     if (route === "main") {
       setRoute("command");
       return;
@@ -531,8 +540,10 @@ function Shell() {
   const statusTone = healthError ? "danger" : health?.status === "ok" ? "ok" : "warn";
   const statusText = healthError ? "unreachable" : health?.status || "connecting";
 
-  // Never flash protected content to anonymous visitors while checking.
-  if (gate !== "allowed") {
+  // Resolve server mode before mounting account forms; the local demo never
+  // flashes sign-in while its health check or account-link redirect completes.
+  const accountRoute = active.id === "signin" || active.id === "signup";
+  if (gate !== "allowed" || (accountRoute && (demoOpenConsole || (!health && !healthError)))) {
     return (
       <div className="gate-loading" role="status" aria-label="Checking access">
         <div className="gate-spinner" aria-hidden="true" />
@@ -649,7 +660,7 @@ function Shell() {
         {navList}
 
         <div className="sidebar-foot">
-          <AccountSignIn />
+          {authenticationRequired && <AccountSignIn />}
           <button
             type="button"
             className="ghost collapse-btn"
@@ -691,7 +702,7 @@ function Shell() {
           <div className="topbar-right">
             {/* [AI-LAYER] AI mode badge (enhanced | deterministic) */}
             {route !== "signin" && route !== "signup" && <AiModeBadge />}
-            {route !== "signin" && (
+            {authenticationRequired && route !== "signin" && (
               me?.signed_in ? (
                 <span className="topbar-who" title={me.subject || ""}>
                   {me.subject}
@@ -780,7 +791,7 @@ function Shell() {
                 >
                   <span className="nav-text">Operator guide</span>
                 </button>
-                {!demoOpenConsole && !me?.signed_in && (
+                {authenticationRequired && !me?.signed_in && (
                   <button type="button" className="nav-item" onClick={() => setRoute("signin")}>
                     <span className="nav-text">Sign in</span>
                   </button>
