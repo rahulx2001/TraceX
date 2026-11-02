@@ -86,8 +86,31 @@ def phrase_followup_draft(
     )
 
 
+def phrase_operator_note(
+    *,
+    case_id: str,
+    draft: str,
+) -> NarrationResult:
+    """Polish a grounded operator-note draft. Fallback is the draft itself.
+
+    The result is only ever shown to an operator, who posts it as a human
+    note; it is never stored as an operator note by this call.
+    """
+    clean = sanitize_prompt_variable(redact_pii((draft or "")[:600]), tag_name="note_draft")
+    return narrate(
+        site="followup_draft",
+        system=(
+            "You polish a short operator note for a pilot team (≤80 words). "
+            "Keep every fact and ID from the draft. No new facts, remedies, or promises."
+        ),
+        user=f"case_id={case_id}\n{clean}",
+        fallback=draft,
+    )
+
+
 __all__ = [
     "phrase_intake_question",
     "phrase_investigation_brief",
     "phrase_followup_draft",
+    "phrase_operator_note",
 ]

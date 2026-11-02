@@ -238,12 +238,22 @@ def ai_status() -> dict[str, Any]:
     """Public, secret-free status for GET /api/ai/status and the UI badge."""
     enabled = meta_enabled()
     from src.ai_layer.live_proof import verified_features
+    try:
+        from src.ai.provider import llm_enabled as _tier2_enabled
+
+        tier2 = bool(_tier2_enabled())
+    except Exception:
+        tier2 = False
     base_host = _host(api_base())
     return {
         "mode": ai_mode(),
         "provider": backend() if enabled else None,
         "key_configured": bool(active_api_key()),
         "layer_switch": layer_switch(),
+        # Tier-2 narration (follow-up opener, operator-note draft polish) has
+        # its own switch: key alone leaves it deterministic until
+        # FRONTLINE_LLM_ENABLED=1. Surfaced so the UI cannot imply it is live.
+        "narration": {"enabled": tier2, "provider": backend() if tier2 else None},
         "api_host": base_host,
         "api_host_allowed": base_host in allowed_hosts(),
         "models": {

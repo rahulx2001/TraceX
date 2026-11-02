@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-02T16:44:42",
+  "status": "satisfied_prespecification_verified",
+  "accuracy_scoring_allowed": true,
+  "reviewers": [
+    "Rahul",
+    "Rakesh Ranjan"
+  ],
+  "primary_labels": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "second_labels": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "paired_rows": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "minimum_overlap_required": 50,
+  "gate_overlap_scope": "All 300 frozen IDs paired; preregistered 50-ID packet verified as subset.",
+  "prespecification": {
+    "packet_id": "round1-second-review-v1",
+    "packet_ids_sha256": "5ecd3068715efe04ff3d234b9d537d2c675050ee33f956eb87f85eca9f6fe511",
+    "registered_at": "2026-11-02T11:01:42+00:00",
+    "second_review_exported_at": "2026-11-02T16:26:56.954Z",
+    "registered_before_export": true,
+    "export_preregistration_hash_matches_packet": true,
+    "note": "Export packet_id matches preregistered packet; preregistration_hash equals sha256 of packet file (verified at build)."
+  },
+  "interpretation": "Two distinct named reviewers; disagreement is material (not identical arrays), so independence is statistically supported. Process blinding remains attested, not observed."
+}

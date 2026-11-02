@@ -232,6 +232,22 @@ class CaseAgent(Agent):
         ctx.case_id = case_id
         ctx.investigation_id = investigation_id
 
+        # Auto-fill fault codes the customer already supplied in conversation
+        # (marker or cue context, e.g. "mechanic scanned P0300"). Previously
+        # these only appeared if an operator typed them into the drawer.
+        try:
+            from src.ai_layer.fault_codes import capture_from_texts
+
+            capture_from_texts(
+                [t.get("text", "") for t in ctx.turns if t.get("speaker") == "customer"]
+                + [ctx.slots.get("description") or ""],
+                case_id=case_id,
+                interaction_id=ctx.interaction_id,
+                complaint_category=ctx.slots.get("category"),
+            )
+        except Exception:
+            pass
+
         # Grounded remedy/next-step when advisory matched (close the loop)
         try:
             from src.frontline.remedy import offer_and_ledger
@@ -441,10 +457,11 @@ class CaseAgent(Agent):
         e2 = ctx.slots.get("entity_2", "")
         e3 = ctx.slots.get("entity_3", "")
         cat = ctx.slots.get("category", "")
-        subject = f"Your support case — {e2} {e3} ({cat})"
+        vehicle = " ".join(str(v).strip() for v in (e1, e2, e3) if v and str(v).strip())
+        subject = f"Your support case — {vehicle or 'vehicle details to confirm'}"
 
         # Optional LLM opener (capped); body stays template-grounded.
-        opener = f"Thanks for contacting support about your {e1} {e2} {e3}."
+        opener = f"Thanks for contacting support about {vehicle or 'the issue you reported'}."
         try:
             from src.ai.narration import phrase_followup_draft
 
@@ -468,6 +485,9 @@ class CaseAgent(Agent):
             f"We've logged case {ctx.case_id or '<pending>'} for the {cat or 'issue'} you reported.",
             "",
         ]
+        missing_vehicle = [name for name, value in (("year", e1), ("make", e2), ("model", e3)) if not value]
+        if missing_vehicle:
+            lines.extend([f"Please confirm the vehicle {' and '.join(missing_vehicle)} so we can check the correct records.", ""])
         if ctx.advisory_match:
             adv = ctx.advisory_match
             lines.append(
@@ -495,6 +515,15 @@ class CaseAgent(Agent):
                 lines.append("This issue is under active investigation.")
             lines.append("")
         lines.append("A specialist will follow up within one business day.")
+        lines.append("")
+        # Ask for the two evidence types intake cannot collect on a voice
+        # turn, so the case does not sit with empty photo/fault-code panels.
+        lines.append(
+            "If available, please reply with any dashboard fault "
+            "codes (for example C0035 or P0300) shown by a scan tool, and a "
+            "photo of the affected part if you can take one safely. Do not "
+            "drive to take a photo."
+        )
         lines.append("")
         lines.append("Reference IDs (for your records): " + ", ".join(evidence_ids))
         return "\n".join(lines)

@@ -69,6 +69,28 @@ def test_validate_outbound_url_blocks_private_and_metadata(monkeypatch):
     assert ok.startswith("https://")
 
 
+def test_dns_failure_fails_closed_without_proxy_but_passes_with_proxy(monkeypatch):
+    import socket
+    import urllib.request
+
+    def _no_dns(host, port):
+        raise socket.gaierror(8, "nodename nor servname provided, or not known")
+
+    # No proxy: local DNS failure stays fail-closed.
+    monkeypatch.setattr(urllib.request, "getproxies", lambda: {})
+    with pytest.raises(ValueError, match="url_dns_failed"):
+        validate_outbound_url("https://example.com/hook", resolve=_no_dns)
+    # Proxied egress: this process never dials the target, so local DNS
+    # failure must not block the URL (allowlist + TLS still protect).
+    monkeypatch.setattr(
+        urllib.request, "getproxies", lambda: {"https": "http://127.0.0.1:9"}
+    )
+    assert (
+        validate_outbound_url("https://example.com/hook", resolve=_no_dns)
+        == "https://example.com/hook"
+    )
+
+
 @pytest.mark.asyncio
 async def test_connector_dispatch_blocks_ssrf(tmp_path, reset_ops_db, monkeypatch):
     from src.frontline import connectors as c

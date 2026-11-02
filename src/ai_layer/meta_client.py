@@ -76,7 +76,17 @@ class SafeRedirectHandler(urllib.request.HTTPRedirectHandler):
         return None
 
 
-_opener = urllib.request.build_opener(SafeRedirectHandler)
+def _build_opener():
+    # ProxyHandler restores the default proxy-env honoring that a bare
+    # build_opener(SafeRedirectHandler) drops: without it, https_proxy is
+    # ignored and credentialed calls fail on DNS in proxied environments.
+    # SafeRedirectHandler still refuses redirects for credentialed POSTs.
+    # Note: ProxyHandler snapshots the environment at construction, so the
+    # process must be started with proxy vars set (the normal case).
+    return urllib.request.build_opener(urllib.request.ProxyHandler, SafeRedirectHandler)
+
+
+_opener = _build_opener()
 
 
 def _urllib_transport(url: str, body: bytes, headers: dict[str, str], timeout: float) -> HttpResponse:

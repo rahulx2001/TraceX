@@ -17,30 +17,37 @@ function listPath({ caseId, interactionId, investigationId }) {
 function useEvidenceImage(id) {
   // Fetched with the API key header (an <img src> cannot carry it), shown via an object URL.
   const [url, setUrl] = useState(null);
+  const [error, setError] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let live = true;
     let obj = null;
+    setUrl(null);
+    setError(false);
     fetch(`/api/evidence/${encodeURIComponent(id)}/file`, { headers: apiHeaders(), credentials: "same-origin" })
-      .then((r) => (r.ok ? r.blob() : null))
+      .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.blob(); })
       .then((b) => { if (b && live) { obj = URL.createObjectURL(b); setUrl(obj); } })
-      .catch(() => {});
+      .catch(() => { if (live) setError(true); });
     return () => { live = false; if (obj) URL.revokeObjectURL(obj); };
-  }, [id]);
-  return url;
+  }, [id, attempt]);
+  return { url, error, retry: () => setAttempt((n) => n + 1), fail: () => setError(true) };
 }
 
 function Overlay({ ev }) {
-  const src = useEvidenceImage(ev.evidence_id);
+  const { url: src, error, retry, fail } = useEvidenceImage(ev.evidence_id);
   const seg = ev.analysis && ev.analysis.segmentation;
   const boxes = (seg && seg.boxes) || [];
   return (
     <div className="ai-evidence-frame" style={{ position: "relative", display: "inline-block", maxWidth: "100%" }}>
-      {src ? <img
+      {error ? <div className="muted small" role="alert">
+        Photo preview unavailable. <button type="button" className="ghost" onClick={retry}>Retry photo</button>
+      </div> : src ? <img
         src={src}
+        onError={fail}
         alt={ev.filename || "evidence photo"}
         style={{ maxWidth: "100%", maxHeight: 260, display: "block", borderRadius: 6 }}
       /> : <div className="muted small" style={{ width: 160, height: 90 }}>loading photo…</div>}
-      {boxes.filter((b) => b.pct).map((b, i) => (
+      {src && !error && boxes.filter((b) => b.pct).map((b, i) => (
         <div
           key={i}
           className="ai-sam-box"
@@ -64,12 +71,12 @@ function Analysis({ ev, enabled, onAnalyze, busy }) {
   if (ev.analysis_status === "not_run") {
     return (
       <div className="muted small">
-        Stored and attached. {enabled ? "Analysis not run yet." : "Analysis not run (no Meta key) - add META_API_KEY to enable SAM 3.1 + Muse Spark."}
+        Stored and attached. {enabled ? "Analysis not run yet." : "Photo analysis is currently unavailable. You can still review the attached photo."}
         {enabled && <button className="ghost" style={{ marginLeft: 8 }} disabled={busy} onClick={onAnalyze}>Analyze</button>}
       </div>
     );
   }
-  if (ev.analysis_status === "pending") return <div className="muted small">Analyzing with Muse Spark + SAM 3.1…</div>;
+  if (ev.analysis_status === "pending") return <div className="muted small">Analysing photo…</div>;
   return (
     <div className="small" style={{ marginTop: 6 }}>
       <MetaTag mode={models.length ? "enhanced" : "deterministic"} models={models} fallbackReason={ev.analysis_status} />
@@ -90,11 +97,14 @@ function Analysis({ ev, enabled, onAnalyze, busy }) {
   );
 }
 
-export default function EvidencePanel({ caseId, interactionId, investigationId, readOnly = false, title = "Photo evidence" }) {
+export default function EvidencePanel({ caseId, interactionId, investigationId, readOnly = false, title = "Photo evidence", onEvidenceChanged }) {
   const [rows, setRows] = useState([]);
   const [err, setErr] = useState("");
+  const [loadError, setLoadError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const [needSignin, setNeedSignin] = useState(false);
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState("");
   const [enabled, setEnabled] = useState(false);
   const fileRef = useRef(null);
   const path = listPath({ caseId, interactionId, investigationId });
@@ -103,23 +113,35 @@ export default function EvidencePanel({ caseId, interactionId, investigationId, 
   const load = useCallback(async () => {
     if (!path) return;
     const currentGen = ++reqGenRef.current;
+    setLoading(true);
+    setLoadError("");
     try {
       const d = await aiGet(path);
       if (currentGen === reqGenRef.current) {
         setRows(d.evidence || []);
+        setLoaded(true);
+        setLoadError("");
       }
     } catch (e) {
       if (currentGen === reqGenRef.current) {
-        setErr(`Could not load evidence (${e.message})`);
+        setLoadError(`Photos could not be loaded. Saved photos may still exist. ${e.message}`);
       }
+    } finally {
+      if (currentGen === reqGenRef.current) setLoading(false);
     }
   }, [path]);
 
   useEffect(() => {
     setRows([]);
     setErr("");
+    setLoaded(false);
+    setNeedSignin(false);
     load();
-    aiStatus().then((s) => setEnabled(s.mode === "enhanced"));
+    let live = true;
+    setEnabled(false);
+    aiStatus().then((s) => { if (live) setEnabled(s.mode === "enhanced"); })
+      .catch(() => { if (live) setEnabled(false); });
+    return () => { live = false; ++reqGenRef.current; };
   }, [load]);
   useEffect(() => {
     if (!rows.some((r) => r.analysis_status === "pending")) return undefined;
@@ -130,36 +152,37 @@ export default function EvidencePanel({ caseId, interactionId, investigationId, 
   async function onFile(e) {
     const f = e.target.files && e.target.files[0];
     if (!f || !path || investigationId) return;
-    setBusy(true); setErr("");
+    setBusy("upload"); setErr("");
     try {
       await aiUpload(path, f);
       await load();
+      onEvidenceChanged?.();
     } catch (ex) {
       setErr(`Upload rejected: ${ex.message}`);
     } finally {
-      setBusy(false);
+      setBusy("");
       if (fileRef.current) fileRef.current.value = "";
     }
   }
 
   async function analyze(id) {
-    setBusy(true); setErr("");
+    setBusy("analysis"); setErr("");
     try { await aiPostJson(`/api/evidence/${encodeURIComponent(id)}/analyze`, {}); setNeedSignin(false); await load(); }
     catch (ex) {
-      const forbidden = String(ex.message || "").includes("403");
+      const forbidden = ex.status === 403;
       setNeedSignin(forbidden);
       setErr(forbidden
         ? "Photo analysis needs a supervisor sign-in (the operator key cannot run it)."
         : `Analysis failed: ${ex.message}`);
     }
-    finally { setBusy(false); }
+    finally { setBusy(""); }
   }
 
   if (!path) return null;
   return (
     <section className="ai-evidence-panel" data-testid="evidence-panel" style={{ marginTop: 12 }}>
       <h3 className="analytics-h" style={{ display: "flex", gap: 8, alignItems: "center" }}>
-        {title} <span className="muted small">({rows.length})</span>
+        {title} {!loading && !loadError && loaded && <span className="muted small">({rows.length})</span>}
       </h3>
       {!readOnly && !investigationId && (
         <label
@@ -178,30 +201,34 @@ export default function EvidencePanel({ caseId, interactionId, investigationId, 
             type="file"
             accept="image/jpeg,image/png,image/webp"
             onChange={onFile}
-            disabled={busy}
+            disabled={Boolean(busy)}
             style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0, 0, 0, 0)", border: 0 }}
             aria-label="Upload photo evidence"
           />
-          <span className="chip">{busy ? "Uploading…" : "+ Add photo (JPEG/PNG/WebP, ≤ 8 MB)"}</span>
+          <span className="chip">{busy === "upload" ? "Uploading…" : "+ Add photo (JPEG/PNG/WebP, ≤ 8 MB)"}</span>
         </label>
       )}
+      {loading && <div className="muted small" role="status">Loading photos…</div>}
+      {!loading && loadError && <div className="banner banner-warn small" role="alert" style={{ marginTop: 6 }}>
+        {loadError} <button type="button" className="ghost" onClick={load}>Retry photos</button>
+      </div>}
       {err && (
         <div className="banner banner-warn small" role="alert" style={{ marginTop: 6 }}>
           {err}
           {needSignin && <> <a href="#signin">Open sign-in →</a></>}
         </div>
       )}
-      {rows.length === 0 && <div className="muted small" style={{ marginTop: 6 }}>No photos attached.</div>}
+      {!loading && !loadError && loaded && rows.length === 0 && <div className="muted small" style={{ marginTop: 6 }}>No photos attached. Add a customer or operator photo if it is available and safe to take, or request one in the follow-up. You can review the report without a photo.</div>}
       {readOnly && rows.length > 3 && <div className="muted small">Showing 3 of {rows.length}; open the cases for the rest.</div>}
       {(readOnly ? rows.slice(0, 3) : rows).map((ev) => (
         <div key={ev.evidence_id} className="ai-evidence-item" style={{ marginTop: 10 }}>
           <Overlay ev={ev} />
           <div className="mono muted small">{ev.evidence_id} · {ev.mime} · {ev.width}×{ev.height}{ev.case_id ? ` · ${ev.case_id}` : ""}</div>
-          <Analysis ev={ev} enabled={enabled} busy={busy} onAnalyze={() => analyze(ev.evidence_id)} />
+          <Analysis ev={ev} enabled={enabled} busy={Boolean(busy)} onAnalyze={() => analyze(ev.evidence_id)} />
         </div>
       ))}
       {/* [AI-LAYER] OBD-II fault codes next to the photos */}
-      {caseId && <FaultCodesPanel caseId={caseId} readOnly={readOnly} />}
+      {caseId && <FaultCodesPanel caseId={caseId} readOnly={readOnly} onEvidenceChanged={onEvidenceChanged} />}
     </section>
   );
 }

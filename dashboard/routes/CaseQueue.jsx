@@ -11,6 +11,7 @@ import {
 import { useDebounced, useFocusTrap, useLocalStorage } from "../src/ui/hooks.js";
 // [AI-LAYER] photo evidence panel (optional Meta AI layer; upload works without a key)
 import EvidencePanel from "../src/ai/EvidencePanel.jsx";
+import { noteAuthor, operatorError } from "../src/ui/operatorErrors.js";
 
 const SEV = ["All", "Critical", "Medium", "Low"];
 const STATUS = ["All", "open", "pending_followup", "closed"];
@@ -47,13 +48,23 @@ export default function CaseQueue() {
   const [searchQ, setSearchQ] = useState("");
   const searchDebounced = useDebounced(searchQ, 400);
   const [selectedId, setSelectedId] = useState(null);
+  const selectedRef = useRef(null);
+  selectedRef.current = selectedId;
+  const detailRequestRef = useRef(0);
   const drawerRef = useRef(null);
   const skipHashWrite = useRef(true);
   useFocusTrap(drawerRef, !!selectedId, () => setSelectedId(null));
   const [detail, setDetail] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState("");
   const [followupDraft, setFollowupDraft] = useState("");
   const [noteBody, setNoteBody] = useState("");
+  const [statusDraft, setStatusDraft] = useState("open");
+  const [undoStatus, setUndoStatus] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [drafting, setDrafting] = useState(false);
+  const [noteSaving, setNoteSaving] = useState(false);
+  const noteRequestRef = useRef(null);
   const [error, setError] = useState(null);
   const [exportMsg, setExportMsg] = useState(null);
   const [exporting, setExporting] = useState(false);
@@ -86,7 +97,7 @@ export default function CaseQueue() {
       setHasMore(Boolean(pag.has_more));
       setNextOffset(pag.next_offset != null ? pag.next_offset : offset + list.length);
     } catch (e) {
-      setError(String(e));
+      setError(operatorError(e));
     } finally {
       setLoading(false);
     }
@@ -168,7 +179,7 @@ export default function CaseQueue() {
       setActionMsg(`CSV downloaded (${r.headers.get("X-Export-Count") || "?"} rows)`);
     } catch (e) {
       setActionMsg(null);
-      setError(String(e));
+      setError(operatorError(e));
     }
   }
 
@@ -176,6 +187,9 @@ export default function CaseQueue() {
     setExportMsg(null);
     setExporting(true);
     try {
+      if (followupDraft !== cleanFollowupDraft(detail?.followup_draft || "")) {
+        if (!await saveCasePatch({ followup_draft: followupDraft })) return;
+      }
       const r = await fetch(
         `/api/frontline/connectors/export/${encodeURIComponent(caseId)}`,
         { method: "POST", headers: apiHeaders() }
@@ -190,41 +204,84 @@ export default function CaseQueue() {
       if (!r.ok) {
         throw new Error(body.detail || `HTTP ${r.status}`);
       }
-      setExportMsg(
-        `Exported ${body.delivery_id || caseId} → ${body.status || "ok"} (${body.sink || "outbox"})`
-      );
+      if (!body.ok || body.status !== "success") throw new Error("Packet not saved");
+      setExportMsg("Case packet saved to the local outbox with its audit trail. Customer message not sent.");
     } catch (e) {
-      setExportMsg(String(e));
+      setExportMsg(operatorError(e, "save the case packet"));
     } finally {
       setExporting(false);
     }
   }
 
   async function openCase(caseId) {
+    const request = ++detailRequestRef.current;
+    selectedRef.current = caseId;
     setSelectedId(caseId);
     setDetail(null);
     setFollowupDraft("");
     setNoteBody("");
+    setUndoStatus(null);
     setExportMsg(null);
     setActionMsg(null);
+    setError(null);
     setDetailLoading(true);
+    setDetailError("");
     try {
-      const r = await fetch(`/api/frontline/cases/${caseId}`, {
+      const r = await fetch(`/api/frontline/cases/${encodeURIComponent(caseId)}`, {
         headers: apiHeaders(),
       });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const d = await r.json();
+      if (request !== detailRequestRef.current || selectedRef.current !== caseId) return;
       setDetail(d);
+      setStatusDraft(d.status || "open");
       setFollowupDraft(cleanFollowupDraft(d.followup_draft || ""));
     } catch (e) {
-      setError(String(e));
+      if (request === detailRequestRef.current && selectedRef.current === caseId) setDetailError(operatorError(e, "load this case"));
     } finally {
-      setDetailLoading(false);
+      if (request === detailRequestRef.current && selectedRef.current === caseId) setDetailLoading(false);
     }
   }
 
-  async function saveCasePatch(patch) {
-    if (!selectedId) return;
+  async function refreshDetail(caseId = selectedRef.current) {
+    if (!caseId || selectedRef.current !== caseId) return;
+    const request = ++detailRequestRef.current;
+    try {
+      const r = await fetch(`/api/frontline/cases/${encodeURIComponent(caseId)}`, { headers: apiHeaders() });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d = await r.json();
+      if (request !== detailRequestRef.current || selectedRef.current !== caseId) return;
+      setDetail(d);
+      setDetailError("");
+    } catch (e) {
+      if (request === detailRequestRef.current && selectedRef.current === caseId) setDetailError(operatorError(e, "refresh evidence status"));
+    }
+  }
+
+  function focusEvidence(selector, upload = false) {
+    const input = drawerRef.current?.querySelector(selector);
+    if (!input || input.disabled) return;
+    const panel = input.closest("details");
+    if (panel) panel.open = true;
+    input.scrollIntoView({ block: "center", behavior: "smooth" });
+    input.focus();
+    if (upload) input.click();
+  }
+
+  function requestEvidence(kind) {
+    const question = kind === "photo"
+      ? "If it is available and safe to take, please share a photo of the affected part. Do not drive to take a photo."
+      : "If you already have a scan report, please share the fault codes shown. You do not need a new scan to continue this case.";
+    setFollowupDraft(current => current.includes(question) ? current : `${current.trim()}\n\n${question}`.trim());
+    focusEvidence('#followup-draft-input');
+    setActionMsg("Request added to the follow-up draft. Review and save it before contacting the customer.");
+  }
+
+  async function saveCasePatch(patch, { undo = false } = {}) {
+    if (!selectedId || saving) return false;
+    const caseId = selectedId;
+    const previousStatus = detail?.status;
+    setSaving(true);
     setActionMsg(null);
     try {
       const r = await fetch(`/api/frontline/cases/${encodeURIComponent(selectedId)}`, {
@@ -234,41 +291,85 @@ export default function CaseQueue() {
       });
       if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
       const d = await r.json();
+      if (selectedRef.current !== caseId) return false;
       setDetail((prev) => ({ ...prev, ...d, notes: prev?.notes || [] }));
       setError(null);
-      setActionMsg("Case updated.");
+      if (patch.status) {
+        setStatusDraft(patch.status);
+        setUndoStatus(undo ? null : previousStatus);
+      }
+      setActionMsg(patch.status ? `Status saved: ${statusLabel(patch.status)}.` : "Follow-up draft saved. Customer message not sent.");
+      await refreshDetail(caseId);
       await load();
+      return true;
     } catch (e) {
+      if (selectedRef.current !== caseId) return false;
       setActionMsg(null);
-      setError(String(e));
+      setError(operatorError(e, "save these changes"));
+      return false;
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function draftNote() {
+    if (!selectedId) return;
+    const caseId = selectedId;
+    setDrafting(true);
+    setActionMsg(null);
+    try {
+      const r = await fetch(
+        `/api/frontline/cases/${encodeURIComponent(selectedId)}/draft-note`,
+        { method: "POST", headers: apiHeaders() }
+      );
+      if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+      const d = await r.json();
+      if (selectedRef.current !== caseId) return;
+      setNoteBody(d.draft || "");
+      focusEvidence('#operator-notes-input');
+      setActionMsg("Assessment draft ready. Check it against the report, then Add note.");
+    } catch (e) {
+      if (selectedRef.current === caseId) setError(operatorError(e, "prepare an assessment draft"));
+    } finally {
+      setDrafting(false);
     }
   }
 
   async function addNote() {
-    if (!selectedId || !noteBody.trim()) return;
+    if (!selectedId || !noteBody.trim() || noteSaving) return;
+    const caseId = selectedId;
+    const submitted = noteBody;
+    const material = `${caseId}\n${submitted.trim()}`;
+    if (noteRequestRef.current?.material !== material) noteRequestRef.current = { material, key: crypto.randomUUID() };
+    setNoteSaving(true);
     setActionMsg(null);
     try {
       const r = await fetch(
         `/api/frontline/cases/${encodeURIComponent(selectedId)}/notes`,
         {
           method: "POST",
-          headers: { ...apiHeaders(), "Content-Type": "application/json" },
+          headers: { ...apiHeaders(), "Content-Type": "application/json", "Idempotency-Key": noteRequestRef.current.key },
           body: JSON.stringify({ body: noteBody.trim() }),
         }
       );
       if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
       const note = await r.json();
+      if (selectedRef.current !== caseId) return;
       setDetail((prev) =>
         prev
           ? { ...prev, notes: [note, ...(prev.notes || [])] }
           : prev
       );
-      setNoteBody("");
+      setNoteBody((current) => current === submitted ? "" : current);
       setError(null);
       setActionMsg("Note added.");
+      noteRequestRef.current = null;
+      await refreshDetail(caseId);
     } catch (e) {
       setActionMsg(null);
-      setError(String(e));
+      if (selectedRef.current === caseId) setError(operatorError(e, "add this note"));
+    } finally {
+      setNoteSaving(false);
     }
   }
 
@@ -278,7 +379,7 @@ export default function CaseQueue() {
         <div>
           <h1>Case queue</h1>
           <p className="sub">
-            Triage open cases with severity chips, open the drawer for follow-ups, export CSV for ops.
+            Find an owner report, review what is known and record the next action. Investigations bring related reports and supporting evidence together.
           </p>
         </div>
         <div className="page-actions">
@@ -301,7 +402,7 @@ export default function CaseQueue() {
         </div>
       </header>
 
-      {error && (
+      {error && !selectedId && (
         <div className="banner banner-error" role="alert">
           {error}{" "}
           <button type="button" className="ghost" onClick={() => setError(null)}>
@@ -310,7 +411,7 @@ export default function CaseQueue() {
         </div>
       )}
 
-      {actionMsg && (
+      {actionMsg && !selectedId && (
         <div className="banner banner-ok" role="status">
           {actionMsg}
         </div>
@@ -532,58 +633,70 @@ export default function CaseQueue() {
               </button>
             </header>
             <div className="body">
+            {error && <div className="banner banner-warn" role="alert">{error}</div>}
+            {actionMsg && <div className="banner" role="status">{actionMsg}</div>}
             {detailLoading && <div className="empty">loading…</div>}
-            {!detailLoading && !detail && (
+            {detailError && <div className="banner banner-warn" role="alert">
+              {detailError} <button type="button" className="ghost" onClick={() => detail ? refreshDetail() : openCase(selectedId)}>Retry case</button>
+            </div>}
+            {!detailLoading && !detail && !detailError && (
               <div className="empty">Case not found.</div>
             )}
             {detail && (
               <>
+                <section aria-label="Known now" data-testid="case-known-now">
+                <h2 style={panelHeading}>Known now</h2>
                 <p className="muted" style={{ marginTop: 0 }}>
                   {detail.severity || "—"} · {statusLabel(detail.status)}
-                  {detail.cluster_match_id != null ? ` · cluster ${detail.cluster_match_id}` : ""}
                   {detail.channel === "simulated" ? " · simulated" : ""}
                 </p>
-                <p>{caseDescription(detail.description_summary) || "No description."}</p>
+                <p>{caseDescription(detail.description_summary) || "The report summary could not be loaded. Check the original conversation before deciding the next action."}</p>
                 <div className="kvs">
-                  <span className="k">pack</span>
+                  <span className="k">Domain</span>
                   <span className="v">{packLabel(detail.pack_id)}</span>
-                  <span className="k">advisory</span>
-                  <span className="v mono">{detail.advisory_match_id || "—"}</span>
+                  <span className="k">Vehicle reported</span>
+                  <span className="v">{Object.values(detail.completeness?.reported_vehicle || {}).filter(Boolean).join(" ") || "Vehicle details not recorded"}</span>
+                  <span className="k">Recall link</span>
+                  <span className="v">{detail.advisory_match_id || "No linked recall"}</span>
                 </div>
-
-                {detail.safety_flags &&
-                  Object.keys(detail.safety_flags).length > 0 && (
-                    <>
-                      <div className="h-divider" />
-                      <h2 style={panelHeading}>Safety Flags</h2>
-                      <div className="row">
-                        {Object.entries(detail.safety_flags)
-                          .filter(([, v]) => v)
-                          .map(([k]) => (
-                            <span className="chip red" key={k}>
-                              {safetyFlagLabel(k)}
-                            </span>
-                          ))}
-                      </div>
-                    </>
-                  )}
+                {(detail.completeness?.vehicle_details_missing || []).length > 0 && <p className="muted small">Please confirm the vehicle {detail.completeness.vehicle_details_missing.join(", ")} in the follow-up. These details are not recorded.</p>}
+                {detail.completeness?.advisory?.reason && (
+                  <p className="muted" style={{ fontSize: 12 }}>{detail.completeness.advisory.reason}</p>
+                )}
+                <div className="row">{Object.entries(detail.safety_flags || {}).filter(([, value]) => value).map(([name]) => <span className="chip red" key={name}>{safetyFlagLabel(name)}</span>)}</div>
+                {detail.investigation_id && <p><a href={`#issue/${encodeURIComponent(detail.investigation_id)}`}>Open related investigation</a></p>}
+                </section>
+                <div className="h-divider" />
+                <section aria-label="Still needed" data-testid="case-evidence-guidance" style={{ fontSize: 12, marginTop: 12 }}>
+                  <h2 style={panelHeading}>Still needed</h2>
+                  <strong>{detail.completeness?.complete ? "Evidence recorded" : "Choose the next action"}</strong>
+                  <p className="muted">Photos and scan codes are optional: add them when available, or request them in a follow-up. Record your assessment and next action in an operator note.</p>
+                  {(!detail.completeness || (detail.completeness.unavailable || []).length > 0) && <p role="alert">
+                    Some evidence records could not be loaded. Their absence is not confirmed.
+                    {" "}<button type="button" className="ghost" onClick={() => refreshDetail()}>Retry evidence status</button>
+                  </p>}
+                  <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
+                    {(detail.completeness?.missing || []).includes("photos") && <><button type="button" className="ghost" onClick={() => requestEvidence('photo')}>Request photo</button><button type="button" className="ghost" onClick={() => focusEvidence('[aria-label="Upload photo evidence"]', true)}>Add a photo</button></>}
+                    {(detail.completeness?.missing || []).includes("fault_codes") && <><button type="button" className="ghost" onClick={() => requestEvidence('codes')}>Request scan codes</button><button type="button" className="ghost" onClick={() => focusEvidence('[aria-label="Fault codes"]')}>Add scan codes</button></>}
+                    <button type="button" className="ghost" onClick={() => focusEvidence('#followup-draft-input')}>Draft follow-up</button>
+                    <button type="button" className="ghost" onClick={() => focusEvidence('#operator-notes-input')}>Record assessment</button>
+                    <button type="button" className="ghost" disabled={drafting || Boolean(noteBody.trim())} onClick={draftNote}>{drafting ? "Preparing…" : "Draft note"}</button>
+                  </div>
+                </section>
 
                 <div className="h-divider" />
                 <h2 style={panelHeading}>Status</h2>
                 <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
-                  {["open", "pending_followup", "closed"].map((s) => (
-                    <button
-                      key={s}
-                      className={detail.status === s ? "primary" : "ghost"}
-                      onClick={() => saveCasePatch({ status: s })}
-                    >
-                      {statusLabel(s)}
-                    </button>
-                  ))}
+                  <select aria-label="Case status" value={statusDraft} disabled={saving} onChange={e => setStatusDraft(e.target.value)}>{["open", "pending_followup", "closed"].map(s => <option key={s} value={s}>{statusLabel(s)}</option>)}</select>
+                  <button type="button" disabled={saving || statusDraft === detail.status} onClick={() => saveCasePatch({ status: statusDraft })}>Save status</button>
+                  {undoStatus && <button type="button" className="ghost" disabled={saving} onClick={() => saveCasePatch({ status: undoStatus }, { undo: true })}>Undo status change</button>}
                 </div>
 
                 <div className="h-divider" />
+                <details>
+                <summary>Follow-up draft{followupDraft.trim() ? " · prepared" : ""}</summary>
                 <h2 style={panelHeading} id="followup-draft-heading">Follow-up Draft</h2>
+                <p className="muted small">Save the reviewed message for your case record. Customer delivery is not connected in this pilot.</p>
                 <textarea
                   id="followup-draft-input"
                   aria-labelledby="followup-draft-heading"
@@ -595,16 +708,22 @@ export default function CaseQueue() {
                 />
                 <button
                   className="ghost"
+                  disabled={saving}
                   style={{ marginTop: 8 }}
                   onClick={() => saveCasePatch({ followup_draft: followupDraft })}
                 >
                   Save follow-up
                 </button>
+                </details>
 
                 {/* [AI-LAYER] photo evidence for this case */}
-                <EvidencePanel caseId={detail.case_id || selectedId} />
+                <details style={{ marginTop: 16 }}><summary>Photos & scan codes</summary>
+                <EvidencePanel key={detail.case_id || selectedId} caseId={detail.case_id || selectedId} onEvidenceChanged={() => refreshDetail(detail.case_id || selectedId)} />
+                </details>
 
                 <div className="h-divider" />
+                <details>
+                <summary>Assessment notes{detail.notes?.length ? ` · ${detail.notes.length} recorded` : ""}</summary>
                 <h2 style={panelHeading} id="operator-notes-heading">Operator notes</h2>
                 <textarea
                   id="operator-notes-input"
@@ -615,41 +734,44 @@ export default function CaseQueue() {
                   placeholder="Add a note for the pilot team…"
                   style={{ width: "100%", minHeight: 60 }}
                 />
-                <button
-                  className="primary"
-                  style={{ marginTop: 8 }}
-                  disabled={!noteBody.trim()}
-                  onClick={addNote}
-                >
-                  Add note
-                </button>
+                <div className="row" style={{ gap: 8, marginTop: 8 }}>
+                  <button
+                    className="primary"
+                    disabled={!noteBody.trim() || noteSaving}
+                    onClick={addNote}
+                  >
+                    Add note
+                  </button>
+                </div>
                 {(detail.notes || []).length > 0 && (
                   <ul style={{ marginTop: 12, paddingLeft: 18, fontSize: 12 }}>
                     {detail.notes.map((n) => (
                       <li key={n.note_id} style={{ marginBottom: 8 }}>
                         <span className="mono muted">{n.created_at}</span>{" "}
-                        <strong>{n.author}</strong>: {n.body}
+                        <strong>{noteAuthor(n.author)}</strong>: {n.body}
                       </li>
                     ))}
                   </ul>
                 )}
+                </details>
               </>
             )}
           </div>
           <div className="footer">
+            {(noteBody.trim() || (detail && statusDraft !== detail.status)) && <span className="muted small">Save your note and status before creating the packet.</span>}
             {exportMsg && (
-              <span className="muted" style={{ fontSize: 11, marginRight: 8 }}>
+              <span className="muted" role="status" style={{ fontSize: 11, marginRight: 8 }}>
                 {exportMsg}
               </span>
             )}
             {detail && (
               <button
                 className="ghost"
-                disabled={exporting}
+                disabled={exporting || saving || Boolean(noteBody.trim()) || statusDraft !== detail.status}
                 onClick={() => exportCase(detail.case_id || selectedId)}
-                title="Push case JSON to connector outbox / webhook"
+                title={noteBody.trim() || statusDraft !== detail.status ? "Save your note and status before creating the case packet" : "Save the case, follow-up draft and evidence references to the local outbox"}
               >
-                {exporting ? "exporting…" : "Export"}
+                {exporting ? "Saving packet…" : "Save case packet"}
               </button>
             )}
             {detail?.audit_report_url && (

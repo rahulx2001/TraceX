@@ -3,6 +3,7 @@
 // severity; with no key every call count reads 0 / "not run".
 import { useEffect, useState } from "react";
 import { aiGet, aiPostJson } from "../src/ai/aiApi.js";
+import { operatorError } from "../src/ui/operatorErrors.js";
 
 function fmt(v) { return v === null || v === undefined ? "–" : String(v); }
 
@@ -66,21 +67,28 @@ export default function AiStatus() {
       setMsg(`Recorded ${verdict}. Case severity unchanged.`);
       load();
     } catch (e) {
-      setMsg(e.message === "403" ? "Only a supervisor session can review AI raises (403)." : `Review failed: ${e.message}`);
+      setMsg(operatorError(e, "save this review"));
     }
   }
   const st = o?.status;
   return (
     <div style={{ maxWidth: 1150 }} data-testid="ai-status-page">
-      <h1 style={{ marginBottom: 4 }}>AI status</h1>
+      <h1 style={{ marginBottom: 4 }}>AI assistance</h1>
       <p className="muted" style={{ marginTop: 0 }}>
-        Mode: <strong>{st ? st.mode : "…"}</strong>{st && st.mode !== "enhanced" ? " (no Meta key: the deterministic rules path is running)" : ""}.
-        AI may only raise severity; supervisor verdicts below are recorded and audited but never change a case.
+        Assistance: <strong>{!st ? "Checking…" : st.unavailable ? "Unavailable" : st.mode === "enhanced" ? "On" : "Off"}</strong>.
+        {st && st.mode !== "enhanced" ? " Reports, lookups and manual reviews remain available." : " Review suggestions against the original evidence."}
+        {" "}Supervisors can review proposed safety escalations below. Every decision is recorded.
       </p>
-      {msg && <div className="muted small" style={{ marginBottom: 8 }}>{msg}</div>}
+      {msg && <div role="status" className="muted small" style={{ marginBottom: 8 }}>{msg} <button type="button" className="ghost" onClick={() => { setMsg(""); load(); }}>Retry status</button></div>}
       <section className="card" style={{ padding: 14, marginBottom: 12 }}>
-        <h3 style={{ marginTop: 0 }}>Meta call health</h3>
-        <CallHealth h={o?.call_health} />
+        <h3 style={{ marginTop: 0 }}>Assistance activity</h3>
+        {!o ? <p>Loading activity…</p> : o.call_health?.status === "unavailable" ? <p>Activity could not be loaded. Retry status to check recent work.</p> : <p>
+          {o.call_health?.totals?.calls || 0} assistance requests · {o.call_health?.totals?.failed || 0} could not finish · {o.call_health?.totals?.fallback_to_rules || 0} used rules instead.
+        </p>}
+        <details><summary>Engineer diagnostics</summary>
+          <CallHealth h={o?.call_health} />
+          <pre>{JSON.stringify(st, null, 2)}</pre>
+        </details>
       </section>
       <section className="card" style={{ padding: 14 }}>
         <h3 style={{ marginTop: 0 }}>Review of AI severity raises</h3>

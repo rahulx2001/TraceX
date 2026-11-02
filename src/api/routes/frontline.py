@@ -414,7 +414,19 @@ async def get_case(
         report_path = REPORTS_DIR / f"{iid}.md"
         case["audit_report_url"] = f"/api/frontline/audits/{iid}"
         case["audit_report_name"] = f"{iid}.md" if report_path.exists() else None
-    case["notes"] = list_case_notes(case_id)
+    try:
+        case["notes"] = await ops_in_thread(list_case_notes, case_id)
+        case["notes_unavailable"] = False
+    except Exception:
+        case["notes"] = []
+        case["notes_unavailable"] = True
+    # Why the drawer panels are filled/empty (advisory, codes, photos).
+    try:
+        from src.frontline.case_completeness import completeness_for_case
+
+        case["completeness"] = await ops_in_thread(completeness_for_case, case_id)
+    except Exception:
+        case["completeness"] = None
     if scrub:
         case = redact_dict(case)
         case["notes"] = [
@@ -422,6 +434,31 @@ async def get_case(
             for n in (case.get("notes") or [])
         ]
     return case
+
+
+@router.post("/cases/{case_id}/draft-note")
+async def draft_case_note(
+    case_id: str,
+    _role: str = Depends(require_perm_dep("case:write", open_mode_ok=True)),
+) -> dict[str, Any]:
+    """AI-polished operator-note draft. Never stored; operator posts it."""
+    from src.frontline.case_completeness import completeness_for_case
+
+    info = await ops_in_thread(completeness_for_case, case_id)
+    if not info.get("case_found"):
+        raise HTTPException(status_code=404, detail=f"case not found: {case_id}")
+    draft = info["draft_operator_note"]
+    used_llm = False
+    model_id = "deterministic"
+    try:
+        from src.ai.narration import phrase_operator_note
+
+        res = phrase_operator_note(case_id=case_id, draft=draft)
+        if res.text:
+            draft, used_llm, model_id = res.text, res.used_llm, res.model_id
+    except Exception:
+        pass
+    return {"case_id": case_id, "draft": draft, "used_llm": used_llm, "model_id": model_id}
 
 
 @router.patch("/cases/{case_id}")

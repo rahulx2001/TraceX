@@ -134,6 +134,23 @@ def test_status_names_backend_without_key(baseten_env):
     assert FAKE_BASETEN_KEY not in json.dumps(st)
 
 
+def test_status_shows_narration_gate(baseten_env, monkeypatch):
+    """Key alone must not imply Tier-2 narration is live (draft-note polish)."""
+    from src.ai.provider import llm_enabled
+
+    monkeypatch.delenv("FRONTLINE_LLM_ENABLED", raising=False)
+    assert llm_enabled() is False
+    st = config.ai_status()
+    assert st["mode"] == "enhanced"  # AI layer is live...
+    assert st["narration"] == {"enabled": False, "provider": None}  # ...but narration is not
+
+    monkeypatch.setenv("FRONTLINE_LLM_ENABLED", "1")
+    assert llm_enabled() is True
+    st = config.ai_status()
+    assert st["narration"] == {"enabled": True, "provider": "baseten"}
+    assert FAKE_BASETEN_KEY not in json.dumps(st)
+
+
 # ── routing + payload ────────────────────────────────────────────────
 
 

@@ -8,7 +8,11 @@
 # Optional Meta AI layer (Muse Spark, SAM 3.1, Muse Image): also set META_API_KEY
 # (and META_API_BASE / META_MODEL_* if your account differs from the defaults
 # documented in HACKATHON.md). Without it, the deterministic path runs every step.
-# Nothing here deploys anywhere; the image is portable to any container host.
+# Baseten-hosted Muse Spark Open (hackathon): set BASETEN_API_KEY in your shell
+# or .env (gitignored) and it is forwarded below; META_BACKEND=auto prefers it.
+# Tier-2 narration (follow-up polish, operator-note drafts) additionally needs
+# FRONTLINE_LLM_ENABLED=1. Nothing here deploys anywhere; the image is portable
+# to any container host.
 services:
   tracex:
     build:
@@ -36,6 +40,10 @@ services:
       META_SAM_ENDPOINT: ${META_SAM_ENDPOINT:-}
       META_IMAGE_ENDPOINT: ${META_IMAGE_ENDPOINT:-}
       META_ALLOWED_HOSTS: ${META_ALLOWED_HOSTS:-}
+      BASETEN_API_KEY: ${BASETEN_API_KEY:-}
+      META_BACKEND: ${META_BACKEND:-auto}
+      FRONTLINE_LLM_ENABLED: ${FRONTLINE_LLM_ENABLED:-}
+      FRONTLINE_LLM_MODEL: ${FRONTLINE_LLM_MODEL:-}
       META_BUDGET_PATH: /app/data/meta_budget.sqlite
       META_CAP_PATH: /app/data/meta_calls.json
       META_RESOURCE_PATH: /app/data/meta_resource_host
