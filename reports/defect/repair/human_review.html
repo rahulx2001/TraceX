@@ -17,19 +17,21 @@ body{font:16px/1.6 system-ui,sans-serif;color:#18302e;background:#f4f6f3;max-wid
 <script>
 const data=JSON.parse(document.getElementById('review-data').textContent);
 const el=id=>document.getElementById(id), key='tracex.blind-review.'+data.sample_hash;
-let state={index:0,reviewer:'',reviews:{}};
+let state={index:0,reviewer:'',reviews:{},timing:{}};
+function stampView(row){const sid=row.sample_id,now=new Date().toISOString();const t=state.timing[sid]||{};if(!t.first_shown_at){t.first_shown_at=now;t.first_shown_ms=Date.now();}t.view_count=(t.view_count||0)+1;t.last_shown_at=now;state.timing[sid]=t;}
 try{const saved=JSON.parse(localStorage.getItem(key)||'null');if(saved)state=saved;}catch{el('notice').textContent='Browser storage is unavailable. Export your review before closing.';}
 function save(){try{localStorage.setItem(key,JSON.stringify(state));}catch{el('notice').textContent='Could not save locally. Export your current labels.';}}
 data.rows.forEach((row,i)=>{const option=document.createElement('option');option.value=i;option.textContent=row.sample_id;el('jump').append(option);});
 el('reviewer').value=state.reviewer;
 function draw(){
  const row=data.rows[state.index], review=state.reviews[row.sample_id]||{};
+ stampView(row);save();
  el('title').textContent=row.sample_id+' · '+row.component;
  el('vehicle').textContent=row.year+' '+row.make+' '+row.model+' · Received '+row.datea;
  el('narrative').textContent=row.narrative;el('notes').value=review.notes||'';el('jump').value=state.index;
  const field=el('choices');field.querySelectorAll('label').forEach(x=>x.remove());
  const names=Object.fromEntries(row.allowed_label_text.split(';').filter(x=>x.includes('=')).map(x=>{const at=x.indexOf('=');return [x.slice(0,at).trim(),x.slice(at+1).trim()];}));
- row.allowed_label_ids.split(';').forEach(id=>{const label=document.createElement('label'),input=document.createElement('input');input.type='radio';input.name='defect';input.value=id;input.checked=review.label===id;input.onchange=()=>{state.reviews[row.sample_id]={label:id,notes:el('notes').value};save();draw();};label.append(input,document.createTextNode(names[id]||id));field.append(label);});
+ row.allowed_label_ids.split(';').forEach(id=>{const label=document.createElement('label'),input=document.createElement('input');input.type='radio';input.name='defect';input.value=id;input.checked=review.label===id;input.onchange=()=>{state.reviews[row.sample_id]={label:id,notes:el('notes').value};const now=new Date().toISOString(),tt=state.timing[row.sample_id]||{};tt.labeled_at=now;if(tt.first_shown_ms)tt.dwell_before_label_ms=Date.now()-tt.first_shown_ms;state.timing[row.sample_id]=tt;save();draw();};label.append(input,document.createTextNode(names[id]||id));field.append(label);});
  const count=Object.keys(state.reviews).length;el('progressText').textContent=count+' / '+data.rows.length+' reviewed';el('progress').max=data.rows.length;el('progress').value=count;
  el('prev').disabled=state.index===0;el('next').disabled=state.index===data.rows.length-1;
 }
@@ -41,7 +43,7 @@ el('notes').oninput=e=>{const row=data.rows[state.index];if(state.reviews[row.sa
 el('clear').onclick=()=>{delete state.reviews[data.rows[state.index].sample_id];save();draw();};
 el('export').onclick=()=>{
  if(!state.reviewer.trim()||!el('attest').checked||!Object.keys(state.reviews).length){el('notice').textContent='Enter your name, review at least one complaint, and confirm the human-review statement.';return;}
- const result={sample_hash:data.sample_hash,annotation_source:'human',attestation:true,reviewer:state.reviewer.trim(),exported_at:new Date().toISOString(),reviews:Object.entries(state.reviews).map(([sample_id,r])=>({sample_id,...r}))};
+ const result={sample_hash:data.sample_hash,annotation_source:'human',attestation:true,reviewer:state.reviewer.trim(),exported_at:new Date().toISOString(),timing_schema_version:1,reviews:Object.entries(state.reviews).map(([sample_id,r])=>({sample_id,...(state.timing[sample_id]||{}),...r}))};
  const url=URL.createObjectURL(new Blob([JSON.stringify(result,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='defect-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);el('notice').textContent='Exported '+result.reviews.length+' reviewed labels.';
 };draw();
 </script></html>

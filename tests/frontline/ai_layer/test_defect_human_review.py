@@ -46,6 +46,19 @@ def test_review_rejects_invalid_provenance_or_choices(tmp_path,review_source,fau
     assert not (tmp_path/'out/human_labelled.csv').exists()
 
 
+def test_import_accepts_per_record_timing_fields(tmp_path, review_source):
+    """Timed review pages attach first_shown/labeled/dwell fields; the importer
+    must accept them and still score the same labels."""
+    _, p = review_source
+    p["timing_schema_version"] = 1
+    p["reviews"][0].update({"first_shown_at": "2026-11-03T10:00:00Z", "labeled_at": "2026-11-03T10:01:30Z",
+                            "view_count": 2, "dwell_before_label_ms": 90000})
+    path = tmp_path / "review.json"
+    path.write_text(json.dumps(p))
+    defect_review.import_review(path, destination=tmp_path / "out")
+    assert load_sample(tmp_path / "out" / "human_labelled.csv").label.tolist() == ["pump"]
+
+
 def test_immutable_hash_detects_edited_narrative_but_allows_annotations(review_source):
     source,_=review_source
     frame=load_sample(source);before=immutable_sample_hash(frame)

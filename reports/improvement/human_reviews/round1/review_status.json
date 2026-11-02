@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "complete",
-  "claim": "Original sample: Rahul 300/300 and Manish 300/300 human labels; overall accuracy 246/300 = 82.0% (95% CI 77.3%–85.9%)",
+  "status": "superseded_as_independence_evidence",
+  "claim": "Original sample: Rahul 300/300 primary labels; accuracy 246/300 = 82.0% (95% CI 77.3%-85.9%) scored against Rahul's labels only. Manish's 300/300 second review is byte-identical to Rahul's (labels and notes) and is SUPERSEDED as independence evidence: it cannot support any agreement, kappa, or validation claim. Superseded by round2 (Rakesh Ranjan second review, kappa 0.80, human-countersigned adjudication).",
   "verified_at": "2026-11-02T11:36:48+00:00",
   "sample_size": 300,
   "human_labels": 300,
@@ -184,9 +184,8 @@
   "model_version": "meta-models/muse-spark-open-1026; defect-cls-v2",
   "limits": "Review independence and prior full-sample assignment rely on human attestation and user confirmation. Labels and notes match exactly on 300/300 records; agreement alone does not establish correctness. This is an opened historical evaluation across all sample components. Evaluation-only; no fitting, calibration, feature selection or dashboard accuracy.",
   "reliability_gate": {
-    "path": "reports/improvement/human_reviews/round1/reliability_gate.json",
-    "sha256": "2eb2f5a1a074018d9bdb4a40f211e0da0bcb0440f1c125a37fef8aae4ea496e6",
-    "status": "satisfied_on_human_attestation_and_user_reported_full_sample_assignment"
+    "status": "withdrawn_superseded",
+    "note": "Prior gate was satisfied on attestation; withdrawn because identical arrays invalidate the agreement premise. See round2 reliability_gate (prespecification-verified)."
   },
   "additional_artifacts": [
     "reports/improvement/human_reviews/round1/human_review_provenance.json",
@@ -200,5 +199,14 @@
     "reports/improvement/human_reviews/round1/adjudication/adjudicated_labels.csv",
     "reports/improvement/human_reviews/round1/accuracy.json",
     "scripts/defect_accuracy.py"
-  ]
+  ],
+  "supersession": {
+    "reason": "review_arrays_identical=true: labels and notes byte-identical between primary and second exports",
+    "scope": "Manish second review withdrawn as independence/agreement evidence only; files preserved unchanged",
+    "preserved": [
+      "Rahul primary labels remain the gold labels for the registered round-1 comparison",
+      "round-2 adjudicated labels incorporate Rahul's labels where agreed (269/300)"
+    ],
+    "superseded_by": "reports/improvement/human_reviews/round2"
+  }
 }
