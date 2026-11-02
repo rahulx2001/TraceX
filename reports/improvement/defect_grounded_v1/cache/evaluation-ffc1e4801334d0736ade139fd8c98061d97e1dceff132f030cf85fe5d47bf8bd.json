@@ -1,0 +1,67 @@
+{
+  "status": "invalid",
+  "error": "nonverbatim_other_evidence:c5",
+  "items": [],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "wiring_electrical",
+        "confidence": 0.92,
+        "evidence": "someone had rigged the electrical wiring harness and wrapped it with electrical tape and taped it down causing the electrical system to malfunction",
+        "part_evidence": "electrical wiring harness",
+        "mode_evidence": "causing the electrical system to malfunction",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "The contact had not experienced a failure.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "negated"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "The media screen console part of my 2024 Santa Fe has been glitching since July.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "The DRL on the 2021 F150 Quad Beam headlights burn out continuously.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.85,
+        "evidence": "my car started to light up on the dashboard and the car started to slow down and wouldn’t move.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "Leak in roof rail seam causes interior water leak and fried liftgate opener.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "ffc1e4801334d0736ade139fd8c98061d97e1dceff132f030cf85fe5d47bf8bd",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:26:13+00:00",
+  "completed_at": "2026-11-02T13:26:17+00:00"
+}

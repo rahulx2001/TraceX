@@ -1,0 +1,83 @@
+{
+  "recorded_at": "2026-11-02T17:15:57.475192+00:00",
+  "source_scope": "Current working files; unrelated existing edits preserved",
+  "source_hashes": {
+    "dashboard/src/App.jsx": "8ab28296294e389defeb0f2be0249ec3f234b9f3d359c9fd950547a8904ae9ff",
+    "dashboard/routes/CaseQueue.jsx": "7e23834bcf20ef814e416f201d7d0e078f447b3d88e7bb89cc1812b710683e72",
+    "dashboard/routes/JudgeEntry.jsx": "c6a103b7ee8f2b723bcd35c949b3b58081652f2f2fc80e6b5bdc4972041da1e8",
+    "dashboard/routes/AiStatus.jsx": "eedc739806d953484c53395f8ef912c3b86c4ce4cbb720e77df4d74c076d8671",
+    "dashboard/routes/CallWidget.jsx": "6eb15aeb61f7f3da898c65238a3d97674ce7a7447bae2f1a2bb40dda071c6e94",
+    "dashboard/routes/PlatformDesk.jsx": "34ad387c00dd98b2ac6439c5321e0be3d7b69b222152a6adde048aa23bd03e93",
+    "dashboard/routes/UserJourneyGuide.jsx": "41cfedf7e28303ca7f0ef566d8b1fc9071308cb56661fb2ef0e2b20d4b38702d",
+    "dashboard/routes/SafetyCampaigns.jsx": "d09582f8fff26ecadf5a30496c84f59737184adb9acca35fa586a8fa6ff01c04",
+    "dashboard/src/ui/operatorErrors.js": "063aa864487d0c7047b19d8b5a85567c3fbb06ed65dc98538c3a755ff0baba8c",
+    "dashboard/src/ai/aiApi.js": "2fc246ae0f1cb165faedb507dd4beb9c3875047829c52fd68f2f619a771076e4",
+    "dashboard/src/ai/CampaignInvestigation.jsx": "f903885336f2139c4cf833514489891eea9ab359bdf7ad7a97229bff3aa2bfed",
+    "dashboard/src/ai/MetaTag.jsx": "8f38cb7ae51707c761eaccf154b6d1b4a423d19838cedf3baad43a1b86a2793c",
+    "dashboard/src/ai/AiModeBadge.jsx": "1ef1303fa0d00cc3da338dfaf61aebe8430795c6aeb04886199aea3f1d6893ef",
+    "dashboard/src/ai/EvidencePanel.jsx": "27ec7643b85f970bfd2ac5b893b22348759f7e4d7e8bd1fb2bcbb88951cc60cc",
+    "dashboard/src/ai/FaultCodesPanel.jsx": "9fb044ffc61bbd61d75e72fa50f555549a3418cf6881837760b6de7a6ae71b53",
+    "dashboard/src/ui/Feedback.jsx": "60a73a09c5840d38b0ca4646ca65c7d607a0a54f082ae7686754612a04c31dd5",
+    "dashboard/src/ui/opsActions.js": "3f88650489a3036954082e8cf332d48a26f04df28cf2afd95adc485bdcb6a012",
+    "src/api/routes/frontline.py": "4d29a4aa809b4cc6eed89e6d6f19b4805d46992dc5af7908847d643c78c00175",
+    "src/frontline/case_completeness.py": "c1aac60f0790728ed251ae956ace97287be7adc3b7f2cbec00fbda3dee23dd44",
+    "src/frontline/connectors.py": "9755bfb5c51f9898078a376c1efa1b9bad2554a07bf3ceb4298cc10afd65aeaa",
+    "src/agents/case_agent.py": "9fe2aec10071da151276dc48aa8b0fc08d87648360d36cf3c2a59e17394b3e2e"
+  },
+  "checks": {
+    "focused_python": {
+      "passed": 21,
+      "total": 21
+    },
+    "production_build": {
+      "passed": true,
+      "entry_js": "index-A-DM6-Nr.js",
+      "entry_bytes": 178452,
+      "entry_gzip_bytes": 57636,
+      "prior_entry_bytes": 739750,
+      "note": "Route loading verified on demand; no measured tablet latency claim"
+    },
+    "browser_suite": {
+      "command": "PLAYWRIGHT_CHANNEL=chrome npm run test:signin",
+      "exit_code": 0,
+      "fixtures": "fictional; no inference or real audio",
+      "scope": [
+        "real API report, source handoff, correction, review, export",
+        "single pilot navigation and route loading",
+        "permission recovery, retained drafts and same note retry identity",
+        "explicit status save and Undo",
+        "saved packet outcome",
+        "desktop and narrow-screen case workspace",
+        "engineer diagnostics hidden by default"
+      ]
+    },
+    "qa_copy_gate": {
+      "command": "npm run test:qa-labels",
+      "exit_code": 0
+    },
+    "protected_artifacts": {
+      "passed": 25,
+      "total": 25
+    }
+  },
+  "usability": {
+    "planned_participants": 1,
+    "planned_tasks_per_participant": 1,
+    "actual_sessions_received": 0,
+    "completion_rate": null,
+    "unassisted_success_rate": null,
+    "time_savings": null
+  },
+  "test_installation": {
+    "url": "http://127.0.0.1:8766/ui/#demo",
+    "state": "/private/tmp/tracex-usability-20261102-ux1",
+    "readiness": true,
+    "model_calls_enabled": false,
+    "customer_delivery_connected": false
+  },
+  "limitations": [
+    "English UI and replies; English/Hindi input, no measured real-speech quality",
+    "Customer delivery unavailable; case packet saves locally",
+    "Human usability session pending"
+  ]
+}

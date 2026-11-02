@@ -1,0 +1,49 @@
+{
+  "verified_at": "2026-11-02T13:35:52+00:00",
+  "result": "pass",
+  "scope": "Read-only artifact hashes and independent standard-library all-row arithmetic; no inference replay or label-quality verification.",
+  "frozen_candidate_dependencies": {
+    "passed": 10,
+    "total": 10
+  },
+  "historical_human_review_artifacts": {
+    "passed": 21,
+    "total": 21
+  },
+  "evaluation_rows": {
+    "retained": 300,
+    "denominator": 300,
+    "components": 29
+  },
+  "baseline": {
+    "correct": 246,
+    "denominator": 300,
+    "missing": 0
+  },
+  "candidate": {
+    "correct": 209,
+    "denominator": 300,
+    "missing": 6,
+    "specific_correct": 21,
+    "specific_denominator": 107
+  },
+  "checks": [
+    "source/manifest/cache/output hashes",
+    "unique sample and record IDs",
+    "all adjudicated human labels",
+    "missing predictions retained",
+    "all-row and specific arithmetic",
+    "confusion totals/diagonal/missing column",
+    "every per-label precision/recall/F1 numerator and denominator",
+    "own-union macro F1",
+    "paired improvement/regression counts",
+    "common 48-label macro F1",
+    "270/300 target not met"
+  ],
+  "focused_tests": {
+    "passed": 46,
+    "total": 46
+  },
+  "scorer_exit_code": 3,
+  "scorer_exit_reason": "--require-complete deliberately reports 6/300 missing model outputs after writing the full-denominator score."
+}

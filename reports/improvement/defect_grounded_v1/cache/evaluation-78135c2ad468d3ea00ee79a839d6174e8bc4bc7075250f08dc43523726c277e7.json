@@ -1,0 +1,67 @@
+{
+  "status": "invalid",
+  "error": "nonverbatim_other_evidence:c5",
+  "items": [],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "THE FRONT DRIVER SIDE AIR BAGS DID NOT DEPLOY.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "The SRS airbag malfunction alert message has been displayed for more than a month.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.93,
+        "evidence": "none of the airbags in the truck went off.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "supplemental restraint system warning light comes on, approximately once per week.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "passenger’s side air bag inadvertently deployed.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.82,
+        "evidence": "Passenger airbag is indicated to remain on when no one is in the passenger seat.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "78135c2ad468d3ea00ee79a839d6174e8bc4bc7075250f08dc43523726c277e7",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:25:49+00:00",
+  "completed_at": "2026-11-02T13:25:54+00:00"
+}

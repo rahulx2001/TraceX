@@ -1,30 +1,30 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import CallWidget from "../routes/CallWidget.jsx";
-import LiveContactConsole from "../routes/LiveContactConsole.jsx";
-import CaseQueue from "../routes/CaseQueue.jsx";
-import EarlyWarningBoard from "../routes/EarlyWarningBoard.jsx";
-import Settings from "../routes/Settings.jsx";
-import CommandCenter from "../routes/CommandCenter.jsx";
-import SafetyCampaigns from "../routes/SafetyCampaigns.jsx";
-import SignIn from "../routes/SignIn.jsx";
-import JudgeEntry from "../routes/JudgeEntry.jsx";
-import UserJourneyGuide from "../routes/UserJourneyGuide.jsx";
-import AnalyticsDesk from "../routes/AnalyticsDesk.jsx";
-import IssueDesk from "../routes/IssueDesk.jsx";
-import TrustDesk from "../routes/TrustDesk.jsx";
-import PlatformDesk from "../routes/PlatformDesk.jsx";
-import EnterpriseOps from "../routes/EnterpriseOps.jsx";
-import PlatformOS from "../routes/PlatformOS.jsx";
-import TrustPipeline from "../routes/TrustPipeline.jsx";
-import QualityEconomics from "../routes/QualityEconomics.jsx";
-import InsightsBoard from "../routes/InsightsBoard.jsx";
-import FeatureStudio from "../routes/FeatureStudio.jsx";
-import PackBuilder from "../routes/PackBuilder.jsx";
+import { useCallback, useEffect, useMemo, useState, lazy, Suspense } from "react";
+const CallWidget = lazy(() => import("../routes/CallWidget.jsx"));
+const LiveContactConsole = lazy(() => import("../routes/LiveContactConsole.jsx"));
+const CaseQueue = lazy(() => import("../routes/CaseQueue.jsx"));
+const EarlyWarningBoard = lazy(() => import("../routes/EarlyWarningBoard.jsx"));
+const Settings = lazy(() => import("../routes/Settings.jsx"));
+const CommandCenter = lazy(() => import("../routes/CommandCenter.jsx"));
+const SafetyCampaigns = lazy(() => import("../routes/SafetyCampaigns.jsx"));
+const SignIn = lazy(() => import("../routes/SignIn.jsx"));
+const JudgeEntry = lazy(() => import("../routes/JudgeEntry.jsx"));
+const DemoMode = lazy(() => import("../routes/DemoMode.jsx"));
+const UserJourneyGuide = lazy(() => import("../routes/UserJourneyGuide.jsx"));
+const AnalyticsDesk = lazy(() => import("../routes/AnalyticsDesk.jsx"));
+const IssueDesk = lazy(() => import("../routes/IssueDesk.jsx"));
+const TrustDesk = lazy(() => import("../routes/TrustDesk.jsx"));
+const PlatformDesk = lazy(() => import("../routes/PlatformDesk.jsx"));
+const EnterpriseOps = lazy(() => import("../routes/EnterpriseOps.jsx"));
+const PlatformOS = lazy(() => import("../routes/PlatformOS.jsx"));
+const TrustPipeline = lazy(() => import("../routes/TrustPipeline.jsx"));
+const QualityEconomics = lazy(() => import("../routes/QualityEconomics.jsx"));
+const InsightsBoard = lazy(() => import("../routes/InsightsBoard.jsx"));
+const FeatureStudio = lazy(() => import("../routes/FeatureStudio.jsx"));
+const PackBuilder = lazy(() => import("../routes/PackBuilder.jsx"));
 // [AI-LAYER] optional Meta AI layer: demo path page + mode badge
-import DemoMode from "../routes/DemoMode.jsx";
-import AiTools from "../routes/AiTools.jsx"; // [AI-LAYER] road-safety tools hub
-import AiStatus from "../routes/AiStatus.jsx"; // [AI-LAYER] AI status page: call health + raise review
-import DefectLevel from "../routes/DefectLevel.jsx"; // [AI-LAYER] defect-level early warning (#defect-level)
+const AiTools = lazy(() => import("../routes/AiTools.jsx"));
+const AiStatus = lazy(() => import("../routes/AiStatus.jsx"));
+const DefectLevel = lazy(() => import("../routes/DefectLevel.jsx"));
 import AiModeBadge from "./ai/AiModeBadge.jsx";
 import CommandPalette from "./ui/CommandPalette.jsx";
 import AccountSignIn from "./ui/AccountSignIn.jsx";
@@ -93,7 +93,7 @@ const EXTRA_PAGES = [
   { id: "studio", label: "Feature studio", route: FeatureStudio, keywords: "features sandbox prompt test" },
   { id: "builder", label: "Pack builder", route: PackBuilder, keywords: "pack builder upload yaml" },
   // [AI-LAYER] hackathon demo path (#demo); not in the nav, existing screens unchanged
-  { id: "demo", label: "Judge start", route: JudgeEntry, keywords: "demo hackathon report investigate review evidence" },
+  { id: "demo", label: "Start here", route: JudgeEntry, keywords: "start report investigate review evidence" },
   { id: "legacy-demo", label: "Earlier platform tour", route: DemoMode, keywords: "earlier intake lotguard tour" },
   // [AI-LAYER] road-safety tools hub (#ai-tools): vehicle risk, alerts, service centre, spread, WhatsApp mock
   { id: "ai-tools", label: "Road-safety tools", route: AiTools, keywords: "vehicle risk alerts service centre spread whatsapp video" },
@@ -203,7 +203,7 @@ function Shell() {
     ? decodeURIComponent(route === "issue" ? "" : route.slice("issue/".length))
     : null;
   const issuePage = EXTRA_PAGES.find((p) => p.id === "issue");
-  const fallback = ALL_NAV.find((n) => n.id === "command") || ALL_NAV[0];
+  const fallback = EXTRA_PAGES.find((n) => n.id === "demo");
   const active = extra || (issueClusterId !== null && issuePage) || ALL_PAGES.find((n) => n.id === route) || fallback;
   const Page = active.route;
   const liveSessionRoute = active.id === "call" || active.id === "console";
@@ -259,7 +259,7 @@ function Shell() {
       return;
     }
     if (route === "issue" || route.startsWith("issue/")) return;
-    if (!ALL_PAGES.some((n) => n.id === route)) setRoute("command");
+    if (!ALL_PAGES.some((n) => n.id === route)) setRoute("demo");
   }, [route, setRoute, demoOpenConsole]);
 
   // hasConsoleAccess handles explicit open mode and fails closed when health
@@ -338,14 +338,21 @@ function Shell() {
 
   const commands = useMemo(() => {
     const nav = [
-      ...ALL_NAV.map((n) => ({
+      ...[{ id: "call", label: "Report", keywords: "voice report" }, { id: "cases", label: "Cases", keywords: "case queue followup note" },
+        { id: "safety-campaigns?tab=investigate", label: "Investigate", keywords: "investigation source" },
+        { id: "safety-campaigns?tab=trace", label: "Review", keywords: "review decision installation" },
+        { id: "safety-campaigns?tab=evidence", label: "Evidence", keywords: "packet export" },
+        { id: "platform?tab=tools", label: "Platform", keywords: "settings tools system" }].map((n) => ({
         id: `nav-${n.id}`,
         label: n.label,
-        group: "Go to",
+        group: "Pilot workflow",
         Icon: n.Icon,
         keywords: n.keywords,
         hint: n.id === active.id ? "current" : "",
         run: () => setRoute(n.id),
+      })),
+      ...ALL_PAGES.filter(n => !["call", "cases", "demo", "signin", "signup"].includes(n.id)).map(n => ({
+        id: `platform-${n.id}`, label: n.label, group: "Platform", keywords: n.keywords, run: () => setRoute(n.id),
       })),
       {
         id: "nav-guide",
@@ -553,7 +560,7 @@ function Shell() {
   }
 
   if (active.id === "signin" || active.id === "signup") {
-    return <Page initialMode={active.id} onNavigate={setRoute} />;
+    return <Suspense fallback={<p role="status">Loading sign-in…</p>}><Page initialMode={active.id} onNavigate={setRoute} /></Suspense>;
   }
 
   function workflowTarget(tab) {
@@ -564,6 +571,7 @@ function Shell() {
   }
   const workflow = [
     { label: "Report", target: "call", Icon: IconMic, current: active.id === "call" },
+    { label: "Cases", target: "cases", Icon: IconFolder, current: active.id === "cases" },
     ...[["Investigate", "investigate", IconSpark], ["Review", "trace", IconShield], ["Evidence", "evidence", IconFolder]]
       .map(([label, tab, Icon]) => ({ label, Icon, target: workflowTarget(tab), current: active.id === "safety-campaigns" && hashQuery.tab === tab })),
   ];
@@ -571,41 +579,31 @@ function Shell() {
   const navList = (
     <>
       <nav aria-label="Engineer workflow" className="nav-group">
-        <div className="nav-group-label">Investigation workflow</div>
+        <div className="nav-group-label">Pilot workflow</div>
         {workflow.map(({ label, target, Icon, current }) => <button key={label} type="button"
           className={`nav-item${current ? " active" : ""}`} aria-label={label} aria-current={current ? "page" : undefined}
           title={collapsed ? label : undefined} onClick={() => setRoute(target)}>
           <span className="nav-ico" aria-hidden="true"><Icon /></span><span className="nav-text">{label}</span>
         </button>)}
       </nav>
-      <details className="advanced-nav" key={active.id} open={!["call", "safety-campaigns", "demo"].includes(active.id)}>
-      <summary aria-label="Advanced tools" title={collapsed ? "Advanced tools" : undefined}><span aria-hidden="true">⚙</span><span className="nav-text">Advanced tools</span></summary>
-      {NAV_GROUPS.map((g) => (
-        <div key={g.label} className="nav-group">
-          <div className="nav-group-label">{g.label}</div>
-          {g.items.map((n) => {
-            const Icon = n.Icon;
-            const isActive = n.id === active.id;
-            return (
-              <button
-                key={n.id}
-                type="button"
-                className={"nav-item" + (isActive ? " active" : "")}
-                aria-current={isActive ? "page" : undefined}
-                aria-label={n.label}
-                onClick={() => setRoute(n.id)}
-                title={collapsed ? n.label : undefined}
-              >
-                <span className="nav-ico">
-                  <Icon />
-                </span>
-                <span className="nav-text">{n.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      ))}
-      </details>
+      {NAV_GROUPS.map(group => <nav key={group.label} className="nav-group" aria-label={group.label}>
+        <div className="nav-group-label">{group.label}</div>
+        {group.items.map(({ id, label, Icon }) => <button key={id} type="button"
+          className={`nav-item${active.id === id ? " active" : ""}`} aria-label={label}
+          aria-current={active.id === id ? "page" : undefined} title={collapsed ? label : undefined}
+          onClick={() => setRoute(id)}>
+          <span className="nav-ico" aria-hidden="true"><Icon /></span><span className="nav-text">{label}</span>
+        </button>)}
+      </nav>)}
+      <nav className="nav-group" aria-label="More tools">
+        <div className="nav-group-label">More tools</div>
+        {EXTRA_PAGES.filter(page => !["signin", "signup", "guide", "issue", "demo"].includes(page.id)).map(({ id, label }) => <button key={id} type="button"
+          className={`nav-item${active.id === id ? " active" : ""}`} aria-label={label}
+          aria-current={active.id === id ? "page" : undefined} title={collapsed ? label : undefined}
+          onClick={() => setRoute(id)}>
+          <span className="nav-ico" aria-hidden="true"><IconLayers /></span><span className="nav-text">{label}</span>
+        </button>)}
+      </nav>
     </>
   );
 
@@ -644,7 +642,7 @@ function Shell() {
             className="primary"
             onClick={() => setRoute("demo")}
           >
-            Judge start →
+            Start here
           </button>
           <button
             type="button"
@@ -652,12 +650,12 @@ function Shell() {
             onClick={() => setPaletteOpen(true)}
             aria-label="Open command palette"
           >
-            <span>Search Console…</span>
+            <span>Find a task…</span>
             <kbd>⌘K</kbd>
           </button>
         </div>
 
-        {navList}
+        <div className="sidebar-navigation" style={{ overflowY: "auto", minHeight: 0, flex: 1 }}>{navList}</div>
 
         <div className="sidebar-foot">
           {authenticationRequired && <AccountSignIn />}
@@ -689,7 +687,7 @@ function Shell() {
             {NAV_GROUPS.find((g) => g.items.some((i) => i.id === active.id)) ? (
               <>
                 <span className="topbar-crumb faint">
-                  {NAV_GROUPS.find((g) => g.items.some((i) => i.id === active.id))?.label}
+                  {active.id === "cases" ? "Pilot" : "Platform"}
                 </span>
                 <span className="topbar-sep" aria-hidden="true">
                   /
@@ -806,7 +804,9 @@ function Shell() {
 
         <main className="main page-enter" id="main" key={active.id} tabIndex={-1}>
           <ErrorBoundary key={liveSessionRoute ? active.id : `${active.id}-${refreshKey}`}>
-            <Page refreshKey={refreshKey} health={health} hashQuery={hashQuery} issueId={issueClusterId} />
+            <Suspense fallback={<p role="status">Loading {active.label.toLowerCase()}…</p>}>
+              <Page refreshKey={refreshKey} health={health} hashQuery={hashQuery} issueId={issueClusterId} />
+            </Suspense>
           </ErrorBoundary>
         </main>
       </div>

@@ -1,0 +1,38 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "it was diagnosed with transmission failure",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "it was diagnosed with transmission failure",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "da96e75635f62b836f98ebc1283421433bb3266a9252b42a221c8323ab72f816",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:17:04+00:00",
+  "completed_at": "2026-11-02T13:17:06+00:00"
+}

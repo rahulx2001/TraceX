@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.98,
+      "label_id": "other_unclear",
+      "confidence": 0.98,
+      "evidence": "valve stems on each of the outside tires had caused air to leak out of the tires.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.99,
+      "label_id": "other_unclear",
+      "confidence": 0.99,
+      "evidence": "my lane departure warning did not work! I was hit twice, causing significant body damage over19,000 in which my air bags did not deploy!",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "wrong_component",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "All the nuts were swollen in Dec 2024 and could not be removed by myself.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "valve stems on each of the outside tires had caused air to leak out of the tires.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.99,
+        "evidence": "my lane departure warning did not work! I was hit twice, causing significant body damage over19,000 in which my air bags did not deploy!",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "wrong_component"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "All the nuts were swollen in Dec 2024 and could not be removed by myself.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "db0a723c4c5a29352058fdb0eb799fe445a6d5a142d0809256464ec0ac012964",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:18:44+00:00",
+  "completed_at": "2026-11-02T13:18:47+00:00"
+}

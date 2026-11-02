@@ -19,11 +19,11 @@ try {
   page = await context.newPage(); page.on("pageerror", e => errors.push(e.message));
   const video = page.video();
   await page.goto("/ui/#safety-campaigns");
-  await page.getByRole("button", { name: "Meta investigation", exact: true }).waitFor({ timeout: 20000 });
+  await page.getByRole("button", { name: "Investigate", exact: true }).waitFor({ timeout: 20000 });
   const light = page.getByRole("button", { name: "Light", exact: true });
   if (await light.count()) await light.click();
   if (check) {
-    await page.getByRole("button", { name: "Meta investigation", exact: true }).click();
+    await page.getByRole("button", { name: "Investigate", exact: true }).click();
     await page.getByLabel("Recorded investigations").selectOption(proof.initial.run_id);
     await page.getByTestId("investigation-result").scrollIntoViewIfNeeded();
     await page.screenshot({ path: resolve(outDir, "investigation-ui.png"), fullPage: true });
@@ -62,7 +62,7 @@ try {
     }
     await caption("TraceX · From an owner report to repair evidence", "Synthetic walkthrough. New work: sourced Meta investigation, follow-up, reviewed campaign evidence. Operations foundation reused.");
     await until(18);
-    await section("Meta investigation");
+    await section("Investigate");
     await page.getByLabel("Recorded investigations").selectOption(proof.initial.run_id);
     await page.getByTestId("investigation-result").scrollIntoViewIfNeeded();
     await caption("1 · Understand the report", "Recorded live Muse Spark Open output on fictional Hinglish input. Each observation links to the original source sentence.");
@@ -80,7 +80,7 @@ try {
     await page.getByRole("button", { name: "Save demo: review installed part", exact: true }).click();
     await page.getByRole("status").filter({ hasText: "Update saved" }).waitFor();
     await until(78);
-    await section("Meta investigation");
+    await section("Investigate");
     await page.getByLabel("Recorded investigations").selectOption(proof.followup.run_id);
     await page.getByRole("heading", { name: "Evidence lookups", exact: true }).scrollIntoViewIfNeeded();
     await caption("4 · Update the investigation from the new record", "Recorded follow-up: Meta chose the installed-part lookup and updated the cited draft. Tool access is read only.");

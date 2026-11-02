@@ -1,0 +1,206 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.45,
+      "label_id": "other_unclear",
+      "confidence": 0.45,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "uncertain_cause",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "gear_position_indication_prndl_failure",
+      "proposed_confidence": 0.72,
+      "label_id": "gear_position_indication_prndl_failure",
+      "confidence": 0.72,
+      "evidence": "CAR IS IN REVERSE AND IT STILL MOVES FORWARD",
+      "part_evidence": "CAR IS IN REVERSE",
+      "mode_evidence": "IT STILL MOVES FORWARD",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.88,
+      "label_id": "other_unclear",
+      "confidence": 0.88,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c4",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.98,
+      "label_id": "other_unclear",
+      "confidence": 0.98,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c5",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.85,
+      "label_id": "other_unclear",
+      "confidence": 0.85,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c6",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.78,
+      "label_id": "other_unclear",
+      "confidence": 0.78,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "uncertain_cause",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c7",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.82,
+      "label_id": "other_unclear",
+      "confidence": 0.82,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c8",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.97,
+      "label_id": "other_unclear",
+      "confidence": 0.97,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.45,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "gear_position_indication_prndl_failure",
+        "confidence": 0.72,
+        "evidence": "CAR IS IN REVERSE AND IT STILL MOVES FORWARD",
+        "part_evidence": "CAR IS IN REVERSE",
+        "mode_evidence": "IT STILL MOVES FORWARD",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.85,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.78,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      },
+      {
+        "record_id": "c7",
+        "label_id": "other_unclear",
+        "confidence": 0.82,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c8",
+        "label_id": "other_unclear",
+        "confidence": 0.97,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "4e6283c5b5bab8df10c03b8a266714eb88306ed4f4c8b998dc8961bcadc400b4",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:16:35+00:00",
+  "completed_at": "2026-11-02T13:16:39+00:00"
+}

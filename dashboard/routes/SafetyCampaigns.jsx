@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { apiHeaders } from "../src/apiAuth.js";
 import CampaignInvestigation from "../src/ai/CampaignInvestigation.jsx";
 import "./safety-campaigns.css";
+import { operatorError } from "../src/ui/operatorErrors.js";
 
 const API = "/api/safety-campaigns";
 const campaignTabs = new Set(["overview", "investigate", "trace", "outreach", "workshop", "evidence"]);
@@ -63,7 +64,7 @@ async function request(path, data) {
   try { body = await response.json(); } catch { throw new Error(`Server returned ${response.status}. Please refresh.`); }
   if (!response.ok) {
     if (response.status === 404 && path === API) throw new Error("Safety campaigns are not available on this server yet. Restart the app server to load the update, then retry.");
-    throw new Error(typeof body.detail === "string" ? body.detail : `Request failed (${response.status}). Check the required fields.`);
+    throw new Error(operatorError({ status: response.status }, "save this decision"));
   }
   return body;
 }
@@ -286,7 +287,7 @@ export default function SafetyCampaigns() {
       <div className="sc-metrics">{[["Verified lot matches", m.exact, `${m.possible} possible · ${m.unknown} trace unknown`], ["Open vehicle reviews", m.unresolved, `${m.safety_holds} safety holds · ${m.overdue} overdue`],
         ["Confirmed cracks", m.confirmed_cracks, `${m.inspected} recorded inspections`], ["Verified repairs", m.repair_verified, `${m.resolved} reviewed resolutions`]].map(([title, value, hint]) =>
         <div key={title} className="sc-metric"><span>{title}</span><strong>{value}</strong><small>{hint}</small></div>)}</div>
-      <nav className="sc-tabs" aria-label="Campaign sections">{[["overview", "Overview"], ["investigate", "Meta investigation"], ["trace", "Vehicle traceability"], ["outreach", "Owner outreach"], ["workshop", "Workshop & repair"], ["evidence", "Evidence & close-out"]].map(([id, title]) =>
+      <nav className="sc-tabs" aria-label="Campaign sections">{[["overview", "Overview"], ["investigate", "Investigate"], ["trace", "Review installation"], ["outreach", "Owner outreach"], ["workshop", "Workshop & repair"], ["evidence", "Evidence & close-out"]].map(([id, title]) =>
         <button key={id} aria-current={tab === id ? "page" : undefined} className={tab === id ? "active" : ""} onClick={() => { setTab(id); setError(""); }}>{title}</button>)}</nav>
 
       {tab === "overview" && <div className="sc-overview-grid">

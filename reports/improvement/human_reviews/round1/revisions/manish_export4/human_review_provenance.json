@@ -1,0 +1,11 @@
+{
+  "reviewer": "Manish",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewed": 300,
+  "sample_size": 300,
+  "input_sha256": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0",
+  "output_sha256": "a7e10106fcc7337cd38c142af61c582e1565dbdf92688f5b0bc5b0bb4e0cb201",
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "note": "Reviewer attestation records provenance; it does not independently verify expertise or correctness."
+}

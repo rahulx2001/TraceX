@@ -5,7 +5,7 @@ import { runReportHandoffTest } from "./report-handoff.test.mjs";
 
 export async function runDemoRuntimeUiTest({ page, context, base }) {
   await page.goto(`${base}/ui/#command`);
-  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI: local rules");
+  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI assistance: off");
   await expect(page.getByRole("button", { name: "Sign in", exact: true })).toHaveCount(0);
   const filter = page.getByRole("checkbox", { name: "Include test traffic", exact: true });
   await expect(filter).not.toBeChecked();
@@ -57,15 +57,15 @@ export async function runDemoRuntimeUiTest({ page, context, base }) {
   await page.route(statusPath, route => route.fulfill({ status: 503, json: { detail: "Test outage" } }));
   await page.goto(`${base}/ui/#demo`);
   await page.reload();
-  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI status unavailable");
-  await expect(page.getByTestId("demo-ai-notice")).toContainText("AI configuration is unavailable");
+  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI assistance: unavailable");
+  await expect(page.getByTestId("demo-ai-notice")).toContainText("Assistance status is unavailable");
   await page.unroute(statusPath);
   await page.route(statusPath, route => route.fulfill({ json: { mode: "enhanced", models: { text: "display-test-only" } } }));
   await page.reload();
-  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI: Meta configured");
+  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI assistance: on");
   await page.unroute(statusPath);
   await page.reload();
-  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI: local rules");
-  await expect(page.getByTestId("demo-ai-notice")).toContainText("New model-generated interpretations and photo analysis are unavailable");
+  await expect(page.getByTestId("ai-mode-badge")).toHaveText("AI assistance: off");
+  await expect(page.getByTestId("demo-ai-notice")).toContainText("Reports, record lookups and manual review remain available");
   console.log("PASS: AI mode distinguishes healthy local rules, configured provider and unavailable status without claiming an inference.");
 }

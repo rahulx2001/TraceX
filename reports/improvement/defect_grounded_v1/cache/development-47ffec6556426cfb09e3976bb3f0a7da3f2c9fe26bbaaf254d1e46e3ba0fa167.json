@@ -1,0 +1,38 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.95,
+      "label_id": "other_unclear",
+      "confidence": 0.95,
+      "evidence": "THE WIRES CONNECTED WITH THE LOW BEAM LIGHTS ARE BURNT AND CORRODED",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "THE WIRES CONNECTED WITH THE LOW BEAM LIGHTS ARE BURNT AND CORRODED",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "47ffec6556426cfb09e3976bb3f0a7da3f2c9fe26bbaaf254d1e46e3ba0fa167",
+  "phase": "development",
+  "started_at": "2026-11-02T13:09:32+00:00",
+  "completed_at": "2026-11-02T13:09:36+00:00"
+}

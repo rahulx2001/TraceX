@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-11-02T14:54:35+00:00",
+  "artifacts": {
+    "README.md": "67e3975ba15ddf59d80f42fc22b0ddc66ac213c2a9c0699526fe84249524acd7",
+    "adjudication.html": "037bdb24458454d4206051b91b3582f09c32471537ad183665c0e3fa7bf64614",
+    "adjudication_draft.json": "dfe06dc102f6d26d52258342a63689ebc651ff9830c957d9323587ae8f9a44f3",
+    "agreement_before_adjudication.json": "67d9a7cff0e465dadcf0589fa5521b86c5b730d1b03398f156f757bdeebf6348",
+    "human_confirmation.json": "fc958d5be0edc9e2548ead7e7c21b00870a1698d7e98301d655db2fa5669b33d",
+    "human_labelled.csv": "a7e10106fcc7337cd38c142af61c582e1565dbdf92688f5b0bc5b0bb4e0cb201",
+    "human_review_provenance.json": "8d986dc1751ba92e98a476e82ef2ebbe9446480e1a19587f4e175c20147b1c70",
+    "original_review_export.json": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0",
+    "pre_claim_update/CLAIM_INDEX.md": "5439ae8447559f9f8473ffedf008f8c2be267bbc8aa1a3514dc6a9e6aebd9072",
+    "pre_claim_update/build_claim_index.py": "9fc41932013e78413c7eec8df3cc4140bb69f74002c5347839a51a8db2f2e6e5",
+    "pre_claim_update/claim_index.json": "77c828dfb83ac3be413624d1ce888d44e9a2c5334c8f6c5d0d37d1e1068f4c06",
+    "status.json": "e673e8f90419af956b493e4c726fb6c7336cba3a0d7fe468f44d1ef81bc3d71b",
+    "verification.json": "7c49f262d41dcc38cc2691e01d192828dc1321918142c075ed6a08974a504cba"
+  },
+  "claim_index_sha256": "d987b46bf6f41f966c7a50a65a7103bad2800267c657acaa02d7e2fc2db5d528",
+  "claim_index_generator_sha256": "fa71e3e63acb3318066e894ea6b2d954ba71aa014131217078a01d17ea053ccd"
+}

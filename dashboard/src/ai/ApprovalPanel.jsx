@@ -43,7 +43,7 @@ export default function ApprovalPanel({ investigationId, onDecided }) {
       setA({ ...d, created_at: new Date().toISOString() });
       if (onDecided) onDecided(d);
     } catch (e) {
-      setErr(e.message === "403"
+      setErr(e.status === 403
         ? "Supervisor session required — sign in as supervisor to decide."
         : e.message);
     } finally {

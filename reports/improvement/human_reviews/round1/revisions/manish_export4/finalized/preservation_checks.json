@@ -1,0 +1,41 @@
+{
+  "verified_at": "2026-11-02T15:18:35+00:00",
+  "result": "pass",
+  "public_replay": "pass: saved-artifact arithmetic, source fidelity and hashes; no inference replay",
+  "indexed_artifacts": {
+    "passed": 49,
+    "total": 49
+  },
+  "unchanged_historical_claims": {
+    "passed": 8,
+    "total": 8
+  },
+  "historical_round1_artifacts": {
+    "passed": 21,
+    "total": 21
+  },
+  "prior_revision_artifacts": {
+    "passed": 13,
+    "total": 13
+  },
+  "historical_candidate_artifacts": {
+    "passed": 75,
+    "total": 75
+  },
+  "frozen_sample_byte_identical": true,
+  "current_accuracy": {
+    "numerator": 255,
+    "denominator": 300,
+    "value": 0.85,
+    "ci95": [
+      0.805182388854671,
+      0.8859675312881468
+    ]
+  },
+  "adjudicated_disagreements": {
+    "numerator": 31,
+    "denominator": 31
+  },
+  "model_training_or_new_inference": false,
+  "dashboard_accuracy_updated": false
+}

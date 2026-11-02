@@ -1,0 +1,62 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "electric_power_assist_system_loss_of_control",
+      "proposed_confidence": 0.88,
+      "label_id": "electric_power_assist_system_loss_of_control",
+      "confidence": 0.88,
+      "evidence": "power steering assist failed to operate as needed",
+      "part_evidence": "power steering assist failed to operate as needed",
+      "mode_evidence": "excessive force was needed to steer the vehicle",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "truck fails to accelerate and bogs down when taking off and turning at the same time",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "electric_power_assist_system_loss_of_control",
+        "confidence": 0.88,
+        "evidence": "power steering assist failed to operate as needed",
+        "part_evidence": "power steering assist failed to operate as needed",
+        "mode_evidence": "excessive force was needed to steer the vehicle",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "truck fails to accelerate and bogs down when taking off and turning at the same time",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "255fe3a4f868072890903c2e0d12890d6f0add30fe17b8d7dfcae5199b84d154",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:17:55+00:00",
+  "completed_at": "2026-11-02T13:18:00+00:00"
+}

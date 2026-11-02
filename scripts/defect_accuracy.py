@@ -5,15 +5,16 @@ with blank ``label`` cells and frozen with a SHA-256. A human fills the
 ``label`` column with one of the row's ``allowed_label_ids``. This script joins
 those labels to the classifier output and reports:
 
-* overall accuracy on rows that have both a valid human label and a model label;
+* overall accuracy on every valid human-labelled row, including missing predictions;
 * accuracy on rows whose human label is a specific defect (not ``other/unclear``);
 * per-label precision, recall, F1 and support;
-* a human-label x model-label confusion matrix;
+* a human-label x model-label confusion matrix with a missing-prediction column;
+* Wilson accuracy/precision/recall intervals and stratified paired-row bootstrap F1 intervals;
 * how many rows are unlabelled, invalid, or have no model output.
 
 It never fills a human label and never treats model output as ground truth.
-Missing model output is counted separately, not silently dropped from the
-denominator without a note.
+Missing model output counts as wrong and as a false negative for its human
+label. These labels are evaluation-only, never fitting or calibration data.
 
     python -m scripts.defect_accuracy
     python -m scripts.defect_accuracy --require-complete   # final run
@@ -30,6 +31,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -41,6 +43,9 @@ DEFAULT_CLASSIFICATIONS = DEFECT_DIR / "classifications.parquet"
 DEFAULT_MANIFEST = DEFECT_DIR / "sample_manifest.json"
 DEFAULT_OUT = DEFECT_DIR / "accuracy.json"
 OTHER_ID = "other_unclear"
+MISSING_ID = "__missing_prediction__"
+BOOTSTRAP_SEED = 20261102
+BOOTSTRAP_DRAWS = 10000
 
 
 def utc_now() -> str:
@@ -119,6 +124,58 @@ def ratio(num: int, den: int) -> float | None:
     return (num / den) if den else None
 
 
+def wilson_interval(num: int, den: int) -> list[float] | None:
+    """Two-sided 95% Wilson score interval for a binomial proportion."""
+    if not den:
+        return None
+    z = 1.959963984540054
+    point = num / den
+    scale = 1 + z * z / den
+    centre = (point + z * z / (2 * den)) / scale
+    radius = z * math.sqrt(point * (1 - point) / den + z * z / (4 * den * den)) / scale
+    return [max(0.0, centre - radius), min(1.0, centre + radius)]
+
+
+def bootstrap_f1(labelled: list[dict[str, Any]], labels: list[str]) -> dict[str, Any]:
+    """Resample complete pairs within each true-label stratum, fixing supports.
+
+    The observed human/prediction union remains fixed. A prediction-only class
+    contributes zero F1 if it disappears in a replicate, rather than silently
+    being removed from the macro denominator.
+    """
+    if not labelled or not labels:
+        return {"per_label": {}, "macro_f1_ci95": None,
+                "macro_f1_human_supported_ci95": None}
+    lookup = {label: i for i, label in enumerate(labels)}
+    human = np.array([lookup[row["human_label"]] for row in labelled], dtype=int)
+    predicted = np.array([lookup[row["model_label"]] if row["model_label"] is not None else -1
+                          for row in labelled], dtype=int)
+    support = np.bincount(human, minlength=len(labels))
+    counts = np.zeros((BOOTSTRAP_DRAWS, len(labels)), dtype=int)
+    true_positive = np.zeros_like(counts)
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    offsets = np.arange(BOOTSTRAP_DRAWS)[:, None] * len(labels)
+    for index in np.flatnonzero(support):
+        stratum = np.flatnonzero(human == index)
+        values = predicted[stratum]
+        sampled = values[rng.integers(len(values), size=(BOOTSTRAP_DRAWS, len(values)))]
+        valid = sampled >= 0
+        counts += np.bincount((sampled + offsets)[valid],
+                              minlength=BOOTSTRAP_DRAWS * len(labels)).reshape(counts.shape)
+        true_positive[:, index] = (sampled == index).sum(axis=1)
+    denominator = support[None, :] + counts
+    values = np.divide(2 * true_positive, denominator,
+                       out=np.zeros_like(counts, dtype=float), where=denominator > 0)
+    ci = lambda array: [float(v) for v in np.quantile(array, [0.025, 0.975], method="linear")]
+    return {
+        "per_label": {label: {"ci95": ci(values[:, i]),
+                              "zero_denominator_draws": int((denominator[:, i] == 0).sum())}
+                      for i, label in enumerate(labels)},
+        "macro_f1_ci95": ci(values.mean(axis=1)),
+        "macro_f1_human_supported_ci95": ci(values[:, support > 0].mean(axis=1)),
+    }
+
+
 def safe_float(value: Any) -> float | None:
     try:
         out = float(value)
@@ -179,19 +236,20 @@ def build_metrics(sample: pd.DataFrame, clf: pd.DataFrame, *, manifest: dict[str
     scored = [x for x in labelled if x["model_label"] is not None]
     missing_model = [x for x in labelled if x["model_label"] is None]
     correct = sum(1 for x in scored if x["human_label"] == x["model_label"])
-    specific = [x for x in scored if x["human_label"] != OTHER_ID]
+    specific = [x for x in labelled if x["human_label"] != OTHER_ID]
     specific_correct = sum(1 for x in specific if x["human_label"] == x["model_label"])
-    other = [x for x in scored if x["human_label"] == OTHER_ID]
+    other = [x for x in labelled if x["human_label"] == OTHER_ID]
     other_correct = sum(1 for x in other if x["human_label"] == x["model_label"])
 
     human_counts = Counter(x["human_label"] for x in labelled)
     model_counts = Counter(x["model_label"] for x in scored)
-    labels = sorted(set(human_counts) | set(model_counts) | {OTHER_ID})
-    labels = [x for x in labels if x != OTHER_ID] + [OTHER_ID]
+    labels = sorted(set(human_counts) | set(model_counts))
+    labels = [x for x in labels if x != OTHER_ID] + ([OTHER_ID] if OTHER_ID in labels else [])
+    intervals = bootstrap_f1(labelled, labels)
 
     per_label = []
     for label in labels:
-        support = sum(1 for x in scored if x["human_label"] == label)
+        support = sum(1 for x in labelled if x["human_label"] == label)
         predicted = sum(1 for x in scored if x["model_label"] == label)
         tp = sum(1 for x in scored if x["human_label"] == label and x["model_label"] == label)
         fp = predicted - tp
@@ -207,14 +265,28 @@ def build_metrics(sample: pd.DataFrame, clf: pd.DataFrame, *, manifest: dict[str
             "fp": fp,
             "fn": fn,
             "precision": precision,
+            "precision_numerator": tp,
+            "precision_denominator": predicted,
+            "precision_ci95": wilson_interval(tp, predicted),
             "recall": recall,
+            "recall_numerator": tp,
+            "recall_denominator": support,
+            "recall_ci95": wilson_interval(tp, support),
             "f1": f1,
+            "f1_numerator": 2 * tp,
+            "f1_denominator": 2 * tp + fp + fn,
+            "f1_ci95": intervals["per_label"][label]["ci95"],
+            "bootstrap_zero_denominator_draws": intervals["per_label"][label]["zero_denominator_draws"],
         })
     per_label.sort(key=lambda x: (-x["support"], -x["predicted"], x["label_id"]))
 
-    confusion: dict[str, dict[str, int]] = {h: {m: 0 for m in labels} for h in labels}
-    for x in scored:
-        confusion[x["human_label"]][x["model_label"]] += 1
+    columns = labels + [MISSING_ID]
+    confusion: dict[str, dict[str, int]] = {h: {m: 0 for m in columns} for h in labels}
+    for x in labelled:
+        confusion[x["human_label"]][x["model_label"] if x["model_label"] is not None else MISSING_ID] += 1
+    macro_numerator = sum(x["f1"] or 0 for x in per_label)
+    supported_numerator = sum(x["f1"] or 0 for x in per_label if x["support"])
+    supported_count = sum(bool(x["support"]) for x in per_label)
 
     model_versions = sorted({str(x) for x in clf["model"].dropna().unique()})
     prompt_versions = sorted({str(x) for x in clf["prompt_version"].dropna().unique()})
@@ -231,22 +303,58 @@ def build_metrics(sample: pd.DataFrame, clf: pd.DataFrame, *, manifest: dict[str
                                 "model_status": x["model_status"]} for x in missing_model],
         "scored": int(len(scored)),
         "correct": int(correct),
-        "accuracy": ratio(correct, len(scored)),
+        "accuracy": ratio(correct, len(labelled)),
+        "accuracy_numerator": int(correct),
+        "accuracy_denominator": int(len(labelled)),
+        "accuracy_ci95": wilson_interval(correct, len(labelled)),
         "accuracy_all_labelled": ratio(correct, len(labelled)),
-        "macro_f1": (sum(x["f1"] or 0 for x in per_label if x["support"]) /
-                     sum(bool(x["support"]) for x in per_label)) if scored else None,
-        "always_other_unclear_accuracy": ratio(len(other), len(scored)),
+        "accuracy_all_labelled_ci95": wilson_interval(correct, len(labelled)),
+        "accuracy_available_predictions": ratio(correct, len(scored)),
+        "accuracy_available_predictions_numerator": int(correct),
+        "accuracy_available_predictions_denominator": int(len(scored)),
+        "accuracy_available_predictions_ci95": wilson_interval(correct, len(scored)),
+        "macro_f1": ratio(macro_numerator, len(labels)),
+        "macro_f1_numerator": macro_numerator,
+        "macro_f1_label_count": len(labels),
+        "macro_f1_ci95": intervals["macro_f1_ci95"],
+        "macro_f1_human_supported": ratio(supported_numerator, supported_count),
+        "macro_f1_human_supported_numerator": supported_numerator,
+        "macro_f1_human_supported_label_count": supported_count,
+        "macro_f1_human_supported_ci95": intervals["macro_f1_human_supported_ci95"],
+        "always_other_unclear_accuracy": ratio(len(other), len(labelled)),
+        "always_other_unclear_accuracy_numerator": len(other),
+        "always_other_unclear_accuracy_denominator": len(labelled),
+        "always_other_unclear_accuracy_ci95": wilson_interval(len(other), len(labelled)),
         "specific_n": int(len(specific)),
         "specific_correct": int(specific_correct),
         "specific_accuracy": ratio(specific_correct, len(specific)),
+        "specific_accuracy_numerator": int(specific_correct),
+        "specific_accuracy_denominator": int(len(specific)),
+        "specific_accuracy_ci95": wilson_interval(specific_correct, len(specific)),
         "other_unclear_n": int(len(other)),
         "other_unclear_correct": int(other_correct),
         "other_unclear_accuracy": ratio(other_correct, len(other)),
+        "other_unclear_accuracy_numerator": int(other_correct),
+        "other_unclear_accuracy_denominator": int(len(other)),
+        "other_unclear_accuracy_ci95": wilson_interval(other_correct, len(other)),
         "human_label_counts": dict(sorted(human_counts.items())),
         "model_label_counts": dict(sorted(model_counts.items())),
         "per_label": per_label,
         "labels": labels,
+        "confusion_columns": columns,
+        "confusion_denominator": len(labelled),
         "confusion": confusion,
+        "intervals": {
+            "confidence_level": 0.95,
+            "binomial": "Wilson score; accuracy and per-label precision/recall",
+            "f1": "95% percentile human-label-stratified paired-row bootstrap",
+            "bootstrap_seed": BOOTSTRAP_SEED,
+            "bootstrap_draws": BOOTSTRAP_DRAWS,
+            "bootstrap_generator": "numpy.random.default_rng (PCG64)",
+            "bootstrap_rows_per_draw": len(labelled),
+            "bootstrap_label_set": labels,
+            "bootstrap_note": "Resample whole human/model pairs within each observed human-label stratum, preserving original supports and missing predictions. Fixed observed human/prediction union defines macro F1; prediction-only labels contribute zero when absent in a draw. Intervals condition on the observed human-label prevalence.",
+        },
         "rows": rows,
         "sample": {
             "path": str(csv_path.relative_to(REPO_ROOT)) if csv_path.is_relative_to(REPO_ROOT) else str(csv_path),
@@ -267,12 +375,16 @@ def build_metrics(sample: pd.DataFrame, clf: pd.DataFrame, *, manifest: dict[str
             "taxonomy_sha256s": taxonomy_shas,
         },
         "definitions": {
-            "accuracy": "correct / scored; scored = valid human label AND model status ok with a label",
+            "accuracy": "correct / labelled; every valid human-labelled row is retained and missing model labels count as wrong",
             "accuracy_all_labelled": "correct / labelled; a missing model label counts as wrong",
-            "specific_accuracy": "correct / specific_n; specific_n = scored rows whose human label is not other/unclear",
-            "precision": "tp / predicted for that label among scored rows",
-            "recall": "tp / support for that label among scored rows",
-            "confusion": "rows = human label, columns = Muse Spark label, both restricted to scored rows",
+            "accuracy_available_predictions": "Diagnostic only: correct / rows with an available model label",
+            "specific_accuracy": "correct / specific_n; specific_n = all valid human-labelled rows whose label is not other/unclear, including missing predictions",
+            "precision": "tp / predicted for that label among valid human-labelled rows",
+            "recall": "tp / all human support for that label; missing predictions count as false negatives",
+            "f1": "2*tp / (2*tp+fp+fn); false negatives include missing predictions",
+            "macro_f1": "Unweighted mean F1 over the fixed observed human/prediction label union; prediction-only labels contribute zero",
+            "macro_f1_human_supported": "Supplementary mean F1 over labels with human support only",
+            "confusion": "rows = human label, columns = model label plus __missing_prediction__; total equals all valid human-labelled rows",
         },
     }
 

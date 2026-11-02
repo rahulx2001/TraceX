@@ -131,7 +131,7 @@ export async function runVoiceUiTest({ page, base }) {
   console.log(`Voice UI screenshots (synthetic transport): ${screenshotDir}`);
 
   page.once("dialog", dialog => dialog.dismiss());
-  await page.getByRole("complementary", { name: "Primary", exact: true }).getByRole("button", { name: "Judge start →", exact: true }).click();
+  await page.getByRole("complementary", { name: "Primary", exact: true }).getByRole("button", { name: "Start here", exact: true }).click();
   await expect(page).toHaveURL(/#call$/);
   assert.equal(frames.filter(f => f.type === "hangup").length, 0, "cancelled navigation preserves the active report");
 

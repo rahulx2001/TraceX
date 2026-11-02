@@ -1,0 +1,206 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "LEFT REAR DOOR WILL NOT OPEN FROM INSIDE OR OUTSIDE.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 1.0,
+      "label_id": "other_unclear",
+      "confidence": 1.0,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.85,
+      "label_id": "other_unclear",
+      "confidence": 0.85,
+      "evidence": "I noticed a puddle of water between the front seats.  I could not find out where it came from.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "uncertain_cause",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c4",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.9,
+      "label_id": "other_unclear",
+      "confidence": 0.9,
+      "evidence": "she pressed the door close button and the sliding door closed on my body and did not stop.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c5",
+      "proposed_label_id": "hinge_and_attachments_detachment",
+      "proposed_confidence": 0.68,
+      "label_id": "hinge_and_attachments_detachment",
+      "confidence": 0.68,
+      "evidence": "spot welds on the driver side door of my 2020 Ford Escape came loose and the door  was starting to move freely inside the door.",
+      "part_evidence": "spot welds on the driver side door",
+      "mode_evidence": "came loose and the door  was starting to move freely",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c6",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.95,
+      "label_id": "other_unclear",
+      "confidence": 0.95,
+      "evidence": "The Pearl white paint is peeling off and has been for awhile.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c7",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.88,
+      "label_id": "other_unclear",
+      "confidence": 0.88,
+      "evidence": "Hood vibrates, and on sunlight or cloudy days the light flickers in your vision.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c8",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.96,
+      "label_id": "other_unclear",
+      "confidence": 0.96,
+      "evidence": "determined that the engine mount and transmission mount were faulty and needed to be replaced.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "wrong_component",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "LEFT REAR DOOR WILL NOT OPEN FROM INSIDE OR OUTSIDE.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 1.0,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.85,
+        "evidence": "I noticed a puddle of water between the front seats.  I could not find out where it came from.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "she pressed the door close button and the sliding door closed on my body and did not stop.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "hinge_and_attachments_detachment",
+        "confidence": 0.68,
+        "evidence": "spot welds on the driver side door of my 2020 Ford Escape came loose and the door  was starting to move freely inside the door.",
+        "part_evidence": "spot welds on the driver side door",
+        "mode_evidence": "came loose and the door  was starting to move freely",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "The Pearl white paint is peeling off and has been for awhile.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c7",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "Hood vibrates, and on sunlight or cloudy days the light flickers in your vision.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c8",
+        "label_id": "other_unclear",
+        "confidence": 0.96,
+        "evidence": "determined that the engine mount and transmission mount were faulty and needed to be replaced.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "wrong_component"
+      }
+    ]
+  },
+  "batch_key": "d94acd36db51e66133eb93332d510aece01a94a6032b25aaed1adf58c3727b87",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:18:03+00:00",
+  "completed_at": "2026-11-02T13:18:09+00:00"
+}

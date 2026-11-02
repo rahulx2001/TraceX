@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TraceX · Second human review</title>
+<style>
+body{font:16px/1.6 system-ui,sans-serif;color:#18302e;background:#f4f6f3;max-width:920px;margin:40px auto;padding:0 20px}h1{letter-spacing:-.04em}article{background:white;padding:28px;border:1px solid #ccd6d0;border-radius:12px;margin:20px 0}button,select,input,textarea{font:inherit;padding:10px;border:1px solid #a4b6aa;border-radius:6px}button{cursor:pointer;background:#e2efe5}button:disabled{opacity:.5}textarea{width:95%;min-height:80px}#narrative{white-space:pre-wrap}#choices label{display:block;padding:9px;border-bottom:1px solid #eee}#choices input{margin-right:10px}.muted{color:#536a60}nav{display:flex;gap:10px;flex-wrap:wrap}progress{width:100%}#notice{color:#8c421d}label{cursor:pointer}input[type=radio],input[type=checkbox]{accent-color:#185743}
+</style>
+<h1>Second human review</h1>
+<p>A different person must independently review these complaints. Read each whole narrative, then choose the supported defect without consulting the primary reviewer’s answers or model outputs.</p>
+<p>Require evidence for both the named part and failure mode. A symptom, warning lamp, or recall mention alone need not establish a particular defect. Choose “other / unclear” when evidence is insufficient, causes remain unresolved, or the fault falls outside the listed choices.</p>
+<p>For every label, record supporting words and uncertainty in the notes. Mention a wrong source component in notes; keep the source component unchanged.</p>
+<p id="assignment" class="muted"></p>
+<p class="muted">This page works offline. Choices are saved separately in this browser when local storage is available. Export regularly, including when taking a break.</p>
+<label>Your name <input id="reviewer" autocomplete="name"></label>
+<p id="progressText"></p><progress id="progress"></progress>
+<nav><button id="prev">Previous</button><button id="next">Next</button><button id="unreviewed">Next incomplete</button><label>Jump to <select id="jump"></select></label></nav>
+<article><h2 id="title"></h2><p id="vehicle" class="muted"></p><p id="narrative"></p><fieldset id="choices"><legend>Supported defect</legend></fieldset><p><label>Review notes: supporting words and uncertainty<br><textarea id="notes"></textarea></label></p><button id="clear">Clear this choice</button></article>
+<p><label><input type="checkbox" id="attest"> I am a different reviewer from the primary reviewer. I personally and independently read these complaints and selected these labels without consulting primary answers or model outputs.</label></p>
+<button id="export">Export reviewed labels</button><p id="notice" role="status"></p>
+<script id="review-data" type="application/json">__REVIEW_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('review-data').textContent);
+const el=id=>document.getElementById(id);
+const key='tracex.second-review.'+data.preregistration_hash+'.'+data.sample_hash;
+const rowsById=new Map(data.rows.map(row=>[row.sample_id,row]));
+const allowedById=new Map(data.rows.map(row=>[row.sample_id,new Set(row.allowed_label_ids.split(';').filter(Boolean))]));
+let state={index:0,reviewer:'',reviews:{}};
+function timestamp(value){return typeof value==='string'&&Number.isFinite(Date.parse(value))?value:undefined;}
+try{
+ const saved=JSON.parse(localStorage.getItem(key)||'null');
+ if(saved&&typeof saved==='object'){
+  if(typeof saved.reviewer==='string')state.reviewer=saved.reviewer;
+  if(Number.isInteger(saved.index)&&saved.index>=0&&saved.index<data.rows.length)state.index=saved.index;
+  if(saved.reviews&&typeof saved.reviews==='object'&&!Array.isArray(saved.reviews)){
+   for(const [sample_id,review] of Object.entries(saved.reviews)){
+    if(!rowsById.has(sample_id)||!review||typeof review!=='object')continue;
+    if(review.label!==undefined&&!allowedById.get(sample_id).has(review.label))continue;
+    state.reviews[sample_id]={label:review.label,notes:typeof review.notes==='string'?review.notes:'',started_at:timestamp(review.started_at),updated_at:timestamp(review.updated_at)};
+   }
+  }
+ }
+}catch{el('notice').textContent='Browser storage is unavailable. Export your review before closing.';}
+function save(){try{localStorage.setItem(key,JSON.stringify(state));}catch{el('notice').textContent='Could not save locally. Export your current labels.';}}
+function complete(sample_id){const review=state.reviews[sample_id];return !!(review&&allowedById.get(sample_id).has(review.label)&&review.notes.trim());}
+function completedCount(){return data.rows.filter(row=>complete(row.sample_id)).length;}
+function progress(){const count=completedCount();el('progressText').textContent=count+' / '+data.rows.length+' complete (label and notes)';el('progress').max=data.rows.length;el('progress').value=count;}
+el('assignment').textContent='This assignment contains '+data.rows.length+' pre-registered complaints from the frozen 300-record sample. Common personal identifiers are redacted here. These reviews are evaluation-only.';
+data.rows.forEach((row,i)=>{const option=document.createElement('option');option.value=i;option.textContent=row.sample_id;el('jump').append(option);});
+el('reviewer').value=state.reviewer;
+function draw(){
+ const row=data.rows[state.index],review=state.reviews[row.sample_id]||{};
+ el('title').textContent=row.sample_id+' · '+row.component;
+ el('vehicle').textContent=row.year+' '+row.make+' '+row.model+' · Received '+row.datea;
+ el('narrative').textContent=row.narrative;el('notes').value=review.notes||'';el('jump').value=state.index;
+ const field=el('choices');field.querySelectorAll('label').forEach(label=>label.remove());
+ const names=Object.fromEntries(row.allowed_label_text.split(';').filter(value=>value.includes('=')).map(value=>{const at=value.indexOf('=');return [value.slice(0,at).trim(),value.slice(at+1).trim()];}));
+ row.allowed_label_ids.split(';').filter(Boolean).forEach(id=>{
+  const label=document.createElement('label'),input=document.createElement('input');
+  input.type='radio';input.name='defect';input.value=id;input.checked=review.label===id;
+  input.onchange=()=>{
+   const previous=state.reviews[row.sample_id],now=new Date().toISOString();
+   state.reviews[row.sample_id]={label:id,notes:el('notes').value,started_at:previous&&previous.started_at||now,updated_at:now};
+   save();draw();
+  };
+  label.append(input,document.createTextNode(names[id]||id));field.append(label);
+ });
+ progress();el('prev').disabled=state.index===0;el('next').disabled=state.index===data.rows.length-1;
+}
+function move(index){state.index=index;save();draw();}
+el('prev').onclick=()=>move(Math.max(0,state.index-1));
+el('next').onclick=()=>move(Math.min(data.rows.length-1,state.index+1));
+el('jump').onchange=event=>move(Number(event.target.value));
+el('unreviewed').onclick=()=>{for(let n=1;n<=data.rows.length;n++){const index=(state.index+n)%data.rows.length;if(!complete(data.rows[index].sample_id))return move(index);}};
+el('reviewer').oninput=event=>{state.reviewer=event.target.value;save();};
+el('notes').oninput=event=>{
+ const row=data.rows[state.index],review=state.reviews[row.sample_id];
+ const now=new Date().toISOString();
+ state.reviews[row.sample_id]={...review,notes:event.target.value,started_at:review&&review.started_at||now,updated_at:now};
+ save();progress();
+};
+el('clear').onclick=()=>{delete state.reviews[data.rows[state.index].sample_id];save();draw();};
+el('export').onclick=()=>{
+ const labelled=data.rows.filter(row=>state.reviews[row.sample_id]&&allowedById.get(row.sample_id).has(state.reviews[row.sample_id].label));
+ const count=completedCount();
+ if(!state.reviewer.trim()||!el('attest').checked||!labelled.length){el('notice').textContent='Enter your name, complete at least one complaint with notes, and confirm independent human review. '+count+' / '+data.rows.length+' complete.';return;}
+ if(labelled.some(row=>!complete(row.sample_id))){el('notice').textContent='Add notes to every selected label before exporting. '+count+' / '+data.rows.length+' complete.';return;}
+ const result={sample_hash:data.sample_hash,annotation_source:'human',attestation:true,reviewer:state.reviewer.trim(),exported_at:new Date().toISOString(),reviewer_role:'second_blinded_review',packet_id:data.packet_id,preregistration_hash:data.preregistration_hash,assigned_count:data.rows.length,complete:count===data.rows.length,reviews:labelled.map(row=>({sample_id:row.sample_id,...state.reviews[row.sample_id]}))};
+ const url=URL.createObjectURL(new Blob([JSON.stringify(result,null,2)],{type:'application/json'}));
+ const link=document.createElement('a');link.href=url;link.download='defect-second-review.json';link.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ el('notice').textContent='Exported '+count+' / '+data.rows.length+' complete reviews'+(result.complete?'.':' (partial assignment).');
+};
+draw();
+</script>
+</html>

@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-11-02T11:23:22+00:00",
+  "source": "User replies in this session; retrospective account, not an independently verified chronology",
+  "statements": [
+    {
+      "question_topic": "Did Manish start from a blank page and independently answer without seeing Rahul answers?",
+      "user_reply": "yes he did and i had asked him to comlete all"
+    },
+    {
+      "question_topic": "When did Manish begin relative to the 2 November 50-ID registration?",
+      "user_reply": "he started yesteraday and sent me the link today that i saved in my local and gave you"
+    }
+  ],
+  "reported_start_date": "2026-11-01",
+  "reported_assigned_records": 300,
+  "reported_independent_and_blinded": true,
+  "independently_verified": false
+}

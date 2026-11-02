@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-11-02T15:14:44+00:00",
+  "stage": "adjudication_complete_before_scoring",
+  "adjudicator": "Rahul",
+  "adjudication_exported_at": "2026-11-02T15:08:26.932004+00:00",
+  "source_review_hashes": {
+    "primary_sha256": "0e5b862fce512ee746ecf1f47d14adcf3400afd0558c813ecebbecc7238eb4a6",
+    "revision_sha256": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0"
+  },
+  "packet_sha256": "dfe06dc102f6d26d52258342a63689ebc651ff9830c957d9323587ae8f9a44f3",
+  "adjudication_export_sha256": "74fc9d79db1b2ef4f58d212d7571ec392e24b77f228389c276151ddbf71a3b47",
+  "adjudicated_labels_sha256": "f2ab4c28c2f8f6edb5907c426ccfe78ec2d04490a708739753b8f63164380a93",
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "frozen_sample_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+  "accepted_agreement": {
+    "numerator": 269,
+    "denominator": 300
+  },
+  "adjudicated_disagreements": {
+    "numerator": 31,
+    "denominator": 31
+  },
+  "unresolved_disagreements": {
+    "numerator": 0,
+    "denominator": 31
+  },
+  "retained_rows": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "assistant_drafts_accepted": {
+    "numerator": 31,
+    "denominator": 31
+  },
+  "unique_decision_timestamps": 1,
+  "provenance_note": "Rahul supplied and attested to the31 source-evidence decisions after assistant proposals were presented. All31 share the supplied timestamp; this is preserved and does not establish distinct per-row review times. Manish revision was script-assisted and personally reviewed according to user confirmation. This is an opened historical benchmark,not fresh blinded validation.",
+  "model_accuracy_computed": false,
+  "evaluation_only": true,
+  "validation": "pass: identities, hashes, taxonomy, human attestation, exact source quotes, source labels, named decisions and supplied timestamps"
+}

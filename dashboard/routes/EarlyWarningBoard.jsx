@@ -29,11 +29,19 @@ export default function EarlyWarningBoard() {
   const [simResult, setSimResult] = useState(null);
   const [simRunning, setSimRunning] = useState(false);
   const [metrics, setMetrics] = useState(null);
+  const [metricsLoading, setMetricsLoading] = useState(false);
+  const [metricsError, setMetricsError] = useState(null);
   const [includeSimulated, setIncludeSimulated] = useLocalStorage("fl.includeSimulated", false);
+  const metricsRequest = useRef(0);
+  const boardRequest = useRef(0);
   const simModalRef = useRef(null);
   useFocusTrap(simModalRef, simModal, () => setSimModal(false));
 
   async function loadMetrics(include = includeSimulated) {
+    const request = ++metricsRequest.current;
+    setMetricsLoading(true);
+    setMetricsError(null);
+    setMetrics(null);
     try {
       const r = await fetch(
         `/api/frontline/metrics?window_days=7&include_simulated=${include ? "true" : "false"}`,
@@ -41,16 +49,28 @@ export default function EarlyWarningBoard() {
           headers: apiHeaders(),
         }
       );
-      if (!r.ok) return;
-      setMetrics(await r.json());
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const data = await r.json();
+      if (request === metricsRequest.current) setMetrics(data);
     } catch {
-      /* optional strip */
+      if (request === metricsRequest.current) {
+        setMetricsError("Operational counts are unavailable. Check your connection and access, then select Refresh.");
+      }
+    } finally {
+      if (request === metricsRequest.current) setMetricsLoading(false);
     }
   }
 
   async function loadClusters(include = includeSimulated) {
+    const request = ++boardRequest.current;
     setLoading(true);
     setError(null);
+    setClusters([]);
+    setFunnel(null);
+    setSpikes([]);
+    setSpikeWeek(null);
+    setCensoredWeeks([]);
+    const metricsLoaded = loadMetrics(include);
     try {
       const r = await fetch(
         `/api/frontline/early-warning?window_days=7&include_simulated=${include ? "true" : "false"}`,
@@ -60,22 +80,27 @@ export default function EarlyWarningBoard() {
       );
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const d = await r.json();
+      if (request !== boardRequest.current) return;
       setClusters(d.live_risk || []);
       setFunnel(d.funnel || null);
       setSpikes(d.spikes || []);
       setSpikeWeek(d.spike_week || null);
       setCensoredWeeks(d.censored_weeks || []);
-      loadMetrics();
-    } catch (e) {
-      setError(String(e));
+    } catch {
+      if (request === boardRequest.current) {
+        setError("Early-warning data is unavailable. Check your connection and access, then select Refresh.");
+      }
     } finally {
-      setLoading(false);
+      await metricsLoaded;
+      if (request === boardRequest.current) setLoading(false);
     }
   }
 
-  async function loadInvestigations() {
+  async function loadInvestigations(include = includeSimulated) {
+    const request = ++boardRequest.current;
     setLoading(true);
     setError(null);
+    const metricsLoaded = loadMetrics(include);
     try {
       // Load all statuses so closed/monitoring remain visible after PATCH.
       const r = await fetch(
@@ -84,12 +109,15 @@ export default function EarlyWarningBoard() {
       );
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const d = await r.json();
+      if (request !== boardRequest.current) return;
       setInvestigations(d.investigations || []);
-      loadMetrics();
-    } catch (e) {
-      setError(String(e));
+    } catch {
+      if (request === boardRequest.current) {
+        setError("Investigations are unavailable. Check your connection and access, then select Refresh.");
+      }
     } finally {
-      setLoading(false);
+      await metricsLoaded;
+      if (request === boardRequest.current) setLoading(false);
     }
   }
 
@@ -139,7 +167,7 @@ export default function EarlyWarningBoard() {
       setSimResult(d);
       setIncludeSimulated(true);
       if (tab === "clusters") loadClusters(true);
-      else if (tab === "investigations") loadInvestigations();
+      else if (tab === "investigations") loadInvestigations(true);
       else loadMetrics(true);
     } catch (e) {
       setError(String(e));
@@ -161,7 +189,6 @@ export default function EarlyWarningBoard() {
       );
       if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
       await loadInvestigations();
-      loadMetrics();
     } catch (e) {
       setError(String(e));
     }
@@ -192,16 +219,16 @@ export default function EarlyWarningBoard() {
           </button>
           <button
             type="button"
-            onClick={
+            onClick={() => {
               tab === "clusters"
-                ? loadClusters
+                ? loadClusters()
                 : tab === "investigations"
-                  ? loadInvestigations
-                  : loadMetrics
-            }
-            disabled={loading}
+                  ? loadInvestigations()
+                  : loadMetrics();
+            }}
+            disabled={loading || metricsLoading}
           >
-            {loading ? "Loading…" : "Refresh"}
+            {loading || metricsLoading ? "Loading…" : "Refresh"}
           </button>
         </div>
       </header>
@@ -291,47 +318,51 @@ export default function EarlyWarningBoard() {
 
       {tab === "clusters" && !loading && (
         <>
-          {(metrics || funnel) && (
-            <div className="warning-overview">
-              {metrics && (
-                <div className="snapshot-grid">
-                  <div className="snapshot-tile">
-                    <div className="k">Open cases</div>
-                    <div className="v">{metrics.cases?.open ?? 0}</div>
-                    <div className="h">7-day snapshot</div>
-                  </div>
-                  <div className="snapshot-tile danger">
-                    <div className="k">Critical open</div>
-                    <div className="v">{metrics.cases?.critical_open ?? 0}</div>
-                    <div className="h">Needs attention</div>
-                  </div>
-                  <div className="snapshot-tile warn">
-                    <div className="k">Investigations</div>
-                    <div className="v">{metrics.investigations?.open ?? 0}</div>
-                    <div className="h">open</div>
-                  </div>
-                  <div className="snapshot-tile accent">
-                    <div className="k">Active calls</div>
-                    <div className="v">{metrics.interactions_active ?? 0}</div>
-                    <div className="h">live right now</div>
-                  </div>
-                </div>
-              )}
-              {funnel && (
-                <div className="warning-activity">
-                  <div className="warning-activity-label">Weekly activity</div>
-                  <div className="funnel" aria-label="Weekly funnel">
-                    <div className="funnel-step"><div className="n">{funnel.started ?? 0}</div><div className="l">started</div></div>
-                    <div className="funnel-step"><div className="n">{funnel.completed ?? 0}</div><div className="l">completed</div></div>
-                    <div className="funnel-step"><div className="n">{funnel.cases_created ?? 0}</div><div className="l">cases</div></div>
-                    <div className="funnel-step"><div className="n">{funnel.advisories_notified ?? 0}</div><div className="l">advisories</div></div>
-                    <div className="funnel-step"><div className="n">{funnel.escalated ?? 0}</div><div className="l">escalated</div></div>
-                    <div className="funnel-step"><div className="n">{funnel.takeovers ?? 0}</div><div className="l">takeovers</div></div>
-                  </div>
-                </div>
+          <div className="warning-overview">
+            <div className="warning-data-scope">
+              <strong>Operational activity</strong>
+              <p>Current case and call queue · {includeSimulated ? "includes labelled simulated traffic" : "simulated traffic excluded"}.</p>
+              {metricsError && <p role="alert">{metricsError}</p>}
+              {funnel?.started === 0 && (
+                <p role="status">No contacts started in this installation in the last 7 days. Record a report or use Simulate traffic to create labelled test contacts.</p>
               )}
             </div>
-          )}
+            <div className="snapshot-grid">
+              <div className="snapshot-tile">
+                <div className="k">Open cases</div>
+                <div className="v">{metrics?.cases?.open ?? "—"}</div>
+                <div className="h">Pending follow-up: {metrics?.cases?.pending_followup ?? "—"}</div>
+              </div>
+              <div className="snapshot-tile danger">
+                <div className="k">Critical open</div>
+                <div className="v">{metrics?.cases?.critical_open ?? "—"}</div>
+                <div className="h">All unclosed statuses</div>
+              </div>
+              <div className="snapshot-tile warn">
+                <div className="k">Investigations</div>
+                <div className="v">{metrics?.investigations?.open ?? "—"}</div>
+                <div className="h">open</div>
+              </div>
+              <div className="snapshot-tile accent">
+                <div className="k">Active calls</div>
+                <div className="v">{metrics?.interactions_active ?? "—"}</div>
+                <div className="h">live right now</div>
+              </div>
+            </div>
+            {funnel && (
+              <div className="warning-activity">
+                <div className="warning-activity-label">Contacts in the last 7 days</div>
+                <div className="funnel" aria-label="Weekly funnel">
+                  <div className="funnel-step"><div className="n">{funnel.started ?? 0}</div><div className="l">started</div></div>
+                  <div className="funnel-step"><div className="n">{funnel.completed ?? 0}</div><div className="l">completed</div></div>
+                  <div className="funnel-step"><div className="n">{funnel.cases_created ?? 0}</div><div className="l">cases</div></div>
+                  <div className="funnel-step"><div className="n">{funnel.advisories_notified ?? 0}</div><div className="l">advisories</div></div>
+                  <div className="funnel-step"><div className="n">{funnel.escalated ?? 0}</div><div className="l">escalated</div></div>
+                  <div className="funnel-step"><div className="n">{funnel.takeovers ?? 0}</div><div className="l">takeovers</div></div>
+                </div>
+              </div>
+            )}
+          </div>
           {funnel && funnel.include_simulated === false && funnel.simulated_count != null && (
             <p className="faint" style={{ margin: "0 0 10px" }}>
               {funnel.simulated_count} simulated contacts excluded from this board
@@ -340,15 +371,18 @@ export default function EarlyWarningBoard() {
 
           <div className="panel" style={{ marginTop: 12 }}>
             <h3 style={{ margin: "0 0 8px" }}>
-              This week{spikeWeek ? ` (${spikeWeek})` : ""}
+              Complaint trends{spikeWeek ? ` (${spikeWeek})` : ""}
             </h3>
+            <p className="faint" style={{ margin: "0 0 12px" }}>
+              Complaint-corpus records for the displayed week. These counts are separate from operational cases and calls above.
+            </p>
             {censoredWeeks.length > 0 && (
               <p className="faint" style={{ margin: "0 0 8px" }}>
                 Held back: {censoredWeeks.join(", ")}
               </p>
             )}
             {spikes.length === 0 ? (
-              <p className="faint" style={{ margin: 0 }}>No computed spike this week.</p>
+              <p className="faint" style={{ margin: 0 }}>No computed spike in the displayed week.</p>
             ) : (
               <div className="table-wrap">
                 <table>

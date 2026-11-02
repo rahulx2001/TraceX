@@ -1,0 +1,85 @@
+{
+  "status": "invalid",
+  "error": "nonverbatim_specific_evidence:evidence:c8",
+  "items": [],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "MY FUSR BOX WAS BLOWN OUT HAVE TO TAKE MY CAR TO THE DEALERSHIP MY FUSE BOX WAS BLOWN",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "instrument_cluster_panel_compliance_or_label",
+        "confidence": 0.88,
+        "evidence": "Told this time the entire instrument/gauge cluster is bad. Dangerous situation to run out of fuel on a highway.",
+        "part_evidence": "entire instrument/gauge cluster is bad",
+        "mode_evidence": "ran out of gas on highway around 800 miles on O/D",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "instrument_cluster_panel_compliance_or_label",
+        "confidence": 0.85,
+        "evidence": "Fuel Gauge Cluster fails in weather sometimes outside of weather conditions and will glitch out causing an inability to see mileage and fuel amount.",
+        "part_evidence": "Fuel Gauge Cluster fails",
+        "mode_evidence": "inability to see mileage and fuel amount",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c7",
+        "label_id": "other_unclear",
+        "confidence": 0.93,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c8",
+        "label_id": "ignition_compliance_or_label",
+        "confidence": 0.9,
+        "evidence": "The vehicle is able to be started without a key by using a usb cable. They are able to remove the steering column cover, unplug the ignition switch",
+        "part_evidence": "unplug the ignition switch",
+        "mode_evidence": "The vehicle is able to be started without a key by using a usb cable",
+        "grounding_status": "specific_supported"
+      }
+    ]
+  },
+  "batch_key": "aab2f2296339c55c87df9f2a9a7d139c0ab7a978612a5d42872b58463d6bea1a",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:25:57+00:00",
+  "completed_at": "2026-11-02T13:26:03+00:00"
+}

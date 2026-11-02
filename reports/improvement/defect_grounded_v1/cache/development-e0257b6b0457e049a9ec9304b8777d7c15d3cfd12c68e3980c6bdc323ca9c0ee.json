@@ -1,0 +1,38 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.98,
+      "label_id": "other_unclear",
+      "confidence": 0.98,
+      "evidence": "THE BRAKES HAD AN ALMOST COMPLETE FAILURE",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "THE BRAKES HAD AN ALMOST COMPLETE FAILURE",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "e0257b6b0457e049a9ec9304b8777d7c15d3cfd12c68e3980c6bdc323ca9c0ee",
+  "phase": "development",
+  "started_at": "2026-11-02T13:09:15+00:00",
+  "completed_at": "2026-11-02T13:09:17+00:00"
+}

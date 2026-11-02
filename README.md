@@ -323,10 +323,15 @@ the five-make fuel-system classification scope and preserves full recall vehicle
 coverage. A training-selected rolling detector is compared with equal-budget
 count/random references, including a sensitivity excluding explicit recall
 mentions. This is a retrospective reanalysis of a previously examined window;
-the old partial experiment is preserved. All 300 human-review examples have
-model predictions, and the blind review page is ready; human accuracy remains
-unmeasured until a person supplies the labels. Open `#defect-level` for the
-recorded comparison or run `python -m scripts.defect_verify` to replay it.
+the old partial experiment is preserved. The finalized historical human review
+scores the current classifier at **255/300 = 85.0%**, with a **95% Wilson interval
+of 80.5%–88.6%**, across 29 components. All **31/31** disputed labels have supplied
+human adjudication. This rescores unchanged predictions against revised labels;
+it does not establish a newly improved model or fresh prospective validation.
+See the [finalized evaluation and provenance](reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/EVALUATION.md).
+These labels are evaluation-only and do not enter dashboard accuracy. Open
+`#defect-level` for the separately recorded comparison or run
+`python -m scripts.defect_verify` to replay it.
 
 ## Operating limits
 

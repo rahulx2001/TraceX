@@ -1,0 +1,47 @@
+{
+  "frozen_at": "2026-11-02T13:25:46+00:00",
+  "policy": "One exact-prompt retry of each failed/invalid initial batch before any human scoring. No prompt, schema, model or decision-rule changes; no gold-label feedback.",
+  "pending_batch_keys": [
+    "78135c2ad468d3ea00ee79a839d6174e8bc4bc7075250f08dc43523726c277e7",
+    "aab2f2296339c55c87df9f2a9a7d139c0ab7a978612a5d42872b58463d6bea1a",
+    "b84746fcb5a1ac9a0231b605eb322fb1f0f8f64f5a484018c99a32af92134ec4",
+    "ffc1e4801334d0736ade139fd8c98061d97e1dceff132f030cf85fe5d47bf8bd",
+    "bf6ffb2d60e6345cfb1ca4c60ee98db3e05f835bde9030da477312e84c2acbbd",
+    "4995cc630fbbb4b75b7a88cc22888b22b8675e43a75c0e8cf780b489d241b66a",
+    "9dd42c1c4b17a6dd62fe57003c13548d37709c37953f7e29ad80b8fe43f76374",
+    "36e5a50d4057e69fa222565ddea9c6d6491868edbaf79bd3c38f85493861fcdf",
+    "86e52b32f5ac0ecabde87f8ad6869b62a14f25ff52c9ca0ce9bfb7e752f8119c"
+  ],
+  "pending_batches": 9,
+  "scheduled_batches": 39,
+  "evaluation_denominator": 300,
+  "postprocessing_policy": "Validate each independently mapped record with the unchanged strict grounding validator; retain chronological first strictly valid output per record across preserved raw attempts. Invalid records remain missing. No quote rewriting, label guessing or baseline fallback.",
+  "ambiguous_mapping_policy": "Wrong count, duplicate/unknown IDs invalidate the whole response; no identity guessing.",
+  "protocol_sha256": "c173d240bfaa98bbf2d10a55f311f691af1bf605ec7d7ff8ddec416e914aeae8",
+  "preflight": {
+    "phase": "evaluation",
+    "records": 300,
+    "api_batches_total": 39,
+    "pending_batches": 9,
+    "selected_batches": 9,
+    "singleton_records": 73,
+    "maximum_transport_attempts": 18,
+    "calls_today": 47,
+    "daily_call_cap": 300,
+    "reservation_upper_bound_usd": 0.816226,
+    "remaining_reservation_budget_usd": 2.619726,
+    "budget_snapshot": {
+      "limit_usd": 30.0,
+      "reserved_upper_bound_usd": 27.380274,
+      "observed_token_cost_usd": 5.810234999999994,
+      "unmetered_successes": 0,
+      "live_successful_requests": 505,
+      "pricing_checked": "2026-10-28",
+      "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+    },
+    "no_cap_change": true,
+    "actual_billed_cost_usd": null
+  },
+  "human_candidate_scoring_performed": false,
+  "initial_batch_prediction_sha256": "cbf865983f0212ada158f5f1bd8b4d5a19716798ba831c750f16720074e2a7f5"
+}

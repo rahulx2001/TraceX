@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { apiHeaders } from "../apiAuth.js";
+import { operatorError } from "../ui/operatorErrors.js";
 
 async function request(path, body) {
   const r = await fetch(path, { credentials: "same-origin", headers: apiHeaders(body ? { "Content-Type": "application/json" } : {}),
     ...(body ? { method: "POST", body: JSON.stringify(body) } : {}) });
-  const data = await r.json();
-  if (!r.ok) throw new Error(typeof data.detail === "string" ? data.detail : `Request failed (${r.status})`);
+  if (!r.ok) throw new Error(operatorError({ status: r.status }, "complete the investigation request"));
+  let data;
+  try { data = await r.json(); } catch { throw new Error("The investigation response could not be read. Refresh the history before retrying so a saved attempt is not duplicated."); }
   return data;
 }
 
@@ -193,7 +195,7 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
   const allInterpretationsReviewed = (selected?.brief?.claims || []).every((_, i) => corrections[i]?.decision === "accept") && (selected?.extraction?.observations || []).every((_, i) => observationCorrections[i]?.decision === "accept");
   function changeInterpretation(kind, index, value) { (kind === "claim" ? setCorrections : setObservationCorrections)(items => ({ ...items, [index]: value })); if (["correct", "reject"].includes(value.decision)) setDecision("needs_correction"); }
   return <section className="sc-panel sc-full" data-testid="campaign-investigation">
-    <div className="sc-section-head"><div><h2>Investigate with Meta</h2><p className="sc-muted">Turn an owner report into cited observations, read-only evidence lookups and a reviewed next step.</p></div><span className="sc-tag">Engineer review required</span></div>
+    <div className="sc-section-head"><div><h2>Investigate the report</h2><p className="sc-muted">Check the owner’s report against cited records and document a reviewed next step.</p></div><span className="sc-tag">Engineer review required</span></div>
     {error && <p role="alert" className="banner banner-error">{error}</p>}
     <div className="sc-fields">
       <label className="sc-field"><span>Investigation vehicle</span><select aria-label="Investigation vehicle" value={vehicleId} disabled={busy || sourceBusy} onChange={e => changeVehicle(e.target.value)}>
@@ -216,7 +218,7 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
       <button className="primary" disabled={!canRun} onClick={() => run()}>{busy ? "Investigation request in progress…" : "Run sourced investigation"}</button>
       <button className="ghost" onClick={refreshRuns}>Refresh investigation history</button></div>
     {busy && <p role="status">Waiting for the server to finish the current request. A saved draft or a reported failure will appear here.</p>}
-    <p className="sc-muted small">Uses at most two model calls and two read-only lookups per turn, up to three turns. A draft does not record an owner reply, approve outreach or clear a vehicle. Save consequential updates through the existing reviewed controls.</p>
+    <p className="sc-muted small">Review each draft against its sources. Owner contact, repair approval and vehicle release require their own recorded decisions.</p>
     <details><summary>Comparison mode and older records</summary><label className="sc-field"><span>Assistance mode</span><select aria-label="Assistance mode" disabled={busy} value={assistanceMode} onChange={e => setAssistanceMode(e.target.value)}><option value="full_investigation">Full sourced investigation</option><option value="extraction_only">Extraction only · comparison condition</option></select></label>
       <p className="sc-muted small">The deterministic comparison uses the existing report, traceability and workshop controls without requesting AI. Extraction-only makes one logical call and no model-selected lookup or brief.</p>
       <div className="sc-inline"><button disabled={!vehicleId || busy} onClick={() => browseRecords("owner_history")}>Browse owner report history</button><button disabled={!vehicleId || busy} onClick={() => browseRecords("workshop_history")}>Browse workshop history</button></div>
@@ -229,18 +231,18 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
     {runs.length > 0 && <label className="sc-field"><span>Recorded investigations</span><select aria-label="Recorded investigations" value={selected?.run_id || ""} disabled={busy} onChange={e => { const r = runs.find(x => x.run_id === e.target.value); if (r) choose(r); }}>
       <option value="">Select a saved run…</option>{[...runs].reverse().map(r => <option key={r.run_id} value={r.run_id}>{r.vehicle_id} · {new Date(r.started_at).toLocaleString()} · {r.status}</option>)}</select></label>}
     {selected && <div data-testid="investigation-result">
-      {selected.replay && <p className="sc-mode-note">Recorded live Meta output on synthetic data · {selected.started_at}. Replayed from a saved source artifact; viewing this result makes no new model call.</p>}
-      <div className="sc-inset"><strong>{selected.replay ? "Replayed Meta extraction" : selected.status === "running" ? "Investigation in progress" : selected.extraction?.mode?.startsWith("meta") ? "Saved Meta extraction" : "Manual review / fallback"}</strong>
-        <p>Recorded at {selected.started_at}. {selected.extraction?.model_id || "No model output"} · {selected.elapsed_ms == null ? selected.status : `${(selected.elapsed_ms/1000).toFixed(1)} seconds`} · {selected.inference_outcome_uncertain || selected.model_calls == null ? "Model call count uncertain after interruption; prior spend retained" : `${selected.model_calls} logical model calls`}</p>
+      {selected.replay && <p className="sc-mode-note">Saved AI result on fictional data · {selected.started_at}. This view replays the original recorded result.</p>}
+      <div className="sc-inset"><strong>{selected.replay ? "Replayed observations" : selected.status === "running" ? "Investigation in progress" : selected.extraction?.mode?.startsWith("meta") ? "AI-assisted observations" : "Manual review / rules"}</strong>
+        <p>Recorded at {selected.started_at}. {selected.elapsed_ms == null ? "Duration not recorded" : `Ready in ${(selected.elapsed_ms/1000).toFixed(1)} seconds`}.</p>
         {selected.stage && <p role="status">{stageLabels[selected.stage] || selected.stage}</p>}
         {selected.status === "erased" && <p role="status">The source was erased. This draft is unavailable and cannot be reviewed or used for an action.</p>}
         {["interrupted", "failed", "expired"].includes(selected.status) && <div><p>The saved request cannot complete. A new request can make new model calls; any prior spend remains recorded.</p>
           <button type="button" disabled={busy} onClick={prepareNewRequest}>Prepare a new investigation request</button></div>}
-        {selected.extraction?.fallback_reason && <p>{selected.extraction.fallback_reason}</p>}
-        {selected.error && <p role="alert">{selected.error}</p>}
+        {selected.extraction?.fallback_reason && <p>Assistance could not produce usable observations. Review the original report manually.</p>}
+        {selected.error && <p role="alert">This attempt could not finish. Review its saved sources and history before retrying.</p>}
         {stale && <p role="alert">Campaign evidence changed since this draft. Run an updated investigation before review.</p>}
       </div>
-      <details><summary>Operation provenance and measured usage</summary><p>{selected.assistance_mode || "Legacy condition not recorded"}. Cost reservations and token-rate estimates are not provider invoices. No measured billed cost is available here.</p>
+      <details><summary>Engineer diagnostics and operation provenance</summary><p>{selected.extraction?.model_id || "No model output"} · {selected.inference_outcome_uncertain || selected.model_calls == null ? "Call count uncertain after interruption; prior spend retained" : `${selected.model_calls} logical model calls`}. {selected.error}</p><p>{selected.assistance_mode || "Legacy condition not recorded"}. Cost reservations and token-rate estimates are not provider invoices. No measured billed cost is available here.</p>
         {(selected.operations || []).map(op => <article className="sc-inset" key={op.attempt_id}><strong>{op.stage} · {selected.replay ? "Recorded replay" : op.live_transport ? "Live provider request" : "Synthetic test transport"}</strong><p>{op.model} · {op.started_at} · {op.status} · {op.elapsed_ms ?? "unknown"} ms</p><p>Input tokens: {op.prompt_tokens ?? "unknown"}; output tokens: {op.completion_tokens ?? "unknown"}; reserved: {op.reserved_upper_bound_usd}; token-rate cost estimate: {op.observed_token_cost_estimate_usd ?? "unknown"}</p><pre>{JSON.stringify({ prompt_sha256: op.prompt_sha256, schema_sha256: op.logical_schema_sha256 || op.schema_sha256, validation: op.validation, validation_reason: op.validation_reason }, null, 2)}</pre></article>)}
         {!selected.operations?.length && <p>{selected.model_calls === 0 ? "No model request was made by this run." : "Per-attempt telemetry was not recorded for this legacy or interrupted result."}</p>}<pre>{JSON.stringify({ versions: selected.versions, summary: selected.operational_summary }, null, 2)}</pre></details>
       <h3>Sourced observations</h3>
@@ -256,7 +258,7 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
         {claim.evidence.map(citation)}
         {!selected.review && <InterpretationReview kind="claim" index={i} value={corrections[i]} disabled={busy || stale} change={value => changeInterpretation("claim", i, value)} />}
       </article>)}
-      {selected.brief?.fallback_reason && <p role="status">Brief unavailable: {selected.brief.fallback_reason}. Review the retrieved sources.</p>}
+      {selected.brief?.fallback_reason && <p role="status">The brief is unavailable. Review the retrieved sources and record your assessment manually.</p>}
       <p><strong>Suggested next step:</strong> {selected.brief?.next_step_label || "Review source evidence"}</p>
       <details ref={snapshotRef}><summary>Complete source snapshot</summary>{(selected.sources || selected.report_sources || []).map(s => <SourceRecord key={s.source_id} source={s} onOpen={openOriginal} />)}</details>
       {sourceChanged && <p role="alert" className="banner banner-error">The original record differs from this draft's source snapshot. Create an updated investigation before reviewing it.</p>}

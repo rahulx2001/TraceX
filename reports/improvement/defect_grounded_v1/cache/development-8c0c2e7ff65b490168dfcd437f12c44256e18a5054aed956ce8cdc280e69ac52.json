@@ -1,0 +1,38 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "THE CAR LOST POWER, ALL LIGHTS ON THE DASHBOARD DISAPPEARED, ENGINE STOPPED RUNNING",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "THE CAR LOST POWER, ALL LIGHTS ON THE DASHBOARD DISAPPEARED, ENGINE STOPPED RUNNING",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "8c0c2e7ff65b490168dfcd437f12c44256e18a5054aed956ce8cdc280e69ac52",
+  "phase": "development",
+  "started_at": "2026-11-02T13:09:09+00:00",
+  "completed_at": "2026-11-02T13:09:12+00:00"
+}

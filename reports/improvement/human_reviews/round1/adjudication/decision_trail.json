@@ -1,0 +1,3660 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-02T11:23:22+00:00",
+  "status": "complete_no_disagreements",
+  "resolution_method": "Accepted matching original human labels; no individual adjudicator decisions made.",
+  "adjudicator": null,
+  "adjudication_decisions": [],
+  "accepted_by_agreement": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "requiring_adjudication": {
+    "numerator": 0,
+    "denominator": 300
+  },
+  "adjudicated_disagreements": {
+    "numerator": 0,
+    "denominator": 0
+  },
+  "unresolved_disagreements": {
+    "numerator": 0,
+    "denominator": 300
+  },
+  "agreement_artifact": {
+    "path": "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
+    "sha256": "1a407169b3ed8b552619640f4846bd9e0919d45b17da9c4f925b5a4b94ec7942"
+  },
+  "gate_artifact": {
+    "path": "reports/improvement/human_reviews/round1/reliability_gate.json",
+    "sha256": "2eb2f5a1a074018d9bdb4a40f211e0da0bcb0440f1c125a37fef8aae4ea496e6"
+  },
+  "original_reviews": [
+    {
+      "role": "primary",
+      "reviewer": "Rahul",
+      "exported_at": "2026-11-02T10:20:41.677Z",
+      "path": "reports/improvement/human_reviews/round1/primary_review_export.json",
+      "sha256": "0e5b862fce512ee746ecf1f47d14adcf3400afd0558c813ecebbecc7238eb4a6"
+    },
+    {
+      "role": "second",
+      "reviewer": "Manish",
+      "exported_at": "2026-11-02T11:02:03.894Z",
+      "path": "reports/improvement/human_reviews/round1/second_review/manish/original_review_export.json",
+      "sha256": "68f9832fc32771741080a9702c2db58f1e7c4116bd34de879f7209a161d26494"
+    }
+  ],
+  "source_evidence": {
+    "path": "reports/defect/defect_label_sample_300.csv",
+    "csv_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4"
+  },
+  "final_labels": {
+    "path": "reports/improvement/human_reviews/round1/adjudication/adjudicated_labels.csv",
+    "sha256": "4bfd3545a0e028eb2607797eb88487326f090285ffeed841d43b5edff461348b"
+  },
+  "rows": [
+    {
+      "sample_id": "S001",
+      "final_label": "air_bag_restraint_control_module_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S001",
+        "second": "S001"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S002",
+      "final_label": "air_bag_restraint_control_module_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S002",
+        "second": "S002"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S003",
+      "final_label": "air_bag_restraint_control_module_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S003",
+        "second": "S003"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S004",
+      "final_label": "air_bag_restraint_control_module_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S004",
+        "second": "S004"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S005",
+      "final_label": "air_bag_restraint_control_module_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S005",
+        "second": "S005"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S006",
+      "final_label": "occupant_classification_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S006",
+        "second": "S006"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S007",
+      "final_label": "camera_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S007",
+        "second": "S007"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S008",
+      "final_label": "camera_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S008",
+        "second": "S008"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S009",
+      "final_label": "camera_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S009",
+        "second": "S009"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S010",
+      "final_label": "camera_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S010",
+        "second": "S010"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S011",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S011",
+        "second": "S011"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S012",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S012",
+        "second": "S012"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S013",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S013",
+        "second": "S013"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S014",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S014",
+        "second": "S014"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S015",
+      "final_label": "instrument_cluster_panel_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S015",
+        "second": "S015"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S016",
+      "final_label": "relay_stall",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S016",
+        "second": "S016"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S017",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S017",
+        "second": "S017"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S018",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S018",
+        "second": "S018"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S019",
+      "final_label": "relay_stall",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S019",
+        "second": "S019"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S020",
+      "final_label": "electrical_system_software_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S020",
+        "second": "S020"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S021",
+      "final_label": "ignition_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S021",
+        "second": "S021"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S022",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S022",
+        "second": "S022"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S023",
+      "final_label": "electrical_system_software_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S023",
+        "second": "S023"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S024",
+      "final_label": "instrument_cluster_panel_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S024",
+        "second": "S024"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S025",
+      "final_label": "body_control_module_software_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S025",
+        "second": "S025"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S026",
+      "final_label": "body_control_module_software_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S026",
+        "second": "S026"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S027",
+      "final_label": "instrument_cluster_panel_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S027",
+        "second": "S027"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S028",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S028",
+        "second": "S028"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S029",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S029",
+        "second": "S029"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S030",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S030",
+        "second": "S030"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S031",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S031",
+        "second": "S031"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S032",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S032",
+        "second": "S032"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S033",
+      "final_label": "instrument_cluster_panel_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S033",
+        "second": "S033"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S034",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S034",
+        "second": "S034"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S035",
+      "final_label": "instrument_cluster_panel_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S035",
+        "second": "S035"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S036",
+      "final_label": "relay_stall",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S036",
+        "second": "S036"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S037",
+      "final_label": "electrical_system_software_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S037",
+        "second": "S037"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S038",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S038",
+        "second": "S038"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S039",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S039",
+        "second": "S039"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S040",
+      "final_label": "electrical_system_software_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S040",
+        "second": "S040"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S041",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S041",
+        "second": "S041"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S042",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S042",
+        "second": "S042"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S043",
+      "final_label": "wiring_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S043",
+        "second": "S043"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S044",
+      "final_label": "electronic_stability_control_esc_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S044",
+        "second": "S044"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S045",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S045",
+        "second": "S045"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S046",
+      "final_label": "electronic_stability_control_esc_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S046",
+        "second": "S046"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S047",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S047",
+        "second": "S047"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S048",
+      "final_label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S048",
+        "second": "S048"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S049",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S049",
+        "second": "S049"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S050",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S050",
+        "second": "S050"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S051",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S051",
+        "second": "S051"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S052",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S052",
+        "second": "S052"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S053",
+      "final_label": "belts_and_associated_pulleys_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S053",
+        "second": "S053"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S054",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S054",
+        "second": "S054"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S055",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S055",
+        "second": "S055"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S056",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S056",
+        "second": "S056"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S057",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S057",
+        "second": "S057"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S058",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S058",
+        "second": "S058"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S059",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S059",
+        "second": "S059"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S060",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S060",
+        "second": "S060"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S061",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S061",
+        "second": "S061"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S062",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S062",
+        "second": "S062"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S063",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S063",
+        "second": "S063"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S064",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S064",
+        "second": "S064"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S065",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S065",
+        "second": "S065"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S066",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S066",
+        "second": "S066"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S067",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S067",
+        "second": "S067"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S068",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S068",
+        "second": "S068"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S069",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S069",
+        "second": "S069"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S070",
+      "final_label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S070",
+        "second": "S070"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S071",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S071",
+        "second": "S071"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S072",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S072",
+        "second": "S072"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S073",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S073",
+        "second": "S073"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S074",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S074",
+        "second": "S074"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S075",
+      "final_label": "belts_and_associated_pulleys_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S075",
+        "second": "S075"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S076",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S076",
+        "second": "S076"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S077",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S077",
+        "second": "S077"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S078",
+      "final_label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S078",
+        "second": "S078"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S079",
+      "final_label": "belts_and_associated_pulleys_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S079",
+        "second": "S079"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S080",
+      "final_label": "belts_and_associated_pulleys_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S080",
+        "second": "S080"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S081",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S081",
+        "second": "S081"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S082",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S082",
+        "second": "S082"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S083",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S083",
+        "second": "S083"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S084",
+      "final_label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S084",
+        "second": "S084"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S085",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S085",
+        "second": "S085"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S086",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S086",
+        "second": "S086"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S087",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S087",
+        "second": "S087"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S088",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S088",
+        "second": "S088"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S089",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S089",
+        "second": "S089"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S090",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S090",
+        "second": "S090"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S091",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S091",
+        "second": "S091"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S092",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S092",
+        "second": "S092"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S093",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S093",
+        "second": "S093"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S094",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S094",
+        "second": "S094"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S095",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S095",
+        "second": "S095"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S096",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S096",
+        "second": "S096"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S097",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S097",
+        "second": "S097"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S098",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S098",
+        "second": "S098"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S099",
+      "final_label": "engine_and_engine_cooling_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S099",
+        "second": "S099"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S100",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S100",
+        "second": "S100"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S101",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S101",
+        "second": "S101"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S102",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S102",
+        "second": "S102"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S103",
+      "final_label": "electrical_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S103",
+        "second": "S103"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S104",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S104",
+        "second": "S104"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S105",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S105",
+        "second": "S105"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S106",
+      "final_label": "brake_lights_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S106",
+        "second": "S106"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S107",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S107",
+        "second": "S107"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S108",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S108",
+        "second": "S108"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S109",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S109",
+        "second": "S109"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S110",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S110",
+        "second": "S110"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S111",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S111",
+        "second": "S111"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S112",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S112",
+        "second": "S112"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S113",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S113",
+        "second": "S113"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S114",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S114",
+        "second": "S114"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S115",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S115",
+        "second": "S115"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S116",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S116",
+        "second": "S116"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S117",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S117",
+        "second": "S117"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S118",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S118",
+        "second": "S118"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S119",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S119",
+        "second": "S119"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S120",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S120",
+        "second": "S120"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S121",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S121",
+        "second": "S121"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S122",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S122",
+        "second": "S122"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S123",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S123",
+        "second": "S123"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S124",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S124",
+        "second": "S124"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S125",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S125",
+        "second": "S125"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S126",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S126",
+        "second": "S126"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S127",
+      "final_label": "fuel_pump_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S127",
+        "second": "S127"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S128",
+      "final_label": "canister_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S128",
+        "second": "S128"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S129",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S129",
+        "second": "S129"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S130",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S130",
+        "second": "S130"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S131",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S131",
+        "second": "S131"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S132",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S132",
+        "second": "S132"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S133",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S133",
+        "second": "S133"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S134",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S134",
+        "second": "S134"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S135",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S135",
+        "second": "S135"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S136",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S136",
+        "second": "S136"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S137",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S137",
+        "second": "S137"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S138",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S138",
+        "second": "S138"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S139",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S139",
+        "second": "S139"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S140",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S140",
+        "second": "S140"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S141",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S141",
+        "second": "S141"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S142",
+      "final_label": "inverter_stall",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S142",
+        "second": "S142"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S143",
+      "final_label": "hybrid_propulsion_system_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S143",
+        "second": "S143"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S144",
+      "final_label": "hybrid_propulsion_system_electrical",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S144",
+        "second": "S144"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S145",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S145",
+        "second": "S145"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S146",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S146",
+        "second": "S146"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S147",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S147",
+        "second": "S147"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S148",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S148",
+        "second": "S148"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S149",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S149",
+        "second": "S149"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S150",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S150",
+        "second": "S150"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S151",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S151",
+        "second": "S151"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S152",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S152",
+        "second": "S152"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S153",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S153",
+        "second": "S153"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S154",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S154",
+        "second": "S154"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S155",
+      "final_label": "automatic_transmission_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S155",
+        "second": "S155"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S156",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S156",
+        "second": "S156"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S157",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S157",
+        "second": "S157"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S158",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S158",
+        "second": "S158"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S159",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S159",
+        "second": "S159"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S160",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S160",
+        "second": "S160"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S161",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S161",
+        "second": "S161"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S162",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S162",
+        "second": "S162"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S163",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S163",
+        "second": "S163"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S164",
+      "final_label": "control_module_tcm_pcm_tecm_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S164",
+        "second": "S164"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S165",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S165",
+        "second": "S165"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S166",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S166",
+        "second": "S166"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S167",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S167",
+        "second": "S167"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S168",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S168",
+        "second": "S168"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S169",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S169",
+        "second": "S169"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S170",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S170",
+        "second": "S170"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S171",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S171",
+        "second": "S171"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S172",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S172",
+        "second": "S172"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S173",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S173",
+        "second": "S173"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S174",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S174",
+        "second": "S174"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S175",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S175",
+        "second": "S175"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S176",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S176",
+        "second": "S176"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S177",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S177",
+        "second": "S177"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S178",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S178",
+        "second": "S178"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S179",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S179",
+        "second": "S179"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S180",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S180",
+        "second": "S180"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S181",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S181",
+        "second": "S181"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S182",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S182",
+        "second": "S182"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S183",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S183",
+        "second": "S183"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S184",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S184",
+        "second": "S184"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S185",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S185",
+        "second": "S185"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S186",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S186",
+        "second": "S186"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S187",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S187",
+        "second": "S187"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S188",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S188",
+        "second": "S188"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S189",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S189",
+        "second": "S189"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S190",
+      "final_label": "seat_belts_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S190",
+        "second": "S190"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S191",
+      "final_label": "recliner_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S191",
+        "second": "S191"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S192",
+      "final_label": "seats_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S192",
+        "second": "S192"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S193",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S193",
+        "second": "S193"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S194",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S194",
+        "second": "S194"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S195",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S195",
+        "second": "S195"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S196",
+      "final_label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S196",
+        "second": "S196"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S197",
+      "final_label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S197",
+        "second": "S197"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S198",
+      "final_label": "service_brakes_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S198",
+        "second": "S198"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S199",
+      "final_label": "antilock_traction_control_electronic_limited_slip_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S199",
+        "second": "S199"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S200",
+      "final_label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S200",
+        "second": "S200"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S201",
+      "final_label": "service_brakes_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S201",
+        "second": "S201"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S202",
+      "final_label": "master_cylinder_leak",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S202",
+        "second": "S202"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S203",
+      "final_label": "antilock_traction_control_electronic_limited_slip_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S203",
+        "second": "S203"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S204",
+      "final_label": "antilock_traction_control_electronic_limited_slip_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S204",
+        "second": "S204"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S205",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S205",
+        "second": "S205"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S206",
+      "final_label": "antilock_traction_control_electronic_limited_slip_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S206",
+        "second": "S206"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S207",
+      "final_label": "antilock_traction_control_electronic_limited_slip_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S207",
+        "second": "S207"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S208",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S208",
+        "second": "S208"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S209",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S209",
+        "second": "S209"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S210",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S210",
+        "second": "S210"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S211",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S211",
+        "second": "S211"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S212",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S212",
+        "second": "S212"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S213",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S213",
+        "second": "S213"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S214",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S214",
+        "second": "S214"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S215",
+      "final_label": "tie_rod_assembly_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S215",
+        "second": "S215"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S216",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S216",
+        "second": "S216"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S217",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S217",
+        "second": "S217"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S218",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S218",
+        "second": "S218"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S219",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S219",
+        "second": "S219"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S220",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S220",
+        "second": "S220"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S221",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S221",
+        "second": "S221"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S222",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S222",
+        "second": "S222"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S223",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S223",
+        "second": "S223"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S224",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S224",
+        "second": "S224"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S225",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S225",
+        "second": "S225"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S226",
+      "final_label": "electric_power_assist_system_loss_of_control",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S226",
+        "second": "S226"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S227",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S227",
+        "second": "S227"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S228",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S228",
+        "second": "S228"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S229",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S229",
+        "second": "S229"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S230",
+      "final_label": "structure_body_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S230",
+        "second": "S230"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S231",
+      "final_label": "hinge_and_attachments_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S231",
+        "second": "S231"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S232",
+      "final_label": "hinge_and_attachments_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S232",
+        "second": "S232"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S233",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S233",
+        "second": "S233"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S234",
+      "final_label": "roof_and_pillars_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S234",
+        "second": "S234"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S235",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S235",
+        "second": "S235"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S236",
+      "final_label": "door_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S236",
+        "second": "S236"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S237",
+      "final_label": "door_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S237",
+        "second": "S237"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S238",
+      "final_label": "roof_and_pillars_failure",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S238",
+        "second": "S238"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S239",
+      "final_label": "hinge_and_attachments_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S239",
+        "second": "S239"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S240",
+      "final_label": "structure_body_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S240",
+        "second": "S240"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S241",
+      "final_label": "lower_arm_crack_or_fracture",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S241",
+        "second": "S241"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S242",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S242",
+        "second": "S242"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S243",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S243",
+        "second": "S243"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S244",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S244",
+        "second": "S244"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S245",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S245",
+        "second": "S245"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S246",
+      "final_label": "tires_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S246",
+        "second": "S246"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S247",
+      "final_label": "tires_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S247",
+        "second": "S247"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S248",
+      "final_label": "tires_compliance_or_label",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S248",
+        "second": "S248"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S249",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S249",
+        "second": "S249"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S250",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S250",
+        "second": "S250"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S251",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S251",
+        "second": "S251"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S252",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S252",
+        "second": "S252"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S253",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S253",
+        "second": "S253"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S254",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S254",
+        "second": "S254"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S255",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S255",
+        "second": "S255"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S256",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S256",
+        "second": "S256"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S257",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S257",
+        "second": "S257"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S258",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S258",
+        "second": "S258"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S259",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S259",
+        "second": "S259"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S260",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S260",
+        "second": "S260"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S261",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S261",
+        "second": "S261"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S262",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S262",
+        "second": "S262"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S263",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S263",
+        "second": "S263"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S264",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S264",
+        "second": "S264"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S265",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S265",
+        "second": "S265"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S266",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S266",
+        "second": "S266"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S267",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S267",
+        "second": "S267"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S268",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S268",
+        "second": "S268"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S269",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S269",
+        "second": "S269"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S270",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S270",
+        "second": "S270"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S271",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S271",
+        "second": "S271"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S272",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S272",
+        "second": "S272"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S273",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S273",
+        "second": "S273"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S274",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S274",
+        "second": "S274"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S275",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S275",
+        "second": "S275"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S276",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S276",
+        "second": "S276"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S277",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S277",
+        "second": "S277"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S278",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S278",
+        "second": "S278"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S279",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S279",
+        "second": "S279"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S280",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S280",
+        "second": "S280"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S281",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S281",
+        "second": "S281"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S282",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S282",
+        "second": "S282"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S283",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S283",
+        "second": "S283"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S284",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S284",
+        "second": "S284"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S285",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S285",
+        "second": "S285"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S286",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S286",
+        "second": "S286"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S287",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S287",
+        "second": "S287"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S288",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S288",
+        "second": "S288"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S289",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S289",
+        "second": "S289"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S290",
+      "final_label": "sun_moon_roof_assembly_detachment",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S290",
+        "second": "S290"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S291",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S291",
+        "second": "S291"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S292",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S292",
+        "second": "S292"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S293",
+      "final_label": "visibility_wiper_software",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S293",
+        "second": "S293"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S294",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S294",
+        "second": "S294"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S295",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S295",
+        "second": "S295"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S296",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S296",
+        "second": "S296"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S297",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S297",
+        "second": "S297"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S298",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S298",
+        "second": "S298"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S299",
+      "final_label": "other_unclear",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S299",
+        "second": "S299"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    },
+    {
+      "sample_id": "S300",
+      "final_label": "lugs_nuts_bolts_studs_crack_or_fracture",
+      "resolution": "agreed",
+      "primary_reviewer": "Rahul",
+      "second_reviewer": "Manish",
+      "original_review_ids": {
+        "primary": "S300",
+        "second": "S300"
+      },
+      "rationale": "Both preserved human reviews selected this same label. No disagreement required a new source-evidence judgment."
+    }
+  ],
+  "timestamp_note": "Export timestamps are supplied by the reviews. recorded_at is the processing time; no human adjudication timestamps or judgments have been invented.",
+  "evaluation_only": true
+}

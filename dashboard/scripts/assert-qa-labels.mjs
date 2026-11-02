@@ -65,7 +65,7 @@ const checks = [
   ["routes/Settings.jsx", (s) => !s.includes('placeholder="FRONTLINE_API_KEY"') && s.includes("Paste pilot API key") && !s.includes("hooks.example.com/frontline"), "Settings brand"],
   ["src/App.jsx", (s) => !s.includes("fill wallboard") && !s.includes("Health re-checked"), "App shell strings"],
   ["routes/CommandCenter.jsx", (s) => !s.includes("Could not load wallboard") && s.includes("command center"), "Command center error"],
-  ["routes/CallWidget.jsx", (s) => s.includes("voice-cta") && s.includes("Start voice report") && s.includes("End call") && s.includes("Speech capture settings"), "Voice CTA + capture settings"],
+  ["routes/CallWidget.jsx", (s) => s.includes("voice-cta") && s.includes("Start voice report") && s.includes("End call") && s.includes("English UI and replies") && s.includes("Engineer diagnostics") && !s.includes("pinned endpoint"), "Voice CTA, language scope and diagnostics"],
   ["routes/PlatformOS.jsx", (s) => s.includes("proposalTitle") && s.includes("Scan failures") && s.includes("Approve"), "Platform OS"],
 ];
 

@@ -40,6 +40,11 @@ def main():
     from src.api.rbac import issue_session
     from src.data.warehouse import init_ops_db
     from scripts.seed_domains import build
+    from src.frontline import connectors
+    connectors.CONFIG_PATH = state / "connector-config.json"
+    connectors.OUTBOX_DIR = state / "outbox"
+    connectors.reset_connector_config_cache()
+    connectors.set_connector_config(enabled=False, webhook_url="", shared_secret="")
     init_ops_db()
     build("automotive_nhtsa")
     # Fictional fixture with real-campaign permission enforcement, confined to

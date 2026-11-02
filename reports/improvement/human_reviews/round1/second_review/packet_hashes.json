@@ -1,0 +1,10 @@
+{
+  "registered_at": "2026-11-02T11:01:42+00:00",
+  "generated_at": "2026-11-02T11:01:42+00:00",
+  "artifacts": {
+    "reports/improvement/human_reviews/round1/second_review/preregistered_ids.json": "5ecd3068715efe04ff3d234b9d537d2c675050ee33f956eb87f85eca9f6fe511",
+    "reports/improvement/human_reviews/round1/second_review/second_review.html": "36b0371e1178eaf6b383537c6b5ec8124ffeef552b896ec8348e9e78fd1e6e2f",
+    "scripts/templates/defect_second_review.html": "efc92539da0cee2942afa6f606b5c300a3c167b4a49e63e8cfc1e4580572942f"
+  },
+  "frozen_sample_unchanged": true
+}

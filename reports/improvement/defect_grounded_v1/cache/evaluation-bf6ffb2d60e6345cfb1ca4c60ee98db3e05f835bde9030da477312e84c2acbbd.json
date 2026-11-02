@@ -1,0 +1,206 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "engine_and_engine_cooling_leak",
+      "proposed_confidence": 0.88,
+      "label_id": "engine_and_engine_cooling_leak",
+      "confidence": 0.88,
+      "evidence": "Coolant intrusion into cylinder number 2.",
+      "part_evidence": "Coolant intrusion into cylinder number 2.",
+      "mode_evidence": "Coolant intrusion into cylinder number 2.",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "engine_and_engine_cooling_leak",
+      "proposed_confidence": 0.85,
+      "label_id": "engine_and_engine_cooling_leak",
+      "confidence": 0.85,
+      "evidence": "coolent sepping into cylinders",
+      "part_evidence": "coolent sepping into cylinders",
+      "mode_evidence": "coolent sepping into cylinders",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "engine_and_engine_cooling_leak",
+      "proposed_confidence": 0.9,
+      "label_id": "engine_and_engine_cooling_leak",
+      "confidence": 0.9,
+      "evidence": "coolant intrusion into the engine through a cracked cylinder.",
+      "part_evidence": "coolant intrusion into the engine through a cracked cylinder.",
+      "mode_evidence": "coolant intrusion into the engine through a cracked cylinder.",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c4",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "uncertain_cause",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c5",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.98,
+      "label_id": "other_unclear",
+      "confidence": 0.98,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c6",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.9,
+      "label_id": "other_unclear",
+      "confidence": 0.9,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c7",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.95,
+      "label_id": "other_unclear",
+      "confidence": 0.95,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c8",
+      "proposed_label_id": "engine_and_engine_cooling_leak",
+      "proposed_confidence": 0.92,
+      "label_id": "engine_and_engine_cooling_leak",
+      "confidence": 0.92,
+      "evidence": "coolant intrusion into cylinders #3 and #4",
+      "part_evidence": "coolant intrusion into cylinders #3 and #4",
+      "mode_evidence": "coolant intrusion into cylinders #3 and #4",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "engine_and_engine_cooling_leak",
+        "confidence": 0.88,
+        "evidence": "Coolant intrusion into cylinder number 2.",
+        "part_evidence": "Coolant intrusion into cylinder number 2.",
+        "mode_evidence": "Coolant intrusion into cylinder number 2.",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "engine_and_engine_cooling_leak",
+        "confidence": 0.85,
+        "evidence": "coolent sepping into cylinders",
+        "part_evidence": "coolent sepping into cylinders",
+        "mode_evidence": "coolent sepping into cylinders",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "engine_and_engine_cooling_leak",
+        "confidence": 0.9,
+        "evidence": "coolant intrusion into the engine through a cracked cylinder.",
+        "part_evidence": "coolant intrusion into the engine through a cracked cylinder.",
+        "mode_evidence": "coolant intrusion into the engine through a cracked cylinder.",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c7",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c8",
+        "label_id": "engine_and_engine_cooling_leak",
+        "confidence": 0.92,
+        "evidence": "coolant intrusion into cylinders #3 and #4",
+        "part_evidence": "coolant intrusion into cylinders #3 and #4",
+        "mode_evidence": "coolant intrusion into cylinders #3 and #4",
+        "grounding_status": "specific_supported"
+      }
+    ]
+  },
+  "batch_key": "bf6ffb2d60e6345cfb1ca4c60ee98db3e05f835bde9030da477312e84c2acbbd",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:26:20+00:00",
+  "completed_at": "2026-11-02T13:26:29+00:00"
+}

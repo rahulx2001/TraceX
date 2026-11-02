@@ -154,6 +154,18 @@
   padding: 18px 0;
 }
 
+.early-warning-page .warning-data-scope {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--edge);
+}
+
+.early-warning-page .warning-data-scope p {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
 .early-warning-page .warning-overview .snapshot-tile {
   background: transparent !important;
   border: 0;

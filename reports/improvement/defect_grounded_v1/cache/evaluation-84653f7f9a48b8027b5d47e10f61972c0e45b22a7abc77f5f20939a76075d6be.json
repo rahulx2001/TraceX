@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "vehicle stability assist warning light was illuminated",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 1.0,
+      "label_id": "other_unclear",
+      "confidence": 1.0,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.95,
+      "label_id": "other_unclear",
+      "confidence": 0.95,
+      "evidence": "it was diagnosed that the hydraulic control unit (HCU) needed to be replaced",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "vehicle stability assist warning light was illuminated",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 1.0,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "it was diagnosed that the hydraulic control unit (HCU) needed to be replaced",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "84653f7f9a48b8027b5d47e10f61972c0e45b22a7abc77f5f20939a76075d6be",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:14:57+00:00",
+  "completed_at": "2026-11-02T13:15:01+00:00"
+}

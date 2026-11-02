@@ -1,0 +1,51 @@
+{
+  "verified_at": "2026-11-02T14:47:50+00:00",
+  "status": "partial_adjudication_pending",
+  "claim": "Human-approved assisted revision: Manish 300/300 labels and notes; 31/300 labels disagree with Rahul original; revised accuracy pending source-evidence adjudication. Historical baseline remains 246/300 = 82.0% on the original accepted labels.",
+  "reviewer": "Manish",
+  "human_labels": 300,
+  "sample_size": 300,
+  "notes_present": 300,
+  "disagreements": {
+    "numerator": 31,
+    "denominator": 300
+  },
+  "adjudicated_disagreements": {
+    "numerator": 0,
+    "denominator": 31
+  },
+  "accuracy": null,
+  "accuracy_interval": null,
+  "raw_agreement": {
+    "numerator": 269,
+    "denominator": 300,
+    "value": 0.8966666666666666,
+    "ci95": [
+      0.86,
+      0.93
+    ]
+  },
+  "cohens_kappa": {
+    "value": 0.8025016458196181,
+    "paired_rows": 300,
+    "expected_chance_agreement": 0.4767888888888889,
+    "ci95": [
+      0.7333943099385571,
+      0.864477931699373
+    ]
+  },
+  "agreement_interpretation": "Descriptive only: script-assisted revision with prior-answer reuse; not independent blinded reliability evidence",
+  "limits": "Same opened evaluation sample. Human source review is user-attested. Generated notes and original reviews are preserved. Assistant adjudication proposals are drafts, not final human labels. No fitting, calibration, feature selection, dashboard accuracy or new model inference.",
+  "additional_artifacts": [
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/adjudication.html",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/adjudication_draft.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/agreement_before_adjudication.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/human_confirmation.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/human_labelled.csv",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/human_review_provenance.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/original_review_export.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/README.md",
+    "reports/improvement/human_reviews/pending/export4/provenance_check.json",
+    "reports/improvement/human_reviews/pending/export4/script_lineage_source.py"
+  ]
+}

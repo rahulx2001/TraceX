@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "electrical_electrical",
+      "proposed_confidence": 0.82,
+      "label_id": "electrical_electrical",
+      "confidence": 0.82,
+      "evidence": "radio display panel went blank, including screen above main panel. There appears to be no power to panel",
+      "part_evidence": "radio display panel went blank",
+      "mode_evidence": "There appears to be no power to panel",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.96,
+      "label_id": "other_unclear",
+      "confidence": 0.96,
+      "evidence": "hydraulic tank was leaking fluid onto the ground",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.99,
+      "label_id": "other_unclear",
+      "confidence": 0.99,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "electrical_electrical",
+        "confidence": 0.82,
+        "evidence": "radio display panel went blank, including screen above main panel. There appears to be no power to panel",
+        "part_evidence": "radio display panel went blank",
+        "mode_evidence": "There appears to be no power to panel",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.96,
+        "evidence": "hydraulic tank was leaking fluid onto the ground",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.99,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "c752f9e7e93122a8c31fa236dcc7fad6df2675c0ebab8e1ed565a8f15f3344e2",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:15:57+00:00",
+  "completed_at": "2026-11-02T13:16:01+00:00"
+}

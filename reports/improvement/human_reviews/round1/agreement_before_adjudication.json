@@ -1,0 +1,2665 @@
+{
+  "schema_version": 1,
+  "computed_at": "2026-11-02T11:18:57+00:00",
+  "stage": "before_adjudication",
+  "evaluation_only": true,
+  "model_accuracy_computed": false,
+  "source_reviews": [
+    {
+      "role": "primary",
+      "reviewer": "Rahul",
+      "exported_at": "2026-11-02T10:20:41.677Z",
+      "path": "reports/improvement/human_reviews/round1/primary_review_export.json",
+      "sha256": "0e5b862fce512ee746ecf1f47d14adcf3400afd0558c813ecebbecc7238eb4a6"
+    },
+    {
+      "role": "second",
+      "reviewer": "Manish",
+      "exported_at": "2026-11-02T11:02:03.894Z",
+      "path": "reports/improvement/human_reviews/round1/second_review/manish/original_review_export.json",
+      "sha256": "68f9832fc32771741080a9702c2db58f1e7c4116bd34de879f7209a161d26494"
+    }
+  ],
+  "full_sample": {
+    "design": "All 300 frozen sample IDs; user reports assigning the entire set before Manish began; contemporaneous second-review assignment record unavailable.",
+    "sample_ids": [
+      "S001",
+      "S002",
+      "S003",
+      "S004",
+      "S005",
+      "S006",
+      "S007",
+      "S008",
+      "S009",
+      "S010",
+      "S011",
+      "S012",
+      "S013",
+      "S014",
+      "S015",
+      "S016",
+      "S017",
+      "S018",
+      "S019",
+      "S020",
+      "S021",
+      "S022",
+      "S023",
+      "S024",
+      "S025",
+      "S026",
+      "S027",
+      "S028",
+      "S029",
+      "S030",
+      "S031",
+      "S032",
+      "S033",
+      "S034",
+      "S035",
+      "S036",
+      "S037",
+      "S038",
+      "S039",
+      "S040",
+      "S041",
+      "S042",
+      "S043",
+      "S044",
+      "S045",
+      "S046",
+      "S047",
+      "S048",
+      "S049",
+      "S050",
+      "S051",
+      "S052",
+      "S053",
+      "S054",
+      "S055",
+      "S056",
+      "S057",
+      "S058",
+      "S059",
+      "S060",
+      "S061",
+      "S062",
+      "S063",
+      "S064",
+      "S065",
+      "S066",
+      "S067",
+      "S068",
+      "S069",
+      "S070",
+      "S071",
+      "S072",
+      "S073",
+      "S074",
+      "S075",
+      "S076",
+      "S077",
+      "S078",
+      "S079",
+      "S080",
+      "S081",
+      "S082",
+      "S083",
+      "S084",
+      "S085",
+      "S086",
+      "S087",
+      "S088",
+      "S089",
+      "S090",
+      "S091",
+      "S092",
+      "S093",
+      "S094",
+      "S095",
+      "S096",
+      "S097",
+      "S098",
+      "S099",
+      "S100",
+      "S101",
+      "S102",
+      "S103",
+      "S104",
+      "S105",
+      "S106",
+      "S107",
+      "S108",
+      "S109",
+      "S110",
+      "S111",
+      "S112",
+      "S113",
+      "S114",
+      "S115",
+      "S116",
+      "S117",
+      "S118",
+      "S119",
+      "S120",
+      "S121",
+      "S122",
+      "S123",
+      "S124",
+      "S125",
+      "S126",
+      "S127",
+      "S128",
+      "S129",
+      "S130",
+      "S131",
+      "S132",
+      "S133",
+      "S134",
+      "S135",
+      "S136",
+      "S137",
+      "S138",
+      "S139",
+      "S140",
+      "S141",
+      "S142",
+      "S143",
+      "S144",
+      "S145",
+      "S146",
+      "S147",
+      "S148",
+      "S149",
+      "S150",
+      "S151",
+      "S152",
+      "S153",
+      "S154",
+      "S155",
+      "S156",
+      "S157",
+      "S158",
+      "S159",
+      "S160",
+      "S161",
+      "S162",
+      "S163",
+      "S164",
+      "S165",
+      "S166",
+      "S167",
+      "S168",
+      "S169",
+      "S170",
+      "S171",
+      "S172",
+      "S173",
+      "S174",
+      "S175",
+      "S176",
+      "S177",
+      "S178",
+      "S179",
+      "S180",
+      "S181",
+      "S182",
+      "S183",
+      "S184",
+      "S185",
+      "S186",
+      "S187",
+      "S188",
+      "S189",
+      "S190",
+      "S191",
+      "S192",
+      "S193",
+      "S194",
+      "S195",
+      "S196",
+      "S197",
+      "S198",
+      "S199",
+      "S200",
+      "S201",
+      "S202",
+      "S203",
+      "S204",
+      "S205",
+      "S206",
+      "S207",
+      "S208",
+      "S209",
+      "S210",
+      "S211",
+      "S212",
+      "S213",
+      "S214",
+      "S215",
+      "S216",
+      "S217",
+      "S218",
+      "S219",
+      "S220",
+      "S221",
+      "S222",
+      "S223",
+      "S224",
+      "S225",
+      "S226",
+      "S227",
+      "S228",
+      "S229",
+      "S230",
+      "S231",
+      "S232",
+      "S233",
+      "S234",
+      "S235",
+      "S236",
+      "S237",
+      "S238",
+      "S239",
+      "S240",
+      "S241",
+      "S242",
+      "S243",
+      "S244",
+      "S245",
+      "S246",
+      "S247",
+      "S248",
+      "S249",
+      "S250",
+      "S251",
+      "S252",
+      "S253",
+      "S254",
+      "S255",
+      "S256",
+      "S257",
+      "S258",
+      "S259",
+      "S260",
+      "S261",
+      "S262",
+      "S263",
+      "S264",
+      "S265",
+      "S266",
+      "S267",
+      "S268",
+      "S269",
+      "S270",
+      "S271",
+      "S272",
+      "S273",
+      "S274",
+      "S275",
+      "S276",
+      "S277",
+      "S278",
+      "S279",
+      "S280",
+      "S281",
+      "S282",
+      "S283",
+      "S284",
+      "S285",
+      "S286",
+      "S287",
+      "S288",
+      "S289",
+      "S290",
+      "S291",
+      "S292",
+      "S293",
+      "S294",
+      "S295",
+      "S296",
+      "S297",
+      "S298",
+      "S299",
+      "S300"
+    ],
+    "paired_rows": 300,
+    "raw_agreement": {
+      "numerator": 300,
+      "denominator": 300,
+      "value": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    "cohens_kappa": {
+      "value": 1.0,
+      "paired_rows": 300,
+      "expected_chance_agreement": 0.42013333333333336,
+      "ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    "bootstrap": {
+      "method": "Paired-row resampling with replacement, preserving each original review pair",
+      "interval": "95% percentile; linear quantile interpolation",
+      "seed": 20261102,
+      "draws": 10000,
+      "rows_per_draw": 300,
+      "raw_valid_draws": {
+        "numerator": 10000,
+        "denominator": 10000
+      },
+      "kappa_valid_draws": {
+        "numerator": 10000,
+        "denominator": 10000
+      },
+      "undefined_kappa_draws": {
+        "numerator": 0,
+        "denominator": 10000
+      }
+    },
+    "label_prevalence": {
+      "primary": [
+        {
+          "label": "air_bag_restraint_control_module_failure",
+          "numerator": 5,
+          "denominator": 300,
+          "value": 0.016666666666666666
+        },
+        {
+          "label": "antilock_traction_control_electronic_limited_slip_software",
+          "numerator": 5,
+          "denominator": 300,
+          "value": 0.016666666666666666
+        },
+        {
+          "label": "automatic_transmission_detachment",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "belts_and_associated_pulleys_detachment",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "body_control_module_software_software",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "brake_lights_electrical",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "camera_software",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "canister_failure",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "control_module_tcm_pcm_tecm_software",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "door_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "electric_power_assist_system_loss_of_control",
+          "numerator": 11,
+          "denominator": 300,
+          "value": 0.03666666666666667
+        },
+        {
+          "label": "electrical_electrical",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "electrical_system_software_software",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "electronic_stability_control_esc_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "engine_and_engine_cooling_leak",
+          "numerator": 10,
+          "denominator": 300,
+          "value": 0.03333333333333333
+        },
+        {
+          "label": "fuel_pump_failure",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "hinge_and_attachments_detachment",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "hybrid_propulsion_system_electrical",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "ignition_compliance_or_label",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "instrument_cluster_panel_compliance_or_label",
+          "numerator": 5,
+          "denominator": 300,
+          "value": 0.016666666666666666
+        },
+        {
+          "label": "inverter_stall",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "lower_arm_crack_or_fracture",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "master_cylinder_leak",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "occupant_classification_software",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "other_unclear",
+          "numerator": 193,
+          "denominator": 300,
+          "value": 0.6433333333333333
+        },
+        {
+          "label": "recliner_compliance_or_label",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "relay_stall",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "roof_and_pillars_failure",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "seat_belts_compliance_or_label",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "seats_failure",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "service_brakes_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "structure_body_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "sun_moon_roof_assembly_detachment",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "tie_rod_assembly_loss_of_control",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "tires_compliance_or_label",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "visibility_wiper_software",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "wiring_electrical",
+          "numerator": 11,
+          "denominator": 300,
+          "value": 0.03666666666666667
+        }
+      ],
+      "second": [
+        {
+          "label": "air_bag_restraint_control_module_failure",
+          "numerator": 5,
+          "denominator": 300,
+          "value": 0.016666666666666666
+        },
+        {
+          "label": "antilock_traction_control_electronic_limited_slip_software",
+          "numerator": 5,
+          "denominator": 300,
+          "value": 0.016666666666666666
+        },
+        {
+          "label": "automatic_transmission_detachment",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "belts_and_associated_pulleys_detachment",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "body_control_module_software_software",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "brake_lights_electrical",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "camera_software",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "canister_failure",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "control_module_tcm_pcm_tecm_software",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "door_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "electric_power_assist_system_loss_of_control",
+          "numerator": 11,
+          "denominator": 300,
+          "value": 0.03666666666666667
+        },
+        {
+          "label": "electrical_electrical",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "electrical_system_software_software",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "electronic_stability_control_esc_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+          "numerator": 4,
+          "denominator": 300,
+          "value": 0.013333333333333334
+        },
+        {
+          "label": "engine_and_engine_cooling_leak",
+          "numerator": 10,
+          "denominator": 300,
+          "value": 0.03333333333333333
+        },
+        {
+          "label": "fuel_pump_failure",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "hinge_and_attachments_detachment",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "hybrid_propulsion_system_electrical",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "ignition_compliance_or_label",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "instrument_cluster_panel_compliance_or_label",
+          "numerator": 5,
+          "denominator": 300,
+          "value": 0.016666666666666666
+        },
+        {
+          "label": "inverter_stall",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "lower_arm_crack_or_fracture",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "master_cylinder_leak",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "occupant_classification_software",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "other_unclear",
+          "numerator": 193,
+          "denominator": 300,
+          "value": 0.6433333333333333
+        },
+        {
+          "label": "recliner_compliance_or_label",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "relay_stall",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "roof_and_pillars_failure",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "seat_belts_compliance_or_label",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "seats_failure",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "service_brakes_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "structure_body_compliance_or_label",
+          "numerator": 2,
+          "denominator": 300,
+          "value": 0.006666666666666667
+        },
+        {
+          "label": "sun_moon_roof_assembly_detachment",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "tie_rod_assembly_loss_of_control",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "tires_compliance_or_label",
+          "numerator": 3,
+          "denominator": 300,
+          "value": 0.01
+        },
+        {
+          "label": "visibility_wiper_software",
+          "numerator": 1,
+          "denominator": 300,
+          "value": 0.0033333333333333335
+        },
+        {
+          "label": "wiring_electrical",
+          "numerator": 11,
+          "denominator": 300,
+          "value": 0.03666666666666667
+        }
+      ]
+    },
+    "per_label_disagreement": [
+      {
+        "label": "air_bag_restraint_control_module_failure",
+        "numerator": 0,
+        "denominator": 5,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 5
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 5
+        }
+      },
+      {
+        "label": "antilock_traction_control_electronic_limited_slip_software",
+        "numerator": 0,
+        "denominator": 5,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 5
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 5
+        }
+      },
+      {
+        "label": "automatic_transmission_detachment",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "belts_and_associated_pulleys_detachment",
+        "numerator": 0,
+        "denominator": 4,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        }
+      },
+      {
+        "label": "body_control_module_software_software",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      },
+      {
+        "label": "brake_lights_electrical",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "camera_software",
+        "numerator": 0,
+        "denominator": 4,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        }
+      },
+      {
+        "label": "canister_failure",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "control_module_tcm_pcm_tecm_software",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "door_compliance_or_label",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      },
+      {
+        "label": "electric_power_assist_system_loss_of_control",
+        "numerator": 0,
+        "denominator": 11,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 11
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 11
+        }
+      },
+      {
+        "label": "electrical_electrical",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "electrical_system_software_software",
+        "numerator": 0,
+        "denominator": 4,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        }
+      },
+      {
+        "label": "electronic_stability_control_esc_compliance_or_label",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      },
+      {
+        "label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+        "numerator": 0,
+        "denominator": 4,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 4
+        }
+      },
+      {
+        "label": "engine_and_engine_cooling_leak",
+        "numerator": 0,
+        "denominator": 10,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 10
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 10
+        }
+      },
+      {
+        "label": "fuel_pump_failure",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "hinge_and_attachments_detachment",
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        }
+      },
+      {
+        "label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        }
+      },
+      {
+        "label": "hybrid_propulsion_system_electrical",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      },
+      {
+        "label": "ignition_compliance_or_label",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "instrument_cluster_panel_compliance_or_label",
+        "numerator": 0,
+        "denominator": 5,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 5
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 5
+        }
+      },
+      {
+        "label": "inverter_stall",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "lower_arm_crack_or_fracture",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "master_cylinder_leak",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "occupant_classification_software",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "other_unclear",
+        "numerator": 0,
+        "denominator": 193,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 193
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 193
+        }
+      },
+      {
+        "label": "recliner_compliance_or_label",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "relay_stall",
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        }
+      },
+      {
+        "label": "roof_and_pillars_failure",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      },
+      {
+        "label": "seat_belts_compliance_or_label",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "seats_failure",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "service_brakes_compliance_or_label",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      },
+      {
+        "label": "structure_body_compliance_or_label",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      },
+      {
+        "label": "sun_moon_roof_assembly_detachment",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "tie_rod_assembly_loss_of_control",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "tires_compliance_or_label",
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        }
+      },
+      {
+        "label": "visibility_wiper_software",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "wiring_electrical",
+        "numerator": 0,
+        "denominator": 11,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 11
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 11
+        }
+      }
+    ],
+    "disagreement_count": {
+      "numerator": 0,
+      "denominator": 300
+    },
+    "disagreements": [],
+    "identical_notes": {
+      "numerator": 300,
+      "denominator": 300
+    }
+  },
+  "later_selected_50": {
+    "design": "Descriptive only: these 50 IDs were recorded on 2 November after Manish reportedly began on 1 November; not prospectively preregistered for his review.",
+    "sample_ids": [
+      "S291",
+      "S034",
+      "S194",
+      "S082",
+      "S063",
+      "S213",
+      "S023",
+      "S104",
+      "S208",
+      "S265",
+      "S240",
+      "S099",
+      "S096",
+      "S287",
+      "S209",
+      "S290",
+      "S227",
+      "S166",
+      "S103",
+      "S280",
+      "S257",
+      "S029",
+      "S045",
+      "S053",
+      "S038",
+      "S270",
+      "S278",
+      "S002",
+      "S011",
+      "S234",
+      "S184",
+      "S036",
+      "S221",
+      "S062",
+      "S115",
+      "S258",
+      "S051",
+      "S151",
+      "S289",
+      "S268",
+      "S273",
+      "S224",
+      "S064",
+      "S147",
+      "S292",
+      "S139",
+      "S165",
+      "S246",
+      "S012",
+      "S252"
+    ],
+    "paired_rows": 50,
+    "raw_agreement": {
+      "numerator": 50,
+      "denominator": 50,
+      "value": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    "cohens_kappa": {
+      "value": 1.0,
+      "paired_rows": 50,
+      "expected_chance_agreement": 0.4992,
+      "ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    "bootstrap": {
+      "method": "Paired-row resampling with replacement, preserving each original review pair",
+      "interval": "95% percentile; linear quantile interpolation",
+      "seed": 20261102,
+      "draws": 10000,
+      "rows_per_draw": 50,
+      "raw_valid_draws": {
+        "numerator": 10000,
+        "denominator": 10000
+      },
+      "kappa_valid_draws": {
+        "numerator": 10000,
+        "denominator": 10000
+      },
+      "undefined_kappa_draws": {
+        "numerator": 0,
+        "denominator": 10000
+      }
+    },
+    "label_prevalence": {
+      "primary": [
+        {
+          "label": "air_bag_restraint_control_module_failure",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "antilock_traction_control_electronic_limited_slip_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "automatic_transmission_detachment",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "belts_and_associated_pulleys_detachment",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "body_control_module_software_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "brake_lights_electrical",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "camera_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "canister_failure",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "control_module_tcm_pcm_tecm_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "door_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "electric_power_assist_system_loss_of_control",
+          "numerator": 3,
+          "denominator": 50,
+          "value": 0.06
+        },
+        {
+          "label": "electrical_electrical",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "electrical_system_software_software",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "electronic_stability_control_esc_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "engine_and_engine_cooling_leak",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "fuel_pump_failure",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "hinge_and_attachments_detachment",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "hybrid_propulsion_system_electrical",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "ignition_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "instrument_cluster_panel_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "inverter_stall",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "lower_arm_crack_or_fracture",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "master_cylinder_leak",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "occupant_classification_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "other_unclear",
+          "numerator": 35,
+          "denominator": 50,
+          "value": 0.7
+        },
+        {
+          "label": "recliner_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "relay_stall",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "roof_and_pillars_failure",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "seat_belts_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "seats_failure",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "service_brakes_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "structure_body_compliance_or_label",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "sun_moon_roof_assembly_detachment",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "tie_rod_assembly_loss_of_control",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "tires_compliance_or_label",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "visibility_wiper_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "wiring_electrical",
+          "numerator": 2,
+          "denominator": 50,
+          "value": 0.04
+        }
+      ],
+      "second": [
+        {
+          "label": "air_bag_restraint_control_module_failure",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "antilock_traction_control_electronic_limited_slip_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "automatic_transmission_detachment",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "belts_and_associated_pulleys_detachment",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "body_control_module_software_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "brake_lights_electrical",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "camera_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "canister_failure",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "control_module_tcm_pcm_tecm_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "door_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "electric_power_assist_system_loss_of_control",
+          "numerator": 3,
+          "denominator": 50,
+          "value": 0.06
+        },
+        {
+          "label": "electrical_electrical",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "electrical_system_software_software",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "electronic_stability_control_esc_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "engine_and_engine_cooling_leak",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "fuel_pump_failure",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "hinge_and_attachments_detachment",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "hybrid_propulsion_system_electrical",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "ignition_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "instrument_cluster_panel_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "inverter_stall",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "lower_arm_crack_or_fracture",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "master_cylinder_leak",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "occupant_classification_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "other_unclear",
+          "numerator": 35,
+          "denominator": 50,
+          "value": 0.7
+        },
+        {
+          "label": "recliner_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "relay_stall",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "roof_and_pillars_failure",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "seat_belts_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "seats_failure",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "service_brakes_compliance_or_label",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "structure_body_compliance_or_label",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "sun_moon_roof_assembly_detachment",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "tie_rod_assembly_loss_of_control",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "tires_compliance_or_label",
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        {
+          "label": "visibility_wiper_software",
+          "numerator": 0,
+          "denominator": 50,
+          "value": 0.0
+        },
+        {
+          "label": "wiring_electrical",
+          "numerator": 2,
+          "denominator": 50,
+          "value": 0.04
+        }
+      ]
+    },
+    "per_label_disagreement": [
+      {
+        "label": "air_bag_restraint_control_module_failure",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "antilock_traction_control_electronic_limited_slip_software",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "automatic_transmission_detachment",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "belts_and_associated_pulleys_detachment",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "body_control_module_software_software",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "brake_lights_electrical",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "camera_software",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "canister_failure",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "control_module_tcm_pcm_tecm_software",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "door_compliance_or_label",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "electric_power_assist_system_loss_of_control",
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 3
+        }
+      },
+      {
+        "label": "electrical_electrical",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "electrical_system_software_software",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "electronic_stability_control_esc_compliance_or_label",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "engine_and_engine_cooling_leak",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "fuel_pump_failure",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "hinge_and_attachments_detachment",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "hoses_lines_piping_and_fittings_missing_or_wrong_part",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "hybrid_propulsion_system_electrical",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "ignition_compliance_or_label",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "instrument_cluster_panel_compliance_or_label",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "inverter_stall",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "lower_arm_crack_or_fracture",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "master_cylinder_leak",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "occupant_classification_software",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "other_unclear",
+        "numerator": 0,
+        "denominator": 35,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 35
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 35
+        }
+      },
+      {
+        "label": "recliner_compliance_or_label",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "relay_stall",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "roof_and_pillars_failure",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "seat_belts_compliance_or_label",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "seats_failure",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "service_brakes_compliance_or_label",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "structure_body_compliance_or_label",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "sun_moon_roof_assembly_detachment",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "tie_rod_assembly_loss_of_control",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "tires_compliance_or_label",
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "label": "visibility_wiper_software",
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 0
+        }
+      },
+      {
+        "label": "wiring_electrical",
+        "numerator": 0,
+        "denominator": 2,
+        "value": 0.0,
+        "denominator_definition": "Paired rows where either reviewer chose this label",
+        "primary_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "second_label_disagreements": {
+          "numerator": 0,
+          "denominator": 2
+        }
+      }
+    ],
+    "disagreement_count": {
+      "numerator": 0,
+      "denominator": 50
+    },
+    "disagreements": [],
+    "identical_notes": {
+      "numerator": 50,
+      "denominator": 50
+    }
+  },
+  "subset_manifest": {
+    "path": "reports/improvement/human_reviews/round1/second_review/preregistered_ids.json",
+    "sha256": "5ecd3068715efe04ff3d234b9d537d2c675050ee33f956eb87f85eca9f6fe511",
+    "registered_at": "2026-11-02T11:01:42+00:00"
+  },
+  "review_arrays_identical": true,
+  "limits": [
+    "Identical exported labels and notes do not independently establish blinded review or correctness.",
+    "The user confirms a blank independent review and an assignment of all 300 records; this is recorded as user-reported provenance.",
+    "Bootstrap intervals condition on the supplied review pairs and do not capture copying, shared interpretation errors, or uncertainty about review independence.",
+    "No consensus or adjudicated labels are generated by this comparison."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.35,
+      "label_id": "other_unclear",
+      "confidence": 0.35,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "hybrid_propulsion_system_electrical",
+      "proposed_confidence": 0.82,
+      "label_id": "hybrid_propulsion_system_electrical",
+      "confidence": 0.82,
+      "evidence": "the vehicle lost motive and electrical power.",
+      "part_evidence": "The hybrid system warning light was illuminated.",
+      "mode_evidence": "the vehicle lost motive and electrical power.",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.4,
+      "label_id": "other_unclear",
+      "confidence": 0.4,
+      "evidence": "insufficient detail",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": false,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.35,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "hybrid_propulsion_system_electrical",
+        "confidence": 0.82,
+        "evidence": "the vehicle lost motive and electrical power.",
+        "part_evidence": "The hybrid system warning light was illuminated.",
+        "mode_evidence": "the vehicle lost motive and electrical power.",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.4,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "1d32624f8004c4451b7f28375b5591b08a8dc7ebdbcb4096090b472d7bed7a57",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:16:17+00:00",
+  "completed_at": "2026-11-02T13:16:20+00:00"
+}

@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "claim": "Original sample: Rahul 300/300 and Manish 300/300 human labels; overall accuracy 246/300 = 82.0% (95% CI 77.3%–85.9%)",
+  "verified_at": "2026-11-02T11:36:48+00:00",
+  "sample_size": 300,
+  "human_labels": 300,
+  "unique_reviewed_ids": 300,
+  "notes_present": 300,
+  "primary_review": {
+    "reviewer": "Rahul",
+    "annotation_source": "human",
+    "attestation": true,
+    "exported_at": "2026-11-02T10:20:41.677Z",
+    "export_path": "reports/improvement/human_reviews/round1/primary_review_export.json",
+    "input_sha256": "0e5b862fce512ee746ecf1f47d14adcf3400afd0558c813ecebbecc7238eb4a6",
+    "labelled_path": "reports/improvement/human_reviews/round1/human_labelled.csv",
+    "output_sha256": "4bfd3545a0e028eb2607797eb88487326f090285ffeed841d43b5edff461348b",
+    "provenance_path": "reports/improvement/human_reviews/round1/human_review_provenance.json",
+    "provenance_sha256": "83e0dd66a53903cfaaf97522d09f1c48cd4e3ba7fac82f5c77ef42eb20703a5b",
+    "timestamp_note": "The original export timestamp is preserved. No per-row annotation timestamps were supplied; none have been inferred.",
+    "verified_at": "2026-11-02T10:39:49+00:00"
+  },
+  "frozen_sample": {
+    "path": "reports/defect/defect_label_sample_300.csv",
+    "csv_sha256_before_import": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "csv_sha256_after_import": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "immutable_rows_sha256": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+    "byte_identical_after_import": true,
+    "component_count": 29,
+    "fuel_records": 5
+  },
+  "second_review": {
+    "status": "complete_on_human_attestation_and_user_confirmation",
+    "reviewed_ids": 300,
+    "unique_reviewed_ids": 300,
+    "notes_present": 300,
+    "sample_size": 300,
+    "paired_rows": 300,
+    "minimum_preregistered_ids": 50,
+    "reviewer": "Manish",
+    "annotation_source": "human",
+    "attestation": true,
+    "exported_at": "2026-11-02T11:02:03.894Z",
+    "export_path": "reports/improvement/human_reviews/round1/second_review/manish/original_review_export.json",
+    "labelled_path": "reports/improvement/human_reviews/round1/second_review/manish/human_labelled.csv",
+    "provenance_path": "reports/improvement/human_reviews/round1/second_review/manish/human_review_provenance.json",
+    "provenance_sha256": "3165be2f8c8d135802f582ee2b8c0446e824a70a0564220a869edc1f19924be8",
+    "input_sha256": "68f9832fc32771741080a9702c2db58f1e7c4116bd34de879f7209a161d26494",
+    "output_sha256": "4bfd3545a0e028eb2607797eb88487326f090285ffeed841d43b5edff461348b",
+    "reported_start_date": "2026-11-01",
+    "assigned_ids": 300,
+    "gate_id_list_path": "reports/defect/defect_label_sample_300.csv",
+    "gate_id_list_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "assignment_evidence_path": "reports/improvement/human_reviews/round1/second_review/manish/user_confirmation.json",
+    "independence_and_assignment_chronology_independently_verified": false,
+    "gate_basis": "User reports a prior assignment of the entire already frozen 300-ID sample; this full overlap supplies the prespecified IDs.",
+    "later_50_packet": {
+      "manifest_path": "reports/improvement/human_reviews/round1/second_review/preregistered_ids.json",
+      "manifest_sha256": "5ecd3068715efe04ff3d234b9d537d2c675050ee33f956eb87f85eca9f6fe511",
+      "registered_at": "2026-11-02T11:01:42+00:00",
+      "assigned_ids": 50,
+      "page_path": "reports/improvement/human_reviews/round1/second_review/second_review.html",
+      "page_sha256": "36b0371e1178eaf6b383537c6b5ec8124ffeef552b896ec8348e9e78fd1e6e2f",
+      "used_for_gate": false,
+      "reason": "Recorded after Manish reportedly began; comparison descriptive only."
+    },
+    "initial_repository_search": {
+      "checked_at": "2026-11-02T10:39:49+00:00",
+      "scope": "Repository including hidden, ignored, and untracked files; excluding git metadata, dependencies, environments, caches, build and dist directories.",
+      "completed_second_reviewer_exports": [],
+      "preregistered_overlap_manifests": [],
+      "excluded_pending_templates": [
+        "reports/defect/evidence_v1/development_review.json",
+        "reports/defect/evidence_v1/development_error_analysis_pending.json",
+        "reports/defect/evidence_v1/fuel_complaint_review.json",
+        "reports/defect/evidence_v1/recall_review.json"
+      ],
+      "note": "Pending templates concern other samples. Synthetic fixtures and prepared HTML review pages are not completed independent human reviews."
+    },
+    "import_output": "Imported 300/300 human labels into reports/improvement/human_reviews/round1/second_review/manish/human_labelled.csv"
+  },
+  "agreement": {
+    "status": "complete_before_adjudication",
+    "paired_rows": 300,
+    "raw_agreement": 1.0,
+    "raw_agreement_numerator": 300,
+    "raw_agreement_denominator": 300,
+    "cohens_kappa": 1.0,
+    "paired_row_bootstrap_intervals": {
+      "raw_agreement_ci95": [
+        1.0,
+        1.0
+      ],
+      "cohens_kappa_ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    "disagreements": {
+      "numerator": 0,
+      "denominator": 300
+    },
+    "label_prevalence": {
+      "artifact": "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
+      "pointer": "/full_sample/label_prevalence"
+    },
+    "per_label_disagreement": {
+      "artifact": "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
+      "pointer": "/full_sample/per_label_disagreement"
+    },
+    "artifact": "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
+    "sha256": "1a407169b3ed8b552619640f4846bd9e0919d45b17da9c4f925b5a4b94ec7942",
+    "limits": "Intervals condition on supplied pairs; identical notes and human-attested independence are preserved in provenance."
+  },
+  "adjudication": {
+    "status": "complete_no_disagreements",
+    "adjudicated_rows": 0,
+    "accepted_by_agreement_rows": 300,
+    "evaluation_rows": 300,
+    "requiring_adjudication": {
+      "numerator": 0,
+      "denominator": 300
+    },
+    "decision_trail": "reports/improvement/human_reviews/round1/adjudication/decision_trail.json",
+    "decision_trail_sha256": "c9e551d024ff70a505844e3ae98ded4bc489248d18d40f2ee46eb0337ac3369e",
+    "adjudicator": null,
+    "note": "No individual human adjudicator judgments were made or invented because 0/300 labels differed."
+  },
+  "accuracy": 0.82,
+  "accuracy_interval": [
+    0.7725668011129554,
+    0.859341697303335
+  ],
+  "accuracy_denominator_when_gate_complete": 300,
+  "scoring_status": "complete_after_pre_adjudication_agreement_and_no_disagreement_trail",
+  "protocol": "reports/improvement/labeling_guide.md",
+  "evaluation_only": true,
+  "prohibited_uses": [
+    "fitting",
+    "calibration",
+    "feature selection",
+    "dashboard accuracy"
+  ],
+  "synthetic_fixtures": "reports/improvement/synthetic_review_v1/",
+  "synthetic_fixtures_prohibited_uses": [
+    "fitting",
+    "calibration",
+    "feature selection",
+    "dashboard accuracy"
+  ],
+  "import_output": "Imported 300/300 human labels into reports/improvement/human_reviews/round1/human_labelled.csv",
+  "next_steps": [],
+  "updated_at": "2026-11-02T11:36:48+00:00",
+  "unique_evaluation_records": 300,
+  "human_review_annotations": {
+    "numerator": 600,
+    "denominator": 600,
+    "unique_records": 300
+  },
+  "accuracy_numerator": 246,
+  "accuracy_denominator": 300,
+  "specific_accuracy": 0.6635514018691588,
+  "specific_accuracy_interval": [
+    0.5697390194208204,
+    0.7460273045917384
+  ],
+  "specific_accuracy_numerator": 71,
+  "specific_accuracy_denominator": 107,
+  "macro_f1": 0.5168089370135406,
+  "macro_f1_interval": [
+    0.46316965759467216,
+    0.5524281289542735
+  ],
+  "macro_f1_label_count": 48,
+  "model_missing": {
+    "numerator": 0,
+    "denominator": 300
+  },
+  "score_artifact": {
+    "path": "reports/improvement/human_reviews/round1/accuracy.json",
+    "sha256": "3ca71d7488033c2288c80338ccdd6bc650fc94c9aa87e8a2e6f8c227917657e2"
+  },
+  "model_version": "meta-models/muse-spark-open-1026; defect-cls-v2",
+  "limits": "Review independence and prior full-sample assignment rely on human attestation and user confirmation. Labels and notes match exactly on 300/300 records; agreement alone does not establish correctness. This is an opened historical evaluation across all sample components. Evaluation-only; no fitting, calibration, feature selection or dashboard accuracy.",
+  "reliability_gate": {
+    "path": "reports/improvement/human_reviews/round1/reliability_gate.json",
+    "sha256": "2eb2f5a1a074018d9bdb4a40f211e0da0bcb0440f1c125a37fef8aae4ea496e6",
+    "status": "satisfied_on_human_attestation_and_user_reported_full_sample_assignment"
+  },
+  "additional_artifacts": [
+    "reports/improvement/human_reviews/round1/human_review_provenance.json",
+    "reports/improvement/human_reviews/round1/second_review/manish/human_review_provenance.json",
+    "reports/improvement/human_reviews/round1/primary_review_export.json",
+    "reports/improvement/human_reviews/round1/second_review/manish/original_review_export.json",
+    "reports/improvement/human_reviews/round1/second_review/manish/user_confirmation.json",
+    "reports/improvement/human_reviews/round1/reliability_gate.json",
+    "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
+    "reports/improvement/human_reviews/round1/adjudication/decision_trail.json",
+    "reports/improvement/human_reviews/round1/adjudication/adjudicated_labels.csv",
+    "reports/improvement/human_reviews/round1/accuracy.json",
+    "scripts/defect_accuracy.py"
+  ]
+}

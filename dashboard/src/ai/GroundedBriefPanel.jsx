@@ -41,7 +41,7 @@ export default function GroundedBriefPanel({ investigationId }) {
             {c.text}{" "}
             {(c.record_ids || []).map((id) => <span key={id} className="chip mono" style={{ marginRight: 4 }}>{id}</span>)}
             {(c.support_spans || []).map((span, j) => <blockquote key={j} className="muted small">Source {span.record_id}: “{span.quote}”</blockquote>)}
-            <span className="muted small"> {c.source === "meta_muse_spark" ? "· Muse Spark, source-quote and citation-scope checked" : "· deterministic"}</span>
+            <span className="muted small"> {c.source === "meta_muse_spark" ? "· AI-assisted, source quote checked" : "· rules-based"}</span>
           </li>
         ))}
       </ul>
@@ -54,7 +54,7 @@ export default function GroundedBriefPanel({ investigationId }) {
           <li key={i} style={{ marginBottom: 4 }}>
             {a.action}{" "}
             <span className="muted small">
-              · {a.source === "recall_advisory" ? "recall advisory remedy (warehouse)" : a.source === "meta_muse_spark" ? "Muse Spark suggestion, requires engineering review" : "TraceX safety playbook"}
+              · {a.source === "recall_advisory" ? "recorded recall remedy" : a.source === "meta_muse_spark" ? "AI-assisted suggestion, requires engineering review" : "TraceX safety playbook"}
             </span>
           </li>
         ))}

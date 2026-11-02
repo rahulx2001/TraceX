@@ -57,7 +57,7 @@ async function isolatedPage(base) {
 async function selectDraft(page, fixture) {
   await page.goto(`${new URL(page.url()).origin}/ui/#safety-campaigns?tab=investigate`);
   await page.getByLabel("Select safety campaign").selectOption(fixture.campaign_id);
-  await page.getByRole("button", { name: "Meta investigation", exact: true }).click();
+  await page.getByRole("button", { name: "Investigate", exact: true }).click();
   await page.getByLabel("Recorded investigations").selectOption(fixture.run_id);
   await expect(page.getByTestId("investigation-result")).toBeVisible();
 }
@@ -127,21 +127,29 @@ try {
   await expect(local.page.getByRole("heading", { name: "From an owner report to a reviewable investigation" })).toBeVisible();
   const navigation = local.page.getByRole("complementary", { name: "Primary", exact: true });
   const workflow = navigation.getByRole("navigation", { name: "Engineer workflow", exact: true });
-  assert.deepEqual(await workflow.getByRole("button").allTextContents(), ["Report", "Investigate", "Review", "Evidence"]);
-  await expect(navigation.getByRole("button", { name: "Early warning", exact: true })).not.toBeVisible();
-  await navigation.getByLabel("Advanced tools", { exact: true }).click();
+  assert.deepEqual(await workflow.getByRole("button").allTextContents(), ["Report", "Cases", "Investigate", "Review", "Evidence"]);
   await expect(navigation.getByRole("button", { name: "Early warning", exact: true })).toBeVisible();
+  await expect(navigation.getByRole("button", { name: "Command center", exact: true })).toBeVisible();
+  await expect(navigation.getByRole("button", { name: "Live console", exact: true })).toBeVisible();
+  await expect(navigation.getByRole("button", { name: "Feature studio", exact: true })).toBeVisible();
+  await expect(navigation.getByRole("button", { name: "Pack builder", exact: true })).toBeVisible();
+  assert.equal(await navigation.getByRole("button", { name: "Platform", exact: true }).count(), 1);
+  const initiallyLoaded = await local.page.evaluate(() => performance.getEntriesByType("resource").map(r => r.name));
+  assert.equal(initiallyLoaded.some(url => /\/(CallWidget|CaseQueue)-.*\.js/.test(url)), false, "task routes must load on demand");
+  await navigation.getByRole("button", { name: "Platform", exact: true }).click();
+  await expect(local.page.getByRole("region", { name: "Platform tools" })).toBeVisible();
+  await expect(local.page.getByRole("link", { name: "Early warning", exact: true })).toBeVisible();
   assert.equal(await navigation.getByRole("button", { name: "Report", exact: true }).count(), 1);
   assert.equal(await navigation.getByRole("button", { name: "Voice agent", exact: true }).count(), 0);
   assert.equal(await navigation.getByRole("button", { name: "Safety campaigns", exact: true }).count(), 0);
-  await navigation.getByLabel("Advanced tools", { exact: true }).click();
   await workflow.getByRole("button", { name: "Report", exact: true }).click();
   await expect(local.page.getByRole("button", { name: "Start voice report", exact: true })).toBeVisible();
   await expect(local.page.locator(".topbar-page")).toHaveText("Report");
   await workflow.getByRole("button", { name: "Evidence", exact: true }).click();
   await expect(local.page.locator(".topbar-page")).toHaveText("Evidence");
-  await navigation.getByRole("button", { name: "Judge start →", exact: true }).click();
-  console.log("PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.");
+  await navigation.getByRole("button", { name: "Start here", exact: true }).click();
+  await expect(local.page.getByRole("heading", { name: "From an owner report to a reviewable investigation", exact: true })).toBeVisible();
+  console.log("PASS: pilot workflow and the full grouped tool navigation remain accessible; task routes load on demand.");
   await local.page.screenshot({ path: path.join(visuals, "judge-entry.png"), fullPage: true });
   // Old account bookmarks must enter the demo without mounting account forms.
   await local.page.addInitScript(() => {
@@ -179,6 +187,14 @@ try {
   await runDemoRuntimeUiTest({ page: local.page, context: local.context, base: open.base });
   const { runMlEvidenceUiTest } = await import("./ml-evidence-ui.test.mjs");
   await runMlEvidenceUiTest({ page: local.page, base: open.base });
+  const { runCaseEvidenceUiTest } = await import("./case-evidence-ui.test.mjs");
+  await runCaseEvidenceUiTest({ page: local.page, base: open.base, visuals });
+  await local.page.goto(`${open.base}/ui/#ai-status`);
+  await expect(local.page.getByRole("heading", { name: "AI assistance", exact: true })).toBeVisible();
+  await expect(local.page.getByRole("columnheader", { name: "p50 ms", exact: true })).not.toBeVisible();
+  await local.page.getByText("Engineer diagnostics", { exact: true }).click();
+  await expect(local.page.getByRole("columnheader", { name: "p50 ms", exact: true })).toBeVisible();
+  console.log("PASS: operator assistance status hides raw latency metrics until engineer diagnostics are opened.");
   const { runVoiceUiTest } = await import("./voice-ui.test.mjs");
   await runVoiceUiTest({ page: local.page, context: local.context, base: open.base, fixture: open.fixture });
   await local.context.close();

@@ -1,0 +1,13 @@
+{
+  "verified_at": "2026-11-02T13:43:11+00:00",
+  "command": ".venv-hackathon/bin/python -B -m scripts.public_replay",
+  "exit_code": 0,
+  "ok": true,
+  "indexed_artifacts": {
+    "passed": 35,
+    "total": 35
+  },
+  "claim_index_sha256": "77c828dfb83ac3be413624d1ce888d44e9a2c5334c8f6c5d0d37d1e1068f4c06",
+  "model_calls": 0,
+  "candidate_arithmetic_verification": "Separate verification.json and independent agent audit; public replay checks candidate hashes but does not recompute candidate metrics."
+}

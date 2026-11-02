@@ -2143,7 +2143,7 @@ export default function CallWidget() {
           <option value={0}>Only when I select Finish speaking</option>
         </select></label>}
         <div className="voice-setup-actions">
-          <span className="voice-language-note">Replies in English</span>
+          <span className="voice-language-note">English UI and replies · English or Hindi input</span>
           {canStart && <button type="button" className="ghost voice-mic-check" disabled={preflight.busy} onClick={checkMicrophone}><IconMic />{preflight.busy ? "Checking microphone…" : "Check microphone"}</button>}
           <details className="voice-options">
             <summary><IconGear />Voice options</summary>
@@ -2258,8 +2258,8 @@ export default function CallWidget() {
         </aside>
       </div>
           <details className="voice-diagnostics">
-            <summary>Voice settings and diagnostics</summary>
-            <p>These describe the speech connection, not a new Meta investigation.</p>
+            <summary>Engineer diagnostics</summary>
+            <p>Technical connection details for support. These do not establish recognition quality.</p>
             <div className="kvs">
               <span className="k">Connection</span><span className="v">{wsStatus}</span>
               <span className="k">Interaction</span><span className="v mono">{interactionId || "Not started"}</span>
@@ -2268,7 +2268,7 @@ export default function CallWidget() {
               <span className="k">Last text understanding</span><span className="v">{understanding
                 ? `${understanding.mode === "live_inference" ? "Live inference" : understanding.mode === "fallback" ? "Deterministic fallback" : understanding.mode === "test_output" ? "Test output" : "Deterministic handling"}${understanding.model ? ` · ${understanding.model}` : ""}${understanding.finished_at ? ` · ${understanding.finished_at}` : ""}${understanding.fallback_reason ? ` · ${understanding.fallback_reason}` : ""}`
                 : "No operation recorded yet"}</span>
-              <span className="k">Muse Spark audio</span><span className="v">Disabled · pinned endpoint and real-audio quality unverified</span>
+              <span className="k">Model audio analysis</span><span className="v">Unavailable in this workflow</span>
               <span className="k">Microphone</span><span className="v">{micGranted === true ? "Granted" : micGranted === false ? "Blocked" : "Not requested"}</span>
               <span className="k">Pack</span><span className="v">{pack?.display_name || pack?.id || "Selected when report starts"}</span>
               {latency && <><span className="k">Server turn duration</span><span className="v">{latency.elapsed_ms} ms · excludes audible playback</span></>}

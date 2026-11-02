@@ -1,0 +1,133 @@
+{
+  "recorded_at": "2026-11-02T16:15:45.078355+00:00",
+  "scope": "Frozen recipe, sample and finalized evaluation artifacts unchanged during UX fixes",
+  "passed": 25,
+  "total": 25,
+  "checks": {
+    "scripts/defect_grounded_candidate.py": {
+      "expected": "b273643fa35e8a30c16d7fe9976defffe7d0bff109395be5fd4afac95c6a1600",
+      "actual": "b273643fa35e8a30c16d7fe9976defffe7d0bff109395be5fd4afac95c6a1600",
+      "passed": true
+    },
+    "scripts/defect_grounding.py": {
+      "expected": "1f16ddd2de718d46be732fde190d7e8076e863ec8ffe12758fa39838b9a76cad",
+      "actual": "1f16ddd2de718d46be732fde190d7e8076e863ec8ffe12758fa39838b9a76cad",
+      "passed": true
+    },
+    "reports/improvement/defect_grounded_v1/evaluation_inputs.json": {
+      "expected": "349c1bfb865d4e5e643b877239742a15d05b9b214d7232013569ac3219c35ed6",
+      "actual": "349c1bfb865d4e5e643b877239742a15d05b9b214d7232013569ac3219c35ed6",
+      "passed": true
+    },
+    "reports/improvement/defect_grounded_v1/development_inputs.json": {
+      "expected": "2d8371e46a0f0441909aad2aa81c0fa0f0abec01394d711b39058f2455070ef2",
+      "actual": "2d8371e46a0f0441909aad2aa81c0fa0f0abec01394d711b39058f2455070ef2",
+      "passed": true
+    },
+    "scripts/defect_classify.py": {
+      "expected": "d8ed7227574178a36be59076622b736224d46a7aba58917797eaf8a31e3ccd69",
+      "actual": "d8ed7227574178a36be59076622b736224d46a7aba58917797eaf8a31e3ccd69",
+      "passed": true
+    },
+    "scripts/defect_accuracy.py": {
+      "expected": "78bc6257573a7ab399c6175222ba299c3e2cde193accd71c85fb154681334894",
+      "actual": "78bc6257573a7ab399c6175222ba299c3e2cde193accd71c85fb154681334894",
+      "passed": true
+    },
+    "src/security/pii.py": {
+      "expected": "7425d7e02cfca3cc056cf9c703a62d265bb80033000de005aebd2120f0a6ea65",
+      "actual": "7425d7e02cfca3cc056cf9c703a62d265bb80033000de005aebd2120f0a6ea65",
+      "passed": true
+    },
+    "src/ai_layer/config.py": {
+      "expected": "b568bfd9c24ea75bbf69e7853ff50ff93f46c2d75c867f3fbead3d7366c24213",
+      "actual": "b568bfd9c24ea75bbf69e7853ff50ff93f46c2d75c867f3fbead3d7366c24213",
+      "passed": true
+    },
+    "src/ai_layer/meta_client.py": {
+      "expected": "73137969936b403e9d784b044f34aa03080638d30650c990607e8cf7766b8bdb",
+      "actual": "73137969936b403e9d784b044f34aa03080638d30650c990607e8cf7766b8bdb",
+      "passed": true
+    },
+    "src/ai_layer/budget.py": {
+      "expected": "6441f99120dcdab5f67050f086f2284d34bc4c62c7f79bc8a1d6cfabd3e50b96",
+      "actual": "6441f99120dcdab5f67050f086f2284d34bc4c62c7f79bc8a1d6cfabd3e50b96",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/EVALUATION.md": {
+      "expected": "4f8cd3e2616005edb17cc3fc6cf0aed4b41069b63ff19fdb874df35756d6f5f7",
+      "actual": "4f8cd3e2616005edb17cc3fc6cf0aed4b41069b63ff19fdb874df35756d6f5f7",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_baseline.json": {
+      "expected": "e2945a0909b80a5887d400d9b63a8c0793f48c80f2973b728b161264bf73d3f3",
+      "actual": "e2945a0909b80a5887d400d9b63a8c0793f48c80f2973b728b161264bf73d3f3",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_candidate.json": {
+      "expected": "950569384662af22a72cb97a9ee6a6c8a3055287e2a41d5c0996f574fc323ce8",
+      "actual": "950569384662af22a72cb97a9ee6a6c8a3055287e2a41d5c0996f574fc323ce8",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudicated_labels.csv": {
+      "expected": "f2ab4c28c2f8f6edb5907c426ccfe78ec2d04490a708739753b8f63164380a93",
+      "actual": "f2ab4c28c2f8f6edb5907c426ccfe78ec2d04490a708739753b8f63164380a93",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudication_export.json": {
+      "expected": "74fc9d79db1b2ef4f58d212d7571ec392e24b77f228389c276151ddbf71a3b47",
+      "actual": "74fc9d79db1b2ef4f58d212d7571ec392e24b77f228389c276151ddbf71a3b47",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/comparison.json": {
+      "expected": "1c987afbff912a7f66bfad61f0f67848968f9de361b5156e15b094ea425fb54b",
+      "actual": "1c987afbff912a7f66bfad61f0f67848968f9de361b5156e15b094ea425fb54b",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/decision_trail.json": {
+      "expected": "6463e958bac03cf0663bb2de125a006c4e65f8729dc51d2c9b6ca9afcfda819d",
+      "actual": "6463e958bac03cf0663bb2de125a006c4e65f8729dc51d2c9b6ca9afcfda819d",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/pre_claim_update/CLAIM_INDEX.md": {
+      "expected": "2c82727c510a12059994b02064d78938a2df55457b0dd6da60b6ba864ad6f713",
+      "actual": "2c82727c510a12059994b02064d78938a2df55457b0dd6da60b6ba864ad6f713",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/pre_claim_update/build_claim_index.py": {
+      "expected": "fa71e3e63acb3318066e894ea6b2d954ba71aa014131217078a01d17ea053ccd",
+      "actual": "fa71e3e63acb3318066e894ea6b2d954ba71aa014131217078a01d17ea053ccd",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/pre_claim_update/claim_index.json": {
+      "expected": "d987b46bf6f41f966c7a50a65a7103bad2800267c657acaa02d7e2fc2db5d528",
+      "actual": "d987b46bf6f41f966c7a50a65a7103bad2800267c657acaa02d7e2fc2db5d528",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/preservation_checks.json": {
+      "expected": "bd34cf25a4dd95b616bf3e83f977955112f7ebab6b5eefa2ccce49c3dae42b40",
+      "actual": "bd34cf25a4dd95b616bf3e83f977955112f7ebab6b5eefa2ccce49c3dae42b40",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/status.json": {
+      "expected": "15f698196e9c9d5caf68a9928eb1f26b47c087fa3c866e9890d963c81f29a71b",
+      "actual": "15f698196e9c9d5caf68a9928eb1f26b47c087fa3c866e9890d963c81f29a71b",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/validation_before_scoring.json": {
+      "expected": "3989643a923bcf281709b54bbeddee4fecf2894d2d30f8a5cb7a20e37a53a1b1",
+      "actual": "3989643a923bcf281709b54bbeddee4fecf2894d2d30f8a5cb7a20e37a53a1b1",
+      "passed": true
+    },
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/verification.json": {
+      "expected": "1b1e5685288da94ea7b075cf6e2ff6d43e077e6dc7fc0509db8963c52d808a83",
+      "actual": "1b1e5685288da94ea7b075cf6e2ff6d43e077e6dc7fc0509db8963c52d808a83",
+      "passed": true
+    },
+    "reports/defect/defect_label_sample_300.csv": {
+      "expected": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+      "actual": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+      "passed": true
+    }
+  }
+}

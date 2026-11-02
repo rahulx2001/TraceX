@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "while stationary, the vehicle rolled backwards and hit a wall",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.9,
+      "label_id": "other_unclear",
+      "confidence": 0.9,
+      "evidence": "the clicking noise while depressing the brake pedal was diagnosed as a parking brake failure",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.93,
+      "label_id": "other_unclear",
+      "confidence": 0.93,
+      "evidence": "while the motorcycle was parked and the parking brake was activated, the parking brake failed, and the motorcycle rolled backwards",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "while stationary, the vehicle rolled backwards and hit a wall",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "the clicking noise while depressing the brake pedal was diagnosed as a parking brake failure",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.93,
+        "evidence": "while the motorcycle was parked and the parking brake was activated, the parking brake failed, and the motorcycle rolled backwards",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "d799f75bcbbe67085833f6ca3dfc78463dc09a8f769d7f9d62262a30b8bc8212",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:16:29+00:00",
+  "completed_at": "2026-11-02T13:16:32+00:00"
+}

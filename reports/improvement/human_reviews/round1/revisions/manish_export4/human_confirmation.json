@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-11-02T14:44:17+00:00",
+  "confirmation_source": "User reply in this conversation",
+  "exact_reply": "Manish personally reviewed every final label",
+  "question_context": "Whether Manish personally checked final labels against source narratives versus only using script-generated output",
+  "reviewer": "Manish",
+  "personally_reviewed": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "source_review_sha256": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0",
+  "interpretation": "Human-approved assisted revision of the same frozen sample. The script-generated labels/notes and prior-answer reuse remain documented. This confirmation does not establish a fresh blinded review, prospective assignment, an adjudicator identity or disagreement resolution."
+}

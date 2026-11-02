@@ -1,0 +1,110 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.35,
+      "label_id": "other_unclear",
+      "confidence": 0.35,
+      "evidence": "Back up camara is intermittent.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.4,
+      "label_id": "other_unclear",
+      "confidence": 0.4,
+      "evidence": "Rear-view backup camera inoperative. Started with broken/fuzzy images with lines then went to blue screen after several weeks.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.45,
+      "label_id": "other_unclear",
+      "confidence": 0.45,
+      "evidence": "The contact stated that the back-over prevention camera intermittently failed to operate as needed while in use.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c4",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.4,
+      "label_id": "other_unclear",
+      "confidence": 0.4,
+      "evidence": "the rear camera unavailable message was displayed.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.35,
+        "evidence": "Back up camara is intermittent.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.4,
+        "evidence": "Rear-view backup camera inoperative. Started with broken/fuzzy images with lines then went to blue screen after several weeks.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.45,
+        "evidence": "The contact stated that the back-over prevention camera intermittently failed to operate as needed while in use.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.4,
+        "evidence": "the rear camera unavailable message was displayed.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "dd70275810d3f58e21779f1650089cda1b96ea9affa874e1a0691c5cb477d30d",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:14:20+00:00",
+  "completed_at": "2026-11-02T13:14:23+00:00"
+}

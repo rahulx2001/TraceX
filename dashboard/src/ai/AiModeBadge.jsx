@@ -11,15 +11,14 @@ export default function AiModeBadge() {
   }, []);
   if (!s) return null;
   const on = !s.unavailable && s.mode === "enhanced";
-  const m = s.models || {};
   const title = s.unavailable
-    ? "AI configuration could not be loaded. Check API status in Command center and refresh."
+    ? "Assistance status could not be loaded. Open status and retry."
     : on
-    ? `Server configuration: Meta ${m.text}. This badge does not mean the current operation called a model. Check each investigation's request provenance.`
-    : "The server is responding. Reports and lookups use local rules; hosted model calls are disabled or unconfigured. Saved model results, when present, are labelled separately.";
+    ? "AI assistance is available. Each result identifies whether it used AI or rules."
+    : "Reports, record lookups and manual reviews remain available using rules. AI assistance is off.";
   return (
-    <a href="#demo" className={"chip ai-mode-badge " + (on ? "ai-tag-on" : "ai-tag-off")} title={title} data-testid="ai-mode-badge">
-      {s.unavailable ? "AI status unavailable" : on ? "AI: Meta configured" : "AI: local rules"}
+    <a href="#ai-status" className={"chip ai-mode-badge " + (on ? "ai-tag-on" : "ai-tag-off")} title={title} data-testid="ai-mode-badge">
+      {s.unavailable ? "AI assistance: unavailable" : on ? "AI assistance: on" : "AI assistance: off"}
     </a>
   );
 }

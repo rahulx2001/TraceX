@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "My trunk latch malfunctioned and my trunk will no longer close.",
+      "part_evidence": "My trunk latch malfunctioned",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.9,
+      "label_id": "other_unclear",
+      "confidence": 0.9,
+      "evidence": "The rear trunk latch released while traveling down highway.",
+      "part_evidence": "The rear trunk latch released",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.95,
+      "label_id": "other_unclear",
+      "confidence": 0.95,
+      "evidence": "the trunk lid fell on the contact's back.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "wrong_component",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "My trunk latch malfunctioned and my trunk will no longer close.",
+        "part_evidence": "My trunk latch malfunctioned",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "The rear trunk latch released while traveling down highway.",
+        "part_evidence": "The rear trunk latch released",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.95,
+        "evidence": "the trunk lid fell on the contact's back.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "wrong_component"
+      }
+    ]
+  },
+  "batch_key": "18d8ebb57bd44244bebed513b6b4d7de89a5c49e65a91468c1d1c9789be8d94e",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:16:23+00:00",
+  "completed_at": "2026-11-02T13:16:26+00:00"
+}

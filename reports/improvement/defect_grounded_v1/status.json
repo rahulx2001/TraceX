@@ -1,0 +1,39 @@
+{
+  "recorded_at": "2026-11-02T13:35:52+00:00",
+  "status": "evaluated_rejected",
+  "target_met": false,
+  "candidate": "defect-cls-v3-grounded-row-validation",
+  "overall_accuracy": {
+    "numerator": 209,
+    "denominator": 300,
+    "value": 0.6966666666666667,
+    "ci95": [
+      0.642431561442127,
+      0.7459288698762181
+    ]
+  },
+  "retained_baseline_accuracy": {
+    "numerator": 246,
+    "denominator": 300,
+    "value": 0.82,
+    "ci95": [
+      0.7725668011129554,
+      0.859341697303335
+    ]
+  },
+  "target": {
+    "required_correct": 270,
+    "denominator": 300,
+    "value": 0.9
+  },
+  "missing_predictions": {
+    "numerator": 6,
+    "denominator": 300,
+    "included_as_errors": true
+  },
+  "deployed": false,
+  "dashboard_accuracy_updated": false,
+  "evaluation_labels_used_for_fitting_calibration_feature_selection": false,
+  "post_score_candidate_changes": false,
+  "next_step": "Separate pre-2021 human-labelled development/training data and a new blinded validation sample; keep this historical 300-record benchmark and synthetic fixtures evaluation-only."
+}
