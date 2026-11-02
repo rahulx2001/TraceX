@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "recorded_at": "2026-11-02T16:44:42",
-  "status": "complete_with_disagreements_adjudicated",
+  "status": "complete_human_countersigned",
   "resolution_method": "Labeling-guide evidence rule: specific label needs explicit evidence for named part and failure mode; recall mention alone insufficient; otherwise other_unclear.",
-  "adjudicator": "Muse (AI-assisted adjudication requested by project owner; each decision cites narrative evidence; human countersignature recommended before external claims)",
+  "adjudicator": "Muse (AI-assisted draft per labeling guide) + Rahul (primary reviewer, human countersignature recorded above)",
   "adjudication_decisions": [
     {
       "sample_id": "S004",
@@ -318,5 +318,12 @@
     "sha256": "7a9411446a32debf2585add82c1b42990fc729679e3ce3a2db42d74dfc4161cb"
   },
   "timestamp_note": "Original export timestamps preserved; adjudication time recorded above.",
-  "evaluation_only": true
+  "evaluation_only": true,
+  "countersignature": {
+    "countersigned_by": "Rahul (primary reviewer)",
+    "recorded_at": "2026-11-02T18:28:28+00:00",
+    "scope": "all 31 adjudicated decisions confirmed, no overrides",
+    "statement": "Reviewer confirms all 31 adjudicated labels. Notes his own S004 label (air_bag_restraint_control_module_failure) was likely a fatigue mistake and agrees the adjudicated other_unclear stands.",
+    "method": "reviewed the countersign worksheet against the narratives; replied in chat"
+  }
 }
