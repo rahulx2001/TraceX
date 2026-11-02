@@ -1,0 +1,34 @@
+{
+  "verified_at": "2026-11-02T11:38:09+00:00",
+  "status": "pass",
+  "targeted_tests": {
+    "command": "python3 -m pytest -q tests/frontline/ai_layer/test_defect_accuracy_metrics.py tests/frontline/ai_layer/test_defect_human_review.py",
+    "passed": 11,
+    "total": 11,
+    "exit_code": 0
+  },
+  "checks": {
+    "public_replay": "pass",
+    "git_diff_check": "pass",
+    "independent_point_metric_crosscheck": "pass",
+    "all_metric_denominators_and_confusion_totals": "pass",
+    "original_review_hashes_and_timestamps": "pass",
+    "frozen_sample_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "frozen_sample_byte_identical": "pass",
+    "unrelated_claims_preserved": "pass"
+  },
+  "score_command": "python3 -m scripts.defect_accuracy --csv reports/improvement/human_reviews/round1/adjudication/adjudicated_labels.csv --classifications reports/defect/repair/classifications.parquet --manifest reports/defect/repair/review_manifest.json --out reports/improvement/human_reviews/round1/accuracy.json --require-complete",
+  "score_exit_code": 0,
+  "score_sha256": "3ca71d7488033c2288c80338ccdd6bc650fc94c9aa87e8a2e6f8c227917657e2",
+  "evaluation_records": {
+    "labelled": 300,
+    "denominator": 300
+  },
+  "model_predictions": {
+    "available": 300,
+    "denominator": 300
+  },
+  "evaluation_only": true,
+  "no_fitting_calibration_feature_selection_or_dashboard_accuracy_updates": true,
+  "provenance_limits": "Independence and prior full-sample assignment are human-attested and user-reported; labels and notes are identical on 300/300 records."
+}

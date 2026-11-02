@@ -189,6 +189,10 @@ export function looksLikeAgentEcho(heard, agentText) {
   const a = _normUtterance(heard);
   const b = _normUtterance(agentText);
   if (!a || !b || a.length < 4) return false;
+  // The answer is often one of the question's examples ("Honda", "Toyota")
+  // or a year in a readback. Vocabulary overlap is not evidence of echo.
+  // Playback gating handles speaker bleed; never suppress a short answer here.
+  if (a.split(" ").length <= 2) return false;
   if (a === b) return true;
   // Verbatim playback of the agent line, or a long slice of it.
   if (b.includes(a) && a.length >= 6) return true;

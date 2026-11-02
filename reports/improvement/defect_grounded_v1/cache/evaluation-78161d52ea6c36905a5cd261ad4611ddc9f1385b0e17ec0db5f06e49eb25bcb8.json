@@ -1,0 +1,206 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.85,
+      "label_id": "other_unclear",
+      "confidence": 0.85,
+      "evidence": "the brake pedal was depressed to the floorboard upon restart the vehicle. Brake fluid was added to the vehicle; however, the failure returned",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.9,
+      "label_id": "other_unclear",
+      "confidence": 0.9,
+      "evidence": "The dealer preformed a diagnostic test which showed the Anti lock braking system Solenoid Value was Malfunctioning",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.88,
+      "label_id": "other_unclear",
+      "confidence": 0.88,
+      "evidence": "all of a sudden the brakes activated itself and my car nearly came to a stop nearly causing a car behind me to rear end me",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c4",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.8,
+      "label_id": "other_unclear",
+      "confidence": 0.8,
+      "evidence": "When I brake, the SUV feels like it accelerates/surges forward rather than slowing down",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c5",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.9,
+      "label_id": "other_unclear",
+      "confidence": 0.9,
+      "evidence": "the car has slammed on the brakes COUNTLESS numbers of times for absolutely no reason at all",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c6",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.85,
+      "label_id": "other_unclear",
+      "confidence": 0.85,
+      "evidence": "the ABS sensor cable came into contact with a suspension bolt, snapping the sensor wire",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c7",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.75,
+      "label_id": "other_unclear",
+      "confidence": 0.75,
+      "evidence": "Application of the car's brakes, pumping the brakes, had no effect on stopping the backward motion",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "uncertain_cause",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c8",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.78,
+      "label_id": "other_unclear",
+      "confidence": 0.78,
+      "evidence": "My car lurched forward. I applied firm pressure to the brake. It made no difference as far as slowing the car. The brakes seemed locked",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.85,
+        "evidence": "the brake pedal was depressed to the floorboard upon restart the vehicle. Brake fluid was added to the vehicle; however, the failure returned",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "The dealer preformed a diagnostic test which showed the Anti lock braking system Solenoid Value was Malfunctioning",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "all of a sudden the brakes activated itself and my car nearly came to a stop nearly causing a car behind me to rear end me",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.8,
+        "evidence": "When I brake, the SUV feels like it accelerates/surges forward rather than slowing down",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "the car has slammed on the brakes COUNTLESS numbers of times for absolutely no reason at all",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.85,
+        "evidence": "the ABS sensor cable came into contact with a suspension bolt, snapping the sensor wire",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c7",
+        "label_id": "other_unclear",
+        "confidence": 0.75,
+        "evidence": "Application of the car's brakes, pumping the brakes, had no effect on stopping the backward motion",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      },
+      {
+        "record_id": "c8",
+        "label_id": "other_unclear",
+        "confidence": 0.78,
+        "evidence": "My car lurched forward. I applied firm pressure to the brake. It made no difference as far as slowing the car. The brakes seemed locked",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "78161d52ea6c36905a5cd261ad4611ddc9f1385b0e17ec0db5f06e49eb25bcb8",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:17:32+00:00",
+  "completed_at": "2026-11-02T13:17:37+00:00"
+}

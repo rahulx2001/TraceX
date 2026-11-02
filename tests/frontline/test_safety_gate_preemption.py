@@ -213,5 +213,7 @@ async def test_fire_drill_does_not_escalate_on_human_request(orchestrator_factor
     assert not orch.ctx.safety_flags.get("escalation")
     assert orch.ctx.state == HANDOFF_PENDING
     spoken = " ".join(hooks.agent_texts()).lower()
-    assert "connecting you to a human specialist" in spoken
+    assert "specialist request is queued" in spoken
+    assert "specialist has not joined yet" in spoken
+    assert "connecting you to a human specialist" not in spoken
     assert "safety specialist" not in spoken

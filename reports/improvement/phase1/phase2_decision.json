@@ -1,0 +1,9 @@
+{
+  "mode": "mode_b_baseline",
+  "selected": "gamma_poisson",
+  "rule": "A candidate is defensible only if it does not lose on either primary metric in either fold; and it improves at least one primary metric in both folds; and the lower bound of the paired campaign-cluster bootstrap difference for that metric is greater than 0. Otherwise freeze the baseline.",
+  "reason": "No method satisfies all fold, denominator and bootstrap conditions",
+  "is_candidate_result": false,
+  "notice": "Development-only evidence; not a candidate result and not a prospective estimate.",
+  "preregistration_commit": "440b90e5452f199dd9cf6e08ae3be640d59b7300"
+}

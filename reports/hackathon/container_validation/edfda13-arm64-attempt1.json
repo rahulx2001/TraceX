@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-10-30T09:44:10.352905+00:00",
+  "status": "passed",
+  "source_commit": "edfda13e616314480c3501ba9b1a600c1e42ff88",
+  "image_id": "sha256:1bdf3330e93d50259435f970bac7cc31e801fb44ef71958b5e9b22d34641d24d",
+  "architecture": "arm64",
+  "image_os": "linux",
+  "docker_server": "29.5.2",
+  "scope": "Disposable container integration checks on fictional seed/text data; no live inference or real audio.",
+  "host_data_mounts": false,
+  "model_calls": 0,
+  "checks": [
+    {
+      "name": "current_seed_auth_and_five_review_pages",
+      "result": {
+        "ok": true,
+        "scope": "read-only current setup and review-asset smoke",
+        "model_calls": 0,
+        "campaign_id": "sc_01m6634203690thy5xxfhdzad6",
+        "demo_version": "road-safety-walkthrough-v2-sourced-trace",
+        "review_kits": [
+          "original-300",
+          "development",
+          "fuel-complaints",
+          "recalls",
+          "study"
+        ],
+        "script_assets": [
+          "/ui/review-scripts/evidence-review.js",
+          "/ui/review-scripts/original-review.js",
+          "/ui/review-scripts/reviewer-study.js"
+        ],
+        "authentication": "anonymous refused; key permitted"
+      }
+    },
+    {
+      "name": "owner_only_local_trust_and_packaged_migrations",
+      "result": {
+        "public_sha256": "c1522e226c6298a48defdc0fa04754a9886904dc504fef8c5069480db5f48635",
+        "private_mode": "0o600",
+        "migrations": [
+          "001_ops_init.sql",
+          "002_pg_vector_fts.sql",
+          "003_record_embeddings.sql",
+          "004_ops_runtime_columns.sql"
+        ]
+      }
+    },
+    {
+      "name": "no_local_media",
+      "files": []
+    },
+    {
+      "name": "rendered_entry_report_correction_revision_review_export",
+      "exit_code": 0,
+      "log": "edfda13-arm64-attempt1.browser.log"
+    },
+    {
+      "name": "restart_preserves_current_campaign_and_review_pages",
+      "result": {
+        "ok": true,
+        "scope": "read-only current setup and review-asset smoke",
+        "model_calls": 0,
+        "campaign_id": "sc_01m6634203690thy5xxfhdzad6",
+        "demo_version": "road-safety-walkthrough-v2-sourced-trace",
+        "review_kits": [
+          "original-300",
+          "development",
+          "fuel-complaints",
+          "recalls",
+          "study"
+        ],
+        "script_assets": [
+          "/ui/review-scripts/evidence-review.js",
+          "/ui/review-scripts/original-review.js",
+          "/ui/review-scripts/reviewer-study.js"
+        ],
+        "authentication": "anonymous refused; key permitted"
+      }
+    }
+  ],
+  "verification_files": {
+    "scripts/docker_readiness.py": "bc09f9f27a052ba8a41abf861730de401e3f392b15fb8af0e3aaf8eb48dbf64b",
+    "scripts/submission_smoke.py": "bfa49fba9ad52c256a570a004ed26424dbca37fce36dd50bda0f1e2dba1ea9d2",
+    "dashboard/scripts/container-readiness.test.mjs": "556e1b20f953d6993892d28d58ec85b6eee6bb0c708e897824de087eec925894",
+    "dashboard/scripts/report-handoff.test.mjs": "22a82bb09e7e998916d8391ff6b2da49387a128f48f797feab8d72c4b6f6ecb6"
+  },
+  "seed_version": "2026-10-30-sourced-investigation-v3",
+  "container_log": {
+    "path": "edfda13-arm64-attempt1.container.log",
+    "sha256": "99f58d299238c5990442433587f8743acfbe778ddd17dc00f7feacdd60afdc7e"
+  },
+  "elapsed_ms": 17376
+}

@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "recliner_compliance_or_label",
+      "proposed_confidence": 0.96,
+      "label_id": "recliner_compliance_or_label",
+      "confidence": 0.96,
+      "evidence": "seat back with an improperly assembled recliner mechanism not adequately restrain",
+      "part_evidence": "recliner mechanism",
+      "mode_evidence": "not adequately restrain",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "seats_failure",
+      "proposed_confidence": 0.92,
+      "label_id": "seats_failure",
+      "confidence": 0.92,
+      "evidence": "The heated seat amp connections melted under the front seats during use",
+      "part_evidence": "heated seat amp connections melted under the front seats",
+      "mode_evidence": "melted",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.88,
+      "label_id": "other_unclear",
+      "confidence": 0.88,
+      "evidence": "I have contacted multiple dealers to repair the recall. However, none of the dealers have the parts to repair it",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "recliner_compliance_or_label",
+        "confidence": 0.96,
+        "evidence": "seat back with an improperly assembled recliner mechanism not adequately restrain",
+        "part_evidence": "recliner mechanism",
+        "mode_evidence": "not adequately restrain",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "seats_failure",
+        "confidence": 0.92,
+        "evidence": "The heated seat amp connections melted under the front seats during use",
+        "part_evidence": "heated seat amp connections melted under the front seats",
+        "mode_evidence": "melted",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "I have contacted multiple dealers to repair the recall. However, none of the dealers have the parts to repair it",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "5bbeda3f337521edaf5a39f07832d71f1b132009f415ec482d4cab34d8ad620d",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:17:17+00:00",
+  "completed_at": "2026-11-02T13:17:21+00:00"
+}

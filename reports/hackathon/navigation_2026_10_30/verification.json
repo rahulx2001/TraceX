@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-10-30T10:27:38.559752+00:00",
+  "status": "passed",
+  "scope": "Rendered production UI against isolated local APIs with fictional data; no model calls or real audio.",
+  "command": "PLAYWRIGHT_CHANNEL=chrome npm run test:signin",
+  "checks": [
+    "Engineer workflow contains Report, Investigate, Review, Evidence",
+    "Expanded Advanced tools has exactly one Report across the sidebar and no Voice agent or Safety campaigns entry",
+    "Report and Evidence headers match the selected workflow step",
+    "Existing entry/auth, report handoff, correction, review and export checks passed"
+  ],
+  "source_sha256": {
+    "dashboard/src/App.jsx": "54ff35015cde7b15b08a075d6e646d1e656dd403bd65048c1df584cbdaa006eb",
+    "dashboard/scripts/assert-signin-reachable.mjs": "f06c9bf915693af59a33ee6754449b685c2d23f180dcb45f4f5d329d6ce160ad"
+  },
+  "log": "browser.log",
+  "log_sha256": "e3fa4c1bec26cb847b33f701e0f839d381d3b9f91410b3b9ba3bfcb81870f256",
+  "model_calls": 0
+}

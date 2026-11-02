@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-30",
+  "application_commit": "edfda13e616314480c3501ba9b1a600c1e42ff88",
+  "scope": "Container and software contract validation with fictional data; no real audio or new inference.",
+  "tests": {
+    "result": "passed",
+    "count": 60,
+    "warnings": 1,
+    "log": "focused-tests.log",
+    "command": ".venv-hackathon/bin/python -m pytest tests/frontline/test_container_migrations.py tests/frontline/test_container_bootstrap.py tests/frontline/test_container_trust_bootstrap.py tests/frontline/test_trust_roots.py tests/frontline/test_voice_validation.py tests/frontline/test_deepgram_voice.py tests/frontline/test_voice_reconnect_helpers.py tests/frontline/test_live_voice_lifecycle.py tests/frontline/test_remediation_basic.py::test_item48_migrate_repeatable_and_ordered -q"
+  },
+  "new_inference_calls": 0,
+  "new_human_labels": 0,
+  "new_participants": 0,
+  "new_audio_captures": 0,
+  "owner_constraints": {
+    "team_size": 1,
+    "portal_upload": "deferred until owner finishes checks",
+    "hosted_demo": "excluded",
+    "video": "excluded"
+  },
+  "pending": [
+    "relevant real reviewers and independent grades",
+    "consented multilingual audio and observed audible timing"
+  ],
+  "budget_changes": false
+}

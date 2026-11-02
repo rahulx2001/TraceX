@@ -1,0 +1,401 @@
+{
+  "timestamp": "2026-10-31T15:06:48.028198+00:00",
+  "finished_at": "2026-10-31T15:06:59.398046+00:00",
+  "HEAD": "b490dd511ce32ab2de5552b6ec3012f439a11bdb",
+  "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+  "commit_count": 23,
+  "topology": {
+    "readiness": 17,
+    "ML": 6
+  },
+  "worktree_status": "## ml-score-improvement\n",
+  "hashes_verified": {
+    "reports/improvement/phase1/starting_state.json": "fb9316acd0427f81cbde62c17e29252fbbf71f0a580e878410120c709296b67f",
+    "reports/improvement/phase1/logs/starting_state_commands.json": "5417c6c80ee67cfc4da0ecbac77c3d727c4c9469cbea5621885b308c0235f7c6",
+    "reports/defect/repair/prediction_results.json": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+    "reports/defect/repair/prediction_config.json": "d594743a9d2aadbdd73bfa42ed7d7c825e2ad2e84b841e3a2846e68904eab89d",
+    "reports/defect/fuel_holdout/holdout_results.json": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+    "reports/defect/defect_label_sample_300.csv": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "dashboard/src/ai/defectPrediction.json": "de6a8bf47e30e8a139b6decdc11db73bdb70e7d5fc403b3aa3328960d2433b6a",
+    "dashboard/src/ai/mlImprovement.json": "01f2d8eeba33389691a4afe996e49d7ab5f56104af84fef992436617f72c4de6"
+  },
+  "original_inventory_verified": 819,
+  "baseline": [
+    {
+      "metric": "defect.all_reports.rolling_defect.recall",
+      "numerator": 22,
+      "denominator": 41,
+      "value": 0.5365853658536586,
+      "confidence_interval_95": [
+        0.38746471267669474,
+        0.6794376602366394
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "is_candidate_result": false
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.mature_episode_precision",
+      "numerator": 14,
+      "denominator": 31,
+      "value": 0.45161290322580644,
+      "confidence_interval_95": [
+        0.29161735980520015,
+        0.6222783236264549
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "is_candidate_result": false
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.recall",
+      "numerator": 14,
+      "denominator": 41,
+      "value": 0.34146341463414637,
+      "confidence_interval_95": [
+        0.21558808257384846,
+        0.49450163480170306
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "is_candidate_result": false
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.mature_episode_precision",
+      "numerator": 7,
+      "denominator": 13,
+      "value": 0.5384615384615384,
+      "confidence_interval_95": [
+        0.29143795714506004,
+        0.7679393219046169
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "is_candidate_result": false
+    },
+    {
+      "metric": "fuel_holdout.method.recall",
+      "numerator": 5,
+      "denominator": 8,
+      "value": 0.625,
+      "confidence_interval_95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.hits/campaigns",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "",
+      "is_candidate_result": false
+    },
+    {
+      "metric": "fuel_holdout.method.mature_episode_precision",
+      "numerator": 6,
+      "denominator": 18,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.1627877475083369,
+        0.5625053270405489
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "",
+      "is_candidate_result": false
+    }
+  ],
+  "commands": [
+    {
+      "command": "git status --short --branch",
+      "start": "2026-10-31T15:06:48.063859+00:00",
+      "end": "2026-10-31T15:06:48.078123+00:00",
+      "exit_code": 0,
+      "stdout": "## ml-score-improvement\n",
+      "stderr": ""
+    },
+    {
+      "command": "git log --oneline -8",
+      "start": "2026-10-31T15:06:48.078132+00:00",
+      "end": "2026-10-31T15:06:48.087609+00:00",
+      "exit_code": 0,
+      "stdout": "b490dd5 Record Phase 1 starting audit and independent custody blocker\nc602bdd Record reproducible validation and honest ML research limits\n3e4add4 Require unique calibration evidence and improve metric label contrast\n1590fb5 Improve mobile evidence display and allow immutable calibration replays\n19bd5cf Add guarded ML research evaluation and source-verified evidence dashboard\nb63d7a7 Record immutable ML baseline checks and improvement proposal\n13c5ff1 Pin the packaged voice repair source manifest\nbff515b Record voice repair checks against the committed source\n",
+      "stderr": ""
+    },
+    {
+      "command": "git log --oneline main..ml-score-improvement",
+      "start": "2026-10-31T15:06:48.087621+00:00",
+      "end": "2026-10-31T15:06:48.102722+00:00",
+      "exit_code": 0,
+      "stdout": "b490dd5 Record Phase 1 starting audit and independent custody blocker\nc602bdd Record reproducible validation and honest ML research limits\n3e4add4 Require unique calibration evidence and improve metric label contrast\n1590fb5 Improve mobile evidence display and allow immutable calibration replays\n19bd5cf Add guarded ML research evaluation and source-verified evidence dashboard\nb63d7a7 Record immutable ML baseline checks and improvement proposal\n13c5ff1 Pin the packaged voice repair source manifest\nbff515b Record voice repair checks against the committed source\n26b3a3f Keep spoken report drafts intact and clarify ambiguous intake answers\n80efff3 Refresh submission inventory after navigation cleanup\nb74c695 Keep one Report entry and remove duplicate workflow navigation\nd75beff Seal the source and verification artifact inventory\ncc27cda Retain final candidate CI and anonymous source verification\ndb6c7ba Pin verified source and container evidence in submission manifest\n6d77406 Record clean Docker execution and verify documented Compose workflow\nedfda13 Include DuckDB timezone runtime and validate each readiness commit\n41f7d87 Complete legacy container schema and exercise report workflow in CI\ne240143 Fix fresh container trust bootstrap and package migrations\n8edc0fd Pin the packaged readiness source and evidence manifest\ne6517f1 Record clean-checkout acceptance evidence and public candidate access\n6a0bd2d Ship review assets matching the independent-grading templates\nfac3515 Keep the engineer workflow in the primary entry and navigation\n03ed794 Preserve punctuation-free report citations through reviewed revisions\n",
+      "stderr": ""
+    },
+    {
+      "command": "git rev-list --count main..ml-score-improvement",
+      "start": "2026-10-31T15:06:48.102731+00:00",
+      "end": "2026-10-31T15:06:48.110775+00:00",
+      "exit_code": 0,
+      "stdout": "23\n",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --stat main...ml-score-improvement",
+      "start": "2026-10-31T15:06:48.110781+00:00",
+      "end": "2026-10-31T15:06:48.210542+00:00",
+      "exit_code": 0,
+      "stdout": " .gitattributes                                     |    4 +\n .github/workflows/container-readiness.yml          |   36 +\n .github/workflows/frontline.yml                    |   12 +\n .gitignore                                         |    6 +\n Dockerfile                                         |    2 +\n Dockerfile.hackathon                               |    2 +\n ELIGIBLE_WORK.md                                   |   17 +-\n HACKATHON.md                                       |    6 +-\n README.md                                          |   24 +-\n dashboard/package.json                             |    1 +\n dashboard/public/review-scripts/evidence-review.js |   10 +-\n dashboard/public/review-scripts/reviewer-study.js  |   10 +-\n dashboard/routes/CallWidget.jsx                    |  161 +-\n dashboard/routes/DefectLevel.jsx                   |    2 +\n dashboard/routes/DemoMode.jsx                      |    8 +-\n dashboard/routes/JudgeEntry.jsx                    |    2 +-\n dashboard/scripts/assert-qa-labels.mjs             |    2 +-\n dashboard/scripts/assert-signin-reachable.mjs      |   21 +-\n dashboard/scripts/check-public-links.mjs           |   16 +-\n dashboard/scripts/container-readiness.test.mjs     |   47 +\n dashboard/scripts/ml-evidence-ui.test.mjs          |   35 +\n dashboard/scripts/public-link-scope.mjs            |   32 +\n dashboard/scripts/public-link-scope.test.mjs       |   26 +\n dashboard/scripts/report-handoff.test.mjs          |   43 +-\n dashboard/scripts/speech-draft.test.mjs            |   41 +\n dashboard/scripts/voice-capture.test.mjs           |    1 +\n dashboard/scripts/voice-ui.test.mjs                |   44 +-\n dashboard/src/App.jsx                              |   39 +-\n dashboard/src/ai/MlImprovementEvidence.jsx         |   38 +\n dashboard/src/ai/ml-improvement-evidence.css       |   33 +\n dashboard/src/ai/mlImprovement.json                |  144 +\n dashboard/src/speechDraft.js                       |   37 +\n dashboard/src/styles.css                           |    3 +\n dashboard/src/ui/opsActions.js                     |    2 +-\n dashboard/src/voiceExperience.js                   |    4 +-\n dashboard/src/voiceHelpers.js                      |    4 +\n docker-compose.hackathon.yml                       |    5 +-\n docker/entrypoint.sh                               |    4 +\n docs/container-validation.md                       |   83 +\n docs/entry-auth-validation.md                      |    2 +-\n docs/sourced-investigation.md                      |   10 +-\n docs/voice-validation.md                           |   37 +\n migrations/004_ops_runtime_columns.sql             |   24 +\n reports/CLAIMS_AUDIT.md                            |   68 +\n reports/defect/evidence_v1/development_review.html |   26 +-\n .../defect/evidence_v1/fuel_complaint_review.html  |   26 +-\n reports/defect/evidence_v1/recall_review.html      |   26 +-\n reports/hackathon/CLAIM_INDEX.md                   |    9 +\n .../hackathon/COMPETITIVENESS_REVIEW_2026-10-30.md |    4 +\n reports/hackathon/IMPROVEMENT_PLAN_2026-10-30.md   |    5 +\n reports/hackathon/READINESS_STATUS_2026-10-30.md   |  135 +\n .../41f7d87-arm64-attempt1.browser.log             |   16 +\n .../41f7d87-arm64-attempt1.container.log           |  227 +\n .../41f7d87-arm64-attempt1.json                    |   72 +\n .../container_validation/41f7d87.build.log         |  363 +\n .../41f7d87.full-revision-label.log                |  138 +\n .../8edc0fd-arm64-attempt1.container.log           |  163 +\n .../8edc0fd-arm64-attempt1.json                    |   19 +\n .../container_validation/8edc0fd.build.log         |  437 ++\n reports/hackathon/container_validation/README.md   |   65 +\n .../hackathon/container_validation/ci-db6c7ba.json |  115 +\n .../hackathon/container_validation/ci-edfda13.json |  120 +\n .../e240143-arm64-attempt1.browser.log             |   21 +\n .../e240143-arm64-attempt1.container.log           |  233 +\n .../e240143-arm64-attempt1.json                    |   65 +\n .../e240143-arm64-attempt2.container.log           |  150 +\n .../e240143-arm64-attempt2.json                    |   60 +\n .../container_validation/e240143.build.log         |  363 +\n .../edfda13-arm64-attempt1.browser.log             |    2 +\n .../edfda13-arm64-attempt1.container.log           |  240 +\n .../edfda13-arm64-attempt1.json                    |   94 +\n .../edfda13-compose-arm64-attempt1.browser.log     |    2 +\n .../edfda13-compose-arm64-attempt1.container.log   |  240 +\n .../edfda13-compose-arm64-attempt1.json            |   96 +\n .../edfda13-compose-arm64-attempt2.browser.log     |    2 +\n .../edfda13-compose-arm64-attempt2.container.log   |  248 +\n .../edfda13-compose-arm64-attempt2.json            |   96 +\n .../container_validation/edfda13.build.log         |  366 +\n .../container_validation/focused-tests.log         |    8 +\n .../public-source-db6c7ba.json                     |   23 +\n .../container_validation/verification.json         |   27 +\n reports/hackathon/link_checks/repository.png       |  Bin 141571 -> 84460 bytes\n reports/hackathon/link_checks/results.json         |   25 +-\n reports/hackathon/link_checks/source_commit.png    |  Bin 0 -> 84974 bytes\n .../hackathon/navigation_2026_10_30/browser.log    |   36 +\n .../navigation_2026_10_30/verification.json        |   19 +\n reports/hackathon/readiness_2026_10_30/browser.log |   36 +\n .../readiness_2026_10_30/clean-setup-smoke.json    |   22 +\n .../hackathon/readiness_2026_10_30/judge-entry.png |  Bin 0 -> 128942 bytes\n .../readiness_2026_10_30/public-replay.json        |   67 +\n .../signin-negative-control.log                    |  162 +\n .../readiness_2026_10_30/targeted-tests.log        |   12 +\n .../readiness_2026_10_30/verification.json         |  134 +\n .../voice-controls-synthetic.png                   |  Bin 0 -> 137946 bytes\n .../voice-reflow-synthetic.png                     |  Bin 0 -> 33496 bytes\n reports/hackathon/reviewer_study/study.html        |   16 +-\n reports/hackathon/source_manifest.json             | 7748 +++++++++++++++++--\n reports/hackathon/submission_links.json            |   13 +-\n .../hackathon/voice_repair_2026_10_30/README.md    |   78 +\n .../voice_repair_2026_10_30/localhost_check.json   |   34 +\n .../voice_repair_2026_10_30/meta_text_probe.json   |   72 +\n .../meta_text_probe_after_schema_fix.json          |  110 +\n .../meta_text_probe_after_schema_fix_request.json  |  170 +\n .../meta_text_probe_request.json                   |  170 +\n .../voice_repair_2026_10_30/release-browser.txt    |   38 +\n .../voice_repair_2026_10_30/release-node.txt       |   17 +\n .../voice_repair_2026_10_30/release-python.txt     |    3 +\n .../release_verification.json                      |   41 +\n reports/improvement/FINAL_REVIEW.md                |   92 +\n reports/improvement/README.md                      |  192 +\n reports/improvement/artifact_integrity_check.json  |    4 +\n .../improvement/artifact_integrity_release.json    |   15 +\n reports/improvement/baseline.json                  | 4645 ++++++++++++\n reports/improvement/before_after.json              |  448 ++\n reports/improvement/before_after.md                |   16 +\n .../improvement/clean_reproduction_comparison.json |   24 +\n reports/improvement/clean_run_status.json          |   37 +\n reports/improvement/development_manifest.json      |   47 +\n .../improvement/development_metric_records.json    | 3401 +++++++++\n reports/improvement/error_analysis.md              |   92 +\n reports/improvement/experiments.csv                |   38 +\n reports/improvement/final_validation.json          |  415 ++\n .../historical_verification_ledger_addendum.json   |   53 +\n .../improvement/integrity_release_pre_docs.json    |  549 ++\n reports/improvement/labeling_guide.md              |  302 +\n reports/improvement/logs/audit_v1.txt              |    5 +\n .../improvement/logs/baseline_calibration_v1.txt   |    5 +\n .../improvement/logs/baseline_failure_details.txt  |   45 +\n .../logs/calibration_identity_guard.txt            |    2 +\n reports/improvement/logs/clean_audit_command.txt   |    5 +\n .../improvement/logs/clean_calibration_command.txt |    5 +\n reports/improvement/logs/clean_defect_replay.txt   |    6 +\n .../improvement/logs/clean_dependency_freeze.txt   |   66 +\n reports/improvement/logs/clean_fuel_replay.txt     |    5 +\n reports/improvement/logs/clean_identity_guard.txt  |    2 +\n reports/improvement/logs/clean_install.txt         |  201 +\n reports/improvement/logs/clean_install_attempt.txt |   19 +\n reports/improvement/logs/clean_pipeline.txt        |   84 +\n reports/improvement/logs/clean_report_check.txt    |    1 +\n reports/improvement/logs/clean_research_freeze.txt |   17 +\n .../improvement/logs/clean_research_install.txt    |   57 +\n .../logs/clean_research_install_attempt.txt        |   10 +\n reports/improvement/logs/clean_targeted.txt        |    3 +\n reports/improvement/logs/dashboard_build.txt       |   25 +\n reports/improvement/logs/dashboard_build_final.txt |   25 +\n .../improvement/logs/dashboard_build_release.txt   |   25 +\n reports/improvement/logs/defect_replay.txt         |    6 +\n reports/improvement/logs/final_defect_replay.txt   |    6 +\n reports/improvement/logs/final_frontline_eval.txt  |   90 +\n reports/improvement/logs/final_fuel_replay.txt     |    5 +\n reports/improvement/logs/final_pipeline.txt        |   84 +\n reports/improvement/logs/final_targeted.txt        |    3 +\n reports/improvement/logs/fuel_replay.txt           |    5 +\n reports/improvement/logs/human_accuracy.txt        |   12 +\n .../logs/make_eval_frontline_baseline.json         |   18 +\n .../logs/make_eval_frontline_baseline.txt          |   90 +\n reports/improvement/logs/make_test_baseline.json   |   15 +\n reports/improvement/logs/make_test_baseline.txt    |   93 +\n reports/improvement/logs/make_test_final.txt       |   69 +\n reports/improvement/logs/make_test_release.txt     |   69 +\n .../improvement/logs/new_and_repaired_tests_v2.txt |    2 +\n .../improvement/logs/new_and_repaired_tests_v3.txt |    2 +\n .../improvement/logs/operational_recheck_v1.txt    |   29 +\n reports/improvement/logs/pipeline.txt              |   84 +\n reports/improvement/logs/prepare_v1.txt            |   51 +\n .../improvement/logs/release_frontline_eval.txt    |   90 +\n reports/improvement/logs/report_validation.txt     |    2 +\n reports/improvement/logs/signin_baseline.json      |   16 +\n reports/improvement/logs/signin_baseline.txt       |   45 +\n reports/improvement/logs/signin_final.txt          |   38 +\n reports/improvement/logs/signin_installed.txt      |   75 +\n reports/improvement/logs/signin_mobile_final.txt   |   38 +\n reports/improvement/logs/signin_release.txt        |   38 +\n reports/improvement/logs/signin_unsandboxed.txt    |   37 +\n reports/improvement/logs/targeted_tests.txt        |    2 +\n reports/improvement/model_card.md                  |   88 +\n reports/improvement/monitoring_plan.md             |   44 +\n reports/improvement/original_artifact_hashes.json  |  821 ++\n reports/improvement/phase1/BLOCKED.md              |   60 +\n .../phase1/logs/starting_state_commands.json       |   47 +\n reports/improvement/phase1/starting_state.json     |  609 ++\n .../improvement/phase1/starting_state.sha256.json  |    4 +\n reports/improvement/pipeline_clean.json            | 1886 +++++\n reports/improvement/pipeline_final.json            | 1886 +++++\n reports/improvement/pipeline_recheck.json          | 1886 +++++\n reports/improvement/reproduction.md                |   89 +\n reports/improvement/research_protocol.json         |  203 +\n reports/improvement/results.json                   | 7876 ++++++++++++++++++++\n .../runs/audit_clean_replay/finished.json          |    5 +\n .../runs/audit_clean_replay/results.json           | 2940 ++++++++\n .../runs/audit_clean_replay/started.json           |   19 +\n reports/improvement/runs/audit_v1/finished.json    |    5 +\n reports/improvement/runs/audit_v1/results.json     | 2940 ++++++++\n reports/improvement/runs/audit_v1/started.json     |   19 +\n .../runs/baseline_calibration_v1/all_reports.png   |  Bin 0 -> 60950 bytes\n .../excluding_explicit_recall_reports.png          |  Bin 0 -> 65826 bytes\n .../runs/baseline_calibration_v1/finished.json     |    5 +\n .../runs/baseline_calibration_v1/results.json      |  541 ++\n .../runs/baseline_calibration_v1/started.json      |   21 +\n .../runs/calibration_clean_replay/all_reports.png  |  Bin 0 -> 60950 bytes\n .../excluding_explicit_recall_reports.png          |  Bin 0 -> 65826 bytes\n .../runs/calibration_clean_replay/finished.json    |    5 +\n .../runs/calibration_clean_replay/results.json     |  541 ++\n .../runs/calibration_clean_replay/started.json     |   21 +\n .../runs/clean_audit_command/finished.json         |    5 +\n .../runs/clean_audit_command/started.json          |   32 +\n .../runs/clean_calibration_command/finished.json   |    5 +\n .../runs/clean_calibration_command/started.json    |   31 +\n .../runs/clean_defect_replay/finished.json         |    5 +\n .../runs/clean_defect_replay/started.json          |   29 +\n .../runs/clean_fuel_replay/finished.json           |    5 +\n .../runs/clean_fuel_replay/started.json            |   30 +\n .../improvement/runs/clean_pipeline/finished.json  |    5 +\n .../improvement/runs/clean_pipeline/started.json   |   33 +\n .../runs/clean_report_check/finished.json          |    5 +\n .../runs/clean_report_check/started.json           |   30 +\n .../improvement/runs/clean_targeted/finished.json  |    5 +\n .../improvement/runs/clean_targeted/started.json   |   39 +\n .../runs/dashboard_build_final/finished.json       |    5 +\n .../runs/dashboard_build_final/started.json        |   26 +\n .../runs/dashboard_build_release/finished.json     |    5 +\n .../runs/dashboard_build_release/started.json      |   26 +\n .../runs/final_defect_replay/finished.json         |    5 +\n .../runs/final_defect_replay/started.json          |   23 +\n .../runs/final_frontline_eval/finished.json        |    5 +\n .../runs/final_frontline_eval/started.json         |   25 +\n .../runs/final_fuel_replay/finished.json           |    5 +\n .../runs/final_fuel_replay/started.json            |   24 +\n .../improvement/runs/final_pipeline/finished.json  |    5 +\n .../improvement/runs/final_pipeline/started.json   |   27 +\n .../improvement/runs/final_targeted/finished.json  |    5 +\n .../improvement/runs/final_targeted/started.json   |   33 +\n reports/improvement/runs/prepare_v1/finished.json  |    5 +\n reports/improvement/runs/prepare_v1/started.json   |   44 +\n .../runs/release_frontline_eval/finished.json      |    5 +\n .../runs/release_frontline_eval/started.json       |   27 +\n .../reports/qubot/eval/eval_2026-10-31.md          |   42 +\n .../reports/qubot/eval/eval_2026-10-31.md          |   42 +\n .../reports/qubot/eval/eval_2026-10-31.md          |   42 +\n reports/improvement/source_checkout_status.txt     |   60 +\n reports/improvement/split_audit.json               |   27 +\n reports/improvement/ui_desktop.png                 |  Bin 0 -> 149955 bytes\n reports/improvement/ui_desktop_v2.png              |  Bin 0 -> 131726 bytes\n reports/improvement/ui_desktop_v3.png              |  Bin 0 -> 132900 bytes\n reports/improvement/ui_mobile.png                  |  Bin 0 -> 54867 bytes\n reports/improvement/ui_mobile_v2.png               |  Bin 0 -> 73484 bytes\n reports/improvement/ui_mobile_v3.png               |  Bin 0 -> 73705 bytes\n .../improvement/validation_ledger_addendum.json    |  152 +\n reports/improvement/verification_input_hashes.json |   91 +\n .../improvement/verification_log_inventory.json    |  457 ++\n reports/improvement/verification_runs.json         |  104 +\n reports/voice_validation/results.json              |   69 +\n requirements-docker.txt                            |    2 +\n requirements-ml-improvement.txt                    |   19 +\n scripts/bootstrap_container_trust.py               |   59 +\n scripts/docker_readiness.py                        |  157 +\n scripts/ml_baseline_calibration.py                 |   75 +\n scripts/ml_improvement.py                          |  192 +\n scripts/ml_improvement_report.py                   |  108 +\n scripts/ml_score_snapshot.py                       |  178 +\n scripts/voice_intake_probe.py                      |   67 +\n src/agents/intake.py                               |   96 +-\n src/agents/orchestrator.py                         |   13 +\n src/ai_layer/complaint_evidence.py                 |    7 +-\n src/ai_layer/intake_enhancer.py                    |   44 +-\n src/ai_layer/meta_client.py                        |    8 +-\n src/eval/improvement_detection.py                  |  137 +\n src/eval/improvement_metrics.py                    |  145 +\n src/eval/improvement_models.py                     |   67 +\n src/eval/improvement_monitoring.py                 |   50 +\n src/eval/improvement_protocol.py                   |   78 +\n tests/frontline/ai_layer/test_baseten_backend.py   |    2 +\n tests/frontline/ai_layer/test_ml_improvement.py    |  159 +\n tests/frontline/ai_layer/test_report_handoff.py    |   40 +\n tests/frontline/test_backlog_p0_p1.py              |    3 +-\n tests/frontline/test_container_migrations.py       |   53 +\n tests/frontline/test_container_trust_bootstrap.py  |   66 +\n tests/frontline/test_dashboard_ui_surface.py       |   12 +-\n tests/frontline/test_deploy_hygiene.py             |    5 +\n tests/frontline/test_live_handoff_outcomes.py      |    5 +-\n tests/frontline/test_mapping_ingest.py             |    4 +\n tests/frontline/test_safety_gate_preemption.py     |    4 +-\n tests/frontline/test_voice_report_repair.py        |   59 +\n tests/frontline/test_voice_tierA_wiring.py         |    4 +-\n tests/frontline/test_wallboard_labels.py           |    6 +-\n 285 files changed, 51877 insertions(+), 823 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "command": "git rev-parse HEAD main",
+      "start": "2026-10-31T15:06:48.210551+00:00",
+      "end": "2026-10-31T15:06:48.218500+00:00",
+      "exit_code": 0,
+      "stdout": "b490dd511ce32ab2de5552b6ec3012f439a11bdb\nb8afe3856f9fd705f7cc6f3751e9b79343a4b491\n",
+      "stderr": ""
+    },
+    {
+      "command": "git worktree list",
+      "start": "2026-10-31T15:06:48.218507+00:00",
+      "end": "2026-10-31T15:06:48.230906+00:00",
+      "exit_code": 0,
+      "stdout": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool                      13c5ff1 [submission/readiness-2026-10-30]\n/private/tmp/ml-score-repro-19bd5cf                                              3e4add4 (detached HEAD)\n/private/tmp/tracex-container-8edc0fd                                            d75beff (detached HEAD)\n/private/tmp/tracex-readiness-03ed794                                            8edc0fd (detached HEAD)\n/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement b490dd5 [ml-score-improvement]\n",
+      "stderr": ""
+    },
+    {
+      "command": "git remote -v",
+      "start": "2026-10-31T15:06:48.230912+00:00",
+      "end": "2026-10-31T15:06:48.238256+00:00",
+      "exit_code": 0,
+      "stdout": "hecktech\thttps://github.com/hecktech11/SkewAi.git (fetch)\nhecktech\thttps://github.com/hecktech11/SkewAi.git (push)\norigin\thttps://github.com/rahulx2001/SkewAi.git (fetch)\norigin\thttps://github.com/rahulx2001/SkewAi.git (push)\ntracex\thttps://github.com/rahulx2001/TraceX.git (fetch)\ntracex\thttps://github.com/rahulx2001/TraceX.git (push)\n",
+      "stderr": ""
+    },
+    {
+      "command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "exit_code": 0,
+      "output": "all_reports: exact replay match, including all 100 random draws\nexcluding_explicit_recall_reports: exact replay match, including all 100 random draws\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted\n",
+      "output_sha256": "bf8392463060be6fddfd9010c82d3ed21af356f9693f3829804c7cd2195bc232"
+    }
+  ],
+  "replay_status": "exact",
+  "discrepancies": []
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "run_id": "history_make_test_baseline",
+    "exact_command": "make test",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+    "config_hash": "a30b237031034e99f5fcc663df702f531889003b6483a2c594a34e267412e6ee",
+    "config_hash_definition": "original verification metadata; see logs/make_test_baseline.json",
+    "data_hash": "c900b68f825c996e192054d182fd836183c1bcbd11ae8e91329d7687a2c3d858",
+    "data_hash_definition": "original verification metadata",
+    "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+    "seed": "none; verification only",
+    "split": "technical validation, not ML model selection",
+    "status": "failed",
+    "exit_code": 2,
+    "started_at": "2026-10-31T11:32:51.141090+00:00",
+    "finished_at": "2026-10-31T11:41:59.223198+00:00",
+    "log": "reports/improvement/logs/make_test_baseline.txt"
+  },
+  {
+    "run_id": "history_make_eval_frontline_baseline",
+    "exact_command": "make -f /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/Makefile PY=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python eval-frontline",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/runtime/baseline_eval",
+    "config_hash": "343402c9b50ffdd12f59cb474c03e5673f261c7e5ff42bbe4a44e92c17ee56f8",
+    "config_hash_definition": "original verification metadata; see logs/make_eval_frontline_baseline.json",
+    "data_hash": "c900b68f825c996e192054d182fd836183c1bcbd11ae8e91329d7687a2c3d858",
+    "data_hash_definition": "original verification metadata",
+    "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+    "seed": "none; verification only",
+    "split": "technical validation, not ML model selection",
+    "status": "passed",
+    "exit_code": 0,
+    "started_at": "2026-10-31T11:32:51.141200+00:00",
+    "finished_at": "2026-10-31T11:33:53.489098+00:00",
+    "log": "reports/improvement/logs/make_eval_frontline_baseline.txt"
+  },
+  {
+    "run_id": "history_signin_baseline",
+    "exact_command": "npm run test:signin",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard",
+    "config_hash": "371e374698e0ec8bb3876bd82a90221deffc566eb52734a05be060130860edfb",
+    "config_hash_definition": "original verification metadata; see logs/signin_baseline.json",
+    "data_hash": "c900b68f825c996e192054d182fd836183c1bcbd11ae8e91329d7687a2c3d858",
+    "data_hash_definition": "original verification metadata",
+    "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+    "seed": "none; verification only",
+    "split": "technical validation, not ML model selection",
+    "status": "failed",
+    "exit_code": 1,
+    "started_at": "2026-10-31T11:32:51.141236+00:00",
+    "finished_at": "2026-10-31T11:32:51.766659+00:00",
+    "log": "reports/improvement/logs/signin_baseline.txt"
+  }
+]

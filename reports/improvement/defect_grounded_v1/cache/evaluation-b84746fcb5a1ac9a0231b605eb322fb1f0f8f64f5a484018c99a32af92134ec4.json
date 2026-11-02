@@ -1,0 +1,85 @@
+{
+  "status": "invalid",
+  "error": "nonverbatim_other_evidence:c3",
+  "items": [],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.55,
+        "evidence": "Application of the brakes causes complete vehicle shutdown along with message to check electrical system.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "insufficient detail",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.7,
+        "evidence": "smoke started coming in the vehicle from under the glove box on the passenger side by the floor mat.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.65,
+        "evidence": "In cold weather, instrument panel can take over 10 minutes to boot up and function.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.85,
+        "evidence": "I received a safety recall notice in November 2023 stating that there is defect with Hydraulic Electrical Control Unit (HECU)",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.75,
+        "evidence": "The dashboard display went blank while driving down the highway. I could not see my speed, fuel level",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c7",
+        "label_id": "other_unclear",
+        "confidence": 0.6,
+        "evidence": "Car shuts off while driving on interstate, causing loss of power steering",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c8",
+        "label_id": "other_unclear",
+        "confidence": 0.7,
+        "evidence": "vehicle’s APIM MALFUNCTIONED and caused the rear-traffic alert to malfunction",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "wrong_component"
+      }
+    ]
+  },
+  "batch_key": "b84746fcb5a1ac9a0231b605eb322fb1f0f8f64f5a484018c99a32af92134ec4",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:26:06+00:00",
+  "completed_at": "2026-11-02T13:26:10+00:00"
+}

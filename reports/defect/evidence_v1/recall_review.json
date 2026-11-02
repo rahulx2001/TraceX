@@ -1,0 +1,62 @@
+{
+  "name": "recall_review",
+  "labels": {
+    "fuel_pump_failure": "A defect in the fuel pump whose train-window recalls are dominated by failure.",
+    "fuel_system_other_electrical": "A defect in the fuel system other whose train-window recalls are dominated by electrical.",
+    "hoses_lines_piping_and_fittings_leak": "A defect in the hoses lines/piping and fittings whose train-window recalls are dominated by leak.",
+    "tank_assembly_leak": "A defect in the tank assembly whose train-window recalls are dominated by leak.",
+    "fuel_system_diesel_detachment": "A defect in the fuel system diesel whose train-window recalls are dominated by detachment.",
+    "canister_failure": "A defect in the canister whose train-window recalls are dominated by failure.",
+    "other_unclear": "No specific label fits, or the narrative is too vague."
+  },
+  "rows": [
+    {
+      "record_id": "01f97ad6ba4d06066e29",
+      "kind": "recall",
+      "datea": "2025-08-21",
+      "make": "CHEVROLET",
+      "model": "Campaign 25V536000",
+      "year": "",
+      "text": "General Motors, LLC (GM) is recalling certain 2023â2026 Chevrolet Corvette vehicles equipped with a left-side radiator/fan combination. Excess fuel may spill into the vehicle fuel-filler pocket during refueling and leak onto an ignition source."
+    },
+    {
+      "record_id": "ac3413c29aca0499fb04",
+      "kind": "recall",
+      "datea": "2025-09-18",
+      "make": "GMC",
+      "model": "Campaign 25V619000",
+      "year": "",
+      "text": "General Motors, LLC (GM) is recalling certain 2021 Cadillac Escalade, 2021, 2023-2024 Chevrolet Tahoe, and 2022 and 2024 GMC Yukon vehicles equipped with a 6-cylinder diesel engine. The original fuel tank may have been replaced with an incorrect fuel tank, which can allow fuel to leak in a rollover crash."
+    },
+    {
+      "record_id": "b2a3b87c226587b33fc7",
+      "kind": "recall",
+      "datea": "2025-09-19",
+      "make": "CHEVROLET",
+      "model": "Campaign 25V630000",
+      "year": "",
+      "text": "Isuzu Motors Limited (Isuzu) is recalling certain 2022-2026 Isuzu FVR, Isuzu FTR, Chevrolet 6500XD, and 2023-2026 Chevrolet 7500XD vehicles. The fuel heater may overheat, melting the casing and allowing fuel to leak into the electrical connector."
+    },
+    {
+      "record_id": "288a8b21a7c204d005c6",
+      "kind": "recall",
+      "datea": "2025-10-09",
+      "make": "NISSAN",
+      "model": "Campaign 25V676000",
+      "year": "",
+      "text": "Nissan North America, Inc. (Nissan) is recalling certain 2013-2021 NV200 Van, 2014-2017, 2019 NV200 Taxi, and 2015-2018 Chevrolet City Express vehicles. The Fuel Tank Temperature (FTT) sensor harness may have been incorrectly routed, damaging wires and causing a short circuit in the fuel pump fuse."
+    },
+    {
+      "record_id": "c1d4791d8796b8325989",
+      "kind": "recall",
+      "datea": "2026-02-11",
+      "make": "NISSAN",
+      "model": "Campaign 26V081000",
+      "year": "",
+      "text": "Nissan North America, Inc. (Nissan) is recalling certain 2024-2025 Rogue vehicles equipped with 3-cylinder 1.5L variable compression turbo (VC-Turbo) engines. The gears in the electronic throttle body assembly may break."
+    }
+  ],
+  "annotation_source": "pending_human",
+  "model_predictions_included": false,
+  "sample_hash": "7623bd4fd1e64176004b8b17158e711756ca9f55d6247d0099ebb9f4551412ec"
+}

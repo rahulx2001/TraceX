@@ -46,6 +46,16 @@ def _ctx(pack, iid: str, cluster_id: int = 14) -> InteractionContext:
     return ctx
 
 
+def test_followup_identifies_missing_vehicle_model(pack, monkeypatch):
+    ctx = _ctx(pack, "fictional-followup")
+    ctx.slots["entity_3"] = ""
+    monkeypatch.setattr("src.ai.narration.phrase_followup_draft", lambda **_: SimpleNamespace(text=""))
+    draft = CaseAgent(ctx)._draft_followup([])
+    assert draft.splitlines()[0] == "Subject: Your support case — 2019 HONDA"
+    assert "Please confirm the vehicle model" in draft
+    assert "HONDA  (" not in draft
+
+
 @pytest.mark.asyncio
 async def test_two_threshold_crossings_one_open_investigation(
     reset_ops_db, pack, monkeypatch

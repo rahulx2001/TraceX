@@ -1,0 +1,721 @@
+{
+  "synthetic": true,
+  "live_transport": true,
+  "model_id": "meta-models/muse-spark-open-1026",
+  "recorded_at": "2026-10-29T19:25:16.974209+00:00",
+  "human_review": "pending",
+  "agent_changed_campaign": false,
+  "simulated_trace_review": true,
+  "initial": {
+    "run_id": "sir_01m64hyqy225yr3k39qpzrm0dw",
+    "campaign_id": "sc_01m64hyqs5jf4j4zfmk4jcnd43",
+    "vehicle_id": "DEMO-CAR-010",
+    "snapshot_revision": 41,
+    "parent_run_id": null,
+    "turn": 1,
+    "actor": "synthetic-smoke",
+    "actor_role": "agent",
+    "started_at": "2026-10-29T19:24:57.154667+00:00",
+    "status": "complete",
+    "synthetic_demo": true,
+    "report_sources": [
+      {
+        "source_id": "report-1",
+        "kind": "operator_supplied_report",
+        "text": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai. Mujhe part ka naam nahi pata.",
+        "sha256": "386d64ca33bbb548173c6ca604077de8c67d25c5bab8da186e1c27ea88fa5e52",
+        "sentences": [
+          {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86
+          },
+          {
+            "sentence_id": "report-1:2",
+            "quote": "Mujhe part ka naam nahi pata.",
+            "start": 87,
+            "end": 116
+          }
+        ]
+      }
+    ],
+    "review_required": true,
+    "review": null,
+    "tool_trace": [],
+    "model_calls": 2,
+    "note": "Draft interpretations need review. Citations establish source fidelity, not mechanical truth. This run cannot approve outreach or clear a vehicle.",
+    "extraction": {
+      "version": "complaint-evidence-v1",
+      "mode": "meta",
+      "model_id": "meta-models/muse-spark-open-1026",
+      "review_required": true,
+      "model_calls": 1,
+      "sources": [
+        {
+          "source_id": "report-1",
+          "kind": "operator_supplied_report",
+          "text": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai. Mujhe part ka naam nahi pata.",
+          "sha256": "386d64ca33bbb548173c6ca604077de8c67d25c5bab8da186e1c27ea88fa5e52",
+          "sentences": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86
+            },
+            {
+              "sentence_id": "report-1:2",
+              "quote": "Mujhe part ka naam nahi pata.",
+              "start": 87,
+              "end": 116
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "field": "vehicle",
+          "value": "gaadi",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:1",
+          "evidence": {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "symptom",
+          "value": "khat-khat karti hai",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:1",
+          "evidence": {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "symptom",
+          "value": "steering left khinchti hai",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:1",
+          "evidence": {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "timing",
+          "value": "speed breaker par",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:1",
+          "evidence": {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "timing",
+          "value": "kabhi",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:1",
+          "evidence": {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "uncertainty",
+          "value": "part ka naam nahi pata",
+          "polarity": "uncertain",
+          "sentence_id": "report-1:2",
+          "evidence": {
+            "sentence_id": "report-1:2",
+            "quote": "Mujhe part ka naam nahi pata.",
+            "start": 87,
+            "end": 116,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        }
+      ],
+      "unknown_fields": [
+        "failure_mode",
+        "part"
+      ],
+      "defect_label_id": "other_unclear",
+      "label_evidence": [],
+      "lookups": [],
+      "followup_field": "vehicle",
+      "followup_question": "Which registered vehicle does this report concern? Use the vehicle reference shown in the campaign.",
+      "rejected": [],
+      "fallback_reason": null,
+      "elapsed_ms": 6811
+    },
+    "sources": [
+      {
+        "source_id": "report-1",
+        "kind": "operator_supplied_report",
+        "text": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai. Mujhe part ka naam nahi pata.",
+        "sha256": "386d64ca33bbb548173c6ca604077de8c67d25c5bab8da186e1c27ea88fa5e52",
+        "sentences": [
+          {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86
+          },
+          {
+            "sentence_id": "report-1:2",
+            "quote": "Mujhe part ka naam nahi pata.",
+            "start": 87,
+            "end": 116
+          }
+        ]
+      }
+    ],
+    "brief": {
+      "claims": [
+        {
+          "interpretation": "Operator reports clunking/khat-khat noise over speed breakers as a symptom",
+          "relationship": "supports",
+          "sentence_ids": [
+            "report-1:1"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            }
+          ]
+        },
+        {
+          "interpretation": "Operator reports intermittent steering pull to the left",
+          "relationship": "supports",
+          "sentence_ids": [
+            "report-1:1"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            }
+          ]
+        },
+        {
+          "interpretation": "Timing described as occurring on speed breakers and intermittently (kabhi)",
+          "relationship": "supports",
+          "sentence_ids": [
+            "report-1:1"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            }
+          ]
+        },
+        {
+          "interpretation": "Operator explicitly states they do not know the part name, so affected component is unknown",
+          "relationship": "unresolved",
+          "sentence_ids": [
+            "report-1:2"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:2",
+              "quote": "Mujhe part ka naam nahi pata.",
+              "start": 87,
+              "end": 116,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            }
+          ]
+        },
+        {
+          "interpretation": "Evidence is limited to owner-supplied report with no inspection or repair findings to confirm cause or installed parts",
+          "relationship": "unresolved",
+          "sentence_ids": [
+            "report-1:1",
+            "report-1:2"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            },
+            {
+              "sentence_id": "report-1:2",
+              "quote": "Mujhe part ka naam nahi pata.",
+              "start": 87,
+              "end": 116,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            }
+          ]
+        }
+      ],
+      "next_step": "ask_followup",
+      "next_step_label": "Review and ask the proposed follow-up",
+      "followup_field": "part",
+      "followup_question": "Do you have an existing workshop or installation record that identifies the part? Please share its reference; do not inspect or test the vehicle yourself.",
+      "mode": "meta",
+      "rejected_claims": 0,
+      "model_calls": 1
+    },
+    "finished_at": "2026-10-29T19:25:09.054855+00:00",
+    "elapsed_ms": 11895
+  },
+  "followup": {
+    "run_id": "sir_01m64hz3mzz910ryxqaj05wjrb",
+    "campaign_id": "sc_01m64hyqs5jf4j4zfmk4jcnd43",
+    "vehicle_id": "DEMO-CAR-010",
+    "snapshot_revision": 42,
+    "parent_run_id": "sir_01m64hyqy225yr3k39qpzrm0dw",
+    "turn": 2,
+    "actor": "synthetic-smoke",
+    "actor_role": "agent",
+    "started_at": "2026-10-29T19:25:09.151428+00:00",
+    "status": "complete",
+    "synthetic_demo": true,
+    "report_sources": [
+      {
+        "source_id": "report-1",
+        "kind": "operator_supplied_report",
+        "text": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai. Mujhe part ka naam nahi pata.",
+        "sha256": "386d64ca33bbb548173c6ca604077de8c67d25c5bab8da186e1c27ea88fa5e52",
+        "sentences": [
+          {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86
+          },
+          {
+            "sentence_id": "report-1:2",
+            "quote": "Mujhe part ka naam nahi pata.",
+            "start": 87,
+            "end": 116
+          }
+        ]
+      },
+      {
+        "source_id": "report-2",
+        "kind": "operator_supplied_followup",
+        "text": "Fictional operator follow-up: installation record SYN-INSTALLATION-REVIEW has now been reviewed and recorded in the campaign. The knocking began last Monday. No smoke or fire was reported.",
+        "sha256": "28be5dc3c77c81e60efef0c4360386b0e2f470d051345549a577ec986daed3a4",
+        "sentences": [
+          {
+            "sentence_id": "report-2:1",
+            "quote": "Fictional operator follow-up: installation record SYN-INSTALLATION-REVIEW has now been reviewed and recorded in the campaign.",
+            "start": 0,
+            "end": 125
+          },
+          {
+            "sentence_id": "report-2:2",
+            "quote": "The knocking began last Monday.",
+            "start": 126,
+            "end": 157
+          },
+          {
+            "sentence_id": "report-2:3",
+            "quote": "No smoke or fire was reported.",
+            "start": 158,
+            "end": 188
+          }
+        ]
+      }
+    ],
+    "review_required": true,
+    "review": null,
+    "tool_trace": [
+      {
+        "tool": "installed_part",
+        "vehicle_id": "DEMO-CAR-010",
+        "snapshot_revision": 42,
+        "source_ids": [
+          "installed_part"
+        ],
+        "status": "ok",
+        "read_only": true
+      }
+    ],
+    "model_calls": 2,
+    "note": "Draft interpretations need review. Citations establish source fidelity, not mechanical truth. This run cannot approve outreach or clear a vehicle.",
+    "extraction": {
+      "version": "complaint-evidence-v1",
+      "mode": "meta",
+      "model_id": "meta-models/muse-spark-open-1026",
+      "review_required": true,
+      "model_calls": 1,
+      "sources": [
+        {
+          "source_id": "report-1",
+          "kind": "operator_supplied_report",
+          "text": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai. Mujhe part ka naam nahi pata.",
+          "sha256": "386d64ca33bbb548173c6ca604077de8c67d25c5bab8da186e1c27ea88fa5e52",
+          "sentences": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86
+            },
+            {
+              "sentence_id": "report-1:2",
+              "quote": "Mujhe part ka naam nahi pata.",
+              "start": 87,
+              "end": 116
+            }
+          ]
+        },
+        {
+          "source_id": "report-2",
+          "kind": "operator_supplied_followup",
+          "text": "Fictional operator follow-up: installation record SYN-INSTALLATION-REVIEW has now been reviewed and recorded in the campaign. The knocking began last Monday. No smoke or fire was reported.",
+          "sha256": "28be5dc3c77c81e60efef0c4360386b0e2f470d051345549a577ec986daed3a4",
+          "sentences": [
+            {
+              "sentence_id": "report-2:1",
+              "quote": "Fictional operator follow-up: installation record SYN-INSTALLATION-REVIEW has now been reviewed and recorded in the campaign.",
+              "start": 0,
+              "end": 125
+            },
+            {
+              "sentence_id": "report-2:2",
+              "quote": "The knocking began last Monday.",
+              "start": 126,
+              "end": 157
+            },
+            {
+              "sentence_id": "report-2:3",
+              "quote": "No smoke or fire was reported.",
+              "start": 158,
+              "end": 188
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "field": "symptom",
+          "value": "khat-khat knocking on speed breaker",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:1",
+          "evidence": {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "symptom",
+          "value": "steering pulls left",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:1",
+          "evidence": {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "uncertainty",
+          "value": "part name not known",
+          "polarity": "affirmed",
+          "sentence_id": "report-1:2",
+          "evidence": {
+            "sentence_id": "report-1:2",
+            "quote": "Mujhe part ka naam nahi pata.",
+            "start": 87,
+            "end": 116,
+            "source_id": "report-1",
+            "kind": "operator_supplied_report"
+          }
+        },
+        {
+          "field": "timing",
+          "value": "last Monday",
+          "polarity": "affirmed",
+          "sentence_id": "report-2:2",
+          "evidence": {
+            "sentence_id": "report-2:2",
+            "quote": "The knocking began last Monday.",
+            "start": 126,
+            "end": 157,
+            "source_id": "report-2",
+            "kind": "operator_supplied_followup"
+          }
+        },
+        {
+          "field": "negation",
+          "value": "smoke or fire",
+          "polarity": "denied",
+          "sentence_id": "report-2:3",
+          "evidence": {
+            "sentence_id": "report-2:3",
+            "quote": "No smoke or fire was reported.",
+            "start": 158,
+            "end": 188,
+            "source_id": "report-2",
+            "kind": "operator_supplied_followup"
+          }
+        }
+      ],
+      "unknown_fields": [
+        "failure_mode",
+        "part",
+        "vehicle"
+      ],
+      "defect_label_id": "other_unclear",
+      "label_evidence": [],
+      "lookups": [
+        "installed_part"
+      ],
+      "followup_field": "part",
+      "followup_question": "Do you have an existing workshop or installation record that identifies the part? Please share its reference; do not inspect or test the vehicle yourself.",
+      "rejected": [],
+      "fallback_reason": null,
+      "elapsed_ms": 4606
+    },
+    "sources": [
+      {
+        "source_id": "report-1",
+        "kind": "operator_supplied_report",
+        "text": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai. Mujhe part ka naam nahi pata.",
+        "sha256": "386d64ca33bbb548173c6ca604077de8c67d25c5bab8da186e1c27ea88fa5e52",
+        "sentences": [
+          {
+            "sentence_id": "report-1:1",
+            "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+            "start": 0,
+            "end": 86
+          },
+          {
+            "sentence_id": "report-1:2",
+            "quote": "Mujhe part ka naam nahi pata.",
+            "start": 87,
+            "end": 116
+          }
+        ]
+      },
+      {
+        "source_id": "report-2",
+        "kind": "operator_supplied_followup",
+        "text": "Fictional operator follow-up: installation record SYN-INSTALLATION-REVIEW has now been reviewed and recorded in the campaign. The knocking began last Monday. No smoke or fire was reported.",
+        "sha256": "28be5dc3c77c81e60efef0c4360386b0e2f470d051345549a577ec986daed3a4",
+        "sentences": [
+          {
+            "sentence_id": "report-2:1",
+            "quote": "Fictional operator follow-up: installation record SYN-INSTALLATION-REVIEW has now been reviewed and recorded in the campaign.",
+            "start": 0,
+            "end": 125
+          },
+          {
+            "sentence_id": "report-2:2",
+            "quote": "The knocking began last Monday.",
+            "start": 126,
+            "end": 157
+          },
+          {
+            "sentence_id": "report-2:3",
+            "quote": "No smoke or fire was reported.",
+            "start": 158,
+            "end": 188
+          }
+        ]
+      },
+      {
+        "source_id": "installed_part",
+        "kind": "installed_part",
+        "text": "Recorded installation: {\"model\": \"Fictional crossover 2023\", \"supplier\": \"SYN-AXLEWORKS\", \"part_number\": \"SYN-CA-2301\", \"lot_id\": \"SYN-LOT-A\", \"trace_status\": \"verified\", \"source_ref\": \"SYN-INSTALLATION-REVIEW\", \"match\": \"exact\"}",
+        "sha256": "3d6d4d705414403503be1e697677b6ef3a1a9e0af7214661e6da4be99b80a917",
+        "sentences": [
+          {
+            "sentence_id": "installed_part:1",
+            "quote": "Recorded installation: {\"model\": \"Fictional crossover 2023\", \"supplier\": \"SYN-AXLEWORKS\", \"part_number\": \"SYN-CA-2301\", \"lot_id\": \"SYN-LOT-A\", \"trace_status\": \"verified\", \"source_ref\": \"SYN-INSTALLATION-REVIEW\", \"match\": \"exact\"}",
+            "start": 0,
+            "end": 229
+          }
+        ]
+      }
+    ],
+    "brief": {
+      "claims": [
+        {
+          "interpretation": "Operator reported symptom: khat-khat knocking on speed breaker, onset last Monday.",
+          "relationship": "supports",
+          "sentence_ids": [
+            "report-1:1",
+            "report-2:2"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            },
+            {
+              "sentence_id": "report-2:2",
+              "quote": "The knocking began last Monday.",
+              "start": 126,
+              "end": 157,
+              "source_id": "report-2",
+              "kind": "operator_supplied_followup"
+            }
+          ]
+        },
+        {
+          "interpretation": "Operator reported symptom: steering sometimes pulls left.",
+          "relationship": "supports",
+          "sentence_ids": [
+            "report-1:1"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:1",
+              "quote": "Meri gaadi speed breaker par khat-khat karti hai aur kabhi steering left khinchti hai.",
+              "start": 0,
+              "end": 86,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            }
+          ]
+        },
+        {
+          "interpretation": "Operator stated uncertainty about part name, does not identify installed part.",
+          "relationship": "supports",
+          "sentence_ids": [
+            "report-1:2"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-1:2",
+              "quote": "Mujhe part ka naam nahi pata.",
+              "start": 87,
+              "end": 116,
+              "source_id": "report-1",
+              "kind": "operator_supplied_report"
+            }
+          ]
+        },
+        {
+          "interpretation": "Verified installation record establishes vehicle matches lot SYN-LOT-A via SYN-INSTALLATION-REVIEW.",
+          "relationship": "supports",
+          "sentence_ids": [
+            "installed_part:1",
+            "report-2:1"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "installed_part:1",
+              "quote": "Recorded installation: {\"model\": \"Fictional crossover 2023\", \"supplier\": \"SYN-AXLEWORKS\", \"part_number\": \"SYN-CA-2301\", \"lot_id\": \"SYN-LOT-A\", \"trace_status\": \"verified\", \"source_ref\": \"SYN-INSTALLATION-REVIEW\", \"match\": \"exact\"}",
+              "start": 0,
+              "end": 229,
+              "source_id": "installed_part",
+              "kind": "installed_part"
+            },
+            {
+              "sentence_id": "report-2:1",
+              "quote": "Fictional operator follow-up: installation record SYN-INSTALLATION-REVIEW has now been reviewed and recorded in the campaign.",
+              "start": 0,
+              "end": 125,
+              "source_id": "report-2",
+              "kind": "operator_supplied_followup"
+            }
+          ]
+        },
+        {
+          "interpretation": "No smoke or fire was reported; negated report is not a confirmed finding of safety.",
+          "relationship": "supports",
+          "sentence_ids": [
+            "report-2:3"
+          ],
+          "evidence": [
+            {
+              "sentence_id": "report-2:3",
+              "quote": "No smoke or fire was reported.",
+              "start": 158,
+              "end": 188,
+              "source_id": "report-2",
+              "kind": "operator_supplied_followup"
+            }
+          ]
+        }
+      ],
+      "next_step": "review_only",
+      "next_step_label": "Review unresolved evidence",
+      "followup_field": "none",
+      "followup_question": null,
+      "mode": "meta",
+      "rejected_claims": 0,
+      "model_calls": 1
+    },
+    "finished_at": "2026-10-29T19:25:16.941078+00:00",
+    "elapsed_ms": 7784
+  },
+  "budget_before": {
+    "limit_usd": 30.0,
+    "reserved_upper_bound_usd": 24.156355,
+    "observed_token_cost_usd": 5.311397249999994,
+    "unmetered_successes": 0,
+    "live_successful_requests": 422,
+    "pricing_checked": "2026-10-28",
+    "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+  },
+  "budget_after": {
+    "limit_usd": 30.0,
+    "reserved_upper_bound_usd": 24.274466,
+    "observed_token_cost_usd": 5.339669249999995,
+    "unmetered_successes": 0,
+    "live_successful_requests": 426,
+    "pricing_checked": "2026-10-28",
+    "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+  },
+  "note": "Live integration proof on fictional input, not diagnostic accuracy or user-study evidence."
+}

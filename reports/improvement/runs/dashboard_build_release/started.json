@@ -1,0 +1,26 @@
+{
+  "run_id": "dashboard_build_release",
+  "config": {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard"
+  },
+  "config_hash": "9e525c911828d63bfc76cadbe25a17e56b668a90d0af238c57013a71df47d958",
+  "input_hashes": {
+    "reports/improvement/results.json": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+    "dashboard/src/ai/MlImprovementEvidence.jsx": "1f6701823478db512e6597da5877887a6ff4b09f9af80af080306f51617970e6",
+    "dashboard/src/ai/ml-improvement-evidence.css": "119dfec50d33327f4571fb24a5fa028911f3d8f2d03dd5341d5788de18cf6121",
+    "dashboard/scripts/ml-evidence-ui.test.mjs": "4662fba4b82b8c2679760a2853e438755e904d731489a8e3b2aa7179da102d29",
+    "dashboard/package-lock.json": "b7f92335ab84a7c288b178b908e601011a50fb9fe506f3883c333f22868aa9a2"
+  },
+  "data_hash": "659c464267ce0046980760199d4f34f11a5b9198cd2d4a0236d2989779853e99",
+  "code_commit": "3e4add4561234fc35ba7f2964f6e15fa788c1405",
+  "code_hash": "7c3c3678368a0ede25facf6f6f31e50c4575a53103309e8740a2d72e755a78b9",
+  "seed": null,
+  "split": "software validation; no ML score",
+  "exact_command": "cd dashboard && npm run build",
+  "started_at": "2026-10-31T13:23:35.849204+00:00"
+}

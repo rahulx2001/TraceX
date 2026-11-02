@@ -26,7 +26,7 @@ export const HASH_ALIASES = {
 };
 
 export function parseLocationHash() {
-  const raw = window.location.hash.slice(1) || "command";
+  const raw = window.location.hash.slice(1) || "demo";
   const qIndex = raw.indexOf("?");
   const path = (qIndex === -1 ? raw : raw.slice(0, qIndex)).replace(/^\/+/, "") || "command";
   const qs = qIndex === -1 ? "" : raw.slice(qIndex + 1);

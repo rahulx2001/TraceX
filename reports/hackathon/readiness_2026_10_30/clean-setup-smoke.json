@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "scope": "read-only current setup and review-asset smoke",
+  "model_calls": 0,
+  "campaign_id": "sc_01m65xdt8nkg7v51cthvnwmnjy",
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace",
+  "review_kits": [
+    "original-300",
+    "development",
+    "fuel-complaints",
+    "recalls",
+    "study"
+  ],
+  "script_assets": [
+    "/ui/review-scripts/evidence-review.js",
+    "/ui/review-scripts/original-review.js",
+    "/ui/review-scripts/reviewer-study.js"
+  ],
+  "authentication": "anonymous refused; key permitted",
+  "source_commit": "6a0bd2dc383beeba07790f110fd7416d9d7d1af3",
+  "runtime": "Fresh documented setup data and venv, current production dashboard; single local API, not Docker"
+}

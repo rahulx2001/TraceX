@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-10-26T14:32:57+00:00",
+  "seed": 20261026,
+  "requested": 300,
+  "written": 300,
+  "frame": {
+    "window": [
+      "2021-01-01",
+      "2024-12-31"
+    ],
+    "makes": [
+      "FORD",
+      "HONDA",
+      "HYUNDAI",
+      "KIA",
+      "TOYOTA"
+    ],
+    "year_min": 2015,
+    "year_max": 2024,
+    "components": 29,
+    "complaints": 99946
+  },
+  "allocation": {
+    "AIR BAGS": 6,
+    "BACKOVER PREVENTION": 4,
+    "CHILD SEAT": 3,
+    "ELECTRICAL SYSTEM": 30,
+    "ELECTRONIC STABILITY CONTROL": 3,
+    "ENGINE": 56,
+    "EQUIPMENT": 3,
+    "EXTERIOR LIGHTING": 5,
+    "FORWARD COLLISION AVOIDANCE": 13,
+    "FUEL SYSTEM": 5,
+    "FUEL/PROPULSION SYSTEM": 13,
+    "HYBRID PROPULSION SYSTEM": 3,
+    "LANE DEPARTURE": 4,
+    "LATCHES/LOCKS/LINKAGES": 3,
+    "PARKING BRAKE": 3,
+    "POWER TRAIN": 33,
+    "SEAT BELTS": 3,
+    "SEATS": 3,
+    "SERVICE BRAKES": 16,
+    "STEERING": 18,
+    "STRUCTURE": 13,
+    "SUSPENSION": 5,
+    "TIRES": 3,
+    "TRACTION CONTROL SYSTEM": 3,
+    "UNKNOWN OR OTHER": 30,
+    "VEHICLE SPEED CONTROL": 7,
+    "VISIBILITY": 3,
+    "VISIBILITY/WIPER": 6,
+    "WHEELS": 3
+  },
+  "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1",
+  "csv_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+  "note": "Human labels are blank. Model output was not used to choose or label this sample.",
+  "immutable_rows_sha256": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "review_method": "blind human annotation; model predictions hidden; PII redacted on the review page"
+}

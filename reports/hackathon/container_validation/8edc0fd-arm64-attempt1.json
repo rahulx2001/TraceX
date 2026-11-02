@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-10-30T09:14:49.252078+00:00",
+  "status": "failed",
+  "source_commit": "8edc0fde207aa7d42e6ad807e1d3b4cb4f14ce46",
+  "image_id": "sha256:67b7cbe266e707466c4f0acf14cf6426cf0b3bf235da1e0c044f1c480e41818d",
+  "architecture": "arm64",
+  "image_os": "linux",
+  "docker_server": "29.5.2",
+  "scope": "Disposable container integration checks on fictional seed/text data; no live inference or real audio.",
+  "host_data_mounts": false,
+  "model_calls": 0,
+  "checks": [],
+  "error": "Container exited before readiness; see retained container log",
+  "container_log": {
+    "path": "8edc0fd-arm64-attempt1.container.log",
+    "sha256": "97a8300f8bfb159160c2b9c22d283d1fc4cc820efa54bffd8c5db8e0a4da8908"
+  },
+  "elapsed_ms": 4272
+}

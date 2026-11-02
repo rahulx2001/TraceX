@@ -1,0 +1,9 @@
+{
+  "limit_usd": 30.0,
+  "reserved_upper_bound_usd": 23.406406,
+  "observed_token_cost_usd": 5.143577749999996,
+  "unmetered_successes": 0,
+  "live_successful_requests": 397,
+  "pricing_checked": "2026-10-28",
+  "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+}

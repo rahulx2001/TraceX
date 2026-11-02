@@ -48,7 +48,7 @@ try:  # POSIX only; macOS/Linux are the supported runtimes.
 except ImportError:  # pragma: no cover - Windows fallback keeps the process lock
     fcntl = None  # type: ignore[assignment]
 
-from src.ai_layer import config
+from src.ai_layer import config, operation_trace
 from src.ai_layer.schema import validate
 
 
@@ -76,7 +76,17 @@ class SafeRedirectHandler(urllib.request.HTTPRedirectHandler):
         return None
 
 
-_opener = urllib.request.build_opener(SafeRedirectHandler)
+def _build_opener():
+    # ProxyHandler restores the default proxy-env honoring that a bare
+    # build_opener(SafeRedirectHandler) drops: without it, https_proxy is
+    # ignored and credentialed calls fail on DNS in proxied environments.
+    # SafeRedirectHandler still refuses redirects for credentialed POSTs.
+    # Note: ProxyHandler snapshots the environment at construction, so the
+    # process must be started with proxy vars set (the normal case).
+    return urllib.request.build_opener(urllib.request.ProxyHandler, SafeRedirectHandler)
+
+
+_opener = _build_opener()
 
 
 def _urllib_transport(url: str, body: bytes, headers: dict[str, str], timeout: float) -> HttpResponse:
@@ -361,11 +371,14 @@ def _post(url: str, payload: dict[str, Any], *, timeout: float, accept: str | No
         from src.ai_layer.budget import reserve, complete
         reservation = reserve(payload)
         _reserve_call()
+        operation = operation_trace.start(payload, host, reservation, live=_transport is _urllib_transport)
         try:
             resp = _transport(url, body, headers, timeout)
         except (urllib.error.URLError, TimeoutError, OSError) as e:
             last = f"meta_network:{type(e).__name__}"
+            operation_trace.finish(operation, status=last)
         else:
+            operation_trace.finish(operation, status="response_received" if 200 <= resp.status < 300 else "http_error", http_status=resp.status, body=resp.body)
             if 200 <= resp.status < 300:
                 complete(reservation, resp.body, live=_transport is _urllib_transport)
                 remember_resource_host(host)
@@ -465,10 +478,16 @@ def chat_json(
     # get the one-shot plain-json_object fallback.
     fallback_ok = config.backend() == "baseten"
     simple = fallback_ok and host in _SIMPLE_FORMAT_HOSTS
+    system_text = _redact(system)
+    # Baseten's Muse Spark can accept response_format without enforcing it.
+    # Preserve the contract in the prompt on every Baseten request, including
+    # HTTP 200 responses, then validate locally. Neither transport success nor
+    # a json_object request is proof of schema conformance.
+    simple_system = system_text + "\nReturn only a JSON object matching this JSON schema:\n" + _redact(json.dumps(schema))
     payload = {
         "model": model or (config.model_vision() if images else config.model_text()),
         "messages": [
-            {"role": "system", "content": _redact(system)},
+            {"role": "system", "content": simple_system if fallback_ok else system_text},
             {"role": "user", "content": content},
         ],
         "temperature": 0,
@@ -485,6 +504,7 @@ def chat_json(
             # (some vLLM builds): retry once, plain, and remember the host.
             _SIMPLE_FORMAT_HOSTS.add(host)
             payload["response_format"] = _response_format(schema_name, schema, simple=True)
+            payload["messages"][0]["content"] = simple_system
             resp = _post(url, payload, timeout=timeout or config.timeout_s())
         else:
             raise
@@ -493,6 +513,7 @@ def chat_json(
         message = data["choices"][0]["message"]
         text = message["content"]
     except (KeyError, IndexError, TypeError, ValueError, UnicodeDecodeError) as e:
+        operation_trace.validated(schema_name, schema, "meta_bad_envelope")
         raise MetaError("meta_bad_envelope") from e
     reasoning = ""
     if isinstance(message, dict):
@@ -503,7 +524,8 @@ def chat_json(
         reasoning = "".join(str(p.get("text") or "") for p in reasoning if isinstance(p, dict))
     try:
         value = _parse_json_text(str(text or ""))
-    except MetaError:
+    except MetaError as exc:
+        operation_trace.validated(schema_name, schema, exc.reason)
         import logging
         logging.getLogger(__name__).warning(
             "Meta JSON rejected: finish_reason=%s content_chars=%d reasoning_chars=%d completion_tokens=%s",
@@ -512,7 +534,9 @@ def chat_json(
         raise
     errors = validate(value, schema)
     if errors:
+        operation_trace.validated(schema_name, schema, "meta_schema_invalid:" + errors[0][:120])
         raise MetaError("meta_schema_invalid:" + errors[0][:120])
+    operation_trace.validated(schema_name, schema)
     return value
 
 

@@ -1,0 +1,38 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.92,
+      "label_id": "other_unclear",
+      "confidence": 0.92,
+      "evidence": "SIDE CURTAIN AIRBAG DIDN'T DEPLOY",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.92,
+        "evidence": "SIDE CURTAIN AIRBAG DIDN'T DEPLOY",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "d3e79f1bbf7df50a499a2dd0c3065d896c0d27aaaca1e68319c069b63c096c1f",
+  "phase": "development",
+  "started_at": "2026-11-02T13:04:06+00:00",
+  "completed_at": "2026-11-02T13:04:12+00:00"
+}

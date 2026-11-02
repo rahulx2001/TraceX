@@ -114,7 +114,7 @@ class ServerSpeechStack:
             return None
         return text.strip()
 
-    def transcribe_audio(self, data: bytes, *, mime: str = "audio/webm") -> dict[str, Any] | None:
+    def transcribe_audio(self, data: bytes, *, mime: str = "audio/webm", locale: str | None = None) -> dict[str, Any] | None:
         """Transcribe one utterance (browser MediaRecorder bytes).
 
         Returns {"text", "confidence"}; {"text": ""} when the provider heard
@@ -124,7 +124,7 @@ class ServerSpeechStack:
         if not data or not self.operational_audio_stt():
             return None
         try:
-            out = _deepgram.transcribe_audio(bytes(data), mime=mime)
+            out = _deepgram.transcribe_audio(bytes(data), mime=mime, locale=locale)
         except _deepgram.DeepgramNoSpeech:
             return {"text": "", "confidence": None}
         except _deepgram.DeepgramError:
@@ -176,10 +176,14 @@ class ServerSpeechStack:
         }
 
 
-def server_voice_capabilities() -> dict[str, bool]:
+def server_voice_capabilities() -> dict[str, Any]:
     """Cheap, I/O-free voice advertisement for the WS ``ready`` frame."""
     stack = ServerSpeechStack()
     return {
         "server_stt": bool(stack.operational_audio_stt()),
         "server_tts": bool(stack.playable_tts_available()),
+        "accepted_audio_mime": sorted(_deepgram._AUDIO_MIME_ALLOWLIST),
+        "stt_locales": ["en-US", "en-IN", "hi-IN"],
+        "tts_model": _deepgram.tts_model() if stack.playable_tts_available() else None,
+        "tts_locales": ["en-US", "en-IN"],
     }

@@ -1,0 +1,2 @@
+all_reports: exact replay match, including all 100 random draws
+excluding_explicit_recall_reports: exact replay match, including all 100 random draws

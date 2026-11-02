@@ -1,0 +1,119 @@
+{
+  "type": "logistic",
+  "feature_order": [
+    "complaints_30d",
+    "complaints_90d",
+    "complaints_365d",
+    "same_make_365d"
+  ],
+  "means": [
+    1.3333333333333333,
+    1.5833333333333333,
+    2.4166666666666665,
+    13.5
+  ],
+  "scales": [
+    0.47140452079103173,
+    0.6400954789890507,
+    1.1873172373979173,
+    8.0156097709407
+  ],
+  "coefficients": [
+    -0.13505872423489818,
+    0.02767058334210883,
+    -0.5946298161436488,
+    -0.18798091303537978
+  ],
+  "intercept": -0.7926691303409147,
+  "threshold": 0.5,
+  "calibrated": false,
+  "schema_version": 1,
+  "status": "trained_unvalidated",
+  "notice": "Development-only evidence; not a candidate result and not a prospective estimate.",
+  "production_eligible": false,
+  "freeze_eligible": false,
+  "training_window": [
+    "2015-01-01",
+    "2020-12-31"
+  ],
+  "label_source": "Existing frozen model hypotheses plus official recall dates. No human labels, new model-generated labels, or unknown-label matches.",
+  "training_rows": 12,
+  "positive_training_rows": 4,
+  "provenance": {
+    "run_id": "logistic_prototype_v1",
+    "config": {
+      "schema_version": 1,
+      "status": "exploratory_training_only",
+      "created_at": "2026-11-01T08:13:20+00:00",
+      "author": "Rahul Kumar Singh; implemented by ML improvement engineer",
+      "purpose": "Build one genuinely trained, unvalidated logistic prototype from permitted development data; diagnose missing training support without changing the frozen baseline.",
+      "source_parent": "2d76b507519faf8fc3226e7954a6f897b75bc842",
+      "prior_information": "Before this recipe was committed, a read-only support audit found 12 mature rows and 4 positives over 2015-2020, but zero mature rows in both registered fit folds. No prototype performance was inspected.",
+      "data": {
+        "start": "2015-01-01",
+        "end": "2020-12-31",
+        "inputs": {
+          "data/ml_improvement/complaints.parquet": "bfda61fcb22d6d70d8a8bb692094247901ed56466bb4722236033890182db6b9",
+          "data/ml_improvement/recalls.parquet": "63577ea14c59acc7d8bb9c32c86bf3efe65762dc0c148b107ef2ed6cff1db809"
+        },
+        "historical_preparation_deviation": "DEV-20261101-01",
+        "no_new_preparation_or_2021_plus_reads": true
+      },
+      "features": [
+        "complaints_30d",
+        "complaints_90d",
+        "complaints_365d",
+        "same_make_365d"
+      ],
+      "fitting": {
+        "implementation": "src.eval.prospective_research.fit_logistic",
+        "model": "numpy standardized L2 logistic",
+        "minimum_mature_rows": 10,
+        "minimum_classes": 2,
+        "steps": 1000,
+        "learning_rate": 0.1,
+        "C": 1,
+        "threshold": 0.5,
+        "hyperparameter_search": false,
+        "calibration": false,
+        "selection": "Exactly one fixed recipe; never compare fit-set performance to historical-opened metrics."
+      },
+      "labels": "Existing frozen model hypotheses plus official recall dates. No human labels, new model-generated labels, or unknown-label matches.",
+      "evaluation": {
+        "new_performance_metrics": false,
+        "training_scores_are_validation": false,
+        "registered_folds": "Preserve A: fit through 2016/validate 2017-2018; B: fit through 2018/validate 2019-2020. Unsupported folds remain unsupported.",
+        "acceptance": "Not acceptance-eligible. This full-development fit has no untouched permitted evaluation set and does not satisfy the frozen Phase 2 selection rule.",
+        "reproduction_tolerance": 1e-12
+      },
+      "outputs": [
+        "model.json",
+        "support_audit.json",
+        "serialization_check.json",
+        "model_card.md",
+        "review_queue.csv"
+      ],
+      "review_queue": "All other_unclear development complaint IDs in date/ID order; human label and reviewer fields remain blank. No raw text copied and no human review performed.",
+      "freeze": {
+        "existing_tag": "ml-prospective-freeze-2026",
+        "existing_tag_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+        "modify_existing_artifacts": false,
+        "include_prototype_in_existing_prospective_test": false
+      },
+      "claims": "Trained prototype only; no better-model, calibrated-risk, semantic-accuracy or improved-score claim. Existing dashboard values remain unchanged."
+    },
+    "config_hash": "f60f52788b13ba44f1d03e21a1baecccd27725566ed31776e7cfed063c02cfc9",
+    "input_hashes": {
+      "data/ml_improvement/complaints.parquet": "bfda61fcb22d6d70d8a8bb692094247901ed56466bb4722236033890182db6b9",
+      "data/ml_improvement/recalls.parquet": "63577ea14c59acc7d8bb9c32c86bf3efe65762dc0c148b107ef2ed6cff1db809",
+      "reports/improvement/research_v2/PROTOCOL.json": "2fc6ede2afb422b1a04fcf6bc0da6e2d8192b8c9151a874a7b3f99f791a46b67"
+    },
+    "data_hash": "9b57071fbcf71f2680dcc412f2bb3b9799c076c2b38c60f973302c713afad4be",
+    "code_commit": "534a6ae0b78f19cc9b815dd5f78c890ae188e382",
+    "code_hash": "fdc70bd6f17b05483447b11bcb37aa084ea17036bc37e0a10359012404ffbc29",
+    "seed": null,
+    "split": "development",
+    "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -B -m scripts.ml_candidate_research --run-id logistic_prototype_v1",
+    "started_at": "2026-11-01T08:45:06.342636+00:00"
+  }
+}

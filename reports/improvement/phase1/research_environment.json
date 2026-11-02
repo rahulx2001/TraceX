@@ -1,0 +1,17 @@
+{
+  "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "executable": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/.venv-hackathon/bin/python",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "pyarrow": "22.0.0"
+  },
+  "fitting": "numpy fallback; real logistic fitting skipped for insufficient support",
+  "sklearn_used": false,
+  "scipy_used": false,
+  "venv_modified": false,
+  "isolated_venv_created": false,
+  "exact_command": ".venv-hackathon/bin/python -m pip freeze --all",
+  "pip_freeze_sha256": "5a38a83520a9ddc12eabcbe5fc6b2b4d7185404a9452873aca60b368adca57b5",
+  "notice": "Development-only evidence; not a candidate result and not a prospective estimate."
+}

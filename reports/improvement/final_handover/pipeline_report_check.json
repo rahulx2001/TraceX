@@ -1,0 +1,22 @@
+{
+  "step": "pipeline",
+  "started_at": "2026-11-01T11:30:54.385692+00:00",
+  "finished_at": "2026-11-01T11:30:59.838802+00:00",
+  "duration_seconds": 5.453,
+  "cwd": ".",
+  "command": ".venv-hackathon/bin/python -B -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/final_handover/pipeline_report.json",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "exit_code": 0,
+  "log": "logs/pipeline_report_check.txt",
+  "log_sha256": "229cce6dab764d550ec67d31189c2f0e5cd56012649572dc4133c28bc2609ca4",
+  "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "observed_pytest_counts": [],
+  "note": "Re-recorded with separate output and command-metadata filenames; the first runner accidentally reused pipeline.json for both. Original stdout is preserved in logs/pipeline.txt. Uses the existing 76 diagnostic examples, not the supplied 300 records."
+}

@@ -12,7 +12,7 @@ export function parseCodes(text) {
   return { valid: toks.filter((t) => DTC_RE.test(t)), invalid: toks.filter((t) => !DTC_RE.test(t)) };
 }
 
-export default function FaultCodesPanel({ caseId, readOnly = false }) {
+export default function FaultCodesPanel({ caseId, readOnly = false, onEvidenceChanged }) {
   const [data, setData] = useState(null);
   const [text, setText] = useState("");
   const [msg, setMsg] = useState("");
@@ -46,6 +46,7 @@ export default function FaultCodesPanel({ caseId, readOnly = false }) {
       const out = await aiPostJson(path, { fault_codes: valid });
       setMsg(out.raised ? `Severity raised ${out.severity_before} → ${out.severity_after} (safety-system code)` : "Codes added (severity unchanged)");
       setText(""); load();
+      onEvidenceChanged?.();
     } catch (ex) { setMsg(`Rejected: ${ex.message}`); }
     finally { setBusy(false); }
   }
@@ -53,7 +54,7 @@ export default function FaultCodesPanel({ caseId, readOnly = false }) {
   const codes = (data && data.codes) || [];
   return (
     <div className="ai-fault-codes" data-testid="fault-codes-panel" style={{ marginTop: 12 }}>
-      <h4 className="analytics-h">Fault codes (OBD-II) <span className="muted small">({codes.length})</span></h4>
+      <h4 className="analytics-h">Fault codes (OBD-II) {!loading && !fetchError && <span className="muted small">({codes.length})</span>}</h4>
       {loading && <div className="muted small">Loading fault codes…</div>}
       {!loading && fetchError && (
         <div className="banner banner-warn small" role="alert" style={{ marginTop: 6, display: "flex", gap: 8, alignItems: "center" }}>
@@ -61,7 +62,7 @@ export default function FaultCodesPanel({ caseId, readOnly = false }) {
           <button type="button" className="ghost small" onClick={load} style={{ padding: "2px 6px" }}>Retry</button>
         </div>
       )}
-      {!loading && !fetchError && codes.length === 0 && <div className="muted small">No fault codes attached.</div>}
+      {!loading && !fetchError && codes.length === 0 && <div className="muted small">No fault codes attached. Codes the customer mentions in the conversation (e.g. “mechanic scanned P0300”) are captured automatically; otherwise add them here.</div>}
       {!loading && !fetchError && codes.length > 0 && (
         <table className="table small">
           <thead><tr><th>Code</th><th>Generic meaning</th><th>Component</th><th>Safety</th><th>Check</th></tr></thead>

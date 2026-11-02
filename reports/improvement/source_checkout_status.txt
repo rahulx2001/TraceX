@@ -1,0 +1,60 @@
+## submission/readiness-2026-10-30...tracex/submission/readiness-2026-10-30
+ M .env.example
+ M README.md
+ M dashboard/e2e/ui.console.spec.js
+ M dashboard/routes/CallWidget.jsx
+ M dashboard/routes/CaseQueue.jsx
+ M dashboard/routes/Settings.jsx
+ M dashboard/routes/SignIn.jsx
+ M dashboard/routes/settings.css
+ M dashboard/routes/voice-report.css
+ M dashboard/scripts/assert-signin-reachable.mjs
+ M dashboard/scripts/container-readiness.test.mjs
+ M dashboard/src/App.jsx
+ M dashboard/src/ai/CallAiExtras.jsx
+ M dashboard/src/ai/EvidencePanel.jsx
+ M dashboard/src/apiAuth.js
+ M dashboard/src/ui/AccountSignIn.jsx
+ M dashboard/src/ui/labels.js
+ M dashboard/src/ui/opsActions.js
+ M domains/automotive_nhtsa/gazetteers/makes.csv
+ M domains/automotive_nhtsa/gazetteers/models.csv
+ M requirements-docker.txt
+ M requirements-lock.txt
+ M requirements.txt
+ M src/agents/case_agent.py
+ M src/agents/intake.py
+ M src/agents/orchestrator.py
+ M src/ai_layer/config.py
+ M src/ai_layer/evidence.py
+ M src/ai_layer/intake_enhancer.py
+ M src/api/routes/ai_layer.py
+ M src/api/routes/frontline.py
+ M src/api/routes/platform56.py
+ M src/data/schema.py
+ M src/data/warehouse.py
+ M src/frontline/ops.py
+ M src/security/sql_ident.py
+ M tests/frontline/ai_layer/test_demo.py
+ M tests/frontline/ai_layer/test_eval_enhanced.py
+ M tests/frontline/ai_layer/test_eval_modes.py
+ M tests/frontline/ai_layer/test_intake_enhancer.py
+ M tests/frontline/ai_layer/test_meta_smoke.py
+ M tests/frontline/test_dashboard_pilot_auth.py
+ M tests/frontline/test_safety_gate_preemption.py
+ M tests/frontline/test_voice_report_repair.py
+?? dashboard/scripts/case-categories.test.mjs
+?? dashboard/scripts/session-recovery.test.mjs
+?? dashboard/src/ai/ReportIntelligencePanel.jsx
+?? dashboard/src/ui/AccessSettings.jsx
+?? docs/meta-intake-features.md
+?? reports/hackathon/meta_features_2026_10_31.json
+?? reports/hackathon/meta_features_2026_10_31_recheck.json
+?? scripts/meta_feature_smoke.py
+?? src/ai_layer/document_evidence.py
+?? src/ai_layer/report_intelligence.py
+?? src/frontline/categories.py
+?? tests/frontline/ai_layer/test_document_evidence.py
+?? tests/frontline/ai_layer/test_report_intelligence.py
+?? tests/frontline/test_multi_system_cases.py
+?? tests/frontline/test_session_recovery.py

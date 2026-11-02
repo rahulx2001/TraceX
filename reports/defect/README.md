@@ -1,5 +1,18 @@
 # Defect-level label sample
 
+**29 October repair:** the explicitly scoped fuel-system experiment now has
+complete model coverage, a repaired recall scope, a sparse-count detector and
+equal-budget comparisons. All 300 review examples also have model predictions;
+human labels remain unfilled. See [the repair report and blind-review workflow](repair/README.md).
+The JSON files in this directory remain the original partial experiment;
+`repair/` contains the separately identified retrospective reanalysis.
+
+**Above-86% follow-up:** the separate, frozen 2025 holdout detected **5/8
+campaigns (62.5%)**, matching the count policy. Mature-alert precision was
+**6/18 (33.3%)**. None of 40 development candidates passed the precision gate;
+the target was not achieved. See [the holdout report](fuel_holdout/README.md)
+for the protocol, all campaigns, uncertainty and exact replay instructions.
+
 This folder holds the frozen inputs and outputs for the defect-level recall
 experiment. Nothing in this folder is model ground truth.
 
@@ -85,10 +98,11 @@ accordingly. Both are local estimates, not a bill. A 3-batch dry run on the
 prepared sample estimated 4,516 input tokens (~1,505 per batch), well below the
 8,000-input-token bound the live-run guard reserves per batch.
 
-For this submission, full classification and human-label accuracy remain
-**Not run**. The 300-row sample contains no completed human labels. The live
-proof is a separate synthetic intake workflow; it is not classification
-accuracy evidence. Do not fill labels with model output and call them human.
+Full multi-component classification and human-label accuracy remain **Not run**.
+The repair completes only the declared fuel-system scope and model predictions
+for the 300-row sample. The sample contains no completed human labels. The
+synthetic intake proof is separate from classification evidence. Do not fill
+labels with model output and call them human.
 
 Use repository-relative defaults or explicit portable input paths. Start with
 `python -m scripts.defect_classify --dry-run --limit 1`. Any future live run

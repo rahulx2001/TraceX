@@ -49,6 +49,22 @@ def test_status_never_contains_key(fake_meta):
     assert "test-placeholder" not in json.dumps(config.ai_status())
 
 
+def test_opener_honors_proxy_env(monkeypatch):
+    """Regression: a bare build_opener(SafeRedirectHandler) drops ProxyHandler,
+    so https_proxy was silently ignored and live calls died on DNS."""
+    import urllib.request
+
+    monkeypatch.setenv("https_proxy", "http://127.0.0.1:9")
+    monkeypatch.setattr(
+        urllib.request, "getproxies", lambda: {"https": "http://127.0.0.1:9"}
+    )
+    opener = meta_client._build_opener()
+    proxying = [h for h in opener.handlers if isinstance(h, urllib.request.ProxyHandler)]
+    assert proxying, "ProxyHandler missing: proxy env would be ignored"
+    assert proxying[0].proxies.get("https") == "http://127.0.0.1:9"
+    assert any(isinstance(h, meta_client.SafeRedirectHandler) for h in opener.handlers)
+
+
 def test_chat_json_happy_path_and_payload_shape(fake_meta):
     fake_meta.chat["t"] = lambda p: {"x": 3, "tag": "a"}
     out = chat_json(system="sys", user="call me at 555-123-4567", schema=SCHEMA, schema_name="t")

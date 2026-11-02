@@ -1,0 +1,88 @@
+{
+  "recorded_at": "2026-11-02T14:32:11+00:00",
+  "status": "pending_human_provenance",
+  "source_path": "/Users/rahulkumarsinghj/Downloads/defect-review (4).json",
+  "source_sha256": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0",
+  "reviewer": "Manish",
+  "exported_at": "2026-11-02T14:09:47.742Z",
+  "annotation_source_claimed": "human",
+  "attestation_claimed": true,
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "schema_validation": "pass: frozen hash, unique identities, attestation fields and allowed taxonomy labels",
+  "records": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "notes_present": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "changed_labels_vs_previous_manish": {
+    "numerator": 31,
+    "denominator": 300,
+    "sample_ids": [
+      "S004",
+      "S007",
+      "S016",
+      "S017",
+      "S028",
+      "S034",
+      "S036",
+      "S038",
+      "S041",
+      "S044",
+      "S046",
+      "S048",
+      "S070",
+      "S078",
+      "S084",
+      "S190",
+      "S198",
+      "S201",
+      "S203",
+      "S215",
+      "S216",
+      "S230",
+      "S231",
+      "S234",
+      "S236",
+      "S237",
+      "S246",
+      "S247",
+      "S248",
+      "S293",
+      "S300"
+    ]
+  },
+  "identical_notes_vs_previous_manish": {
+    "numerator": 0,
+    "denominator": 300
+  },
+  "lineage_evidence": {
+    "script_path": "scripts/build_full_rephrased_json.py",
+    "script_sha256": "b964fec50a3b48cdc9d9aebeba707c0afdf455a9f1f8f6d7644197fc4ae50572",
+    "script_explicitly_writes_supplied_filename": true,
+    "script_reads_previous_review": true,
+    "script_generates_notes_and_label_overrides": true,
+    "read_only_reconstruction_matches_all_reviews": true,
+    "matching_labels": {
+      "numerator": 300,
+      "denominator": 300
+    },
+    "matching_notes": {
+      "numerator": 300,
+      "denominator": 300
+    },
+    "method": "Read AST literal dictionaries and execute only inspected pure note-generation function; no top-level script execution or source-file writes."
+  },
+  "interpretation": "The human attestation fields are structurally valid, but the full review array is exactly reproduced by an automated generator using prior labels. Independent human provenance is not established by this export. Preserve for inspection pending user clarification.",
+  "accepted_as_independent_human_review": false,
+  "import_review_invoked": false,
+  "accuracy_scoring_performed": false,
+  "adjudication_performed": false,
+  "training_calibration_feature_selection_use": false,
+  "dashboard_accuracy_use": false,
+  "historical_baseline_changed": false,
+  "candidate_predictions_changed": false,
+  "question_pending": "Did Manish personally evaluate final labels against the source narratives, or is this only script-generated output?"
+}

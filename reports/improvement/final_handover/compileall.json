@@ -1,0 +1,25 @@
+{
+  "step": "compileall",
+  "started_at": "2026-11-01T11:19:56.113197+00:00",
+  "finished_at": "2026-11-01T11:19:57.261338+00:00",
+  "duration_seconds": 1.148,
+  "cwd": ".",
+  "command": "make compileall",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": null,
+  "note": null,
+  "exit_code": 0,
+  "log": "logs/compileall.txt",
+  "log_sha256": "4278e5a9736af337e17d300781de038a7ddfac56a69c309e3d27dc4d6fb01beb",
+  "observed_pytest_counts": [],
+  "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128",
+  "bytecode_destination": "Disposable external PYTHONPYCACHEPREFIX; cleaned after command"
+}

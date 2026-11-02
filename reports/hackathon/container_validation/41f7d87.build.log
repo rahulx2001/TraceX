@@ -1,0 +1,363 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.hackathon
+#1 transferring dockerfile: 5.65kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 3.5s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 DONE 4.1s
+
+#4 [dashboard 1/7] FROM docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
+#4 resolve docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293 done
+#4 DONE 0.0s
+
+#5 [dashboard 2/7] WORKDIR /dash
+#5 CACHED
+
+#6 [review-assets 1/5] FROM docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+#6 resolve docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159 done
+#6 DONE 0.0s
+
+#7 [review-assets 2/5] WORKDIR /app
+#7 CACHED
+
+#8 [internal] load build context
+#8 transferring context: 46.93kB 0.0s done
+#8 DONE 0.0s
+
+#9 [review-assets 3/5] COPY scripts/templates ./scripts/templates
+#9 DONE 0.0s
+
+#10 [pydeps 3/4] COPY requirements-docker.txt requirements-lock.txt ./
+#10 DONE 0.0s
+
+#11 [dashboard 3/7] COPY dashboard/package.json dashboard/package-lock.json* ./
+#11 DONE 0.0s
+
+#12 [review-assets 4/5] COPY scripts/prepare_review_assets.py ./scripts/prepare_review_assets.py
+#12 DONE 0.0s
+
+#13 [review-assets 5/5] RUN python scripts/prepare_review_assets.py
+#13 0.230 Prepared three static review scripts; inline CSP remains unchanged.
+#13 DONE 0.2s
+
+#14 [dashboard 4/7] RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+#14 ...
+
+#15 [pydeps 4/4] RUN pip install --no-cache-dir --upgrade pip  && pip install --no-cache-dir -r requirements-docker.txt -c requirements-lock.txt
+#15 0.722 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+#15 6.522 Collecting pip
+#15 7.042   Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+#15 7.263 Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+#15 11.23    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 482.0 kB/s eta 0:00:00
+#15 11.24 Installing collected packages: pip
+#15 11.24   Attempting uninstall: pip
+#15 11.24     Found existing installation: pip 25.0.1
+#15 11.26     Uninstalling pip-25.0.1:
+#15 11.31       Successfully uninstalled pip-25.0.1
+#15 11.66 Successfully installed pip-26.2.2
+#15 11.66 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#15 12.80 Collecting fastapi<1.0,>=0.110 (from -r requirements-docker.txt (line 5))
+#15 12.92   Downloading fastapi-0.139.2-py3-none-any.whl.metadata (26 kB)
+#15 13.07 Collecting python-multipart<1.0,>=0.0.9 (from -r requirements-docker.txt (line 6))
+#15 13.11   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#15 13.31 Collecting cryptography<46,>=42 (from -r requirements-docker.txt (line 7))
+#15 13.34   Downloading cryptography-45.0.7-cp311-abi3-manylinux_2_34_aarch64.whl.metadata (5.7 kB)
+#15 13.39 Collecting uvicorn<1.0,>=0.27 (from uvicorn[standard]<1.0,>=0.27->-r requirements-docker.txt (line 8))
+#15 13.42   Downloading uvicorn-0.51.0-py3-none-any.whl.metadata (6.6 kB)
+#15 13.60 Collecting pydantic<3.0,>=2.6 (from -r requirements-docker.txt (line 9))
+#15 13.90   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+#15 14.31 Collecting duckdb<2.0,>=0.10 (from -r requirements-docker.txt (line 10))
+#15 14.33   Downloading duckdb-1.5.4-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl.metadata (4.2 kB)
+#15 14.49 Collecting pyarrow<25.0,>=22.0 (from -r requirements-docker.txt (line 11))
+#15 14.60   Downloading pyarrow-22.0.0-cp312-cp312-manylinux_2_28_aarch64.whl.metadata (3.2 kB)
+#15 14.68 Collecting pyyaml<7.0,>=6.0 (from -r requirements-docker.txt (line 12))
+#15 14.71   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)
+#15 14.76 Collecting python-ulid<4.0,>=2.2 (from -r requirements-docker.txt (line 13))
+#15 14.80   Downloading python_ulid-3.2.0-py3-none-any.whl.metadata (6.6 kB)
+#15 14.85 Collecting python-dotenv<2.0,>=1.0 (from -r requirements-docker.txt (line 14))
+#15 14.89   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+#15 15.03 Collecting websockets<14.0,>=12.0 (from -r requirements-docker.txt (line 15))
+#15 15.15   Downloading websockets-13.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.8 kB)
+#15 15.20 Collecting slowapi<1.0,>=0.1.9 (from -r requirements-docker.txt (line 16))
+#15 15.24   Downloading slowapi-0.1.10-py3-none-any.whl.metadata (3.3 kB)
+#15 15.29 Collecting vaderSentiment<4.0,>=3.3 (from -r requirements-docker.txt (line 17))
+#15 15.32   Downloading vaderSentiment-3.3.2-py2.py3-none-any.whl.metadata (572 bytes)
+#15 15.37 Collecting httpx<1.0,>=0.27 (from -r requirements-docker.txt (line 18))
+#15 15.41   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#15 15.76 Collecting onnxruntime<2.0,>=1.19 (from -r requirements-docker.txt (line 19))
+#15 15.84   Downloading onnxruntime-1.31.1-cp312-cp312-manylinux_2_28_aarch64.whl.metadata (5.8 kB)
+#15 16.25 Collecting tokenizers<0.22,>=0.20 (from -r requirements-docker.txt (line 20))
+#15 16.28   Downloading tokenizers-0.21.4-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.7 kB)
+#15 16.60 Collecting numpy<3.0,>=1.26 (from -r requirements-docker.txt (line 21))
+#15 16.73   Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (6.6 kB)
+#15 16.80 Collecting starlette>=0.46.0 (from fastapi<1.0,>=0.110->-r requirements-docker.txt (line 5))
+#15 16.83   Downloading starlette-1.3.1-py3-none-any.whl.metadata (6.4 kB)
+#15 16.90 Collecting typing-extensions>=4.8.0 (from fastapi<1.0,>=0.110->-r requirements-docker.txt (line 5))
+#15 16.93   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#15 16.99 Collecting typing-inspection>=0.4.2 (from fastapi<1.0,>=0.110->-r requirements-docker.txt (line 5))
+#15 17.02   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+#15 17.06 Collecting annotated-doc>=0.0.2 (from fastapi<1.0,>=0.110->-r requirements-docker.txt (line 5))
+#15 17.38   Downloading annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+#15 17.52 Collecting cffi>=1.14 (from cryptography<46,>=42->-r requirements-docker.txt (line 7))
+#15 17.56   Downloading cffi-2.1.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (2.5 kB)
+#15 17.61 Collecting click>=7.0 (from uvicorn<1.0,>=0.27->uvicorn[standard]<1.0,>=0.27->-r requirements-docker.txt (line 8))
+#15 17.65   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+#15 17.75 Collecting h11>=0.8 (from uvicorn<1.0,>=0.27->uvicorn[standard]<1.0,>=0.27->-r requirements-docker.txt (line 8))
+#15 ...
+
+#14 [dashboard 4/7] RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+#14 17.83 
+#14 17.83 added 26 packages, and audited 27 packages in 18s
+#14 17.83 
+#14 17.83 9 packages are looking for funding
+#14 17.83   run `npm fund` for details
+#14 17.85 
+#14 17.85 2 high severity vulnerabilities
+#14 17.85 
+#14 17.85 To address all issues, run:
+#14 17.85   npm audit fix
+#14 17.85 
+#14 17.85 Run `npm audit` for details.
+#14 17.85 npm notice
+#14 17.85 npm notice New major version of npm available! 10.8.2 -> 12.2.1
+#14 17.85 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+#14 17.85 npm notice To update run: npm install -g npm@12.2.1
+#14 17.85 npm notice
+#14 DONE 17.9s
+
+#15 [pydeps 4/4] RUN pip install --no-cache-dir --upgrade pip  && pip install --no-cache-dir -r requirements-docker.txt -c requirements-lock.txt
+#15 17.79   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#15 17.83 Collecting annotated-types>=0.6.0 (from pydantic<3.0,>=2.6->-r requirements-docker.txt (line 9))
+#15 ...
+
+#16 [dashboard 5/7] COPY dashboard/ ./
+#16 DONE 0.0s
+
+#17 [dashboard 6/7] COPY --from=review-assets /app/dashboard/public/review-scripts ./public/review-scripts
+#17 DONE 0.0s
+
+#18 [dashboard 7/7] RUN npm run build
+#18 0.100 
+#18 0.100 > tracex-ops-console@2.0.0 build
+#18 0.100 > vite build
+#18 0.100 
+#18 0.194 vite v8.2.1 building client environment for production...
+#18 0.200 [2Ktransforming...✓ 96 modules transformed.
+#18 0.326 rendering chunks...
+#18 0.367 computing gzip size...
+#18 0.371 dist/index.html                              0.71 kB │ gzip:   0.41 kB
+#18 0.371 dist/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+#18 0.371 dist/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+#18 0.371 dist/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+#18 0.371 dist/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+#18 0.371 dist/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+#18 0.371 dist/assets/index-Cl6MPf0i.css             123.87 kB │ gzip:  22.14 kB
+#18 0.371 dist/assets/index-Bu55Ojg3.js              717.77 kB │ gzip: 191.16 kB
+#18 0.371 
+#18 0.372 [33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/apiAuth.js is dynamically imported by src/ai/tools/Alerts.jsx but also statically imported by routes/AnalyticsDesk.jsx, routes/AuditReports.jsx, routes/CallWidget.jsx, routes/CaseQueue.jsx, routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+#18 0.372 
+#18 0.372 [plugin builtin:vite-reporter] 
+#18 0.372 (!) Some chunks are larger than 500 kB after minification. Consider:
+#18 0.372 - Using dynamic import() to code-split the application
+#18 0.372 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+#18 0.372 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#18 0.372 ✓ built in 177ms
+#18 DONE 0.4s
+
+#15 [pydeps 4/4] RUN pip install --no-cache-dir --upgrade pip  && pip install --no-cache-dir -r requirements-docker.txt -c requirements-lock.txt
+#15 18.14   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+#15 18.69 Collecting pydantic-core==2.46.4 (from pydantic<3.0,>=2.6->-r requirements-docker.txt (line 9))
+#15 18.79   Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.6 kB)
+#15 18.84 Collecting limits>=2.3 (from slowapi<1.0,>=0.1.9->-r requirements-docker.txt (line 16))
+#15 18.88   Downloading limits-5.8.0-py3-none-any.whl.metadata (10 kB)
+#15 18.93 Collecting requests (from vaderSentiment<4.0,>=3.3->-r requirements-docker.txt (line 17))
+#15 18.96   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#15 19.02 Collecting anyio (from httpx<1.0,>=0.27->-r requirements-docker.txt (line 18))
+#15 19.06   Downloading anyio-4.14.2-py3-none-any.whl.metadata (4.6 kB)
+#15 19.12 Collecting certifi (from httpx<1.0,>=0.27->-r requirements-docker.txt (line 18))
+#15 19.16   Downloading certifi-2026.6.17-py3-none-any.whl.metadata (2.5 kB)
+#15 19.21 Collecting httpcore==1.* (from httpx<1.0,>=0.27->-r requirements-docker.txt (line 18))
+#15 19.32   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#15 19.38 Collecting idna (from httpx<1.0,>=0.27->-r requirements-docker.txt (line 18))
+#15 19.42   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+#15 19.47 Collecting flatbuffers (from onnxruntime<2.0,>=1.19->-r requirements-docker.txt (line 19))
+#15 19.50   Downloading flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
+#15 19.57 Collecting packaging (from onnxruntime<2.0,>=1.19->-r requirements-docker.txt (line 19))
+#15 19.62   Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+#15 20.05 Collecting protobuf>=4.25.8 (from onnxruntime<2.0,>=1.19->-r requirements-docker.txt (line 19))
+#15 20.09   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_aarch64.whl.metadata (595 bytes)
+#15 20.15 Collecting huggingface-hub<1.0,>=0.16.4 (from tokenizers<0.22,>=0.20->-r requirements-docker.txt (line 20))
+#15 20.19   Downloading huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+#15 20.26 Collecting filelock (from huggingface-hub<1.0,>=0.16.4->tokenizers<0.22,>=0.20->-r requirements-docker.txt (line 20))
+#15 20.37   Downloading filelock-4.2.4-py3-none-any.whl.metadata (2.0 kB)
+#15 20.42 Collecting fsspec>=2023.5.0 (from huggingface-hub<1.0,>=0.16.4->tokenizers<0.22,>=0.20->-r requirements-docker.txt (line 20))
+#15 20.46   Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+#15 20.55 Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface-hub<1.0,>=0.16.4->tokenizers<0.22,>=0.20->-r requirements-docker.txt (line 20))
+#15 20.59   Downloading hf_xet-1.7.0-cp38-abi3-manylinux_2_28_aarch64.whl.metadata (4.9 kB)
+#15 20.64 Collecting tqdm>=4.42.1 (from huggingface-hub<1.0,>=0.16.4->tokenizers<0.22,>=0.20->-r requirements-docker.txt (line 20))
+#15 20.67   Downloading tqdm-4.70.0-py3-none-any.whl.metadata (57 kB)
+#15 20.76 Collecting httptools>=0.8.0 (from uvicorn[standard]<1.0,>=0.27->-r requirements-docker.txt (line 8))
+#15 20.80   Downloading httptools-0.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (3.5 kB)
+#15 20.97 Collecting uvloop>=0.15.1 (from uvicorn[standard]<1.0,>=0.27->-r requirements-docker.txt (line 8))
+#15 21.01   Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (4.9 kB)
+#15 21.13 Collecting watchfiles>=0.20 (from uvicorn[standard]<1.0,>=0.27->-r requirements-docker.txt (line 8))
+#15 21.17   Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.9 kB)
+#15 21.21 Collecting pycparser (from cffi>=1.14->cryptography<46,>=42->-r requirements-docker.txt (line 7))
+#15 21.25   Downloading pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+#15 21.30 Collecting deprecated>=1.2 (from limits>=2.3->slowapi<1.0,>=0.1.9->-r requirements-docker.txt (line 16))
+#15 21.61   Downloading deprecated-1.3.1-py2.py3-none-any.whl.metadata (5.9 kB)
+#15 21.95 Collecting wrapt<3,>=1.10 (from deprecated>=1.2->limits>=2.3->slowapi<1.0,>=0.1.9->-r requirements-docker.txt (line 16))
+#15 21.99   Downloading wrapt-2.2.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (7.4 kB)
+#15 22.12 Collecting charset_normalizer<4,>=2 (from requests->vaderSentiment<4.0,>=3.3->-r requirements-docker.txt (line 17))
+#15 22.16   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (46 kB)
+#15 22.21 Collecting urllib3<3,>=1.26 (from requests->vaderSentiment<4.0,>=3.3->-r requirements-docker.txt (line 17))
+#15 22.24   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#15 22.28 Downloading fastapi-0.139.2-py3-none-any.whl (130 kB)
+#15 22.34 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#15 22.47 Downloading cryptography-45.0.7-cp311-abi3-manylinux_2_34_aarch64.whl (4.2 MB)
+#15 23.85    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.2/4.2 MB 3.0 MB/s  0:00:01
+#15 23.89 Downloading uvicorn-0.51.0-py3-none-any.whl (73 kB)
+#15 24.08 Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+#15 24.85 Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.0 MB)
+#15 27.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 854.2 kB/s  0:00:02
+#15 27.40 Downloading duckdb-1.5.4-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl (19.4 MB)
+#15 35.47    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.4/19.4 MB 2.4 MB/s  0:00:08
+#15 35.60 Downloading pyarrow-22.0.0-cp312-cp312-manylinux_2_28_aarch64.whl (45.0 MB)
+#15 54.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.0/45.0 MB 2.4 MB/s  0:00:18
+#15 54.47 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)
+#15 54.69    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.1/775.1 kB 2.8 MB/s  0:00:00
+#15 54.72 Downloading python_ulid-3.2.0-py3-none-any.whl (12 kB)
+#15 54.76 Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+#15 54.80 Downloading websockets-13.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (165 kB)
+#15 54.87 Downloading slowapi-0.1.10-py3-none-any.whl (14 kB)
+#15 54.99 Downloading vaderSentiment-3.3.2-py2.py3-none-any.whl (125 kB)
+#15 55.05 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#15 55.11 Downloading onnxruntime-1.31.1-cp312-cp312-manylinux_2_28_aarch64.whl (21.4 MB)
+#15 63.88    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.4/21.4 MB 2.4 MB/s  0:00:08
+#15 63.91 Downloading tokenizers-0.21.4-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (3.0 MB)
+#15 65.11    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 2.6 MB/s  0:00:01
+#15 65.15 Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (15.7 MB)
+#15 69.83    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.7/15.7 MB 3.3 MB/s  0:00:04
+#15 69.87 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#15 69.94 Downloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+#15 70.16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 2.0 MB/s  0:00:00
+#15 70.21 Downloading hf_xet-1.7.0-cp38-abi3-manylinux_2_28_aarch64.whl (4.0 MB)
+#15 71.61    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 2.8 MB/s  0:00:01
+#15 71.74 Downloading annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+#15 71.78 Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+#15 71.82 Downloading cffi-2.1.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (222 kB)
+#15 71.92 Downloading click-8.4.2-py3-none-any.whl (119 kB)
+#15 71.98 Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+#15 72.08 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#15 72.13 Downloading httptools-0.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (518 kB)
+#15 72.42 Downloading limits-5.8.0-py3-none-any.whl (60 kB)
+#15 72.49 Downloading deprecated-1.3.1-py2.py3-none-any.whl (11 kB)
+#15 72.54 Downloading wrapt-2.2.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (171 kB)
+#15 72.61 Downloading packaging-26.2-py3-none-any.whl (100 kB)
+#15 72.68 Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_aarch64.whl (344 kB)
+#15 72.92 Downloading starlette-1.3.1-py3-none-any.whl (73 kB)
+#15 73.00 Downloading anyio-4.14.2-py3-none-any.whl (125 kB)
+#15 73.09 Downloading idna-3.18-py3-none-any.whl (65 kB)
+#15 73.14 Downloading tqdm-4.70.0-py3-none-any.whl (80 kB)
+#15 73.19 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#15 73.31 Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+#15 73.35 Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (4.3 MB)
+#15 74.74    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 3.1 MB/s  0:00:01
+#15 74.78 Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (453 kB)
+#15 75.29 Downloading certifi-2026.6.17-py3-none-any.whl (133 kB)
+#15 75.45 Downloading filelock-4.2.4-py3-none-any.whl (162 kB)
+#15 75.51 Downloading flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
+#15 75.55 Downloading pycparser-3.12-py3-none-any.whl (62 kB)
+#15 75.62 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#15 75.67 Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (246 kB)
+#15 75.78 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#15 75.98 Installing collected packages: flatbuffers, wrapt, websockets, uvloop, urllib3, typing-extensions, tqdm, pyyaml, python-ulid, python-multipart, python-dotenv, pycparser, pyarrow, protobuf, packaging, numpy, idna, httptools, hf-xet, h11, fsspec, filelock, duckdb, click, charset_normalizer, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, requests, pydantic-core, onnxruntime, httpcore, deprecated, cffi, anyio, watchfiles, vaderSentiment, starlette, pydantic, limits, huggingface-hub, httpx, cryptography, tokenizers, slowapi, fastapi
+#15 79.32 
+#15 79.32 Successfully installed annotated-doc-0.0.4 annotated-types-0.7.0 anyio-4.14.2 certifi-2026.6.17 cffi-2.1.1 charset_normalizer-3.5.2 click-8.4.2 cryptography-45.0.7 deprecated-1.3.1 duckdb-1.5.4 fastapi-0.139.2 filelock-4.2.4 flatbuffers-25.12.19 fsspec-2026.9.0 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 huggingface-hub-0.36.2 idna-3.18 limits-5.8.0 numpy-2.5.4 onnxruntime-1.31.1 packaging-26.2 protobuf-7.36.2 pyarrow-22.0.0 pycparser-3.12 pydantic-2.13.4 pydantic-core-2.46.4 python-dotenv-1.2.2 python-multipart-0.0.32 python-ulid-3.2.0 pyyaml-6.0.3 requests-2.34.2 slowapi-0.1.10 starlette-1.3.1 tokenizers-0.21.4 tqdm-4.70.0 typing-extensions-4.16.0 typing-inspection-0.4.2 urllib3-2.8.0 uvicorn-0.51.0 uvloop-0.22.1 vaderSentiment-3.3.2 watchfiles-1.2.0 websockets-13.1 wrapt-2.2.2
+#15 79.32 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#15 DONE 79.5s
+
+#19 [runtime  3/24] COPY --from=pydeps /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+#19 DONE 0.5s
+
+#20 [runtime  4/24] COPY --from=pydeps /usr/local/bin /usr/local/bin
+#20 DONE 0.0s
+
+#21 [runtime  5/24] COPY src ./src
+#21 DONE 0.0s
+
+#22 [runtime  6/24] COPY migrations ./migrations
+#22 DONE 0.0s
+
+#23 [runtime  7/24] COPY domains ./domains
+#23 DONE 0.0s
+
+#24 [runtime  8/24] COPY scripts ./scripts
+#24 DONE 0.0s
+
+#25 [runtime  9/24] COPY eval ./eval
+#25 DONE 0.0s
+
+#26 [runtime 10/24] COPY reports/nhtsa ./reports/nhtsa
+#26 DONE 0.0s
+
+#27 [runtime 11/24] COPY reports/hackathon ./reports/hackathon
+#27 DONE 0.0s
+
+#28 [runtime 12/24] COPY reports/defect/repair/human_review.html ./reports/defect/repair/human_review.html
+#28 DONE 0.0s
+
+#29 [runtime 13/24] COPY reports/defect/repair/human_validation_status.json ./reports/defect/repair/human_validation_status.json
+#29 DONE 0.0s
+
+#30 [runtime 14/24] COPY reports/defect/evidence_v1/development_review.html ./reports/defect/evidence_v1/development_review.html
+#30 DONE 0.0s
+
+#31 [runtime 15/24] COPY reports/defect/evidence_v1/fuel_complaint_review.html ./reports/defect/evidence_v1/fuel_complaint_review.html
+#31 DONE 0.0s
+
+#32 [runtime 16/24] COPY reports/defect/evidence_v1/recall_review.html ./reports/defect/evidence_v1/recall_review.html
+#32 DONE 0.0s
+
+#33 [runtime 17/24] COPY reports/defect/evidence_v1/development_comparison.json ./reports/defect/evidence_v1/development_comparison.json
+#33 DONE 0.0s
+
+#34 [runtime 18/24] COPY reports/defect/fuel_holdout/holdout_results.json reports/defect/fuel_holdout/protocol.json ./reports/defect/fuel_holdout/
+#34 DONE 0.0s
+
+#35 [runtime 19/24] COPY Makefile .
+#35 DONE 0.0s
+
+#36 [runtime 20/24] COPY --from=dashboard /dash/dist ./dashboard/dist
+#36 DONE 0.0s
+
+#37 [runtime 21/24] RUN useradd -m -u 10001 frontline     && mkdir -p /app/data/domains /app/reports/qubot/contacts /app/reports/qubot/digests     && chown -R frontline:frontline /app
+#37 DONE 0.3s
+
+#38 [runtime 22/24] COPY docker/entrypoint.sh /entrypoint.sh
+#38 DONE 0.0s
+
+#39 [runtime 23/24] COPY docker/hackathon-entrypoint.sh /hackathon-entrypoint.sh
+#39 DONE 0.0s
+
+#40 [runtime 24/24] RUN chmod +x /entrypoint.sh /hackathon-entrypoint.sh
+#40 DONE 0.1s
+
+#41 exporting to image
+#41 exporting layers
+#41 exporting layers 6.9s done
+#41 exporting manifest sha256:789a6c7cb18229beb00888cdaa4cd6a2d2ed2e89fc0622726a1374733459ed30 done
+#41 exporting config sha256:600d99fe7c16c82df0586da6e0e127bdc5aac92f2674f578af388270d184015b done
+#41 exporting attestation manifest sha256:b4fb8323c48cb123b3b15d83eac55ec3c7a263fdb909bee850e377ebaecb648c done
+#41 exporting manifest list sha256:d7d812c9a25db099e005283e90834f6e2042ac34e99de9aedcc36844875bb5ad done
+#41 naming to docker.io/library/tracex-readiness:41f7d87 done
+#41 unpacking to docker.io/library/tracex-readiness:41f7d87
+#41 unpacking to docker.io/library/tracex-readiness:41f7d87 1.5s done
+#41 DONE 8.4s

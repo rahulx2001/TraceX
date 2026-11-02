@@ -1,0 +1,51 @@
+{
+  "voice": "macOS Samantha text-to-speech",
+  "synthetic_narration": true,
+  "segments": [
+    {
+      "start": 0,
+      "end": 18,
+      "text": "A driver describes a worrying vehicle symptom. Trace X helps a quality engineer turn that report into reviewed evidence and a recorded repair. This walkthrough uses fictional records. The operations platform is reused; the sourced Meta investigation and follow-up workflow are new."
+    },
+    {
+      "start": 18,
+      "end": 40,
+      "text": "First, Muse Spark Open extracts observations from the owner's Hinglish report. These are actual saved outputs from a live Meta model call. Each interpretation is shown beside its original source sentence. The model preserves uncertainty about the part, instead of treating a reported sound as a confirmed mechanical cause."
+    },
+    {
+      "start": 40,
+      "end": 57,
+      "text": "The missing information matters. The agent selects a question asking for an existing installation or workshop record. It does not ask the owner to reproduce a dangerous symptom. An unidentified part stays unidentified until there is evidence to review."
+    },
+    {
+      "start": 57,
+      "end": 78,
+      "text": "Here an operator reviews the fictional installation record. This is a clearly simulated engineering decision. The supplier, part number and lot come from recorded installation fields. A vehicle model, a similar complaint, or the language model alone cannot establish an exact lot match."
+    },
+    {
+      "start": 78,
+      "end": 100,
+      "text": "After the record is available, the agent chooses the installed-part lookup. The saved follow-up result updates the investigation with that source. You can inspect its actual tool choice and citations. These tools read evidence; they cannot authorize outreach, choose a replacement part, or clear the vehicle."
+    },
+    {
+      "start": 100,
+      "end": 128,
+      "text": "The reviewed workflow now carries the same vehicle into workshop actions. We record fictional recovery and inspection evidence, then a replacement using the engineering-reviewed part and procedure. These controls run in the application. Every accepted action records who acted, when, and which campaign revision it changed. The demonstration is not claiming that a real vehicle was inspected or repaired."
+    },
+    {
+      "start": 128,
+      "end": 150,
+      "text": "A replacement entry alone is not a completed case. Repair verification is recorded separately, followed by the owner's follow-up and a reviewer disposition. Any unresolved vehicle remains visible. A later symptom report can reopen the case while preserving its earlier evidence."
+    },
+    {
+      "start": 150,
+      "end": 169,
+      "text": "The exported packet connects source reports, recorded Meta interpretations, read-only tool results, reviewer actions and repair records. Owner outreach remains simulated: no external message was sent. The packet gives another engineer something concrete to inspect and challenge."
+    },
+    {
+      "start": 169,
+      "end": 180,
+      "text": "Live integration works. Independent human labels and reviewer measurements are still pending. The current evidence does not establish prediction above eighty-six percent or accidents prevented."
+    }
+  ]
+}

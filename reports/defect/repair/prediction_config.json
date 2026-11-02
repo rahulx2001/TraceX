@@ -1,0 +1,599 @@
+{
+  "sha256": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+  "body": {
+    "config": {
+      "window": 13,
+      "min_count": 2,
+      "max_tail": 0.2
+    },
+    "grid": {
+      "window": [
+        4,
+        8,
+        13
+      ],
+      "min_count": [
+        2,
+        3,
+        5
+      ],
+      "max_tail": [
+        0.05,
+        0.1,
+        0.2
+      ]
+    },
+    "selection": "training harmonic mean of campaign recall and mature episode precision; ties: precision, fewer alerts, shorter window, stricter tail",
+    "train_window": [
+      "2015-01-01",
+      "2020-12-31"
+    ],
+    "evaluation_window": [
+      "2021-01-01",
+      "2024-12-31"
+    ],
+    "hashes": {
+      "protocol": "ac2ddccdf7bc985dedcac8e89f7bddca7539215c2083bbcacc876948ac32d174",
+      "classifications": "ce3977cbe22e410775a9527cabfb5acb5191a4bc5134371369f98d5fddbd739b",
+      "recall_labels": "c00b3c6f5aa1730fff07719f2984272d20795c32889759903f2440ef0b4a134c",
+      "scorer": "43d638910f1926f5e0514c8cefe92128f7e22afd11b083ad49c04d1f26af3dfe",
+      "runner": "88baa1ffa1edf011cdf095a56d0e7ca45c0584bec30dceed5f1366fa71fd6cd4"
+    },
+    "train": {
+      "campaigns": 36,
+      "hits": 3,
+      "misses": 33,
+      "campaign_recall": 0.08333333333333333,
+      "median_lead_weeks": 18.142857142857142,
+      "alerts": 10,
+      "mature_alerts": 3,
+      "confirmed_mature_alerts": 1,
+      "censored_alerts": 7,
+      "episode_precision": 0.3333333333333333,
+      "objective": 0.13333333333333333
+    },
+    "trials": [
+      {
+        "config": {
+          "window": 4,
+          "min_count": 2,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 3,
+          "misses": 33,
+          "campaign_recall": 0.08333333333333333,
+          "median_lead_weeks": 29.142857142857142,
+          "alerts": 9,
+          "mature_alerts": 4,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 5,
+          "episode_precision": 0.25,
+          "objective": 0.125
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 2,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 3,
+          "misses": 33,
+          "campaign_recall": 0.08333333333333333,
+          "median_lead_weeks": 29.142857142857142,
+          "alerts": 10,
+          "mature_alerts": 4,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 6,
+          "episode_precision": 0.25,
+          "objective": 0.125
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 2,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 3,
+          "misses": 33,
+          "campaign_recall": 0.08333333333333333,
+          "median_lead_weeks": 29.142857142857142,
+          "alerts": 11,
+          "mature_alerts": 4,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 7,
+          "episode_precision": 0.25,
+          "objective": 0.125
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 3,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 2,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 2,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 3,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 2,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 2,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 3,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 3,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 3,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 5,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 27.285714285714285,
+          "alerts": 2,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 2,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 5,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 27.285714285714285,
+          "alerts": 2,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 2,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 4,
+          "min_count": 5,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 27.285714285714285,
+          "alerts": 2,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 2,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 2,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 2,
+          "misses": 34,
+          "campaign_recall": 0.05555555555555555,
+          "median_lead_weeks": 22.428571428571427,
+          "alerts": 7,
+          "mature_alerts": 3,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 4,
+          "episode_precision": 0.3333333333333333,
+          "objective": 0.09523809523809525
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 2,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 3,
+          "misses": 33,
+          "campaign_recall": 0.08333333333333333,
+          "median_lead_weeks": 29.142857142857142,
+          "alerts": 9,
+          "mature_alerts": 4,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 5,
+          "episode_precision": 0.25,
+          "objective": 0.125
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 2,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 3,
+          "misses": 33,
+          "campaign_recall": 0.08333333333333333,
+          "median_lead_weeks": 29.142857142857142,
+          "alerts": 11,
+          "mature_alerts": 4,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 7,
+          "episode_precision": 0.25,
+          "objective": 0.125
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 3,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 29.285714285714285,
+          "alerts": 5,
+          "mature_alerts": 1,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 4,
+          "episode_precision": 0.0,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 3,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 29.285714285714285,
+          "alerts": 5,
+          "mature_alerts": 1,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 4,
+          "episode_precision": 0.0,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 3,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 29.285714285714285,
+          "alerts": 7,
+          "mature_alerts": 1,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 6,
+          "episode_precision": 0.0,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 5,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 2,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 2,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 5,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 2,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 2,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 8,
+          "min_count": 5,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 3,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 3,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 2,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 2,
+          "misses": 34,
+          "campaign_recall": 0.05555555555555555,
+          "median_lead_weeks": 22.428571428571427,
+          "alerts": 7,
+          "mature_alerts": 3,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 4,
+          "episode_precision": 0.3333333333333333,
+          "objective": 0.09523809523809525
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 2,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 2,
+          "misses": 34,
+          "campaign_recall": 0.05555555555555555,
+          "median_lead_weeks": 22.428571428571427,
+          "alerts": 7,
+          "mature_alerts": 3,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 4,
+          "episode_precision": 0.3333333333333333,
+          "objective": 0.09523809523809525
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 2,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 3,
+          "misses": 33,
+          "campaign_recall": 0.08333333333333333,
+          "median_lead_weeks": 18.142857142857142,
+          "alerts": 10,
+          "mature_alerts": 3,
+          "confirmed_mature_alerts": 1,
+          "censored_alerts": 7,
+          "episode_precision": 0.3333333333333333,
+          "objective": 0.13333333333333333
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 3,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 29.285714285714285,
+          "alerts": 5,
+          "mature_alerts": 1,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 4,
+          "episode_precision": 0.0,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 3,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 29.285714285714285,
+          "alerts": 5,
+          "mature_alerts": 1,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 4,
+          "episode_precision": 0.0,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 3,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 29.285714285714285,
+          "alerts": 6,
+          "mature_alerts": 1,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 5,
+          "episode_precision": 0.0,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 5,
+          "max_tail": 0.05
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 3,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 3,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 5,
+          "max_tail": 0.1
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 3,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 3,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      },
+      {
+        "config": {
+          "window": 13,
+          "min_count": 5,
+          "max_tail": 0.2
+        },
+        "metrics": {
+          "campaigns": 36,
+          "hits": 1,
+          "misses": 35,
+          "campaign_recall": 0.027777777777777776,
+          "median_lead_weeks": 28.285714285714285,
+          "alerts": 3,
+          "mature_alerts": 0,
+          "confirmed_mature_alerts": 0,
+          "censored_alerts": 3,
+          "episode_precision": null,
+          "objective": 0.0
+        }
+      }
+    ],
+    "sensitivity": "also evaluate identical frozen parameters after excluding explicit recall/campaign mentions; never select between the two using test results"
+  }
+}

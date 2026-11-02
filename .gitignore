@@ -39,6 +39,7 @@ reports/defect/cache/
 # Real human-collected Hindi/Hinglish complaints: consent records, raw text,
 # audio and the working labels CSV. Never commit this directory.
 data/real_hindi/
+data/voice_validation/
 eval/regression/
 # Keep eval report dir but ignore generated dated files if desired:
 # reports/qubot/eval/eval_*.md
@@ -83,6 +84,12 @@ models/minilm/tokenizer.json
 models/minilm/vocab.txt
 models/minilm/*.bin
 
+# Isolated improvement worktrees may reuse dependency directories via symlinks.
+.venv-hackathon
+dashboard/node_modules
+data/ml_improvement/
+.ml-deps/
+
 # Docker / local tooling
 *.log
 .docker/
@@ -92,4 +99,8 @@ data/ai_evidence/
 data/hackathon/
 reports/hackathon/*.webm
 reports/hackathon/*.mp4
+reports/hackathon/investigation_demo/*.webm
+reports/hackathon/investigation_demo/*.mp4
+reports/hackathon/investigation_demo/*.aiff
+reports/hackathon/investigation_demo/*.wav
 *.ses

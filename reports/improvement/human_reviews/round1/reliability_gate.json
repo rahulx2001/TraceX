@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-02T11:23:22+00:00",
+  "status": "satisfied_on_human_attestation_and_user_reported_full_sample_assignment",
+  "accuracy_scoring_allowed": true,
+  "reviewers": [
+    "Rahul",
+    "Manish"
+  ],
+  "primary_labels": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "second_labels": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "paired_rows": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "minimum_overlap_required": 50,
+  "gate_overlap_scope": "All 300 originally frozen IDs; no later-selected subset used for gate",
+  "prespecification": {
+    "frozen_id_list_path": "reports/defect/defect_label_sample_300.csv",
+    "frozen_id_list_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "frozen_manifest_path": "reports/defect/sample_manifest.json",
+    "frozen_manifest_created_at": "2026-10-26T14:32:57+00:00",
+    "assignment_evidence": "User reports assigning the whole frozen 300-record sample to Manish before he began on 1 November.",
+    "assignment_chronology_source": "reports/improvement/human_reviews/round1/second_review/manish/user_confirmation.json",
+    "contemporaneous_reviewer_specific_assignment_record_available": false,
+    "interpretation": "The protocol specifies at least 50 preregistered IDs without requiring a registry format. The prior entire-sample assignment reported by the user, combined with the frozen 300-ID list, supplies the prespecified full overlap. Chronology and blinding are user-attested, not independently verified.",
+    "later_50_manifest": "reports/improvement/human_reviews/round1/second_review/preregistered_ids.json",
+    "later_50_manifest_qualifies_as_prospective_for_manish": false
+  },
+  "agreement_path": "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
+  "agreement_sha256": "1a407169b3ed8b552619640f4846bd9e0919d45b17da9c4f925b5a4b94ec7942",
+  "agreement_before_adjudication": true,
+  "identical_labels": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "identical_notes": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "disagreements": {
+    "numerator": 0,
+    "denominator": 300
+  },
+  "adjudication_requirement": "Resolve disagreements from source evidence. No individual decisions are required for 0/300 disagreements; preserve the agreement acceptance trail without inventing human adjudicator judgments.",
+  "provenance_limitations": [
+    "Review independence and prior full-sample assignment rely on human attestation and user confirmation.",
+    "All exported labels and notes are identical; agreement does not independently establish label correctness.",
+    "Export timestamps are preserved; no per-row annotation timestamps were supplied."
+  ],
+  "evaluation_only": true
+}

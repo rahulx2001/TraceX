@@ -1,0 +1,19 @@
+{
+  "run_id": "audit_v1",
+  "config": {
+    "phase": "audit",
+    "window": 13
+  },
+  "config_hash": "e77711263b2194ae8fbade99f3905bbc5e596d44f9e945100a1b9e14e1286ce2",
+  "input_hashes": {
+    "data/ml_improvement/complaints.parquet": "bfda61fcb22d6d70d8a8bb692094247901ed56466bb4722236033890182db6b9",
+    "data/ml_improvement/recalls.parquet": "63577ea14c59acc7d8bb9c32c86bf3efe65762dc0c148b107ef2ed6cff1db809"
+  },
+  "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+  "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+  "code_hash": "29bbb5069a3d17999ad02038f3dbc098616882b725c077b7cec3c9f4700efdfa",
+  "seed": null,
+  "split": "development",
+  "exact_command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/scripts/ml_improvement.py audit --run-id audit_v1",
+  "started_at": "2026-10-31T12:08:20.561689+00:00"
+}

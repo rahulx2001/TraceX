@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-11-02T14:54:35+00:00",
+  "result": "pass",
+  "existing_claims_preserved": {
+    "numerator": 8,
+    "denominator": 8
+  },
+  "historical_human_review_artifacts_preserved": {
+    "numerator": 21,
+    "denominator": 21
+  },
+  "candidate_artifacts_preserved": {
+    "numerator": 75,
+    "denominator": 75
+  },
+  "indexed_artifact_hashes": {
+    "numerator": 46,
+    "denominator": 46
+  },
+  "adjudication_draft_identity_label_verbatim_quote_checks": {
+    "passed": 31,
+    "total": 31
+  },
+  "page_javascript_syntax": "pass",
+  "frozen_sample_byte_identical": true,
+  "revised_accuracy_computed": false
+}

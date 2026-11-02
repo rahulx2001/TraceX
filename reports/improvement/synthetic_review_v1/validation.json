@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-11-01T10:39:25.673697+00:00",
+  "source_commit": "c446f580053ec2aa7c6146eeb80c626cb5977ca8",
+  "synthetic_fixtures": 300,
+  "underlying_template_families": 12,
+  "independent_real_observations_added": 0,
+  "human_labels_added": 0,
+  "original_human_sample": {
+    "records": 300,
+    "labelled": 0,
+    "components": 29,
+    "fuel_system_records": 5,
+    "unchanged": true
+  },
+  "generation_command": "env FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= .venv-hackathon/bin/python -B -m scripts.synthetic_label_checks --out reports/improvement/synthetic_review_v1/fixtures",
+  "generation_exit_code": 0,
+  "test_command": "env FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= .venv-hackathon/bin/python -B -m pytest -q tests/frontline/ai_layer/test_synthetic_label_checks.py tests/frontline/ai_layer/test_defect_human_review.py tests/frontline/ai_layer/test_ml_improvement.py",
+  "test_exit_code": 0,
+  "observed_test_summary": "37 passed in 9.34s",
+  "tests_passed": 37,
+  "log_sha256": {
+    "reports/improvement/synthetic_review_v1/logs/targeted_tests.txt": "df91b95196762222f3e0c4567d68b53e94849d5205f72378136bee97070c48d3",
+    "reports/improvement/synthetic_review_v1/logs/generate.txt": "0206762859fe5293b49c5000521c5d42bda5e070d7d833e41f2dbe15b8198af9"
+  },
+  "code_sha256": {
+    "scripts/synthetic_label_checks.py": "c0b2f6dfbba25da16b3a514a6f2043bbc547cdd60fc3c1e1c154c863f0ec7a78",
+    "tests/frontline/ai_layer/test_synthetic_label_checks.py": "c2299cc73ae58ba0867c1837f571a53f9bae284b6b4fb74c63093f07146b5aef"
+  },
+  "frozen_original_files_verified": 339,
+  "frozen_comparison_files_verified": 13,
+  "original_reports_verified": 819,
+  "original_changed_files_verified": 59,
+  "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+  "main_unchanged": true,
+  "both_freeze_tags_unchanged": true,
+  "baseline_and_dashboard_unchanged": true,
+  "documentation_shell_examples_syntax_checked": 2,
+  "human_import_example_executed": false,
+  "no_classifier_inference": true,
+  "no_new_training": true,
+  "no_real_prospective_access": true,
+  "no_human_attestation_generated": true,
+  "engineering_scope": "Synthetic software QA and handover documentation",
+  "scientific_validation_complete": false,
+  "human_accuracy": null,
+  "is_candidate_result": false,
+  "split": "synthetic_software_test",
+  "label_source": "agent-authored fictional test expectations"
+}

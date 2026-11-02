@@ -134,6 +134,23 @@ def test_status_names_backend_without_key(baseten_env):
     assert FAKE_BASETEN_KEY not in json.dumps(st)
 
 
+def test_status_shows_narration_gate(baseten_env, monkeypatch):
+    """Key alone must not imply Tier-2 narration is live (draft-note polish)."""
+    from src.ai.provider import llm_enabled
+
+    monkeypatch.delenv("FRONTLINE_LLM_ENABLED", raising=False)
+    assert llm_enabled() is False
+    st = config.ai_status()
+    assert st["mode"] == "enhanced"  # AI layer is live...
+    assert st["narration"] == {"enabled": False, "provider": None}  # ...but narration is not
+
+    monkeypatch.setenv("FRONTLINE_LLM_ENABLED", "1")
+    assert llm_enabled() is True
+    st = config.ai_status()
+    assert st["narration"] == {"enabled": True, "provider": "baseten"}
+    assert FAKE_BASETEN_KEY not in json.dumps(st)
+
+
 # ── routing + payload ────────────────────────────────────────────────
 
 
@@ -146,6 +163,8 @@ def test_baseten_routing_and_key(baseten_env, capture_transport, monkeypatch):
     assert calls[0]["payload"]["model"] == BASETEN_MODEL
     assert calls[0]["payload"]["max_tokens"] == 8000
     assert calls[0]["payload"]["response_format"]["type"] == "json_schema"
+    prompt = calls[0]["payload"]["messages"][0]["content"]
+    assert json.loads(prompt.split("JSON schema:\n", 1)[1]) == SCHEMA
 
 
 def test_baseten_token_floor_for_reasoning(baseten_env, capture_transport, monkeypatch):
@@ -184,10 +203,22 @@ def test_json_schema_fallback_then_remembered(baseten_env, capture_transport, mo
     assert _chat(calls, queue) == {"x": 2}
     assert calls[0]["payload"]["response_format"]["type"] == "json_schema"
     assert calls[1]["payload"]["response_format"] == {"type": "json_object"}
+    fallback_prompt = calls[1]["payload"]["messages"][0]["content"]
+    assert json.loads(fallback_prompt.split("JSON schema:\n", 1)[1]) == SCHEMA
     # Second call goes straight to the plain format (no wasted round trip).
     queue.append((200, ok))
     assert _chat(calls, queue) == {"x": 2}
     assert calls[2]["payload"]["response_format"] == {"type": "json_object"}
+    assert calls[2]["payload"]["messages"][0]["content"] == fallback_prompt
+
+
+def test_plain_json_fallback_still_rejects_missing_fields(baseten_env, capture_transport):
+    calls, queue = capture_transport
+    queue.append((422, {"error": "unknown response_format"}))
+    queue.append((200, {"choices": [{"message": {"content": "{}"}}]}))
+    with pytest.raises(MetaError, match="missing required 'x'"):
+        _chat(calls, queue)
+    assert len(calls) == 2
 
 
 def test_no_fallback_on_auth_errors(baseten_env, capture_transport, monkeypatch):

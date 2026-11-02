@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-11-02T15:18:35+00:00",
+  "artifacts": {
+    "EVALUATION.md": "4f8cd3e2616005edb17cc3fc6cf0aed4b41069b63ff19fdb874df35756d6f5f7",
+    "accuracy_baseline.json": "e2945a0909b80a5887d400d9b63a8c0793f48c80f2973b728b161264bf73d3f3",
+    "accuracy_candidate.json": "950569384662af22a72cb97a9ee6a6c8a3055287e2a41d5c0996f574fc323ce8",
+    "adjudicated_labels.csv": "f2ab4c28c2f8f6edb5907c426ccfe78ec2d04490a708739753b8f63164380a93",
+    "adjudication_export.json": "74fc9d79db1b2ef4f58d212d7571ec392e24b77f228389c276151ddbf71a3b47",
+    "comparison.json": "1c987afbff912a7f66bfad61f0f67848968f9de361b5156e15b094ea425fb54b",
+    "decision_trail.json": "6463e958bac03cf0663bb2de125a006c4e65f8729dc51d2c9b6ca9afcfda819d",
+    "pre_claim_update/CLAIM_INDEX.md": "2c82727c510a12059994b02064d78938a2df55457b0dd6da60b6ba864ad6f713",
+    "pre_claim_update/build_claim_index.py": "fa71e3e63acb3318066e894ea6b2d954ba71aa014131217078a01d17ea053ccd",
+    "pre_claim_update/claim_index.json": "d987b46bf6f41f966c7a50a65a7103bad2800267c657acaa02d7e2fc2db5d528",
+    "preservation_checks.json": "bd34cf25a4dd95b616bf3e83f977955112f7ebab6b5eefa2ccce49c3dae42b40",
+    "status.json": "15f698196e9c9d5caf68a9928eb1f26b47c087fa3c866e9890d963c81f29a71b",
+    "validation_before_scoring.json": "3989643a923bcf281709b54bbeddee4fecf2894d2d30f8a5cb7a20e37a53a1b1",
+    "verification.json": "1b1e5685288da94ea7b075cf6e2ff6d43e077e6dc7fc0509db8963c52d808a83"
+  },
+  "claim_index_sha256": "79018e7e829a316fa557ed4e32ad264ded122b30bf6626e110c4f93127d08864",
+  "claim_index_generator_sha256": "e89c6faa7263c4e8fbed7d8e538d6305b7ff319e431be08cdc4fd02f0ec900ef",
+  "protected_frozen_sample_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4"
+}

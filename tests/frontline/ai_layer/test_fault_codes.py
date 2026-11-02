@@ -39,6 +39,25 @@ def test_format_validation_and_parsing():
     assert fc.codes_in_text("I drove past exit P0300 yesterday") == []  # no 'codes:' marker -> nothing
 
 
+def test_context_capture_requires_a_cue():
+    assert fc.codes_in_context("the mechanic scanned it and got P0300") == ["P0300"]
+    assert fc.codes_in_context("dashboard shows C0035, steering locked") == ["C0035"]
+    assert fc.codes_in_context("I drove past exit P0300 yesterday") == []  # no cue -> ignored
+    assert fc.codes_mentioned("codes: C0035") == ["C0035"]
+
+
+def test_capture_from_texts_stores_customer_codes(reset_ops_db):
+    from src.data.warehouse import ops_con
+
+    with ops_con() as con:
+        _case(con, "case_scan", "Medium", "ENGINE")
+    out = fc.capture_from_texts(
+        ["My 2019 Honda CR-V misfires", "dealer scanned it: P0300 on the readout"],
+        case_id="case_scan", interaction_id="int_case_scan", complaint_category="ENGINE")
+    assert out["codes"] == ["P0300"]
+    assert [c["code"] for c in fc.for_case("case_scan")["codes"]] == ["P0300"]
+
+
 def test_lookup_known_unknown_and_ranges():
     assert fc.lookup("C0050")["component"] == "SERVICE BRAKES" and fc.lookup("C0050")["safety"] == "safety"
     assert fc.lookup("P0306")["component"] == "ENGINE" and fc.lookup("P0306")["safety"] == "elevated"

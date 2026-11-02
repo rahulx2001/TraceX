@@ -1,0 +1,90 @@
+eval data root: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T//tracex-eval-ewRDOp
+
+→ Evaluating pack: automotive_nhtsa
+{"ts": 1793467108.8404858, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_9a4dd5c50e4649bc", "span_id": "sp_95006831", "duration_ms": 716.8429579905933, "attributes": {"interaction_id": "int_01m69fgh4fc9psrh5qjdbwcc6c"}, "instrumentation": "in-house"}
+{"ts": 1793467115.310545, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_609a1a459cdb4165", "span_id": "sp_65007853", "duration_ms": 565.0397919962415, "attributes": {"interaction_id": "int_01m69fgn44h4m6vtry798bczh5"}, "instrumentation": "in-house"}
+{"ts": 1793467122.0662022, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_fcbf941e578a4f88", "span_id": "sp_63571b51", "duration_ms": 612.558541004546, "attributes": {"interaction_id": "int_01m69fgvjpc6xehv92wd1v1qc8"}, "instrumentation": "in-house"}
+{"ts": 1793467127.756062, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_43acebd133aa4273", "span_id": "sp_cbbcd2f7", "duration_ms": 280.6971249956405, "attributes": {"interaction_id": "int_01m69fh2me9y0q60t1qzdextxq"}, "instrumentation": "in-house"}
+{"ts": 1793467132.358811, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_0df2a76639d14621", "span_id": "sp_357d7d9d", "duration_ms": 612.4980409949785, "attributes": {"interaction_id": "int_01m69fh70rettf58r59y65376v"}, "instrumentation": "in-house"}
+{"ts": 1793467138.8295848, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_a8309c136d854d02", "span_id": "sp_460f7822", "duration_ms": 640.4652089986484, "attributes": {"interaction_id": "int_01m69fhcanppb8t4wcb7pjgje3"}, "instrumentation": "in-house"}
+{"ts": 1793467150.0190048, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_d50a7473b08a416c", "span_id": "sp_e71749f6", "duration_ms": 512.7621670108056, "attributes": {"interaction_id": "int_01m69fhsqpn749cnqtgcs2ptpx"}, "instrumentation": "in-house"}
+{"ts": 1793467155.792209, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_41b3216947a740bd", "span_id": "sp_a62a76a1", "duration_ms": 574.8447080113692, "attributes": {"interaction_id": "int_01m69fhxbrknxtjxqmcj9k1bs3"}, "instrumentation": "in-house"}
+{"ts": 1793467161.908479, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_a01f0090de594b1a", "span_id": "sp_89e6c758", "duration_ms": 646.9872910092818, "attributes": {"interaction_id": "int_01m69fj313m6kz79d1xpgk3twt"}, "instrumentation": "in-house"}
+  ✅ slot_fill_cooperative: cooperative filled 100% new slots (prefill=[])
+  ✅ slot_fill_vague: vague filled 100% new slots (prefill=[])
+  ✅ safety_escalation: safety_flags={'escalation': True, 'fire': True}, turns_to_escalation=1
+  ✅ advisory_notification: advisory_match=True, independent_scope_verify=True
+  ✅ frustration_flag: peak_frustration=1.00, handoff_offers=1
+  ✅ turns_to_completion: cooperative took 4 customer turns
+  ✅ ledger_completeness: every agent turn has a prior ledger row
+  ✅ uncited_claims: audit found 0 action(s) with uncited IDs
+  ✅ negative_off_topic: off-topic must be redirected, never escalated
+  ✅ negative_abandoner: hangup must not orphan a case
+  ✅ investigation_auto_open: attempts=3 successes=3 planned=3 investigation_opened=True cluster_id=14 (expected 14)
+  ✅ recall_lead_time: hits=2 misses=1 unconfirmed=3 failed=none
+
+→ Evaluating pack: finance_cfpb
+{"ts": 1793467172.297429, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_636b2fa67c644ea3", "span_id": "sp_9c107ade", "duration_ms": 512.1762079943437, "attributes": {"interaction_id": "int_01m69fjfexpkwatt3yj3h1xqza"}, "instrumentation": "in-house"}
+{"ts": 1793467178.784362, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_73583ba385c24832", "span_id": "sp_18ecfd56", "duration_ms": 573.8407079916215, "attributes": {"interaction_id": "int_01m69fjk1y5jyrbvbndmer4k3p"}, "instrumentation": "in-house"}
+{"ts": 1793467187.427496, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_c2435941a5f745f3", "span_id": "sp_94d49841", "duration_ms": 269.20887498999946, "attributes": {"interaction_id": "int_01m69fjycxna16b2s0he2zhnpa"}, "instrumentation": "in-house"}
+{"ts": 1793467191.805588, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_e66c350d17d046d7", "span_id": "sp_88ddc748", "duration_ms": 603.589208010817, "attributes": {"interaction_id": "int_01m69fk16eg3mryb1gqgvyfsye"}, "instrumentation": "in-house"}
+{"ts": 1793467198.5557408, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_7cf03b422ba94ab7", "span_id": "sp_df8960bd", "duration_ms": 614.0157909976551, "attributes": {"interaction_id": "int_01m69fk6nck2tvnntnwe63x3h3"}, "instrumentation": "in-house"}
+{"ts": 1793467209.2730439, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_c4fb622bcb894189", "span_id": "sp_1b983f92", "duration_ms": 507.0318749931175, "attributes": {"interaction_id": "int_01m69fkkm34xht23n7ccnbqgx7"}, "instrumentation": "in-house"}
+{"ts": 1793467215.007909, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_e35882bb721a454c", "span_id": "sp_22412f43", "duration_ms": 566.2983749934938, "attributes": {"interaction_id": "int_01m69fkq4sd6ya5hbhfd16gep2"}, "instrumentation": "in-house"}
+{"ts": 1793467220.906923, "event": "otel.span", "name": "orchestrator.enrichment", "trace_id": "tr_0cfe47be6a494d96", "span_id": "sp_e0f037c8", "duration_ms": 580.7694170071045, "attributes": {"interaction_id": "int_01m69fkwv2w6j7fqw7wc7njy39"}, "instrumentation": "in-house"}
+  ✅ slot_fill_cooperative: cooperative filled 100% new slots (prefill=[])
+  ✅ slot_fill_vague: vague filled 100% new slots (prefill=[])
+  ✅ safety_escalation: safety_flags={'escalation': True, 'identity theft': True}, turns_to_escalation=1
+  ✅ advisory_notification: advisory_match=True, independent_scope_verify=True
+  ✅ frustration_flag: peak_frustration=1.00, handoff_offers=1
+  ✅ turns_to_completion: cooperative took 4 customer turns
+  ✅ ledger_completeness: every agent turn has a prior ledger row
+  ✅ uncited_claims: audit found 0 action(s) with uncited IDs
+  ✅ negative_off_topic: off-topic must be redirected, never escalated
+  ✅ negative_abandoner: hangup must not orphan a case
+  ✅ investigation_auto_open: attempts=3 successes=3 planned=3 investigation_opened=True cluster_id=41 (expected 41)
+
+# Frontline v2 Eval Report
+
+## Pack: `automotive_nhtsa`
+
+✅ 12/12 gates passed
+
+| Gate | Passed | Expected | Actual | Detail |
+|---|---|---|---|---|
+| slot_fill_cooperative | ✅ | ≥90% new-info | 100% | cooperative filled 100% new slots (prefill=[]) |
+| slot_fill_vague | ✅ | ≥90% new-info | 100% | vague filled 100% new slots (prefill=[]) |
+| safety_escalation | ✅ | escalate on turn ≤1 | turns_to_escalation=1 | safety_flags={'escalation': True, 'fire': True}, turns_to_escalation=1 |
+| advisory_notification | ✅ | True | True | advisory_match=True, independent_scope_verify=True |
+| frustration_flag | ✅ | flagged + handoff_offers≥1 | flagged=True, offers=1 | peak_frustration=1.00, handoff_offers=1 |
+| turns_to_completion | ✅ | ≤12 | 4 | cooperative took 4 customer turns |
+| ledger_completeness | ✅ | True | True | every agent turn has a prior ledger row |
+| uncited_claims | ✅ | 0 | 0 | audit found 0 action(s) with uncited IDs |
+| negative_off_topic | ✅ | no escalate/notify + terminal | flags={}, notified=False, state=ABANDONED | off-topic must be redirected, never escalated |
+| negative_abandoner | ✅ | case_id None + ABANDONED | case_id=None, state=ABANDONED | hangup must not orphan a case |
+| investigation_auto_open | ✅ | True | True | attempts=3 successes=3 planned=3 investigation_opened=True cluster_id=14 (expect |
+| recall_lead_time | ✅ | lead_weeks > 0 on known_positive | [4, 12] | hits=2 misses=1 unconfirmed=3 failed=none |
+
+## Pack: `finance_cfpb`
+
+✅ 11/11 gates passed
+
+| Gate | Passed | Expected | Actual | Detail |
+|---|---|---|---|---|
+| slot_fill_cooperative | ✅ | ≥90% new-info | 100% | cooperative filled 100% new slots (prefill=[]) |
+| slot_fill_vague | ✅ | ≥90% new-info | 100% | vague filled 100% new slots (prefill=[]) |
+| safety_escalation | ✅ | escalate on turn ≤1 | turns_to_escalation=1 | safety_flags={'escalation': True, 'identity theft': True}, turns_to_escalation=1 |
+| advisory_notification | ✅ | True | True | advisory_match=True, independent_scope_verify=True |
+| frustration_flag | ✅ | flagged + handoff_offers≥1 | flagged=True, offers=1 | peak_frustration=1.00, handoff_offers=1 |
+| turns_to_completion | ✅ | ≤12 | 4 | cooperative took 4 customer turns |
+| ledger_completeness | ✅ | True | True | every agent turn has a prior ledger row |
+| uncited_claims | ✅ | 0 | 0 | audit found 0 action(s) with uncited IDs |
+| negative_off_topic | ✅ | no escalate/notify + terminal | flags={}, notified=False, state=ABANDONED | off-topic must be redirected, never escalated |
+| negative_abandoner | ✅ | case_id None + ABANDONED | case_id=None, state=ABANDONED | hangup must not orphan a case |
+| investigation_auto_open | ✅ | True | True | attempts=3 successes=3 planned=3 investigation_opened=True cluster_id=41 (expect |
+
+## Overall Verdict
+
+✅ **ALL GATES PASSED** — genericity proven in CI.
+
+Eval report written to: reports/qubot/eval/eval_2026-10-31.md

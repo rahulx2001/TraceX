@@ -1,0 +1,32 @@
+{
+  "makes": [
+    "CHEVROLET",
+    "GMC",
+    "NISSAN"
+  ],
+  "model_years": [
+    2015,
+    2024
+  ],
+  "holdout": [
+    "2025-01-01",
+    "2025-12-31"
+  ],
+  "outcome_end": "2026-09-30",
+  "sources": [
+    "FUEL SYSTEM",
+    "FUEL/PROPULSION SYSTEM"
+  ],
+  "reason": "These makes were outside the previously scored five-make 2025 cohort. No model scores used for selection.",
+  "policy": {
+    "detector": "count",
+    "window": 13,
+    "minimum": 2,
+    "threshold": 0
+  },
+  "workload": "Same maximum: one alert/week, two/month, 91-day make/defect cooldown; also compare exact matched monthly quotas.",
+  "freshness": "Locally unevaluated make/time cohort; historical data and model pretraining can still leak recall knowledge.",
+  "holdout_status": "unopened; human review pending",
+  "target_recall": 0.86,
+  "minimum_precision": 0.5
+}

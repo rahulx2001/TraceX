@@ -1,70 +1,36 @@
-# TraceX demo — concise recorded workflow
+# TraceX — three-minute engineer workflow
 
-Target length: approximately three minutes. Confirm the actual submission portal's video format/length before upload; the supplied event page does not specify one.
+TraceX helps an automotive quality or service engineer turn a multilingual owner report into a source-cited investigation and documented action. The customer supplies the vehicle association, installation provenance and workshop records. The model helps decide which evidence is missing; an engineer checks the claims and authorizes the next action.
 
-## Prepare
+The final story is **Report → Investigate → Review → Evidence**. Start at `/ui/#demo` after `bash scripts/judge_setup.sh`, sign in with the issued local credential, and keep credentials out of the recording. Use the supervisor session for actions that require a named reviewer. Setup uses `data/hackathon/judge-v3/`; it does not reset earlier datasets or spend model credit.
 
-Run `bash scripts/judge_setup.sh`. Open `http://127.0.0.1:8000/ui/#demo`. For supervisor actions, sign in with **Have a supervisor session?** using the local session from setup. Keep all credentials out of the recording. Meta's key stays only on the server.
+The existing `reports/hackathon/investigation_demo/TraceX-investigation-demo.mp4` is a verified 180-second **historical** recording. It shows saved 29 October model outputs and the earlier UI. It is not the final-current-build recording. Preserve that file and use `reports/hackathon/final_demo_2026-10-30/` for new media.
 
-Run `.venv-hackathon/bin/python -m scripts.ai_meta_smoke` beforehand. Use the artifact's actual endpoint/model/accepted output; do not substitute planned results. The central demonstration is text intake. SAM, image generation, WhatsApp and video analysis are not needed for this story.
+## Recording sequence and narration
 
-A local captioned draft is available at `reports/hackathon/demo-draft.mp4` (2:58, silent). It shows **recorded** live synthetic Meta evidence and separate simulated supervisor actions. Add narration using this script if desired and review the portal's upload requirements. Without a Meta key, use **View recorded live proof** and describe its displayed timestamp.
+These are editorial time allocations, not latency or performance claims. Every demonstrated record is fictional. Keep “fictional scenario” and the individual operation's live/recorded/fallback label visible. A recorded model result retains its original source IDs, model version and timestamp; never attach it to a newly created report to imply a new inference.
 
-## 0:00–0:25 — Problem and provenance
+| Time | Visible action | Narration |
+|---|---|---|
+| 0:00–0:15 | Guided entry and owner report | “A quality engineer receives an ambiguous owner complaint. TraceX connects it to reviewable evidence and documented action. This scenario is fictional; the operations platform is reused.” |
+| 0:15–0:40 | **Start voice report** or **Type instead**, readable transcript, a correction and confirmed vehicle | “The owner can speak or type. The engineer checks what was captured, corrects the report and confirms the vehicle. Investigate this report carries the stored source turns without retyping.” |
+| 0:40–1:20 | Report citation, actual Meta-selected lookup/question, uncertainty and missing source | “This saved/live Muse Spark result selected this evidence lookup or question. Here is the exact source and the uncertainty it leaves. A reported symptom is not a confirmed cause.” Say saved or live according to the operation, not server configuration. |
+| 1:20–1:50 | Inspectable fictional installation record, source assertion versus engineer review, linked revised brief | “An import can assert a lot, but a reviewer checks the installation evidence. This record changes what we know. The revised brief keeps the earlier claim and explains the correction.” |
+| 1:50–2:20 | Same vehicle, reviewed next action, repair and distinct verification | “The application enforces the review and repair prerequisites. These are simulated workshop records, not a real repair. Replacement and repair verification are separate steps.” |
+| 2:20–2:45 | Exported packet, original turn, installation source, review and model fingerprint | “The packet preserves source lineage, model decisions and reviewer history. Another engineer can inspect and challenge it. Human usefulness and accuracy measurements are still pending.” |
+| 2:45–3:00 | Event contribution list and verified repository/video links | “The event work adds a sourced, correctable investigation and a reproducible review path. The reused platform supplies operations context. The repository and public replay let you inspect the evidence.” |
 
-“Automotive quality teams receive scattered owner complaints, often in different languages. TraceX turns a complaint into reviewable facts and an audit trail. The frontline platform existed before this event. This submission adds verified Meta intake, stricter grounding and translation checks, and a reproducible judge path.”
+Show a close view of the current fact or decision, readable captions, and a short pause on the changed evidence. Avoid a tour of unrelated dashboards. If real audio has not been validated on the recording device, use the visible text fallback and describe it as typed intake. Browser Web Speech and optional Deepgram supply transcription; Muse Spark is not the speech recognizer in this path.
 
-Show Indie developer / Build for Your World, and label the example **synthetic**.
+If the saved model calls do not demonstrate an improvement on the ambiguous report, show the actual limitation. Do not invent a useful answer, human review, source document or repair to fit the script. A scripted operator action in this fictional recording is not a study participant result.
 
-## 0:25–1:15 — Useful Meta step
+## Recording and release checks
 
-Open **Meta complaint intake** and click **Run Meta complaint**. Show the original Hindi complaint, the deterministic language result, and the accepted Muse Spark translation. Read the actual result rather than promising a particular field. Show any facts requiring confirmation and the fallback status. Browser speech recognition supplies text; do not call this Meta audio transcription.
+- Record against an isolated, persisted fixture database. Reuse the original recorded interaction and campaign state for playback; do not remap historical outputs into new evidence.
+- Review each claim and observation through the UI before approval. The review records are labelled simulated actions in the fictional scenario.
+- Include the source record, exact model ID, recorded timestamp, and failure/fallback state when applicable. Replaying the UI makes zero inference calls.
+- Verify 180 seconds, readable captions and audible narration with `ffprobe` plus sampled frame/audio inspection. System text-to-speech narration is synthetic narration, not a participant interview.
+- Keep historical statistics in the [claim index](reports/hackathon/CLAIM_INDEX.md). The 5/8 recall equals its count baseline; four model agreements out of eight are not human accuracy. No accident-prevention or productivity result is established.
+- Upload the final video, open it signed out, and record the actual URL in [submission links](reports/hackathon/submission_links.json). Check the portal's accepted format, final source commit and actual team members. A local MP4 is not a public submission.
 
-“No new vehicle identity or changed numbers are accepted. A failed or unsupported model output falls back.”
-
-## 1:15–2:00 — Human decision and safety
-
-Review the original complaint beside accepted facts. Show the completed case if this run created one, then the case queue. Explain that an engineer must decide what inspection/action to take. The separate synthetic brake-emergency seed demonstrates local safety escalation, which works without Meta; do not attribute that existing emergency detection to this new model run.
-
-Use the issued supervisor browser session for any takeover/release demonstration. Operator API-key sign-in is a service role, not a supervisor.
-
-## 2:00–2:40 — Actual audit evidence
-
-Show the intake event ID, accepted/rejected fields and chain verification. The live proof records model, endpoint, completion status and spend accounting. Describe the chain as tamper-evident. An intact chain proves integrity of these recorded actions, not truth of every customer statement.
-
-## 2:40–3:00 — Contribution and limitations
-
-“This is an Indie prototype for multilingual automotive quality intake. We reuse the earlier operations platform. Today's submission proves a live Meta text workflow and makes its review and setup reproducible. The historical recall statistics are deterministic component-level results, not Meta accuracy or lives saved. The multilingual evaluation sets are synthetic; the human defect-label study is unfinished.”
-
-Keep the last screen on the accepted model output and audit row. Show a repo/demo link, with credentials hidden.
-
-## LotGuard arc — alternative 3-minute flow (one cracked part protects its lot)
-
-Same prepare step (`bash scripts/judge_setup.sh`, `http://127.0.0.1:8000/ui/#demo`).
-All LotGuard data is synthetic and labelled; notices and replies are recorded
-locally only — say "simulated owner check" on camera, never "sent".
-
-**0:00–0:30 — The crack.** Open step 5 on #demo ("LotGuard: one cracked part
-protects its whole lot"), then the lot investigation. Show the lot card:
-supplier SYN-AXLEWORKS, lot `LOT-SYN-2023-03-A`, build window, slice
-(2023 Honda CR-V, suspension), and the rationale line naming the
-workshop-verified seed record. Read the risk reasons aloud (tier, complaint
-count, hazard mentions). Never call this a crash prediction.
-
-**0:30–1:20 — The check.** Click **Start owner check** (simulated). Record a few
-symptom replies (clunk / wear / pull) and one `None` to show both paths. Watch
-the counters move and the recommendation flip to *escalate*. Mention: a NONE
-majority would instead recommend monitoring — the loop can stand down.
-
-**1:20–2:10 — The gate.** Review the grounded brief (every claim cites record
-IDs). Sign in as supervisor (**Have a supervisor session?** with the setup
-session) and **Approve** with the `inspect_7d` lane. Show the approval row:
-who decided, what verification snapshot they saw, and the ledgered
-`approval_decided` action. Note the workshop queue was locked until now.
-
-**2:10–3:00 — The save.** Record workshop outcomes on the top-ranked owners
-(`Crack found` / `Wear only` / `No issue`) and watch yield update from outcomes
-only. Open the impact panel: exposed lot vs inspected vs confirmed, and the
-time-to-protect clock. Export the evidence packet. Close: "24 inspected instead
-of a blanket recall visit for the whole lot — earlier verified inspection, not
-lives-saved arithmetic."
+The participant guide requires a three-minute video focused on event-built code/functionality and disclosure of the reused codebase. The final [source manifest](reports/hackathon/source_manifest.json) must point to the submitted source commit; the old snapshot must not be presented as current. See [contribution provenance](ELIGIBLE_WORK.md) for the packaging procedure.

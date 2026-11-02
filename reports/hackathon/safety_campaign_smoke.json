@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-10-29T14:00:28.692434+00:00",
+  "base_url": "http://127.0.0.1:8765",
+  "synthetic_report": true,
+  "demo_api": "ok",
+  "evidence_packet_api": "ok",
+  "campaign_id": "sc_01m63v6zdy0pxnkk6ay3rmcjp5",
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-29T12:47:29.740275+00:00",
+    "first_inspection_at": "2026-10-29T12:47:29.787418+00:00",
+    "first_verified_repair_at": "2026-10-29T12:47:29.822798+00:00"
+  },
+  "reply_analysis": {
+    "mode": "meta",
+    "model_id": "meta-models/muse-spark-open-1026",
+    "suggestions": [
+      {
+        "symptom": "clunk",
+        "quote": "Meri gaadi se speed breaker par khat-khat awaaz aati hai aur steering left ki taraf khinchti hai."
+      },
+      {
+        "symptom": "steering_pull",
+        "quote": "Meri gaadi se speed breaker par khat-khat awaaz aati hai aur steering left ki taraf khinchti hai."
+      }
+    ],
+    "review_required": true,
+    "note": "Read the original reply and select symptoms. This draft cannot diagnose or clear a vehicle.",
+    "fallback_reason": null
+  }
+}

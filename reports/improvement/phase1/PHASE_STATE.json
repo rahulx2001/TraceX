@@ -1,0 +1,27 @@
+{
+  "current_phase": 7,
+  "completed_phases": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "blocked_reason": null,
+  "last_commit": "3a50479260598d48891aa883006d6fcbf61226e5",
+  "updated_at": "2026-11-01T07:45:46.803497+00:00",
+  "last_commit_definition": "Verified parent at phase record creation; containing Phase 6 commit is resolved from git history.",
+  "acceptance_amendments": [
+    "DEV-20261101-01"
+  ],
+  "human_only_phases": [
+    7,
+    8
+  ],
+  "future_phases": {
+    "7": "not executed; human collection 2027\u20132028, outcome cutoff 2029-12-31, final analysis by 2030-06-30",
+    "8": "not executed; separate human merge decision"
+  }
+}

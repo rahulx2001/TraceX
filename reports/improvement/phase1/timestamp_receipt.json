@@ -1,0 +1,13 @@
+{
+  "status": "calendar_receipt_obtained_blockchain_verification_pending",
+  "created_at": "2026-10-31T16:26:24.247264+00:00",
+  "proof": "reports/improvement/phase1/FREEZE_HASHES.sha256.ots",
+  "proof_sha256": "6cdf00d95692f9dd71140fed7bc5b2bf4961ca7dc2ae137e56e1d569b2fc4405",
+  "stamped_file": "reports/improvement/phase1/FREEZE_HASHES.sha256",
+  "stamped_file_sha256": "c1c71d56f7f646b9179e26de8a8311286c40c136a479afbe8de3d11e6cc7e978",
+  "environment_sha256": "0e8e9602ee2f632bec363efacc5234caaafc3fe8882a7ee633dd9b79b00248b4",
+  "exact_command": "/private/tmp/rca-ots-20261031/bin/ots --no-cache stamp reports/improvement/phase1/FREEZE_HASHES.sha256",
+  "exit_code": 0,
+  "confirmed_external_timestamp": false,
+  "note": "Public calendar receipt only. Human must upgrade and verify later; frozen manifest remains pending_human."
+}

@@ -1,0 +1,91 @@
+{
+  "version": 2,
+  "status": "retrospective_reanalysis_after_inspecting_original_test_results",
+  "scope": {
+    "makes": [
+      "FORD",
+      "HONDA",
+      "HYUNDAI",
+      "KIA",
+      "TOYOTA"
+    ],
+    "model_years": [
+      2015,
+      2024
+    ],
+    "components": [
+      "FUEL SYSTEM"
+    ],
+    "recall_type": "V",
+    "complaint_window": [
+      "2015-01-01",
+      "2024-12-31"
+    ]
+  },
+  "scope_reason": "Restore the originally documented five-make/model-year scope. Fuel system is the only component with existing classifier coverage; scope was chosen for completion cost, not recall outcomes.",
+  "train_window": [
+    "2015-01-01",
+    "2020-12-31"
+  ],
+  "evaluation_window": [
+    "2021-01-01",
+    "2024-12-31"
+  ],
+  "classifier": {
+    "model": "meta-models/muse-spark-open-1026",
+    "prompt_version": "defect-cls-v2",
+    "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1"
+  },
+  "counts": {
+    "complaints": 2203,
+    "recall_scope_rows": 360,
+    "campaigns": 77,
+    "classification_inputs": 2498,
+    "pending_classification": 1281,
+    "human_sample": 300
+  },
+  "inputs": {
+    "complaints": {
+      "path": "data/defect/repair/complaints.parquet",
+      "sha256": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63"
+    },
+    "recall_scopes": {
+      "path": "data/defect/repair/recall_scopes.parquet",
+      "sha256": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149"
+    },
+    "classification_inputs": {
+      "path": "data/defect/repair/classification_inputs.parquet",
+      "sha256": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b"
+    },
+    "pending_complaints": {
+      "path": "data/defect/repair/pending_complaints.parquet",
+      "sha256": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+    }
+  },
+  "original_sources": {
+    "recall_zip_sha256": "6e886e1076d33dc457f44deafb848c28a791ec406022d6e67d1cc3662e3cbebc",
+    "complaints_sha256": "2a6beb4ff820c7c5d1a28e902d1a6b572d7a27db9a0746922e880e0ca9f69b08",
+    "classifications_sha256": "c9e6171beda60c4c048a62c6f114b64722d1624b95cb8916dcaaa4e63d62ad1d",
+    "recall_labels_sha256": "bf5f0f94c0038949752629f256429edd2ece4b43764190f485d5459796a9bbe2"
+  },
+  "comparison": {
+    "matching": "make + component + specific defect; other_unclear never establishes a defect match",
+    "availability": "weekly counts become available on the next Monday; minimum actionable lead 7 days",
+    "confirmation_horizon_days": 364,
+    "baselines": [
+      "original weekly thresholds",
+      "rolling count",
+      "seeded random"
+    ],
+    "budget": "same number of alert episodes, with the same per-slice cooldown",
+    "random_draws": 100,
+    "selection": "tune only on 2015-2020; freeze configuration and hashes before reanalysis",
+    "limitations": [
+      "2021-2024 was already examined; this is not a fresh holdout",
+      "model-labelled recalls are not independent human truth",
+      "matching is at make/defect level, not proof of physical defect identity",
+      "2026 model may know historical recalls; retrospective lead time is not prospective prediction",
+      "human classification accuracy stays unavailable until human review"
+    ]
+  }
+}

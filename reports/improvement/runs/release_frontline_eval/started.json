@@ -1,0 +1,27 @@
+{
+  "run_id": "release_frontline_eval",
+  "config": {
+    "command": [
+      "make",
+      "-f",
+      "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/Makefile",
+      "PY=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python",
+      "eval-frontline"
+    ],
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/runtime/release_eval",
+    "PYTHONPATH": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+    "model_api_keys": "cleared"
+  },
+  "config_hash": "9c9b1fe4dd6f3721a79f599a03c97b2be9ada2ff3678e943c290e9e4adc3b2b4",
+  "input_hashes": {
+    "reports/improvement/results.json": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+    "reports/improvement/development_manifest.json": "d904a27c970f7598f46f399ef5052eb88bcdaa650c3fa137b6f485e881f08220"
+  },
+  "data_hash": "fc35faa5a03e69103b0660581c5afda15b8e6c7e6e2e556aa49fea63c7a11215",
+  "code_commit": "3e4add4561234fc35ba7f2964f6e15fa788c1405",
+  "code_hash": "7c3c3678368a0ede25facf6f6f31e50c4575a53103309e8740a2d72e755a78b9",
+  "seed": null,
+  "split": "technical validation; not model selection",
+  "exact_command": "FRONTLINE_TEST_ISOLATION=1 PYTHONPATH=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement make -f /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/Makefile PY=/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python eval-frontline",
+  "started_at": "2026-10-31T13:27:05.397453+00:00"
+}

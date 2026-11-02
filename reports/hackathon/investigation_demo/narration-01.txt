@@ -1,0 +1,1 @@
+First, Muse Spark Open extracts observations from the owner's Hinglish report. These are actual saved outputs from a live Meta model call. Each interpretation is shown beside its original source sentence. The model preserves uncertainty about the part, instead of treating a reported sound as a confirmed mechanical cause.

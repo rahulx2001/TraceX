@@ -1,0 +1,240 @@
+→ Hackathon demo seed (first start only)…
+applied migrations: 001, 004
+→ Container bootstrap: init-ops, seed-automotive, seed-finance
+{
+  "campaign_id": "sc_01m6634203690thy5xxfhdzad6",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:44:11.556367+00:00",
+    "first_inspection_at": "2026-10-30T09:44:11.603030+00:00",
+    "first_verified_repair_at": "2026-10-30T09:44:11.630724+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+{
+  "campaign_id": "sc_01m6634203690thy5xxfhdzad6",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:44:11.556367+00:00",
+    "first_inspection_at": "2026-10-30T09:44:11.603030+00:00",
+    "first_verified_repair_at": "2026-10-30T09:44:11.630724+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+   AI layer mode: deterministic
+   Demo path: http://localhost:8000/ui/#demo
+→ Applying database migrations…
+already up to date.
+already up to date.
+already up to date.
+→ Container bootstrap: init-ops, init-automotive, init-finance
+Container trust: local_trust_initialized
+→ Starting Skew AI API on 0.0.0.0:8000
+   Dashboard (if built): http://localhost:8000/ui/
+   Workers: 1 (in-process call registry — do not pass --workers / do not scale replicas)
+   Auth: FRONTLINE_API_KEY is set
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     172.17.0.1:55156 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55168 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55174 - "GET /ui/ HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55182 - "GET /api/safety-campaigns HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:55190 - "GET /api/safety-campaigns HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55200 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/packet HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55202 - "GET /api/safety-campaigns/review-kit/original-300 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55206 - "GET /ui/review-scripts/original-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55220 - "GET /api/safety-campaigns/review-kit/development HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55226 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55230 - "GET /api/safety-campaigns/review-kit/fuel-complaints HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55246 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55258 - "GET /api/safety-campaigns/review-kit/recalls HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55270 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55286 - "GET /api/safety-campaigns/review-kit/study HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55302 - "GET /ui/review-scripts/reviewer-study.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54256 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55312 - "GET /ui/ HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55312 - "GET /ui/assets/index-Bu55Ojg3.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55324 - "GET /ui/assets/index-Cl6MPf0i.css HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55324 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:55340 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:55348 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55324 - "GET /ui/assets/geist-sans-400-B40WzpMT.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55312 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55346 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55388 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:55366 - "GET /api/frontline/auth/oidc/status HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55398 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55398 - "GET /ui/assets/geist-mono-400-DTRLJnHl.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /ui/assets/geist-sans-600-CSETrqM2.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55412 - "GET /ui/assets/geist-sans-500-CTWBw9NS.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55388 - "GET /ui/assets/geist-mono-500-YINYabwD.woff2 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:55388 - "GET /api/frontline/auth/verify HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:55388 - "GET /api/frontline/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:55366 - "GET /api/frontline/auth/verify HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55388 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55388 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55398 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/ai/status HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55412 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /api/frontline/auth/verify HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55412 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /api/frontline/auth/oidc/status HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55398 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "POST /api/frontline/auth/session/exchange HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55398 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55412 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55388 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55398 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55412 - "POST /api/interactions/start?channel=web_text&locale=en-US HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51460 - "WebSocket /ws/interaction/int_01m66348kp5z9aj5w0v976940p" [accepted]
+INFO:     connection open
+INFO:     172.17.0.1:55412 - "GET /api/interactions/int_01m66348kp5z9aj5w0v976940p/evidence HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51464 - "GET /api/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51464 - "GET /api/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51464 - "GET /api/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51464 - "GET /api/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+semantic embedder unavailable: ArtifactIntegrityError
+INFO:     172.17.0.1:51464 - "GET /api/safety-campaigns/report-sources/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 409 Conflict
+INFO:     172.17.0.1:51464 - "GET /api/safety-campaigns/report-sources/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 409 Conflict
+{"ts": 1793353460.460934, "event": "otel.span", "request_id": "req_fb603a50dc40", "pack_id": "", "name": "orchestrator.enrichment", "trace_id": "tr_8f6617029dac45f1", "span_id": "sp_43a7bcf4", "duration_ms": 368.2096919997093, "attributes": {"interaction_id": "int_01m66348kp5z9aj5w0v976940p"}, "instrumentation": "in-house"}
+INFO:     172.17.0.1:55412 - "POST /api/interactions/int_01m66348kp5z9aj5w0v976940p/end HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51464 - "GET /api/safety-campaigns/report-sources/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51464 - "GET /api/safety-campaigns/report-sources/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55376 - "GET /api/frontline/auth/me HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55412 - "GET /api/safety-campaigns HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55398 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /api/safety-campaigns/report-sources/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/investigations HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /ui/favicon.svg HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51464 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/safety-campaigns HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55366 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/investigations HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /api/safety-campaigns/report-sources/interactions/int_01m66348kp5z9aj5w0v976940p HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "POST /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/investigations HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "POST /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/investigations/sir_01m6634d80cn4w12bjzpxm5c2j/review HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "POST /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/investigations HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "POST /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/investigations/sir_01m6634dgtfqp34e811sedg9jm/review HTTP/1.1" 200 OK
+INFO:     172.17.0.1:55360 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/packet HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1]
+{
+  "campaign_id": "sc_01m6634203690thy5xxfhdzad6",
+  "synthetic_demo": true,
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 1,
+    "first_reply_at": "2026-10-30T09:44:11.556367+00:00",
+    "first_inspection_at": "2026-10-30T09:44:11.603030+00:00",
+    "first_verified_repair_at": "2026-10-30T09:44:11.630724+00:00"
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace"
+}
+   AI layer mode: deterministic
+   Demo path: http://localhost:8000/ui/#demo
+→ Applying database migrations…
+already up to date.
+already up to date.
+already up to date.
+→ Container bootstrap: init-ops, init-automotive, init-finance
+Container trust: existing_trust_unchanged
+→ Starting Skew AI API on 0.0.0.0:8000
+   Dashboard (if built): http://localhost:8000/ui/
+   Workers: 1 (in-process call registry — do not pass --workers / do not scale replicas)
+   Auth: FRONTLINE_API_KEY is set
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     172.17.0.1:51492 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51498 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51508 - "GET /ui/ HTTP/1.1" 200 OK
+INFO:     172.17.0.1:51510 - "GET /api/safety-campaigns HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:51514 - "GET /api/safety-campaigns HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58642 - "GET /api/safety-campaigns/sc_01m6634203690thy5xxfhdzad6/packet HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58654 - "GET /api/safety-campaigns/review-kit/original-300 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58656 - "GET /ui/review-scripts/original-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58662 - "GET /api/safety-campaigns/review-kit/development HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58664 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58676 - "GET /api/safety-campaigns/review-kit/fuel-complaints HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58680 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58692 - "GET /api/safety-campaigns/review-kit/recalls HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58700 - "GET /ui/review-scripts/evidence-review.js HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58706 - "GET /api/safety-campaigns/review-kit/study HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58722 - "GET /ui/review-scripts/reviewer-study.js HTTP/1.1" 200 OK

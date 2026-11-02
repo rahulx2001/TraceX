@@ -1,0 +1,27 @@
+{
+  "status": "candidate_split_QC_only_not_approved_or_frozen",
+  "scope": "unchanged repaired five-make MY2015-2024 FUEL SYSTEM corpus",
+  "complaint_counts": {
+    "initial_train_2015_2016": 13,
+    "locked_historical_test_2021_2024": 1940,
+    "validation_2017_2018": 24,
+    "validation_2019_2020": 226
+  },
+  "campaign_counts": {
+    "initial_train_2015_2016": 11,
+    "locked_historical_test_2021_2024": 41,
+    "validation_2017_2018": 11,
+    "validation_2019_2020": 14
+  },
+  "campaign_ids_crossing_splits": [],
+  "complaint_ids_crossing_splits": [],
+  "exact_normalized_cross_split_pairs": [],
+  "near_duplicate_cross_split_pairs": [],
+  "near_duplicate_rule": "casefold + Unicode word tokens; five-token shingles; Jaccard >=0.80; deterministic all cross-split pairs sharing a shingle; semantic paraphrases are not ruled out; texts shorter than five tokens excluded from shingle search",
+  "limitation": "Complaint-to-physical-campaign linkage is absent. Campaign scope rows can be grouped exactly; campaign-independent complaint training cannot yet be certified. No rows were dropped and no denominator was changed.",
+  "new_test_window": "not frozen: 2021-2024 and 2025 already opened; safety report inspected recalls through 2026. evidence_v1 uses different makes and would change scope. Need independent custodian evidence of an unused same-scope window, or future accrual.",
+  "inputs": {
+    "data/defect/repair/complaints.parquet": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+    "data/defect/repair/recall_scopes.parquet": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149"
+  }
+}

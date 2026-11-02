@@ -1,0 +1,107 @@
+{
+  "verified_at": "2026-11-02T17:33:44.129Z",
+  "checks": [
+    "isolated: current UI counts match the running API, with explicit corpus/operations scope",
+    "regular: current UI counts match the running API, with explicit corpus/operations scope (read-only browser forwarding for this check)",
+    "Refresh respects an unchecked simulated-traffic filter",
+    "Simulation refresh uses the new included filter; simulation response is display-only",
+    "Late responses cannot replace counts for the currently selected filter",
+    "A metrics outage clears stale counts and shows unavailable instead of zero",
+    "Refresh recovers the counts after the outage"
+  ],
+  "snapshots": {
+    "isolated": {
+      "base": "http://127.0.0.1:8766",
+      "metrics": {
+        "window_days": 7,
+        "cases": {
+          "open": 0,
+          "pending_followup": 0,
+          "closed": 0,
+          "critical_open": 0,
+          "created_in_window": 0
+        },
+        "investigations": {
+          "open": 0,
+          "monitoring": 0
+        },
+        "interactions_active": 0,
+        "alert_dead_letters_pending": 0,
+        "connector_deliveries_pending": 0,
+        "case_notes_in_window": 0,
+        "fix_loop": {
+          "fixes_recorded": 0,
+          "resolved": 0,
+          "reopened": 0,
+          "reopen_rate": 0,
+          "series": []
+        },
+        "ts": "2026-11-02T17:33:40.276757"
+      },
+      "funnel": {
+        "started": 0,
+        "completed": 0,
+        "abandoned": 0,
+        "escalated": 0,
+        "takeovers": 0,
+        "advisories_notified": 0,
+        "cases_created": 0,
+        "include_simulated": true
+      },
+      "spike_week": "2026-W45",
+      "spikes": [
+        {
+          "iso_week": "2026-W45",
+          "category": "SERVICE BRAKES",
+          "entity_2": "HONDA",
+          "entity_3": "",
+          "record_count": 4,
+          "baseline_mean": 1,
+          "z_score": 6
+        }
+      ]
+    },
+    "regular": {
+      "base": "http://127.0.0.1:8000",
+      "metrics": {
+        "window_days": 7,
+        "cases": {
+          "open": 2,
+          "pending_followup": 36,
+          "closed": 0,
+          "critical_open": 24,
+          "created_in_window": 1
+        },
+        "investigations": {
+          "open": 4,
+          "monitoring": 0
+        },
+        "interactions_active": 0,
+        "alert_dead_letters_pending": 0,
+        "connector_deliveries_pending": 1,
+        "case_notes_in_window": 0,
+        "fix_loop": {
+          "fixes_recorded": 0,
+          "resolved": 0,
+          "reopened": 0,
+          "reopen_rate": 0,
+          "series": []
+        },
+        "ts": "2026-11-02T17:33:41.463710"
+      },
+      "funnel": {
+        "started": 8,
+        "completed": 1,
+        "abandoned": 6,
+        "escalated": 1,
+        "takeovers": 0,
+        "advisories_notified": 0,
+        "cases_created": 0,
+        "include_simulated": true
+      },
+      "spike_week": "2026-W44",
+      "spikes": []
+    }
+  },
+  "scope": "Read-only API checks plus browser display fixtures. No database seeding, inference, customer messages or model evaluation."
+}

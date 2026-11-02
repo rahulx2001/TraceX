@@ -1,0 +1,91 @@
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 100 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/index.html                              0.71 kB │ gzip:   0.42 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/assets/index-WHT8lY2Z.css             125.04 kB │ gzip:  22.34 kB
+../../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD/ui/assets/index-DGJq7BeF.js              730.03 kB │ gzip: 194.65 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../src/apiAuth.js is dynamically imported by ../src/ai/tools/Alerts.jsx but also statically imported by ../routes/AnalyticsDesk.jsx, ../routes/AuditReports.jsx, ../routes/CallWidget.jsx, ../routes/CaseQueue.jsx, ../routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 189ms
+Starting isolated auth-mode API…
+PASS: clean browser reaches credential entry, rejects invalid key and refuses unauthorized review.
+PASS: issued supervisor session signs in and records the permitted review with the actual actor.
+PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → supervisor review → downloaded original/revised packet. No mocked transport, model or real-audio claim.
+PASS: UI fixtures verify reviewed source handoff, vehicle reconfirmation, original citations, correction-only revision and trace-review routing (no model calls).
+Starting isolated open-mode API…
+PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.
+Isolated failure artifacts: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-CjZOyD
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Toggle navigation', exact: true })[22m
+[2m    - locator resolved to <button type="button" aria-expanded="true" aria-label="Toggle navigation" class="ghost icon-btn mobile-nav-btn">☰</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <nav class="mobile-nav" aria-label="Mobile navigation">…</nav> from <div class="mobile-nav-scrim">…</div> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <nav class="mobile-nav" aria-label="Mobile navigation">…</nav> from <div class="mobile-nav-scrim">…</div> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    58 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <nav class="mobile-nav" aria-label="Mobile navigation">…</nav> from <div class="mobile-nav-scrim">…</div> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/dashboard/scripts/[eval1]:171:84 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Toggle navigation', exact: true })",
+    '    - locator resolved to <button type="button" aria-expanded="true" aria-label="Toggle navigation" class="ghost icon-btn mobile-nav-btn">☰</button>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <nav class="mobile-nav" aria-label="Mobile navigation">…</nav> from <div class="mobile-nav-scrim">…</div> subtree intercepts pointer events',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <nav class="mobile-nav" aria-label="Mobile navigation">…</nav> from <div class="mobile-nav-scrim">…</div> subtree intercepts pointer events',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    58 × waiting for element to be visible, enabled and stable',
+    '       - element is visible, enabled and stable',
+    '       - scrolling into view if needed',
+    '       - done scrolling',
+    '       - <nav class="mobile-nav" aria-label="Mobile navigation">…</nav> from <div class="mobile-nav-scrim">…</div> subtree intercepts pointer events',
+    '     - retrying click action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v25.1.0

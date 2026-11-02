@@ -1,0 +1,10 @@
+{
+  "phase": "evaluation",
+  "completed_at": "2026-11-02T13:18:47+00:00",
+  "valid_predictions": 240,
+  "records": 300,
+  "complete": false,
+  "failed_batches_this_run": 9,
+  "human_accuracy_measured": false,
+  "protocol_sha256": "c173d240bfaa98bbf2d10a55f311f691af1bf605ec7d7ff8ddec416e914aeae8"
+}

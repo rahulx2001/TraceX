@@ -222,7 +222,9 @@ def test_server_voice_capabilities_helper(monkeypatch):
 
     monkeypatch.delenv("DEEPGRAM_ENABLED", raising=False)
     monkeypatch.delenv("DEEPGRAM_API_KEY", raising=False)
-    assert stt_tts.server_voice_capabilities() == {"server_stt": False, "server_tts": False}
+    capabilities = stt_tts.server_voice_capabilities()
+    assert capabilities["server_stt"] is False and capabilities["server_tts"] is False
+    assert "audio/wav" in capabilities["accepted_audio_mime"] and "audio/mp4" not in capabilities["accepted_audio_mime"]
 
 
 # ── WS integration (real socket, fake Deepgram transport) ───────────────────
@@ -263,7 +265,7 @@ def test_ws_ready_advertises_voice_off_by_default(audio_client, monkeypatch):
     with audio_client.websocket_connect(r.json()["ws_url"]) as ws:
         ready = ws.receive_json()
         assert ready["type"] == "ready"
-        assert ready["voice"] == {"server_stt": False, "server_tts": False}
+        assert ready["voice"]["server_stt"] is False and ready["voice"]["server_tts"] is False
         ws.send_json({"type": "hangup"})
 
 
@@ -273,7 +275,7 @@ def test_ws_user_audio_end_to_end(audio_client, deepgram_env, fake_deepgram):
     payload = base64.b64encode(b"\x1a\x45\xdf\xa3fake-webm-utterance").decode()
     with audio_client.websocket_connect(r.json()["ws_url"]) as ws:
         ready = ws.receive_json()
-        assert ready["voice"] == {"server_stt": True, "server_tts": True}
+        assert ready["voice"]["server_stt"] is True and ready["voice"]["server_tts"] is True
         ws.send_json({
             "type": "user_audio",
             "audio": payload,
@@ -299,6 +301,62 @@ def test_ws_user_audio_end_to_end(audio_client, deepgram_env, fake_deepgram):
     detail = audio_client.get(f"/api/interactions/{iid}").json()
     texts = [t.get("text", "") for t in detail.get("turns", [])]
     assert any("my brakes are grinding" in t for t in texts)
+
+
+def test_selected_hindi_locale_reaches_server_recognition_and_rejects_mid_report_switch(audio_client, deepgram_env, fake_deepgram):
+    from urllib.parse import parse_qs, urlparse
+    assert audio_client.post("/api/interactions/start?channel=web_text&locale=fr-FR").status_code == 422
+    response = audio_client.post("/api/interactions/start?channel=web_text&locale=hi-IN")
+    assert response.status_code == 200
+    assert response.json()["locale"] == "hi-IN"
+    assert response.json()["speech_support"]["reply_locale"] == "en-US"
+    with audio_client.websocket_connect(response.json()["ws_url"]) as ws:
+        ready = ws.receive_json()
+        assert ready["locale"] == "hi-IN" and "hi-IN" in ready["voice"]["stt_locales"]
+        ws.send_json({"type": "user_audio", "audio": base64.b64encode(b"fixture-audio").decode(), "mime": "audio/wav", "turn_id": "language-turn", "turn_seq": 1})
+        frames = _drain_until(ws, {"turn_result"})
+        assert any(f.get("type") == "heard_turn" for f in frames)
+        assert parse_qs(urlparse(fake_deepgram[0]["url"]).query)["language"] == ["hi"]
+        ws.send_json({"type": "user_audio", "audio": base64.b64encode(b"fixture-audio").decode(), "mime": "audio/wav", "locale": "en-US", "turn_id": "language-switch"})
+        refused = _drain_until(ws, {"error"})[-1]
+        assert refused["code"] == "bad_audio" and "selected language" in refused["detail"]
+        ws.send_json({"type": "hangup"})
+
+
+def test_authenticated_second_operator_takes_queued_report_with_context(audio_client, monkeypatch):
+    from src.api.rbac import issue_session
+    from src.data.warehouse import ops_con
+    monkeypatch.setenv("FRONTLINE_OPEN_MODE", "0")
+    monkeypatch.setenv("FRONTLINE_AUTH_REQUIRED", "1")
+    monkeypatch.setenv("FRONTLINE_API_KEY", "voice-auth-test-key")
+    def headers(actor, role):
+        return {"X-API-Key": "voice-auth-test-key", "X-Frontline-Session": issue_session(actor, role, issuer_role="admin")["token"]}
+    operator = headers("first-operator", "agent")
+    specialist = headers("second-operator", "supervisor")
+    other = headers("third-operator", "supervisor")
+    response = audio_client.post("/api/interactions/start?channel=web_text", headers=operator)
+    assert response.status_code == 200
+    iid = response.json()["interaction_id"]
+    with audio_client.websocket_connect(response.json()["ws_url"], headers=operator) as ws:
+        assert ws.receive_json()["type"] == "ready"
+        ws.send_json({"type": "user_turn", "text": "My vehicle makes a knocking sound.", "turn_id": "handoff-context", "turn_seq": 1})
+        _drain_until(ws, {"turn_result"})
+        queued = audio_client.post(f"/api/interactions/{iid}/handoff/accept", json={"force": True}, headers=operator)
+        assert queued.status_code == 200 and queued.json()["accepted"] is True
+        with ops_con() as con:
+            assert con.execute("SELECT status FROM handoff_requests WHERE interaction_id=?", [iid]).fetchone()[0] == "pending"
+        detail = audio_client.get(f"/api/interactions/{iid}", headers=specialist).json()
+        assert any(t["speaker"] == "customer" and "knocking" in t["text"] for t in detail["turns"])
+        assert audio_client.post(f"/api/interactions/{iid}/takeover", headers=operator).status_code == 403
+        taken = audio_client.post(f"/api/interactions/{iid}/takeover", headers=specialist)
+        assert taken.status_code == 200 and taken.json()["claimed_by"] == "second-operator"
+        with ops_con() as con:
+            status, actor = con.execute("SELECT status, claimed_by FROM handoff_requests WHERE interaction_id=?", [iid]).fetchone()
+        assert status == "claimed" and actor == "second-operator"
+        assert audio_client.post(f"/api/interactions/{iid}/takeover", headers=other).status_code == 409
+        assert audio_client.post(f"/api/interactions/{iid}/release", headers=other).status_code == 403
+        assert audio_client.post(f"/api/interactions/{iid}/release", headers=specialist).status_code == 200
+        audio_client.post(f"/api/interactions/{iid}/end", headers=operator)
 
 
 def test_ws_user_audio_without_opt_in_is_recoverable_error(audio_client, monkeypatch):

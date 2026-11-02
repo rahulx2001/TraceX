@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.35,
+      "label_id": "other_unclear",
+      "confidence": 0.35,
+      "evidence": "My right rear tire has been losing air for at least 6 months. My tire pressure light is constantly on.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.4,
+      "label_id": "other_unclear",
+      "confidence": 0.4,
+      "evidence": "The contact stated that while getting the vehicle service and the dealer advised him the vehicle had uneven trade wear on the tires.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.35,
+      "label_id": "other_unclear",
+      "confidence": 0.35,
+      "evidence": "there was an abnormal vibration in the vehicle. There was an abnormal humming sound coming from the vehicle.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "multiple_causes",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.35,
+        "evidence": "My right rear tire has been losing air for at least 6 months. My tire pressure light is constantly on.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.4,
+        "evidence": "The contact stated that while getting the vehicle service and the dealer advised him the vehicle had uneven trade wear on the tires.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.35,
+        "evidence": "there was an abnormal vibration in the vehicle. There was an abnormal humming sound coming from the vehicle.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "multiple_causes"
+      }
+    ]
+  },
+  "batch_key": "db225bddaddd98f03cb4dc7439ba3fe9a7f4d508b7aa6cf90d3ceb4d8b9562c4",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:18:24+00:00",
+  "completed_at": "2026-11-02T13:18:26+00:00"
+}

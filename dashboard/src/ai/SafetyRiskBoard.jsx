@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { aiGet } from "./aiApi.js";
 import SafetyRiskChip from "./SafetyRiskChip.jsx";
 
-export function BacktestHero({ h }) {
+export function BacktestHero({ h, compact = false }) {
   if (!h) return null;
   const hero = h.hero;
   const c = h.campaign_level || {};
-  return (
-    <div className="banner banner-ok ai-hero" data-testid="backtest-hero" style={{ marginBottom: 10 }}>
+  const detail = (
+    <>
       <strong>NHTSA backtest (2015-2024, 5 makes, production detector, in-sample):</strong>{" "}
       {c.campaigns ? <>{c.hits} of {c.campaigns} recall campaigns flagged early (median lead {c.lead_weeks_median} weeks)</>
         : <>{h.hits} of {h.recalls_scored} recall scope rows flagged early (median lead {h.lead_weeks_median} weeks)</>}
@@ -21,11 +21,34 @@ export function BacktestHero({ h }) {
         <> Largest: {hero.scope_entity_2} {hero.scope_category} flagged from {hero.first_flagged_week}, {hero.lead_weeks} weeks before recall {hero.advisory_id}.</>
       )}
       <div className="muted small">Correlation from self-reported complaints, not proof that a crash would have been prevented. Source: {h.source}</div>
-    </div>
+    </>
   );
+  if (compact) {
+    return (
+      <details className="warning-backtest" data-testid="backtest-hero">
+        <summary>
+          <span className="warning-backtest-label">
+            <strong>NHTSA backtest</strong>
+            <span>2015–2024 · 5 makes · in-sample</span>
+          </span>
+          <span className="warning-backtest-stat">
+            <strong>{c.campaigns ? c.hits : h.hits} / {c.campaigns || h.recalls_scored}</strong>
+            <span>{c.campaigns ? "recall campaigns" : "recall scope rows"} flagged early</span>
+          </span>
+          <span className="warning-backtest-stat">
+            <strong>{c.campaigns ? c.lead_weeks_median : h.lead_weeks_median} weeks</strong>
+            <span>median lead</span>
+          </span>
+          <span className="warning-backtest-toggle">Details <span aria-hidden="true">⌄</span></span>
+        </summary>
+        <div className="warning-backtest-detail">{detail}</div>
+      </details>
+    );
+  }
+  return <div className="banner banner-ok ai-hero" data-testid="backtest-hero" style={{ marginBottom: 10 }}>{detail}</div>;
 }
 
-export default function SafetyRiskBoard({ limit = 12 }) {
+export default function SafetyRiskBoard({ limit = 12, compact = false }) {
   const [d, setD] = useState(null);
   useEffect(() => {
     let live = true;
@@ -35,9 +58,16 @@ export default function SafetyRiskBoard({ limit = 12 }) {
   if (!d) return null;
   const rows = d.investigations || [];
   return (
-    <section className="ai-safety-board card" data-testid="safety-board" style={{ marginBottom: 14, padding: 12 }}>
-      <h3 className="analytics-h">Safety-first queue <span className="muted small">(brakes, steering, air bags, fuel/fire first)</span></h3>
-      <BacktestHero h={d.backtest_headline} />
+    <section className="ai-safety-board card" data-testid="safety-board" style={compact ? undefined : { marginBottom: 14, padding: 12 }}>
+      {compact ? (
+        <div className="warning-safety-heading">
+          <h2>Safety-first queue</h2>
+          <p>Brakes, steering, air bags and fuel/fire prioritized.</p>
+        </div>
+      ) : (
+        <h3 className="analytics-h">Safety-first queue <span className="muted small">(brakes, steering, air bags, fuel/fire first)</span></h3>
+      )}
+      <BacktestHero h={d.backtest_headline} compact={compact} />
       {d.error && (
         <div className="banner banner-warn small" role="alert" style={{ marginBottom: 10 }}>
           Could not load safety-first queue. Please check permissions or connection.
@@ -45,26 +75,28 @@ export default function SafetyRiskBoard({ limit = 12 }) {
       )}
       {!d.error && rows.length === 0 && <div className="muted small">No open investigations yet.</div>}
       {rows.length > 0 && (
-        <table className="table small">
-          <thead><tr><th>Risk</th><th>Investigation</th><th>Slice</th><th>Lot</th><th>Cases</th><th>Crash / fire / injury mentions</th></tr></thead>
-          <tbody>
-            {rows.map((r) => {
-              const m = (r.safety_risk && r.safety_risk.mentions) || {};
-              return (
-                <tr key={r.investigation_id}>
-                  <td><SafetyRiskChip risk={r.safety_risk} /></td>
-                  <td><a className="mono" href={`#issue/${encodeURIComponent(r.investigation_id)}`}>{r.investigation_id}</a></td>
-                  <td>{[r.slice_entity_2, r.slice_entity_3, r.slice_category].filter(Boolean).join(" ")}</td>
-                  <td>{r.lot ? <span className="chip mono">{r.lot.lot_id}</span> : <span className="muted small">slice only</span>}</td>
-                  <td>{r.case_count}</td>
-                  <td>{m.crash || 0} / {m.fire || 0} / {m.injury || 0}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="warning-safety-table" role="region" aria-label="Safety-first investigations" tabIndex={0} style={{ overflowX: "auto" }}>
+          <table className="table small">
+            <thead><tr><th>Risk</th><th>Investigation</th><th>Slice</th><th>Lot</th><th>Cases</th><th>Crash / fire / injury mentions</th></tr></thead>
+            <tbody>
+              {rows.map((r) => {
+                const m = (r.safety_risk && r.safety_risk.mentions) || {};
+                return (
+                  <tr key={r.investigation_id}>
+                    <td><SafetyRiskChip risk={r.safety_risk} /></td>
+                    <td><a className="mono" href={`#issue/${encodeURIComponent(r.investigation_id)}`}>{r.investigation_id}</a></td>
+                    <td>{[r.slice_entity_2, r.slice_entity_3, r.slice_category].filter(Boolean).join(" ") || "—"}</td>
+                    <td>{r.lot ? <span className="chip mono">{r.lot.lot_id}</span> : <span className="muted small">slice only</span>}</td>
+                    <td>{r.case_count}</td>
+                    <td>{m.crash || 0} / {m.fire || 0} / {m.injury || 0}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
-      <div className="muted small">{d.method}</div>
+      <div className={"muted small" + (compact ? " warning-safety-note" : "")}>{d.method}</div>
     </section>
   );
 }

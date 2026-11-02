@@ -248,15 +248,24 @@ async def test_api_export_and_replay_flow(locked, conn_env, reset_ops_db):
             ],
         )
 
-    r = locked.post(
-        "/api/frontline/connectors/export/case_export_1",
-        headers=HDR,
-    )
+    from src.frontline.ops import add_case_note
+    add_case_note("case_export_1", "Fictional assessment; request existing scan report.", author="test-advisor")
+    with patch("src.ai_layer.evidence.list_for_case", return_value=[{"evidence_id": "fixture-photo"}]):
+        r = locked.post(
+            "/api/frontline/connectors/export/case_export_1",
+            headers=HDR,
+        )
     assert r.status_code == 200, r.text
     body = r.json()
     assert body["ok"] is True
     assert body["status"] == "success"
     assert list(Path(conn_env["outbox"]).glob("*.json"))
+    packet = json.loads(next(Path(conn_env["outbox"]).glob("*.json")).read_text())
+    assert packet["extra"]["followup_draft"] == "draft"
+    assert packet["extra"]["notes"][0]["author"] == "test-advisor"
+    assert packet["extra"]["evidence_ids"] == ["fixture-photo"]
+    assert packet["extra"]["customer_delivery"] == "not_sent"
+    assert packet["audit"]["ledger_action_id"] == body["ledger_action_id"]
 
     # Force a pending delivery and replay
     set_connector_config(

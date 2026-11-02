@@ -4,14 +4,10 @@ export default function MetaTag({ models, mode, fallbackReason, style }) {
   const list = (models || []).filter(Boolean);
   if (mode === "enhanced" && list.length) {
     return (
-      <span className="chip ai-tag ai-tag-on" style={style} title="Produced by the optional Meta AI layer; claims are validated before display. Inspect the accepted output and its audit evidence.">
-        Powered by Meta · {list.join(" + ")}
-      </span>
+      <details style={style}><summary className="chip ai-tag ai-tag-on">AI-assisted</summary><span className="muted small">Model: {list.join(" + ")}. Check this result against its source evidence.</span></details>
     );
   }
   return (
-    <span className="chip ai-tag ai-tag-off" style={style} title="Deterministic rules path (default and fallback)">
-      Deterministic{fallbackReason && fallbackReason !== "no_key" ? ` · fallback: ${fallbackReason}` : ""}
-    </span>
+    <details style={style}><summary className="chip ai-tag ai-tag-off">Rules-based</summary><span className="muted small">Produced using rules.{fallbackReason ? ` Technical reason: ${fallbackReason}.` : ""}</span></details>
   );
 }

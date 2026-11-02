@@ -1,0 +1,1495 @@
+{
+  "sha256": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+  "body": {
+    "selected": {
+      "student": "ridge",
+      "config": {
+        "detector": "count",
+        "window": 13,
+        "minimum": 2,
+        "threshold": 0
+      },
+      "folds": [
+        {
+          "campaigns": 21,
+          "hits": 9,
+          "misses": 12,
+          "campaign_recall": 0.42857142857142855,
+          "alerts": 41,
+          "mature_alerts": 18,
+          "confirmed_mature_alerts": 6,
+          "episode_precision": 0.3333333333333333,
+          "median_lead_weeks": 31.285714285714285,
+          "objective": 0.375
+        },
+        {
+          "campaigns": 20,
+          "hits": 12,
+          "misses": 8,
+          "campaign_recall": 0.6,
+          "alerts": 48,
+          "mature_alerts": 25,
+          "confirmed_mature_alerts": 9,
+          "episode_precision": 0.36,
+          "median_lead_weeks": 44.0,
+          "objective": 0.45
+        }
+      ],
+      "qualified": false
+    },
+    "trials": [
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 2,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 6,
+            "misses": 15,
+            "campaign_recall": 0.2857142857142857,
+            "alerts": 17,
+            "mature_alerts": 5,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.6,
+            "median_lead_weeks": 31.5,
+            "objective": 0.3870967741935483
+          },
+          {
+            "campaigns": 20,
+            "hits": 8,
+            "misses": 12,
+            "campaign_recall": 0.4,
+            "alerts": 30,
+            "mature_alerts": 14,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.07142857142857142,
+            "median_lead_weeks": 22.214285714285715,
+            "objective": 0.12121212121212122
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 2,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 7,
+            "misses": 14,
+            "campaign_recall": 0.3333333333333333,
+            "alerts": 30,
+            "mature_alerts": 13,
+            "confirmed_mature_alerts": 5,
+            "episode_precision": 0.38461538461538464,
+            "median_lead_weeks": 40.42857142857143,
+            "objective": 0.3571428571428571
+          },
+          {
+            "campaigns": 20,
+            "hits": 13,
+            "misses": 7,
+            "campaign_recall": 0.65,
+            "alerts": 41,
+            "mature_alerts": 19,
+            "confirmed_mature_alerts": 5,
+            "episode_precision": 0.2631578947368421,
+            "median_lead_weeks": 36.0,
+            "objective": 0.37463976945244953
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "count",
+          "window": 4,
+          "minimum": 2,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 6,
+            "misses": 15,
+            "campaign_recall": 0.2857142857142857,
+            "alerts": 35,
+            "mature_alerts": 13,
+            "confirmed_mature_alerts": 4,
+            "episode_precision": 0.3076923076923077,
+            "median_lead_weeks": 32.714285714285715,
+            "objective": 0.29629629629629634
+          },
+          {
+            "campaigns": 20,
+            "hits": 10,
+            "misses": 10,
+            "campaign_recall": 0.5,
+            "alerts": 45,
+            "mature_alerts": 23,
+            "confirmed_mature_alerts": 8,
+            "episode_precision": 0.34782608695652173,
+            "median_lead_weeks": 42.0,
+            "objective": 0.41025641025641024
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 3,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 10,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.6666666666666666,
+            "median_lead_weeks": 25.714285714285715,
+            "objective": 0.2962962962962963
+          },
+          {
+            "campaigns": 20,
+            "hits": 5,
+            "misses": 15,
+            "campaign_recall": 0.25,
+            "alerts": 21,
+            "mature_alerts": 10,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.1,
+            "median_lead_weeks": 26.428571428571427,
+            "objective": 0.14285714285714288
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 3,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 16,
+            "mature_alerts": 6,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 30.714285714285715,
+            "objective": 0.24242424242424246
+          },
+          {
+            "campaigns": 20,
+            "hits": 7,
+            "misses": 13,
+            "campaign_recall": 0.35,
+            "alerts": 31,
+            "mature_alerts": 15,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.2,
+            "median_lead_weeks": 31.0,
+            "objective": 0.2545454545454545
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "count",
+          "window": 4,
+          "minimum": 3,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 17,
+            "mature_alerts": 7,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2857142857142857,
+            "median_lead_weeks": 31.714285714285715,
+            "objective": 0.22857142857142854
+          },
+          {
+            "campaigns": 20,
+            "hits": 7,
+            "misses": 13,
+            "campaign_recall": 0.35,
+            "alerts": 33,
+            "mature_alerts": 15,
+            "confirmed_mature_alerts": 4,
+            "episode_precision": 0.26666666666666666,
+            "median_lead_weeks": 39.42857142857143,
+            "objective": 0.30270270270270266
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 3,
+            "misses": 18,
+            "campaign_recall": 0.14285714285714285,
+            "alerts": 18,
+            "mature_alerts": 9,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2222222222222222,
+            "median_lead_weeks": 34.42857142857143,
+            "objective": 0.17391304347826086
+          },
+          {
+            "campaigns": 20,
+            "hits": 6,
+            "misses": 14,
+            "campaign_recall": 0.3,
+            "alerts": 19,
+            "mature_alerts": 7,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2857142857142857,
+            "median_lead_weeks": 27.857142857142858,
+            "objective": 0.2926829268292683
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 7,
+            "misses": 14,
+            "campaign_recall": 0.3333333333333333,
+            "alerts": 28,
+            "mature_alerts": 13,
+            "confirmed_mature_alerts": 4,
+            "episode_precision": 0.3076923076923077,
+            "median_lead_weeks": 31.285714285714285,
+            "objective": 0.32
+          },
+          {
+            "campaigns": 20,
+            "hits": 12,
+            "misses": 8,
+            "campaign_recall": 0.6,
+            "alerts": 39,
+            "mature_alerts": 18,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.16666666666666666,
+            "median_lead_weeks": 32.357142857142854,
+            "objective": 0.2608695652173913
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "count",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 9,
+            "misses": 12,
+            "campaign_recall": 0.42857142857142855,
+            "alerts": 41,
+            "mature_alerts": 18,
+            "confirmed_mature_alerts": 6,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 31.285714285714285,
+            "objective": 0.375
+          },
+          {
+            "campaigns": 20,
+            "hits": 12,
+            "misses": 8,
+            "campaign_recall": 0.6,
+            "alerts": 48,
+            "mature_alerts": 25,
+            "confirmed_mature_alerts": 9,
+            "episode_precision": 0.36,
+            "median_lead_weeks": 44.0,
+            "objective": 0.45
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 3,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 2,
+            "misses": 19,
+            "campaign_recall": 0.09523809523809523,
+            "alerts": 8,
+            "mature_alerts": 2,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.5,
+            "median_lead_weeks": 37.42857142857143,
+            "objective": 0.16
+          },
+          {
+            "campaigns": 20,
+            "hits": 6,
+            "misses": 14,
+            "campaign_recall": 0.3,
+            "alerts": 16,
+            "mature_alerts": 7,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2857142857142857,
+            "median_lead_weeks": 27.857142857142858,
+            "objective": 0.2926829268292683
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 3,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 6,
+            "misses": 15,
+            "campaign_recall": 0.2857142857142857,
+            "alerts": 19,
+            "mature_alerts": 6,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.5,
+            "median_lead_weeks": 35.357142857142854,
+            "objective": 0.36363636363636365
+          },
+          {
+            "campaigns": 20,
+            "hits": 10,
+            "misses": 10,
+            "campaign_recall": 0.5,
+            "alerts": 33,
+            "mature_alerts": 16,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.1875,
+            "median_lead_weeks": 32.357142857142854,
+            "objective": 0.2727272727272727
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "count",
+          "window": 13,
+          "minimum": 3,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 6,
+            "misses": 15,
+            "campaign_recall": 0.2857142857142857,
+            "alerts": 32,
+            "mature_alerts": 11,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.2727272727272727,
+            "median_lead_weeks": 35.857142857142854,
+            "objective": 0.2790697674418604
+          },
+          {
+            "campaigns": 20,
+            "hits": 11,
+            "misses": 9,
+            "campaign_recall": 0.55,
+            "alerts": 46,
+            "mature_alerts": 24,
+            "confirmed_mature_alerts": 9,
+            "episode_precision": 0.375,
+            "median_lead_weeks": 42.42857142857143,
+            "objective": 0.44594594594594594
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 2,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 12,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 19.0,
+            "objective": 0.24242424242424246
+          },
+          {
+            "campaigns": 20,
+            "hits": 9,
+            "misses": 11,
+            "campaign_recall": 0.45,
+            "alerts": 22,
+            "mature_alerts": 9,
+            "confirmed_mature_alerts": 4,
+            "episode_precision": 0.4444444444444444,
+            "median_lead_weeks": 31.285714285714285,
+            "objective": 0.4472049689440994
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 2,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 5,
+            "misses": 16,
+            "campaign_recall": 0.23809523809523808,
+            "alerts": 28,
+            "mature_alerts": 10,
+            "confirmed_mature_alerts": 4,
+            "episode_precision": 0.4,
+            "median_lead_weeks": 31.285714285714285,
+            "objective": 0.2985074626865672
+          },
+          {
+            "campaigns": 20,
+            "hits": 11,
+            "misses": 9,
+            "campaign_recall": 0.55,
+            "alerts": 36,
+            "mature_alerts": 16,
+            "confirmed_mature_alerts": 5,
+            "episode_precision": 0.3125,
+            "median_lead_weeks": 28.428571428571427,
+            "objective": 0.39855072463768115
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "count",
+          "window": 26,
+          "minimum": 2,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 9,
+            "misses": 12,
+            "campaign_recall": 0.42857142857142855,
+            "alerts": 44,
+            "mature_alerts": 21,
+            "confirmed_mature_alerts": 6,
+            "episode_precision": 0.2857142857142857,
+            "median_lead_weeks": 19.0,
+            "objective": 0.34285714285714286
+          },
+          {
+            "campaigns": 20,
+            "hits": 11,
+            "misses": 9,
+            "campaign_recall": 0.55,
+            "alerts": 48,
+            "mature_alerts": 24,
+            "confirmed_mature_alerts": 7,
+            "episode_precision": 0.2916666666666667,
+            "median_lead_weeks": 43.57142857142857,
+            "objective": 0.38118811881188114
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 3,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 12,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 19.0,
+            "objective": 0.24242424242424246
+          },
+          {
+            "campaigns": 20,
+            "hits": 9,
+            "misses": 11,
+            "campaign_recall": 0.45,
+            "alerts": 22,
+            "mature_alerts": 9,
+            "confirmed_mature_alerts": 4,
+            "episode_precision": 0.4444444444444444,
+            "median_lead_weeks": 31.285714285714285,
+            "objective": 0.4472049689440994
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 3,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 6,
+            "misses": 15,
+            "campaign_recall": 0.2857142857142857,
+            "alerts": 23,
+            "mature_alerts": 6,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.5,
+            "median_lead_weeks": 35.357142857142854,
+            "objective": 0.36363636363636365
+          },
+          {
+            "campaigns": 20,
+            "hits": 10,
+            "misses": 10,
+            "campaign_recall": 0.5,
+            "alerts": 32,
+            "mature_alerts": 14,
+            "confirmed_mature_alerts": 4,
+            "episode_precision": 0.2857142857142857,
+            "median_lead_weeks": 30.357142857142858,
+            "objective": 0.36363636363636365
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "count",
+          "window": 26,
+          "minimum": 3,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 6,
+            "misses": 15,
+            "campaign_recall": 0.2857142857142857,
+            "alerts": 41,
+            "mature_alerts": 17,
+            "confirmed_mature_alerts": 5,
+            "episode_precision": 0.29411764705882354,
+            "median_lead_weeks": 40.92857142857143,
+            "objective": 0.2898550724637681
+          },
+          {
+            "campaigns": 20,
+            "hits": 10,
+            "misses": 10,
+            "campaign_recall": 0.5,
+            "alerts": 48,
+            "mature_alerts": 24,
+            "confirmed_mature_alerts": 7,
+            "episode_precision": 0.2916666666666667,
+            "median_lead_weeks": 44.285714285714285,
+            "objective": 0.3684210526315789
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "cusum",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 3
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 2,
+            "misses": 19,
+            "campaign_recall": 0.09523809523809523,
+            "alerts": 4,
+            "mature_alerts": 1,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 1.0,
+            "median_lead_weeks": 8.714285714285714,
+            "objective": 0.17391304347826084
+          },
+          {
+            "campaigns": 20,
+            "hits": 5,
+            "misses": 15,
+            "campaign_recall": 0.25,
+            "alerts": 7,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 26.428571428571427,
+            "objective": 0.28571428571428575
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "ridge",
+        "config": {
+          "detector": "cusum",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 5
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 0,
+            "misses": 21,
+            "campaign_recall": 0.0,
+            "alerts": 1,
+            "mature_alerts": 0,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": null,
+            "median_lead_weeks": null,
+            "objective": 0
+          },
+          {
+            "campaigns": 20,
+            "hits": 2,
+            "misses": 18,
+            "campaign_recall": 0.1,
+            "alerts": 1,
+            "mature_alerts": 0,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": null,
+            "median_lead_weeks": 35.285714285714285,
+            "objective": 0
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 2,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 2,
+            "misses": 19,
+            "campaign_recall": 0.09523809523809523,
+            "alerts": 13,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 23.428571428571427,
+            "objective": 0.14814814814814814
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 19,
+            "mature_alerts": 9,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.1111111111111111,
+            "median_lead_weeks": 11.571428571428571,
+            "objective": 0.12765957446808512
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 2,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 3,
+            "misses": 18,
+            "campaign_recall": 0.14285714285714285,
+            "alerts": 17,
+            "mature_alerts": 5,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.2,
+            "median_lead_weeks": 26.428571428571427,
+            "objective": 0.16666666666666666
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 29,
+            "mature_alerts": 17,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.11764705882352941,
+            "median_lead_weeks": 48.57142857142857,
+            "objective": 0.13186813186813187
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "count",
+          "window": 4,
+          "minimum": 2,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 23,
+            "mature_alerts": 8,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.25,
+            "median_lead_weeks": 28.857142857142858,
+            "objective": 0.2162162162162162
+          },
+          {
+            "campaigns": 20,
+            "hits": 2,
+            "misses": 18,
+            "campaign_recall": 0.1,
+            "alerts": 33,
+            "mature_alerts": 17,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.11764705882352941,
+            "median_lead_weeks": 31.571428571428573,
+            "objective": 0.1081081081081081
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 3,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 1,
+            "misses": 20,
+            "campaign_recall": 0.047619047619047616,
+            "alerts": 6,
+            "mature_alerts": 2,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.5,
+            "median_lead_weeks": 20.428571428571427,
+            "objective": 0.08695652173913042
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 12,
+            "mature_alerts": 5,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.2,
+            "median_lead_weeks": 9.571428571428571,
+            "objective": 0.17142857142857143
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 4,
+          "minimum": 3,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 1,
+            "misses": 20,
+            "campaign_recall": 0.047619047619047616,
+            "alerts": 7,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 20.428571428571427,
+            "objective": 0.08333333333333333
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 16,
+            "mature_alerts": 6,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.16666666666666666,
+            "median_lead_weeks": 9.571428571428571,
+            "objective": 0.15789473684210525
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "count",
+          "window": 4,
+          "minimum": 3,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 1,
+            "misses": 20,
+            "campaign_recall": 0.047619047619047616,
+            "alerts": 10,
+            "mature_alerts": 4,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.25,
+            "median_lead_weeks": 20.428571428571427,
+            "objective": 0.08
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 18,
+            "mature_alerts": 8,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.125,
+            "median_lead_weeks": 9.571428571428571,
+            "objective": 0.13636363636363635
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 3,
+            "misses": 18,
+            "campaign_recall": 0.14285714285714285,
+            "alerts": 12,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 31.285714285714285,
+            "objective": 0.2
+          },
+          {
+            "campaigns": 20,
+            "hits": 5,
+            "misses": 15,
+            "campaign_recall": 0.25,
+            "alerts": 17,
+            "mature_alerts": 5,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": 0.0,
+            "median_lead_weeks": 26.0,
+            "objective": 0.0
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 24,
+            "mature_alerts": 9,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2222222222222222,
+            "median_lead_weeks": 28.857142857142858,
+            "objective": 0.20512820512820512
+          },
+          {
+            "campaigns": 20,
+            "hits": 5,
+            "misses": 15,
+            "campaign_recall": 0.25,
+            "alerts": 28,
+            "mature_alerts": 16,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.0625,
+            "median_lead_weeks": 26.0,
+            "objective": 0.1
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "count",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 37,
+            "mature_alerts": 16,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.125,
+            "median_lead_weeks": 32.357142857142854,
+            "objective": 0.1509433962264151
+          },
+          {
+            "campaigns": 20,
+            "hits": 5,
+            "misses": 15,
+            "campaign_recall": 0.25,
+            "alerts": 46,
+            "mature_alerts": 24,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.08333333333333333,
+            "median_lead_weeks": 30.571428571428573,
+            "objective": 0.125
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 3,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 3,
+            "misses": 18,
+            "campaign_recall": 0.14285714285714285,
+            "alerts": 9,
+            "mature_alerts": 2,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.5,
+            "median_lead_weeks": 31.285714285714285,
+            "objective": 0.22222222222222224
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 14,
+            "mature_alerts": 3,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": 0.0,
+            "median_lead_weeks": 11.571428571428571,
+            "objective": 0.0
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 13,
+          "minimum": 3,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 18,
+            "mature_alerts": 6,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.3333333333333333,
+            "median_lead_weeks": 29.857142857142858,
+            "objective": 0.24242424242424246
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 22,
+            "mature_alerts": 10,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.1,
+            "median_lead_weeks": 12.571428571428571,
+            "objective": 0.12
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "count",
+          "window": 13,
+          "minimum": 3,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 28,
+            "mature_alerts": 10,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2,
+            "median_lead_weeks": 29.857142857142858,
+            "objective": 0.1951219512195122
+          },
+          {
+            "campaigns": 20,
+            "hits": 2,
+            "misses": 18,
+            "campaign_recall": 0.1,
+            "alerts": 35,
+            "mature_alerts": 16,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.125,
+            "median_lead_weeks": 29.071428571428573,
+            "objective": 0.11111111111111112
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 2,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 1,
+            "misses": 20,
+            "campaign_recall": 0.047619047619047616,
+            "alerts": 14,
+            "mature_alerts": 4,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.25,
+            "median_lead_weeks": 41.42857142857143,
+            "objective": 0.08
+          },
+          {
+            "campaigns": 20,
+            "hits": 4,
+            "misses": 16,
+            "campaign_recall": 0.2,
+            "alerts": 16,
+            "mature_alerts": 5,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": 0.0,
+            "median_lead_weeks": 19.285714285714285,
+            "objective": 0.0
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 2,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 3,
+            "misses": 18,
+            "campaign_recall": 0.14285714285714285,
+            "alerts": 23,
+            "mature_alerts": 7,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2857142857142857,
+            "median_lead_weeks": 20.428571428571427,
+            "objective": 0.19047619047619047
+          },
+          {
+            "campaigns": 20,
+            "hits": 4,
+            "misses": 16,
+            "campaign_recall": 0.2,
+            "alerts": 24,
+            "mature_alerts": 10,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.1,
+            "median_lead_weeks": 28.285714285714285,
+            "objective": 0.13333333333333333
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "count",
+          "window": 26,
+          "minimum": 2,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 42,
+            "mature_alerts": 19,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.15789473684210525,
+            "median_lead_weeks": 33.92857142857143,
+            "objective": 0.17266187050359713
+          },
+          {
+            "campaigns": 20,
+            "hits": 3,
+            "misses": 17,
+            "campaign_recall": 0.15,
+            "alerts": 47,
+            "mature_alerts": 24,
+            "confirmed_mature_alerts": 3,
+            "episode_precision": 0.125,
+            "median_lead_weeks": 28.428571428571427,
+            "objective": 0.13636363636363635
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 3,
+          "threshold": 0.05
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 1,
+            "misses": 20,
+            "campaign_recall": 0.047619047619047616,
+            "alerts": 14,
+            "mature_alerts": 4,
+            "confirmed_mature_alerts": 1,
+            "episode_precision": 0.25,
+            "median_lead_weeks": 41.42857142857143,
+            "objective": 0.08
+          },
+          {
+            "campaigns": 20,
+            "hits": 4,
+            "misses": 16,
+            "campaign_recall": 0.2,
+            "alerts": 16,
+            "mature_alerts": 5,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": 0.0,
+            "median_lead_weeks": 19.285714285714285,
+            "objective": 0.0
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "bayes",
+          "window": 26,
+          "minimum": 3,
+          "threshold": 0.2
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 3,
+            "misses": 18,
+            "campaign_recall": 0.14285714285714285,
+            "alerts": 21,
+            "mature_alerts": 7,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.2857142857142857,
+            "median_lead_weeks": 20.428571428571427,
+            "objective": 0.19047619047619047
+          },
+          {
+            "campaigns": 20,
+            "hits": 4,
+            "misses": 16,
+            "campaign_recall": 0.2,
+            "alerts": 22,
+            "mature_alerts": 8,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": 0.0,
+            "median_lead_weeks": 19.285714285714285,
+            "objective": 0.0
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "count",
+          "window": 26,
+          "minimum": 3,
+          "threshold": 0
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 4,
+            "misses": 17,
+            "campaign_recall": 0.19047619047619047,
+            "alerts": 37,
+            "mature_alerts": 16,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.125,
+            "median_lead_weeks": 29.857142857142858,
+            "objective": 0.1509433962264151
+          },
+          {
+            "campaigns": 20,
+            "hits": 5,
+            "misses": 15,
+            "campaign_recall": 0.25,
+            "alerts": 44,
+            "mature_alerts": 21,
+            "confirmed_mature_alerts": 2,
+            "episode_precision": 0.09523809523809523,
+            "median_lead_weeks": 21.571428571428573,
+            "objective": 0.13793103448275862
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "cusum",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 3
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 0,
+            "misses": 21,
+            "campaign_recall": 0.0,
+            "alerts": 3,
+            "mature_alerts": 2,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": 0.0,
+            "median_lead_weeks": null,
+            "objective": 0
+          },
+          {
+            "campaigns": 20,
+            "hits": 1,
+            "misses": 19,
+            "campaign_recall": 0.05,
+            "alerts": 2,
+            "mature_alerts": 1,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": 0.0,
+            "median_lead_weeks": 5.571428571428571,
+            "objective": 0.0
+          }
+        ],
+        "qualified": false
+      },
+      {
+        "student": "centroid",
+        "config": {
+          "detector": "cusum",
+          "window": 13,
+          "minimum": 2,
+          "threshold": 5
+        },
+        "folds": [
+          {
+            "campaigns": 21,
+            "hits": 0,
+            "misses": 21,
+            "campaign_recall": 0.0,
+            "alerts": 0,
+            "mature_alerts": 0,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": null,
+            "median_lead_weeks": null,
+            "objective": 0
+          },
+          {
+            "campaigns": 20,
+            "hits": 0,
+            "misses": 20,
+            "campaign_recall": 0.0,
+            "alerts": 0,
+            "mature_alerts": 0,
+            "confirmed_mature_alerts": 0,
+            "episode_precision": null,
+            "median_lead_weeks": null,
+            "objective": 0
+          }
+        ],
+        "qualified": false
+      }
+    ],
+    "hashes": {
+      "reports/defect/fuel_holdout/protocol.json": "e57442b4d001a20ccaefe9f46f77bff71be7cda01a4b692b1afec8b81ac7ec80",
+      "src/eval/fuel_detection.py": "ddc73b5faee000ecea093c81b07180b782260fe64ffd0cc705e62cccea5f0442",
+      "scripts/fuel_holdout.py": "c3e788bf47f4fb2eb1d9e003d876de73507b5212a46b5ef6ea03496342e13394",
+      "data/defect/fuel_holdout/teacher_vectors.npy": "9cd91fe434012e00bdba67c30c9fa066fa7c562f9ebb6b48d52a83f71fd93cb2",
+      "data/defect/fuel_holdout/development_vectors.npy": "aa5ecafdfdead40ff996d7c1fbdf434dc4b2bb397c474adaa907c75a7e638a78",
+      "data/defect/fuel_holdout/holdout_vectors.npy": "2b75a8f0f88aca941bf53e9136e251702020f7380ea1e0a9c03bd9b97ec9dcf8"
+    },
+    "final_student_sha256": "611939c6d19ba5a934336c8a447d275a69024eb1e06817cb662dda72868f6e0a",
+    "frozen_at": "2026-10-29T18:00:05.503738+00:00",
+    "holdout_status": "not evaluated",
+    "protocol_qualified": false
+  }
+}

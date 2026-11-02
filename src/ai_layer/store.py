@@ -162,6 +162,24 @@ def erase_interaction(con, interaction_id: str) -> dict[str, int]:
     result is identical to the pre-AI-layer behaviour.
     """
     deleted: dict[str, int] = {}
+    if _relation_exists(con, "safety_investigation_runs"):
+        # Linked source snapshots, model claims and correction context are all
+        # derived customer content. Keep only reservation/structural metadata
+        # so an in-flight worker cannot restore erased text or repeat spend.
+        count = 0
+        for run_id, raw in con.execute("SELECT run_id, result FROM safety_investigation_runs").fetchall():
+            run = json.loads(raw)
+            linked = any((s.get("source_ref") or {}).get("interaction_id") == interaction_id
+                         or (s.get("provenance") or {}).get("interaction_id") == interaction_id
+                         for s in run.get("report_sources", []))
+            if not linked:
+                continue
+            tombstone = {k: run[k] for k in ("run_id", "campaign_id", "vehicle_id", "request_id", "snapshot_revision", "parent_run_id", "turn", "started_at", "synthetic_demo", "model_calls") if k in run}
+            tombstone.update(status="erased", stage="erased", report_sources=[], sources=[], tool_trace=[], review=None,
+                             error="Source and derived investigation content erased by request.")
+            con.execute("UPDATE safety_investigation_runs SET status='erased', result=? WHERE run_id=?", [json.dumps(tombstone), run_id])
+            count += 1
+        deleted["safety_investigation_runs.tombstoned"] = count
     case_ids = []
     if _relation_exists(con, "cases"):
         case_ids = [r[0] for r in con.execute("SELECT case_id FROM cases WHERE interaction_id = ?", [interaction_id]).fetchall()]

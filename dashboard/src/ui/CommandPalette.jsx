@@ -43,7 +43,7 @@ export default function CommandPalette({ open, onClose, commands, onOpenShortcut
   }, [open]);
 
   const results = useMemo(() => {
-    if (!query.trim()) return commands.slice(0, 12);
+    if (!query.trim()) return commands.filter(c => !["Platform", "Ops power", "Go to"].includes(c.group)).slice(0, 12);
     return commands
       .map((c) => ({ c, score: Math.max(fuzzyScore(c.label, query), fuzzyScore(c.keywords || "", query) - 5) }))
       .filter((r) => r.score > -1)

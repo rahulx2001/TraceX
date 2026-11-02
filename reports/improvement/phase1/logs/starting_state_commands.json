@@ -1,0 +1,47 @@
+[
+  {
+    "exact_command": "git status --short --branch",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+    "start_time": "2026-10-31T14:06:00.520435+00:00",
+    "end_time": "2026-10-31T14:06:00.534162+00:00",
+    "exit_code": 0,
+    "stdout": "## ml-score-improvement\n",
+    "stderr": ""
+  },
+  {
+    "exact_command": "git log --oneline main..ml-score-improvement",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+    "start_time": "2026-10-31T14:06:00.534173+00:00",
+    "end_time": "2026-10-31T14:06:00.543267+00:00",
+    "exit_code": 0,
+    "stdout": "c602bdd Record reproducible validation and honest ML research limits\n3e4add4 Require unique calibration evidence and improve metric label contrast\n1590fb5 Improve mobile evidence display and allow immutable calibration replays\n19bd5cf Add guarded ML research evaluation and source-verified evidence dashboard\nb63d7a7 Record immutable ML baseline checks and improvement proposal\n13c5ff1 Pin the packaged voice repair source manifest\nbff515b Record voice repair checks against the committed source\n26b3a3f Keep spoken report drafts intact and clarify ambiguous intake answers\n80efff3 Refresh submission inventory after navigation cleanup\nb74c695 Keep one Report entry and remove duplicate workflow navigation\nd75beff Seal the source and verification artifact inventory\ncc27cda Retain final candidate CI and anonymous source verification\ndb6c7ba Pin verified source and container evidence in submission manifest\n6d77406 Record clean Docker execution and verify documented Compose workflow\nedfda13 Include DuckDB timezone runtime and validate each readiness commit\n41f7d87 Complete legacy container schema and exercise report workflow in CI\ne240143 Fix fresh container trust bootstrap and package migrations\n8edc0fd Pin the packaged readiness source and evidence manifest\ne6517f1 Record clean-checkout acceptance evidence and public candidate access\n6a0bd2d Ship review assets matching the independent-grading templates\nfac3515 Keep the engineer workflow in the primary entry and navigation\n03ed794 Preserve punctuation-free report citations through reviewed revisions\n",
+    "stderr": ""
+  },
+  {
+    "exact_command": "git rev-parse HEAD main",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+    "start_time": "2026-10-31T14:06:00.543279+00:00",
+    "end_time": "2026-10-31T14:06:00.549894+00:00",
+    "exit_code": 0,
+    "stdout": "c602bdde368bb79fa519d2abf8fa9c4bd7bdd7cf\nb8afe3856f9fd705f7cc6f3751e9b79343a4b491\n",
+    "stderr": ""
+  },
+  {
+    "exact_command": "git reflog show --date=iso main -6",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+    "start_time": "2026-10-31T14:06:00.549903+00:00",
+    "end_time": "2026-10-31T14:06:00.557245+00:00",
+    "exit_code": 0,
+    "stdout": "b8afe38 main@{2026-10-30 12:51:50 +0530}: commit: Save the Codex readiness work for the quality-engineer investigation path.\ne5350ec main@{2026-10-29 13:31:49 +0530}: commit: Vision prompt carries its schema; issue page AI panels spaced\n94b9d2e main@{2026-10-29 13:06:51 +0530}: commit: Defect early warning live: Baseten classify + FUEL SYSTEM backtest + signin fix\nb23309b main@{2026-10-29 01:59:22 +0530}: commit: LotGuard + server voice (Deepgram) + Baseten Muse Spark Open backend\n54f60d0 main@{2026-10-28 21:44:48 +0530}: commit: Correct branch name in test results\n25d339a main@{2026-10-28 21:44:28 +0530}: commit: Make TraceX hackathon features runnable and verified\n",
+    "stderr": ""
+  },
+  {
+    "exact_command": "git worktree list --porcelain",
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+    "start_time": "2026-10-31T14:06:00.557254+00:00",
+    "end_time": "2026-10-31T14:06:00.564482+00:00",
+    "exit_code": 0,
+    "stdout": "worktree /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool\nHEAD 13c5ff105b3a867b949e53e51a3a1ce352377466\nbranch refs/heads/submission/readiness-2026-10-30\n\nworktree /private/tmp/ml-score-repro-19bd5cf\nHEAD 3e4add4561234fc35ba7f2964f6e15fa788c1405\ndetached\n\nworktree /private/tmp/tracex-container-8edc0fd\nHEAD d75beffee26ccb24230e8a994f87551159108248\ndetached\n\nworktree /private/tmp/tracex-readiness-03ed794\nHEAD 8edc0fde207aa7d42e6ad807e1d3b4cb4f14ce46\ndetached\n\nworktree /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement\nHEAD c602bdde368bb79fa519d2abf8fa9c4bd7bdd7cf\nbranch refs/heads/ml-score-improvement\n\n",
+    "stderr": ""
+  }
+]

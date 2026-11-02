@@ -1,0 +1,609 @@
+{
+  "schema_version": 1,
+  "status": "STOPPED_AT_CUSTODY_ENFORCEMENT_GATE",
+  "start_time": "2026-10-31T14:06:00.477977+00:00",
+  "end_time": "2026-10-31T14:06:00.832138+00:00",
+  "repository": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool",
+  "worktree": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+  "branch": "ml-score-improvement",
+  "starting_head": "c602bdde368bb79fa519d2abf8fa9c4bd7bdd7cf",
+  "main_head": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+  "main_reflog": "b8afe38 main@{2026-10-30 12:51:50 +0530}: commit: Save the Codex readiness work for the quality-engineer investigation path.\ne5350ec main@{2026-10-29 13:31:49 +0530}: commit: Vision prompt carries its schema; issue page AI panels spaced\n94b9d2e main@{2026-10-29 13:06:51 +0530}: commit: Defect early warning live: Baseten classify + FUEL SYSTEM backtest + signin fix\nb23309b main@{2026-10-29 01:59:22 +0530}: commit: LotGuard + server voice (Deepgram) + Baseten Muse Spark Open backend\n54f60d0 main@{2026-10-28 21:44:48 +0530}: commit: Correct branch name in test results\n25d339a main@{2026-10-28 21:44:28 +0530}: commit: Make TraceX hackathon features runnable and verified\n",
+  "main_observation": "Last recorded main update is 2026-10-30, before prior ML work and validation. No newer main update appears in the reflog.",
+  "starting_git_status": "## ml-score-improvement\n",
+  "branch_commits": [
+    "c602bdd Record reproducible validation and honest ML research limits",
+    "3e4add4 Require unique calibration evidence and improve metric label contrast",
+    "1590fb5 Improve mobile evidence display and allow immutable calibration replays",
+    "19bd5cf Add guarded ML research evaluation and source-verified evidence dashboard",
+    "b63d7a7 Record immutable ML baseline checks and improvement proposal",
+    "13c5ff1 Pin the packaged voice repair source manifest",
+    "bff515b Record voice repair checks against the committed source",
+    "26b3a3f Keep spoken report drafts intact and clarify ambiguous intake answers",
+    "80efff3 Refresh submission inventory after navigation cleanup",
+    "b74c695 Keep one Report entry and remove duplicate workflow navigation",
+    "d75beff Seal the source and verification artifact inventory",
+    "cc27cda Retain final candidate CI and anonymous source verification",
+    "db6c7ba Pin verified source and container evidence in submission manifest",
+    "6d77406 Record clean Docker execution and verify documented Compose workflow",
+    "edfda13 Include DuckDB timezone runtime and validate each readiness commit",
+    "41f7d87 Complete legacy container schema and exercise report workflow in CI",
+    "e240143 Fix fresh container trust bootstrap and package migrations",
+    "8edc0fd Pin the packaged readiness source and evidence manifest",
+    "e6517f1 Record clean-checkout acceptance evidence and public candidate access",
+    "6a0bd2d Ship review assets matching the independent-grading templates",
+    "fac3515 Keep the engineer workflow in the primary entry and navigation",
+    "03ed794 Preserve punctuation-free report citations through reviewed revisions"
+  ],
+  "original_checkout_status": "## submission/readiness-2026-10-30...tracex/submission/readiness-2026-10-30\n M .env.example\n M README.md\n M dashboard/e2e/ui.console.spec.js\n M dashboard/routes/CallWidget.jsx\n M dashboard/routes/CaseQueue.jsx\n M dashboard/routes/Settings.jsx\n M dashboard/routes/SignIn.jsx\n M dashboard/routes/settings.css\n M dashboard/routes/voice-report.css\n M dashboard/scripts/assert-signin-reachable.mjs\n M dashboard/scripts/container-readiness.test.mjs\n M dashboard/src/App.jsx\n M dashboard/src/ai/CallAiExtras.jsx\n M dashboard/src/ai/EvidencePanel.jsx\n M dashboard/src/apiAuth.js\n M dashboard/src/ui/AccountSignIn.jsx\n M dashboard/src/ui/labels.js\n M dashboard/src/ui/opsActions.js\n M domains/automotive_nhtsa/gazetteers/makes.csv\n M domains/automotive_nhtsa/gazetteers/models.csv\n M requirements-docker.txt\n M requirements-lock.txt\n M requirements.txt\n M src/agents/case_agent.py\n M src/agents/intake.py\n M src/agents/orchestrator.py\n M src/ai_layer/config.py\n M src/ai_layer/evidence.py\n M src/ai_layer/intake_enhancer.py\n M src/api/routes/ai_layer.py\n M src/api/routes/frontline.py\n M src/api/routes/platform56.py\n M src/data/schema.py\n M src/data/warehouse.py\n M src/frontline/ops.py\n M src/security/sql_ident.py\n M tests/frontline/ai_layer/test_demo.py\n M tests/frontline/ai_layer/test_eval_enhanced.py\n M tests/frontline/ai_layer/test_eval_modes.py\n M tests/frontline/ai_layer/test_intake_enhancer.py\n M tests/frontline/ai_layer/test_meta_smoke.py\n M tests/frontline/test_dashboard_pilot_auth.py\n M tests/frontline/test_safety_gate_preemption.py\n M tests/frontline/test_voice_report_repair.py\n?? dashboard/scripts/case-categories.test.mjs\n?? dashboard/scripts/session-recovery.test.mjs\n?? dashboard/src/ai/ReportIntelligencePanel.jsx\n?? dashboard/src/ui/AccessSettings.jsx\n?? docs/meta-intake-features.md\n?? reports/hackathon/meta_features_2026_10_31.json\n?? reports/hackathon/meta_features_2026_10_31_recheck.json\n?? scripts/meta_feature_smoke.py\n?? src/ai_layer/document_evidence.py\n?? src/ai_layer/report_intelligence.py\n?? src/frontline/categories.py\n?? tests/frontline/ai_layer/test_document_evidence.py\n?? tests/frontline/ai_layer/test_report_intelligence.py\n?? tests/frontline/test_multi_system_cases.py\n?? tests/frontline/test_session_recovery.py\n",
+  "original_checkout_status_matches_prior_audit": true,
+  "original_artifact_inventory": {
+    "path": "reports/improvement/original_artifact_hashes.json",
+    "sha256": "41d2b4453d511d784c56ac3b1ac23a186cb280a595ce0a86583d254fb4aca448",
+    "checked": 819,
+    "changed_or_missing": []
+  },
+  "required_files_read": {
+    "reports/improvement/FINAL_REVIEW.md": "fabcf81a01424fed4c1bc17d4cb5382a71332ec0c14832400d31e7a8fbae36f6",
+    "reports/improvement/before_after.md": "cd23f79a240c6a99331fdcd76b287113f477c78a3d52308ec96269f89c1585b2",
+    "reports/improvement/before_after.json": "451e3f1626f0e05106e72fadf94869b20b0b14e9cd9a82e79198f9134c9be77c",
+    "reports/improvement/baseline.json": "ef5cb67ff7721103414594a8ee11ef634c91d6846bf577edd9086daca1cd76c0",
+    "reports/improvement/results.json": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+    "reports/improvement/final_validation.json": "e4618245c6e2942553b8d1ca048f2f7da44ea31f2433e33aa063fba2cbda720c",
+    "reports/improvement/error_analysis.md": "ce9ff4e324a4c8ccee14c1d560c70cc26fc528c94b432d60ee8f724d2700a3e6",
+    "reports/improvement/README.md": "16d9104da7e7a39e40e7b1f70b0407f03beaff5ade4bdeabdf0d2239aaf4823d",
+    "reports/CLAIMS_AUDIT.md": "75b18c4885b70bbef5c03f7bcddecbb7623c2305b02e37dfd71dd11818f1dce6",
+    "src/eval/improvement_detection.py": "e3803dc2829710ffb19a7e02969515abe401859961e21987a2b5ba592cfc35ad",
+    "src/eval/improvement_metrics.py": "4e4068ad673c4fa4fed0fd217f93335a289809f09011ce0f4c9f7e8b83c7f067",
+    "src/eval/improvement_models.py": "49495564a6a3a680c5aa2614a6f5f62a206b74d764efbb52c992b61d70cc410d",
+    "src/eval/improvement_monitoring.py": "01d7230524a01eaeaedd97124ae6375a32673cf0b4bd15e04773752b166b880f",
+    "src/eval/improvement_protocol.py": "dff2c5c8d95aebc8a1b07eeb447e29ca32e03b3afb943df1945d2da05124c067",
+    "tests/frontline/ai_layer/test_ml_improvement.py": "ba35863d89fd0dec2aede0830b73efc3b92205bb90a4faee3770b2e317864a49"
+  },
+  "protected_artifacts": {
+    "reports/defect/repair/prediction_results.json": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+    "reports/defect/repair/prediction_config.json": "d594743a9d2aadbdd73bfa42ed7d7c825e2ad2e84b841e3a2846e68904eab89d",
+    "reports/defect/fuel_holdout/holdout_results.json": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+    "reports/defect/defect_label_sample_300.csv": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "dashboard/src/ai/defectPrediction.json": "de6a8bf47e30e8a139b6decdc11db73bdb70e7d5fc403b3aa3328960d2433b6a",
+    "dashboard/src/ai/mlImprovement.json": "01f2d8eeba33389691a4afe996e49d7ab5f56104af84fef992436617f72c4de6"
+  },
+  "baseline_metrics": [
+    {
+      "metric": "defect.all_reports.rolling_defect.recall",
+      "numerator": 22,
+      "denominator": 41,
+      "value": 0.5365853658536586,
+      "confidence_interval_95": [
+        0.38746471267669474,
+        0.6794376602366394
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.mature_episode_precision",
+      "numerator": 14,
+      "denominator": 31,
+      "value": 0.45161290322580644,
+      "confidence_interval_95": [
+        0.29161735980520015,
+        0.6222783236264549
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.recall",
+      "numerator": 14,
+      "denominator": 41,
+      "value": 0.34146341463414637,
+      "confidence_interval_95": [
+        0.21558808257384846,
+        0.49450163480170306
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.mature_episode_precision",
+      "numerator": 7,
+      "denominator": 13,
+      "value": 0.5384615384615384,
+      "confidence_interval_95": [
+        0.29143795714506004,
+        0.7679393219046169
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "",
+      "original_split_description": "2021-2024 inspected historical reanalysis",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "fuel_holdout.method.recall",
+      "numerator": 5,
+      "denominator": 8,
+      "value": 0.625,
+      "confidence_interval_95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.hits/campaigns",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "",
+      "original_split_description": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    },
+    {
+      "metric": "fuel_holdout.method.mature_episode_precision",
+      "numerator": 6,
+      "denominator": 18,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.1627877475083369,
+        0.5625053270405489
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "historical-opened",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "",
+      "original_split_description": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "is_candidate_result": false,
+      "verification_this_turn": "source and frozen hashes checked; evaluation commands are previous recorded invocations, not rerun in this audit"
+    }
+  ],
+  "development_limits": {
+    "complaints": 263,
+    "campaigns": 36,
+    "matching_evidence_campaigns": 7,
+    "sensitivity_matching_evidence_campaigns": 4,
+    "calibration_candidate_weeks": 9,
+    "calibration_positive_outcomes": 4,
+    "calibration": {
+      "n": 9,
+      "positives": 4,
+      "ece": 0.3380185527273241,
+      "ece_ci95": [
+        0.21104626893082395,
+        0.5123934991669097
+      ],
+      "brier": 0.1872184977383039,
+      "brier_numerator": 1.684966479644735,
+      "brier_denominator": 9,
+      "brier_ci95": [
+        0.05469629100618463,
+        0.3740370521995532
+      ],
+      "reference_probability": null,
+      "reference_brier": null,
+      "brier_difference": null,
+      "brier_difference_ci95": null,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "n": 0,
+          "mean_probability": null,
+          "observed": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "n": 0,
+          "mean_probability": null,
+          "observed": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "n": 1,
+          "mean_probability": 0.2419249128674743,
+          "observed": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.7934506856227626
+            ],
+            "unit": "mature labelled outcomes",
+            "interval_method": "descriptive Wilson; correlated units limit inference"
+          }
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "n": 1,
+          "mean_probability": 0.36288736930121157,
+          "observed": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.7934506856227626
+            ],
+            "unit": "mature labelled outcomes",
+            "interval_method": "descriptive Wilson; correlated units limit inference"
+          }
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 1,
+          "mean_probability": 0.4575151017828538,
+          "observed": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.7934506856227626
+            ],
+            "unit": "mature labelled outcomes",
+            "interval_method": "descriptive Wilson; correlated units limit inference"
+          }
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 1,
+          "mean_probability": 0.5241706445461949,
+          "observed": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.7934506856227626
+            ],
+            "unit": "mature labelled outcomes",
+            "interval_method": "descriptive Wilson; correlated units limit inference"
+          }
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 0,
+          "mean_probability": null,
+          "observed": null
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 0,
+          "mean_probability": null,
+          "observed": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 3,
+          "mean_probability": 0.8164965809277259,
+          "observed": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0,
+            "ci95": [
+              0.4385029682449546,
+              1.0
+            ],
+            "unit": "mature labelled outcomes",
+            "interval_method": "descriptive Wilson; correlated units limit inference"
+          }
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "n": 2,
+          "mean_probability": 0.9525793444156803,
+          "observed": {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5,
+            "ci95": [
+              0.09453120573423074,
+              0.9054687942657693
+            ],
+            "unit": "mature labelled outcomes",
+            "interval_method": "descriptive Wilson; correlated units limit inference"
+          }
+        }
+      ],
+      "interval_note": "row bootstrap; temporal/episode dependence requires caution"
+    },
+    "all_report_errors": {
+      "false_positive_mature_alerts": 2,
+      "false_negative_campaigns": 33
+    },
+    "sensitivity_errors": {
+      "false_positive_mature_alerts": 1,
+      "false_negative_campaigns": 35
+    },
+    "quota_50_each_available": false,
+    "historical_2025_campaigns": 8,
+    "historical_2021_2024_campaigns": 41,
+    "historical_years": 4,
+    "historical_campaigns_per_year": 10.25,
+    "source": "reports/improvement/results.json",
+    "note": "Corpus counts are descriptive census quantities; calibration diagnostic is uncalibrated, with model/recall labels. None is a candidate result."
+  },
+  "approved_defaults": {
+    "flag_window": [
+      "2027-01-01",
+      "2028-12-31"
+    ],
+    "outcome_cutoff": "2029-12-31",
+    "minimum_campaigns": 25,
+    "preferred_campaigns": 30,
+    "development_window": [
+      "2015-01-01",
+      "2020-12-31"
+    ],
+    "opened_years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "model_freeze_deadline": "2026-12-31",
+    "final_analyses": 1,
+    "no_merge": true,
+    "human_labeling": "deferred",
+    "approval_source": "explicit current user instruction; no renewed target/window approval requested"
+  },
+  "custody_audit": {
+    "development_uid": 501,
+    "workspace_data_owner_uid": 501,
+    "workspace_data_mode": "0o755",
+    "prospective_storage_configured": false,
+    "independent_collector_or_custodian_supplied": false,
+    "private_custody_keys_created": false,
+    "reason": "The repository has no prospective custody configuration. Development runs under the workspace owner. Owner-changeable filesystem modes and same-process path/CLI guards cannot enforce isolation from arbitrary code under that identity.",
+    "required_boundary": "An independent collector/storage identity with no development read access, or an external collector encrypting to a custodian whose private key is unavailable to development. Key release and final execution must remain outside the development identity until authorized cutoff."
+  },
+  "actions_not_run": [
+    "No preregistration or freeze was falsely declared sealed",
+    "No prospective collection or outcome access",
+    "No model fitting, feature selection, threshold selection or calibration fitting",
+    "No paid model calls",
+    "No full suite rerun; prior test results are not presented as new",
+    "No merge, rebase, amend, squash, force-push or promotion"
+  ],
+  "command_log": "reports/improvement/phase1/logs/starting_state_commands.json",
+  "stop_condition": "The sealed-data guard cannot currently be enforced against development code without independent custody configuration."
+}

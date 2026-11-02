@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-01T18:25:26.801502+00:00",
+  "files": {
+    "dashboard/routes/CallWidget.jsx": "873b53aa19c5773e1bc953162f2189280a98dca33dcdd6ec0b535c5828323ff9",
+    "dashboard/routes/voice-report.css": "ea7b3efd24c3c2bd98584464554d621352af26493573633c7b19670e8d7c5e53",
+    "dashboard/src/ai/CallAiExtras.jsx": "1b0d7ff3e39c01672e92ac9b4eac4ea0cb45fae6e357635a5ca1a3f194889511",
+    "reports/improvement/prospective/DEVIATIONS.md": "b82f940d4acee08257430ce41bc2b442c293d122369edceddaaa07e681120b0a",
+    "reports/improvement/voice_design_restore_v1/README.md": "e777abec22a305ecd129eb110f912f4cb5e4898c881585e86f8eb633756f6bac",
+    "reports/improvement/voice_design_restore_v1/browser.json": "5e4ed3cb691ff5095a762a0bb77c9a39fc7a17d3667e1bebe4d719632387e5a1",
+    "reports/improvement/voice_design_restore_v1/browser_harness_native.mjs": "66d2b7947ddc65329ce80c21127fc8ddc68d899e7f482e61ed27f63669cbcae2",
+    "reports/improvement/voice_design_restore_v1/browser_screenshots/desktop.png": "0769c8c1bb5c58d33aacaef6be019398f4d4a6a164a91b0ebb215dedae81bd57",
+    "reports/improvement/voice_design_restore_v1/browser_screenshots/mobile.png": "4b6e77f52a641a761eb932598402bc729e69728a3ad08c685ecbe818cfecf1b3",
+    "reports/improvement/voice_design_restore_v1/dashboard_build.json": "3f741dbec03b3c350919dde765754ff52d20d4a05144bdb6eb80645283a24fc3",
+    "reports/improvement/voice_design_restore_v1/logs/browser.txt": "47834c12d174aee5be46cf966938cca599fca48492b49f778a3b48dd5fa5ccb2",
+    "reports/improvement/voice_design_restore_v1/logs/dashboard_build.txt": "087002b8e74cf1b43801d5fbafd57192eff4f2746295ce2de5654e264e5414b3",
+    "reports/improvement/voice_design_restore_v1/restoration.json": "e2ed0b4cbe867f3ab75d7a18d06e72cb10880be2e2e9ea3a7d648d9970b57b8b",
+    "reports/improvement/voice_design_restore_v1/screenshots/voice-report-200pct-equivalent.png": "a8dc2fde942208b84b3b122cdcdc45b40fa257d66b832fa726dd8cac4ea142f0",
+    "reports/improvement/voice_design_restore_v1/screenshots/voice-report-200pct-transcript.png": "d85226a5cc443f86bc9f729d60d158e1f28672e12d635493b6dfecd3ecc9a1ce",
+    "reports/improvement/voice_design_restore_v1/screenshots/voice-report-laptop.png": "0d789fa209eec03a9a7d96f19fabbc3db55cb78d8903e1777798133e8292269a",
+    "reports/improvement/voice_design_restore_v1/validation.json": "dcf976579a7bcbbfc415ef566f8fc2fe1fd77662e9875c662427ebf2adc66b9a"
+  }
+}

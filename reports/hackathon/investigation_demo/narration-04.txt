@@ -1,0 +1,1 @@
+After the record is available, the agent chooses the installed-part lookup. The saved follow-up result updates the investigation with that source. You can inspect its actual tool choice and citations. These tools read evidence; they cannot authorize outreach, choose a replacement part, or clear the vehicle.

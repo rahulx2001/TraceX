@@ -1,0 +1,2671 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-02T13:31:44+00:00",
+  "plan_sha256": "a134bca1a2a12c5522507c6e693cb24d4f52974ffafe2a6fb2327b923144f04e",
+  "original_protocol_sha256": "c173d240bfaa98bbf2d10a55f311f691af1bf605ec7d7ff8ddec416e914aeae8",
+  "implementation_hashes": {
+    "scripts/defect_grounded_row_validation.py": "f87df0b62ccc2b42937534af4c0a32945337ab508bea9f410338eb4195de90e1",
+    "scripts/defect_grounded_candidate.py": "b273643fa35e8a30c16d7fe9976defffe7d0bff109395be5fd4afac95c6a1600",
+    "scripts/defect_grounding.py": "1f16ddd2de718d46be732fde190d7e8076e863ec8ffe12758fa39838b9a76cad"
+  },
+  "source_attempts": {
+    "path": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/attempts.jsonl",
+    "sha256": "18fd460d482d5c7e948eefe76c91b03a754623692bba8a72abda9733d41f7c8d"
+  },
+  "source_contract": {
+    "path": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/evaluation_contract_check.json",
+    "sha256": "5c54837a3b8b1d96663904dd4017c4dda32520f96691fd022792f9ce75a4d6e2"
+  },
+  "raw_cache_hashes": {
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-78135c2ad468d3ea00ee79a839d6174e8bc4bc7075250f08dc43523726c277e7.json": "49b74f77e4ec407d894c698e5e4d98deb38fc16c7a3edb9f715088918b89fe96",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-dd70275810d3f58e21779f1650089cda1b96ea9affa874e1a0691c5cb477d30d.json": "463e976707451681a02e85d8a4f674396cad830b5c9452009c7de64fb67a7f39",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-aab2f2296339c55c87df9f2a9a7d139c0ab7a978612a5d42872b58463d6bea1a.json": "fbadb49398d9c01ad462d69aff86285255d1d4720d9b6c9b65fb87e7b714035e",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-1a4304283003b6e1cbaf2ab5ed38c2c7598513aa4806287a17c82f65ae14e814.json": "427f20c32a338b8ca144c80828396d76f7eed4a097106a2cf0679aa9e0be3f78",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-b84746fcb5a1ac9a0231b605eb322fb1f0f8f64f5a484018c99a32af92134ec4.json": "2f1811b72d36aa76250be6887f023ce97adbf9570e596250c4fbb505ef2a5002",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-ffc1e4801334d0736ade139fd8c98061d97e1dceff132f030cf85fe5d47bf8bd.json": "ba9e38e7927c1f5b7d3a50ff95ebd7771a9b3beb11b80eae4632b059162a8d34",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-84653f7f9a48b8027b5d47e10f61972c0e45b22a7abc77f5f20939a76075d6be.json": "18336b5af8eb4f616e49d098b6e0248acc362205288246ad819b4b36370a1f0d",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-83a66bf0072fce7f2453a3a57aa78231211586699eac02a3366631294fb88024.json": "7601c9095a085eeb768f7da62f02119d121cabd37db8d8068060ee60d597995a",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-b6c9a1e67afb3cc65898bcdd673560aa882c26fc28cbc89d9989a7797622684f.json": "254849bafbf8baf1955541528bd3cfef3485444704f59a156472bfc1ad07fe96",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-2565063dad65f1bcf0fddde40463ac86a3429fb700e4039abc4831f35b6dda28.json": "059b9887a3262f45f242e6a47f82581c819fea381c291151f5c59b4070826f70",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-b4ba861f0e969ef03fcc5f345d12c822097d1d6ecaa33b79968cb76a2ac2f678.json": "0663a4b3a00d77b53bfbd79b53844c4b95c4d027a7992614f8f568e07eca07ce",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-f2156097c462f49de980b5a5c023f22054f2d31d92ad86989bd0d86ee4732620.json": "f69dd8d9d3bd4da6cd6fb2c91eb20946eb320e136c6c274c10f01b5a31cdf9ef",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-bf6ffb2d60e6345cfb1ca4c60ee98db3e05f835bde9030da477312e84c2acbbd.json": "fccde61decabd0b398510aab20f7f2f261640cf98d9f26796d6e075a0a17d476",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-273d46a958359cb7148a772b57031e483200d7d1634e7ac34408631930e2278b.json": "2ee15a62f060cef7a211d0c6d85c458257b0dbcef221900f1e993462603fdccf",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-c752f9e7e93122a8c31fa236dcc7fad6df2675c0ebab8e1ed565a8f15f3344e2.json": "9f5cd362037147fa68b23575a46a154065f0aff463634bf440e0828959c8912a",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-4995cc630fbbb4b75b7a88cc22888b22b8675e43a75c0e8cf780b489d241b66a.json": "b15b398c3a29f2e7ceef4646894df92a2ccb6b516b72ef47368ea664b475e83e",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-226e08631c06f802adb550790213cadf85b3bdea23c37abd225ac9bcab73b687.json": "c6fabfbfa06a049ff24dacf73eaab9fcfb31451c96ba1fb8f4ee5913a68bbade",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-1d32624f8004c4451b7f28375b5591b08a8dc7ebdbcb4096090b472d7bed7a57.json": "281adfc0c192cfbe5c0f3cdfec4f9d41e5f71e777d843624b2a5f2fd09d6243c",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-18d8ebb57bd44244bebed513b6b4d7de89a5c49e65a91468c1d1c9789be8d94e.json": "006e6c67c303d54fde7843b24d39cf424cb69412359ee25c9a3937a346d45be8",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-d799f75bcbbe67085833f6ca3dfc78463dc09a8f769d7f9d62262a30b8bc8212.json": "2c5363546d8e43ee401ea09a2d9b2227c69f128f7d8b8a5045a352a311f22784",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-4e6283c5b5bab8df10c03b8a266714eb88306ed4f4c8b998dc8961bcadc400b4.json": "1f5dd14894cd19e6f0e06572f2d3bbd8cb80d12d28c2afd2a5ac4bac7a936d4e",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-3078dd0cb90a7f64eaf37b815fc77db8d6e8610f0b373d3dd75e5413a9cb63d0.json": "1da103d52b4594ae45760afb93add083fdd55a0fe5ee85012cb2e9b5d2f4541f",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-eb1ba2f19cfd1df039d9fe11fbb1723f4a137953690c2539fbbdbe263979981b.json": "302b84af32c6066904d747dea3dff994acfb1b135b8e41fcde8d483ccdd98227",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-ce09f1c7d2592739e9f199c8af62810f478be8d882d8978c73c1153c3ca3a18d.json": "1d541c0c328395f3ab5f6ba0de2f0bd4188706ab4e56df7c7abe73d86ef2f3a6",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-da96e75635f62b836f98ebc1283421433bb3266a9252b42a221c8323ab72f816.json": "59cb42933bda3f744a7e5d017d4bd4233bf77332975cdcd099c54ff391bb3d86",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-9dd42c1c4b17a6dd62fe57003c13548d37709c37953f7e29ad80b8fe43f76374.json": "787088bfe75c5da52846b6d46fbf9944be4cecddf0a356ce1016bbf1c40b6eb3",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-5bbeda3f337521edaf5a39f07832d71f1b132009f415ec482d4cab34d8ad620d.json": "cfdfe98f6f92f239ab36e28fc844338439dc6f48220fd89251c20c5105a33f34",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-5d74ea981adf1a291055a0121676558f0da8d451c1f8ffaf520539b9415c51e8.json": "265ce3f2ba4815f216552246180d24c92a71e69c4b896657b63ac4ee198c1166",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-78161d52ea6c36905a5cd261ad4611ddc9f1385b0e17ec0db5f06e49eb25bcb8.json": "553eec23df67092f7c92864f9652009b9328380ea7e22685cac6eff2d24935cd",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-36e5a50d4057e69fa222565ddea9c6d6491868edbaf79bd3c38f85493861fcdf.json": "7675fc447f506aaec498942ba8cc82dcf89c8b29c2937e6b6e6e08307fdf48da",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-86e52b32f5ac0ecabde87f8ad6869b62a14f25ff52c9ca0ce9bfb7e752f8119c.json": "f3fb2a9e8426f254499dc9b6ed075b3a1a8e113fd79dd720e0a0458682791cea",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-255fe3a4f868072890903c2e0d12890d6f0add30fe17b8d7dfcae5199b84d154.json": "a562d23471556fe5554a47986b302ec159600b0dd5344c01c580c81aba171b5d",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-d94acd36db51e66133eb93332d510aece01a94a6032b25aaed1adf58c3727b87.json": "603cd37496023c59a5eede8581aaef6003b02ede86ac3692846fca24d0c18c43",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-ddf2a7ea35ff302d2ad70d10b9a9c3ed31fecec5072ce226950b52cdc8a7aab2.json": "a4f5944d65bccb7e8b2a41a8574547f7b44547b18e26836edb650d7910d66720",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-79a7510a0337c9e6bd4db119ee53944ed11e3115408472809aeb290eef58794d.json": "f1252d896c7e54a6fcd50ceebf4d5f9b5a435fb48171dda96525c9d4b919c637",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-db225bddaddd98f03cb4dc7439ba3fe9a7f4d508b7aa6cf90d3ceb4d8b9562c4.json": "ff8178f447f7bd5cf8fc22adc08ad2f454afa79810c6a848ea5ce1192450ac55",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-0faa799134a1a2ce9c8e6ce03e85ef9694f051fcd1223b858973eda7d82bc4b9.json": "020b878a5495d847765c9ef330bd8e6b436ba0c7943fdca0aa43c7425f356901",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-0c806d25cee8a6f07de44da03596d7b0b88d28e16a2f8091cc56f5652cf1d7ef.json": "cbd840fe6eb862c8c1867eacba00ff5402e67d8dc2916f399d62e6b443c4625a",
+    "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/cache/evaluation-db0a723c4c5a29352058fdb0eb799fe445a6d5a142d0809256464ec0ac012964.json": "fe30e26597cf71a8f4c200a18ee6e17f9b8e5b313c1e43449f8bc2cbb91c1480"
+  },
+  "original_batch_output": {
+    "path": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/evaluation_classifications.parquet",
+    "sha256": "6cdafc77cf7eb83e889fc274a87e12aef3983a7ffc10ce9f69a2601170870dca"
+  },
+  "output": {
+    "path": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/defect_grounded_v1/evaluation_row_validated.parquet",
+    "sha256": "2b65db08c33a30486e0c911758d8d7016cc59da94e1eff9af5fbb4846e4aaff2"
+  },
+  "scheduled_batches_attempted": {
+    "numerator": 39,
+    "denominator": 39
+  },
+  "batch_attempt_counts": {
+    "78135c2ad468d3ea00ee79a839d6174e8bc4bc7075250f08dc43523726c277e7": 2,
+    "dd70275810d3f58e21779f1650089cda1b96ea9affa874e1a0691c5cb477d30d": 1,
+    "aab2f2296339c55c87df9f2a9a7d139c0ab7a978612a5d42872b58463d6bea1a": 2,
+    "1a4304283003b6e1cbaf2ab5ed38c2c7598513aa4806287a17c82f65ae14e814": 1,
+    "b84746fcb5a1ac9a0231b605eb322fb1f0f8f64f5a484018c99a32af92134ec4": 2,
+    "ffc1e4801334d0736ade139fd8c98061d97e1dceff132f030cf85fe5d47bf8bd": 2,
+    "84653f7f9a48b8027b5d47e10f61972c0e45b22a7abc77f5f20939a76075d6be": 1,
+    "83a66bf0072fce7f2453a3a57aa78231211586699eac02a3366631294fb88024": 1,
+    "b6c9a1e67afb3cc65898bcdd673560aa882c26fc28cbc89d9989a7797622684f": 1,
+    "2565063dad65f1bcf0fddde40463ac86a3429fb700e4039abc4831f35b6dda28": 1,
+    "b4ba861f0e969ef03fcc5f345d12c822097d1d6ecaa33b79968cb76a2ac2f678": 1,
+    "f2156097c462f49de980b5a5c023f22054f2d31d92ad86989bd0d86ee4732620": 1,
+    "bf6ffb2d60e6345cfb1ca4c60ee98db3e05f835bde9030da477312e84c2acbbd": 2,
+    "273d46a958359cb7148a772b57031e483200d7d1634e7ac34408631930e2278b": 1,
+    "c752f9e7e93122a8c31fa236dcc7fad6df2675c0ebab8e1ed565a8f15f3344e2": 1,
+    "4995cc630fbbb4b75b7a88cc22888b22b8675e43a75c0e8cf780b489d241b66a": 2,
+    "226e08631c06f802adb550790213cadf85b3bdea23c37abd225ac9bcab73b687": 1,
+    "1d32624f8004c4451b7f28375b5591b08a8dc7ebdbcb4096090b472d7bed7a57": 1,
+    "18d8ebb57bd44244bebed513b6b4d7de89a5c49e65a91468c1d1c9789be8d94e": 1,
+    "d799f75bcbbe67085833f6ca3dfc78463dc09a8f769d7f9d62262a30b8bc8212": 1,
+    "4e6283c5b5bab8df10c03b8a266714eb88306ed4f4c8b998dc8961bcadc400b4": 1,
+    "3078dd0cb90a7f64eaf37b815fc77db8d6e8610f0b373d3dd75e5413a9cb63d0": 1,
+    "eb1ba2f19cfd1df039d9fe11fbb1723f4a137953690c2539fbbdbe263979981b": 1,
+    "ce09f1c7d2592739e9f199c8af62810f478be8d882d8978c73c1153c3ca3a18d": 1,
+    "da96e75635f62b836f98ebc1283421433bb3266a9252b42a221c8323ab72f816": 1,
+    "9dd42c1c4b17a6dd62fe57003c13548d37709c37953f7e29ad80b8fe43f76374": 2,
+    "5bbeda3f337521edaf5a39f07832d71f1b132009f415ec482d4cab34d8ad620d": 1,
+    "5d74ea981adf1a291055a0121676558f0da8d451c1f8ffaf520539b9415c51e8": 1,
+    "78161d52ea6c36905a5cd261ad4611ddc9f1385b0e17ec0db5f06e49eb25bcb8": 1,
+    "36e5a50d4057e69fa222565ddea9c6d6491868edbaf79bd3c38f85493861fcdf": 2,
+    "86e52b32f5ac0ecabde87f8ad6869b62a14f25ff52c9ca0ce9bfb7e752f8119c": 2,
+    "255fe3a4f868072890903c2e0d12890d6f0add30fe17b8d7dfcae5199b84d154": 1,
+    "d94acd36db51e66133eb93332d510aece01a94a6032b25aaed1adf58c3727b87": 1,
+    "ddf2a7ea35ff302d2ad70d10b9a9c3ed31fecec5072ce226950b52cdc8a7aab2": 1,
+    "79a7510a0337c9e6bd4db119ee53944ed11e3115408472809aeb290eef58794d": 1,
+    "db225bddaddd98f03cb4dc7439ba3fe9a7f4d508b7aa6cf90d3ceb4d8b9562c4": 1,
+    "0faa799134a1a2ce9c8e6ce03e85ef9694f051fcd1223b858973eda7d82bc4b9": 1,
+    "0c806d25cee8a6f07de44da03596d7b0b88d28e16a2f8091cc56f5652cf1d7ef": 1,
+    "db0a723c4c5a29352058fdb0eb799fe445a6d5a142d0809256464ec0ac012964": 1
+  },
+  "valid_predictions": {
+    "numerator": 294,
+    "denominator": 300
+  },
+  "missing_predictions": {
+    "numerator": 6,
+    "denominator": 300
+  },
+  "retained_evaluation_rows": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "decision_trail": [
+    {
+      "sample_id": "S001",
+      "record_id": "11395432|AIR BAGS",
+      "status": "ok",
+      "source_attempt_line": 10,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S002",
+      "record_id": "11473299|AIR BAGS",
+      "status": "ok",
+      "source_attempt_line": 10,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S003",
+      "record_id": "11477910|AIR BAGS",
+      "status": "ok",
+      "source_attempt_line": 10,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S004",
+      "record_id": "11484561|AIR BAGS",
+      "status": "ok",
+      "source_attempt_line": 10,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S005",
+      "record_id": "11573601|AIR BAGS",
+      "status": "missing",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": [
+        {
+          "attempt_line": 10,
+          "raw_record_id": "c5",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c5"
+        },
+        {
+          "attempt_line": 49,
+          "raw_record_id": "c5",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c5"
+        }
+      ]
+    },
+    {
+      "sample_id": "S006",
+      "record_id": "11575016|AIR BAGS",
+      "status": "ok",
+      "source_attempt_line": 10,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S007",
+      "record_id": "11443187|BACKOVER PREVENTION",
+      "status": "ok",
+      "source_attempt_line": 11,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S008",
+      "record_id": "11462373|BACKOVER PREVENTION",
+      "status": "ok",
+      "source_attempt_line": 11,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S009",
+      "record_id": "11570525|BACKOVER PREVENTION",
+      "status": "ok",
+      "source_attempt_line": 11,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S010",
+      "record_id": "11585868|BACKOVER PREVENTION",
+      "status": "ok",
+      "source_attempt_line": 11,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S011",
+      "record_id": "11453057|CHILD SEAT",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S012",
+      "record_id": "11547988|CHILD SEAT",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S013",
+      "record_id": "11565796|CHILD SEAT",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S014",
+      "record_id": "11398655|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 12,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S015",
+      "record_id": "11419046|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 12,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S016",
+      "record_id": "11443111|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 12,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S017",
+      "record_id": "11443314|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 12,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S018",
+      "record_id": "11446560|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 12,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S019",
+      "record_id": "11465464|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 50,
+      "raw_record_id": "c6",
+      "validation_errors": [
+        {
+          "attempt_line": 12,
+          "raw_record_id": "c6",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c6"
+        }
+      ]
+    },
+    {
+      "sample_id": "S020",
+      "record_id": "11484005|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 12,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S021",
+      "record_id": "11499739|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 12,
+      "raw_record_id": "c8",
+      "validation_errors": [
+        {
+          "attempt_line": 50,
+          "raw_record_id": "c8",
+          "error": "nonverbatim_specific_evidence:evidence:c1",
+          "transport_error": "nonverbatim_specific_evidence:evidence:c8"
+        }
+      ]
+    },
+    {
+      "sample_id": "S022",
+      "record_id": "11504039|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S023",
+      "record_id": "11516024|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S024",
+      "record_id": "11527371|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S025",
+      "record_id": "11530231|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S026",
+      "record_id": "11534602|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S027",
+      "record_id": "11539066|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S028",
+      "record_id": "11542414|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S029",
+      "record_id": "11550508|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 13,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S030",
+      "record_id": "11570798|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 14,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S031",
+      "record_id": "11572106|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 14,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S032",
+      "record_id": "11579766|ELECTRICAL SYSTEM",
+      "status": "missing",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": [
+        {
+          "attempt_line": 14,
+          "raw_record_id": "c3",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c3"
+        },
+        {
+          "attempt_line": 51,
+          "raw_record_id": "c3",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c3"
+        }
+      ]
+    },
+    {
+      "sample_id": "S033",
+      "record_id": "11579868|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 14,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S034",
+      "record_id": "11584168|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 14,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S035",
+      "record_id": "11587034|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 14,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S036",
+      "record_id": "11589267|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 14,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S037",
+      "record_id": "11603680|ELECTRICAL SYSTEM",
+      "status": "missing",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": [
+        {
+          "attempt_line": 14,
+          "raw_record_id": "c8",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c3"
+        },
+        {
+          "attempt_line": 51,
+          "raw_record_id": "c8",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c3"
+        }
+      ]
+    },
+    {
+      "sample_id": "S038",
+      "record_id": "11615326|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 15,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S039",
+      "record_id": "11616840|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 15,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S040",
+      "record_id": "11617279|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 15,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S041",
+      "record_id": "11617881|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 15,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S042",
+      "record_id": "11631977|ELECTRICAL SYSTEM",
+      "status": "missing",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": [
+        {
+          "attempt_line": 15,
+          "raw_record_id": "c5",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c5"
+        },
+        {
+          "attempt_line": 52,
+          "raw_record_id": "c5",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c5"
+        }
+      ]
+    },
+    {
+      "sample_id": "S043",
+      "record_id": "11633116|ELECTRICAL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 15,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S044",
+      "record_id": "11418655|ELECTRONIC STABILITY CONTROL",
+      "status": "ok",
+      "source_attempt_line": 16,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S045",
+      "record_id": "11483221|ELECTRONIC STABILITY CONTROL",
+      "status": "ok",
+      "source_attempt_line": 16,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S046",
+      "record_id": "11508921|ELECTRONIC STABILITY CONTROL",
+      "status": "ok",
+      "source_attempt_line": 16,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S047",
+      "record_id": "11413605|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S048",
+      "record_id": "11416306|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S049",
+      "record_id": "11432199|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S050",
+      "record_id": "11444091|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S051",
+      "record_id": "11447233|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S052",
+      "record_id": "11449226|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S053",
+      "record_id": "11452055|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S054",
+      "record_id": "11465257|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 17,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S055",
+      "record_id": "11477594|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S056",
+      "record_id": "11478438|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S057",
+      "record_id": "11490571|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S058",
+      "record_id": "11501443|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S059",
+      "record_id": "11502568|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S060",
+      "record_id": "11510126|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S061",
+      "record_id": "11510339|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S062",
+      "record_id": "11513552|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 18,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S063",
+      "record_id": "11513568|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S064",
+      "record_id": "11514279|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S065",
+      "record_id": "11519663|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S066",
+      "record_id": "11521073|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S067",
+      "record_id": "11531775|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S068",
+      "record_id": "11535343|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S069",
+      "record_id": "11538925|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S070",
+      "record_id": "11541070|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 19,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S071",
+      "record_id": "11544578|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S072",
+      "record_id": "11551810|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S073",
+      "record_id": "11560648|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S074",
+      "record_id": "11563342|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S075",
+      "record_id": "11566642|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S076",
+      "record_id": "11572937|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S077",
+      "record_id": "11578981|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S078",
+      "record_id": "11584530|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 20,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S079",
+      "record_id": "11585139|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S080",
+      "record_id": "11586021|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S081",
+      "record_id": "11586378|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S082",
+      "record_id": "11587236|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S083",
+      "record_id": "11587781|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S084",
+      "record_id": "11588966|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S085",
+      "record_id": "11590735|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S086",
+      "record_id": "11595544|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 21,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S087",
+      "record_id": "11595988|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 53,
+      "raw_record_id": "c1",
+      "validation_errors": [
+        {
+          "attempt_line": 22,
+          "raw_record_id": "c1",
+          "error": "nonverbatim_specific_evidence:part_evidence:c1",
+          "transport_error": "nonverbatim_specific_evidence:part_evidence:c1"
+        }
+      ]
+    },
+    {
+      "sample_id": "S088",
+      "record_id": "11599205|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 22,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S089",
+      "record_id": "11601615|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 22,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S090",
+      "record_id": "11603212|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 22,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S091",
+      "record_id": "11603375|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 22,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S092",
+      "record_id": "11608259|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 22,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S093",
+      "record_id": "11609035|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 22,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S094",
+      "record_id": "11612661|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 22,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S095",
+      "record_id": "11613487|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S096",
+      "record_id": "11613914|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S097",
+      "record_id": "11614358|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S098",
+      "record_id": "11615415|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S099",
+      "record_id": "11616272|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S100",
+      "record_id": "11623756|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S101",
+      "record_id": "11630802|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S102",
+      "record_id": "11632461|ENGINE",
+      "status": "ok",
+      "source_attempt_line": 23,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S103",
+      "record_id": "11475569|EQUIPMENT",
+      "status": "ok",
+      "source_attempt_line": 24,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S104",
+      "record_id": "11488321|EQUIPMENT",
+      "status": "ok",
+      "source_attempt_line": 24,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S105",
+      "record_id": "11612804|EQUIPMENT",
+      "status": "ok",
+      "source_attempt_line": 24,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S106",
+      "record_id": "11462954|EXTERIOR LIGHTING",
+      "status": "ok",
+      "source_attempt_line": 54,
+      "raw_record_id": "c1",
+      "validation_errors": [
+        {
+          "attempt_line": 25,
+          "raw_record_id": "c1",
+          "error": "output_missing_items",
+          "transport_error": "meta_schema_invalid:$.items[4].evidence: longer than 200"
+        }
+      ]
+    },
+    {
+      "sample_id": "S107",
+      "record_id": "11483516|EXTERIOR LIGHTING",
+      "status": "ok",
+      "source_attempt_line": 54,
+      "raw_record_id": "c2",
+      "validation_errors": [
+        {
+          "attempt_line": 25,
+          "raw_record_id": "c2",
+          "error": "output_missing_items",
+          "transport_error": "meta_schema_invalid:$.items[4].evidence: longer than 200"
+        }
+      ]
+    },
+    {
+      "sample_id": "S108",
+      "record_id": "11496012|EXTERIOR LIGHTING",
+      "status": "ok",
+      "source_attempt_line": 54,
+      "raw_record_id": "c3",
+      "validation_errors": [
+        {
+          "attempt_line": 25,
+          "raw_record_id": "c3",
+          "error": "output_missing_items",
+          "transport_error": "meta_schema_invalid:$.items[4].evidence: longer than 200"
+        }
+      ]
+    },
+    {
+      "sample_id": "S109",
+      "record_id": "11539175|EXTERIOR LIGHTING",
+      "status": "ok",
+      "source_attempt_line": 54,
+      "raw_record_id": "c4",
+      "validation_errors": [
+        {
+          "attempt_line": 25,
+          "raw_record_id": "c4",
+          "error": "output_missing_items",
+          "transport_error": "meta_schema_invalid:$.items[4].evidence: longer than 200"
+        }
+      ]
+    },
+    {
+      "sample_id": "S110",
+      "record_id": "11628523|EXTERIOR LIGHTING",
+      "status": "ok",
+      "source_attempt_line": 54,
+      "raw_record_id": "c5",
+      "validation_errors": [
+        {
+          "attempt_line": 25,
+          "raw_record_id": "c5",
+          "error": "output_missing_items",
+          "transport_error": "meta_schema_invalid:$.items[4].evidence: longer than 200"
+        }
+      ]
+    },
+    {
+      "sample_id": "S111",
+      "record_id": "11395997|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S112",
+      "record_id": "11439556|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S113",
+      "record_id": "11450354|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S114",
+      "record_id": "11453861|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S115",
+      "record_id": "11454131|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S116",
+      "record_id": "11455197|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S117",
+      "record_id": "11482913|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S118",
+      "record_id": "11493297|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S119",
+      "record_id": "11508403|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S120",
+      "record_id": "11532459|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S121",
+      "record_id": "11538257|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S122",
+      "record_id": "11547008|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S123",
+      "record_id": "11625047|FORWARD COLLISION AVOIDANCE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S124",
+      "record_id": "11514767|FUEL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 26,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S125",
+      "record_id": "11532621|FUEL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 26,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S126",
+      "record_id": "11583524|FUEL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 26,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S127",
+      "record_id": "11589715|FUEL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 26,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S128",
+      "record_id": "11615384|FUEL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 26,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S129",
+      "record_id": "11394963|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S130",
+      "record_id": "11427851|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S131",
+      "record_id": "11458425|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S132",
+      "record_id": "11462513|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S133",
+      "record_id": "11498266|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S134",
+      "record_id": "11500948|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S135",
+      "record_id": "11527006|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S136",
+      "record_id": "11531466|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S137",
+      "record_id": "11531793|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S138",
+      "record_id": "11532496|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S139",
+      "record_id": "11551956|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S140",
+      "record_id": "11617743|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S141",
+      "record_id": "11632394|FUEL/PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S142",
+      "record_id": "11454542|HYBRID PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 27,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S143",
+      "record_id": "11466134|HYBRID PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 27,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S144",
+      "record_id": "11529173|HYBRID PROPULSION SYSTEM",
+      "status": "ok",
+      "source_attempt_line": 27,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S145",
+      "record_id": "11464312|LANE DEPARTURE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S146",
+      "record_id": "11516758|LANE DEPARTURE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S147",
+      "record_id": "11545388|LANE DEPARTURE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S148",
+      "record_id": "11613340|LANE DEPARTURE",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S149",
+      "record_id": "11436746|LATCHES/LOCKS/LINKAGES",
+      "status": "ok",
+      "source_attempt_line": 28,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S150",
+      "record_id": "11555680|LATCHES/LOCKS/LINKAGES",
+      "status": "ok",
+      "source_attempt_line": 28,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S151",
+      "record_id": "11572219|LATCHES/LOCKS/LINKAGES",
+      "status": "ok",
+      "source_attempt_line": 28,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S152",
+      "record_id": "11419406|PARKING BRAKE",
+      "status": "ok",
+      "source_attempt_line": 29,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S153",
+      "record_id": "11575545|PARKING BRAKE",
+      "status": "ok",
+      "source_attempt_line": 29,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S154",
+      "record_id": "11607234|PARKING BRAKE",
+      "status": "ok",
+      "source_attempt_line": 29,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S155",
+      "record_id": "11394266|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S156",
+      "record_id": "11398808|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S157",
+      "record_id": "11402584|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S158",
+      "record_id": "11418256|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S159",
+      "record_id": "11420076|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S160",
+      "record_id": "11439199|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S161",
+      "record_id": "11459002|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S162",
+      "record_id": "11463101|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 30,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S163",
+      "record_id": "11463921|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S164",
+      "record_id": "11467907|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S165",
+      "record_id": "11473450|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S166",
+      "record_id": "11494879|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S167",
+      "record_id": "11497532|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S168",
+      "record_id": "11507069|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S169",
+      "record_id": "11509841|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S170",
+      "record_id": "11511940|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 31,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S171",
+      "record_id": "11533702|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S172",
+      "record_id": "11542788|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S173",
+      "record_id": "11543508|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S174",
+      "record_id": "11546119|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S175",
+      "record_id": "11547053|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S176",
+      "record_id": "11572839|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S177",
+      "record_id": "11581249|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S178",
+      "record_id": "11581433|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 32,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S179",
+      "record_id": "11582913|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S180",
+      "record_id": "11588414|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S181",
+      "record_id": "11591835|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S182",
+      "record_id": "11605946|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S183",
+      "record_id": "11608358|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S184",
+      "record_id": "11616923|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S185",
+      "record_id": "11618470|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S186",
+      "record_id": "11622584|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 33,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S187",
+      "record_id": "11631496|POWER TRAIN",
+      "status": "ok",
+      "source_attempt_line": 34,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S188",
+      "record_id": "11479449|SEAT BELTS",
+      "status": "ok",
+      "source_attempt_line": 55,
+      "raw_record_id": "c1",
+      "validation_errors": [
+        {
+          "attempt_line": 35,
+          "raw_record_id": "c1",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c1"
+        }
+      ]
+    },
+    {
+      "sample_id": "S189",
+      "record_id": "11527277|SEAT BELTS",
+      "status": "ok",
+      "source_attempt_line": 35,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S190",
+      "record_id": "11630777|SEAT BELTS",
+      "status": "ok",
+      "source_attempt_line": 35,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S191",
+      "record_id": "11427243|SEATS",
+      "status": "ok",
+      "source_attempt_line": 36,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S192",
+      "record_id": "11432425|SEATS",
+      "status": "ok",
+      "source_attempt_line": 36,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S193",
+      "record_id": "11622296|SEATS",
+      "status": "ok",
+      "source_attempt_line": 36,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S194",
+      "record_id": "11423232|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S195",
+      "record_id": "11467819|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S196",
+      "record_id": "11479252|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S197",
+      "record_id": "11484910|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S198",
+      "record_id": "11492737|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S199",
+      "record_id": "11496510|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S200",
+      "record_id": "11512613|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S201",
+      "record_id": "11558902|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 37,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S202",
+      "record_id": "11577569|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S203",
+      "record_id": "11582782|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S204",
+      "record_id": "11583623|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S205",
+      "record_id": "11590803|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S206",
+      "record_id": "11608169|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S207",
+      "record_id": "11614588|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S208",
+      "record_id": "11619933|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S209",
+      "record_id": "11620015|SERVICE BRAKES",
+      "status": "ok",
+      "source_attempt_line": 38,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S210",
+      "record_id": "11398606|STEERING",
+      "status": "ok",
+      "source_attempt_line": 39,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S211",
+      "record_id": "11419889|STEERING",
+      "status": "ok",
+      "source_attempt_line": 39,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S212",
+      "record_id": "11449178|STEERING",
+      "status": "missing",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": [
+        {
+          "attempt_line": 39,
+          "raw_record_id": "c3",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c3"
+        },
+        {
+          "attempt_line": 56,
+          "raw_record_id": "c3",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c3"
+        }
+      ]
+    },
+    {
+      "sample_id": "S213",
+      "record_id": "11454854|STEERING",
+      "status": "ok",
+      "source_attempt_line": 39,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S214",
+      "record_id": "11483590|STEERING",
+      "status": "ok",
+      "source_attempt_line": 39,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S215",
+      "record_id": "11485059|STEERING",
+      "status": "ok",
+      "source_attempt_line": 39,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S216",
+      "record_id": "11488967|STEERING",
+      "status": "ok",
+      "source_attempt_line": 39,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S217",
+      "record_id": "11501975|STEERING",
+      "status": "ok",
+      "source_attempt_line": 39,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S218",
+      "record_id": "11502116|STEERING",
+      "status": "ok",
+      "source_attempt_line": 40,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S219",
+      "record_id": "11516038|STEERING",
+      "status": "missing",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": [
+        {
+          "attempt_line": 40,
+          "raw_record_id": "c2",
+          "error": "nonverbatim_other_evidence:c1",
+          "transport_error": "nonverbatim_other_evidence:c2"
+        },
+        {
+          "attempt_line": 57,
+          "raw_record_id": "c2",
+          "error": "nonverbatim_specific_evidence:evidence:c1",
+          "transport_error": "nonverbatim_specific_evidence:evidence:c2"
+        }
+      ]
+    },
+    {
+      "sample_id": "S220",
+      "record_id": "11518549|STEERING",
+      "status": "ok",
+      "source_attempt_line": 40,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S221",
+      "record_id": "11555848|STEERING",
+      "status": "ok",
+      "source_attempt_line": 40,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S222",
+      "record_id": "11561245|STEERING",
+      "status": "ok",
+      "source_attempt_line": 40,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S223",
+      "record_id": "11581407|STEERING",
+      "status": "ok",
+      "source_attempt_line": 40,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S224",
+      "record_id": "11582011|STEERING",
+      "status": "ok",
+      "source_attempt_line": 40,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S225",
+      "record_id": "11589586|STEERING",
+      "status": "ok",
+      "source_attempt_line": 40,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S226",
+      "record_id": "11607902|STEERING",
+      "status": "ok",
+      "source_attempt_line": 41,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S227",
+      "record_id": "11609768|STEERING",
+      "status": "ok",
+      "source_attempt_line": 41,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S228",
+      "record_id": "11394348|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S229",
+      "record_id": "11445104|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S230",
+      "record_id": "11470424|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S231",
+      "record_id": "11507880|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S232",
+      "record_id": "11531976|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S233",
+      "record_id": "11534406|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S234",
+      "record_id": "11552857|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c7",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S235",
+      "record_id": "11555020|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 42,
+      "raw_record_id": "c8",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S236",
+      "record_id": "11576129|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 43,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S237",
+      "record_id": "11580736|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 43,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S238",
+      "record_id": "11590560|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 43,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S239",
+      "record_id": "11594452|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 43,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S240",
+      "record_id": "11608907|STRUCTURE",
+      "status": "ok",
+      "source_attempt_line": 43,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S241",
+      "record_id": "11440302|SUSPENSION",
+      "status": "ok",
+      "source_attempt_line": 44,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S242",
+      "record_id": "11483142|SUSPENSION",
+      "status": "ok",
+      "source_attempt_line": 44,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S243",
+      "record_id": "11497006|SUSPENSION",
+      "status": "ok",
+      "source_attempt_line": 44,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S244",
+      "record_id": "11502733|SUSPENSION",
+      "status": "ok",
+      "source_attempt_line": 44,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S245",
+      "record_id": "11543282|SUSPENSION",
+      "status": "ok",
+      "source_attempt_line": 44,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S246",
+      "record_id": "11448131|TIRES",
+      "status": "ok",
+      "source_attempt_line": 45,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S247",
+      "record_id": "11615027|TIRES",
+      "status": "ok",
+      "source_attempt_line": 45,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S248",
+      "record_id": "11616891|TIRES",
+      "status": "ok",
+      "source_attempt_line": 45,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S249",
+      "record_id": "11420395|TRACTION CONTROL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S250",
+      "record_id": "11570713|TRACTION CONTROL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S251",
+      "record_id": "11631020|TRACTION CONTROL SYSTEM",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S252",
+      "record_id": "11397520|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S253",
+      "record_id": "11404019|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S254",
+      "record_id": "11407197|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S255",
+      "record_id": "11429594|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S256",
+      "record_id": "11456425|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S257",
+      "record_id": "11473779|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S258",
+      "record_id": "11476307|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S259",
+      "record_id": "11476957|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S260",
+      "record_id": "11489849|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S261",
+      "record_id": "11511156|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S262",
+      "record_id": "11516486|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S263",
+      "record_id": "11516589|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S264",
+      "record_id": "11527432|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S265",
+      "record_id": "11528204|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S266",
+      "record_id": "11547007|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S267",
+      "record_id": "11556583|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S268",
+      "record_id": "11558438|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S269",
+      "record_id": "11568384|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S270",
+      "record_id": "11571294|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S271",
+      "record_id": "11574844|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S272",
+      "record_id": "11586610|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S273",
+      "record_id": "11588183|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S274",
+      "record_id": "11589485|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S275",
+      "record_id": "11593575|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S276",
+      "record_id": "11594260|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S277",
+      "record_id": "11604746|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S278",
+      "record_id": "11609066|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S279",
+      "record_id": "11612849|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S280",
+      "record_id": "11619138|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S281",
+      "record_id": "11627855|UNKNOWN OR OTHER",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S282",
+      "record_id": "11424863|VEHICLE SPEED CONTROL",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S283",
+      "record_id": "11460443|VEHICLE SPEED CONTROL",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S284",
+      "record_id": "11526382|VEHICLE SPEED CONTROL",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S285",
+      "record_id": "11551924|VEHICLE SPEED CONTROL",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S286",
+      "record_id": "11598020|VEHICLE SPEED CONTROL",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S287",
+      "record_id": "11612414|VEHICLE SPEED CONTROL",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S288",
+      "record_id": "11630509|VEHICLE SPEED CONTROL",
+      "status": "ok",
+      "source_attempt_line": null,
+      "raw_record_id": null,
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S289",
+      "record_id": "11474098|VISIBILITY",
+      "status": "ok",
+      "source_attempt_line": 46,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S290",
+      "record_id": "11527134|VISIBILITY",
+      "status": "ok",
+      "source_attempt_line": 46,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S291",
+      "record_id": "11584409|VISIBILITY",
+      "status": "ok",
+      "source_attempt_line": 46,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S292",
+      "record_id": "11432402|VISIBILITY/WIPER",
+      "status": "ok",
+      "source_attempt_line": 47,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S293",
+      "record_id": "11433453|VISIBILITY/WIPER",
+      "status": "ok",
+      "source_attempt_line": 47,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S294",
+      "record_id": "11476952|VISIBILITY/WIPER",
+      "status": "ok",
+      "source_attempt_line": 47,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S295",
+      "record_id": "11489240|VISIBILITY/WIPER",
+      "status": "ok",
+      "source_attempt_line": 47,
+      "raw_record_id": "c4",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S296",
+      "record_id": "11575864|VISIBILITY/WIPER",
+      "status": "ok",
+      "source_attempt_line": 47,
+      "raw_record_id": "c5",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S297",
+      "record_id": "11585350|VISIBILITY/WIPER",
+      "status": "ok",
+      "source_attempt_line": 47,
+      "raw_record_id": "c6",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S298",
+      "record_id": "11439889|WHEELS",
+      "status": "ok",
+      "source_attempt_line": 48,
+      "raw_record_id": "c1",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S299",
+      "record_id": "11572809|WHEELS",
+      "status": "ok",
+      "source_attempt_line": 48,
+      "raw_record_id": "c2",
+      "validation_errors": []
+    },
+    {
+      "sample_id": "S300",
+      "record_id": "11633214|WHEELS",
+      "status": "ok",
+      "source_attempt_line": 48,
+      "raw_record_id": "c3",
+      "validation_errors": []
+    }
+  ],
+  "gold_answers_or_scores_read": false,
+  "accuracy_computed": false,
+  "new_inference": false
+}

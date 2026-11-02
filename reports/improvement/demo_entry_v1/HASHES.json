@@ -1,0 +1,22 @@
+{
+  "command": "shasum -a 256",
+  "files": {
+    "reports/improvement/demo_entry_v1/README.md": "843569089ee0e08def003a56e7d9f8919a9a99da84d4f5ccdfe7da3b5fdd855a",
+    "reports/improvement/demo_entry_v1/browser.json": "48a9611d53a1f39a52a4a26a1602e5cca743bce8bdd2ccd8a9a6da1081aff639",
+    "reports/improvement/demo_entry_v1/browser_harness_native.mjs": "84b3e7615ab3df4f6739912c0530d56f7ee8d6ba6fe333617568c4d796dabde2",
+    "reports/improvement/demo_entry_v1/browser_retry/browser.json": "60ba3def6e3d5b84d0ad4ec177b6833e37d5886b4b0b15e46f3e535be1816063",
+    "reports/improvement/demo_entry_v1/browser_retry/browser_harness_native.mjs": "e4488ff3b87b8f88d6e33ab0fae2876727eb11c920cd6607c1960dff5bb26707",
+    "reports/improvement/demo_entry_v1/browser_retry/browser_screenshots/desktop.png": "a474b7b7989d299ef4c435534e1bbc739f4b41eb3427a9569fd63a6f33c50b01",
+    "reports/improvement/demo_entry_v1/browser_retry/browser_screenshots/mobile.png": "70b4a9a96a864a61615c074b9063840c144246a5be1a6f63da7672c7b02fc11f",
+    "reports/improvement/demo_entry_v1/browser_retry/logs/browser.txt": "f657bece9c2b293407bba0aaebde53a86265a0b0810e660a747a9e12de659aca",
+    "reports/improvement/demo_entry_v1/dashboard_build.json": "c97e1fe678dda9966a1d7d05bd79b384ae7e70020f743ae47103fc63c9686f09",
+    "reports/improvement/demo_entry_v1/integrity.json": "39ce2f6bec63b4be2f712e8287da7b5c6402157355697e0ee4cdd843766d2378",
+    "reports/improvement/demo_entry_v1/logs/auth_wiring.txt": "8e77b268860e20bfd1a0c8f416d4da525a08324403608345305a9eebf76ca0b2",
+    "reports/improvement/demo_entry_v1/logs/browser.txt": "ed8471a19a77c8a87eddbe3d7b18d278f5b5ed6fd1eff18fe617eb493b812dd3",
+    "reports/improvement/demo_entry_v1/logs/dashboard_build.txt": "a8bc27e6133805449898b0aa1b1eb2d07f4abef07e5e38c894975e8ad44ce312",
+    "reports/improvement/demo_entry_v1/validation.json": "5f5138bce0718e1a2acdab0f26bc3418aeb81ebe0e07df7fa02e4d9a833c0158",
+    "dashboard/src/App.jsx": "317f90d55b63d1b0fe3191b812cb4340c93ccc8630937637798a2f57acb17cb5",
+    "dashboard/scripts/assert-signin-reachable.mjs": "9acd90d3b32b426e649d9bf4fab7fa6a91a569ea9cdc39e933ce1ab4e7176c5b",
+    "reports/improvement/prospective/DEVIATIONS.md": "6f15647968a4978f33bb21b5d3fd2bbbba8f80d1861987d35f824a1645515291"
+  }
+}

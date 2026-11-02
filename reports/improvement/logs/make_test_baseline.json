@@ -1,0 +1,15 @@
+{
+  "command": [
+    "make",
+    "test"
+  ],
+  "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement",
+  "code_commit": "b63d7a7bf1000b4b00c076fbf695bc10556386a9",
+  "config_hash": "a30b237031034e99f5fcc663df702f531889003b6483a2c594a34e267412e6ee",
+  "data_hash": "c900b68f825c996e192054d182fd836183c1bcbd11ae8e91329d7687a2c3d858",
+  "split": "technical validation, not ML model selection",
+  "seed": null,
+  "started_at": "2026-10-31T11:32:51.141090+00:00",
+  "exit_code": 2,
+  "finished_at": "2026-10-31T11:41:59.223198+00:00"
+}

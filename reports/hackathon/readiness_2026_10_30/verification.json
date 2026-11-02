@@ -1,0 +1,134 @@
+{
+  "recorded_at": "2026-10-30T08:28:30.719281+00:00",
+  "source_commit": "6a0bd2dc383beeba07790f110fd7416d9d7d1af3",
+  "source_tree": "5003bb9bc08e39d299e027e76b1b2aad0cdf58c9",
+  "checkout": "separate detached checkout; no developer .env, databases, node_modules or venv copied",
+  "scope": "Focused source/readiness regressions, fresh local setup and saved-artifact replay. No live inference, real-audio or human study.",
+  "checks": [
+    {
+      "command": "FRONTLINE_AI_LAYER=off FRONTLINE_TEST_ISOLATION=1 bash scripts/judge_setup.sh --no-serve",
+      "status": "passed",
+      "exit_code": 0,
+      "initial_dependency_install_commit": "03ed794",
+      "final_application_commit": "6a0bd2dc383beeba07790f110fd7416d9d7d1af3",
+      "detail": "Fresh Python venv, npm dependencies and fixture databases. Subsequent commits leave dependencies/setup script unchanged. Current dashboard rebuilt and seeded API checked at final application commit. Private setup log contains generated credentials and is excluded."
+    },
+    {
+      "command": "PLAYWRIGHT_CHANNEL=chrome npm run test:signin",
+      "cwd": "dashboard",
+      "status": "passed",
+      "exit_code": 0,
+      "artifact": "browser.log",
+      "detail": "Real local API/WebSocket/auth/manual-fallback report\u2192correction\u2192revision\u2192review\u2192export; separately labelled synthetic voice and claim UI fixtures."
+    },
+    {
+      "command": "PLAYWRIGHT_CHANNEL=chrome npm run test:signin -- --missing-route-control",
+      "cwd": "dashboard",
+      "status": "expected_failure_verified",
+      "exit_code": 1,
+      "artifact": "signin-negative-control.log",
+      "detail": "Fails at rendered signin-page visibility after omitting only the registry entry from a temporary production build."
+    },
+    {
+      "command": ".venv-hackathon/bin/python -m pytest tests/frontline/ai_layer/test_report_handoff.py tests/frontline/ai_layer/test_campaign_investigator.py tests/frontline/ai_layer/test_investigation_readiness.py tests/frontline/ai_layer/test_investigation_process_recovery.py tests/frontline/ai_layer/test_evidence_benchmark.py tests/frontline/ai_layer/test_evidence_readiness.py tests/test_submission_artifacts.py -q",
+      "status": "passed",
+      "exit_code": 0,
+      "passed": 61,
+      "warnings": 2,
+      "artifact": "targeted-tests.log"
+    },
+    {
+      "command": "node --test dashboard/scripts/public-link-scope.test.mjs",
+      "status": "passed",
+      "exit_code": 0,
+      "passed": 2
+    },
+    {
+      "command": ".venv-hackathon/bin/python -m scripts.prepare_review_assets && git diff --exit-code",
+      "status": "passed",
+      "exit_code": 0,
+      "detail": "No generated asset drift; frozen review/study JSON unchanged."
+    },
+    {
+      "command": ".venv-hackathon/bin/python -m scripts.public_replay",
+      "status": "passed",
+      "exit_code": 0,
+      "artifact": "public-replay.json"
+    },
+    {
+      "command": "python -m scripts.submission_smoke --base-url <isolated-local-api> --key-env <private-generated-key-variable>",
+      "status": "passed",
+      "exit_code": 0,
+      "artifact": "clean-setup-smoke.json",
+      "detail": "Same check function called against clean-setup API; current seeded campaign, auth and all five review pages. Local runtime, not Docker."
+    }
+  ],
+  "browser_measurement": {
+    "engine": "installed Google Chrome via Playwright",
+    "viewport": [
+      1280,
+      800
+    ],
+    "reflow_viewport": [
+      640,
+      400
+    ],
+    "minimum_sampled_voice_text_contrast": 6.07,
+    "start_button_contrast": 16.6,
+    "scope": "Dark-theme sampled voice text only; half-width reflow, not actual browser zoom or assistive-technology validation."
+  },
+  "model_calls": 0,
+  "new_human_labels": 0,
+  "new_participants": 0,
+  "consented_real_audio_captures": 0,
+  "regression_before_fix": {
+    "tests": "unpunctuated/line-boundary subset",
+    "failed": 3,
+    "passed": 1,
+    "detail": "No fire and middle Hindi correction were absent from citation spans."
+  },
+  "pending": [
+    "Real reviewers and independently graded packets",
+    "Consented multilingual/device audio and observed audible-response timing",
+    "Current Docker build/run: docker unavailable locally",
+    "Hosted demo URL",
+    "Portal and team inspection"
+  ],
+  "excluded": [
+    "Video production, scripting and video-link completion"
+  ],
+  "artifacts": [
+    {
+      "path": "browser.log",
+      "sha256": "5b7cd82109d33d4c8cd33b88f1b04f09ae55f7a56f6e564628b4bc23c300fe1b"
+    },
+    {
+      "path": "signin-negative-control.log",
+      "sha256": "8e172638e24bbf449cf1f94205750ddb16069382cbc32c4827dcce8ebcb1c20a"
+    },
+    {
+      "path": "targeted-tests.log",
+      "sha256": "8ccfb06626ddc2e9ab4679b12464db1480d0f0240d928934e1d74c8004e3e588"
+    },
+    {
+      "path": "public-replay.json",
+      "sha256": "ed1409c16a6b64bf0fc7d3b248a288769412e3b7806d4c540473f29765931cd0"
+    },
+    {
+      "path": "clean-setup-smoke.json",
+      "sha256": "e64a1da3a07f48e256dc35ce9dc8857cf00694bddb4e1ef37a7f331d01129ebe"
+    },
+    {
+      "path": "voice-controls-synthetic.png",
+      "sha256": "b55d42e45d0dca8dcf97ebeda4b362223deedafa8b959c86229412614b5081f9"
+    },
+    {
+      "path": "voice-reflow-synthetic.png",
+      "sha256": "535eae066f99471c51c3d0ef520c0403e4e1a20a130ea926d88f45c112a0418b"
+    },
+    {
+      "path": "judge-entry.png",
+      "sha256": "3774203f9ba25824581102fdc350f9d53d578763995035967b0032eaf816894e"
+    }
+  ]
+}

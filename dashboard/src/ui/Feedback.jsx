@@ -168,10 +168,11 @@ export class ErrorBoundary extends Component {
           <p className="muted">
             The rest of the console is still running. Reload the view, or switch pages and come back.
           </p>
-          <pre className="mono error-trace">{String(this.state.error?.message || this.state.error)}</pre>
+          <details><summary>Engineer diagnostics</summary><pre className="mono error-trace">{String(this.state.error?.message || this.state.error)}</pre></details>
           <button type="button" className="primary" onClick={() => this.setState({ error: null })}>
             Retry view
           </button>
+          <button type="button" className="ghost" onClick={() => window.location.reload()}>Reload page</button>
         </div>
       );
     }

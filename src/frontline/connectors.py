@@ -217,7 +217,7 @@ def build_case_payload_from_db(case_id: str) -> dict[str, Any] | None:
             """
             SELECT case_id, interaction_id, pack_id, investigation_id,
                    cluster_match_id, category, severity, priority,
-                   description_summary, status
+                   description_summary, status, followup_draft
             FROM cases WHERE case_id = ?
             """,
             [case_id],
@@ -230,6 +230,16 @@ def build_case_payload_from_db(case_id: str) -> dict[str, Any] | None:
     from src.security.pii import decrypt_case_row
 
     c = decrypt_case_row(c) or c
+    from src.frontline.ops import list_case_notes
+    from src.ai_layer.evidence import list_for_case
+    from src.security.pii import redact_dict
+    extra = redact_dict({
+        "status": c.get("status"),
+        "followup_draft": c.get("followup_draft") or "",
+        "notes": list_case_notes(case_id),
+        "evidence_ids": [e["evidence_id"] for e in list_for_case(case_id)],
+        "customer_delivery": "not_sent",
+    })
     return build_payload(
         "manual_export",
         case_id=c.get("case_id"),
@@ -241,7 +251,7 @@ def build_case_payload_from_db(case_id: str) -> dict[str, Any] | None:
         priority=c.get("priority"),
         category=c.get("category"),
         title=_safe_title(c.get("description_summary")),
-        extra={"status": c.get("status")},
+        extra=extra,
     )
 
 

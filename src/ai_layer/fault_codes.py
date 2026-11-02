@@ -98,6 +98,59 @@ def codes_in_text(text: str) -> list[str]:
     return list(dict.fromkeys(out))[:MAX_CODES]
 
 
+# Cue words that make a bare DTC token a customer-supplied fault code rather
+# than a coincidental string (exit signs, part numbers). A token with no cue
+# in its sentence is still ignored, exactly like codes_in_text without a marker.
+_CUE = re.compile(
+    r"\b(?:fault|dtc|obd|diagnostic|trouble)\s*codes?\b|\bcodes?\b|scan(?:ner|ned)?\b|"
+    r"dashboard|warning\s*light|check\s*engine|mechanic|dealer|readout|ecu|ecm\b|"
+    r"कोड|स्कैन",
+    re.IGNORECASE,
+)
+_SENTENCE = re.compile(r"[^.!?\n]+")
+
+
+def codes_in_context(text: str) -> list[str]:
+    """DTCs mentioned with a fault-code cue in the same sentence.
+
+    Covers the common intake phrasing the marker-only scan missed, e.g.
+    'the mechanic scanned it and got P0300' or 'dashboard shows C0035'.
+    """
+    out: list[str] = []
+    for sentence in _SENTENCE.findall(text or ""):
+        if not _CUE.search(sentence):
+            continue
+        out += [t.upper() for t in _TOKEN.findall(sentence)]
+    return list(dict.fromkeys(out))[:MAX_CODES]
+
+
+def codes_mentioned(text: str) -> list[str]:
+    """Every customer-supplied DTC in one utterance (marker or cue context)."""
+    return list(dict.fromkeys(codes_in_text(text) + codes_in_context(text)))[:MAX_CODES]
+
+
+def capture_from_texts(
+    texts: Iterable[str],
+    *,
+    case_id: str | None = None,
+    interaction_id: str | None = None,
+    complaint_category: str | None = None,
+) -> dict[str, Any]:
+    """Scan customer utterances and store any DTCs they supplied. Never raises."""
+    try:
+        found: list[str] = []
+        for t in texts or []:
+            found += codes_mentioned(str(t or ""))
+        found = list(dict.fromkeys(found))[:MAX_CODES]
+        if not found:
+            return {"codes": [], "stored": 0}
+        a = store(found, case_id=case_id, interaction_id=interaction_id,
+                  complaint_category=complaint_category, source="transcript_scan")
+        return {"codes": [i["code"] for i in a["codes"]], "stored": len(found), "assessment": a}
+    except Exception:
+        return {"codes": [], "stored": 0}
+
+
 def lookup(code: str) -> dict[str, Any]:
     c = (code or "").strip().upper()
     if not is_valid(c):
@@ -292,9 +345,13 @@ def _event(iid, case_id, before, after, a) -> None:
 # ── live intake hooks (orchestrator, [AI-LAYER]) ─────────────────────────────
 
 async def maybe_capture_fault_codes(ctx, text: str) -> None:
-    """Store codes typed after a 'codes:' marker on this interaction. Never raises."""
+    """Store customer-supplied codes on this interaction. Never raises.
+
+    Accepts the explicit 'codes:' marker and cue-context mentions such as
+    'mechanic scanned P0300'; a bare token with no cue is still ignored.
+    """
     try:
-        codes = codes_in_text(text or "")
+        codes = codes_mentioned(text or "")
         if codes:
             store(codes, interaction_id=ctx.interaction_id, complaint_category=(ctx.slots or {}).get("category"),
                   source=f"message:{getattr(ctx, 'channel', '')}")
@@ -411,6 +468,7 @@ def queue_bonus(codes: list[str]) -> tuple[int, str | None]:
     return 10, f"safety-system fault code {names} (+10)"
 
 
-__all__ = ["DTC_RE", "assess", "attach_to_case", "codes_by_case", "codes_in_text", "for_case", "is_valid", "lookup",
+__all__ = ["DTC_RE", "assess", "attach_to_case", "capture_from_texts", "codes_by_case", "codes_in_context",
+           "codes_in_text", "codes_mentioned", "for_case", "is_valid", "lookup",
            "matching_for_investigation", "matching_for_vehicle", "maybe_capture_fault_codes", "maybe_raise_severity_dtc",
            "queue_bonus", "raise_only", "split_codes", "store"]

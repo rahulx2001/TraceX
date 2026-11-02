@@ -84,6 +84,10 @@ def test_mapped_category_is_always_a_gazetteer_value():
 def test_ingest_mapped_csv_writes_canonical_records(tmp_path, monkeypatch):
     # Live env path: do not fall back to the session fixture warehouse.
     monkeypatch.setenv("DOMAIN_DB_PATH", str(tmp_path))
+    # This test exercises mapping, not the passage of wall-clock time past the
+    # 90-day freshness SLA. Trust enforcement remains enabled.
+    from datetime import datetime
+    monkeypatch.setattr("src.data.trust.utc_now", lambda: datetime(2026, 8, 3))
 
     csv_path = tmp_path / "nhtsa_sample.csv"
     csv_path.write_text(

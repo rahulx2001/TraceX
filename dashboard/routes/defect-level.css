@@ -1,0 +1,187 @@
+/* A quieter flag list, with the source evidence in the selected detail panel. */
+.defect-level-page .defect-flags,
+.defect-level-page .defect-detail {
+  margin-bottom: 16px;
+  padding: 20px;
+}
+
+.defect-level-page .defect-section-heading,
+.defect-level-page .defect-detail-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+  margin-bottom: 16px;
+}
+
+.defect-level-page .defect-section-heading h2,
+.defect-level-page .defect-detail h2,
+.defect-level-page .defect-detail h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.defect-level-page .defect-detail h3 {
+  font-size: 13px;
+}
+
+.defect-level-page .defect-detail-heading p {
+  margin: 5px 0 0;
+}
+
+.defect-level-page .defect-detail-heading > span {
+  overflow-wrap: anywhere;
+}
+
+.defect-level-page .defect-table-scroll {
+  overflow-x: auto;
+}
+
+.defect-level-page .defect-flags table {
+  min-width: 850px;
+}
+
+.defect-level-page .defect-flags th {
+  background: transparent;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.defect-level-page .defect-flags td {
+  vertical-align: middle;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.defect-level-page .defect-week,
+.defect-level-page .defect-flags .defect-recall {
+  white-space: nowrap;
+}
+
+.defect-level-page .defect-flags tbody tr.selected {
+  background: var(--bg-hover);
+}
+
+.defect-level-page button.defect-flag-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  box-shadow: none;
+}
+
+:root[data-theme="light"] .defect-level-page button.defect-flag-button {
+  background: transparent;
+}
+
+.defect-level-page .defect-chevron {
+  display: inline-block;
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--ink-soft);
+}
+
+.defect-level-page [aria-expanded="true"] .defect-chevron,
+.defect-level-page details[open] .defect-chevron {
+  transform: rotate(180deg);
+}
+
+.defect-level-page .defect-recall-status {
+  color: var(--ok);
+}
+
+.defect-level-page .defect-recall-pending {
+  color: var(--warn);
+}
+
+.defect-level-page .defect-recall-description {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 100ch;
+}
+
+.defect-level-page .defect-detail-recall {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+  margin-bottom: 20px;
+}
+
+.defect-level-page .defect-evidence .defect-section-heading {
+  margin-bottom: 8px;
+}
+
+.defect-level-page .defect-excerpts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.defect-level-page .defect-excerpts li + li {
+  border-top: 1px solid var(--edge);
+}
+
+.defect-level-page .defect-excerpts summary {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 12px 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.defect-level-page .defect-excerpts summary::-webkit-details-marker {
+  display: none;
+}
+
+.defect-level-page .defect-excerpt-vehicle {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.defect-level-page .defect-excerpt-body {
+  padding: 0 0 14px;
+  max-width: 100ch;
+  overflow-wrap: anywhere;
+}
+
+.defect-level-page .defect-excerpt-body p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.defect-level-page .defect-flag-button:focus-visible,
+.defect-level-page .defect-table-scroll:focus-visible,
+.defect-level-page .defect-excerpts summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .defect-level-page .defect-flags,
+  .defect-level-page .defect-detail {
+    padding: 14px;
+  }
+
+  .defect-level-page .defect-detail-recall {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

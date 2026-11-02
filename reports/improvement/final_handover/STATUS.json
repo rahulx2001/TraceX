@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-11-01T12:17:07.695062+00:00",
+  "status": "engineering_handover_complete",
+  "engineering_complete": true,
+  "scientific_validation_complete": false,
+  "improved_score_demonstrated": false,
+  "human_validation": {
+    "labelled": 0,
+    "total": 300,
+    "accuracy": null
+  },
+  "supplied_synthetic_records": 300,
+  "scenario_families": 12,
+  "real_campaigns_added": 0,
+  "synthetic_classifier_accuracy": null,
+  "prospective_data_collected": false,
+  "completed_engineering_phases": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "unexecuted_human_phases": {
+    "7": "Prospective collection/final analysis; 2027\u20132029 outcomes, analysis by 2030-06-30",
+    "8": "Separate human merge decision"
+  },
+  "original_mode": "baseline_replication",
+  "comparison": "Fixed logistic comparison registered; not yet evaluated on prospective data",
+  "full_suite_passed": 2039,
+  "functional_gates_passed": 23,
+  "source_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+  "branch_commits_ahead_at_source_commit": 40,
+  "topology_note": "Includes the original 17 readiness commits. The closeout report is one additional commit; merging includes the whole branch.",
+  "merge_performed": false,
+  "promotion_performed": false,
+  "paid_calls": false,
+  "custody": "Procedural, tamper-evident; no-peeking remains honor-system for public outcomes.",
+  "limitations": [
+    "Authored labels bypass the text classifier.",
+    "The 300 fixtures repeat 12 scenario families.",
+    "No independent campaigns or complete follow-up are created by synthetic fixtures.",
+    "All historical scores, original protocols and existing deviations remain unchanged."
+  ]
+}

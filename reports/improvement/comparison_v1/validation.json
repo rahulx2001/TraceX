@@ -1,0 +1,43 @@
+{
+  "created_at": "2026-11-01T10:22:35.379652+00:00",
+  "command": "env FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= .venv-hackathon/bin/python -B -m pytest -q tests/frontline/ai_layer/test_campaign_census.py tests/frontline/ai_layer/test_prospective_comparison.py tests/frontline/ai_layer/test_ml_candidate_research.py tests/frontline/ai_layer/test_prospective_seal.py tests/frontline/ai_layer/test_final_prospective_eval.py",
+  "exit_code": 0,
+  "observed_summary": "60 passed in 27.12s",
+  "passed": 60,
+  "log": "reports/improvement/comparison_v1/logs/targeted_tests_final.txt",
+  "log_sha256": "ef91012615c37d3741cc437ff677f1fb6c577c11603a530a14d27da781c64dac",
+  "initial_test_run": {
+    "passed": 59,
+    "summary": "59 passed in 26.26s",
+    "exit_code": 0,
+    "log": "reports/improvement/comparison_v1/logs/targeted_tests.txt"
+  },
+  "tested_files": {
+    "scripts/prospective_comparison.py": "18c2f9bf5562efcc033909cd279939a5995cd83744652cd51261bd2a9db93cf9",
+    "scripts/audit_development_campaigns.py": "63bcd790e30c7446e3587c071ef35cee62b2e9c587dced36f57c4597cba1b8ec",
+    "tests/frontline/ai_layer/test_prospective_comparison.py": "f168b5b3c79b07ffbece056077b6a9c45b324f85e7b9a20f8823f898096dd83f",
+    "tests/frontline/ai_layer/test_campaign_census.py": "5b7733af0e61345810f5528ea3e724fa0631484a9f409638487637df33855a5d"
+  },
+  "shell_examples_syntax_checked": 1,
+  "shell_examples_executed": false,
+  "census_command": ".venv-hackathon/bin/python -B -m scripts.audit_development_campaigns --recalls-zip /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/data/defect/source_cache/FLAT_RCL_POST_2010.zip --out reports/improvement/comparison_v1/campaign_census.json",
+  "census_exit_code": 0,
+  "census_new_campaign_ids": 0,
+  "census_warning": "PyArrow CPU-capability sysctl probes were denied by the sandbox; archive parsing and input verification completed with exit 0.",
+  "original_report_hashes_verified": 819,
+  "original_changed_files_verified": 59,
+  "frozen_files_verified": 339,
+  "original_checkout_unchanged": true,
+  "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+  "baseline_scores_unchanged": true,
+  "previous_prototype_artifacts_unchanged": true,
+  "real_prospective_data_collected": false,
+  "real_final_analysis_executed": false,
+  "human_labels": {
+    "labelled": 0,
+    "total": 300
+  },
+  "test_evidence": "Synthetic fixtures only; not prospective model performance",
+  "full_suite_rerun": false,
+  "previous_full_suite_evidence": "reports/improvement/phase1/final_validation_phase1.json"
+}

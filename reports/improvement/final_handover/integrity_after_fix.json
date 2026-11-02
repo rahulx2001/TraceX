@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-11-01T11:27:18.074934+00:00",
+  "status": "verified",
+  "checks": {
+    "main_unchanged": true,
+    "original_checkout_head_unchanged": true,
+    "original_checkout_status_unchanged": true,
+    "worktree_branch": true,
+    "comparison_tag_unchanged": true,
+    "prospective_reserved_without_snapshots": true,
+    "collection_log_empty": true,
+    "baseline_replication_unchanged": true
+  },
+  "hashes_verified": {
+    "original_freeze_files": 339,
+    "comparison_freeze_files": 13,
+    "protected_artifacts": 4,
+    "development_input_hashes": 2,
+    "preserved_files": 3,
+    "research_v2/ARTIFACT_HASHES.json": 21,
+    "synthetic_review_v1/HASHES.json": 10,
+    "original_reports": 819,
+    "original_changed_files": 59
+  },
+  "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+  "original_freeze_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+  "comparison_freeze_commit": "5d0a44b5f1d82a84e76267f7a209b9a03511a1df",
+  "worktree_status": "## ml-score-improvement\n?? reports/improvement/final_handover/\n?? reports/qubot/eval/eval_2026-11-01.md",
+  "note": "Only task-owned additions may be uncommitted during report creation; final commit is checked separately.",
+  "discrepancies": []
+}

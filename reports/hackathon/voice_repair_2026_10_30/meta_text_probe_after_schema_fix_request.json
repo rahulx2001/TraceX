@@ -1,0 +1,170 @@
+{
+  "scope": "exact request reconstructed and verified against the recorded outbound SHA256; fictional text; credentials excluded",
+  "payload": {
+    "model": "meta-models/muse-spark-open-1026",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You assist a vehicle/product complaint intake agent. Return JSON only. 1) Detect the caller's language (en, hi = Devanagari Hindi, hinglish = romanised Hindi mixed with English). 2) Translate the utterance faithfully to plain English in normalized_en; keep every number exactly; add nothing. 3) For the listed EMPTY slots only, propose a value if the caller actually said it. For every proposal copy the exact caller words that support it into evidence (verbatim from the utterance). Use only values from the allowed lists where a list is given. Never guess; omit a slot you are unsure about. The previous assistant question and captured facts below provide context only, not source evidence. An example in a question (Honda, Ford, Toyota) is never a caller statement. A short year such as 11 is ambiguous: do not expand it to 2011. 'Hello' is not a vehicle brand. Preserve negation and corrections; do not turn a suspected cause into a finding. 4) Rate caller frustration 0-1 with a one-line reason. Do not invent IDs, recalls, or facts.\nReturn only a JSON object matching this JSON schema:\n{\"type\": \"object\", \"properties\": {\"language\": {\"type\": \"string\", \"enum\": [\"en\", \"hi\", \"hinglish\", \"other\"]}, \"normalized_en\": {\"type\": \"string\", \"maxLength\": 1200}, \"normalization_confidence\": {\"type\": \"number\", \"minimum\": 0, \"maximum\": 1}, \"slots\": {\"type\": \"array\", \"maxItems\": 8, \"items\": {\"type\": \"object\", \"properties\": {\"slot\": {\"type\": \"string\", \"maxLength\": 40}, \"value\": {\"type\": \"string\", \"maxLength\": 300}, \"confidence\": {\"type\": \"number\", \"minimum\": 0, \"maximum\": 1}, \"evidence\": {\"type\": \"string\", \"maxLength\": 300}}, \"required\": [\"slot\", \"value\", \"confidence\", \"evidence\"]}}, \"frustration\": {\"type\": \"number\", \"minimum\": 0, \"maximum\": 1}, \"frustration_reason\": {\"type\": \"string\", \"maxLength\": 200}}, \"required\": [\"language\", \"normalized_en\", \"normalization_confidence\", \"slots\", \"frustration\", \"frustration_reason\"]}"
+      },
+      {
+        "role": "user",
+        "content": "CONTEXT ONLY:\n{\"previous_question\": \"What is happening with your vehicle?\", \"captured\": {\"entity_1\": \"2019\"}}\n\nEMPTY SLOTS:\n- entity_2 (Make; validation=gazetteer) examples: ACURA, AUDI, BMW, BUICK, CADILLAC, CHEVROLET, CHRYSLER, DODGE, FCA, FORD, GENESIS, GMC, GMC TRUCK, HONDA, HYUNDAI, INFINITI, JAGUAR, JEEP, KIA, LAND ROVER, LEXUS, LINCOLN, MAZDA, MERCEDES-BENZ, MINI\n- entity_3 (Model; validation=gazetteer) examples: 3, 3 SERIES, 4RUNNER, 5 SERIES, A4, ACCORD, ACCORD HV, ALTIMA, C-CLASS, CAMRY, CAMRY HV, CHEROKEE, CIVIC, CIVIC HV, COROLLA, CR-V, CROSSTREK, CX-3, CX-5, E-CLASS, EDGE, ELANTRA, ES, ESCAPE, EXPLORER\n- category (System; validation=gazetteer) one of: AIR BAGS; BACKOVER PREVENTION; CHILD SEAT; ELECTRICAL SYSTEM; ELECTRONIC STABILITY CONTROL; ENGINE; EQUIPMENT; EXTERIOR LIGHTING; FORWARD COLLISION AVOIDANCE; FUEL SYSTEM; FUEL/PROPULSION SYSTEM; HYBRID PROPULSION SYSTEM; LANE DEPARTURE; LATCHES/LOCKS/LINKAGES; PARKING BRAKE; POWER TRAIN; SEAT BELTS; SEATS; SERVICE BRAKES; STEERING; STRUCTURE; SUSPENSION; TIRES; TRACTION CONTROL SYSTEM; UNKNOWN OR OTHER; VEHICLE SPEED CONTROL; VISIBILITY; VISIBILITY/WIPER; WHEELS\n- description (Symptom description; validation=free-text)\n\nCALLER UTTERANCE (only source for proposals):\nमेरी होंडा सिविक 2019 के ब्रेक से बहुत आवाज़ आ रही है"
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 4000,
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "intake_slots",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "language": {
+              "type": "string",
+              "enum": [
+                "en",
+                "hi",
+                "hinglish",
+                "other"
+              ]
+            },
+            "normalized_en": {
+              "type": "string",
+              "maxLength": 1200
+            },
+            "normalization_confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "slots": {
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "slot": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "confidence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "maxLength": 300
+                  }
+                },
+                "required": [
+                  "slot",
+                  "value",
+                  "confidence",
+                  "evidence"
+                ]
+              }
+            },
+            "frustration": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "frustration_reason": {
+              "type": "string",
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "language",
+            "normalized_en",
+            "normalization_confidence",
+            "slots",
+            "frustration",
+            "frustration_reason"
+          ]
+        },
+        "strict": false
+      }
+    },
+    "reasoning_effort": "low"
+  },
+  "logical_schema": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "enum": [
+          "en",
+          "hi",
+          "hinglish",
+          "other"
+        ]
+      },
+      "normalized_en": {
+        "type": "string",
+        "maxLength": 1200
+      },
+      "normalization_confidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "slots": {
+        "type": "array",
+        "maxItems": 8,
+        "items": {
+          "type": "object",
+          "properties": {
+            "slot": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "value": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "required": [
+            "slot",
+            "value",
+            "confidence",
+            "evidence"
+          ]
+        }
+      },
+      "frustration": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "frustration_reason": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "required": [
+      "language",
+      "normalized_en",
+      "normalization_confidence",
+      "slots",
+      "frustration",
+      "frustration_reason"
+    ]
+  }
+}

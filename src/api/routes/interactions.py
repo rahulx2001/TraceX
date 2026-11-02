@@ -546,11 +546,17 @@ async def start_interaction(
     from src.api.idempotency import check_idempotency, store_idempotent_result
     from src.domains.active_pack import resolve_active_pack_id
     from src.ops.drain import ServiceDrainingError
+    from src.voice.language import speech_locale
+
+    try:
+        locale = speech_locale(locale)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     pack_id = resolve_active_pack_id()
     raw_ref = (customer_ref or "").strip()
     ref_hash = _hashlib.sha256(raw_ref.encode()).hexdigest() if raw_ref else None
-    material = f"channel={channel}&pack={pack_id}&session={channel_session_id or ''}&ref={ref_hash or ''}"
+    material = f"channel={channel}&pack={pack_id}&session={channel_session_id or ''}&ref={ref_hash or ''}&locale={locale}"
     replay = check_idempotency(request, "interaction_start", material)
     if replay is not None:
         try:
@@ -670,6 +676,8 @@ async def start_interaction(
             "locale": getattr(pack, "locale", "en-US") or "en-US",
         },
         "locale": getattr(orch.ctx, "locale", "en-US") or "en-US",
+        "speech_support": {"input_locale": locale, "reply_locale": getattr(pack, "locale", "en-US") or "en-US",
+                           "reply_policy": "installed_pack_scripts", "multilingual_audio_validation": "pending"},
         "region": getattr(orch.ctx, "region", None),
         "voice_consent_required": bool(getattr(orch.ctx, "voice_consent_required", False)),
         "consent_script": getattr(orch.ctx, "voice_consent_script", "") or str((_creq0 or {}).get("script") or ""),
@@ -1333,6 +1341,15 @@ class _WSHooks(OrchestratorHooks):
                 return
             if not (text or "").strip():
                 return
+            from src.voice.language import response_locale
+            entry = _active.get(self._interaction_id)
+            locale = response_locale(text, getattr(entry.orch.ctx, "locale", None) if entry else None)
+            if locale == "hi-IN":
+                # Current configured Aura voice is English. Do not pretend it
+                # can synthesize Hindi; let the browser choose a Hindi voice.
+                await self._to_customer(self._channel.send_control({"type": "voice_fallback", "stage": "synthesis",
+                    "locale": locale, "reason": "Configured server voice is English; use browser Hindi playback or read the transcript."}))
+                return
             try:
                 audio = await asyncio.wait_for(
                     asyncio.to_thread(stack.synthesize_audio, text), timeout=30.0
@@ -1490,12 +1507,18 @@ async def _rewrite_user_audio_to_turn(
     invents transcript text: silence yields ``stt_empty``, failures yield an
     error frame, and the orchestrator is never called with either.
     """
-    from src.channels.deepgram import decode_user_audio
+    from src.channels.deepgram import decode_user_audio, transcription_language, DeepgramError
     from src.channels.stt_tts import ServerSpeechStack
 
     try:
         data, mime = decode_user_audio(msg)
-    except ValueError as exc:
+        entry = _active.get(interaction_id)
+        session_locale = getattr(entry.orch.ctx, "locale", None) if entry else None
+        locale = msg.get("locale") or session_locale
+        transcription_language(locale)
+        if session_locale and locale != session_locale:
+            raise ValueError("Speech locale differs from this report's selected language; start a new report to change it")
+    except (ValueError, DeepgramError, TypeError) as exc:
         await websocket.send_json({
             "type": "error",
             "detail": str(exc),
@@ -1514,7 +1537,7 @@ async def _rewrite_user_audio_to_turn(
         return None
     try:
         out = await asyncio.wait_for(
-            asyncio.to_thread(stack.transcribe_audio, data, mime=mime),
+            asyncio.to_thread(stack.transcribe_audio, data, mime=mime, locale=locale),
             timeout=30.0,
         )
     except Exception:
@@ -1678,6 +1701,8 @@ async def interaction_ws(websocket: WebSocket, interaction_id: str) -> None:
         "attached": True,
         "interaction_id": interaction_id,
         "resumed": bool(resumed),
+        "locale": getattr(orch.ctx, "locale", "en-US"),
+        "reply_locale": getattr(orch.ctx.pack, "locale", "en-US") or "en-US",
     }
     try:
         from src.channels.stt_tts import server_voice_capabilities
@@ -1750,6 +1775,15 @@ async def interaction_ws(websocket: WebSocket, interaction_id: str) -> None:
                     orch.note_playback(msg)
                 continue
             if mtype == "user_turn":
+                from src.voice.language import speech_locale
+                try:
+                    selected_locale = speech_locale(msg.get("locale") or orch.ctx.locale)
+                    if selected_locale != orch.ctx.locale:
+                        raise ValueError("Language is fixed for this report; start a new report to change it")
+                except (TypeError, ValueError) as exc:
+                    await websocket.send_json({"type": "error", "code": "bad_language", "detail": str(exc), "recoverable": True})
+                    continue
+                msg["locale"] = selected_locale
                 # Durable replay dedup lives in ONE place: the orchestrator's
                 # _seen_client_turn (turn_dedup PK). A second pre-insert here
                 # would make every first turn look like a replay (the row it

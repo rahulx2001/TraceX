@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "study_id": "fixed-logistic-comparison-v1",
+  "created_at": "2026-11-01T10:22:35.418913+00:00",
+  "tag": "ml-logistic-comparison-freeze-2026-v1",
+  "original_freeze_tag_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+  "files": {
+    "reports/improvement/comparison_v1/PREREGISTRATION.md": "6a97d38a0cdfcb708d8a0c5bfb01272bb21d1fa3fc17a936ed309b86ea165258",
+    "reports/improvement/comparison_v1/protocol.json": "a7a69100fb94f318480c681b4542d944711790b769da9c2131be399a5c4afc88",
+    "reports/improvement/comparison_v1/RUNBOOK.md": "da0fc61615dc4098a7365347e2127a0a9191f7ae790c8042d6d513e2c6c0237e",
+    "reports/improvement/comparison_v1/campaign_census.json": "6c6311a25114939dea27b8d1cf5a4fd3baff25ba3e9bb352017e4902610fa423",
+    "scripts/prospective_comparison.py": "18c2f9bf5562efcc033909cd279939a5995cd83744652cd51261bd2a9db93cf9",
+    "scripts/audit_development_campaigns.py": "63bcd790e30c7446e3587c071ef35cee62b2e9c587dced36f57c4597cba1b8ec",
+    "tests/frontline/ai_layer/test_prospective_comparison.py": "f168b5b3c79b07ffbece056077b6a9c45b324f85e7b9a20f8823f898096dd83f",
+    "tests/frontline/ai_layer/test_campaign_census.py": "5b7733af0e61345810f5528ea3e724fa0631484a9f409638487637df33855a5d",
+    "reports/improvement/runs/logistic_prototype_v1/model.json": "7a4a2607822e792d46cef5aeb4ca79d0c1a44164534e27cb9f87840351ecda2d",
+    "reports/improvement/phase1/baseline_model.json": "350cf20b75ef4e2b3dbcae0b4b9ef3d7706a9889f34393f93f815defada96b29",
+    "reports/improvement/phase1/requirements-prospective.txt": "5a38a83520a9ddc12eabcbe5fc6b2b4d7185404a9452873aca60b368adca57b5",
+    "reports/improvement/phase1/FREEZE_HASHES.json": "03d4d2a6e90a6b41b426a795949e186be345b9499feea0564ff61a15092d92ae",
+    "reports/improvement/phase1/freeze_manifest.json": "d1bcaf6403bb2cf600c1ea1aa4748f044eeb4b9928c166f06a7e0b7126116855"
+  },
+  "hash_command": "shasum -a 256",
+  "note": "This index is pinned by the annotated comparison tag; it does not contain its own hash. The original freeze is independently verified."
+}

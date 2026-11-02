@@ -1,0 +1,54 @@
+{
+  "makes": [
+    "CHEVROLET",
+    "GMC",
+    "NISSAN"
+  ],
+  "model_years": [
+    2015,
+    2024
+  ],
+  "holdout": [
+    "2025-01-01",
+    "2025-12-31"
+  ],
+  "outcome_end": "2026-09-30",
+  "sources": [
+    "FUEL SYSTEM",
+    "FUEL/PROPULSION SYSTEM"
+  ],
+  "reason": "These makes were outside the previously scored five-make 2025 cohort. No model scores used for selection.",
+  "policy": {
+    "detector": "count",
+    "window": 13,
+    "minimum": 2,
+    "threshold": 0
+  },
+  "workload": "Same maximum: one alert/week, two/month, 91-day make/defect cooldown; also compare exact matched monthly quotas.",
+  "freshness": "Locally unevaluated make/time cohort; historical data and model pretraining can still leak recall knowledge.",
+  "holdout_status": "unopened; human review pending",
+  "target_recall": 0.86,
+  "minimum_precision": 0.5,
+  "input_hashes": {
+    "development": "c62372e8576a2a93cf217bc73488064b7eb0c16283905c526eda32b849706b89",
+    "holdout": "dc2979d2cc128e5c4c55ea0ba55a3e0382df7a9e55c5e2851b630b312de44d8f",
+    "recalls": "7212ae93658845aa9e1d5d746d5ab9e74d42488735bb751b464b3fb48ee61be3"
+  },
+  "source_hashes": {
+    "complaints": "dbbe24161ba94c56b4bc8acbf6aee995225bd42a8261f03b7efcc5ed3ac4e3b4",
+    "recalls": "6e886e1076d33dc457f44deafb848c28a791ec406022d6e67d1cc3662e3cbebc"
+  },
+  "review_counts": {
+    "development": 32,
+    "holdout_complaints": 100,
+    "recall_descriptions": 5
+  },
+  "complaint_counts": {
+    "development": 2119,
+    "holdout": 621
+  },
+  "human_review": {
+    "completed": 0,
+    "status": "pending"
+  }
+}

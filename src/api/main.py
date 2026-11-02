@@ -481,6 +481,7 @@ from src.api.routes import oidc_auth as oidc_auth_routes
 from src.api.routes import platform56 as platform56_routes
 from src.api.routes import v3_platform as v3_routes
 from src.api.routes import ai_layer as ai_layer_routes  # [AI-LAYER] optional Meta AI layer routes
+from src.api.routes import safety_campaigns as safety_campaign_routes
 
 app.include_router(interactions.router)
 app.include_router(packs.router)
@@ -492,6 +493,7 @@ app.include_router(enterprise_routes.router)
 app.include_router(v3_routes.router)
 app.include_router(pipeline_routes.router)
 app.include_router(ai_layer_routes.router)  # [AI-LAYER] /api/ai/*, /api/cases/{id}/evidence, /api/evidence/*
+app.include_router(safety_campaign_routes.router)
 
 # Blueprint §8.2: WebSocket endpoints live at the app root (not under /api/...).
 app.add_api_websocket_route(

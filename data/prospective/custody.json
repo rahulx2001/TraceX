@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "mode": "procedural",
+  "custodian": "Rahul Kumar Singh",
+  "storage": "Human-managed encrypted APFS disk image outside the repository; volume label RCA-PROSPECTIVE",
+  "passphrase_location": "human-held; not in repo/env/history",
+  "threat_model": "Tamper-evident, not access-control. Public NHTSA outcomes can be re-fetched. No-peeking is honor-system; same-account access is not prevented.",
+  "external_timestamp": {
+    "status": "pending_human",
+    "proof": null
+  },
+  "volume_marker_uuid": "770b71da-b9f2-4624-af9e-25c6e3d4e7ac",
+  "synthetic_fixture": false
+}

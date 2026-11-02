@@ -1,0 +1,85 @@
+{
+  "status": "invalid",
+  "error": "nonverbatim_specific_evidence:evidence:c2",
+  "items": [],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.82,
+        "evidence": "abruptly locks steering wheel while driving to the point you cannot turn the steering wheel",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "electric_power_assist_system_loss_of_control",
+        "confidence": 0.78,
+        "evidence": "low steering power” the wheel locked and my car would not go",
+        "part_evidence": "low steering power",
+        "mode_evidence": "wheel locked and my car would not go",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "Car is constantly wandering and completely impossible to keep straight at highway speeds.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "Steering jerks at random, doing so more frequently during highway driving/higher speeds.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.9,
+        "evidence": "My Civic SI has developed sticky steering while on the highway.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.84,
+        "evidence": "diagnosed a failure with the steering column fastener",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c7",
+        "label_id": "other_unclear",
+        "confidence": 0.89,
+        "evidence": "Sticky steering when driving at Hwy/Freeway speeds causing a jerking movement when correcting",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c8",
+        "label_id": "other_unclear",
+        "confidence": 0.87,
+        "evidence": "steering wheel intermittently wants to turn right or left and requires more force to counteract",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "uncertain_cause"
+      }
+    ]
+  },
+  "batch_key": "86e52b32f5ac0ecabde87f8ad6869b62a14f25ff52c9ca0ce9bfb7e752f8119c",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:26:53+00:00",
+  "completed_at": "2026-11-02T13:27:01+00:00"
+}

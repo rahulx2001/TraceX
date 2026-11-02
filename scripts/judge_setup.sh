@@ -5,7 +5,7 @@
 #   META_API_KEY=... ./scripts/judge_setup.sh   # same, with the optional Meta AI layer on
 #   ./scripts/judge_setup.sh --no-serve # install + seed only
 #
-# Everything lives in data/hackathon/judge-v2/ (never the pilot data/frontline.duckdb).
+# Everything lives in data/hackathon/judge-v3/ (never the pilot data/frontline.duckdb).
 # Seeding always uses the deterministic path, with no model spend. Serving
 # loads the configured Meta key from .env and photo upload still works; with it, Muse Spark / SAM 3.1 add
 # Hindi normalisation, slot filling, grounded briefs and photo analysis.
@@ -34,7 +34,8 @@ echo "→ [1/5] Python env (.venv-hackathon) + dependencies"
 .venv-hackathon/bin/python -m pip install -q --upgrade pip
 .venv-hackathon/bin/python -m pip install -q -r requirements.txt -c requirements-lock.txt
 
-echo "→ [2/5] Dashboard build"
+echo "→ [2/5] Current review assets and dashboard build"
+.venv-hackathon/bin/python -m scripts.prepare_review_assets
 command -v npm >/dev/null 2>&1 || { echo "npm is required. The dashboard build is part of judge setup." >&2; exit 1; }
 (
   cd dashboard
@@ -46,48 +47,49 @@ command -v npm >/dev/null 2>&1 || { echo "npm is required. The dashboard build i
   npm run build --silent
 )
 
-export FRONTLINE_DB_PATH="$PWD/data/hackathon/judge-v2/frontline.duckdb"
-export DOMAIN_DB_PATH="$PWD/data/hackathon/judge-v2/domains"
-export AI_EVIDENCE_DIR="$PWD/data/hackathon/judge-v2/ai_evidence"
+export FRONTLINE_DB_PATH="$PWD/data/hackathon/judge-v3/frontline.duckdb"
+export DOMAIN_DB_PATH="$PWD/data/hackathon/judge-v3/domains"
+export AI_EVIDENCE_DIR="$PWD/data/hackathon/judge-v3/ai_evidence"
 export FRONTLINE_ENABLED=1 AI_DEMO_ENABLED=1
 mkdir -p "$DOMAIN_DB_PATH"
-chmod 700 data/hackathon/judge-v2
+chmod 700 data/hackathon/judge-v3
 
-SEED_VERSION="2026-10-29-lotguard"
-if [ -f data/hackathon/judge-v2/.seeded ] && [ "$(cat data/hackathon/judge-v2/.seeded)" != "$SEED_VERSION" ]; then
-  echo "Demo seed version mismatch: this checkout expects '$SEED_VERSION', found '$(cat data/hackathon/judge-v2/.seeded)'." >&2
-  echo "The old seed is not reused. Move data/hackathon/judge-v2 aside (or delete it) and rerun this script." >&2
+SEED_VERSION="2026-10-30-sourced-investigation-v3"
+if [ -f data/hackathon/judge-v3/.seeded ] && [ "$(cat data/hackathon/judge-v3/.seeded)" != "$SEED_VERSION" ]; then
+  echo "Demo seed version mismatch: this checkout expects '$SEED_VERSION', found '$(cat data/hackathon/judge-v3/.seeded)'." >&2
+  echo "The old seed is not reused. Move data/hackathon/judge-v3 aside (or delete it) and rerun this script." >&2
   exit 1
 fi
-if [ ! -f data/hackathon/judge-v2/.seeded ]; then
-  echo "→ [3/5] Demo warehouses (fixture corpus, data/hackathon/judge-v2/)"
+if [ ! -f data/hackathon/judge-v3/.seeded ]; then
+  echo "→ [3/5] Demo warehouses (fixture corpus, data/hackathon/judge-v3/)"
   .venv-hackathon/bin/python -m scripts.seed_frontline_fixtures
-  echo "→ [4/5] Simulated traffic (opens early-warning investigations) + seeded India scenario"
-  .venv-hackathon/bin/python -m src.frontline.simulator --count "${SIM_COUNT:-15}" --speed instant
-  .venv-hackathon/bin/python -m scripts.ai_demo_seed --out data/hackathon/judge-v2/india_seed.json >/dev/null
-  .venv-hackathon/bin/python -m scripts.lotguard_seed --out data/hackathon/judge-v2/lotguard_seed.json >/dev/null
-  printf '%s\n' "$SEED_VERSION" > data/hackathon/judge-v2/.seeded
+  echo "→ [4/5] Fictional campaign, installation review and repair evidence"
+  .venv-hackathon/bin/python -m scripts.safety_campaign_seed
+  printf '%s\n' "$SEED_VERSION" > data/hackathon/judge-v3/.seeded
 else
   echo "→ [3-4/5] data/hackathon seed $SEED_VERSION is current"
 fi
 
-KEY_FILE=data/hackathon/judge-v2/operator_api_key
+# Ensure the current sourced investigation walkthrough is available. This is idempotent and never resets existing campaigns.
+.venv-hackathon/bin/python -m scripts.safety_campaign_seed
+
+KEY_FILE=data/hackathon/judge-v3/operator_api_key
 [ -f "$KEY_FILE" ] || .venv-hackathon/bin/python -c "import secrets; print(secrets.token_hex(24))" > "$KEY_FILE"
 chmod 600 "$KEY_FILE"
 export FRONTLINE_API_KEY="$(cat "$KEY_FILE")" FRONTLINE_AUTH_REQUIRED=1
 
-SESSION_FILE=data/hackathon/judge-v2/session_secret
+SESSION_FILE=data/hackathon/judge-v3/session_secret
 [ -f "$SESSION_FILE" ] || .venv-hackathon/bin/python -c "import secrets; print(secrets.token_hex(32))" > "$SESSION_FILE"
 chmod 600 "$SESSION_FILE"
 export SESSION_SECRET="$(cat "$SESSION_FILE")"
 
-SUPERVISOR_FILE=data/hackathon/judge-v2/supervisor_token.json
+SUPERVISOR_FILE=data/hackathon/judge-v3/supervisor_token.json
 SUPERVISOR_TOKEN="$(.venv-hackathon/bin/python - << 'PY'
 import json, time
 from pathlib import Path
 from fastapi import HTTPException
 from src.api.rbac import issue_session
-path = Path("data/hackathon/judge-v2/supervisor_token.json")
+path = Path("data/hackathon/judge-v3/supervisor_token.json")
 data = {}
 if path.is_file():
     try:
@@ -114,15 +116,16 @@ export FRONTLINE_AI_LAYER="$START_AI_LAYER"
 
 echo
 echo "AI layer: $(.venv-hackathon/bin/python -c 'from src.config import load_repo_env; load_repo_env(); from src.ai_layer.config import ai_mode; print(ai_mode())')"
-echo "Seeded India case: $(.venv-hackathon/bin/python -c "import json;d=json.load(open('data/hackathon/judge-v2/india_seed.json'));print(d['case_id'], d['severity'], d['investigation_id'])")"
-echo "Seeded LotGuard lot: $(.venv-hackathon/bin/python -c "import json;d=json.load(open('data/hackathon/judge-v2/lotguard_seed.json'));print(d['lot']['lot_id'], d['investigation_id'], str(d['owner_count'])+' owners')")"
+echo "Prepared campaign: fictional installation records, simulated reviews and repair evidence; no model spend during setup."
 echo "The operator API key is a service principal. It does not sign you in as a supervisor."
 echo "Operator API key (local only, paste on the Sign in page → 'Have an operator API key?'):"
 echo "   $FRONTLINE_API_KEY"
 echo "Supervisor session token (for supervisor actions like raise review):"
 echo "   $SUPERVISOR_TOKEN"
 echo "   (Sign in → Have a supervisor session? → paste this session. It is stored as an HttpOnly cookie.)"
-echo "Demo path: http://127.0.0.1:$API_PORT/ui/#demo"
+echo "Start here: http://127.0.0.1:$API_PORT/ui/#demo"
+echo "Authenticated mode opens Sign in first, then returns to Report → Investigate → Review → Evidence."
+echo "Credential entry is also always reachable at http://127.0.0.1:$API_PORT/ui/#signin"
 [ "$SERVE" = "1" ] || exit 0
 echo "→ [5/5] Serving on http://127.0.0.1:$API_PORT (Ctrl-C to stop)"
 exec .venv-hackathon/bin/python -m uvicorn src.api.main:app --host 127.0.0.1 --port "$API_PORT"

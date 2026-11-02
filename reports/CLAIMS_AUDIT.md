@@ -205,3 +205,87 @@ touched; no product thresholds, regexes, lexicons, tests or data were changed.
   `4 failed, 1711 passed, 1 skipped, 1 deselected` in 16:02; all four failures
   reproduce individually and were left unmodified. The very slow cluster test
   is not counted as a pass. Details: `reports/TEST_RESULTS.md`.
+
+## 10. ML improvement baseline addendum — 2026-10-31
+
+The historical audit above is preserved. The new score inventory is
+[`improvement/baseline.json`](improvement/baseline.json), with exact source JSON
+keys, denominators, descriptive confidence intervals, provenance limitations
+and replay commands. See [`improvement/README.md`](improvement/README.md) for
+the proposed protocol and [`improvement/verification_runs.json`](improvement/verification_runs.json)
+for executed checks and logs. No model improvement or production promotion
+is claimed. Human accuracy is undefined while review labels remain blank.
+
+Repair and fuel-holdout replay succeeded; category diagnostics reproduced their
+recorded scores. Safety/OOS are cited historical results, not newly rerun tests.
+For this snapshot the safety recent-recall fields are under `summary.recent`;
+`summary` contains first-ever flags. The old audit's unqualified `summary` paths
+must not be used to select the recent metric from the current JSON.
+
+The embedding fixture's `novel_true` class has no positive labels. Its recorded
+P@5 cannot establish novel-match retrieval quality. Frozen figures are preserved;
+a new independent benchmark needs mixed relevant and irrelevant candidates.
+All further training is gated on target approval, human labels and a verifiably
+untouched test window.
+
+## 11. ML research and verification addendum — 2026-10-31
+
+The approved research ambition is 80% mature-alert precision and 70% campaign
+recall together, with the other targets recorded in
+[`improvement/research_protocol.json`](improvement/research_protocol.json).
+Targets are not achieved results. Human annotation was deferred by the user;
+0/300 review rows have human labels and no human accuracy score exists.
+The pending untouched-test decision prevented candidate fitting and tuning.
+
+The definitive current result is
+[`improvement/results.json`](improvement/results.json), status
+`research_targets_not_demonstrated`, `promoted=false`, `improvement_claim=null`.
+[`improvement/before_after.json`](improvement/before_after.json) retains unchanged
+baseline numerators, denominators, intervals and source keys; it must not be cited
+as evidence of a score increase. The dashboard improvement panel is generated
+from this result, verifies its source hashes and metric values, and displays
+“Retrospective, model-labelled, not production-validated”. The old dashboard
+evidence JSON remains unchanged.
+
+Pre-2021 development opportunity counts, per-slice metrics and the complete
+available machine error inventory come from
+[`improvement/runs/audit_v1/results.json`](improvement/runs/audit_v1/results.json).
+They use different evaluation periods and campaign denominators from the repair
+and holdout reports. Opportunity counts are not detector recalls or universal
+model ceilings. Calibration/ECE/Brier diagnostics are sourced from
+[`improvement/runs/baseline_calibration_v1/results.json`](improvement/runs/baseline_calibration_v1/results.json),
+with full commands, input/config hashes, seed and code identity in `started.json`.
+The heuristic is uncalibrated; no superiority to a training-prevalence reference
+is claimed because that reference has no eligible outcomes.
+
+Software validation results are recorded separately in
+[`improvement/final_validation.json`](improvement/final_validation.json).
+Frozen repair and holdout results replay exactly. A fresh Python environment
+reproduced audit/calibration outputs and pipeline scores; raw timings and code
+IDs are expected to differ. Browser verification includes the visible evidence
+panel on desktop/mobile and sign-in; synthetic speech tests do not prove audio
+quality. Earlier failing test logs remain retained. No historical frozen scoring
+rule, denominator or model configuration was changed.
+
+[`improvement/artifact_integrity_release.json`](improvement/artifact_integrity_release.json)
+checks the original artifact inventory at its actual source checkout and confirms
+unchanged originals. The sibling branch appends this audit without rewriting the
+historical text. The all-points disposition and outstanding decisions are in
+[`improvement/FINAL_REVIEW.md`](improvement/FINAL_REVIEW.md). No merge, deployment,
+paid model call or production performance claim is authorized by this addendum.
+
+
+## 2026-11-01 — prospective reservation and baseline freeze
+
+Evidence paths in this addendum are relative to `reports/improvement/`.
+
+| Date | Claim | Evidence path | Status | Benchmark | Split | Label source |
+|---|---|---|---|---|---|---|
+| 2026-11-01 | Prospective 2027–2028 test reserved and pre-registered | phase1/PREREGISTRATION.md; SHA-256 a462493785c582e03930d7ab81027a7aa221943006f19c06cad083ecd38b7469 | VERIFIED | fuel-system prospective protocol | prospective-sealed (reserved; no observations) | protocol metadata; future model labels and official recall dates |
+| 2026-11-01 | No improved score demonstrated | phase1/phase2_decision.json; phase1/final_validation_phase1.json | VERIFIED | baseline replication | development / historical-opened; prospective unavailable | model hypotheses and official recalls |
+| 2026-11-01 | Human semantic accuracy unavailable: 0/300 labelled | results.json; dashboard source check | UNAVAILABLE | human semantic validation | no human-labelled split | human labels absent |
+| 2026-11-01 | Procedural custody is tamper-evident, not enforced; no-peeking honor-system | phase1/CUSTODY.md; dashboard custody notice | LIMITATION | prospective custody | prospective-sealed reservation | human procedural attestation; public outcomes |
+| 2026-11-01 | Development results are not candidate results or prospective estimates | phase1/development_results.json; prospective/DEVIATIONS.md DEV-20261101-01 | QUALIFIED BY APPROVED AMENDMENT | 2015–2020 fuel-system development | development | frozen model labels and official recall dates |
+| 2026-11-01 | No merge or production promotion performed | phase1/phase5_final_audit.json; phase1/merge_readiness.md | VERIFIED | repository state | not a performance split | Git and execution records |
+
+The historical preparation read is acknowledged in `reports/improvement/prospective/DEVIATIONS.md` (DEV-20261101-01). Existing claims and run records above are preserved.

@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "status": "preregistered",
+  "created_at": "2026-10-31T15:10:06.484940+00:00",
+  "author": "Rahul Kumar Singh; prepared by ML improvement engineer",
+  "repository": "v2_ai_rca_tool",
+  "branch": "ml-score-improvement",
+  "preregistration_commit": "0d088f6ddcb869482427578cb0c02a6758fdbe17",
+  "commit_note": "Source commit before this document; the first git commit containing protocol.json is the preregistration event and is pinned by the freeze.",
+  "scope": {
+    "makes": [
+      "FORD",
+      "HONDA",
+      "HYUNDAI",
+      "KIA",
+      "TOYOTA"
+    ],
+    "model_years": [
+      2015,
+      2024
+    ],
+    "components": [
+      "FUEL SYSTEM"
+    ],
+    "recall_type": "V",
+    "complaint_window": [
+      "2027-01-01",
+      "2028-12-31"
+    ]
+  },
+  "classifier": {
+    "model": "meta-models/muse-spark-open-1026",
+    "prompt_version": "defect-cls-v2",
+    "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1"
+  },
+  "development": {
+    "start": "2015-01-01",
+    "end": "2020-12-31",
+    "folds": [
+      {
+        "name": "A",
+        "fit_end": "2016-12-31",
+        "validation": [
+          "2017-01-01",
+          "2018-12-31"
+        ]
+      },
+      {
+        "name": "B",
+        "fit_end": "2018-12-31",
+        "validation": [
+          "2019-01-01",
+          "2020-12-31"
+        ]
+      }
+    ]
+  },
+  "opened": {
+    "periods": [
+      "2021-2024 OOS",
+      "2025 fuel holdout",
+      "2026 safety backtest"
+    ],
+    "allowed_use": "descriptive only"
+  },
+  "prospective": {
+    "flag_start": "2027-01-01",
+    "flag_end": "2028-12-31",
+    "outcome_cutoff": "2029-12-31",
+    "min_campaigns": 25,
+    "preferred_campaigns": 30,
+    "analysis_runs": 1,
+    "inconclusive_rule": "Fewer than 25 eligible campaigns: INCONCLUSIVE_SAMPLE; counts only, no performance metrics; extension requires new preregistration before further metric access.",
+    "campaign_window": [
+      "2027-01-01",
+      "2028-12-31"
+    ],
+    "precision_outcome_window": [
+      "2027-01-01",
+      "2029-12-31"
+    ],
+    "analysis_by": "2030-06-30"
+  },
+  "hypotheses": {
+    "mode_a": [
+      "H1: candidate improves campaign recall over baseline",
+      "H2: candidate improves mature-alert precision over baseline",
+      "H3: gains do not depend on explicit recall mentions"
+    ],
+    "mode_b": [
+      "H1: prospective replication of historical baseline estimates; no improvement hypothesis"
+    ]
+  },
+  "primary_metrics": {
+    "campaign_recall": "unique eligible campaign hits / all unique vehicle campaigns in the 2027-2028 campaign window and unchanged scope; unknowns and misses retained",
+    "mature_alert_precision": "confirmed full-364-day-follow-up alert episodes / all full-follow-up alert episodes issued in the flag window; confirmation uses outcomes through cutoff"
+  },
+  "secondary_metrics": [
+    "sensitivity recall and precision",
+    "median campaign lead weeks",
+    "total and censored alerts",
+    "per-make descriptive rates",
+    "ECE and Brier only if a calibrated probability is used"
+  ],
+  "gates": {
+    "mode_a_target_met": {
+      "recall": 0.7,
+      "precision": 0.8
+    },
+    "mode_a_confirmed": "Lower paired cluster-bootstrap difference bound > 0 for BOTH primary metrics, for every preregistered bootstrap seed.",
+    "mode_a_failure": "Either primary estimate below concurrent baseline, or loss in either development fold.",
+    "mode_b": "Estimate prospective baseline replication with intervals. Do not apply improvement gates or claim improvement.",
+    "inconclusive": "Insufficient campaigns or differences not separated from zero. Target met and improvement confirmed are separate statuses."
+  },
+  "phase2_selection_rule": "A candidate is defensible only if it does not lose on either primary metric in either fold; and it improves at least one primary metric in both folds; and the lower bound of the paired campaign-cluster bootstrap difference for that metric is greater than 0. Otherwise freeze the baseline.",
+  "selection_details": {
+    "undefined_metrics": "Cannot establish no loss or improvement; therefore not defensible.",
+    "same_metric": "The same primary metric must improve in both folds, with positive lower bounds for all five seeds.",
+    "tie_break": "First qualifying method in preregistered order; no seed selection.",
+    "model_order": [
+      "count_2",
+      "count_3",
+      "count_5",
+      "logistic"
+    ],
+    "count_thresholds": [
+      2,
+      3,
+      5
+    ],
+    "logistic_threshold": 0.5,
+    "gradient_boosting": "Not included: unnecessary complexity and additional inference serializer for this tiny corpus.",
+    "training_minimum": 10,
+    "logistic_fit": "numpy standardized L2 logistic, fixed C=1, 1000 gradient steps, learning rate 0.1; no calibration unless independently supportable inside fit fold.",
+    "calibration": "No validation-fold calibration. If support is inadequate, no calibrated-score claim."
+  },
+  "baseline": {
+    "type": "gamma_poisson",
+    "window": 13,
+    "min_count": 2,
+    "max_tail": 0.2,
+    "cooldown_days": 91,
+    "match_days": [
+      7,
+      364
+    ]
+  },
+  "features": [
+    "complaints_30d",
+    "complaints_90d",
+    "complaints_365d",
+    "same_make_365d"
+  ],
+  "feature_note": "Structured prior counts only. Defect label is a fixed grouping/matching identity, not encoded label text or a target-derived numeric feature. No recall text, campaign text, label text, severity or embedding features.",
+  "uncertainty": {
+    "rate_interval": "Wilson 95%, descriptive under correlated observations",
+    "bootstrap_draws": 2000,
+    "bootstrap_seeds": [
+      17,
+      29,
+      43,
+      71,
+      101
+    ],
+    "random_seeds": [
+      2026103100,
+      2026103101,
+      2026103102,
+      2026103103,
+      2026103104,
+      2026103105,
+      2026103106,
+      2026103107,
+      2026103108,
+      2026103109,
+      2026103110,
+      2026103111,
+      2026103112,
+      2026103113,
+      2026103114,
+      2026103115,
+      2026103116,
+      2026103117,
+      2026103118,
+      2026103119,
+      2026103120,
+      2026103121,
+      2026103122,
+      2026103123,
+      2026103124,
+      2026103125,
+      2026103126,
+      2026103127,
+      2026103128,
+      2026103129,
+      2026103130,
+      2026103131,
+      2026103132,
+      2026103133,
+      2026103134,
+      2026103135,
+      2026103136,
+      2026103137,
+      2026103138,
+      2026103139,
+      2026103140,
+      2026103141,
+      2026103142,
+      2026103143,
+      2026103144,
+      2026103145,
+      2026103146,
+      2026103147,
+      2026103148,
+      2026103149,
+      2026103150,
+      2026103151,
+      2026103152,
+      2026103153,
+      2026103154,
+      2026103155,
+      2026103156,
+      2026103157,
+      2026103158,
+      2026103159,
+      2026103160,
+      2026103161,
+      2026103162,
+      2026103163,
+      2026103164,
+      2026103165,
+      2026103166,
+      2026103167,
+      2026103168,
+      2026103169,
+      2026103170,
+      2026103171,
+      2026103172,
+      2026103173,
+      2026103174,
+      2026103175,
+      2026103176,
+      2026103177,
+      2026103178,
+      2026103179,
+      2026103180,
+      2026103181,
+      2026103182,
+      2026103183,
+      2026103184,
+      2026103185,
+      2026103186,
+      2026103187,
+      2026103188,
+      2026103189,
+      2026103190,
+      2026103191,
+      2026103192,
+      2026103193,
+      2026103194,
+      2026103195,
+      2026103196,
+      2026103197,
+      2026103198,
+      2026103199
+    ],
+    "clusters": "Connected components of campaigns linked by any matched alert across both methods; unmatched alerts form key/date components, shared between methods when identical. This retains false-positive denominators.",
+    "invalid_draws": "Retain count; intervals unavailable if fewer than 95% of draws have defined denominators.",
+    "replication": "Mode B estimates only; candidate-minus-baseline differences inapplicable."
+  },
+  "custody": {
+    "mode": "procedural",
+    "custodian": "Rahul Kumar Singh",
+    "storage": "Human-managed encrypted APFS disk image outside the repository; volume label RCA-PROSPECTIVE",
+    "passphrase_location": "human-held; not in repo/env/history",
+    "threat_model": "Tamper-evident, not access-control. Public NHTSA outcomes can be re-fetched. No-peeking is honor-system; same-account access is not prevented.",
+    "external_timestamp": {
+      "status": "pending_human",
+      "proof": null
+    }
+  },
+  "freeze": {
+    "deadline": "2026-12-31",
+    "manifest_path": "reports/improvement/phase1/freeze_manifest.json",
+    "tag": "ml-prospective-freeze-2026"
+  },
+  "analysis_script": {
+    "path": "scripts/final_prospective_eval.py",
+    "frozen_at_freeze": true
+  },
+  "sources": [
+    {
+      "id": "complaints",
+      "url": "https://static.nhtsa.gov/odi/ffdd/cmpl/FLAT_CMPL.zip",
+      "format": "NHTSA tab-delimited ZIP"
+    },
+    {
+      "id": "recalls",
+      "url": "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip",
+      "format": "NHTSA tab-delimited ZIP"
+    }
+  ],
+  "snapshot_schedule": "Quarterly preferred; annual minimum in 2027-2028, plus a final outcome snapshot through 2029-12-31. No collection during this task.",
+  "analysis_input_contract": "Raw snapshots remain external. Final preprocessing uses the frozen original parsers and requires complete externally supplied version-consistent model classification artifacts; no paid calls or silent unknown-label imputation. No human-label claim. Missing pinned-model coverage makes analysis unavailable.",
+  "deviations": []
+}

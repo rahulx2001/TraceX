@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "study_id": "fixed-logistic-comparison-v1",
+  "status": "preregistered",
+  "created_at": "2026-11-01T10:12:18.758863+00:00",
+  "author": "Rahul Kumar Singh; prepared by ML improvement engineer",
+  "repository": "v2_ai_rca_tool",
+  "branch": "ml-score-improvement",
+  "source_commit": "32b392335e5c33e43433d837c47a273cf72414df",
+  "registration_event": "First git commit containing this protocol and PREREGISTRATION.md; local registration, not an external registry or timestamp.",
+  "authorization": "Follow-up request to complete more independent campaigns and a separately pre-registered comparison; DEV-20261101-04.",
+  "scope": {
+    "makes": [
+      "FORD",
+      "HONDA",
+      "HYUNDAI",
+      "KIA",
+      "TOYOTA"
+    ],
+    "model_years": [
+      2015,
+      2024
+    ],
+    "components": [
+      "FUEL SYSTEM"
+    ],
+    "recall_type": "V",
+    "complaint_window": [
+      "2027-01-01",
+      "2028-12-31"
+    ]
+  },
+  "prospective": {
+    "flag_start": "2027-01-01",
+    "flag_end": "2028-12-31",
+    "outcome_cutoff": "2029-12-31",
+    "min_campaigns": 25,
+    "preferred_campaigns": 30,
+    "analysis_runs": 1,
+    "inconclusive_rule": "Fewer than 25 eligible campaigns: INCONCLUSIVE_SAMPLE; counts only, no performance metrics; extension requires new preregistration before further metric access.",
+    "campaign_window": [
+      "2027-01-01",
+      "2028-12-31"
+    ],
+    "precision_outcome_window": [
+      "2027-01-01",
+      "2029-12-31"
+    ],
+    "analysis_by": "2030-06-30"
+  },
+  "development": {
+    "start": "2015-01-01",
+    "end": "2020-12-31",
+    "additional_fitting_allowed": false,
+    "excluded_campaign_ids": [
+      "15V005000",
+      "15V339000",
+      "15V475000",
+      "15V605000",
+      "15V618000",
+      "16V417000",
+      "16V618000",
+      "16V621000",
+      "16V661000",
+      "16V778000",
+      "16V945000",
+      "17V170000",
+      "17V219000",
+      "17V269000",
+      "17V442000",
+      "17V681000",
+      "17V805000",
+      "18V108000",
+      "18V392000",
+      "18V735000",
+      "18V807000",
+      "18V907000",
+      "19V053000",
+      "19V060000",
+      "19V097000",
+      "19V515000",
+      "19V569000",
+      "19V859000",
+      "20V012000",
+      "20V162000",
+      "20V314000",
+      "20V560000",
+      "20V682000",
+      "20V700000",
+      "20V730000",
+      "20V797000"
+    ],
+    "prior_information": "All permitted 2015-2020 development data were opened. Full-development fit has 12 mature rows, 4 positive rows across 2 campaigns. Original folds remain unsupported."
+  },
+  "opened": {
+    "periods": [
+      "2021-2024 OOS",
+      "2025 fuel holdout",
+      "2026 safety backtest"
+    ],
+    "allowed_use": "descriptive only"
+  },
+  "classifier": {
+    "model": "meta-models/muse-spark-open-1026",
+    "prompt_version": "defect-cls-v2",
+    "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1"
+  },
+  "challenger": {
+    "path": "reports/improvement/runs/logistic_prototype_v1/model.json",
+    "sha256": "7a4a2607822e792d46cef5aeb4ca79d0c1a44164534e27cb9f87840351ecda2d",
+    "type": "logistic",
+    "threshold": 0.5,
+    "calibrated": false,
+    "training_prevalence": 0.3333333333333333,
+    "refit": false,
+    "feature_order": [
+      "complaints_30d",
+      "complaints_90d",
+      "complaints_365d",
+      "same_make_365d"
+    ]
+  },
+  "baseline": {
+    "path": "reports/improvement/phase1/baseline_model.json",
+    "sha256": "350cf20b75ef4e2b3dbcae0b4b9ef3d7706a9889f34393f93f815defada96b29",
+    "settings": {
+      "type": "gamma_poisson",
+      "window": 13,
+      "min_count": 2,
+      "max_tail": 0.2,
+      "cooldown_days": 91,
+      "match_days": [
+        7,
+        364
+      ]
+    }
+  },
+  "hypotheses": {
+    "H1": "Fixed challenger improves campaign recall over concurrent baseline",
+    "H2": "Fixed challenger improves mature-alert precision over concurrent baseline",
+    "H3": "Positive differences for both metrics persist in the explicit-recall-excluded sensitivity slice"
+  },
+  "primary_metrics": {
+    "campaign_recall": "unique eligible campaign hits / all unique vehicle campaigns in the 2027-2028 campaign window and unchanged scope; unknowns and misses retained",
+    "mature_alert_precision": "confirmed full-364-day-follow-up alert episodes / all full-follow-up alert episodes issued in the flag window; confirmation uses outcomes through cutoff"
+  },
+  "secondary_metrics": [
+    "sensitivity recall and precision",
+    "median campaign lead",
+    "total, mature and censored alerts",
+    "per-make descriptive rates",
+    "uncalibrated score ECE and Brier on all mature candidate rows; 10 equal-width bins; reference prevalence 4/12; descriptive only"
+  ],
+  "matching": {
+    "type": "gamma_poisson",
+    "window": 13,
+    "min_count": 2,
+    "max_tail": 0.2,
+    "cooldown_days": 91,
+    "match_days": [
+      7,
+      364
+    ]
+  },
+  "features": {
+    "names": [
+      "complaints_30d",
+      "complaints_90d",
+      "complaints_365d",
+      "same_make_365d"
+    ],
+    "definition": "Same frozen structured_rows count recipe, applied only to 2027-2028 received complaints; completed weeks, 17-week initial support, strict dates before alert availability. No 2026 warm-up, future complaints, recall text, new embeddings or target-derived features."
+  },
+  "sample": {
+    "minimum_campaigns": 25,
+    "preferred_campaigns": 30,
+    "minimum_campaign_linked_clusters_for_confirmation": 25,
+    "rule": "Count distinct eligible campaign IDs before labels or performance; below 25 return INCONCLUSIVE_SAMPLE with counts only. Keep every eligible campaign, including unknown labels and misses. Do not treat model-year rows as independent campaigns.",
+    "independence": "Connected components link every alert to every matched campaign in either method, including 2029 precision-only outcomes. Distinct IDs do not prove independent defects. Report the number of eligible-campaign components; below 25 no improvement confirmation."
+  },
+  "uncertainty": {
+    "draws": 2000,
+    "seeds": [
+      17,
+      29,
+      43,
+      71,
+      101
+    ],
+    "rate_intervals": "Existing Wilson 95%, descriptive under dependence",
+    "paired": "Resample connected campaign/alert components; retain unmatched alert denominator mass. Precision-only outcome campaigns have zero campaign-recall denominator mass. Check component totals against existing evaluator counts.",
+    "invalid_draws": "Do not replace invalid draws; CI unavailable below 95% valid draws for that metric."
+  },
+  "decision": {
+    "target_met": {
+      "recall": 0.7,
+      "precision": 0.8
+    },
+    "improvement_confirmed": "Both primary paired-difference lower 95% bounds >0 for every seed, and >=25 eligible campaign-linked components.",
+    "failure": "Either primary point estimate below concurrent baseline.",
+    "inconclusive": "Insufficient campaigns/components, undefined primary denominators or intervals unable to establish both positive differences.",
+    "sensitivity": "H3 supported only when both sensitivity paired-difference lower bounds >0 for every seed; otherwise dependence on recall mentions not ruled out.",
+    "original_selection": "Original Phase 2 failure/Mode B decision remains unchanged. This fixed-challenger research test cannot retroactively satisfy the original selector or authorize promotion."
+  },
+  "custody": {
+    "mode": "procedural",
+    "custodian": "Rahul Kumar Singh",
+    "storage": "Human-managed encrypted APFS disk image outside the repository; volume label RCA-PROSPECTIVE",
+    "passphrase_location": "human-held; not in repo/env/history",
+    "threat_model": "Tamper-evident, not access-control. Public NHTSA outcomes can be re-fetched. No-peeking is honor-system; same-account access is not prevented.",
+    "external_timestamp": {
+      "status": "pending_human",
+      "proof": null
+    }
+  },
+  "collection": {
+    "manifest_path": "data/prospective/manifest.json",
+    "collector": "scripts/seal_prospective.py",
+    "schedule": "Quarterly preferred; annual minimum in 2027-2028, plus a final outcome snapshot through 2029-12-31. No collection during this task.",
+    "shared_cohort": "Uses the same 2027-2028 untouched cohort as original Mode B. Separate protocol, not independent replication or extra independent campaigns.",
+    "followup": "Final snapshot on/after 2029-12-31 plus committed coverage attestation; elapsed time alone does not establish complete source coverage.",
+    "classification": "Complete pinned-version external classification files required. No paid model calls or imputation by this harness; unavailable model/coverage blocks analysis."
+  },
+  "freeze": {
+    "deadline": "2026-12-31",
+    "tag": "ml-logistic-comparison-freeze-2026-v1",
+    "index": "reports/improvement/comparison_v1/REGISTERED_HASHES.json",
+    "original_tag": "ml-prospective-freeze-2026",
+    "original_tag_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31"
+  },
+  "analysis": {
+    "script": "scripts/prospective_comparison.py",
+    "analysis_runs": 1,
+    "run_registry": "reports/improvement/comparison_v1/final_execution.json",
+    "real_execution_now": false,
+    "outputs": [
+      "final_analysis.json",
+      "final_analysis.md",
+      "campaigns.csv",
+      "alerts.csv",
+      "run_manifest.json"
+    ],
+    "reruns": "No automatic reruns. Failed/partial execution is retained; any change requires a committed deviation and human review before a new analysis."
+  },
+  "limitations": [
+    "Tiny training corpus; challenger may be worse",
+    "Human semantic validation remains 0/300",
+    "Recall-confirmed precision is not semantic truth",
+    "Public outcomes and same-account custody are honor-system",
+    "Campaign IDs may share causes; bootstrap grouping cannot establish full independence",
+    "Fixed MY2015-2024 cohort ages during 2027-2028; required sample may not accrue",
+    "Historical model labels may incorporate retrospective knowledge",
+    "No improvement, production eligibility or promotion is established"
+  ],
+  "external_timestamp": {
+    "status": "not_obtained",
+    "proof": null
+  },
+  "deviations": [],
+  "environment": {
+    "python": "3.12.13",
+    "versions": {
+      "numpy": "2.5.4",
+      "pandas": "2.3.3",
+      "pyarrow": "22.0.0"
+    },
+    "requirements": "reports/improvement/phase1/requirements-prospective.txt"
+  }
+}

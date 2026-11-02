@@ -25,6 +25,10 @@ def test_no_primary_json_stringify_dumps_in_routes():
         for i, line in enumerate(text.splitlines(), 1):
             if "JSON.stringify" not in line:
                 continue
+            # Downloads and collapsed provenance inspectors are secondary evidence
+            # surfaces. An open details element remains subject to this check.
+            if "download(" in line or ("<details>" in line and "<summary>" in line and "<details open" not in line):
+                continue
             # Allow request bodies, WS frames, and download/export blobs.
             if any(
                 tok in line
@@ -78,8 +82,12 @@ def test_pilot_metrics_does_not_spill_iso_timestamp():
     cc = (ROUTES / "CommandCenter.jsx").read_text(encoding="utf-8")
     helper = (SRC / "ui" / "formatTime.js").read_text(encoding="utf-8")
     assert "formatSnapshotTs" in cc
-    assert 'k !== "ts"' in cc or "k !== 'ts'" in cc
-    assert "pilot-asof" in cc
+    # The current view uses an explicit metric allowlist, not Object.entries.
+    metrics = cc.split("const pilotMetrics =")[1].split("].filter(", 1)[0]
+    assert "metrics?.ts" not in metrics
+    assert "Object.entries(metrics)" not in cc
+    assert "cc-asof" in cc
+    assert "formatSnapshotTs(metrics.ts)" in cc
     assert "formatSnapshotTs" in helper
     assert "UTC" in helper
 

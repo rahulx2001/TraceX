@@ -1,0 +1,1 @@
+The exported packet connects source reports, recorded Meta interpretations, read-only tool results, reviewer actions and repair records. Owner outreach remains simulated: no external message was sent. The packet gives another engineer something concrete to inspect and challenge.

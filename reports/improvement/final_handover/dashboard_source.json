@@ -1,0 +1,24 @@
+{
+  "step": "dashboard_source",
+  "started_at": "2026-11-01T11:19:45.019010+00:00",
+  "finished_at": "2026-11-01T11:19:50.389569+00:00",
+  "duration_seconds": 5.371,
+  "cwd": ".",
+  "command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python -B -m scripts.ml_improvement_report check",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": null,
+  "note": null,
+  "exit_code": 0,
+  "log": "logs/dashboard_source.txt",
+  "log_sha256": "4796b0565925d249544fb671d18bdfdea1fc3109c81e87d910248fa3d149449c",
+  "observed_pytest_counts": [],
+  "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+}

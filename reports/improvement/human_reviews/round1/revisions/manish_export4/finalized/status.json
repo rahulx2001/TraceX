@@ -1,0 +1,67 @@
+{
+  "verified_at": "2026-11-02T15:17:26+00:00",
+  "status": "complete_adjudicated_user_attested",
+  "claim": "Finalized human-approved review: 300/300 labels; 31/31 disagreements adjudicated; current-model accuracy 255/300 = 85.0% (95% CI 80.5%\u201388.6%). Grounded candidate 238/300 = 79.3% (95% CI 74.4%\u201383.5%); missing 6/300 retained.",
+  "reviewer": "Manish",
+  "adjudicator": "Rahul",
+  "human_labels": 300,
+  "sample_size": 300,
+  "notes_present": 300,
+  "disagreements": {
+    "numerator": 31,
+    "denominator": 300
+  },
+  "adjudicated_disagreements": {
+    "numerator": 31,
+    "denominator": 31
+  },
+  "unresolved_disagreements": {
+    "numerator": 0,
+    "denominator": 31
+  },
+  "accuracy": 0.85,
+  "accuracy_numerator": 255,
+  "accuracy_denominator": 300,
+  "accuracy_interval": [
+    0.805182388854671,
+    0.8859675312881468
+  ],
+  "specific_accuracy": {
+    "numerator": 62,
+    "denominator": 77,
+    "value": 0.8051948051948052,
+    "ci95": [
+      0.7031488665717038,
+      0.8782359907234338
+    ]
+  },
+  "candidate_accuracy": {
+    "numerator": 238,
+    "denominator": 300,
+    "value": 0.7933333333333333,
+    "ci95": [
+      0.743944983244025,
+      0.8353044736375745
+    ],
+    "missing": 6
+  },
+  "model_version": "meta-models/muse-spark-open-1026; defect-cls-v2",
+  "prediction_hash": "ce3977cbe22e410775a9527cabfb5acb5191a4bc5134371369f98d5fddbd739b",
+  "limits": "Opened historical benchmark; user-attested human reviews and assistant-supported source-evidence adjudication, with original independence/chronology limitations retained. Score change reflects corrected labels, not new predictions or training. Evaluation-only; no fitting, calibration, feature selection or dashboard accuracy.",
+  "additional_artifacts": [
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/EVALUATION.md",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_baseline.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_candidate.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudicated_labels.csv",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudication_export.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/comparison.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/decision_trail.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/validation_before_scoring.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/verification.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/agreement_before_adjudication.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/original_review_export.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/human_confirmation.json",
+    "reports/improvement/human_reviews/round1/revisions/manish_export4/adjudication_draft.json",
+    "reports/improvement/human_reviews/round1/reliability_gate.json"
+  ]
+}

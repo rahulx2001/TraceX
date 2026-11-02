@@ -1,0 +1,2 @@
+Initial strict endpoint assertion failed: Wilson lower bound for 0/100 is 3.469446951953614e-18 from floating-point cancellation. Recheck uses absolute tolerance 1e-12; no report value was changed.
+Score inventory arithmetic, Wilson intervals, source counts, append-only audit, and frozen artifact checks passed.

@@ -1,9 +1,16 @@
 // [AI-LAYER] Small fetch helpers for the optional Meta AI layer routes.
 import { apiHeaders } from "../apiAuth.js";
+import { operatorError } from "../ui/operatorErrors.js";
+
+function requestError(status) {
+  const error = new Error(operatorError({ status }));
+  error.status = status;
+  return error;
+}
 
 export async function aiGet(path) {
   const r = await fetch(path, { headers: apiHeaders(), credentials: "same-origin" });
-  if (!r.ok) throw new Error(`${r.status}`);
+  if (!r.ok) throw requestError(r.status);
   return r.json();
 }
 
@@ -14,7 +21,7 @@ export async function aiPostJson(path, body) {
     credentials: "same-origin",
     body: JSON.stringify(body || {}),
   });
-  if (!r.ok) throw new Error(`${r.status}`);
+  if (!r.ok) throw requestError(r.status);
   return r.json();
 }
 
@@ -24,7 +31,7 @@ export async function aiUpload(path, file) {
   const r = await fetch(path, { method: "POST", headers: apiHeaders(), credentials: "same-origin", body: fd });
   let body = null;
   try { body = await r.json(); } catch { body = null; }
-  if (!r.ok) throw new Error((body && body.detail) || `${r.status}`);
+  if (!r.ok) throw requestError(r.status);
   return body;
 }
 

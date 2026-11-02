@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-11-01T14:20:59.882451+00:00",
+  "files": {
+    "dashboard/routes/CommandCenter.jsx": "3e6eee626307152226a377f8eb93c656df8297f2e01d400f0c8fb9aa25e75a34",
+    "dashboard/routes/JudgeEntry.jsx": "4055340fc17aa5d9f60b2922c3ff9e760f5e0c209fbbddfe5972deb59c268cc0",
+    "dashboard/src/ai/AiModeBadge.jsx": "eb3bfc3af7b081066c2371e30f4982853765ddd0ca4f13ecdbc960fac87f1dd2",
+    "dashboard/scripts/assert-signin-reachable.mjs": "29c9c87f484ddd2249c6b6a975385b73f3be9b476f705bd335d74608df861e59",
+    "dashboard/scripts/demo-runtime-ui.test.mjs": "285ef5773266e1ccba0b65ba45d06dc347960c5a4d3dfe89a443900e2d1f4c01",
+    "dashboard/scripts/report-handoff.test.mjs": "9845868df750773974d03dc2bb1b2d1e8065cfb68a68866cc7fffc8ebc974e0d",
+    "reports/improvement/prospective/DEVIATIONS.md": "a7c67456b4054d2f4c5fb51309dd5c0dd8ace76ed4d32700f09825838532ce53",
+    "reports/improvement/demo_runtime_v1/README.md": "056da7ed4b27a78ebf8e63642b870ff1710eb5ae060040809e2d084811676341",
+    "reports/improvement/demo_runtime_v1/browser.json": "7c0c30c05062e373fd8c25c984683f0ff9f3d93112f653876a72a9138f3b08f5",
+    "reports/improvement/demo_runtime_v1/browser_harness_native.mjs": "66d2b7947ddc65329ce80c21127fc8ddc68d899e7f482e61ed27f63669cbcae2",
+    "reports/improvement/demo_runtime_v1/dashboard_build.json": "5cf9dfe3aba66d58742066db3bb5c7c136d6c5bcc942cabfbfa36d7e132eccce",
+    "reports/improvement/demo_runtime_v1/final/auth_wiring.json": "38c7b7cd6b59da2190ed878b69d9e62389ed8f3d3464d060a9d67231f58a865b",
+    "reports/improvement/demo_runtime_v1/final/dashboard_build.json": "db124ebbfd241b632f052bf2df01140a2b8f594a619adaac62591f76735ac7e1",
+    "reports/improvement/demo_runtime_v1/final/logs/auth_wiring.txt": "da014ef238d4637c703ce7b1378bcbd0347117b7fc276905d52949763178a435",
+    "reports/improvement/demo_runtime_v1/final/logs/dashboard_build.txt": "3aa060ff2ab088eb0e23919e435243d494e13e97e9d992f4a5872060008f1fe0",
+    "reports/improvement/demo_runtime_v1/logs/browser.txt": "b8264c7ff72c5de275c2a908ddd1a69c756c45c5bf80fea73aa21dc4217a39cf",
+    "reports/improvement/demo_runtime_v1/logs/dashboard_build.txt": "d57d243242a06171e37c43342d91bd585a1d8fb08dd93ec2591e92f11fa63dca",
+    "reports/improvement/demo_runtime_v1/retry_1/browser.json": "af3e1ccb050b65d06077f9636de9090addde89a6b8db5395ac40005f99f1ef5d",
+    "reports/improvement/demo_runtime_v1/retry_1/browser_harness_native.mjs": "66d2b7947ddc65329ce80c21127fc8ddc68d899e7f482e61ed27f63669cbcae2",
+    "reports/improvement/demo_runtime_v1/retry_1/logs/browser.txt": "e8719483b4cbeb6f277aaa54b191bd5a0800f74c4c84131c7e74321ecde84ea3",
+    "reports/improvement/demo_runtime_v1/retry_2/browser.json": "098ca19231401dc2f870204b7a633d6ddab75f33b0974938fedb854c75eb1ead",
+    "reports/improvement/demo_runtime_v1/retry_2/browser_harness_native.mjs": "66d2b7947ddc65329ce80c21127fc8ddc68d899e7f482e61ed27f63669cbcae2",
+    "reports/improvement/demo_runtime_v1/retry_2/browser_screenshots/desktop.png": "0769c8c1bb5c58d33aacaef6be019398f4d4a6a164a91b0ebb215dedae81bd57",
+    "reports/improvement/demo_runtime_v1/retry_2/browser_screenshots/mobile.png": "4b6e77f52a641a761eb932598402bc729e69728a3ad08c685ecbe818cfecf1b3",
+    "reports/improvement/demo_runtime_v1/retry_2/logs/browser.txt": "cb165044383cced32fc1aec3d8d7f636cd0cbcffed8a1743af61b71f868f0c6e",
+    "reports/improvement/demo_runtime_v1/runtime_snapshot.json": "d1b9148e06b24e2015b5db529f73cc8d40ad086efd62f70b6219120704691d13",
+    "reports/improvement/demo_runtime_v1/validation.json": "c7e20cebc747d060b6ece36abea8ff70f159f8c3165be73992563b5ae7ce0c0d"
+  }
+}

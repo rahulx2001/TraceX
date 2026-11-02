@@ -1,0 +1,34 @@
+{
+  "recorded_at": "2026-11-02T11:38:09+00:00",
+  "round1_artifacts": {
+    "EVALUATION.md": "ab10301016e88dda50b1cb66dd6c4c2bf57a9852f26f39b43c8c39f260db6dc0",
+    "README.md": "ee1ae256cb14f77ce05584a77964ff99efa8e2d1a71d42f3247d90d2fea8fe6d",
+    "accuracy.json": "3ca71d7488033c2288c80338ccdd6bc650fc94c9aa87e8a2e6f8c227917657e2",
+    "adjudication/adjudicated_labels.csv": "4bfd3545a0e028eb2607797eb88487326f090285ffeed841d43b5edff461348b",
+    "adjudication/decision_trail.json": "c9e551d024ff70a505844e3ae98ded4bc489248d18d40f2ee46eb0337ac3369e",
+    "agreement_before_adjudication.json": "1a407169b3ed8b552619640f4846bd9e0919d45b17da9c4f925b5a4b94ec7942",
+    "human_labelled.csv": "4bfd3545a0e028eb2607797eb88487326f090285ffeed841d43b5edff461348b",
+    "human_review_provenance.json": "83e0dd66a53903cfaaf97522d09f1c48cd4e3ba7fac82f5c77ef42eb20703a5b",
+    "primary_review_export.json": "0e5b862fce512ee746ecf1f47d14adcf3400afd0558c813ecebbecc7238eb4a6",
+    "reliability_gate.json": "2eb2f5a1a074018d9bdb4a40f211e0da0bcb0440f1c125a37fef8aae4ea496e6",
+    "review_status.json": "2bde469bface5976c93cf124b47e668791ae596e8b17872459b6baf681f4bad2",
+    "second_review/README.md": "22e504d71cd9dfb87ca8820240d4d3eba824e698b8d10a7823c572d1c9a0304a",
+    "second_review/manish/human_labelled.csv": "4bfd3545a0e028eb2607797eb88487326f090285ffeed841d43b5edff461348b",
+    "second_review/manish/human_review_provenance.json": "3165be2f8c8d135802f582ee2b8c0446e824a70a0564220a869edc1f19924be8",
+    "second_review/manish/import_metadata.json": "e5fdc16393660938a37e90871f6564d8bace9a5364630fd99646a204160987e0",
+    "second_review/manish/original_review_export.json": "68f9832fc32771741080a9702c2db58f1e7c4116bd34de879f7209a161d26494",
+    "second_review/manish/user_confirmation.json": "d1b0102394f0991d40d61eb69ee5707730a3069c0325939d637383b929699cd3",
+    "second_review/packet_hashes.json": "34d5ecb7965490f1277bd6b98319f4cf7f7ef3a5bf8b9f0ee397b552633ec64c",
+    "second_review/preregistered_ids.json": "5ecd3068715efe04ff3d234b9d537d2c675050ee33f956eb87f85eca9f6fe511",
+    "second_review/second_review.html": "36b0371e1178eaf6b383537c6b5ec8124ffeef552b896ec8348e9e78fd1e6e2f",
+    "validation.json": "8adbda97ce96c69c69570011019ad2cab34106657e6bf81e4fdd3388ed52886e"
+  },
+  "source_code": {
+    "scripts/defect_accuracy.py": "78bc6257573a7ab399c6175222ba299c3e2cde193accd71c85fb154681334894",
+    "scripts/defect_review_agreement.py": "74b66eb631fb6e5d6366862590f1b141aebc77c7b9898babf07089fb05826571",
+    "scripts/defect_second_review.py": "ebb7bcfeceaf9d13a3363d01cf4daa64a85aa57f3f0a54620ad3388f03c64f2e",
+    "scripts/templates/defect_second_review.html": "efc92539da0cee2942afa6f606b5c300a3c167b4a49e63e8cfc1e4580572942f",
+    "scripts/build_claim_index.py": "3aabe7a901409faa6c6d049f83853569e7ee9078edbbe864371f7c5278570723",
+    "tests/frontline/ai_layer/test_defect_accuracy_metrics.py": "99654144f7011344912babc33c268baaea11941e5ba10f00e336ca103e808d6c"
+  }
+}

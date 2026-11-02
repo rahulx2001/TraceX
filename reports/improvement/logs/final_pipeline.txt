@@ -1,0 +1,84 @@
+{"ts": 1793450032.8015192, "event": "otel.span", "name": "job.embedding_backfill", "trace_id": "tr_f9816cf916524300", "span_id": "sp_bad9781e", "duration_ms": 175.73879200790543, "attributes": {"job_id": "job_01m68z7fepqcnyk9fbg8nv0a5g", "owner": "technical-worker"}, "instrumentation": "in-house"}
+{
+  "report": "reports/improvement/pipeline_final.json",
+  "checks": {
+    "csv_ingestion": {
+      "passed": true,
+      "written": 76,
+      "duration_s": 0.219
+    },
+    "real_onnx_backfill": {
+      "passed": true,
+      "duration_s": 0.55,
+      "throughput_per_s": 138.18,
+      "coverage": {
+        "eligible": 76,
+        "complete": 76,
+        "stale": 0,
+        "pending": 0,
+        "failed": 0,
+        "quarantined": 0
+      }
+    },
+    "idempotent_backfill": {
+      "passed": true,
+      "duration_s": 0.0766
+    },
+    "versioned_cluster_build": {
+      "passed": true,
+      "duration_s": 0.1624,
+      "assignments": 76,
+      "clusters": 2
+    },
+    "unapproved_promotion_rejected": {
+      "passed": true
+    },
+    "semantic_retrieval_exact_replay": {
+      "passed": true,
+      "top_score": 0.9941565699573397,
+      "note": "Exact replay verifies plumbing; not unseen retrieval accuracy."
+    },
+    "queued_stale_source_refresh": {
+      "passed": true,
+      "job_status": "done",
+      "coverage": {
+        "eligible": 76,
+        "complete": 76,
+        "stale": 0,
+        "pending": 0,
+        "failed": 0,
+        "quarantined": 0
+      }
+    },
+    "fixture_provenance_excluded_from_live_anomalies": {
+      "passed": true
+    },
+    "hash_rollback": {
+      "passed": true
+    }
+  },
+  "category_diagnostics": {
+    "labels": {
+      "profile": "labels",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "acceptance_eligible": false,
+      "held_out": false,
+      "n": 76,
+      "accuracy": 0.0526,
+      "accepted_precision": 0.2353,
+      "coverage": 0.2237,
+      "unavailable": 0
+    },
+    "descriptions": {
+      "profile": "descriptions",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "acceptance_eligible": false,
+      "held_out": false,
+      "n": 76,
+      "accuracy": 0.2895,
+      "accepted_precision": 0.5946,
+      "coverage": 0.4868,
+      "unavailable": 0
+    }
+  }
+}

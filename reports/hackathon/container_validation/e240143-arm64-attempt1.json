@@ -1,0 +1,65 @@
+{
+  "recorded_at": "2026-10-30T09:31:53.543407+00:00",
+  "status": "failed",
+  "source_commit": "e240143e6ed676ac8aa80936fc3b44d902596d90",
+  "image_id": "sha256:312c784419d1028a4d2f52d9abdb66606ea1da579f06edd88e126298439c612e",
+  "architecture": "arm64",
+  "image_os": "linux",
+  "docker_server": "29.5.2",
+  "scope": "Disposable container integration checks on fictional seed/text data; no live inference or real audio.",
+  "host_data_mounts": false,
+  "model_calls": 0,
+  "checks": [
+    {
+      "name": "current_seed_auth_and_five_review_pages",
+      "result": {
+        "ok": true,
+        "scope": "read-only current setup and review-asset smoke",
+        "model_calls": 0,
+        "campaign_id": "sc_01m662djc1esbts1w4cespaxw4",
+        "demo_version": "road-safety-walkthrough-v2-sourced-trace",
+        "review_kits": [
+          "original-300",
+          "development",
+          "fuel-complaints",
+          "recalls",
+          "study"
+        ],
+        "script_assets": [
+          "/ui/review-scripts/evidence-review.js",
+          "/ui/review-scripts/original-review.js",
+          "/ui/review-scripts/reviewer-study.js"
+        ],
+        "authentication": "anonymous refused; key permitted"
+      }
+    },
+    {
+      "name": "owner_only_local_trust_and_packaged_migrations",
+      "result": {
+        "public_sha256": "d5de5255b46705409c7a94e4edf5908ad04752cf0a13d242b95915859e85e2a3",
+        "private_mode": "0o600",
+        "migrations": [
+          "001_ops_init.sql",
+          "002_pg_vector_fts.sql",
+          "003_record_embeddings.sql"
+        ]
+      }
+    },
+    {
+      "name": "no_local_media",
+      "files": []
+    },
+    {
+      "name": "rendered_entry_report_correction_revision_review_export",
+      "exit_code": 1,
+      "log": "e240143-arm64-attempt1.browser.log"
+    }
+  ],
+  "seed_version": "2026-10-30-sourced-investigation-v3",
+  "error": "Container browser check failed; see retained browser log",
+  "container_log": {
+    "path": "e240143-arm64-attempt1.container.log",
+    "sha256": "99e5935c620be1869013f0895ca21621575c93599453a1a152f8791f2ece9cc0"
+  },
+  "elapsed_ms": 8460
+}

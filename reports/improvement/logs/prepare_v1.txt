@@ -1,0 +1,51 @@
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted
+{
+  "scope": {
+    "makes": [
+      "FORD",
+      "HONDA",
+      "HYUNDAI",
+      "KIA",
+      "TOYOTA"
+    ],
+    "model_years": [
+      2015,
+      2024
+    ],
+    "components": [
+      "FUEL SYSTEM"
+    ],
+    "recall_type": "V",
+    "complaint_window": [
+      "2015-01-01",
+      "2024-12-31"
+    ]
+  },
+  "label_source": "frozen model hypotheses, not human ground truth",
+  "cutoff": "2020-12-31",
+  "complaints": 263,
+  "campaigns": 36,
+  "recall_scopes": 136,
+  "severity_source": {
+    "path": "../v2_ai_rca_tool/data/defect/source_cache/FLAT_CMPL.zip",
+    "sha256": "dbbe24161ba94c56b4bc8acbf6aee995225bd42a8261f03b7efcc5ed3ac4e3b4"
+  },
+  "severity_coverage": {
+    "numerator": 263,
+    "denominator": 263,
+    "value": 1.0,
+    "ci95": [
+      0.9856039655993808,
+      1.0
+    ],
+    "unit": "complaints",
+    "interval_method": "descriptive Wilson; correlated units limit inference"
+  },
+  "inputs": {
+    "data/ml_improvement/complaints.parquet": "bfda61fcb22d6d70d8a8bb692094247901ed56466bb4722236033890182db6b9",
+    "data/ml_improvement/recalls.parquet": "63577ea14c59acc7d8bb9c32c86bf3efe65762dc0c148b107ef2ed6cff1db809"
+  }
+}

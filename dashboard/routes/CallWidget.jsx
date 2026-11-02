@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { apiHeaders, sendWsAuth } from "../src/apiAuth.js";
 import { openCases } from "../src/ui/opsActions.js";
-import { IconHangup, IconMic, IconSpeaker } from "../src/icons.jsx";
+import { IconFolder, IconGear, IconHangup, IconMic, IconShield, IconSpeaker } from "../src/icons.jsx";
 import {
   BARGE_IN_GRACE_MS,
   CALL_STATE,
   buildSlotEntries,
-  callPhaseHint,
   callStateLabel,
   capabilitySnapshot,
   fatalWsErrorMessage,
@@ -24,7 +23,6 @@ import {
   STT_FINAL_DEBOUNCE_MS,
   RECOG_RESTART_MS,
   looksLikeAgentEcho,
-  coalesceSpeechFinals,
   IDLE_LISTEN_REPROMPT_MS,
   decideSpeechFinal,
   createTurnQueue,
@@ -32,16 +30,18 @@ import {
   advancePlayback,
   SERVER_AUDIO_WAIT_MS,
   SERVER_AUDIO_MAX_BYTES,
-  SERVER_CAPTURE_SILENCE_MS,
   SERVER_CAPTURE_MAX_MS,
   serverVoiceSelection,
   userAudioFrame,
 } from "../src/voiceHelpers.js";
 import { getPreferredVoiceURI, pickBestVoice } from "../src/ttsVoice.js";
-import { capabilityLabel } from "../src/ui/labels.js";
 // [AI-LAYER] optional Meta AI layer add-ons
-import CallAiExtras from "../src/ai/CallAiExtras.jsx";
+import CallAiExtras, { SpeechLangSelect } from "../src/ai/CallAiExtras.jsx";
 import { aiSpeechLang } from "../src/ai/aiApi.js";
+import { recordingMime, responseSpeechLocale, sendIntakeSurvey, speechLocale, voiceActivity } from "../src/voiceExperience.js";
+import { createPcmRecorder, microphonePreflight } from "../src/voiceCapture.js";
+import { createSpeechDraft, speechPause } from "../src/speechDraft.js";
+import "./voice-report.css";
 
 // Backoff caps at 5s, so 8 tries ≈ 25s of retrying — comfortably inside the
 // server's reconnect grace (FRONTLINE_WS_RECONNECT_GRACE_S, default 120s).
@@ -61,23 +61,40 @@ export default function CallWidget() {
   const [pack, setPack] = useState(null);
   const [interactionId, setInteractionId] = useState(null);
   const [handoff, setHandoff] = useState(false);
+  const [handoffStatus, setHandoffStatus] = useState("");
   const [ended, setEnded] = useState(null);
   const [wsStatus, setWsStatus] = useState("idle");
   const [textFallback, setTextFallback] = useState("");
   const [activity, setActivity] = useState(null);
+  const [understanding, setUnderstanding] = useState(null);
   const [micGranted, setMicGranted] = useState(null);
+  const [inputLevel, setInputLevel] = useState(0);
+  const [preflight, setPreflight] = useState({ busy: false, note: "" });
+  const [automaticInterrupt, setAutomaticInterrupt] = useState(false);
+  const [pauseMs, setPauseMs] = useState(2200);
+  const pauseMsRef = useRef(2200);
+  const speechDraftRef = useRef(createSpeechDraft());
+  const lastMicVoiceAtRef = useRef(0);
+  const finishSpeechTimerRef = useRef(null);
+  const manualFinishRef = useRef(false);
+  const automaticInterruptRef = useRef(false);
+  const noiseFloorRef = useRef(.008), pcmRecorderRef = useRef(null), preRollPendingRef = useRef(false);
+  const reportLocaleRef = useRef(speechLocale(aiSpeechLang()));
+  const startRequestRef = useRef(null), acceptedMimeRef = useRef(null);
   // Server voice (Deepgram STT/TTS) as advertised by the WS `ready` frame.
   const [serverVoice, setServerVoice] = useState({ stt: false, tts: false });
   const [turnCount, setTurnCount] = useState(0);
   const [speakPhase, setSpeakPhase] = useState("normal"); // 'greeting' | 'normal'
   const [muted, setMuted] = useState(false);
+  const [textOnly, setTextOnly] = useState(false);
+  const textOnlyRef = useRef(false);
   const [driving, setDriving] = useState(false);
   const [frustration, setFrustration] = useState(0);
   const [latency, setLatency] = useState(null);
   const [consent, setConsent] = useState(null);
   const [safetyMode, setSafetyMode] = useState(false);
   const [callSecs, setCallSecs] = useState(0);
-  const [survey, setSurvey] = useState({ csat: 0, resolved: null, sent: false });
+  const [survey, setSurvey] = useState({ csat: 0, sent: false });
   const [region, setRegion] = useState(() => {
     try { return localStorage.getItem("skew_region") || ""; } catch { return ""; }
   });
@@ -161,12 +178,7 @@ export default function CallWidget() {
   }, [state]);
 
   function packLocale() {
-    try {
-      const l = pack && (pack.locale || pack?.pack?.locale);
-      if (l) return l;
-      if (pack && pack.id && typeof pack.id === "string") return "en-US";
-    } catch { /* ignore */ }
-    return "en-US";
+    return reportLocaleRef.current;
   }
   function newTurnId() {
     try {
@@ -305,6 +317,7 @@ export default function CallWidget() {
   function enterThinking() {
     // Mic pauses while the server works so background noise during the
     // 5-10s enrichment window cannot pile up duplicate user_turns.
+    stateRef.current = CALL_STATE.THINKING;
     stopRecognition();
     setState(CALL_STATE.THINKING);
     clearThinkingTimeout();
@@ -319,6 +332,7 @@ export default function CallWidget() {
   }
 
   function startRecognitionSafe() {
+    if (textOnlyRef.current) return;
     if (mutedRef.current || voiceDeniedRef.current) return;
     if (callEndedRef.current || pendingTerminalRef.current) return;
     if (speakingRef.current) return;
@@ -360,13 +374,15 @@ export default function CallWidget() {
 
   function scheduleSpeechDecision() {
     if (sttFlushTimerRef.current) clearTimeout(sttFlushTimerRef.current);
+    if (!pauseMsRef.current) return; // Caller controls endpointing in manual mode.
     const now = Date.now();
     const latest = Math.max(
       Number(sttBufferRef.current && sttBufferRef.current.at) || 0,
       Number(lastInterimRef.current && lastInterimRef.current.at) || 0,
+      lastMicVoiceAtRef.current,
     );
     const wait = latest
-      ? Math.max(40, STT_FINAL_DEBOUNCE_MS - (now - latest))
+      ? Math.max(40, pauseMsRef.current - (now - latest))
       : Math.min(STT_FINAL_DEBOUNCE_MS, IDLE_LISTEN_REPROMPT_MS);
     sttFlushTimerRef.current = window.setTimeout(() => {
       sttFlushTimerRef.current = null;
@@ -375,16 +391,22 @@ export default function CallWidget() {
         lastSpeechAt: Math.max(
           Number(sttBufferRef.current && sttBufferRef.current.at) || 0,
           Number(lastInterimRef.current && lastInterimRef.current.at) || 0,
+          lastMicVoiceAtRef.current,
         ),
         lastInterimAt: Number(lastInterimRef.current && lastInterimRef.current.at) || 0,
         committedAt: Number(sttBufferRef.current && sttBufferRef.current.at) || 0,
         now: Date.now(),
-        debounceMs: STT_FINAL_DEBOUNCE_MS,
+        debounceMs: pauseMsRef.current,
         idleRepromptMs: IDLE_LISTEN_REPROMPT_MS,
         listeningSince: listeningSinceRef.current || 0,
       });
       if (decision.flush) {
-        flushCustomerUtterance();
+        if (speechDraftRef.current.snapshot().text) flushCustomerUtterance();
+        else {
+          lastMicVoiceAtRef.current = 0;
+          setInfo("Microphone input arrived but no words were recognized. Check the headset input in Chrome, retry, or type your answer.");
+          scheduleSpeechDecision();
+        }
         return;
       }
       if (decision.reprompt && stateRef.current === CALL_STATE.LISTENING) {
@@ -421,21 +443,22 @@ export default function CallWidget() {
       }
       sttBufferRef.current = { text: "", at: 0 };
       lastInterimRef.current = { text: "", at: 0 };
+      speechDraftRef.current.clear();
       return;
     }
     if (sttFlushTimerRef.current) {
       clearTimeout(sttFlushTimerRef.current);
       sttFlushTimerRef.current = null;
     }
-    const buf = sttBufferRef.current;
+    const draft = speechDraftRef.current.snapshot();
+    speechDraftRef.current.clear();
+    lastMicVoiceAtRef.current = 0;
+    manualFinishRef.current = false;
     sttBufferRef.current = { text: "", at: 0 };
     // Single-word answers ("yes") often arrive as interim only and would be
     // lost forever — promote the last interim to a final on flush.
-    const fallback = lastInterimRef.current && lastInterimRef.current.text
-      ? lastInterimRef.current.text
-      : "";
     lastInterimRef.current = { text: "", at: 0 };
-    const raw = (buf && buf.text ? buf.text : "") || fallback;
+    const raw = draft.text;
     const text = raw.replace(/\s+/g, " ").trim();
     if (!text) return;
     if (looksLikeAgentEcho(text, lastAgentTextRef.current)) {
@@ -481,26 +504,17 @@ export default function CallWidget() {
     enterThinking();
   }
 
-  function queueCustomerFinal(txt) {
-    const piece = String(txt || "").trim();
-    const prev = String((sttBufferRef.current && sttBufferRef.current.text) || "").trim();
-    if (piece && prev === piece) return;
-    const { buffer } = coalesceSpeechFinals(sttBufferRef.current, txt, Date.now(), STT_FINAL_DEBOUNCE_MS);
-    sttBufferRef.current = buffer;
-    scheduleSpeechDecision();
-  }
-
   /**
-   * Server-STT capture: record one utterance with MediaRecorder and upload it
-   * as a `user_audio` frame. Segmentation reuses the barge analyser (same
-   * 0.14 RMS voice threshold): stop after ~900ms of trailing silence, or
-   * after a 30s cap. Silence alone never sends — listening just continues.
+   * Server-STT capture: bounded PCM WAV, or negotiated MediaRecorder fallback,
+   * uploaded once per utterance. Calibrated voice activity ends capture after
+   * The selected pause or manual finish ends a turn; 30 seconds bounds uploads.
+   * Silence alone never sends.
    */
   function startServerCapture() {
     const cap = serverCaptureRef.current;
     if (cap.active) return;
     const stream = micStreamRef.current;
-    if (!stream || typeof MediaRecorder === "undefined") {
+    if (!stream || (!pcmRecorderRef.current && typeof MediaRecorder === "undefined")) {
       if (recogRef.current) {
         try { recogRef.current.start(); } catch { /* already started */ }
       } else {
@@ -509,33 +523,37 @@ export default function CallWidget() {
       return;
     }
     let mime = "";
+    const usePcm = !!pcmRecorderRef.current && (!acceptedMimeRef.current || acceptedMimeRef.current.includes("audio/wav"));
     try {
-      const prefs = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4"];
-      mime = prefs.find((m) => {
-        try { return MediaRecorder.isTypeSupported(m); } catch { return false; }
-      }) || "";
+      mime = usePcm ? "audio/wav" : recordingMime(m => MediaRecorder.isTypeSupported(m) && (!acceptedMimeRef.current || acceptedMimeRef.current.includes(m.split(";")[0])));
     } catch { mime = ""; }
     let rec = null;
+    if (!mime) { setInfo("No mutually supported recording format. Type your reply below."); return; }
     try {
-      rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+      if (!usePcm) rec = new MediaRecorder(stream, { mimeType: mime });
     } catch {
       setInfo("Voice capture failed in this browser — type your reply below");
       return;
     }
     serverChunksRef.current = [];
+    const captureId = (cap.captureId || 0) + 1;
+    cap.captureId = captureId;
     cap.active = true;
-    cap.voiced = false;
-    cap.lastVoiceAt = 0;
+    cap.voiced = usePcm && preRollPendingRef.current;
+    cap.lastVoiceAt = cap.voiced ? Date.now() : 0;
     cap.startedAt = Date.now();
-    cap.mime = (rec.mimeType || mime || "audio/webm").split(";")[0];
-    rec.ondataavailable = (ev) => {
-      if (ev.data && ev.data.size) serverChunksRef.current.push(ev.data);
-    };
-    rec.onstop = () => { finishServerCapture(); };
-    rec.onerror = () => { stopServerCapture(true); };
+    cap.lastPromptAt = cap.startedAt;
+    cap.pcm = usePcm;
+    cap.mime = (rec?.mimeType || mime).split(";")[0];
+    if (rec) {
+      rec.ondataavailable = (ev) => { if (cap.captureId === captureId && ev.data && ev.data.size) serverChunksRef.current.push(ev.data); };
+      rec.onstop = () => { if (cap.captureId === captureId) finishServerCapture(); };
+      rec.onerror = () => { if (cap.captureId === captureId) stopServerCapture(true); };
+    }
     mediaRecorderRef.current = rec;
     try {
-      rec.start(250);
+      if (usePcm) { pcmRecorderRef.current.start(preRollPendingRef.current); preRollPendingRef.current = false; }
+      else rec.start(250);
     } catch {
       stopServerCapture(true);
       return;
@@ -557,17 +575,19 @@ export default function CallWidget() {
         rms = Math.sqrt(sum / (data.length / 8));
       }
       const now = Date.now();
-      if (rms >= 0.14) {
+      const activity = voiceActivity(rms, noiseFloorRef.current);
+      noiseFloorRef.current = activity.noiseFloor;
+      if (activity.voiced) {
         c.voiced = true;
         c.lastVoiceAt = now;
       }
       const silenceMs = c.voiced ? now - c.lastVoiceAt : 0;
       const elapsed = now - c.startedAt;
-      if (!c.voiced && elapsed >= IDLE_LISTEN_REPROMPT_MS && stateRef.current === CALL_STATE.LISTENING) {
+      if (!c.voiced && now - c.lastPromptAt >= IDLE_LISTEN_REPROMPT_MS && stateRef.current === CALL_STATE.LISTENING) {
         setInfo("I'm still listening — go ahead when you're ready");
-        c.startedAt = now;
+        c.lastPromptAt = now;
       }
-      if ((c.voiced && silenceMs >= SERVER_CAPTURE_SILENCE_MS) || elapsed >= SERVER_CAPTURE_MAX_MS) {
+      if ((pauseMsRef.current && c.voiced && silenceMs >= pauseMsRef.current) || elapsed >= SERVER_CAPTURE_MAX_MS) {
         stopServerCapture(false);
         return;
       }
@@ -585,6 +605,11 @@ export default function CallWidget() {
     }
     const rec = mediaRecorderRef.current;
     mediaRecorderRef.current = null;
+    if (cap.pcm && cap.active) {
+      if (cancel) { pcmRecorderRef.current?.cancel(); cap.active = false; serverChunksRef.current = []; }
+      else finishServerCapture();
+      return;
+    }
     if (!rec || !cap.active) {
       cap.active = false;
       return;
@@ -620,7 +645,11 @@ export default function CallWidget() {
       cap.stopTimer = null;
     }
     mediaRecorderRef.current = null;
-    const chunks = serverChunksRef.current;
+    let chunks = serverChunksRef.current;
+    if (cap.pcm) {
+      try { const wav = pcmRecorderRef.current?.finish(); chunks = wav ? [new Blob([wav], { type: "audio/wav" })] : []; }
+      catch { chunks = []; setInfo("Audio capture could not be finalized; type your report instead."); }
+    }
     serverChunksRef.current = [];
     if (!wasActive || callEndedRef.current || pendingTerminalRef.current) return;
     if (!cap.voiced || !chunks.length) {
@@ -640,7 +669,9 @@ export default function CallWidget() {
       return;
     }
     const reader = new FileReader();
+    const generation = callGenRef.current, sourceInteraction = interactionIdRef.current, sourceCapture = cap.captureId;
     reader.onload = () => {
+      if (generation !== callGenRef.current || sourceInteraction !== interactionIdRef.current || sourceCapture !== serverCaptureRef.current.captureId || callEndedRef.current) return;
       const url = String(reader.result || "");
       const b64 = url.includes(",") ? url.split(",", 2)[1] : "";
       if (!b64) {
@@ -835,6 +866,10 @@ export default function CallWidget() {
   function enqueueSpeak(text, opts = {}) {
     const full = greetingSpeakText(text);
     if (!full) return;
+    if (textOnlyRef.current) {
+      if (!finalizePendingTerminal() && !callEndedRef.current) setState(CALL_STATE.LISTENING);
+      return;
+    }
     const speaker = opts.speaker || "agent";
     if (humanControlRef.current && speaker !== "supervisor") return;
     lastAgentTextRef.current = full;
@@ -905,7 +940,7 @@ export default function CallWidget() {
       drainSpeakQueue();
     };
 
-    if (serverTts && phase !== "greeting") {
+    if (serverTts && phase !== "greeting" && responseSpeechLocale(full, packLocale()) !== "hi-IN") {
       // The REST greeting has no server audio; everything else prefers it.
       waitForServerAudio(full, phase, meta, token, finishSpeaking);
       return;
@@ -926,7 +961,7 @@ export default function CallWidget() {
       const u = new SpeechSynthesisUtterance(full);
       u.rate = 0.98;
       u.pitch = 1;
-      const speakLang = aiSpeechLang() || packLocale() || "en-US";
+      const speakLang = responseSpeechLocale(full, packLocale());
       try { u.lang = speakLang; } catch { u.lang = "en-US"; }
       const voice = pickVoice(speakLang);
       if (voice) {
@@ -995,7 +1030,22 @@ export default function CallWidget() {
     }
   }
 
+  function interruptPlayback() {
+    if (!speakingRef.current && !drainingSpeakRef.current) return;
+    sendWs({ type: "barge_in", elapsed_ms: Math.max(0, Date.now() - (ttsStartedAtRef.current || Date.now())),
+      utterance_id: currentUtteranceRef.current || undefined });
+    // Explicit interruption cancels all queued playback, including a specialist.
+    speakQueueRef.current = [];
+    cancelAiSpeech();
+    if (!callEndedRef.current) {
+      setState(CALL_STATE.LISTENING);
+      setInfo("Playback stopped. Speak or type your correction.");
+    }
+  }
+
   function startBargeWatch() {
+    // Explicit interruption is the default until device echo behavior is measured.
+    if (!automaticInterruptRef.current) return;
     const ctx = audioCtxRef.current;
     const analyser = analyserRef.current;
     if (!ctx || !analyser) return;
@@ -1067,7 +1117,8 @@ export default function CallWidget() {
         bargeRecoverRef.current = true;
         listenReadyAtRef.current = Date.now();
         setState(CALL_STATE.LISTENING);
-        setInfo("Barge-in — listening again");
+        preRollPendingRef.current = voiceModeRef.current.stt === "server" && !!pcmRecorderRef.current;
+        setInfo(preRollPendingRef.current ? "Playback stopped; keeping the start of your correction." : "Playback stopped. Browser recognition resumes now; repeat any words spoken before it stopped, or type the correction.");
         startRecognitionSafe();
         bargeRafRef.current = null;
         return;
@@ -1098,8 +1149,11 @@ export default function CallWidget() {
     humanControlRef.current = supervised;
     setHumanControl(supervised);
     if (supervised) {
+      setHandoffStatus("joined");
       cancelAiSpeech();
       setInfo("A human specialist has this call");
+    } else {
+      setHandoffStatus(previous => previous === "joined" ? "" : previous);
     }
   }
 
@@ -1160,7 +1214,11 @@ export default function CallWidget() {
         break;
       }
       case "agent_audio": {
-        cacheAgentAudio(msg);
+        if (!textOnlyRef.current) cacheAgentAudio(msg);
+        break;
+      }
+      case "voice_fallback": {
+        setInfo(msg.reason || "Speech playback fell back; the transcript remains available.");
         break;
       }
       case "heard_turn": {
@@ -1182,16 +1240,17 @@ export default function CallWidget() {
         };
         if (socketIsLive(socketLiveRef.current)) setWsStatus("live");
         try {
-          const sel = serverVoiceSelection({
+          const sel = textOnlyRef.current ? { stt: "text", tts: "none" } : serverVoiceSelection({
             serverStt: !!(msg.voice && msg.voice.server_stt),
             serverTts: !!(msg.voice && msg.voice.server_tts),
-            mediaRecorder: typeof MediaRecorder !== "undefined",
+            mediaRecorder: !!pcmRecorderRef.current || typeof MediaRecorder !== "undefined",
             audioElement: typeof Audio !== "undefined",
             hasSpeechRecognition: hasSR,
             hasSpeechSynthesis: hasTTS,
           });
+          acceptedMimeRef.current = Array.isArray(msg.voice?.accepted_audio_mime) ? msg.voice.accepted_audio_mime : null;
           voiceModeRef.current = sel;
-          setServerVoice({ stt: sel.stt === "server", tts: sel.tts === "server" });
+          setServerVoice({ ...msg.voice, stt: sel.stt === "server", tts: sel.tts === "server" });
         } catch {
           /* keep the browser path */
         }
@@ -1250,6 +1309,9 @@ export default function CallWidget() {
         break;
       }
       case "agent_activity": {
+        if (msg.voice_understanding) setUnderstanding(msg.voice_understanding);
+        if (msg.action_type === "handoff_unfulfilled") { setHandoff(true); setHandoffStatus("unavailable"); }
+        if (msg.action_type === "handoff_accepted") { setHandoff(true); setHandoffStatus("queued"); }
         setActivity({
           agent: msg.agent,
           action_type: msg.action_type,
@@ -1349,6 +1411,11 @@ export default function CallWidget() {
     pendingTerminalRef.current = null;
     sttBufferRef.current = { text: "", at: 0 };
     lastInterimRef.current = { text: "", at: 0 };
+    speechDraftRef.current.clear();
+    lastMicVoiceAtRef.current = 0;
+    manualFinishRef.current = false;
+    if (finishSpeechTimerRef.current) clearTimeout(finishSpeechTimerRef.current);
+    finishSpeechTimerRef.current = null;
     if (bargeRafRef.current) cancelAnimationFrame(bargeRafRef.current);
     bargeRafRef.current = null;
     if (hasTTS) {
@@ -1359,6 +1426,10 @@ export default function CallWidget() {
       }
     }
     speakingRef.current = false;
+    pcmRecorderRef.current?.close();
+    pcmRecorderRef.current = null;
+    preRollPendingRef.current = false;
+    setInputLevel(0);
     if (micStreamRef.current) {
       micStreamRef.current.getTracks().forEach((t) => t.stop());
       micStreamRef.current = null;
@@ -1373,7 +1444,7 @@ export default function CallWidget() {
   async function setupMic(gen) {
     let stream = null;
     try {
-      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
       if (gen !== callGenRef.current || callEndedRef.current) {
         stream.getTracks().forEach((t) => t.stop());
         return false;
@@ -1391,6 +1462,21 @@ export default function CallWidget() {
       micStreamRef.current = stream;
       audioCtxRef.current = ctx;
       analyserRef.current = analyser;
+      try {
+        pcmRecorderRef.current = createPcmRecorder(ctx, stream, { noiseFloor: noiseFloorRef.current,
+          onLevel: ({ rms }) => {
+            setInputLevel(rms);
+            // Recognition can deliver text after the physical speech. Hold a
+            // pending turn while the caller is still speaking, even if STT stalls.
+            if (stateRef.current === CALL_STATE.LISTENING && !speakingRef.current && !mutedRef.current
+                && Date.now() >= listenReadyAtRef.current) {
+              const activity = voiceActivity(rms, noiseFloorRef.current);
+              noiseFloorRef.current = activity.noiseFloor;
+              if (activity.voiced) lastMicVoiceAtRef.current = Date.now();
+            }
+          }, onFull: () => { if (serverCaptureRef.current.active) stopServerCapture(false); } });
+      } catch { /* MediaRecorder remains available without PCM pre-roll. */ }
+      await ctx.resume();
       setMicGranted(true);
       return true;
     } catch {
@@ -1413,10 +1499,45 @@ export default function CallWidget() {
     }
   }
 
+  async function checkMicrophone() {
+    setPreflight({ busy: true, note: "Keep quiet briefly while the microphone noise floor is measured. Audio stays on this device." });
+    try {
+      const result = await microphonePreflight(setInputLevel);
+      noiseFloorRef.current = result.noiseFloor;
+      setPreflight({ busy: false, note: `${result.device}: input samples received and quiet-room level recorded. This is a setup check, not speech-quality validation.` });
+    } catch (error) { setPreflight({ busy: false, note: error.message || "Microphone unavailable. Type instead remains available." }); }
+    finally { setInputLevel(0); }
+  }
+
+  function finishSpeaking() {
+    if (stateRef.current !== CALL_STATE.LISTENING || mutedRef.current) return;
+    if (serverCaptureRef.current.active) { serverCaptureRef.current.voiced = true; stopServerCapture(false); }
+    else if (recogRef.current) {
+      manualFinishRef.current = true;
+      if (sttFlushTimerRef.current) clearTimeout(sttFlushTimerRef.current);
+      try { recogRef.current.stop(); } catch { /* recognition already stopped */ }
+      // Give stop() its final result; recover if this browser never emits onend.
+      if (finishSpeechTimerRef.current) clearTimeout(finishSpeechTimerRef.current);
+      finishSpeechTimerRef.current = window.setTimeout(completeManualSpeech, 800);
+    }
+  }
+
+  function completeManualSpeech() {
+    finishSpeechTimerRef.current = null;
+    if (!manualFinishRef.current || callEndedRef.current || stateRef.current !== CALL_STATE.LISTENING) return;
+    manualFinishRef.current = false;
+    if (speechDraftRef.current.snapshot().text) flushCustomerUtterance();
+    else {
+      setInfo("No words were recognized. Check the headset microphone, try again, or type your answer.");
+      startRecognitionSafe();
+    }
+  }
+
   function toggleMute() {
     const next = !mutedRef.current;
     mutedRef.current = next;
     setMuted(next);
+    pcmRecorderRef.current?.mute(next);
     try {
       const tracks = (micStreamRef.current && micStreamRef.current.getAudioTracks()) || [];
       tracks.forEach((t) => { t.enabled = !next; });
@@ -1432,35 +1553,36 @@ export default function CallWidget() {
       }
       sttBufferRef.current = { text: "", at: 0 };
       lastInterimRef.current = { text: "", at: 0 };
+      speechDraftRef.current.clear();
+      lastMicVoiceAtRef.current = 0;
+      manualFinishRef.current = false;
       setTranscript((rows) => (Array.isArray(rows) ? rows.filter((t) => !t.interim) : rows));
       stopRecognition();
     } else if (stateRef.current === CALL_STATE.LISTENING) startRecognitionSafe();
   }
 
   function setupSpeechRecognition() {
+    if (textOnlyRef.current) return null;
     const SR = getSpeechRecognition();
     if (!SR) return null;
     const recog = new SR();
     recog.continuous = true;
     recog.interimResults = true;
     // [AI-LAYER] optional hi-IN / en-IN recognition override; unset = existing behaviour
-    try { recog.lang = aiSpeechLang() || packLocale() || "en-US"; } catch { recog.lang = "en-US"; }
+    try { recog.lang = packLocale(); } catch { recog.lang = "en-US"; }
     recog.onresult = (ev) => {
       // While thinking the mic is paused — drop late STT so it cannot stack
       // a second user_turn behind the one the server is already answering.
       if (stateRef.current === CALL_STATE.THINKING) return;
       if (mutedRef.current || voiceDeniedRef.current) return;
 
-      let interim = "";
-      const finals = [];
-      for (let i = ev.resultIndex; i < ev.results.length; i++) {
+      const rows = [];
+      for (let i = 0; i < ev.results.length; i++) {
         const res = ev.results[i];
         const txt = (res[0].transcript || "").trim();
-        if (!txt) continue;
-        if (res.isFinal) finals.push(txt);
-        else interim += (interim ? " " : "") + txt;
+        rows.push({ index: i, text: txt, final: res.isFinal });
       }
-      const sample = finals[0] || interim;
+      const sample = rows.slice(ev.resultIndex).map(row => row.text).join(" ");
       const interrupting = bargeRecoverRef.current;
       const accept = shouldAcceptSpeechResult({
         speaking: speakingRef.current,
@@ -1473,16 +1595,12 @@ export default function CallWidget() {
       if (!accept) return;
       if (interrupting) bargeRecoverRef.current = false;
 
-      for (const txt of finals) {
-        if (looksLikeAgentEcho(txt, lastAgentTextRef.current)) continue;
-        lastInterimRef.current = { text: "", at: 0 };
-        queueCustomerFinal(txt);
-      }
-      if (interim && !looksLikeAgentEcho(interim, lastAgentTextRef.current)) {
-        lastInterimRef.current = { text: interim, at: Date.now() };
-        pushTurn({ speaker: "customer", text: interim, interim: true });
-        scheduleSpeechDecision();
-      }
+      const draft = speechDraftRef.current.observe(rows.map(row => ({ ...row,
+        text: looksLikeAgentEcho(row.text, lastAgentTextRef.current) ? "" : row.text })), Date.now());
+      sttBufferRef.current = { text: draft.final, at: draft.final ? draft.at : 0 };
+      lastInterimRef.current = { text: draft.interim, at: draft.interim ? draft.at : 0 };
+      if (draft.text) pushTurn({ speaker: "customer", text: draft.text, interim: true });
+      if (!manualFinishRef.current) scheduleSpeechDecision();
     };
     recog.onerror = (e) => {
       if (e.error === "no-speech" || e.error === "aborted") return;
@@ -1502,18 +1620,16 @@ export default function CallWidget() {
       if (speakPhaseRef.current === "greeting") return;
       if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return;
       if (intentionalCloseRef.current) return;
-      if (stateRef.current === CALL_STATE.THINKING) {
-        // A short answer ("yes") may end the session with only interim text
-        // buffered — promote it to a final instead of dropping the turn.
-        if (sttBufferRef.current.text || lastInterimRef.current.text) {
-          flushCustomerUtterance();
-        }
+      if (stateRef.current === CALL_STATE.THINKING) return;
+      const draft = speechDraftRef.current.endSession();
+      sttBufferRef.current = { text: draft.final, at: draft.at };
+      lastInterimRef.current = { text: "", at: 0 };
+      if (manualFinishRef.current) {
+        if (finishSpeechTimerRef.current) clearTimeout(finishSpeechTimerRef.current);
+        finishSpeechTimerRef.current = window.setTimeout(completeManualSpeech, 100);
         return;
       }
-      if (!sttBufferRef.current.text && lastInterimRef.current.text) {
-        queueCustomerFinal(lastInterimRef.current.text);
-        lastInterimRef.current = { text: "", at: 0 };
-      }
+      scheduleSpeechDecision();
       // Chrome may end a recognition session between pieces of one spoken
       // sentence. Keep the debounce window alive and restart recognition so
       // "my car has ... been stuck" becomes one turn, not two competing turns.
@@ -1527,23 +1643,40 @@ export default function CallWidget() {
     return recog;
   }
 
-  async function startCall() {
+  async function startCall({ textOnly: useText = false } = {}) {
+    if (![CALL_STATE.IDLE, CALL_STATE.ENDED].includes(stateRef.current)) return;
     const gen = ++callGenRef.current;
+    textOnlyRef.current = useText;
+    reportLocaleRef.current = speechLocale(aiSpeechLang());
+    pauseMsRef.current = pauseMs;
+    speechDraftRef.current.clear();
+    lastMicVoiceAtRef.current = 0;
+    automaticInterruptRef.current = automaticInterrupt;
+    setTextOnly(useText);
+    stateRef.current = CALL_STATE.CONNECTING;
     setError(null);
     setInfo(null);
     setTranscript([]);
+    setInteractionId(null);
+    interactionIdRef.current = null;
+    setTextFallback("");
     setSlots({});
     setHandoff(false);
+    setHandoffStatus("");
     setEnded(null);
     setActivity(null);
+    setUnderstanding(null);
     setTurnCount(0);
+    // A new report owns a new queue. Same-report reconnect still reuses it.
+    turnQueueRef.current = createTurnQueue();
+    pendingTurnRef.current = null;
     turnSeqRef.current = 0;
     wsSeqRef.current = 0;
     speakPhaseRef.current = "normal";
     setSpeakPhase("normal");
     setMicGranted(null);
     setServerVoice({ stt: false, tts: false });
-    voiceModeRef.current = { stt: "browser", tts: "browser" };
+    voiceModeRef.current = useText ? { stt: "text", tts: "none" } : { stt: "browser", tts: "browser" };
     revokePendingAgentAudio();
     clearAudioWait();
     setMuted(false);
@@ -1561,7 +1694,7 @@ export default function CallWidget() {
     setLatency(null);
     setConsent(null);
     setSafetyMode(false);
-    setSurvey({ csat: 0, resolved: null, sent: false });
+    setSurvey({ csat: 0, sent: false });
     callStartRef.current = Date.now();
     setCallSecs(0);
     sttBufferRef.current = { text: "", at: 0 };
@@ -1576,21 +1709,24 @@ export default function CallWidget() {
     // Ask for microphone access in parallel with contact creation. Waiting for
     // getUserMedia before opening the WebSocket made a permission prompt (or a
     // slow Bluetooth device) look like a slow connection.
-    const micReady = setupMic(gen);
+    const micReady = useText ? Promise.resolve(false) : setupMic(gen);
     let startRes;
     try {
       try { localStorage.setItem("skew_region", region || ""); } catch { /* ignore */ }
-      const qs = new URLSearchParams({ channel: "web_voice" });
+      const qs = new URLSearchParams({ channel: useText ? "web_text" : "web_voice", locale: reportLocaleRef.current });
       if ((region || "").trim()) qs.set("region", region.trim());
+      const signature = qs.toString();
+      if (startRequestRef.current?.signature !== signature) startRequestRef.current = { signature, id: newTurnId() };
       const r = await fetch(`/api/interactions/start?${qs.toString()}`, {
         method: "POST",
-        headers: apiHeaders(),
+        headers: apiHeaders({ "Idempotency-Key": startRequestRef.current.id }),
       });
       if (!r.ok) {
         const detail = await r.text().catch(() => "");
         throw new Error(`Could not start call (${r.status})${detail ? `: ${detail.slice(0, 120)}` : ""}`);
       }
       startRes = await r.json();
+      startRequestRef.current = null;
     } catch (e) {
       if (gen !== callGenRef.current) return;
       setError(String(e.message || e));
@@ -1619,7 +1755,7 @@ export default function CallWidget() {
     // Warm up the TTS voice list inside the user gesture so the first
     // utterance is not dropped by engines that load voices lazily.
     try {
-      if (hasTTS) {
+      if (hasTTS && !useText) {
         window.speechSynthesis.getVoices();
         window.speechSynthesis.onvoiceschanged = () => {
           try {
@@ -1748,6 +1884,7 @@ export default function CallWidget() {
     // are ready before we begin listening.
     void micReady.finally(() => {
       if (gen !== callGenRef.current || callEndedRef.current || intentionalCloseRef.current) return;
+      if (useText) return;
       setupSpeechRecognition();
       if (stateRef.current === CALL_STATE.LISTENING) startRecognitionSafe();
     });
@@ -1826,6 +1963,9 @@ export default function CallWidget() {
     }
     pushTurn({ speaker: "customer", text });
     setTextFallback("");
+    speechDraftRef.current.clear();
+    sttBufferRef.current = { text: "", at: 0 };
+    lastMicVoiceAtRef.current = 0;
     lastInterimRef.current = { text: "", at: 0 };
     enterThinking();
   }
@@ -1865,11 +2005,13 @@ export default function CallWidget() {
         throw new Error(body.reason || `handoff failed (${r.status})`);
       }
       setHandoff(true);
+      setHandoffStatus("queued");
       setInfo(body.already_pending
-        ? "A human specialist is already being paged. Please stay on this call."
-        : "A human specialist has been paged. Please stay on this call while they join.");
+        ? "Specialist request already queued. You can continue this report while waiting."
+        : "Specialist request queued. A joined specialist will be shown here.");
     } catch (e) {
-      setError(`Could not page a human specialist: ${String((e && e.message) || e).slice(0, 120)}`);
+      setHandoffStatus("unavailable");
+      setError(`Specialist request unavailable: ${String((e && e.message) || e).slice(0, 120)}`);
     }
   }
 
@@ -1901,17 +2043,15 @@ export default function CallWidget() {
   }
 
   async function sendSurvey() {
-    if (!interactionId || survey.sent) return;
+    if (!interactionId || survey.sent || !survey.csat) return;
+    setError(null);
     try {
-      await fetch(`/api/interactions/${interactionId}/outcome`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...apiHeaders() },
-        body: JSON.stringify({ csat: survey.csat || null, resolved: survey.resolved }),
-      });
+      await sendIntakeSurvey(fetch, `/api/interactions/${encodeURIComponent(interactionId)}/outcome`,
+        apiHeaders({ "Content-Type": "application/json" }), survey.csat);
       setSurvey((s) => ({ ...s, sent: true }));
-      setInfo("Thanks — survey recorded");
-    } catch {
-      setError("Survey failed to send");
+      setInfo("Thanks — report-capture feedback recorded");
+    } catch (e) {
+      setError(e.message || "Feedback was not saved. Please retry.");
     }
   }
 
@@ -1922,403 +2062,223 @@ export default function CallWidget() {
     hasSpeechSynthesis: hasTTS,
     hasMicStream: !!micStreamRef.current || micGranted === true,
   });
-
   const inCall = state !== CALL_STATE.IDLE && state !== CALL_STATE.ENDED;
-  const canStart = state === CALL_STATE.IDLE || state === CALL_STATE.ENDED;
-  const showCompose = true;
+  const canStart = !inCall;
+  const needsText = textOnly || voiceDenied || (!hasSR && !serverVoice.stt);
+  const captured = slotEntries.filter(s => s.value);
+  const missing = slotEntries.filter(s => !s.value);
+  const composeRef = useRef(null);
+  const nextStep = state === CALL_STATE.ENDED
+    ? "Review the stored report and confirm its vehicle before investigating."
+    : state === CALL_STATE.AGENT_SPEAKING
+      ? "Listen to the question, or interrupt playback to give a correction."
+      : state === CALL_STATE.THINKING
+        ? "Your answer is being processed. The next question will appear in the transcript."
+        : inCall ? "Reply below. Correct any captured detail before ending the report."
+          : "Start a voice report or type instead. You can review the stored words before investigating.";
+
+  useEffect(() => {
+    if (!inCall) return undefined;
+    const beforeUnload = e => { e.preventDefault(); e.returnValue = ""; };
+    const beforeRoute = e => {
+      if (String(e.detail?.next || "").replace(/^#/, "").split("?")[0] === "call") return;
+      if (!window.confirm("Leaving ends this active report. Stored turns remain available, but refresh does not resume the call. Leave this report?")) e.preventDefault();
+    };
+    const beforeLink = e => {
+      const anchor = e.target.closest?.("a[href]");
+      if (!anchor || anchor.target === "_blank") return;
+      const url = new URL(anchor.href, window.location.href);
+      if (url.origin === window.location.origin && url.pathname === window.location.pathname && (!url.hash || url.hash === "#main" || url.hash.replace(/^#/, "").split("?")[0] === "call")) return;
+      if (!window.confirm("Leaving ends this active report. Stored turns remain available, but refresh does not resume the call. Leave this report?")) {
+        e.preventDefault(); e.stopPropagation();
+      }
+    };
+    window.addEventListener("beforeunload", beforeUnload);
+    window.addEventListener("tracex:before-route", beforeRoute);
+    document.addEventListener("click", beforeLink, true);
+    return () => {
+      window.removeEventListener("beforeunload", beforeUnload);
+      window.removeEventListener("tracex:before-route", beforeRoute);
+      document.removeEventListener("click", beforeLink, true);
+    };
+  }, [inCall]);
+
+  function correctDetail(label) {
+    setTextFallback(`Correction: ${label} should be `);
+    composeRef.current?.focus();
+  }
 
   return (
-    <div className="voice-page page-enter">
+    <div className={"voice-page page-enter" + (inCall ? " report-active" : "")} data-testid="voice-report">
       <header className="page-header">
         <div>
-          <h1>Voice agent</h1>
-          <p className="sub">
-            Live contact with the TraceX orchestrator. Wait for the agent to finish, then speak or
-            type. The mic stays off during TTS so the next question is not lost to echo.
-            {pack ? (
-              <>
-                {" "}
-                Pack <span className="mono">{pack.id}</span>
-                {pack.display_name ? ` · ${pack.display_name}` : ""}.
-              </>
-            ) : null}
-          </p>
+          <div className="voice-eyebrow"><span aria-hidden="true" />OWNER INTAKE <span className="voice-eyebrow-divider">/</span> QUALITY ENGINEERING</div>
+          <h1>Voice report</h1>
+          <p className="sub">Every investigation starts with a clear account of what happened.</p>
         </div>
-        <div className="page-actions">
-          {!canStart && (
-            <button type="button" className="danger voice-cta" onClick={endCall}>
-              <IconHangup />
-              End call
+        <div className="page-actions voice-controls" aria-label="Report controls">
+          {canStart ? <>
+            <button type="button" disabled={preflight.busy} className="primary voice-cta" onClick={() => startCall()}><IconMic aria-hidden="true" />Start voice report</button>
+            <button type="button" disabled={preflight.busy} className="ghost" onClick={() => startCall({ textOnly: true })}>Type instead</button>
+          </> : <>
+            <button type="button" className="ghost" onClick={toggleMute} disabled={needsText || state === CALL_STATE.CONNECTING} aria-pressed={muted}>
+              <IconMic aria-hidden="true" />{muted ? "Unmute microphone" : "Mute microphone"}
             </button>
-          )}
+            <button type="button" className="ghost" onClick={interruptPlayback} disabled={state !== CALL_STATE.AGENT_SPEAKING}>
+              <IconSpeaker aria-hidden="true" />Interrupt playback
+            </button>
+            <button type="button" className="danger voice-cta" onClick={endCall}><IconHangup aria-hidden="true" />End call</button>
+          </>}
         </div>
       </header>
 
-      {error && (
-        <div className="banner banner-error" role="alert">
-          {error}{" "}
-          <button type="button" className="ghost" onClick={() => setError(null)}>
-            Dismiss
-          </button>
+      <section className="voice-setup" aria-label="Report setup">
+        {canStart ? <SpeechLangSelect compact /> : <div className="voice-session-language"><span className="voice-field-label">Report language</span><strong>{reportLocaleRef.current === "hi-IN" ? "हिन्दी (India)" : reportLocaleRef.current === "en-IN" ? "English (India)" : "English"}</strong></div>}
+        {!textOnly && <label className="voice-field-label">Pause before sending <select aria-label="Pause before sending" value={pauseMs} onChange={e => {
+          const value = speechPause(e.target.value); setPauseMs(value); pauseMsRef.current = value;
+          if (stateRef.current === CALL_STATE.LISTENING) scheduleSpeechDecision();
+        }}>
+          <option value={2200}>Allow pauses · 2.2 seconds</option>
+          <option value={1400}>Short answers · 1.4 seconds</option>
+          <option value={0}>Only when I select Finish speaking</option>
+        </select></label>}
+        <div className="voice-setup-actions">
+          <span className="voice-language-note">English UI and replies · English or Hindi input</span>
+          {canStart && <button type="button" className="ghost voice-mic-check" disabled={preflight.busy} onClick={checkMicrophone}><IconMic />{preflight.busy ? "Checking microphone…" : "Check microphone"}</button>}
+          <details className="voice-options">
+            <summary><IconGear />Voice options</summary>
+            <div className="voice-options-body">
+              <p>Choose the language you will speak and check your headset input. Use manual finish if words are cut off; the recognized draft stays visible until you send it. Type instead keeps the microphone off.</p>
+              <details><summary>Interruption settings</summary><label><input type="checkbox" checked={automaticInterrupt} disabled={inCall} onChange={e => setAutomaticInterrupt(e.target.checked)} />Automatic speech interruption (experimental; headphones recommended)</label>
+                <p>Select Interrupt playback, then speak. Optional server PCM capture keeps 450 ms before an automatic interruption. Browser recognition cannot recover words spoken while it was paused.</p></details>
+              <p>Chrome is the tested UI browser. Real speech quality on devices remains unmeasured; Hindi and Hinglish recognition need real-audio validation.</p>
+            </div>
+          </details>
         </div>
-      )}
-      {info && !error && (
-        <div className="banner banner-ok" role="status">
-          {info}{" "}
-          <button type="button" className="ghost" onClick={() => setInfo(null)}>
-            Dismiss
-          </button>
-        </div>
-      )}
-      {consent && (
-        <div className="banner banner-warn" role="alert">
-          {(consent.script || "This call may be recorded. Say 'I consent' to continue.")}{" "}
-          <button type="button" className="primary" onClick={sendConsent}>I consent</button>
-        </div>
-      )}
-      {safetyMode && inCall && (
-        <div className="banner banner-error" role="alert">
-          Safety escalation active — follow the specialist script. Do not drive until reviewed.
-        </div>
-      )}
-      {(!hasSR || voiceDenied) && !canStart && !serverVoice.stt && (
-        <div className="banner banner-warn" role="status">
-          Speech recognition is unavailable — type your replies below. This call sends text only and does not upload audio.
-          {voiceDenied && hasSR ? (
-            <>
-              {" "}
-              <button type="button" className="ghost" onClick={retrySpeechInput}>
-                Try microphone again
-              </button>
-            </>
-          ) : null}
-        </div>
-      )}
+        {preflight.note && <p className="voice-preflight-note" role="status">{preflight.note}</p>}
+      </section>
+      {(preflight.busy || (inCall && !textOnly && micGranted)) && <section className="voice-input-meter" aria-label="Microphone input">
+        <label>Input level <meter aria-label="Microphone input level" min="0" max="0.25" value={Math.min(.25, inputLevel)} /></label>
+        <span>{muted ? "Muted" : inputLevel < .003 ? "Very quiet / no input" : "Microphone samples arriving"}</span>
+        <span className="voice-note">Input level only · finish manually or type if speech is missed.</span>
+      </section>}
+      {error && <div className="banner banner-error" role="alert">{error}{" "}<button type="button" className="ghost" onClick={() => setError(null)}>Dismiss</button></div>}
+      {info && !error && <div className="banner banner-ok" role="status">{info}{" "}<button type="button" className="ghost" onClick={() => setInfo(null)}>Dismiss</button></div>}
+      {consent && <div className="banner banner-warn" role="alert">
+        {consent.script || "This call may be recorded. Say 'I consent' to continue."}{" "}
+        <button type="button" className="primary" onClick={sendConsent}>I consent</button>
+      </div>}
+      {safetyMode && inCall && <div className="banner banner-error" role="alert">Safety escalation active — follow the specialist script. Do not drive until reviewed.</div>}
+      {needsText && inCall && <div className="banner banner-warn" role="status">
+        {textOnly ? "Text report active. Microphone and spoken playback are off." : "Speech recognition is unavailable. Type your replies below."}
+        {!textOnly && voiceDenied && hasSR && <button type="button" className="ghost" onClick={retrySpeechInput}>Try microphone again</button>}
+      </div>}
 
       <div className="call-layout">
-        <div className="call-stage">
-          <div className="call-hero">
-            <div
-              className={
-                "call-ring " +
-                state +
-                (speakPhase === "greeting" ? " greeting" : "")
-              }
-              aria-hidden="true"
-            >
-              <div className="mic-orbit">
-                <span className="call-aura call-aura-a" />
-                <span className="call-aura call-aura-b" />
-                <span className="call-aura call-aura-c" />
-                <button
-                  type="button"
-                  className={
-                    "mic-btn " +
-                    state +
-                    (speakPhase === "greeting" ? " greeting" : "")
-                  }
-                  onClick={canStart ? startCall : endCall}
-                  disabled={state === CALL_STATE.CONNECTING}
-                  aria-label={canStart ? "Start call" : "End call"}
-                >
-                  {state === CALL_STATE.CONNECTING || state === CALL_STATE.THINKING ? (
-                    <span className="spinner" aria-hidden="true" />
-                  ) : canStart ? (
-                    <IconMic width={32} height={32} />
-                  ) : state === CALL_STATE.LISTENING ? (
-                    <IconMic width={32} height={32} />
-                  ) : state === CALL_STATE.AGENT_SPEAKING ? (
-                    <IconSpeaker width={32} height={32} />
-                  ) : (
-                    <IconHangup width={32} height={32} />
-                  )}
-                </button>
-              </div>
-              {(state === CALL_STATE.LISTENING ||
-                state === CALL_STATE.AGENT_SPEAKING ||
-                state === CALL_STATE.THINKING) && (
-                <div className="voice-waves-wrap">
-                  <div
-                    className={
-                      "voice-waves" +
-                      (state === CALL_STATE.LISTENING ? " listening" : " speaking") +
-                      (speakPhase === "greeting" ? " greeting" : "")
-                    }
-                  >
-                    <span /><span /><span /><span /><span />
-                  </div>
-                </div>
-              )}
+        <section className="call-stage" aria-labelledby="report-transcript-title">
+          <div className="voice-conversation-header">
+            <div><span className="voice-section-kicker">CONVERSATION</span><h2 id="report-transcript-title">Report transcript</h2></div>
+            <div className={"voice-status " + (state === CALL_STATE.LISTENING && !muted ? "is-listening" : "")} role="status">
+            <span className={"status-pip " + (wsStatus === "live" ? "ok" : "")} aria-hidden="true" />
+            <strong>{muted && inCall && !needsText ? "Microphone muted" : callStateLabel(state, { speakPhase, textOnly: needsText })}</strong>
+            {inCall && <span>{Math.floor(callSecs / 60)}:{String(callSecs % 60).padStart(2, "0")}</span>}
+            {humanControl && inCall && <span>Specialist joined</span>}
             </div>
-            <div
-              className={
-                "call-state " +
-                state +
-                (speakPhase === "greeting" ? " greeting" : "")
-              }
-            >
-              <span className="label">{callStateLabel(state, { speakPhase, textOnly: voiceDenied || !hasSR })}</span>
-              {callPhaseHint(state, { speakPhase, textOnly: voiceDenied || !hasSR }) && (
-                <span className="phase-hint">{callPhaseHint(state, { speakPhase, textOnly: voiceDenied || !hasSR })}</span>
-              )}
-              <span className="call-meta">
-                <span className={"status-pip " + (wsStatus === "live" ? "ok" : wsStatus === "reconnecting" ? "warn" : "")} />
-                {wsStatus === "idle" ? "idle" : `ws ${wsStatus}`}
-                {interactionId && (
-                  <>
-                    {" · "}
-                    <span className="mono" title={interactionId}>
-                      {interactionId.slice(0, 16)}…
-                    </span>
-                  </>
-                )}
-                {turnCount > 0 && <> · {turnCount} turns</>}
-                {inCall && <> · {Math.floor(callSecs / 60)}:{String(callSecs % 60).padStart(2, "0")}</>}
-                {humanControl && inCall && <> · human specialist</>}
-                {latency && <> · {latency.elapsed_ms}ms{latency.over_budget ? " over budget" : ""}</>}
-                {frustration > 0 && <> · frustration {frustration.toFixed(2)}</>}
-              </span>
-              {inCall && (
-                <div className="row" style={{ marginTop: 8, flexWrap: "wrap", gap: 8 }}>
-                  <button type="button" className="ghost" onClick={toggleMute}>{muted ? "Unmute" : "Mute"}</button>
-                  <button type="button" className={driving ? "primary" : "ghost"} onClick={() => setDriving((d) => !d)}>{driving ? "Driving: on" : "I'm driving"}</button>
-                  <button type="button" className="ghost" onClick={requestHuman}>Get me a human</button>
-                  <label className="mono faint" style={{ display: "flex", gap: 4, alignItems: "center" }}>
-                    Region
-                    <input aria-label="Region for consent" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="CA" style={{ width: 56 }} />
-                  </label>
-                </div>
-              )}
-            </div>
-            {progress.total > 0 && (
-              <div className="slot-meter" aria-label={`Slots ${progress.filled} of ${progress.total}`}>
-                <div className="slot-meter-track">
-                  <div className="slot-meter-fill" style={{ width: `${progress.pct}%` }} />
-                </div>
-                <span className="slot-meter-label mono">
-                  {progress.filled}/{progress.total} slots
-                </span>
-              </div>
-            )}
           </div>
-
-          {activity && inCall && (
-            <div className="activity-strip" aria-live="polite">
-              <span className="mono faint">{activity.agent}</span>
-              <span>{activity.summary || activity.action_type}</span>
-            </div>
-          )}
-
-          <div
-            className="transcript"
-            ref={(node) => {
-              transcriptScrollRef.current = node;
-              transcriptEndRef.current = node;
-            }}
-            aria-live="polite"
-            aria-relevant="additions"
-          >
-            {transcript.length === 0 && (
-              <div className="empty-state">
-                <p className="empty-state-text">
-                  {state === CALL_STATE.IDLE
-                    ? hasSR
-                      ? "Start a call, allow the microphone, then speak naturally. You can always type below."
-                      : "This browser has no Web Speech API. Start a call and type every customer turn."
-                    : state === CALL_STATE.CONNECTING
-                      ? "Opening the contact and waiting for the greeting…"
-                      : "Waiting for the first turn…"}
-                </p>
-              </div>
-            )}
-            {transcript.map((t) => (
-              <div
-                key={t.id || `${t.speaker}-${t.text.slice(0, 12)}`}
-                className={"turn " + t.speaker + (t.interim ? " interim" : "")}
-              >
-                <div className="who">
-                  {t.speaker}
-                  {t.interim ? " · listening" : ""}
-                </div>
-                <div>{t.text}</div>
-              </div>
-            ))}
+          <div className="transcript" role="log" aria-label="Report transcript" tabIndex={0}
+            ref={node => { transcriptScrollRef.current = node; transcriptEndRef.current = node; }} aria-live="polite" aria-relevant="additions">
+            {transcript.length === 0 && <div className="voice-empty">
+              <div className="voice-empty-mark" aria-hidden="true"><IconMic /><div className="voice-empty-wave">{[10, 20, 30, 17, 36, 24, 12].map((height, i) => <span key={i} style={{ height }} />)}</div></div>
+              <span className="voice-section-kicker">YOUR WORDS. A CLEARER START.</span>
+              <h3>{canStart ? "Tell us what happened." : "Opening your report…"}</h3>
+              <p>{canStart ? "Describe the symptoms in your own words. Your conversation and captured details will stay here for review." : "Connecting and waiting for the first question."}</p>
+              {canStart && <div className="voice-empty-hint"><span aria-hidden="true">↳</span> Start with what changed, when, and which vehicle.</div>}
+            </div>}
+            {transcript.map(t => <div key={t.id || `${t.speaker}-${t.text.slice(0, 12)}`} className={"turn " + t.speaker + (t.interim ? " interim" : "")}>
+              <div className="voice-turn-avatar" aria-hidden="true">{t.speaker === "customer" ? "Y" : t.speaker === "supervisor" ? "S" : <IconMic />}</div>
+              <div className="voice-turn-content"><div className="who">{t.speaker === "customer" ? "Owner report" : t.speaker === "supervisor" ? "Specialist" : "Assistant"}{t.interim ? " · draft, not sent" : ""}</div>
+                <div>{t.text}</div></div>
+            </div>)}
           </div>
+          {inCall && !needsText && <div className="voice-finish-row"><span>{state === CALL_STATE.LISTENING ? pauseMs === 0 ? "Take your time. Select Finish speaking to send." : "Listening. Your answer sends after the selected pause." : "You can type a reply or correction below."}</span><button type="button" className="ghost" disabled={muted || state !== CALL_STATE.LISTENING} onClick={finishSpeaking}><IconMic />Finish speaking</button></div>}
+          <form className="call-compose" onSubmit={submitTextFallback}>
+            <input ref={composeRef} aria-label="Type a reply or correction" placeholder={canStart ? "Choose a start option above" : "Type a reply or correction — Enter to send"}
+              value={textFallback} onChange={e => setTextFallback(e.target.value)} disabled={canStart || state === CALL_STATE.CONNECTING} autoComplete="off" />
+            <button type="submit" className="primary" disabled={!inCall || state === CALL_STATE.CONNECTING || !textFallback.trim()}>Send</button>
+          </form>
+          <div className="voice-conversation-footer"><IconShield /><p className="voice-note">{inCall ? "Leaving or refreshing ends this report. Stored turns remain available for review." : "Captured facts stay provisional until reviewed. Investigation and action require a separate review."}</p></div>
 
-          {showCompose && (
-            <form className="call-compose" onSubmit={submitTextFallback}>
-              <input
-                aria-label="Type a customer turn"
-                placeholder={
-                  canStart
-                    ? hasSR
-                      ? "Start a call, then type or speak"
-                      : "Start a text contact, then type here"
-                    : hasSR
-                      ? "Type a reply (or speak) — Enter to send"
-                      : "Type your reply — Enter to send"
-                }
-                value={textFallback}
-                onChange={(e) => setTextFallback(e.target.value)}
-                disabled={state === CALL_STATE.ENDED || state === CALL_STATE.CONNECTING || canStart}
-                autoComplete="off"
-              />
-              <button
-                type="submit"
-                className={inCall && textFallback.trim() ? "primary" : "ghost"}
-                disabled={
-                  !inCall ||
-                  state === CALL_STATE.ENDED ||
-                  state === CALL_STATE.CONNECTING ||
-                  !textFallback.trim()
-                }
-              >
-                Send
-              </button>
-            </form>
-          )}
+          {handoff && inCall && <div className="banner banner-ok" role="status">
+            {humanControl ? "Specialist joined." : handoffStatus === "queued" ? "Specialist request queued. No pickup time is guaranteed." : handoffStatus === "unavailable" ? "Specialist request unavailable. You can retry from Next step." : "A specialist can review this report. Request support to join the queue."}{" "}
+            <button type="button" className="ghost" onClick={openLiveConsole}>Open supervisor console in new tab</button>
+          </div>}
 
-          {/* [AI-LAYER] speech-language option + mid-call photo upload (additive) */}
-          <CallAiExtras interactionId={interactionId} caseId={ended?.case_id} />
-
-          {handoff && inCall && (
-            <div className="banner banner-ok" role="status" style={{ marginTop: 12 }}>
-              Supervisor handoff queued — pickup SLA 75s.{" "}
-              <button type="button" className="primary" onClick={openLiveConsole}>
-                Open supervisor console in new tab
-              </button>{" "}
-              <button type="button" className="ghost" onClick={requestHuman}>
-                Re-page supervisor
-              </button>
+          {ended && state === CALL_STATE.ENDED && <section className="result-card" aria-label="Completed report">
+            <h2>Report ended</h2>
+            <p>Inspect the stored source turns and confirm the vehicle on the next page. Opening the handoff does not run an investigation or approve an action.</p>
+            {interactionId && <a className="voice-handoff" href={`#safety-campaigns?tab=investigate&interaction=${encodeURIComponent(interactionId)}`}>Investigate this report →</a>}
+            <div className="row voice-secondary-actions">
+              <button type="button" className="ghost" onClick={copyReceipt}>Copy transcript</button>
+              {ended.case_id && <button type="button" className="ghost" onClick={() => openCases({ caseId: ended.case_id, status: "open" })}>Open case queue</button>}
             </div>
-          )}
-
-          {ended && state === CALL_STATE.ENDED && (
-            <div className="result-card" style={{ marginTop: 14 }}>
-              <div className="result-card-title">Call ended</div>
-              <div className="kvs">
-                <span className="k">reason</span>
-                <span className="v mono">{ended.reason || "ended"}</span>
-                <span className="k">case</span>
-                <span className="v mono">{ended.case_id || "—"}</span>
-                <span className="k">investigation</span>
-                <span className="v mono">
-                  {ended.investigation_id ||
-                    (ended.investigation_opened ? "opened" : "—")}
-                </span>
-                <span className="k">audit</span>
-                <span className="v">{ended.audit_pending ? "pending" : "n/a"}</span>
+            <fieldset className="voice-feedback">
+              <legend>How well was your report captured? 1 = poorly, 5 = accurately</legend>
+              <div className="row">{[1, 2, 3, 4, 5].map(n => <button key={n} type="button" aria-label={`Capture rating ${n}`} aria-pressed={survey.csat === n}
+                disabled={survey.sent} className={survey.csat === n ? "primary" : "ghost"} onClick={() => setSurvey(s => ({ ...s, csat: n }))}>{n}</button>)}
+                <button type="button" className="ghost" disabled={survey.sent || !survey.csat} onClick={sendSurvey}>{survey.sent ? "Feedback saved" : "Save feedback"}</button>
               </div>
-              <div className="row" style={{ marginTop: 12 }}>
-                <button type="button" className="primary" onClick={startCall}>
-                  New call
-                </button>
-                {ended.case_id && (
-                  <button
-                    type="button"
-                    className="ghost"
-                    onClick={() => openCases({ caseId: ended.case_id, status: "open" })}
-                  >
-                    Open case queue
-                  </button>
-                )}
-                <button type="button" className="ghost" onClick={copyReceipt}>Copy receipt</button>
-              </div>
-              <div className="row" style={{ marginTop: 12, flexWrap: "wrap", gap: 8 }}>
-                <span className="mono faint">Did we get your issue right?</span>
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <button key={n} type="button" className={survey.csat === n ? "primary" : "ghost"} onClick={() => setSurvey((s) => ({ ...s, csat: n }))}>{n}</button>
-                ))}
-                <button type="button" className={survey.resolved === true ? "primary" : "ghost"} onClick={() => setSurvey((s) => ({ ...s, resolved: true }))}>Resolved</button>
-                <button type="button" className={survey.resolved === false ? "primary" : "ghost"} onClick={() => setSurvey((s) => ({ ...s, resolved: false }))}>Not resolved</button>
-                <button type="button" className="ghost" disabled={survey.sent} onClick={sendSurvey}>{survey.sent ? "Sent" : "Send survey"}</button>
-              </div>
-              {interactionId && (
-                <p className="muted small" style={{ marginTop: 8 }}>
-                  Resume link: <span className="mono">{window.location.origin}{window.location.pathname}#/call?resume={interactionId.slice(0, 16)}…</span>
-                </p>
-              )}
-            </div>
-          )}
-        </div>
+              <p className="voice-note">This records feedback about intake. Repair and vehicle safety still require separate evidence and review.</p>
+            </fieldset>
+          </section>}
+        </section>
 
-        <aside className="stack">
-          <div className="panel">
-            <h2>Slot frame</h2>
-            {slotEntries.length === 0 ? (
-              <div className="empty-state">
-                <p className="empty-state-text">
-                  Slots appear as the agent fills the pack frame from your answers.
-                </p>
-              </div>
-            ) : (
-              slotEntries.map((s) => (
-                <div className="slot-row" key={s.key || s.label}>
-                  <span className="k">{s.label}</span>
-                  <span className={"v" + (s.value ? "" : " empty")}>{s.value || "—"}</span>
-                </div>
-              ))
-            )}
-          </div>
-
-          <details className="panel">
-            <summary style={{ cursor: "pointer", fontWeight: 600 }}>This browser</summary>
-            <div className="kvs" style={{ marginTop: 12 }}>
-              <span className="k">{capabilityLabel("stt")}</span>
-              <span className="v">
-                {serverVoice.stt ? (
-                  <span className="ok-text">Deepgram server STT</span>
-                ) : caps.sttOk ? (
-                  <span className="ok-text">{caps.stt}</span>
-                ) : (
-                  <span className="warn-text">{caps.stt}</span>
-                )}
-              </span>
-              <span className="k">{capabilityLabel("tts")}</span>
-              <span className="v">
-                {serverVoice.tts ? (
-                  <span className="ok-text">Deepgram server TTS</span>
-                ) : caps.ttsOk ? (
-                  <span className="ok-text">{caps.tts}</span>
-                ) : (
-                  <span className="warn-text">{caps.tts}</span>
-                )}
-              </span>
-              <span className="k">{capabilityLabel("barge_in")}</span>
-              <span className="v">
-                {caps.bargeOk ? (
-                  <span className="ok-text">{caps.bargeIn}</span>
-                ) : (
-                  <span className="faint">{caps.bargeIn}</span>
-                )}
-              </span>
-              <span className="k">{capabilityLabel("mic")}</span>
-              <span className="v">
-                {micGranted === true ? (
-                  <span className="ok-text">Granted</span>
-                ) : micGranted === false ? (
-                  <span className="warn-text">Denied / blocked</span>
-                ) : (
-                  <span className="faint">Not requested</span>
-                )}
-              </span>
-              <span className="k">{capabilityLabel("text path")}</span>
-              <span className="v ok-text">Always available in-call</span>
-            </div>
-            <p className="muted small" style={{ marginTop: 12 }}>
-              While the agent speaks, recognition is paused so TTS is not captured as a customer
-              turn. Interrupt by speaking or typing.
-            </p>
-          </details>
-
-          <div className="panel">
-            <h2>Related</h2>
-            <button type="button" className="ghost" onClick={openLiveConsole}>
-              Live console
-            </button>
-          </div>
+        <aside className="stack" aria-label="Report details">
+          <section className="panel voice-brief">
+            <div className="voice-brief-heading"><span className="voice-section-kicker">REPORT BRIEF</span><IconFolder /></div>
+            <h2>What we understood</h2>
+            <p className="voice-note">Captured from the conversation. Review and correct each detail.</p>
+            {(slots.reported_problems || []).length > 0 && <div aria-label="Reported problems"><h3>Reported problems</h3>{slots.reported_problems.map(problem => <details key={problem.problem_id}><summary>{problem.system} · {problem.polarity}</summary><p>{problem.symptom}</p><blockquote>{problem.quote}</blockquote></details>)}</div>}
+            {!captured.length ? <div className="voice-brief-empty"><div className="voice-document-mark" aria-hidden="true"><span /><span /><span /></div><p>No details captured yet.</p><span>Vehicle and symptom details appear as the report takes shape.</span></div> : captured.map(s => <div className="voice-fact" key={s.key || s.label}>
+              <span>{s.label}</span><strong>{String(s.value)}</strong>
+              {inCall && <button type="button" className="ghost" disabled={state === CALL_STATE.CONNECTING} aria-label={`Correct ${s.label}`} onClick={() => correctDetail(s.label)}>Correct</button>}
+            </div>)}
+            {progress.total > 0 && <div className="voice-progress"><span>{progress.filled} of {progress.total} requested details captured</span><progress aria-label="Requested details captured" value={progress.filled} max={progress.total} /></div>}
+          </section>
+          <section className="panel voice-needed">
+            <div className="voice-panel-title"><h2>Still needed</h2>{missing.length > 0 && <span className="voice-count">{missing.length}</span>}</div>
+            {missing.length ? <ul>{missing.map(s => <li key={s.key || s.label}>{s.label}</li>)}</ul> : <p>{inCall ? "Review the transcript for missing or incorrect details." : "The first questions establish safety and vehicle details."}</p>}
+          </section>
+          <section className="panel voice-next">
+            <div className="voice-panel-title"><h2>Next step</h2><span aria-hidden="true">↗</span></div><p>{nextStep}</p>
+            {inCall && <div className="voice-secondary-actions">
+              <button type="button" className={driving ? "primary" : "ghost"} onClick={() => setDriving(d => !d)} aria-pressed={driving}>{driving ? "Driving reported" : "I'm driving"}</button>
+              <button type="button" className="ghost" disabled={humanControl} onClick={requestHuman}>{humanControl ? "Specialist joined" : "Request specialist"}</button>
+            </div>}
+          </section>
         </aside>
       </div>
+          <details className="voice-diagnostics">
+            <summary>Engineer diagnostics</summary>
+            <p>Technical connection details for support. These do not establish recognition quality.</p>
+            <div className="kvs">
+              <span className="k">Connection</span><span className="v">{wsStatus}</span>
+              <span className="k">Interaction</span><span className="v mono">{interactionId || "Not started"}</span>
+              <span className="k">Recognition</span><span className="v">{textOnly ? "Off · text report" : serverVoice.stt ? "Deepgram server STT" : caps.stt}</span>
+              <span className="k">Playback</span><span className="v">{textOnly ? "Off · text report" : serverVoice.tts ? "Deepgram server TTS" : caps.tts}</span>
+              <span className="k">Last text understanding</span><span className="v">{understanding
+                ? `${understanding.mode === "live_inference" ? "Live inference" : understanding.mode === "fallback" ? "Deterministic fallback" : understanding.mode === "test_output" ? "Test output" : "Deterministic handling"}${understanding.model ? ` · ${understanding.model}` : ""}${understanding.finished_at ? ` · ${understanding.finished_at}` : ""}${understanding.fallback_reason ? ` · ${understanding.fallback_reason}` : ""}`
+                : "No operation recorded yet"}</span>
+              <span className="k">Model audio analysis</span><span className="v">Unavailable in this workflow</span>
+              <span className="k">Microphone</span><span className="v">{micGranted === true ? "Granted" : micGranted === false ? "Blocked" : "Not requested"}</span>
+              <span className="k">Pack</span><span className="v">{pack?.display_name || pack?.id || "Selected when report starts"}</span>
+              {latency && <><span className="k">Server turn duration</span><span className="v">{latency.elapsed_ms} ms · excludes audible playback</span></>}
+              {frustration > 0 && <><span className="k">Heuristic frustration</span><span className="v">{frustration.toFixed(2)} · unvalidated</span></>}
+              {ended && <><span className="k">End reason</span><span className="v">{ended.reason || "ended"}</span><span className="k">Case</span><span className="v">{ended.case_id || "Not created"}</span><span className="k">Audit</span><span className="v">{ended.audit_pending ? "Pending" : "Not reported"}</span></>}
+            </div>
+            {activity && <p>{activity.agent}: {activity.summary || activity.action_type}</p>}
+            <label>Region for consent <input aria-label="Region for consent" value={region} onChange={e => setRegion(e.target.value)} placeholder="CA" /></label>
+            <CallAiExtras interactionId={interactionId} caseId={ended?.case_id} showLanguage={false} serverVoice={serverVoice} textOnly={textOnly} />
+          </details>
     </div>
   );
 }

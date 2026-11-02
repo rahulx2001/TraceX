@@ -1,0 +1,24 @@
+{
+  "phase": "evaluation",
+  "records": 300,
+  "api_batches_total": 39,
+  "pending_batches": 39,
+  "selected_batches": 39,
+  "singleton_records": 73,
+  "maximum_transport_attempts": 78,
+  "calls_today": 8,
+  "daily_call_cap": 300,
+  "reservation_upper_bound_usd": 3.490694,
+  "remaining_reservation_budget_usd": 4.170072999999999,
+  "budget_snapshot": {
+    "limit_usd": 30.0,
+    "reserved_upper_bound_usd": 25.829927,
+    "observed_token_cost_usd": 5.520297249999995,
+    "unmetered_successes": 0,
+    "live_successful_requests": 466,
+    "pricing_checked": "2026-10-28",
+    "scope": "this client; excludes unrelated account activity; reservations include failed attempts"
+  },
+  "no_cap_change": true,
+  "actual_billed_cost_usd": null
+}

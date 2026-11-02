@@ -1,0 +1,4645 @@
+{
+  "status": "baseline_only_no_improvement_claim",
+  "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+  "snapshot_command": ".venv-hackathon/bin/python -m scripts.ml_score_snapshot",
+  "snapshot_script_sha256": "92bb5c3c874facf57256a81d8aca370d877b0598fe9fada289a329bc20437a08",
+  "baseline_comparison": "Fresh category diagnostics agree with saved scores; frozen defect/fuel replays match exactly. Safety/OOS are saved results, not newly replayed.",
+  "confidence_interval_note": "Wilson intervals are descriptive binomial intervals. Campaign dependence, repeated alerts, authored templates and clustered scope rows invalidate a simple independent-sample generalization interpretation. No causal or production claim follows.",
+  "metrics": [
+    {
+      "metric": "category.labels.accuracy",
+      "numerator": 4,
+      "denominator": 76,
+      "value": 0.05263157894736842,
+      "confidence_interval_95": [
+        0.020655429299384284,
+        0.12765672575889647
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "scope": {
+        "pack": "automotive_nhtsa",
+        "authored_rows": 76,
+        "makes_years_campaigns": "not applicable"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_recheck.json",
+      "config_hash": "d5146a7f570b8bcd602b3c9cf80e3c01df178060e6d8133aab641ca713bf6187",
+      "data_hash": "d8801acc13f5294b3e6b3b757bffb44a3f03af3edc61e5d2a940e66514af8749",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/improvement/pipeline_recheck.json",
+      "source_key": "category_diagnostics.labels.accuracy",
+      "source_sha256": "62cb6d1377ca99ace355db26a7cdee3ee147e081364935e12ba739affa11cff5",
+      "note": ""
+    },
+    {
+      "metric": "category.labels.accepted_precision",
+      "numerator": 4,
+      "denominator": 17,
+      "value": 0.23529411764705882,
+      "confidence_interval_95": [
+        0.09555044322080117,
+        0.4726179811956498
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "scope": {
+        "pack": "automotive_nhtsa",
+        "authored_rows": 76,
+        "makes_years_campaigns": "not applicable"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_recheck.json",
+      "config_hash": "d5146a7f570b8bcd602b3c9cf80e3c01df178060e6d8133aab641ca713bf6187",
+      "data_hash": "d8801acc13f5294b3e6b3b757bffb44a3f03af3edc61e5d2a940e66514af8749",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/improvement/pipeline_recheck.json",
+      "source_key": "category_diagnostics.labels.accepted_precision",
+      "source_sha256": "62cb6d1377ca99ace355db26a7cdee3ee147e081364935e12ba739affa11cff5",
+      "note": ""
+    },
+    {
+      "metric": "category.labels.coverage",
+      "numerator": 17,
+      "denominator": 76,
+      "value": 0.2236842105263158,
+      "confidence_interval_95": [
+        0.14461182822226148,
+        0.3293456793137355
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "scope": {
+        "pack": "automotive_nhtsa",
+        "authored_rows": 76,
+        "makes_years_campaigns": "not applicable"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_recheck.json",
+      "config_hash": "d5146a7f570b8bcd602b3c9cf80e3c01df178060e6d8133aab641ca713bf6187",
+      "data_hash": "d8801acc13f5294b3e6b3b757bffb44a3f03af3edc61e5d2a940e66514af8749",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/improvement/pipeline_recheck.json",
+      "source_key": "category_diagnostics.labels.coverage",
+      "source_sha256": "62cb6d1377ca99ace355db26a7cdee3ee147e081364935e12ba739affa11cff5",
+      "note": ""
+    },
+    {
+      "metric": "category.descriptions.accuracy",
+      "numerator": 22,
+      "denominator": 76,
+      "value": 0.2894736842105263,
+      "confidence_interval_95": [
+        0.19961016825622824,
+        0.3995955517711981
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "scope": {
+        "pack": "automotive_nhtsa",
+        "authored_rows": 76,
+        "makes_years_campaigns": "not applicable"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_recheck.json",
+      "config_hash": "d5146a7f570b8bcd602b3c9cf80e3c01df178060e6d8133aab641ca713bf6187",
+      "data_hash": "d8801acc13f5294b3e6b3b757bffb44a3f03af3edc61e5d2a940e66514af8749",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/improvement/pipeline_recheck.json",
+      "source_key": "category_diagnostics.descriptions.accuracy",
+      "source_sha256": "62cb6d1377ca99ace355db26a7cdee3ee147e081364935e12ba739affa11cff5",
+      "note": ""
+    },
+    {
+      "metric": "category.descriptions.accepted_precision",
+      "numerator": 22,
+      "denominator": 37,
+      "value": 0.5945945945945946,
+      "confidence_interval_95": [
+        0.43485964730229365,
+        0.7365348180798572
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "scope": {
+        "pack": "automotive_nhtsa",
+        "authored_rows": 76,
+        "makes_years_campaigns": "not applicable"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_recheck.json",
+      "config_hash": "d5146a7f570b8bcd602b3c9cf80e3c01df178060e6d8133aab641ca713bf6187",
+      "data_hash": "d8801acc13f5294b3e6b3b757bffb44a3f03af3edc61e5d2a940e66514af8749",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/improvement/pipeline_recheck.json",
+      "source_key": "category_diagnostics.descriptions.accepted_precision",
+      "source_sha256": "62cb6d1377ca99ace355db26a7cdee3ee147e081364935e12ba739affa11cff5",
+      "note": ""
+    },
+    {
+      "metric": "category.descriptions.coverage",
+      "numerator": 37,
+      "denominator": 76,
+      "value": 0.4868421052631579,
+      "confidence_interval_95": [
+        0.3778372877915117,
+        0.5971130697102026
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "authored development diagnostic; not held out",
+      "label_source": "existing_builder_authored_adversarial_templates",
+      "scope": {
+        "pack": "automotive_nhtsa",
+        "authored_rows": 76,
+        "makes_years_campaigns": "not applicable"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_recheck.json",
+      "config_hash": "d5146a7f570b8bcd602b3c9cf80e3c01df178060e6d8133aab641ca713bf6187",
+      "data_hash": "d8801acc13f5294b3e6b3b757bffb44a3f03af3edc61e5d2a940e66514af8749",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/improvement/pipeline_recheck.json",
+      "source_key": "category_diagnostics.descriptions.coverage",
+      "source_sha256": "62cb6d1377ca99ace355db26a7cdee3ee147e081364935e12ba739affa11cff5",
+      "note": ""
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.recall",
+      "numerator": 22,
+      "denominator": 41,
+      "value": 0.5365853658536586,
+      "confidence_interval_95": [
+        0.38746471267669474,
+        0.6794376602366394
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.mature_episode_precision",
+      "numerator": 14,
+      "denominator": 31,
+      "value": 0.45161290322580644,
+      "confidence_interval_95": [
+        0.29161735980520015,
+        0.6222783236264549
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.harmonic_objective",
+      "numerator": 0.4846577498033045,
+      "denominator": 0.9881982690794651,
+      "value": 0.49044585987261147,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.objective",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.median_lead_weeks",
+      "numerator": null,
+      "denominator": 22,
+      "value": 33.07142857142857,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.median_lead_weeks",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.alerts",
+      "numerator": 47,
+      "denominator": 47,
+      "value": 47,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.mature_alerts",
+      "numerator": 31,
+      "denominator": 47,
+      "value": 31,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.confirmed_mature_alerts",
+      "numerator": 14,
+      "denominator": 47,
+      "value": 14,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.confirmed_mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.rolling_defect.censored_alerts",
+      "numerator": 16,
+      "denominator": 47,
+      "value": 16,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.rolling_defect.censored_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.count_reference.recall",
+      "numerator": 15,
+      "denominator": 41,
+      "value": 0.36585365853658536,
+      "confidence_interval_95": [
+        0.23589831019689447,
+        0.5187929891208799
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.all_reports.count_reference.mature_episode_precision",
+      "numerator": 11,
+      "denominator": 31,
+      "value": 0.3548387096774194,
+      "confidence_interval_95": [
+        0.21116659093865403,
+        0.5305204593563113
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.all_reports.count_reference.harmonic_objective",
+      "numerator": 0.25963808025177026,
+      "denominator": 0.7206923682140047,
+      "value": 0.36026200873362446,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.objective",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "defect.all_reports.count_reference.median_lead_weeks",
+      "numerator": null,
+      "denominator": 15,
+      "value": 32.42857142857143,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.median_lead_weeks",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "defect.all_reports.count_reference.alerts",
+      "numerator": 47,
+      "denominator": 47,
+      "value": 47,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.count_reference.mature_alerts",
+      "numerator": 31,
+      "denominator": 47,
+      "value": 31,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.count_reference.confirmed_mature_alerts",
+      "numerator": 11,
+      "denominator": 47,
+      "value": 11,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.confirmed_mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.count_reference.censored_alerts",
+      "numerator": 16,
+      "denominator": 47,
+      "value": 16,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.count_reference.censored_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.recall",
+      "numerator": 5,
+      "denominator": 41,
+      "value": 0.12195121951219512,
+      "confidence_interval_95": [
+        0.053233364685777176,
+        0.25544211520976884
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.mature_episode_precision",
+      "numerator": 1,
+      "denominator": 4,
+      "value": 0.25,
+      "confidence_interval_95": [
+        0.04558726080970055,
+        0.6993581574175981
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.harmonic_objective",
+      "numerator": 0.06097560975609756,
+      "denominator": 0.3719512195121951,
+      "value": 0.16393442622950818,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.objective",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.median_lead_weeks",
+      "numerator": null,
+      "denominator": 5,
+      "value": 39.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.median_lead_weeks",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.alerts",
+      "numerator": 10,
+      "denominator": 10,
+      "value": 10,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.mature_alerts",
+      "numerator": 4,
+      "denominator": 10,
+      "value": 4,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.confirmed_mature_alerts",
+      "numerator": 1,
+      "denominator": 10,
+      "value": 1,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.confirmed_mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.original_weekly_on_repaired_data.censored_alerts",
+      "numerator": 6,
+      "denominator": 10,
+      "value": 6,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.original_weekly_on_repaired_data.censored_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.all_reports.random_mean_recall",
+      "numerator": 1669,
+      "denominator": 4100,
+      "value": 0.40707317073170735,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": [
+        20261029,
+        20261030,
+        20261031,
+        20261032,
+        20261033,
+        20261034,
+        20261035,
+        20261036,
+        20261037,
+        20261038,
+        20261039,
+        20261040,
+        20261041,
+        20261042,
+        20261043,
+        20261044,
+        20261045,
+        20261046,
+        20261047,
+        20261048,
+        20261049,
+        20261050,
+        20261051,
+        20261052,
+        20261053,
+        20261054,
+        20261055,
+        20261056,
+        20261057,
+        20261058,
+        20261059,
+        20261060,
+        20261061,
+        20261062,
+        20261063,
+        20261064,
+        20261065,
+        20261066,
+        20261067,
+        20261068,
+        20261069,
+        20261070,
+        20261071,
+        20261072,
+        20261073,
+        20261074,
+        20261075,
+        20261076,
+        20261077,
+        20261078,
+        20261079,
+        20261080,
+        20261081,
+        20261082,
+        20261083,
+        20261084,
+        20261085,
+        20261086,
+        20261087,
+        20261088,
+        20261089,
+        20261090,
+        20261091,
+        20261092,
+        20261093,
+        20261094,
+        20261095,
+        20261096,
+        20261097,
+        20261098,
+        20261099,
+        20261100,
+        20261101,
+        20261102,
+        20261103,
+        20261104,
+        20261105,
+        20261106,
+        20261107,
+        20261108,
+        20261109,
+        20261110,
+        20261111,
+        20261112,
+        20261113,
+        20261114,
+        20261115,
+        20261116,
+        20261117,
+        20261118,
+        20261119,
+        20261120,
+        20261121,
+        20261122,
+        20261123,
+        20261124,
+        20261125,
+        20261126,
+        20261127,
+        20261128
+      ],
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.random.mean_campaign_recall",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Repeated draws over the same campaigns. Empirical 95% reference interval [0.3042682926829268, 0.4878048780487805]; this is not a confidence interval for effectiveness."
+    },
+    {
+      "metric": "defect.all_reports.random_at_least_detector",
+      "numerator": 0,
+      "denominator": 100,
+      "value": 0.0,
+      "confidence_interval_95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "all_reports.random.fraction_at_least_detector_recall",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Monte Carlo fraction conditional on this historical candidate pool, not a prospective superiority test."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.recall",
+      "numerator": 14,
+      "denominator": 41,
+      "value": 0.34146341463414637,
+      "confidence_interval_95": [
+        0.21558808257384846,
+        0.49450163480170306
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.mature_episode_precision",
+      "numerator": 7,
+      "denominator": 13,
+      "value": 0.5384615384615384,
+      "confidence_interval_95": [
+        0.29143795714506004,
+        0.7679393219046169
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.harmonic_objective",
+      "numerator": 0.3677298311444653,
+      "denominator": 0.8799249530956847,
+      "value": 0.41791044776119407,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.objective",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.median_lead_weeks",
+      "numerator": null,
+      "denominator": 14,
+      "value": 31.428571428571427,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.median_lead_weeks",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.alerts",
+      "numerator": 27,
+      "denominator": 27,
+      "value": 27,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.mature_alerts",
+      "numerator": 13,
+      "denominator": 27,
+      "value": 13,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.confirmed_mature_alerts",
+      "numerator": 7,
+      "denominator": 27,
+      "value": 7,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.confirmed_mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.rolling_defect.censored_alerts",
+      "numerator": 14,
+      "denominator": 27,
+      "value": 14,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.rolling_defect.censored_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.recall",
+      "numerator": 10,
+      "denominator": 41,
+      "value": 0.24390243902439024,
+      "confidence_interval_95": [
+        0.13825002738090333,
+        0.39343336222575687
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.mature_episode_precision",
+      "numerator": 6,
+      "denominator": 13,
+      "value": 0.46153846153846156,
+      "confidence_interval_95": [
+        0.23206067809538303,
+        0.7085620428549398
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.harmonic_objective",
+      "numerator": 0.22514071294559101,
+      "denominator": 0.7054409005628518,
+      "value": 0.3191489361702128,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.objective",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.median_lead_weeks",
+      "numerator": null,
+      "denominator": 10,
+      "value": 31.285714285714285,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.median_lead_weeks",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.alerts",
+      "numerator": 27,
+      "denominator": 27,
+      "value": 27,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.mature_alerts",
+      "numerator": 13,
+      "denominator": 27,
+      "value": 13,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.confirmed_mature_alerts",
+      "numerator": 6,
+      "denominator": 27,
+      "value": 6,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.confirmed_mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.count_reference.censored_alerts",
+      "numerator": 14,
+      "denominator": 27,
+      "value": 14,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.count_reference.censored_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.recall",
+      "numerator": 0,
+      "denominator": 41,
+      "value": 0.0,
+      "confidence_interval_95": [
+        0.0,
+        0.08566757018443186
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.hits/campaigns",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.mature_episode_precision",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": ""
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.harmonic_objective",
+      "numerator": null,
+      "denominator": null,
+      "value": 0.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.objective",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.median_lead_weeks",
+      "numerator": null,
+      "denominator": 0,
+      "value": null,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.median_lead_weeks",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.alerts",
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.mature_alerts",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.confirmed_mature_alerts",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.confirmed_mature_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.original_weekly_on_repaired_data.censored_alerts",
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.original_weekly_on_repaired_data.censored_alerts",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.random_mean_recall",
+      "numerator": 1074,
+      "denominator": 4100,
+      "value": 0.26195121951219513,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": [
+        20261029,
+        20261030,
+        20261031,
+        20261032,
+        20261033,
+        20261034,
+        20261035,
+        20261036,
+        20261037,
+        20261038,
+        20261039,
+        20261040,
+        20261041,
+        20261042,
+        20261043,
+        20261044,
+        20261045,
+        20261046,
+        20261047,
+        20261048,
+        20261049,
+        20261050,
+        20261051,
+        20261052,
+        20261053,
+        20261054,
+        20261055,
+        20261056,
+        20261057,
+        20261058,
+        20261059,
+        20261060,
+        20261061,
+        20261062,
+        20261063,
+        20261064,
+        20261065,
+        20261066,
+        20261067,
+        20261068,
+        20261069,
+        20261070,
+        20261071,
+        20261072,
+        20261073,
+        20261074,
+        20261075,
+        20261076,
+        20261077,
+        20261078,
+        20261079,
+        20261080,
+        20261081,
+        20261082,
+        20261083,
+        20261084,
+        20261085,
+        20261086,
+        20261087,
+        20261088,
+        20261089,
+        20261090,
+        20261091,
+        20261092,
+        20261093,
+        20261094,
+        20261095,
+        20261096,
+        20261097,
+        20261098,
+        20261099,
+        20261100,
+        20261101,
+        20261102,
+        20261103,
+        20261104,
+        20261105,
+        20261106,
+        20261107,
+        20261108,
+        20261109,
+        20261110,
+        20261111,
+        20261112,
+        20261113,
+        20261114,
+        20261115,
+        20261116,
+        20261117,
+        20261118,
+        20261119,
+        20261120,
+        20261121,
+        20261122,
+        20261123,
+        20261124,
+        20261125,
+        20261126,
+        20261127,
+        20261128
+      ],
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.random.mean_campaign_recall",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Repeated draws over the same campaigns. Empirical 95% reference interval [0.17073170731707318, 0.36585365853658536]; this is not a confidence interval for effectiveness."
+    },
+    {
+      "metric": "defect.excluding_explicit_recall_reports.random_at_least_detector",
+      "numerator": 7,
+      "denominator": 100,
+      "value": 0.07,
+      "confidence_interval_95": [
+        0.03431926106727268,
+        0.137495147390735
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 inspected historical reanalysis",
+      "label_source": "model complaint and recall labels + official recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": [
+          "FUEL SYSTEM"
+        ],
+        "recall_type": "V",
+        "complaint_window": [
+          "2015-01-01",
+          "2024-12-31"
+        ]
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.defect_verify",
+      "config_hash": "33b6f292490f7cee0acbd678baa6aa06295ed27c3d054febe6dafa73a7b8d4f9",
+      "data_hash": {
+        "complaints": "27b79516e89b8a1a347cb28739fa3d775c3f2d4e7247cae86f43358f1ccacf63",
+        "recall_scopes": "b802f962d1d9169f8009133428258f80668f42f7c283834a6b58652478e2c149",
+        "classification_inputs": "dda0970025053504b4af7f9b04bacfd82e9caede0c2188b0acf253485a497f9b",
+        "pending_complaints": "4f2c15e65b22d81f788db818b366e63c1d43c7471e2304de347b7446e5efc2d8"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/repair/prediction_results.json",
+      "source_key": "excluding_explicit_recall_reports.random.fraction_at_least_detector_recall",
+      "source_sha256": "6ea860f7d14b0cdc5544fa51524178596bb8686b155a304af1c63142aeac7918",
+      "note": "Monte Carlo fraction conditional on this historical candidate pool, not a prospective superiority test."
+    },
+    {
+      "metric": "fuel_holdout.method.recall",
+      "numerator": 5,
+      "denominator": 8,
+      "value": 0.625,
+      "confidence_interval_95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.hits/campaigns",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": ""
+    },
+    {
+      "metric": "fuel_holdout.method.mature_episode_precision",
+      "numerator": 6,
+      "denominator": 18,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.1627877475083369,
+        0.5625053270405489
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": ""
+    },
+    {
+      "metric": "fuel_holdout.method.harmonic_objective",
+      "numerator": 0.41666666666666663,
+      "denominator": 0.9583333333333333,
+      "value": 0.43478260869565216,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.objective",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "fuel_holdout.method.median_lead_weeks",
+      "numerator": null,
+      "denominator": 5,
+      "value": 25.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.median_lead_weeks",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "fuel_holdout.method.alerts",
+      "numerator": 24,
+      "denominator": 24,
+      "value": 24,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "fuel_holdout.method.mature_alerts",
+      "numerator": 18,
+      "denominator": 24,
+      "value": 18,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "fuel_holdout.method.confirmed_mature_alerts",
+      "numerator": 6,
+      "denominator": 24,
+      "value": 6,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "method.confirmed_mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "fuel_holdout.count_baseline.recall",
+      "numerator": 5,
+      "denominator": 8,
+      "value": 0.625,
+      "confidence_interval_95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "count_baseline.hits/campaigns",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": ""
+    },
+    {
+      "metric": "fuel_holdout.count_baseline.mature_episode_precision",
+      "numerator": 6,
+      "denominator": 18,
+      "value": 0.3333333333333333,
+      "confidence_interval_95": [
+        0.1627877475083369,
+        0.5625053270405489
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "count_baseline.confirmed_mature_alerts/mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": ""
+    },
+    {
+      "metric": "fuel_holdout.count_baseline.harmonic_objective",
+      "numerator": 0.41666666666666663,
+      "denominator": 0.9583333333333333,
+      "value": 0.43478260869565216,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "count_baseline.objective",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Harmonic mean of campaign recall and episode precision (different units), not ordinary per-example F1. No joint cluster-bootstrap interval estimated."
+    },
+    {
+      "metric": "fuel_holdout.count_baseline.median_lead_weeks",
+      "numerator": null,
+      "denominator": 5,
+      "value": 25.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "count_baseline.median_lead_weeks",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Median over detected campaigns only; numerator is not applicable. No median confidence interval estimated."
+    },
+    {
+      "metric": "fuel_holdout.count_baseline.alerts",
+      "numerator": 24,
+      "denominator": 24,
+      "value": 24,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "count_baseline.alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "fuel_holdout.count_baseline.mature_alerts",
+      "numerator": 18,
+      "denominator": 24,
+      "value": 18,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "count_baseline.mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "fuel_holdout.count_baseline.confirmed_mature_alerts",
+      "numerator": 6,
+      "denominator": 24,
+      "value": 6,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "count_baseline.confirmed_mature_alerts",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Count, not a rate; denominator is total alert episodes. Census count has no sampling CI."
+    },
+    {
+      "metric": "fuel_holdout.random_mean_recall",
+      "numerator": 355,
+      "denominator": 800,
+      "value": 0.44375,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "random_reference.mean_recall",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": "Mean over repeated draws on the same eight campaigns. No prospective confidence interval."
+    },
+    {
+      "metric": "fuel_holdout.random_at_least_method",
+      "numerator": 19,
+      "denominator": 100,
+      "value": 0.19,
+      "confidence_interval_95": [
+        0.12514751509768735,
+        0.27778845379064376
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2025 previously opened holdout; outcome cutoff 2026-09-30",
+      "label_source": "student model complaint labels + model recall labels + recall dates",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "complaint_sources": [
+          "FUEL SYSTEM",
+          "FUEL/PROPULSION SYSTEM"
+        ],
+        "target_recalls": "FUEL SYSTEM, type V, complete make/model/year scope"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.fuel_holdout verify",
+      "config_hash": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+      "data_hash": {
+        "development": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+        "holdout": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+        "teacher": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+        "development_recalls": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+        "holdout_recalls": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7"
+      },
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/defect/fuel_holdout/holdout_results.json",
+      "source_key": "random_reference.fraction_at_least_method",
+      "source_sha256": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+      "note": ""
+    },
+    {
+      "metric": "safety.summary.scope_recall",
+      "numerator": 2986,
+      "denominator": 4393,
+      "value": 0.6797177327566584,
+      "confidence_interval_95": [
+        0.6657684195385574,
+        0.6933530122411353
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.hits/recalls_scored",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": ""
+    },
+    {
+      "metric": "safety.summary.campaign_recall",
+      "numerator": 735,
+      "denominator": 1172,
+      "value": 0.6271331058020477,
+      "confidence_interval_95": [
+        0.5990751239408234,
+        0.6543604032423036
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.campaign_level.hits/campaigns",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": ""
+    },
+    {
+      "metric": "safety.summary.scope_median_lead_weeks",
+      "numerator": null,
+      "denominator": 2986,
+      "value": 213.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.lead_weeks_median",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "safety.summary.campaign_median_lead_weeks",
+      "numerator": null,
+      "denominator": 735,
+      "value": 214,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.campaign_level.lead_weeks_median",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "safety.summary.recent.scope_recall",
+      "numerator": 2090,
+      "denominator": 4393,
+      "value": 0.4757568859549283,
+      "confidence_interval_95": [
+        0.46101634409101316,
+        0.49053978955745153
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.recent.hits/recalls_scored",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": ""
+    },
+    {
+      "metric": "safety.summary.recent.campaign_recall",
+      "numerator": 535,
+      "denominator": 1172,
+      "value": 0.4564846416382253,
+      "confidence_interval_95": [
+        0.42815610763405876,
+        0.48509750386701844
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.recent.campaign_level.hits/campaigns",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": ""
+    },
+    {
+      "metric": "safety.summary.recent.scope_median_lead_weeks",
+      "numerator": null,
+      "denominator": 2090,
+      "value": 10.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.recent.lead_weeks_median",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "safety.summary.recent.campaign_median_lead_weeks",
+      "numerator": null,
+      "denominator": 535,
+      "value": 11,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "summary.recent.campaign_level.lead_weeks_median",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "safety.slice_week_precision",
+      "numerator": 1619,
+      "denominator": 2409,
+      "value": 0.6720630967206309,
+      "confidence_interval_95": [
+        0.6530551660937866,
+        0.6905231477524881
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "precision.confirmed_slice_weeks/flagged_slice_weeks",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": ""
+    },
+    {
+      "metric": "safety.episode_precision",
+      "numerator": 985,
+      "denominator": 1540,
+      "value": 0.6396103896103896,
+      "confidence_interval_95": [
+        0.6153113063373927,
+        0.663214702627587
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "full historical retrospective backtest including 2026 recalls",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "DOMAIN_DB_PATH=<side dir> python -m scripts.ai_safety_backtest --zip FLAT_CMPL.zip --makes HONDA,TOYOTA,FORD,HYUNDAI,KIA --year-min 2015 --year-max 2024",
+      "config_hash": null,
+      "data_hash": "Historical raw input hash not recorded in this result; not freshly verified",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/nhtsa/backtest_safety.json",
+      "source_key": "precision.confirmed_episodes/flag_episodes",
+      "source_sha256": "7af29c3a43bd7e49b80c494efc0cf739296691ee315bcb90596659f577c63a85",
+      "note": ""
+    },
+    {
+      "metric": "oos.first_flag.scope_recall",
+      "numerator": 1642,
+      "denominator": 1861,
+      "value": 0.8823213326168726,
+      "confidence_interval_95": [
+        0.866887802373457,
+        0.8961797459530856
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "first_flag.hits/recalls_scored",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": ""
+    },
+    {
+      "metric": "oos.first_flag.campaign_recall",
+      "numerator": 421,
+      "denominator": 477,
+      "value": 0.8825995807127882,
+      "confidence_interval_95": [
+        0.850609486226873,
+        0.9084764729896938
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "first_flag.campaign_level.hits/campaigns",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": ""
+    },
+    {
+      "metric": "oos.first_flag.scope_median_lead_weeks",
+      "numerator": null,
+      "denominator": 1642,
+      "value": 274.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "first_flag.lead_weeks_median",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "oos.first_flag.campaign_median_lead_weeks",
+      "numerator": null,
+      "denominator": 421,
+      "value": 282,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "first_flag.campaign_level.lead_weeks_median",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "oos.actionable_52w.scope_recall",
+      "numerator": 1142,
+      "denominator": 1861,
+      "value": 0.6136485760343902,
+      "confidence_interval_95": [
+        0.5913139402166991,
+        0.6355149936850069
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "actionable_52w.hits/recalls_scored",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": ""
+    },
+    {
+      "metric": "oos.actionable_52w.campaign_recall",
+      "numerator": 299,
+      "denominator": 477,
+      "value": 0.6268343815513627,
+      "confidence_interval_95": [
+        0.5825803064255564,
+        0.6690618882736343
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "actionable_52w.campaign_level.hits/campaigns",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": ""
+    },
+    {
+      "metric": "oos.actionable_52w.scope_median_lead_weeks",
+      "numerator": null,
+      "denominator": 1142,
+      "value": 8.0,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "actionable_52w.lead_weeks_median",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "oos.actionable_52w.campaign_median_lead_weeks",
+      "numerator": null,
+      "denominator": 299,
+      "value": 8,
+      "confidence_interval_95": null,
+      "confidence_interval_method": "not applicable or not estimated; see note",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "actionable_52w.campaign_level.lead_weeks_median",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": "Median over detected units only; no median confidence interval estimated."
+    },
+    {
+      "metric": "oos.slice_week_precision",
+      "numerator": 1077,
+      "denominator": 1699,
+      "value": 0.6339022954679223,
+      "confidence_interval_95": [
+        0.610717459236054,
+        0.6564829883705665
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "precision.confirmed_slice_weeks/flagged_slice_weeks",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": ""
+    },
+    {
+      "metric": "oos.episode_precision",
+      "numerator": 657,
+      "denominator": 1098,
+      "value": 0.5983606557377049,
+      "confidence_interval_95": [
+        0.5690697254740131,
+        0.6269657370426958
+      ],
+      "confidence_interval_method": "descriptive Wilson",
+      "split": "2021-2024 previously opened OOS test",
+      "label_source": "NHTSA component and official recall scope/date, not human physical-defect labels",
+      "scope": {
+        "makes": [
+          "FORD",
+          "HONDA",
+          "HYUNDAI",
+          "KIA",
+          "TOYOTA"
+        ],
+        "model_years": [
+          2015,
+          2024
+        ],
+        "components": "all ingested components; not fuel-only"
+      },
+      "baseline_comparison": "baseline; no candidate model evaluated",
+      "exact_command": "Original exact test invocation not recorded in results JSON; no new OOS test run performed",
+      "config_hash": "520ec7b0fdb6c18b5fe388102100334bd969e6308ff33b86ebfed0c556159e23",
+      "data_hash": "c00707bd4afd6cad075000e0c45e74b59d140976aab2ddae3c6f47a4f807ffe1",
+      "code_commit": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+      "original_experiment_code_commit": null,
+      "seed": null,
+      "source": "reports/oos/oos_test_results.json",
+      "source_key": "precision.confirmed_episodes/flag_episodes",
+      "source_sha256": "e3edfbf8feffa1e8c36d5991612724e236b32083eceb0f9bbf10f742f59d9ab9",
+      "note": ""
+    }
+  ],
+  "provenance_note": "code_commit identifies the current verification checkout. Historical training commits not present in source reports remain unknown; they are not inferred from this checkout.",
+  "category_config": {
+    "model_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+    "floor": 0.35,
+    "margin": 0.05,
+    "timeout_ms": 25,
+    "records": 76
+  },
+  "category_per_class_support": {
+    "labels": {
+      "SERVICE BRAKES": {
+        "n": 12,
+        "correct": 0
+      },
+      "ENGINE": {
+        "n": 12,
+        "correct": 0
+      },
+      "AIR BAGS": {
+        "n": 8,
+        "correct": 0
+      },
+      "ELECTRICAL SYSTEM": {
+        "n": 10,
+        "correct": 0
+      },
+      "STEERING": {
+        "n": 10,
+        "correct": 1
+      },
+      "SUSPENSION": {
+        "n": 8,
+        "correct": 1
+      },
+      "POWER TRAIN": {
+        "n": 10,
+        "correct": 0
+      },
+      "SEAT BELTS": {
+        "n": 6,
+        "correct": 2
+      }
+    },
+    "descriptions": {
+      "SERVICE BRAKES": {
+        "n": 12,
+        "correct": 1
+      },
+      "ENGINE": {
+        "n": 12,
+        "correct": 0
+      },
+      "AIR BAGS": {
+        "n": 8,
+        "correct": 6
+      },
+      "ELECTRICAL SYSTEM": {
+        "n": 10,
+        "correct": 3
+      },
+      "STEERING": {
+        "n": 10,
+        "correct": 1
+      },
+      "SUSPENSION": {
+        "n": 8,
+        "correct": 7
+      },
+      "POWER TRAIN": {
+        "n": 10,
+        "correct": 2
+      },
+      "SEAT BELTS": {
+        "n": 6,
+        "correct": 2
+      }
+    }
+  },
+  "pair_diagnostic_verbatim": {
+    "dataset_version": "pairs_v1",
+    "n_pairs": 12,
+    "label_sources": [
+      "coding_agent_seed"
+    ],
+    "providers": {
+      "hash": {
+        "version": "blake2b-512-v1:feature-hash:tok2.0-bi0.5:sublinear-tf:idf-optional:l2:dim512",
+        "positive_mean": 0.1133,
+        "negative_mean": 0.2184,
+        "positive_n": 6,
+        "negative_n": 6,
+        "roc_auc": 0.2778,
+        "average_precision": 0.4549,
+        "max_native_padded_delta": 0.0
+      },
+      "onnx": {
+        "version": "all-MiniLM-L6-v2@751bff37182d3f1213fa05d7196b954e230abad9:tok@751bff37182d3f1213fa05d7196b954e230abad9:onnx-int8:mean-pool:l2:zeropad512:v1:modelsha256=afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+        "positive_mean": 0.4026,
+        "negative_mean": 0.2549,
+        "positive_n": 6,
+        "negative_n": 6,
+        "roc_auc": 0.7222,
+        "average_precision": 0.7052,
+        "max_native_padded_delta": 0.0
+      }
+    },
+    "acceptance_eligible": false,
+    "git_sha": "13c5ff105b3a867b949e53e51a3a1ce352377466",
+    "limitations": [
+      "pairs_v1 is a coding-agent development fixture and is not an acceptance gate.",
+      "Human labels with provenance, \u03ba \u2265 0.70, and quota are required before cutover.",
+      "Do not treat Macro-F1 as available: no failure-mode ground truth ships.",
+      "canonical_identity is not used as a positive-pair signal."
+    ],
+    "per_class": {
+      "hash": {
+        "hard_negative_same_category": {
+          "n": 3,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "negation_mention": {
+          "n": 1,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "novel_true": {
+          "n": 2,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "paraphrase_positive": {
+          "n": 6,
+          "positives": 6,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "precision_at_5": 1.0,
+          "average_precision": 1.0,
+          "positive_mean_ci95": [
+            0.0577,
+            0.1715
+          ],
+          "ndcg": 1.0,
+          "ndcg_at_5": 1.0,
+          "hard_negative_performance": null,
+          "query_recall_ci95": [
+            1.0,
+            1.0
+          ],
+          "query_level": true
+        }
+      },
+      "onnx": {
+        "hard_negative_same_category": {
+          "n": 3,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "negation_mention": {
+          "n": 1,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "novel_true": {
+          "n": 2,
+          "positives": 0,
+          "recall_at_5": null,
+          "recall_at_10": null,
+          "precision_at_5": 0.0,
+          "average_precision": null,
+          "positive_mean_ci95": [
+            null,
+            null
+          ],
+          "ndcg": null,
+          "ndcg_at_5": null,
+          "hard_negative_performance": 0.0,
+          "query_recall_ci95": [
+            null,
+            null
+          ],
+          "query_level": true
+        },
+        "paraphrase_positive": {
+          "n": 6,
+          "positives": 6,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "precision_at_5": 1.0,
+          "average_precision": 1.0,
+          "positive_mean_ci95": [
+            0.3164,
+            0.5172
+          ],
+          "ndcg": 1.0,
+          "ndcg_at_5": 1.0,
+          "hard_negative_performance": null,
+          "query_recall_ci95": [
+            1.0,
+            1.0
+          ],
+          "query_level": true
+        }
+      }
+    }
+  },
+  "pair_diagnostic_caveat": "The 12 authored pairs are development fixtures. ONNX hard_negative_same_category: n=3, positives=0, P@5=0; novel_true: n=2, positives=0, P@5=0; paraphrase_positive: n=6, positives=6, P@5=1. Per-class, per-query candidate partitioning and absence of positive controls prevent these figures from establishing novel-match retrieval quality. Do not change these frozen scores; build an independent mixed-candidate benchmark after approval. A confidence interval for novel-true recall is undefined with zero positives.",
+  "holdout_gate": {
+    "target_met": false,
+    "human_validation": "not completed",
+    "promoted_to_production": false
+  },
+  "human_validation": {
+    "labelled": 0,
+    "sample_size": 300,
+    "model_ok": 300,
+    "model_ok_source": "reports/improvement/logs/human_accuracy.txt",
+    "accuracy": null,
+    "confidence_interval_95": null,
+    "reason": "No valid human labels; accuracy is undefined, not zero.",
+    "split": "2021-2024 evaluation sample; never training data",
+    "sample_sha256": "7b0bf958b8756b51e3a3d550b8611f8182b56839b20e922b35abcc67e3aba1a4",
+    "classification_sha256": "ce3977cbe22e410775a9527cabfb5acb5191a4bc5134371369f98d5fddbd739b"
+  },
+  "calibration": {
+    "ece": null,
+    "brier_score": null,
+    "reliability_diagram": null,
+    "reason": "Not measured; ranking scores are not calibrated defect probabilities."
+  }
+}

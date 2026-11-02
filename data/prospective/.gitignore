@@ -1,0 +1,6 @@
+raw/
+snapshots/
+*.dmg
+*.key
+.collection.lock
+.manifest-*.tmp

@@ -1,0 +1,36 @@
+
+> tracex-ops-console@2.0.0 test:signin
+> node scripts/assert-signin-reachable.mjs
+
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 96 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/index.html                              0.71 kB │ gzip:   0.41 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/assets/index-Cl6MPf0i.css             123.87 kB │ gzip:  22.14 kB
+../../../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-gOXhaO/ui/assets/index-B3ta78WH.js              717.87 kB │ gzip: 191.20 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/apiAuth.js is dynamically imported by src/ai/tools/Alerts.jsx but also statically imported by routes/AnalyticsDesk.jsx, routes/AuditReports.jsx, routes/CallWidget.jsx, routes/CaseQueue.jsx, routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 90ms
+Starting isolated auth-mode API…
+PASS: clean browser reaches credential entry, rejects invalid key and refuses unauthorized review.
+PASS: issued supervisor session signs in and records the permitted review with the actual actor.
+PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → supervisor review → downloaded original/revised packet. No mocked transport, model or real-audio claim.
+PASS: UI fixtures verify reviewed source handoff, vehicle reconfirmation, original citations, correction-only revision and trace-review routing (no model calls).
+Starting isolated open-mode API…
+PASS: bare UI entry opens the judge workflow; four main destinations and collapsed advanced tools lead to the report.
+PASS: open mode needs no credentials, still renders sign-in, and retains agent authority.
+PASS: keyboard start, text-only capture, visible correction history, reflow and sampled text contrast (minimum 6.07:1; Start 16.60:1). Synthetic transport; no real audio.
+Voice UI screenshots (synthetic transport): /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-voice-ui-review
+PASS: separate mute/interrupt/end controls, source-ID handoff and feedback failure/retry semantics. Speech is stubbed; no multilingual/audio quality claim.

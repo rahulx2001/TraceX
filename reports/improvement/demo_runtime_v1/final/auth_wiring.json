@@ -1,0 +1,9 @@
+{
+  "command": ".venv-hackathon/bin/python -B -m pytest -q tests/frontline/test_dashboard_pilot_auth.py",
+  "started_at": "2026-11-01T14:18:21.125206+00:00",
+  "finished_at": "2026-11-01T14:18:22.622033+00:00",
+  "exit_code": 0,
+  "log": "logs/auth_wiring.txt",
+  "log_sha256": "da014ef238d4637c703ce7b1378bcbd0347117b7fc276905d52949763178a435",
+  "observed_output": ".......                                                                  [100%]\n7 passed in 0.17s\n"
+}

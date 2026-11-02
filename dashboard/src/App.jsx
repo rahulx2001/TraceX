@@ -1,29 +1,33 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import CallWidget from "../routes/CallWidget.jsx";
-import LiveContactConsole from "../routes/LiveContactConsole.jsx";
-import CaseQueue from "../routes/CaseQueue.jsx";
-import EarlyWarningBoard from "../routes/EarlyWarningBoard.jsx";
-import Settings from "../routes/Settings.jsx";
-import CommandCenter from "../routes/CommandCenter.jsx";
-import UserJourneyGuide from "../routes/UserJourneyGuide.jsx";
-import AnalyticsDesk from "../routes/AnalyticsDesk.jsx";
-import IssueDesk from "../routes/IssueDesk.jsx";
-import TrustDesk from "../routes/TrustDesk.jsx";
-import PlatformDesk from "../routes/PlatformDesk.jsx";
-import EnterpriseOps from "../routes/EnterpriseOps.jsx";
-import PlatformOS from "../routes/PlatformOS.jsx";
-import TrustPipeline from "../routes/TrustPipeline.jsx";
-import QualityEconomics from "../routes/QualityEconomics.jsx";
-import InsightsBoard from "../routes/InsightsBoard.jsx";
-import FeatureStudio from "../routes/FeatureStudio.jsx";
-import PackBuilder from "../routes/PackBuilder.jsx";
+import { useCallback, useEffect, useMemo, useState, lazy, Suspense } from "react";
+const CallWidget = lazy(() => import("../routes/CallWidget.jsx"));
+const LiveContactConsole = lazy(() => import("../routes/LiveContactConsole.jsx"));
+const CaseQueue = lazy(() => import("../routes/CaseQueue.jsx"));
+const EarlyWarningBoard = lazy(() => import("../routes/EarlyWarningBoard.jsx"));
+const Settings = lazy(() => import("../routes/Settings.jsx"));
+const CommandCenter = lazy(() => import("../routes/CommandCenter.jsx"));
+const SafetyCampaigns = lazy(() => import("../routes/SafetyCampaigns.jsx"));
+const SignIn = lazy(() => import("../routes/SignIn.jsx"));
+const JudgeEntry = lazy(() => import("../routes/JudgeEntry.jsx"));
+const DemoMode = lazy(() => import("../routes/DemoMode.jsx"));
+const UserJourneyGuide = lazy(() => import("../routes/UserJourneyGuide.jsx"));
+const AnalyticsDesk = lazy(() => import("../routes/AnalyticsDesk.jsx"));
+const IssueDesk = lazy(() => import("../routes/IssueDesk.jsx"));
+const TrustDesk = lazy(() => import("../routes/TrustDesk.jsx"));
+const PlatformDesk = lazy(() => import("../routes/PlatformDesk.jsx"));
+const EnterpriseOps = lazy(() => import("../routes/EnterpriseOps.jsx"));
+const PlatformOS = lazy(() => import("../routes/PlatformOS.jsx"));
+const TrustPipeline = lazy(() => import("../routes/TrustPipeline.jsx"));
+const QualityEconomics = lazy(() => import("../routes/QualityEconomics.jsx"));
+const InsightsBoard = lazy(() => import("../routes/InsightsBoard.jsx"));
+const FeatureStudio = lazy(() => import("../routes/FeatureStudio.jsx"));
+const PackBuilder = lazy(() => import("../routes/PackBuilder.jsx"));
 // [AI-LAYER] optional Meta AI layer: demo path page + mode badge
-import DemoMode from "../routes/DemoMode.jsx";
-import AiTools from "../routes/AiTools.jsx"; // [AI-LAYER] road-safety tools hub
-import AiStatus from "../routes/AiStatus.jsx"; // [AI-LAYER] AI status page: call health + raise review
-import DefectLevel from "../routes/DefectLevel.jsx"; // [AI-LAYER] defect-level early warning (#defect-level)
+const AiTools = lazy(() => import("../routes/AiTools.jsx"));
+const AiStatus = lazy(() => import("../routes/AiStatus.jsx"));
+const DefectLevel = lazy(() => import("../routes/DefectLevel.jsx"));
 import AiModeBadge from "./ai/AiModeBadge.jsx";
 import CommandPalette from "./ui/CommandPalette.jsx";
+import AccountSignIn from "./ui/AccountSignIn.jsx";
 import { ToastProvider, useToast } from "./ui/Toast.jsx";
 import { ErrorBoundary } from "./ui/Feedback.jsx";
 import { useHotkeys, useLocalStorage } from "./ui/hooks.js";
@@ -43,18 +47,16 @@ import {
 } from "./icons.jsx";
 import { packLabel } from "./ui/labels.js";
 
-// Use the server's access check. Judges on authenticated servers must be
-// able to enter operator credentials or an issued supervisor session.
-// [HACKATHON LOCAL DEMO] The sign-in / sign-up pages are removed from this
-// build. Backend auth is still enforced; this only removes the browser gate.
-const FORCE_OPEN_CONSOLE = true;
+const WORKFLOW_PAGES = [
+  { id: "call", label: "Report", Icon: IconMic, route: CallWidget, keywords: "report voice call widget mic speak contact" },
+  { id: "safety-campaigns", label: "Investigation workspace", Icon: IconShield, route: SafetyCampaigns, keywords: "investigate review evidence road safety lotguard vehicle part traceability owners workshop repair recall" },
+];
 
 const NAV_GROUPS = [
   {
     label: "Operate",
     items: [
       { id: "command", label: "Command center", Icon: IconGrid, route: CommandCenter, keywords: "wallboard home overview live" },
-      { id: "call", label: "Voice agent", Icon: IconMic, route: CallWidget, keywords: "call widget mic speak contact" },
       { id: "console", label: "Live console", Icon: IconHeadset, route: LiveContactConsole, keywords: "supervisor takeover transcript" },
       { id: "cases", label: "Case queue", Icon: IconFolder, route: CaseQueue, keywords: "tickets severity priority p1 critical" },
     ],
@@ -77,8 +79,10 @@ const NAV_GROUPS = [
   },
 ];
 
-const ALL_NAV = NAV_GROUPS.flatMap((g) => g.items);
+const ALL_NAV = [...WORKFLOW_PAGES, ...NAV_GROUPS.flatMap((g) => g.items)];
 const EXTRA_PAGES = [
+  { id: "signin", label: "Sign in", route: SignIn },
+  { id: "signup", label: "Create account", route: SignIn },
   { id: "guide", label: "User guide", route: UserJourneyGuide, keywords: "guide walkthrough journey onboarding" },
   { id: "issue", label: "Issue", route: IssueDesk, keywords: "issue cluster investigation failure" },
   { id: "insights", label: "Insights", route: InsightsBoard, keywords: "csat product gap analytics" },
@@ -89,7 +93,8 @@ const EXTRA_PAGES = [
   { id: "studio", label: "Feature studio", route: FeatureStudio, keywords: "features sandbox prompt test" },
   { id: "builder", label: "Pack builder", route: PackBuilder, keywords: "pack builder upload yaml" },
   // [AI-LAYER] hackathon demo path (#demo); not in the nav, existing screens unchanged
-  { id: "demo", label: "Demo tour", route: DemoMode, keywords: "demo hackathon hindi photo brief safety meta muse sam" },
+  { id: "demo", label: "Start here", route: JudgeEntry, keywords: "start report investigate review evidence" },
+  { id: "legacy-demo", label: "Earlier platform tour", route: DemoMode, keywords: "earlier intake lotguard tour" },
   // [AI-LAYER] road-safety tools hub (#ai-tools): vehicle risk, alerts, service centre, spread, WhatsApp mock
   { id: "ai-tools", label: "Road-safety tools", route: AiTools, keywords: "vehicle risk alerts service centre spread whatsapp video" },
   // [AI-LAYER] AI status page (#ai-status): Meta call health + supervisor review of AI severity raises
@@ -117,6 +122,7 @@ function useHashRoute() {
     (next) => {
       const { id: cur } = parseLocationHash();
       if (cur === next) return;
+      if (!window.dispatchEvent(new CustomEvent("tracex:before-route", { cancelable: true, detail: { next } }))) return;
       window.location.hash = next;
     },
     raw,
@@ -129,7 +135,7 @@ function ShortcutSheet({ open, onClose }) {
     ["⌘ K / Ctrl K", "Open command palette"],
     ["g then j", "User journey & guide"],
     ["g then c", "Command center"],
-    ["g then v", "Voice agent"],
+    ["g then v", "Report"],
     ["g then l", "Live console"],
     ["g then q", "Case queue"],
     ["g then w", "Early warning"],
@@ -171,10 +177,10 @@ function Shell() {
   const [route, setRoute] = useHashRoute();
   const [health, setHealth] = useState(null);
   const [healthError, setHealthError] = useState(false);
-  // [HACKATHON LOCAL DEMO] An explicitly open server has no credential to ask
-  // for, so send visitors straight to the console. Auth-required servers keep
-  // the sign-in gate. FORCE_OPEN_CONSOLE is an escape hatch for a demo build.
-  const demoOpenConsole = FORCE_OPEN_CONSOLE || health?.auth_required === false;
+  // Open local servers need no credential. Authority still comes from the
+  // backend; authenticated servers validate a session or operator API key.
+  const demoOpenConsole = health?.auth_required === false;
+  const authenticationRequired = health?.auth_required === true;
   const [collapsed, setCollapsed] = useLocalStorage("fl.sidebar.collapsed", false);
   const [theme, setTheme] = useLocalStorage("fl.theme", "dark");
   const [density, setDensity] = useLocalStorage("fl.density", "comfortable");
@@ -197,7 +203,7 @@ function Shell() {
     ? decodeURIComponent(route === "issue" ? "" : route.slice("issue/".length))
     : null;
   const issuePage = EXTRA_PAGES.find((p) => p.id === "issue");
-  const fallback = ALL_NAV.find((n) => n.id === "command") || ALL_NAV[0];
+  const fallback = EXTRA_PAGES.find((n) => n.id === "demo");
   const active = extra || (issueClusterId !== null && issuePage) || ALL_PAGES.find((n) => n.id === route) || fallback;
   const Page = active.route;
   const liveSessionRoute = active.id === "call" || active.id === "console";
@@ -236,26 +242,29 @@ function Shell() {
   }, [loadHealth, route]);
 
   useEffect(() => {
-    // #signin stays reachable even with an open console: it is the only
-    // place a supervisor session can be pasted, and supervisor-only actions
-    // (Analyze evidence, approvals) 403 without it. Never bounce it away.
-    if (route === "signin" || route === "signup" || route === "guide") return;
+    // A keyless demo has no account-entry step. Replace stale account links
+    // so Back cannot trap the visitor in a sign-in/redirect loop.
+    if (route === "signin" || route === "signup") {
+      if (demoOpenConsole) {
+        const requested = parseLocationHash().params.get("next") || "demo";
+        const next = /^[a-z][a-z0-9/-]*(?:\?[^#]*)?$/.test(requested)
+          && !/^(signin|signup)(?:[/?]|$)/.test(requested) ? requested : "demo";
+        window.location.replace(`#${next}`);
+      }
+      return;
+    }
+    if (route === "guide") return;
     if (route === "main") {
       setRoute("command");
       return;
     }
     if (route === "issue" || route.startsWith("issue/")) return;
-    if (!ALL_PAGES.some((n) => n.id === route)) setRoute("command");
+    if (!ALL_PAGES.some((n) => n.id === route)) setRoute("demo");
   }, [route, setRoute, demoOpenConsole]);
 
-  // Mandatory auth gate: no session/key → no console (and no guide).
-  // [HACKATHON LOCAL DEMO] demoOpenConsole bypasses this gate on an explicitly
-  // open server. Auth-required servers keep the original check below.
+  // hasConsoleAccess handles explicit open mode and fails closed when health
+  // is unavailable. Keep the check subscribed to credential changes in both modes.
   useEffect(() => {
-    if (demoOpenConsole) {
-      setGate("allowed");
-      return undefined;
-    }
     if (route === "signin" || route === "signup") {
       setGate("allowed");
       return undefined;
@@ -276,7 +285,8 @@ function Shell() {
         setGate("allowed");
       } else {
         setGate("denied");
-        setRoute("signin");
+        const next = window.location.hash.slice(1) || "demo";
+        setRoute(`signin?next=${encodeURIComponent(next)}`);
       }
     };
     check();
@@ -285,14 +295,16 @@ function Shell() {
       cancelled = true;
       window.removeEventListener(AUTH_EVENT, check);
     };
-  }, [route]);
+  }, [route, demoOpenConsole]);
 
   useEffect(() => {
     const raw = window.location.hash.slice(1);
     const q = raw.includes("?") ? raw.slice(raw.indexOf("?") + 1) : "";
     const params = new URLSearchParams(q);
     const handoff = params.get("handoff");
-    if (handoff) {
+    // SignIn owns its own one-time handoff. Completing it from both mounted
+    // components would consume the same code twice.
+    if (handoff && route !== "signin" && route !== "signup") {
       completeGoogleHandoff(handoff)
         .then(() => {
           window.location.hash = raw.split("?")[0] || "command";
@@ -326,14 +338,21 @@ function Shell() {
 
   const commands = useMemo(() => {
     const nav = [
-      ...ALL_NAV.map((n) => ({
+      ...[{ id: "call", label: "Report", keywords: "voice report" }, { id: "cases", label: "Cases", keywords: "case queue followup note" },
+        { id: "safety-campaigns?tab=investigate", label: "Investigate", keywords: "investigation source" },
+        { id: "safety-campaigns?tab=trace", label: "Review", keywords: "review decision installation" },
+        { id: "safety-campaigns?tab=evidence", label: "Evidence", keywords: "packet export" },
+        { id: "platform?tab=tools", label: "Platform", keywords: "settings tools system" }].map((n) => ({
         id: `nav-${n.id}`,
         label: n.label,
-        group: "Go to",
+        group: "Pilot workflow",
         Icon: n.Icon,
         keywords: n.keywords,
         hint: n.id === active.id ? "current" : "",
         run: () => setRoute(n.id),
+      })),
+      ...ALL_PAGES.filter(n => !["call", "cases", "demo", "signin", "signup"].includes(n.id)).map(n => ({
+        id: `platform-${n.id}`, label: n.label, group: "Platform", keywords: n.keywords, run: () => setRoute(n.id),
       })),
       {
         id: "nav-guide",
@@ -415,7 +434,7 @@ function Shell() {
       },
       {
         id: "act-voice",
-        label: "Start voice agent",
+        label: "Start voice report",
         group: "Ops power",
         keywords: "call mic speak",
         run: () => goHash("call"),
@@ -528,11 +547,10 @@ function Shell() {
   const statusTone = healthError ? "danger" : health?.status === "ok" ? "ok" : "warn";
   const statusText = healthError ? "unreachable" : health?.status || "connecting";
 
-  // [HACKATHON LOCAL DEMO] Sign-in / sign-up screens are intentionally absent.
-  // The console opens directly; backend auth is unchanged.
-
-  // Never flash protected content to anonymous visitors while checking.
-  if (gate !== "allowed") {
+  // Resolve server mode before mounting account forms; the local demo never
+  // flashes sign-in while its health check or account-link redirect completes.
+  const accountRoute = active.id === "signin" || active.id === "signup";
+  if (gate !== "allowed" || (accountRoute && (demoOpenConsole || (!health && !healthError)))) {
     return (
       <div className="gate-loading" role="status" aria-label="Checking access">
         <div className="gate-spinner" aria-hidden="true" />
@@ -541,32 +559,51 @@ function Shell() {
     );
   }
 
+  if (active.id === "signin" || active.id === "signup") {
+    return <Suspense fallback={<p role="status">Loading sign-in…</p>}><Page initialMode={active.id} onNavigate={setRoute} /></Suspense>;
+  }
+
+  function workflowTarget(tab) {
+    const params = new URLSearchParams(active.id === "safety-campaigns" ? hashQuery : {});
+    params.set("tab", tab);
+    params.delete("action");
+    return `safety-campaigns?${params}`;
+  }
+  const workflow = [
+    { label: "Report", target: "call", Icon: IconMic, current: active.id === "call" },
+    { label: "Cases", target: "cases", Icon: IconFolder, current: active.id === "cases" },
+    ...[["Investigate", "investigate", IconSpark], ["Review", "trace", IconShield], ["Evidence", "evidence", IconFolder]]
+      .map(([label, tab, Icon]) => ({ label, Icon, target: workflowTarget(tab), current: active.id === "safety-campaigns" && hashQuery.tab === tab })),
+  ];
+  const currentWorkflowStep = workflow.find((step) => step.current);
   const navList = (
     <>
-      {NAV_GROUPS.map((g) => (
-        <div key={g.label} className="nav-group">
-          <div className="nav-group-label">{g.label}</div>
-          {g.items.map((n) => {
-            const Icon = n.Icon;
-            const isActive = n.id === active.id;
-            return (
-              <button
-                key={n.id}
-                type="button"
-                className={"nav-item" + (isActive ? " active" : "")}
-                aria-current={isActive ? "page" : undefined}
-                onClick={() => setRoute(n.id)}
-                title={collapsed ? n.label : undefined}
-              >
-                <span className="nav-ico">
-                  <Icon />
-                </span>
-                <span className="nav-text">{n.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      ))}
+      <nav aria-label="Engineer workflow" className="nav-group">
+        <div className="nav-group-label">Pilot workflow</div>
+        {workflow.map(({ label, target, Icon, current }) => <button key={label} type="button"
+          className={`nav-item${current ? " active" : ""}`} aria-label={label} aria-current={current ? "page" : undefined}
+          title={collapsed ? label : undefined} onClick={() => setRoute(target)}>
+          <span className="nav-ico" aria-hidden="true"><Icon /></span><span className="nav-text">{label}</span>
+        </button>)}
+      </nav>
+      {NAV_GROUPS.map(group => <nav key={group.label} className="nav-group" aria-label={group.label}>
+        <div className="nav-group-label">{group.label}</div>
+        {group.items.map(({ id, label, Icon }) => <button key={id} type="button"
+          className={`nav-item${active.id === id ? " active" : ""}`} aria-label={label}
+          aria-current={active.id === id ? "page" : undefined} title={collapsed ? label : undefined}
+          onClick={() => setRoute(id)}>
+          <span className="nav-ico" aria-hidden="true"><Icon /></span><span className="nav-text">{label}</span>
+        </button>)}
+      </nav>)}
+      <nav className="nav-group" aria-label="More tools">
+        <div className="nav-group-label">More tools</div>
+        {EXTRA_PAGES.filter(page => !["signin", "signup", "guide", "issue", "demo"].includes(page.id)).map(({ id, label }) => <button key={id} type="button"
+          className={`nav-item${active.id === id ? " active" : ""}`} aria-label={label}
+          aria-current={active.id === id ? "page" : undefined} title={collapsed ? label : undefined}
+          onClick={() => setRoute(id)}>
+          <span className="nav-ico" aria-hidden="true"><IconLayers /></span><span className="nav-text">{label}</span>
+        </button>)}
+      </nav>
     </>
   );
 
@@ -602,18 +639,26 @@ function Shell() {
           </button>
           <button
             type="button"
+            className="primary"
+            onClick={() => setRoute("demo")}
+          >
+            Start here
+          </button>
+          <button
+            type="button"
             className="rail-search"
             onClick={() => setPaletteOpen(true)}
             aria-label="Open command palette"
           >
-            <span>Search Console…</span>
+            <span>Find a task…</span>
             <kbd>⌘K</kbd>
           </button>
         </div>
 
-        {navList}
+        <div className="sidebar-navigation" style={{ overflowY: "auto", minHeight: 0, flex: 1 }}>{navList}</div>
 
         <div className="sidebar-foot">
+          {authenticationRequired && <AccountSignIn />}
           <button
             type="button"
             className="ghost collapse-btn"
@@ -642,20 +687,20 @@ function Shell() {
             {NAV_GROUPS.find((g) => g.items.some((i) => i.id === active.id)) ? (
               <>
                 <span className="topbar-crumb faint">
-                  {NAV_GROUPS.find((g) => g.items.some((i) => i.id === active.id))?.label}
+                  {active.id === "cases" ? "Pilot" : "Platform"}
                 </span>
                 <span className="topbar-sep" aria-hidden="true">
                   /
                 </span>
               </>
             ) : null}
-            <span className="topbar-page">{active.label}</span>
+            <span className="topbar-page">{currentWorkflowStep?.label || active.label}</span>
           </div>
 
           <div className="topbar-right">
             {/* [AI-LAYER] AI mode badge (enhanced | deterministic) */}
             {route !== "signin" && route !== "signup" && <AiModeBadge />}
-            {!demoOpenConsole && route !== "signin" && (
+            {authenticationRequired && route !== "signin" && (
               me?.signed_in ? (
                 <span className="topbar-who" title={me.subject || ""}>
                   {me.subject}
@@ -744,7 +789,7 @@ function Shell() {
                 >
                   <span className="nav-text">Operator guide</span>
                 </button>
-                {!demoOpenConsole && !me?.signed_in && (
+                {authenticationRequired && !me?.signed_in && (
                   <button type="button" className="nav-item" onClick={() => setRoute("signin")}>
                     <span className="nav-text">Sign in</span>
                   </button>
@@ -759,7 +804,9 @@ function Shell() {
 
         <main className="main page-enter" id="main" key={active.id} tabIndex={-1}>
           <ErrorBoundary key={liveSessionRoute ? active.id : `${active.id}-${refreshKey}`}>
-            <Page refreshKey={refreshKey} health={health} hashQuery={hashQuery} issueId={issueClusterId} />
+            <Suspense fallback={<p role="status">Loading {active.label.toLowerCase()}…</p>}>
+              <Page refreshKey={refreshKey} health={health} hashQuery={hashQuery} issueId={issueClusterId} />
+            </Suspense>
           </ErrorBoundary>
         </main>
       </div>

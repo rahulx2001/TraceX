@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-01T18:18:48.395410+00:00",
+  "source_parent": "1285749551cbebd767eb331f0c201e33541776e6",
+  "request": "Restore my earlier voice-page design; keep the local demo without sign-in.",
+  "source": "Original checkout, read only; user-authorized selection of voice presentation changes.",
+  "original_source_sha256": {
+    "dashboard/routes/CallWidget.jsx": "4b7599191e4eb2755a04bba55cbdc4e8059a76d75e1b1b2c0bf9492c73ff1f3f",
+    "dashboard/routes/voice-report.css": "ea7b3efd24c3c2bd98584464554d621352af26493573633c7b19670e8d7c5e53",
+    "dashboard/src/ai/CallAiExtras.jsx": "1b0d7ff3e39c01672e92ac9b4eac4ea0cb45fae6e357635a5ca1a3f194889511"
+  },
+  "files": [
+    "dashboard/routes/CallWidget.jsx",
+    "dashboard/routes/voice-report.css",
+    "dashboard/src/ai/CallAiExtras.jsx"
+  ],
+  "runtime_preserved": "Existing call state, WebSocket, auth and source-handoff implementation retained. Only icon imports and rendered presentation changed in CallWidget.",
+  "excluded_unrelated_work": [
+    "Original checkout auth/session changes",
+    "Unfinished ReportIntelligencePanel model-review API feature"
+  ],
+  "original_files_unchanged": true
+}

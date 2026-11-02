@@ -1,0 +1,38 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.98,
+      "label_id": "other_unclear",
+      "confidence": 0.98,
+      "evidence": "THE DASHBOARD ON MY 2008 INFINITI IS MELTING AND IS CAUSING ALARMING AMOUNTS OF GLARE ON THE WINDSHIELD.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "THE DASHBOARD ON MY 2008 INFINITI IS MELTING AND IS CAUSING ALARMING AMOUNTS OF GLARE ON THE WINDSHIELD.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      }
+    ]
+  },
+  "batch_key": "1455443aa69c3744e692fad7ae4fbceeb6a07099753cdb563d9b0f47eb92870d",
+  "phase": "development",
+  "started_at": "2026-11-02T13:09:27+00:00",
+  "completed_at": "2026-11-02T13:09:29+00:00"
+}

@@ -10,14 +10,15 @@ export default function AiModeBadge() {
     return () => { live = false; };
   }, []);
   if (!s) return null;
-  const on = s.mode === "enhanced";
-  const m = s.models || {};
-  const title = on
-    ? `Meta AI layer on · text ${m.text} · vision ${m.vision} · segmentation ${m.segmentation}. Deterministic path stays the fallback.`
-    : "Meta layer is off or no key is configured: the deterministic regex/gazetteer/rules path is running (including local Hindi safety checks). Photo upload still works.";
+  const on = !s.unavailable && s.mode === "enhanced";
+  const title = s.unavailable
+    ? "Assistance status could not be loaded. Open status and retry."
+    : on
+    ? "AI assistance is available. Each result identifies whether it used AI or rules."
+    : "Reports, record lookups and manual reviews remain available using rules. AI assistance is off.";
   return (
-    <a href="#demo" className={"chip ai-mode-badge " + (on ? "ai-tag-on" : "ai-tag-off")} title={title} data-testid="ai-mode-badge">
-      {on ? `AI: ${s.verified_against_live_api ? "Live verified" : "Configured"} · Meta` : "AI: Deterministic"}
+    <a href="#ai-status" className={"chip ai-mode-badge " + (on ? "ai-tag-on" : "ai-tag-off")} title={title} data-testid="ai-mode-badge">
+      {s.unavailable ? "AI assistance: unavailable" : on ? "AI assistance: on" : "AI assistance: off"}
     </a>
   );
 }

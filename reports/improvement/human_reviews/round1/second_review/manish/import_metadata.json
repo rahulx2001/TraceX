@@ -1,0 +1,10 @@
+{
+  "verified_at": "2026-11-02T11:05:11+00:00",
+  "source_path": "/Users/rahulkumarsinghj/Downloads/defect-review (3).json",
+  "archived_export": "original_review_export.json",
+  "reviewer": "Manish",
+  "exported_at": "2026-11-02T11:02:03.894Z",
+  "per_row_annotation_timestamps_supplied": false,
+  "frozen_sample_byte_identical": true,
+  "primary_review_bytes_unchanged": true
+}

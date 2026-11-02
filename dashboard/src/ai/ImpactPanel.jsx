@@ -40,7 +40,7 @@ export default function ImpactPanel({ investigationId }) {
   const v = p.verification || {};
   const y = p.yield || {};
   const t = p.timeline || {};
-  const avoided = Math.max(0, (p.owners_registered || 0) - (y.inspected || 0));
+  const uninspected = Math.max(0, (p.owners_registered || 0) - (y.inspected || 0));
   return (
     <section className="ai-impact" data-testid="lotguard-impact" style={{ marginTop: 12 }}>
       <h3 className="analytics-h" style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
@@ -48,11 +48,11 @@ export default function ImpactPanel({ investigationId }) {
         {p.synthetic_demo && <span className="chip">synthetic demo data</span>}
       </h3>
       <div className="kvs" style={{ marginTop: 8 }}>
-        <span className="k">Exposed (lot)</span><span className="v">{p.owners_registered}</span>
-        <span className="k">Verified at-risk</span><span className="v">{v.matched} of {v.replied} replies</span>
+        <span className="k">Registered to issue</span><span className="v">{p.owners_registered} · installed-part linkage not established here</span>
+        <span className="k">Reported symptoms</span><span className="v">{v.matched} of {v.replied} replies · not diagnoses</span>
         <span className="k">Confirmed defective</span><span className="v">{y.crack_found} of {y.inspected} inspected</span>
         <span className="k">Inspected vs lot</span>
-        <span className="v">{y.inspected} inspected · {avoided} spared a blanket recall visit</span>
+        <span className="v">{y.inspected} inspected · {uninspected} uninspected, requiring review</span>
       </div>
       <p className="muted small" style={{ margin: "6px 0" }}>
         Opened {fmt(t.opened_at)} · approved {fmt(t.approved_at)} · first inspection {fmt(t.first_outcome_at)}

@@ -1,0 +1,32 @@
+{
+  "metric": "common_label_macro_f1",
+  "denominator_labels": 48,
+  "candidate_value": 0.1941988566988567,
+  "candidate_ci95": [
+    0.16163721715633414,
+    0.21115927995218614
+  ],
+  "derivation": "Scale the saved 42-label macro F1 bootstrap interval by 42/48; the six added labels have zero human support and zero candidate predictions in every resampled draw.",
+  "scale_numerator": 42,
+  "scale_denominator": 48,
+  "added_zero_support_zero_prediction_labels": [
+    "equipment_adaptive_mobility_failure",
+    "hoses_lines_piping_and_fittings_leak",
+    "parking_brake_compliance_or_label",
+    "steering_wheel_handle_bar_detachment",
+    "tail_lights_leak",
+    "tank_assembly_leak"
+  ],
+  "baseline_value": 0.5168089370135406,
+  "baseline_ci95": [
+    0.46316965759467216,
+    0.5524281289542735
+  ],
+  "bootstrap_rows_per_draw": 300,
+  "bootstrap_draws": 10000,
+  "source_files": [
+    "accuracy.json",
+    "comparison.json"
+  ],
+  "changes_to_predictions_or_scoring": false
+}

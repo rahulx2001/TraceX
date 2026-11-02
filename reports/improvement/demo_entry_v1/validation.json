@@ -1,0 +1,100 @@
+{
+  "created_at": "2026-11-01T13:22:19.087939+00:00",
+  "status": "passed",
+  "source_parent": "52bb4d47ec4a97bce63b9ebd1b4219b80aeac48b",
+  "working_tree_inputs": {
+    "dashboard/src/App.jsx": "317f90d55b63d1b0fe3191b812cb4340c93ccc8630937637798a2f57acb17cb5",
+    "dashboard/scripts/assert-signin-reachable.mjs": "9acd90d3b32b426e649d9bf4fab7fa6a91a569ea9cdc39e933ce1ab4e7176c5b",
+    "reports/improvement/prospective/DEVIATIONS.md": "6f15647968a4978f33bb21b5d3fd2bbbba8f80d1861987d35f824a1645515291"
+  },
+  "build": {
+    "step": "dashboard_build",
+    "started_at": "2026-11-01T13:12:45.771546+00:00",
+    "finished_at": "2026-11-01T13:12:46.540699+00:00",
+    "duration_seconds": 0.769,
+    "cwd": "dashboard",
+    "command": "npm run build -- --configLoader native",
+    "environment": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OPENAI_API_KEY": "",
+      "ANTHROPIC_API_KEY": "",
+      "BASETEN_API_KEY": "",
+      "META_API_KEY": ""
+    },
+    "stdin_artifact": null,
+    "note": "Native config loading avoids .vite-temp writes through shared node_modules.",
+    "exit_code": 0,
+    "log": "logs/dashboard_build.txt",
+    "log_sha256": "a8bc27e6133805449898b0aa1b1eb2d07f4abef07e5e38c894975e8ad44ce312",
+    "observed_pytest_counts": [],
+    "code_commit": "52bb4d47ec4a97bce63b9ebd1b4219b80aeac48b",
+    "completion_commit": "52bb4d47ec4a97bce63b9ebd1b4219b80aeac48b",
+    "runner_sha256": "086ed2e2e3b714b10083ea5bb8e2af03f1113eff1dcc84443fb01052854dc29e"
+  },
+  "browser": {
+    "step": "browser",
+    "started_at": "2026-11-01T13:18:15.829837+00:00",
+    "finished_at": "2026-11-01T13:18:43.290900+00:00",
+    "duration_seconds": 27.461,
+    "cwd": "dashboard/scripts",
+    "command": "node --input-type=module",
+    "environment": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OPENAI_API_KEY": "",
+      "ANTHROPIC_API_KEY": "",
+      "BASETEN_API_KEY": "",
+      "META_API_KEY": ""
+    },
+    "stdin_artifact": "browser_harness_native.mjs",
+    "note": "Original browser harness and imported ML evidence assertions run via stdin from dashboard/scripts. Only build configLoader is changed to native in memory; this is not a bare node --test invocation.",
+    "exit_code": 0,
+    "log": "logs/browser.txt",
+    "log_sha256": "f657bece9c2b293407bba0aaebde53a86265a0b0810e660a747a9e12de659aca",
+    "observed_pytest_counts": [],
+    "code_commit": "52bb4d47ec4a97bce63b9ebd1b4219b80aeac48b",
+    "completion_commit": "52bb4d47ec4a97bce63b9ebd1b4219b80aeac48b",
+    "runner_sha256": "086ed2e2e3b714b10083ea5bb8e2af03f1113eff1dcc84443fb01052854dc29e"
+  },
+  "auth_wiring": {
+    "command": "FRONTLINE_TEST_ISOLATION=1 PYTHONDONTWRITEBYTECODE=1 OPENAI_API_KEY= ANTHROPIC_API_KEY= BASETEN_API_KEY= META_API_KEY= .venv-hackathon/bin/python -B -m pytest -q tests/frontline/test_dashboard_pilot_auth.py",
+    "exit_code": 0,
+    "passed": 7,
+    "log": "logs/auth_wiring.txt",
+    "log_sha256": "8e77b268860e20bfd1a0c8f416d4da525a08324403608345305a9eebf76ca0b2"
+  },
+  "integrity": {
+    "created_at": "2026-11-01T13:22:19.001119+00:00",
+    "status": "verified",
+    "checks": {
+      "main_unchanged": true,
+      "original_checkout_head_unchanged": true,
+      "original_checkout_status_unchanged": true,
+      "worktree_branch": true,
+      "comparison_tag_unchanged": true,
+      "prospective_reserved_without_snapshots": true,
+      "collection_log_empty": true,
+      "baseline_replication_unchanged": true
+    },
+    "hashes_verified": {
+      "original_freeze_files": 339,
+      "comparison_freeze_files": 13,
+      "protected_artifacts": 4,
+      "development_input_hashes": 2,
+      "preserved_files": 3,
+      "research_v2/ARTIFACT_HASHES.json": 21,
+      "synthetic_review_v1/HASHES.json": 10,
+      "original_reports": 819,
+      "original_changed_files": 59
+    },
+    "code_commit": "52bb4d47ec4a97bce63b9ebd1b4219b80aeac48b",
+    "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+    "original_freeze_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+    "comparison_freeze_commit": "5d0a44b5f1d82a84e76267f7a209b9a03511a1df",
+    "worktree_status": "## ml-score-improvement\n M dashboard/scripts/assert-signin-reachable.mjs\n M dashboard/src/App.jsx\n M reports/improvement/prospective/DEVIATIONS.md\n?? reports/improvement/demo_entry_v1/",
+    "note": "Only task-owned additions may be uncommitted during report creation; final commit is checked separately.",
+    "discrepancies": []
+  },
+  "prior_handover_snapshot": "52bb4d47ec4a97bce63b9ebd1b4219b80aeac48b; append-only DEVIATIONS.md advanced by user request"
+}

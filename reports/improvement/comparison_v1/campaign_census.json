@@ -1,0 +1,257 @@
+{
+  "created_at": "2026-11-01T10:07:51.686854+00:00",
+  "split": "development",
+  "code_commit": "32b392335e5c33e43433d837c47a273cf72414df",
+  "script_sha256": "63bcd790e30c7446e3587c071ef35cee62b2e9c587dced36f57c4597cba1b8ec",
+  "exact_command": ".venv-hackathon/bin/python -B -m scripts.audit_development_campaigns --recalls-zip /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool/data/defect/source_cache/FLAT_RCL_POST_2010.zip --out reports/improvement/comparison_v1/campaign_census.json",
+  "scope": {
+    "makes": [
+      "FORD",
+      "HONDA",
+      "HYUNDAI",
+      "KIA",
+      "TOYOTA"
+    ],
+    "model_years": [
+      2015,
+      2024
+    ],
+    "component": "FUEL SYSTEM",
+    "campaign_dates": [
+      "2015-01-01",
+      "2020-12-31"
+    ],
+    "recall_type": "V"
+  },
+  "archive_sha256": "6e886e1076d33dc457f44deafb848c28a791ec406022d6e67d1cc3662e3cbebc",
+  "prepared_data_sha256": "63577ea14c59acc7d8bb9c32c86bf3efe65762dc0c148b107ef2ed6cff1db809",
+  "source_campaigns": 36,
+  "prepared_campaigns": 36,
+  "additional_campaign_ids": [],
+  "prepared_ids_absent_from_source": [],
+  "campaigns": {
+    "15V005000": {
+      "dates": [
+        "2015-01-09"
+      ],
+      "scope_rows": 2
+    },
+    "15V339000": {
+      "dates": [
+        "2015-06-02"
+      ],
+      "scope_rows": 1
+    },
+    "15V475000": {
+      "dates": [
+        "2015-07-29"
+      ],
+      "scope_rows": 2
+    },
+    "15V605000": {
+      "dates": [
+        "2015-09-28"
+      ],
+      "scope_rows": 2
+    },
+    "15V618000": {
+      "dates": [
+        "2015-10-01"
+      ],
+      "scope_rows": 1
+    },
+    "16V417000": {
+      "dates": [
+        "2016-06-09"
+      ],
+      "scope_rows": 3
+    },
+    "16V618000": {
+      "dates": [
+        "2016-08-24"
+      ],
+      "scope_rows": 2
+    },
+    "16V621000": {
+      "dates": [
+        "2016-08-25"
+      ],
+      "scope_rows": 3
+    },
+    "16V661000": {
+      "dates": [
+        "2016-09-14"
+      ],
+      "scope_rows": 2
+    },
+    "16V778000": {
+      "dates": [
+        "2016-10-26"
+      ],
+      "scope_rows": 4
+    },
+    "16V945000": {
+      "dates": [
+        "2016-12-29"
+      ],
+      "scope_rows": 2
+    },
+    "17V170000": {
+      "dates": [
+        "2017-03-13"
+      ],
+      "scope_rows": 12
+    },
+    "17V219000": {
+      "dates": [
+        "2017-03-30"
+      ],
+      "scope_rows": 1
+    },
+    "17V269000": {
+      "dates": [
+        "2017-04-21"
+      ],
+      "scope_rows": 1
+    },
+    "17V442000": {
+      "dates": [
+        "2017-07-13"
+      ],
+      "scope_rows": 1
+    },
+    "17V681000": {
+      "dates": [
+        "2017-10-26"
+      ],
+      "scope_rows": 1
+    },
+    "17V805000": {
+      "dates": [
+        "2017-12-13"
+      ],
+      "scope_rows": 2
+    },
+    "18V108000": {
+      "dates": [
+        "2018-02-14"
+      ],
+      "scope_rows": 1
+    },
+    "18V392000": {
+      "dates": [
+        "2018-06-12"
+      ],
+      "scope_rows": 2
+    },
+    "18V735000": {
+      "dates": [
+        "2018-10-22"
+      ],
+      "scope_rows": 4
+    },
+    "18V807000": {
+      "dates": [
+        "2018-11-14"
+      ],
+      "scope_rows": 1
+    },
+    "18V907000": {
+      "dates": [
+        "2018-12-19"
+      ],
+      "scope_rows": 10
+    },
+    "19V053000": {
+      "dates": [
+        "2019-01-24"
+      ],
+      "scope_rows": 3
+    },
+    "19V060000": {
+      "dates": [
+        "2019-01-29"
+      ],
+      "scope_rows": 3
+    },
+    "19V097000": {
+      "dates": [
+        "2019-02-14"
+      ],
+      "scope_rows": 2
+    },
+    "19V515000": {
+      "dates": [
+        "2019-07-05"
+      ],
+      "scope_rows": 1
+    },
+    "19V569000": {
+      "dates": [
+        "2019-08-01"
+      ],
+      "scope_rows": 1
+    },
+    "19V859000": {
+      "dates": [
+        "2019-12-04"
+      ],
+      "scope_rows": 1
+    },
+    "20V012000": {
+      "dates": [
+        "2020-01-13"
+      ],
+      "scope_rows": 19
+    },
+    "20V162000": {
+      "dates": [
+        "2020-03-19"
+      ],
+      "scope_rows": 1
+    },
+    "20V314000": {
+      "dates": [
+        "2020-05-28"
+      ],
+      "scope_rows": 9
+    },
+    "20V560000": {
+      "dates": [
+        "2020-09-16"
+      ],
+      "scope_rows": 2
+    },
+    "20V682000": {
+      "dates": [
+        "2020-11-04"
+      ],
+      "scope_rows": 28
+    },
+    "20V700000": {
+      "dates": [
+        "2020-11-12"
+      ],
+      "scope_rows": 2
+    },
+    "20V730000": {
+      "dates": [
+        "2020-11-24"
+      ],
+      "scope_rows": 1
+    },
+    "20V797000": {
+      "dates": [
+        "2020-12-17"
+      ],
+      "scope_rows": 3
+    }
+  },
+  "new_campaigns_acquired": 0,
+  "source_read": "Pinned local archive only; date headers filter rows before retaining scope/identity fields; no outcome descriptions parsed and no post-2020 data frame created.",
+  "completeness": "Census of the pinned snapshot in the unchanged scope, not proof that all real-world defects were reported or campaigns are statistically independent.",
+  "followup": "Campaign dates do not create new independent alert outcomes. The development outcome cutoff remains 2020-12-31; mature alerts require the existing full 364-day follow-up.",
+  "evaluation_data": "All prepared 2015-2020 data were opened; none is redesignated as untouched.",
+  "performance_metrics": null,
+  "is_candidate_result": false
+}

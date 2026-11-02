@@ -1,0 +1,96 @@
+{
+  "timestamp": "2026-11-01T07:27:24.529874+00:00",
+  "HEAD": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+  "main": "b8afe3856f9fd705f7cc6f3751e9b79343a4b491",
+  "commits_ahead": 29,
+  "worktree_status": "## ml-score-improvement\n M dashboard/scripts/ml-evidence-ui.test.mjs\n M dashboard/src/ai/MlImprovementEvidence.jsx\n M dashboard/src/ai/mlImprovement.json\n M scripts/ml_improvement_report.py\n M tests/frontline/ai_layer/test_ml_improvement.py\n?? reports/improvement/phase1/logs/artifact_precheck_resume_20261101.txt\n?? reports/improvement/phase1/logs/command_records_resume_20261101.json\n?? reports/improvement/phase1/logs/compileall_phase5.txt\n?? reports/improvement/phase1/logs/compileall_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_build_phase5.txt\n?? reports/improvement/phase1/logs/dashboard_build_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_source_phase5.txt\n?? reports/improvement/phase1/logs/dashboard_source_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_ui_phase5.txt\n?? reports/improvement/phase1/logs/dashboard_ui_resume_20261101.txt\n?? reports/improvement/phase1/logs/dashboard_ui_resume_20261101_attempt2.txt\n?? reports/improvement/phase1/logs/defect_verify_phase5.txt\n?? reports/improvement/phase1/logs/defect_verify_resume_20261101.txt\n?? reports/improvement/phase1/logs/full_frontline_phase5.txt\n?? reports/improvement/phase1/logs/full_frontline_resume_20261101.txt\n?? reports/improvement/phase1/logs/inputs_resume_20261101.json\n?? reports/improvement/phase1/logs/make_eval_phase5.txt\n?? reports/improvement/phase1/logs/make_eval_resume_20261101.txt\n?? reports/improvement/phase1/logs/make_test_phase5.txt\n?? reports/improvement/phase1/logs/make_test_resume_20261101.txt\n?? reports/improvement/phase1/logs/phase5_command_records.json\n?? reports/improvement/phase1/logs/phase5_targeted.txt\n?? reports/improvement/phase1/logs/pipeline_phase5.txt\n?? reports/improvement/phase1/logs/pipeline_resume_20261101.txt\n?? reports/improvement/phase1/logs/targeted_resume_20261101.txt\n?? reports/improvement/phase1/logs/ui_resume_20261101/\n?? reports/improvement/phase1/phase5_resume_audit.json\n?? reports/improvement/phase1/pipeline_resume_20261101.json\n?? reports/improvement/phase1/pipeline_verification.json\n?? reports/improvement/phase1/validation_runtime/\n?? reports/improvement/phase1/validation_runtime_resume_20261101/\n?? reports/improvement/prospective/DEVIATIONS.md",
+  "phase2_gate_amendment": "DEV-20261101-01",
+  "starting_state_hashes": {
+    "checked": 2,
+    "changed_or_missing": [],
+    "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+  },
+  "protected_artifacts": {
+    "checked": 5,
+    "changed_or_missing": [],
+    "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+  },
+  "authorized_dashboard_metadata_change": "Phase 5 explicitly updates the dashboard JSON. Its scores, source hash, targets and human-validation values are checked separately against the freeze-tag version.",
+  "original_inventory": {
+    "checked": 819,
+    "changed_or_missing": [],
+    "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool"
+  },
+  "original_checkout_status_matches_starting": true,
+  "frozen_files": {
+    "checked": 339,
+    "changed_or_missing": [],
+    "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+  },
+  "freeze_tag_commit": "e96338df3cce113a182b0cf1be5bf760abc00b31",
+  "freeze_verification": "verify_freeze passed, including tagged index, C1 tree, and tagged frozen file bytes",
+  "manifest_status": "reserved",
+  "snapshots": 0,
+  "real_prospective_data_accessed": false,
+  "human_labels": {
+    "labelled": 0,
+    "total": 300
+  },
+  "development_inputs": {
+    "checked": 2,
+    "changed_or_missing": [],
+    "root": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+  },
+  "phase2_record_verification": {
+    "read_paths": [
+      "data/ml_improvement/complaints.parquet",
+      "data/ml_improvement/recalls.parquet"
+    ],
+    "complaints": 263,
+    "complaint_date_range": [
+      "2015-12-30",
+      "2020-12-30"
+    ],
+    "recall_scopes": 136,
+    "campaigns": 36,
+    "recall_date_range": [
+      "2015-01-09",
+      "2020-12-17"
+    ],
+    "folds": [
+      {
+        "fold": "A",
+        "fit_campaigns": 11,
+        "validation_campaigns": 11,
+        "campaign_ids_disjoint": true
+      },
+      {
+        "fold": "B",
+        "fit_campaigns": 22,
+        "validation_campaigns": 14,
+        "campaign_ids_disjoint": true
+      }
+    ],
+    "selection_reproduced": true,
+    "decision": {
+      "mode": "mode_b_baseline",
+      "selected": "gamma_poisson",
+      "rule": "A candidate is defensible only if it does not lose on either primary metric in either fold; and it improves at least one primary metric in both folds; and the lower bound of the paired campaign-cluster bootstrap difference for that metric is greater than 0. Otherwise freeze the baseline.",
+      "reason": "No method satisfies all fold, denominator and bootstrap conditions",
+      "is_candidate_result": false,
+      "notice": "Development-only evidence; not a candidate result and not a prospective estimate.",
+      "preregistration_commit": "440b90e5452f199dd9cf6e08ae3be640d59b7300"
+    },
+    "trials": 36,
+    "evaluated_trials": 16,
+    "insufficient_training_support_records": 20,
+    "bootstrap_draws_and_all_reference_seeds_verified": true,
+    "new_experiment_run": false,
+    "run_ledger_entry_verified": true,
+    "preregistration_precedes_recorded_phase2_run": true,
+    "limitation": "Historical preparation read acknowledged by DEV-20261101-01; no universal historical no-read claim."
+  },
+  "dashboard_scores_unchanged": true,
+  "dashboard_source_sha256": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+  "validation_source_inputs_unchanged": true
+}

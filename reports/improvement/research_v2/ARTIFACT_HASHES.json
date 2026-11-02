@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-11-01T09:50:38.289052+00:00",
+  "algorithm": "SHA-256",
+  "command": "shasum -a 256",
+  "scope": "Completed research artifact bytes at the result commit; this index excludes itself",
+  "files": {
+    "reports/improvement/experiments.csv": "92000ecec5c0b0b003c31309a94760ade88b4ab421456c28650858f9a58b683e",
+    "reports/improvement/research_v2/PROTOCOL.json": "2fc6ede2afb422b1a04fcf6bc0da6e2d8192b8c9151a874a7b3f99f791a46b67",
+    "reports/improvement/research_v2/README.md": "620f2d83f707d4d427becb2ea9289b3f71cd2c73507d0a88234b7ba035adc58c",
+    "reports/improvement/research_v2/RESULTS.json": "7e85caff7118652ee5ca53e14a8610f26f4154fe393e92c2c649157ce9b8f917",
+    "reports/improvement/research_v2/RESULTS.md": "624cc7ced7d992818da8af5d305c255eed653b513056702b174f69f49685b727",
+    "reports/improvement/research_v2/logs/logistic_prototype_v1.txt": "34114c80abb65f5f8f0e607f23905173f8fb0fab80fe7d50539efc08add701e3",
+    "reports/improvement/research_v2/logs/pip_freeze.txt": "5a38a83520a9ddc12eabcbe5fc6b2b4d7185404a9452873aca60b368adca57b5",
+    "reports/improvement/research_v2/logs/targeted_tests.txt": "07dd766245ece1eac91f6be94ac7fc2477cd56a3b866503b89c476fe02d4096d",
+    "reports/improvement/research_v2/pre_fit_validation.json": "b95e2c3dcd7a375a3c8f9b61b0f23910ff64d838549ee599a59e1c0c27205ec0",
+    "reports/improvement/research_v2/precheck.json": "8515831f1ebb1296df3c9a1fe5959350cd0b1386ce7da886c39c59b631f099bf",
+    "reports/improvement/research_v2/research_environment.json": "2549a2537a79e6983e5eeda5d6978e5a585c19b7b72e52d87d61291244670810",
+    "reports/improvement/runs/logistic_prototype_v1/finished.json": "b7ca92aac7c7df8a9a4ac1a0ac47a3d887a555730b94d0e3d410f3ae4cc60a1d",
+    "reports/improvement/runs/logistic_prototype_v1/model.json": "7a4a2607822e792d46cef5aeb4ca79d0c1a44164534e27cb9f87840351ecda2d",
+    "reports/improvement/runs/logistic_prototype_v1/model_card.md": "e8b47d2969bd5d34ce1af4d25e866460261ec67154b85f13f1601f4edf5115c6",
+    "reports/improvement/runs/logistic_prototype_v1/results.json": "db26318c10f883540b96e9dc99587dd28d77687d41b1169fae58329eb99b0f55",
+    "reports/improvement/runs/logistic_prototype_v1/review_queue.csv": "90de2c32d2fb69d44f72afb5de0bb517cfbfb7b28577aced6d74d59d0a59e396",
+    "reports/improvement/runs/logistic_prototype_v1/serialization_check.json": "998b0a4fe69c8ae35e5fadd4ce78ec96efcdb43bb8a8e85a3dcd482dd9b9c25c",
+    "reports/improvement/runs/logistic_prototype_v1/started.json": "0b1d3f1c8796af8a22444e9224bc1a1458a10e617f73dfcd9e590124b3eaf32b",
+    "reports/improvement/runs/logistic_prototype_v1/support_audit.json": "df1a277344c8ba03641639c5f339646f3fe0466cbe84bff72eaabbc82fd80cd4",
+    "scripts/ml_candidate_research.py": "21bd2b467e8d543f72fece08a2da82b89a17074b54b7fc2bc01c9c8e37a83086",
+    "tests/frontline/ai_layer/test_ml_candidate_research.py": "55e89ac8cfd04b6ba175d6b79a60152eb287dc316f4efce11651955ae422214e"
+  }
+}

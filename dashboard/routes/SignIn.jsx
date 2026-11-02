@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import {
   completeGoogleHandoff,
+  clearApiKey,
+  fetchHealth,
   fetchMe,
   getStoredSubject,
-  hasConsoleAccess,
   registerUser,
   saveGoogleProvider,
   setApiKey,
   loginWithPassword,
   loginWithSessionToken,
+  verifyCredential,
 } from "../src/apiAuth.js";
 
 function routeParams() {
@@ -155,6 +157,7 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
   const [mode, setMode] = useState(initialMode); // "signin" | "signup"
   const [status, setStatus] = useState(null);
   const [me, setMe] = useState(null);
+  const [health, setHealth] = useState(null);
   const [err, setErr] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [busy, setBusy] = useState(false);
@@ -215,14 +218,15 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
     setBusy(true);
     try {
       setApiKey(key, { remember: rememberApiKey });
-      const access = await hasConsoleAccess();
-      if (access.allowed) {
+      const access = await verifyCredential();
+      if (access.ok && access.auth_required) {
         setApiKeyInput("");
         setShowApiKeyBox(false);
         setSuccessMsg("API key accepted. Opening console…");
         setTimeout(() => goToConsole(), 400);
       } else {
-        setErr("That key was not accepted by the server. Check it and try again.");
+        clearApiKey();
+        setErr(access.auth_required === false ? "This server is open locally; use Open local console. No operator key was validated." : "That key was not accepted by the server. Check it and try again.");
       }
     } catch (ex) {
       setErr(String(ex.message || ex));
@@ -258,11 +262,9 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
     fetchMe()
       .then((m) => {
         setMe(m);
-        if (m?.signed_in && !handoff) {
-          goToConsole();
-        }
       })
       .catch(() => setMe({ signed_in: false }));
+    fetchHealth().then(setHealth);
 
     if (handoff) {
       setBusy(true);
@@ -278,10 +280,12 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
   }, []);
 
   function goToConsole() {
+    const requested = routeParams().get("next") || "demo";
+    const next = /^[a-z][a-z0-9/-]*(?:\?[^#]*)?$/.test(requested) && !/^(signin|signup)(?:\?|$)/.test(requested) ? requested : "demo";
     if (typeof onNavigate === "function") {
-      onNavigate("command");
+      onNavigate(next);
     } else {
-      window.location.hash = "command";
+      window.location.hash = next;
     }
   }
 
@@ -414,121 +418,29 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
   }
 
   return (
-    <div className="auth-container">
-      {/* ── Left Column: Value Proposition & Live Telemetry Stream ── */}
+    <div className="auth-container" data-testid="signin-page">
+      {/* The implemented engineer workflow, without illustrative performance claims. */}
       <div className="auth-showcase">
         <div className="auth-showcase-content">
           <div className="auth-badge">
             <span className="auth-badge-dot" />
-            TraceX · Enterprise Ops Platform
+            TraceX · Quality investigation
           </div>
 
           <h1 className="auth-headline">
-            Grounded Voice-of-Customer Intelligence &amp; Root-Cause RCA
+            Turn an owner report into a reviewable investigation
           </h1>
           <p className="auth-lead">
-            Supervise autonomous voice agent swarms in real-time, detect emerging failure clusters,
-            and review customer interactions with a tamper-evident audit trail.
+            For automotive quality and service engineers: review multilingual complaints,
+            inspect the source records and document the next action.
           </p>
 
-          {/* ── Live RCA Observability Terminal Preview ── */}
-          <div className="telemetry-box" aria-hidden="true">
-            <div className="telemetry-head">
-              <div className="terminal-dots">
-                <span className="dot dot-red" />
-                <span className="dot dot-amber" />
-                <span className="dot dot-green" />
-              </div>
-              <span className="terminal-title">telemetry-stream.live</span>
-              <span className="terminal-pill">
-                <span className="pill-pulse" /> LIVE · 4.2k ev/s
-              </span>
-            </div>
-
-            <div className="telemetry-metrics">
-              <div className="telemetry-kpi">
-                <span className="kpi-label">Corpus Integrity</span>
-                <span className="kpi-val text-ok">100% SHA-256</span>
-              </div>
-              <div className="telemetry-kpi">
-                <span className="kpi-label">Swarm Latency</span>
-                <span className="kpi-val">182ms (P99)</span>
-              </div>
-              <div className="telemetry-kpi">
-                <span className="kpi-label">Anomaly Clusters</span>
-                <span className="kpi-val text-accent">3 Emerging</span>
-              </div>
-              <div className="telemetry-kpi">
-                <span className="kpi-label">Evidence Grounding</span>
-                <span className="kpi-val text-ok">99.8% High Conf</span>
-              </div>
-            </div>
-
-            <div className="telemetry-logs">
-              <div className="telemetry-log-row">
-                <span className="log-time">00:01.2</span>
-                <span className="log-badge log-triage">TRIAGE</span>
-                <span className="log-msg">Session #4829 clustered: <code>powertrain_stall</code></span>
-              </div>
-              <div className="telemetry-log-row">
-                <span className="log-time">00:04.7</span>
-                <span className="log-badge log-audit">AUDIT</span>
-                <span className="log-msg">Qubot v2 cryptographic hash chain verified</span>
-              </div>
-              <div className="telemetry-log-row">
-                <span className="log-time">00:08.3</span>
-                <span className="log-badge log-supervise">SUPERVISE</span>
-                <span className="log-msg">Supervisor takeover ready · zero friction score</span>
-              </div>
-            </div>
-          </div>
-
-          {/* ── 3 Architecture Feature Pillars ── */}
-          <div className="auth-features">
-            <div className="auth-feature-item">
-              <div className="auth-feature-icon">
-                <IconZap />
-              </div>
-              <div>
-                <div className="auth-feature-title">Real-Time Swarm Triage</div>
-                <div className="auth-feature-desc">
-                  Sub-second intent parsing, sentiment friction scoring, and seamless supervisor takeover.
-                </div>
-              </div>
-            </div>
-
-            <div className="auth-feature-item">
-              <div className="auth-feature-icon">
-                <IconShieldCheck />
-              </div>
-              <div>
-                <div className="auth-feature-title">Cryptographic Audit Ledgers</div>
-                <div className="auth-feature-desc">
-                  Qubot v2 checks evidence IDs against historical records and records actions in a tamper-evident hash chain.
-                </div>
-              </div>
-            </div>
-
-            <div className="auth-feature-item">
-              <div className="auth-feature-icon">
-                <IconCrosshair />
-              </div>
-              <div>
-                <div className="auth-feature-title">Early-Warning Anomaly Clustering</div>
-                <div className="auth-feature-desc">
-                  Live call patterns automatically group into named investigations before customer escalations spike.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="auth-footnote">
-            <span>SOC 2 Type II Baseline</span>
-            <span>·</span>
-            <span>Zero Hallucination Audit Trails</span>
-            <span>·</span>
-            <span>DuckDB Domain-as-Data</span>
-          </div>
+          <ol className="auth-features" aria-label="Investigation workflow">
+            <li><strong>Report</strong><p>Capture and confirm the owner's words and vehicle association.</p></li>
+            <li><strong>Investigate</strong><p>Inspect cited observations, missing information and relevant records.</p></li>
+            <li><strong>Review</strong><p>An authorized engineer reviews evidence before consequential action.</p></li>
+            <li><strong>Evidence</strong><p>Keep the report, investigation and documented action inspectable.</p></li>
+          </ol>
         </div>
       </div>
 
@@ -571,6 +483,11 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
               </button>
             </div>
           )}
+          {health?.auth_required === false && <div className="banner" role="status">
+            Open local mode. Browsing does not grant supervisor authority.
+            <button type="button" className="ghost" onClick={goToConsole}>Open local console →</button>
+          </div>}
+          <p className="auth-form-intro">Use your account, operator API key, or an issued supervisor session. An operator key does not grant supervisor review permissions.</p>
 
           {err && (
             <div className="banner banner-error" role="alert">
@@ -871,13 +788,15 @@ export default function SignIn({ initialMode = "signin", onNavigate }) {
                   <div className="oidc-collapsible">
                     <button
                       type="button"
-                      className="oidc-toggle-link"
+                      className="btn btn-secondary btn-sm"
+                      style={{ margin: 4 }}
                       onClick={() => setShowApiKeyBox(!showApiKeyBox)}
                       aria-expanded={showApiKeyBox}
                     >
                       {showApiKeyBox ? "Hide API key entry −" : "Have an operator API key? +"}
                     </button>
-                    <button type="button" className="oidc-toggle-link"
+                    <button type="button" className="btn btn-secondary btn-sm"
+                      style={{ margin: 4 }}
                       onClick={() => setShowSessionBox(!showSessionBox)} aria-expanded={showSessionBox}>
                       {showSessionBox ? "Hide session entry −" : "Have a supervisor session? +"}
                     </button>

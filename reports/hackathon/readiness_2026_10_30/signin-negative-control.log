@@ -1,0 +1,162 @@
+
+> tracex-ops-console@2.0.0 test:signin
+> node scripts/assert-signin-reachable.mjs --missing-route-control
+
+vite v8.2.1 building client environment for production...
+[2Ktransforming...✓ 96 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/index.html                              0.71 kB │ gzip:   0.41 kB
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/assets/geist-mono-400-DTRLJnHl.woff2    9.86 kB
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/assets/geist-mono-500-YINYabwD.woff2   10.11 kB
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/assets/geist-sans-400-B40WzpMT.woff2   12.95 kB
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/assets/geist-sans-500-CTWBw9NS.woff2   13.29 kB
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/assets/geist-sans-600-CSETrqM2.woff2   13.37 kB
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/assets/index-Cl6MPf0i.css             123.87 kB │ gzip:  22.14 kB
+../../../../var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix/ui/assets/index-zSsC_1Yf.js              717.73 kB │ gzip: 191.17 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/apiAuth.js is dynamically imported by src/ai/tools/Alerts.jsx but also statically imported by routes/AnalyticsDesk.jsx, routes/AuditReports.jsx, routes/CallWidget.jsx, routes/CaseQueue.jsx, routes/CommandCenter.jsx, ..., dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 106ms
+NEGATIVE CONTROL: sign-in registry entry omitted only from this temporary build; browser assertions must fail.
+Starting isolated auth-mode API…
+Isolated failure artifacts: /var/folders/3g/45glb5cn1fq5zh7vn28ljmg80000gn/T/tracex-signin-browser-Eopmix
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('signin-page')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "to.be.visible" with timeout 5000ms
+  - waiting for getByTestId('signin-page')
+
+    at captureRawStack (/private/tmp/tracex-readiness-03ed794/dashboard/node_modules/playwright-core/lib/coreBundle.js:9681:17)
+    at callMatcherAsStep (/private/tmp/tracex-readiness-03ed794/dashboard/node_modules/playwright/lib/matchers/expect.js:13310:57)
+    at Object.toBeVisible (/private/tmp/tracex-readiness-03ed794/dashboard/node_modules/playwright/lib/matchers/expect.js:13300:23)
+    at /private/tmp/tracex-readiness-03ed794/dashboard/scripts/assert-signin-reachable.mjs:88:49 {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: getByTestId('signin-page')\n" +
+      'Expected: visible\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.visible" with timeout 5000ms\n' +
+      "  - waiting for getByTestId('signin-page')\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "to.be.visible" with timeout 5000ms',
+      "  - waiting for getByTestId('signin-page')"
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- link "Skip to main content":\n' +
+      '  - /url: "#main"\n' +
+      '- complementary "Primary":\n' +
+      '  - text: Trace\n' +
+      '  - emphasis: X\n' +
+      '  - button "Automotive"\n' +
+      '  - button "Judge start →"\n' +
+      '  - button "Open command palette": Search Console… ⌘K\n' +
+      '  - navigation "Engineer workflow":\n' +
+      '    - text: Investigation workflow\n' +
+      '    - button "Report"\n' +
+      '    - button "Investigate"\n' +
+      '    - button "Review"\n' +
+      '    - button "Evidence"\n' +
+      '  - group:\n' +
+      '    - text: Advanced tools Operate\n' +
+      '    - button "Command center"\n' +
+      '    - button "Voice agent"\n' +
+      '    - button "Live console"\n' +
+      '    - button "Case queue"\n' +
+      '    - button "Safety campaigns"\n' +
+      '    - text: Intelligence\n' +
+      '    - button "Early warning"\n' +
+      '    - button "Defect early warning"\n' +
+      '    - button "Analytics"\n' +
+      '    - text: Trust & platform\n' +
+      '    - button "Trust"\n' +
+      '    - button "Platform"\n' +
+      '    - button "Settings"\n' +
+      '  - button "Sign in Account / operator credentials"\n' +
+      '  - button "Collapse sidebar": Collapse\n' +
+      '- banner:\n' +
+      '  - text: Operate Command center\n' +
+      '  - button "Guide"\n' +
+      '  - button "ok Automotive"\n' +
+      '  - button "Refresh current view": ↻\n' +
+      '  - button "Change theme, currently dark": Light\n' +
+      '- main:\n' +
+      '  - heading "Good afternoon" [level=1]\n' +
+      '  - paragraph: Your live operations, priorities and system health.\n' +
+      '  - button "Refresh"\n' +
+      '  - button "Start a contact"\n' +
+      '  - button "Safety campaigns"\n' +
+      '  - alert: "Could not load command center: /api/frontline/wallboard 401 · /api/frontline/metrics 401 · /api/frontline/usage 401 · /api/frontline/ops/drain 401 · /api/frontline/cases 401"\n' +
+      '  - text: Live traffic overview Awaiting snapshot\n' +
+      '  - button "Live contacts — Active now"\n' +
+      '  - button "Critical open — Open and follow-up"\n' +
+      '  - button "Open cases — Open and follow-up"\n' +
+      '  - button "Contact intake — Awaiting server status"\n' +
+      '  - region "Live contacts —":\n' +
+      '    - heading "Live contacts —" [level=2]\n' +
+      '    - button "Open console"\n' +
+      '    - strong: Loading live activity\n' +
+      '    - paragraph: Waiting for the latest contact snapshot.\n' +
+      '  - region "Critical queue":\n' +
+      '    - heading "Critical queue" [level=2]\n' +
+      '    - paragraph: Loading open Critical cases\n' +
+      '    - button "View queue"\n' +
+      '    - paragraph: Waiting for the Critical case snapshot.\n' +
+      '    - button "Seed demo traffic"\n' +
+      '    - button "All open cases"\n' +
+      '  - region "Recurring issues":\n' +
+      '    - heading "Recurring issues" [level=2]\n' +
+      '    - paragraph: Similar complaints grouped by problem. Most open cases first.\n' +
+      '    - paragraph: Loading recurring issues…\n' +
+      '    - button "Open early warning"\n' +
+      '    - button "View all recurring issues"\n' +
+      '  - region "System readiness":\n' +
+      '    - heading "System readiness" [level=2]\n' +
+      '    - paragraph: Service health at a glance\n' +
+      '    - term: API status\n' +
+      '    - definition: ok\n' +
+      '    - term: Authentication\n' +
+      '    - definition: API key required\n' +
+      '    - term: Database\n' +
+      '    - definition: —\n' +
+      '    - term: Pack load\n' +
+      '    - definition: —\n' +
+      '    - term: LLM\n' +
+      '    - definition: —\n' +
+      '    - term: Embedding\n' +
+      '    - definition: —\n' +
+      '  - region "Usage metering":\n' +
+      '    - heading "Usage metering" [level=2]\n' +
+      '    - paragraph: Current billing period\n' +
+      '    - text: Waiting for the usage snapshot.\n' +
+      '  - region "Pilot metrics":\n' +
+      '    - heading "Pilot metrics" [level=2]\n' +
+      '    - paragraph: Operational snapshot\n' +
+      '    - text: Waiting for the metrics snapshot.\n' +
+      '- region "Notifications"'
+  }
+}
+
+Node.js v25.1.0

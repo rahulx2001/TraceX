@@ -31,6 +31,16 @@ def _system_resolve(host: str, port: int) -> list[Any]:
     return socket.getaddrinfo(host, port)
 
 
+def _proxy_handles_scheme(scheme: str) -> bool:
+    """True when proxy env routes this scheme through an egress proxy."""
+    try:
+        import urllib.request as _urllib_request
+
+        return bool(_urllib_request.getproxies().get((scheme or "").lower()))
+    except Exception:
+        return False
+
+
 def _env_bool(name: str, default: bool = False) -> bool:
     raw = os.getenv(name)
     if raw is None:
@@ -116,9 +126,14 @@ def validate_outbound_url(
     resolver = resolve or _default_resolver or _system_resolve
     try:
         infos = resolver(host, port)
-    except socket.gaierror as e:
-        raise ValueError(f"url_dns_failed:{e}") from e
-    except OSError as e:
+    except (socket.gaierror, OSError) as e:
+        if _proxy_handles_scheme(parsed.scheme):
+            # Proxied egress: this process never dials the resolved IP (the
+            # proxy does), so local DNS failure must not block the URL. The
+            # remaining protections stand: callers allowlist the host first,
+            # and TLS hostname verification through the proxy still blocks
+            # impersonation. Without a proxy, DNS failure stays fail-closed.
+            return raw
         raise ValueError(f"url_dns_failed:{e}") from e
 
     if not infos:

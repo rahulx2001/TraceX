@@ -1,0 +1,1 @@
+A driver describes a worrying vehicle symptom. Trace X helps a quality engineer turn that report into reviewed evidence and a recorded repair. This walkthrough uses fictional records. The operations platform is reused; the sourced Meta investigation and follow-up workflow are new.

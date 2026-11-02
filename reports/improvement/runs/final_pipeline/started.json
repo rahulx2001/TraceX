@@ -1,0 +1,27 @@
+{
+  "run_id": "final_pipeline",
+  "config": {
+    "command": [
+      ".venv-hackathon/bin/python",
+      "-m",
+      "scripts.verify_ml_pipeline",
+      "--records",
+      "76",
+      "--out",
+      "reports/improvement/pipeline_final.json"
+    ],
+    "cwd": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement"
+  },
+  "config_hash": "d045542e2b59198b5f01817562e336a84156e06d70233ad008a4c4545be49375",
+  "input_hashes": {
+    "reports/improvement/results.json": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+    "reports/improvement/development_manifest.json": "d904a27c970f7598f46f399ef5052eb88bcdaa650c3fa137b6f485e881f08220"
+  },
+  "data_hash": "fc35faa5a03e69103b0660581c5afda15b8e6c7e6e2e556aa49fea63c7a11215",
+  "code_commit": "19bd5cf61216fc6a50bd20eb2a5d1804ccfd4697",
+  "code_hash": "6d59facf7f0878c4a3ecde5247486964ddeb838b83ca7052a92a77f579d6d1ba",
+  "seed": null,
+  "split": "technical validation / frozen replay",
+  "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_final.json",
+  "started_at": "2026-10-31T12:33:51.084438+00:00"
+}

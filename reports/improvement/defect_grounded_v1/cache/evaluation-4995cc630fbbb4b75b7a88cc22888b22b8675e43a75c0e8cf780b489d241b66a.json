@@ -1,0 +1,134 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "brake_lights_electrical",
+      "proposed_confidence": 0.92,
+      "label_id": "brake_lights_electrical",
+      "confidence": 0.92,
+      "evidence": "The brake lights went out.",
+      "part_evidence": "The brake lights went out.",
+      "mode_evidence": "The bulbs were replaced. The fuse was replace and there still no lights.",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.88,
+      "label_id": "other_unclear",
+      "confidence": 0.88,
+      "evidence": "Headlight Switch is faulty when in Auto. Lights shut off randomly while driving at night",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.85,
+      "label_id": "other_unclear",
+      "confidence": 0.85,
+      "evidence": "Rear taillight  covers are deteriorating. Discoloration and fog",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c4",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.87,
+      "label_id": "other_unclear",
+      "confidence": 0.87,
+      "evidence": "High beams stopped working around 60,000 miles, changed the bulb but did not fix it.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c5",
+      "proposed_label_id": "headlights_compliance_or_label",
+      "proposed_confidence": 0.9,
+      "label_id": "headlights_compliance_or_label",
+      "confidence": 0.9,
+      "evidence": "while driving at night at approximately 35 MPH with the low beam headlights activated, there was a rectangular shadow cast ahead by both headlights.",
+      "part_evidence": "with the low beam headlights activated",
+      "mode_evidence": "there was a rectangular shadow cast ahead by both headlights. The shadow was cast directly to the front and the road was not fully illuminated.",
+      "grounding_status": "specific_supported",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": true,
+      "mode_evidence_verbatim": true,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "brake_lights_electrical",
+        "confidence": 0.92,
+        "evidence": "The brake lights went out.",
+        "part_evidence": "The brake lights went out.",
+        "mode_evidence": "The bulbs were replaced. The fuse was replace and there still no lights.",
+        "grounding_status": "specific_supported"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.88,
+        "evidence": "Headlight Switch is faulty when in Auto. Lights shut off randomly while driving at night",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.85,
+        "evidence": "Rear taillight  covers are deteriorating. Discoloration and fog",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.87,
+        "evidence": "High beams stopped working around 60,000 miles, changed the bulb but did not fix it.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "headlights_compliance_or_label",
+        "confidence": 0.9,
+        "evidence": "while driving at night at approximately 35 MPH with the low beam headlights activated, there was a rectangular shadow cast ahead by both headlights.",
+        "part_evidence": "with the low beam headlights activated",
+        "mode_evidence": "there was a rectangular shadow cast ahead by both headlights. The shadow was cast directly to the front and the road was not fully illuminated.",
+        "grounding_status": "specific_supported"
+      }
+    ]
+  },
+  "batch_key": "4995cc630fbbb4b75b7a88cc22888b22b8675e43a75c0e8cf780b489d241b66a",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:26:32+00:00",
+  "completed_at": "2026-11-02T13:26:36+00:00"
+}

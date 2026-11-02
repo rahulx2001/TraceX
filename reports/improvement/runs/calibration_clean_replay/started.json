@@ -1,0 +1,21 @@
+{
+  "run_id": "calibration_clean_replay",
+  "config": {
+    "bins": 10,
+    "transform": "1 - frozen predictive tail",
+    "seed": 17,
+    "selection": "none"
+  },
+  "config_hash": "8af27cfd98dff43f359642e2651c233f48b006ef85847a4d45e1be76f78776f7",
+  "input_hashes": {
+    "data/ml_improvement/complaints.parquet": "bfda61fcb22d6d70d8a8bb692094247901ed56466bb4722236033890182db6b9",
+    "data/ml_improvement/recalls.parquet": "63577ea14c59acc7d8bb9c32c86bf3efe65762dc0c148b107ef2ed6cff1db809"
+  },
+  "data_hash": "28cc670a57b88a3a73d2058f4ff216f2df4a7d5cef9c7564b3964691f6e23b42",
+  "code_commit": "1590fb5c41bed282b9d82fa8cbdc472e8bfed8ca",
+  "code_hash": "d822c77b17b28317443b85e65ed49bbbbc00d5e212a8c15cd195f30f9b6d4811",
+  "seed": 17,
+  "split": "development",
+  "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.ml_baseline_calibration --run-id calibration_clean_replay",
+  "started_at": "2026-10-31T13:08:19.920267+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "step": "pipeline",
+  "started_at": "2026-11-01T11:19:50.441299+00:00",
+  "finished_at": "2026-11-01T11:19:56.048420+00:00",
+  "duration_seconds": 5.607,
+  "cwd": ".",
+  "command": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/.venv-hackathon/bin/python -B -m scripts.verify_ml_pipeline --records 76 --out /Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool_ml-score-improvement/reports/improvement/final_handover/pipeline.json",
+  "environment": {
+    "FRONTLINE_TEST_ISOLATION": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENAI_API_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+    "BASETEN_API_KEY": "",
+    "META_API_KEY": ""
+  },
+  "stdin_artifact": null,
+  "note": null,
+  "exit_code": 0,
+  "log": "logs/pipeline.txt",
+  "log_sha256": "2c651d5fe155db7a5d8d96bbc6d002c655319b44e4516218c27b567e336852fe",
+  "observed_pytest_counts": [],
+  "code_commit": "a08010c69876a36fdd1858b9167e8648ead4c09e",
+  "runner_sha256": "aaaae3962a699ffb1bf36102178200379fd9792ff7cc445ad260bfd5f26d7128"
+}

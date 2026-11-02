@@ -1,0 +1,7 @@
+{
+  "recorded_at": "2026-11-02T13:05:56+00:00",
+  "reason": "Independent source-code audit found unchecked evidence on abstained/other outputs. Tighten contract before human evaluation; preserve initial recipe and first pre-2021 smoke attempt.",
+  "candidate_evaluation_calls": 0,
+  "candidate_accuracy_written": false,
+  "source": "Read-only agent code audit; no evaluation labels or model error analysis used"
+}

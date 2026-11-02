@@ -88,6 +88,31 @@ export function packLabel(id) {
   return humanizeKey(key);
 }
 
+/** Readable issue names from stored categories, never from numeric group IDs. */
+export function issueCategoryLabel(value) {
+  const category = String(value || "").trim();
+  if (!category) return "Issue awaiting a category";
+  const names = {
+    "SERVICE BRAKES": "Brake problems",
+    "SERVICE BRAKES, HYDRAULIC": "Hydraulic brake problems",
+    "SERVICE BRAKES, AIR": "Air brake problems",
+    "AIR BAGS": "Airbag problems",
+    "ELECTRICAL SYSTEM": "Electrical problems",
+    "SUSPENSION": "Suspension problems",
+    "STEERING": "Steering problems",
+    "POWER TRAIN": "Powertrain problems",
+    "ENGINE": "Engine problems",
+    "TIRES": "Tyre problems",
+    "WHEELS": "Wheel problems",
+    "SEAT BELTS": "Seat belt problems",
+    "FUEL SYSTEM, GASOLINE": "Fuel system problems",
+    "UNKNOWN OR OTHER": "Other reported problems",
+  };
+  return names[category.toUpperCase()] || (category === category.toUpperCase()
+    ? category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
+    : category);
+}
+
 export function safetyFlagLabel(value) {
   const s = String(value || "");
   const q = /^safety_q_(\d+)$/i.exec(s);

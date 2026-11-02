@@ -1,0 +1,15 @@
+{
+  "source_checkout": "/Users/rahulkumarsinghj/DeveloperFolder/Code/v2_ai_rca_tool",
+  "inventory": "reports/improvement/original_artifact_hashes.json",
+  "source_checked": 819,
+  "source_changed": [],
+  "source_missing": [],
+  "branch_identical": 278,
+  "branch_unexpected_changes": [],
+  "branch_missing_tracked": [],
+  "branch_not_copied_untracked": 540,
+  "append_only": [
+    "reports/CLAIMS_AUDIT.md"
+  ],
+  "explanation": "integrity_release_pre_docs.json compared a source-checkout inventory against the sibling worktree. Its missing entries are untracked/ignored originals not copied into the worktree, not deleted reports. This check verifies the originals at their actual location."
+}

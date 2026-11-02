@@ -645,11 +645,16 @@ export default function IssueDesk({ issueId, refreshKey }) {
       {inv?.investigation_id && (
         <div className="ai-stack">
           <GroundedBriefPanel investigationId={inv.investigation_id} />
+          <a className="btn" href={`#safety-campaigns?investigation=${encodeURIComponent(inv.investigation_id)}`}>Start a safety campaign from this finding →</a>
           <LotCard investigationId={inv.investigation_id} />
-          <VerificationPanel investigationId={inv.investigation_id} />
-          <ApprovalPanel investigationId={inv.investigation_id} />
-          <WorkshopPanel investigationId={inv.investigation_id} />
-          <ImpactPanel investigationId={inv.investigation_id} />
+          <details>
+            <summary className="muted small">Earlier LotGuard rehearsal · issue-level matching</summary>
+            <p className="muted small">Use Safety campaigns above for installed-part traceability, repeat owner reports, repair verification and follow-up.</p>
+            <VerificationPanel investigationId={inv.investigation_id} />
+            <ApprovalPanel investigationId={inv.investigation_id} />
+            <WorkshopPanel investigationId={inv.investigation_id} />
+            <ImpactPanel investigationId={inv.investigation_id} />
+          </details>
           <EvidencePanel investigationId={inv.investigation_id} readOnly title="Customer photos on this issue" />
         </div>
       )}

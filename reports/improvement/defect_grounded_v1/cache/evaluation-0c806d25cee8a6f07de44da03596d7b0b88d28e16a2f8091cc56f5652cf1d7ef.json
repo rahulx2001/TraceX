@@ -1,0 +1,158 @@
+{
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "record_id": "c1",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.99,
+      "label_id": "other_unclear",
+      "confidence": 0.99,
+      "evidence": "something small hit my windshield causing a spiderweb crack in the center of windshield.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c2",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.98,
+      "label_id": "other_unclear",
+      "confidence": 0.98,
+      "evidence": "Windshield wipers are not fast enough the motor isn't fast enough to keep up with moderate to Heavy Rain",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c3",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.99,
+      "label_id": "other_unclear",
+      "confidence": 0.99,
+      "evidence": "I noticed a curved crack in the upper center of the windshield that wrapped below the rear view mirror area.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c4",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.99,
+      "label_id": "other_unclear",
+      "confidence": 0.99,
+      "evidence": "Windshield scratches easily when the slightest debris is on windshield and wipers are being used.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "out_of_taxonomy",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c5",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.99,
+      "label_id": "other_unclear",
+      "confidence": 0.99,
+      "evidence": "The Windshield has cracks in it from sitting in the driveway",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    },
+    {
+      "record_id": "c6",
+      "proposed_label_id": "other_unclear",
+      "proposed_confidence": 0.99,
+      "label_id": "other_unclear",
+      "confidence": 0.99,
+      "evidence": "I noticed a crack around the windshield. I starts from the bottom, up towards the middle and arcs toward the driver side.",
+      "part_evidence": "",
+      "mode_evidence": "",
+      "grounding_status": "symptom_only",
+      "evidence_verbatim": true,
+      "part_evidence_verbatim": false,
+      "mode_evidence_verbatim": false,
+      "abstention_reason": null
+    }
+  ],
+  "raw": {
+    "items": [
+      {
+        "record_id": "c1",
+        "label_id": "other_unclear",
+        "confidence": 0.99,
+        "evidence": "something small hit my windshield causing a spiderweb crack in the center of windshield.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c2",
+        "label_id": "other_unclear",
+        "confidence": 0.98,
+        "evidence": "Windshield wipers are not fast enough the motor isn't fast enough to keep up with moderate to Heavy Rain",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c3",
+        "label_id": "other_unclear",
+        "confidence": 0.99,
+        "evidence": "I noticed a curved crack in the upper center of the windshield that wrapped below the rear view mirror area.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c4",
+        "label_id": "other_unclear",
+        "confidence": 0.99,
+        "evidence": "Windshield scratches easily when the slightest debris is on windshield and wipers are being used.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "out_of_taxonomy"
+      },
+      {
+        "record_id": "c5",
+        "label_id": "other_unclear",
+        "confidence": 0.99,
+        "evidence": "The Windshield has cracks in it from sitting in the driveway",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      },
+      {
+        "record_id": "c6",
+        "label_id": "other_unclear",
+        "confidence": 0.99,
+        "evidence": "I noticed a crack around the windshield. I starts from the bottom, up towards the middle and arcs toward the driver side.",
+        "part_evidence": "",
+        "mode_evidence": "",
+        "grounding_status": "symptom_only"
+      }
+    ]
+  },
+  "batch_key": "0c806d25cee8a6f07de44da03596d7b0b88d28e16a2f8091cc56f5652cf1d7ef",
+  "phase": "evaluation",
+  "started_at": "2026-11-02T13:18:37+00:00",
+  "completed_at": "2026-11-02T13:18:41+00:00"
+}

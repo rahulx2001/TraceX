@@ -1,0 +1,39 @@
+{
+  "run_id": "clean_targeted",
+  "config": {
+    "command": [
+      ".venv-hackathon/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/frontline/ai_layer/test_defect_prediction_repair.py",
+      "tests/frontline/ai_layer/test_fuel_holdout.py",
+      "tests/frontline/ai_layer/test_safety_backtest.py",
+      "tests/frontline/ai_layer/test_oos_backtest.py",
+      "tests/frontline/test_onnx_embedder.py",
+      "tests/frontline/test_embedding_eval_paraphrase.py",
+      "tests/frontline/test_ml_pipeline_hardening.py",
+      "tests/frontline/test_audit_readiness_ml.py",
+      "tests/frontline/ai_layer/test_ml_improvement.py"
+    ],
+    "cwd": "/private/tmp/ml-score-repro-19bd5cf",
+    "environment": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "model_api_keys": "cleared"
+    }
+  },
+  "config_hash": "6ec2dd0d79b7bc6a5b62ec89ab918480940301fe2954ab3cdd80fdbe6304bd08",
+  "input_hashes": {
+    "reports/improvement/results.json": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+    "reports/improvement/development_manifest.json": "d904a27c970f7598f46f399ef5052eb88bcdaa650c3fa137b6f485e881f08220",
+    "requirements-lock.txt": "93f7450d2c7b28c9c90b1bf795d3e3099e43c2062f894eaf6185842abeb3811c",
+    "requirements-ml-improvement.txt": "cfaf23dd08448ab6e2909a2c29f2cf22a2fd6f737170e80a654122ec8618085d"
+  },
+  "data_hash": "fc54f1b21fb51472e1ba8e372e72af452d74e22ec1a0a6f8ba6d240fb4e14b9e",
+  "code_commit": "1590fb5c41bed282b9d82fa8cbdc472e8bfed8ca",
+  "code_hash": "d822c77b17b28317443b85e65ed49bbbbc00d5e212a8c15cd195f30f9b6d4811",
+  "seed": null,
+  "split": "clean software reproduction; no tuning",
+  "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m pytest -q tests/frontline/ai_layer/test_defect_prediction_repair.py tests/frontline/ai_layer/test_fuel_holdout.py tests/frontline/ai_layer/test_safety_backtest.py tests/frontline/ai_layer/test_oos_backtest.py tests/frontline/test_onnx_embedder.py tests/frontline/test_embedding_eval_paraphrase.py tests/frontline/test_ml_pipeline_hardening.py tests/frontline/test_audit_readiness_ml.py tests/frontline/ai_layer/test_ml_improvement.py",
+  "started_at": "2026-10-31T13:07:48.079151+00:00"
+}

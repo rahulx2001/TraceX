@@ -1,0 +1,33 @@
+{
+  "run_id": "clean_pipeline",
+  "config": {
+    "command": [
+      ".venv-hackathon/bin/python",
+      "-m",
+      "scripts.verify_ml_pipeline",
+      "--records",
+      "76",
+      "--out",
+      "reports/improvement/pipeline_clean.json"
+    ],
+    "cwd": "/private/tmp/ml-score-repro-19bd5cf",
+    "environment": {
+      "FRONTLINE_TEST_ISOLATION": "1",
+      "model_api_keys": "cleared"
+    }
+  },
+  "config_hash": "93f65b49e326d8b165768eb8d636956c3172932196e8bfdf85f164007a38d480",
+  "input_hashes": {
+    "reports/improvement/results.json": "1275f8f44b2784faa2a7c764de88785b09bab336817bffdf84dbae15bd8ac9e4",
+    "reports/improvement/development_manifest.json": "d904a27c970f7598f46f399ef5052eb88bcdaa650c3fa137b6f485e881f08220",
+    "requirements-lock.txt": "93f7450d2c7b28c9c90b1bf795d3e3099e43c2062f894eaf6185842abeb3811c",
+    "requirements-ml-improvement.txt": "cfaf23dd08448ab6e2909a2c29f2cf22a2fd6f737170e80a654122ec8618085d"
+  },
+  "data_hash": "fc54f1b21fb51472e1ba8e372e72af452d74e22ec1a0a6f8ba6d240fb4e14b9e",
+  "code_commit": "1590fb5c41bed282b9d82fa8cbdc472e8bfed8ca",
+  "code_hash": "d822c77b17b28317443b85e65ed49bbbbc00d5e212a8c15cd195f30f9b6d4811",
+  "seed": null,
+  "split": "clean software reproduction; no tuning",
+  "exact_command": "FRONTLINE_TEST_ISOLATION=1 .venv-hackathon/bin/python -m scripts.verify_ml_pipeline --records 76 --out reports/improvement/pipeline_clean.json",
+  "started_at": "2026-10-31T13:08:11.398650+00:00"
+}

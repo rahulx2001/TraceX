@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-01T10:36:16.136600+00:00",
+  "annotation_source": "agent_authored_fixture",
+  "split": "synthetic_software_test",
+  "notice": "SYNTHETIC SOFTWARE FIXTURES \u2014 not real complaints, human labels, model accuracy, or prospective evidence.",
+  "records": 300,
+  "scenario_families": 12,
+  "real_independent_observations": 0,
+  "no_human_annotation": true,
+  "classifier_executed": false,
+  "allowed_label_ids": {
+    "fuel_pump_failure": "FUEL PUMP / failure",
+    "fuel_system_other_electrical": "FUEL SYSTEM OTHER / electrical",
+    "hoses_lines_piping_and_fittings_leak": "HOSES LINES/PIPING AND FITTINGS / leak",
+    "tank_assembly_leak": "TANK ASSEMBLY / leak",
+    "fuel_system_diesel_detachment": "FUEL SYSTEM DIESEL / detachment",
+    "canister_failure": "CANISTER / failure",
+    "other_unclear": "other/unclear"
+  },
+  "dataset_sha256": "b61f887acc850867456526cdb3c8a912b2e4551feada772c4c3686af99fb144f",
+  "taxonomy_file_sha256": "285dc13ea5c9ddd9c2ee07f41d8b96d552a241aa069efb4fe9504d5415748812",
+  "generator_sha256": "c0b2f6dfbba25da16b3a514a6f2043bbc547cdd60fc3c1e1c154c863f0ec7a78",
+  "configuration_sha256": "5c935cd6fc2cc5a2a0e35f67ce5e47e263f7da3e054ee82e3de14b0ca8ee9dab",
+  "code_commit": "c446f580053ec2aa7c6146eeb80c626cb5977ca8",
+  "forbidden_uses": [
+    "human-review import",
+    "fitting/calibration/model selection",
+    "updating dashboard accuracy",
+    "replacing a frozen benchmark",
+    "prospective performance or project validation claims"
+  ]
+}

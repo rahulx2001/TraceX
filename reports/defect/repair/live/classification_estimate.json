@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-10-29T15:48:52+00:00",
+  "model": "meta-models/muse-spark-open-1026",
+  "prompt_version": "defect-cls-v2",
+  "batch_size": 16,
+  "taxonomy_sha256": "079706b21c3d073bd191b09d8204978ec02be8f9e6c75f4907c94e7ce543a3d1",
+  "batches_total": 98,
+  "batches_estimated": 98,
+  "records_total": 1281,
+  "records_estimated": 1281,
+  "estimated_input_tokens": 251976,
+  "output_tokens_per_record_assumed": 70,
+  "estimated_output_tokens_at_70": 89670,
+  "tokenizer": "chars/4 fallback",
+  "pricing_usd_per_mtok": {
+    "standard_input": 1.25,
+    "standard_output": 4.25,
+    "contributor_input": 0.1,
+    "contributor_output": 0.2
+  },
+  "estimated_cost_usd_at_70_output": {
+    "standard": 0.6961,
+    "contributor": 0.0431
+  },
+  "sensitivity_output_tokens_per_record": {
+    "60": 0.0406,
+    "120": 0.0559
+  },
+  "sensitivity_note": "cost sensitivity uses Contributor input/output prices and the exact input-token estimate",
+  "note": "dry run only; no network call was made; token counts are a local estimate, not a bill"
+}

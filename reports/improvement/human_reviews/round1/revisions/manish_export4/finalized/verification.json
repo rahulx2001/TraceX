@@ -1,0 +1,50 @@
+{
+  "verified_at": "2026-11-02T15:17:26+00:00",
+  "result": "pass",
+  "retained_evaluation_rows": {
+    "numerator": 300,
+    "denominator": 300
+  },
+  "components": 29,
+  "resolved_disagreements": {
+    "numerator": 31,
+    "denominator": 31
+  },
+  "baseline": {
+    "correct": 255,
+    "denominator": 300,
+    "missing": 0,
+    "specific_correct": 62,
+    "specific_denominator": 77
+  },
+  "candidate": {
+    "correct": 238,
+    "denominator": 300,
+    "missing": 6,
+    "specific_correct": 21,
+    "specific_denominator": 77
+  },
+  "unchanged_saved_predictions": true,
+  "checks": [
+    "adjudicated human labels match all saved score rows",
+    "all-row and specific accuracy arithmetic",
+    "all per-label precision/recall/F1 numerators and denominators",
+    "confusion total,diagonal and missing column",
+    "own-union macro F1",
+    "paired difference and counts",
+    "source CSV/parquet hashes"
+  ],
+  "scorer_exit_codes": {
+    "baseline": 0,
+    "candidate": 3
+  },
+  "candidate_exit_reason": "Six missing model predictions; score already written with full300 denominator.",
+  "new_model_inference": false,
+  "training_calibration_feature_selection": false,
+  "dashboard_accuracy_updated": false,
+  "candidate_common_macro_ci95": [
+    0.2064248313599698,
+    0.2410933483848772
+  ],
+  "candidate_common_ci_derivation": "Scale saved34-label bootstrap interval by34/43;the nine added labels have zero candidate predictions and human support in every draw."
+}

@@ -15,7 +15,7 @@ const REC_LABEL = {
   collecting: "Collecting replies",
   watch: "Watch — keep collecting",
   escalate: "Escalate — proceed to approval",
-  de_escalate: "De-escalate — recommend monitoring",
+  review_required: "Qualified review required",
 };
 
 export default function VerificationPanel({ investigationId }) {
@@ -83,14 +83,9 @@ export default function VerificationPanel({ investigationId }) {
         photos <strong>{s.photo_count}</strong>
       </p>
       <p className="muted small" style={{ margin: "6px 0" }}>{s.reason}</p>
-      {s.recommendation === "de_escalate" && (
-        <div className="banner banner-ok small" role="status" style={{ marginBottom: 10 }}>
-          NONE majority: recommend moving this investigation to monitoring via Ownership below.
-        </div>
-      )}
       {s.recommendation === "escalate" && (
         <div className="banner banner-warn small" role="status" style={{ marginBottom: 10 }}>
-          Symptom cluster verified by owners: proceed to the supervisor approval gate.
+          Review reported symptoms and the original finding. Owner reports are not a diagnosis.
         </div>
       )}
       {err && <div className="banner banner-error small" role="alert" style={{ marginBottom: 10 }}>{err}</div>}

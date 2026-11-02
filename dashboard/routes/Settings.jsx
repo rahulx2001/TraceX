@@ -10,6 +10,7 @@ import { Banner, bannerTone } from "../src/ui/Feedback.jsx";
 import { aiStatus } from "../src/ai/aiApi.js";
 import PackBuilder from "./PackBuilder.jsx";
 import FeatureStudio from "./FeatureStudio.jsx";
+import "./settings.css";
 
 export default function Settings() {
   const panel = hashQueryObject().tab || "general";
@@ -25,7 +26,7 @@ export default function Settings() {
   // Explicit opt-in persistence (item 20): memory-only by default, disk
   // only when the operator checks "Remember on this device".
   const [rememberKey, setRememberKey] = useState(false);
-  const [authRequired, setAuthRequired] = useState(false);
+  const [authRequired, setAuthRequired] = useState(null);
   const [deadLetters, setDeadLetters] = useState([]);
   const [dlLoading, setDlLoading] = useState(false);
   const [dlMsg, setDlMsg] = useState(null);
@@ -37,6 +38,8 @@ export default function Settings() {
   const [connDeliveries, setConnDeliveries] = useState([]);
   const [connMsg, setConnMsg] = useState(null);
   const [connLoading, setConnLoading] = useState(false);
+  const [connSaving, setConnSaving] = useState(false);
+  const [statusRefresh, setStatusRefresh] = useState(0);
   // [AI-LAYER] Server-side Meta key status — GET /api/ai/status only. The
   // dashboard never receives or sends the Meta key itself.
   const [metaStatus, setMetaStatus] = useState(null);
@@ -47,7 +50,7 @@ export default function Settings() {
       .then((s) => { if (live) setMetaStatus(s || { unavailable: true }); })
       .catch(() => { if (live) setMetaStatus({ unavailable: true }); });
     return () => { live = false; };
-  }, [panel]);
+  }, [panel, statusRefresh]);
 
   // All requests go through the centralized credential helper
   // (src/apiAuth.js) — no direct storage reads in components (item 46).
@@ -68,9 +71,9 @@ export default function Settings() {
     }
   }
 
-  async function loadDeadLetters() {
+  async function loadDeadLetters({ preserveMessage = false } = {}) {
     setDlLoading(true);
-    setDlMsg(null);
+    if (!preserveMessage) setDlMsg(null);
     try {
       const r = await fetch("/api/frontline/alerts/dead-letter?status=pending&limit=50", {
         headers: apiHeaders(),
@@ -95,15 +98,15 @@ export default function Settings() {
       );
       if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
       setDlMsg(`Replayed ${id}`);
-      await loadDeadLetters();
+      await loadDeadLetters({ preserveMessage: true });
     } catch (e) {
       setDlMsg(String(e));
     }
   }
 
-  async function loadConnector() {
+  async function loadConnector({ preserveMessage = false } = {}) {
     setConnLoading(true);
-    setConnMsg(null);
+    if (!preserveMessage) setConnMsg(null);
     try {
       const [st, dl] = await Promise.all([
         fetch("/api/frontline/connectors/status", { headers: apiHeaders() }),
@@ -130,6 +133,7 @@ export default function Settings() {
 
   async function saveConnector() {
     setConnMsg(null);
+    setConnSaving(true);
     try {
       const body = { enabled: !!connEnabled };
       // Only send webhook_url when the operator typed a new value (avoids
@@ -148,9 +152,11 @@ export default function Settings() {
       setConnSecret("");
       setConnUrl("");
       setConnMsg("Connector config saved.");
-      await loadConnector();
+      await loadConnector({ preserveMessage: true });
     } catch (e) {
       setConnMsg(String(e));
+    } finally {
+      setConnSaving(false);
     }
   }
 
@@ -163,7 +169,7 @@ export default function Settings() {
       );
       if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
       setConnMsg(`Replayed delivery ${id}`);
-      await loadConnector();
+      await loadConnector({ preserveMessage: true });
     } catch (e) {
       setConnMsg(String(e));
     }
@@ -173,16 +179,33 @@ export default function Settings() {
     load();
     loadDeadLetters();
     loadConnector();
-    fetch("/health")
+  }, []);
+
+  useEffect(() => {
+    let live = true;
+    fetch("/health", { headers: apiHeaders() })
       .then((r) => (r.ok ? r.json() : {}))
       .then((d) => {
-        setAuthRequired(!!d.auth_required);
+        if (!live) return;
+        setAuthRequired(typeof d.auth_required === "boolean" ? d.auth_required : null);
         setSingleWorker(d.single_worker);
         if (d.alert_webhook_url) setAlertWebhook(d.alert_webhook_url);
-        else setAlertWebhook("Configured on server");
+        else setAlertWebhook("Managed on server");
       })
-      .catch(() => setAlertWebhook("Configured on server"));
-  }, []);
+      .catch(() => {
+        if (!live) return;
+        setAuthRequired(null);
+        setAlertWebhook("Status unavailable");
+      });
+    return () => { live = false; };
+  }, [statusRefresh]);
+
+  function refreshGeneral() {
+    load();
+    loadDeadLetters();
+    loadConnector();
+    setStatusRefresh((value) => value + 1);
+  }
 
   function saveApiKey() {
     // Centralized credential handling: sync the live input into the store
@@ -191,9 +214,7 @@ export default function Settings() {
     setApiKey(apiKey.trim());
     notifyAuthChange();
     // Reload pack list + ops surfaces that require the key when auth is on.
-    load();
-    loadDeadLetters();
-    loadConnector();
+    refreshGeneral();
   }
 
   async function selectPack(packId) {
@@ -226,16 +247,10 @@ export default function Settings() {
 
   // Exactly one of: not configured / configured / unknown. Never the key,
   // a prefix of it, or its length.
-  let metaStatusLine = "Status unknown";
-  if (metaStatus) {
-    if (metaStatus.unavailable) {
-      metaStatusLine = "Status unknown";
-    } else if (typeof metaStatus.key_configured === "boolean") {
-      metaStatusLine = metaStatus.key_configured
-        ? "Server status: configured. Badge should read AI: Enhanced after refresh."
-        : "Server status: not configured. Badge will stay AI: Deterministic.";
-    }
-  }
+  const metaConfigured = !metaStatus?.unavailable && typeof metaStatus?.key_configured === "boolean"
+    ? metaStatus.key_configured : null;
+  const metaStatusLine = !metaStatus ? "Checking…" : metaConfigured === null
+    ? "Status unknown" : metaConfigured ? "Configured" : "Not configured";
 
   async function runDemoTraffic() {
     setSimBusy(true);
@@ -251,43 +266,28 @@ export default function Settings() {
   }
 
   return (
-    <div>
+    <div className="settings-page">
       <header className="page-header">
         <div>
           <h1>Settings</h1>
-          <p className="sub">Packs, pilot API key, connectors, and alert dead-letter replay.</p>
+          <p className="sub">Manage console access, domain packs and connections.</p>
         </div>
-        <div className="page-actions">
-          {panel === "general" && (
-            <button
-              type="button"
-              onClick={() => {
-                load();
-                loadDeadLetters();
-                loadConnector();
-              }}
-              disabled={loading}
-            >
-              {loading ? "Loading…" : "Refresh"}
-            </button>
-          )}
-        </div>
+        {panel === "general" && (
+          <button type="button" className="ghost" onClick={refreshGeneral} disabled={loading}>
+            {loading ? "Refreshing…" : "Refresh"}
+          </button>
+        )}
       </header>
 
-      <div className="tabs" role="tablist" aria-label="Settings panels">
+      <div className="tabs settings-tabs" role="tablist" aria-label="Settings panels">
         {[
           { id: "general", label: "General" },
           { id: "builder", label: "Pack builder" },
           { id: "lab", label: "Lab" },
         ].map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            role="tab"
-            aria-selected={panel === t.id}
+          <button key={t.id} type="button" role="tab" aria-selected={panel === t.id}
             className={"tab" + (panel === t.id ? " active" : "")}
-            onClick={() => patchHashQuery({ tab: t.id })}
-          >
+            onClick={() => patchHashQuery({ tab: t.id })}>
             {t.label}
           </button>
         ))}
@@ -295,421 +295,216 @@ export default function Settings() {
 
       {panel === "builder" && <PackBuilder embedded />}
       {panel === "lab" && <FeatureStudio embedded />}
-      {panel !== "general" ? null : (
-      <>
-      {simMsg && (
-        <Banner tone={bannerTone(simMsg)} onDismiss={() => setSimMsg(null)}>
-          {simMsg}
-        </Banner>
-      )}
-
-      {error && (
-        <div className="banner banner-error" role="alert">
-          {error}{" "}
-          <button type="button" className="ghost" onClick={() => setError(null)}>
-            Dismiss
-          </button>
-        </div>
-      )}
-
-      <div className="panel" style={{ marginBottom: 16 }}>
-        <h2>Pilot API key</h2>
-        <p className="muted" style={{ fontSize: 12, marginBottom: 8 }}>
-          Stored in this browser only. Sent on write routes when the server
-          requires authentication.
-          {authRequired
-            ? " Server currently requires a key."
-            : " Server is open (no key configured)."}
-          {" "}
-          This unlocks the local console. It does not turn on Meta models.
-          {singleWorker === true && (
-            <>
-              {" "}
-              Deploy note: single-worker process (in-process active registry).
-            </>
+      {panel === "general" && (
+        <div className="settings-general">
+          {error && (
+            <Banner tone="error" onDismiss={() => setError(null)}>{error}</Banner>
           )}
-        </p>
-        <div className="row" style={{ gap: 8 }}>
-          <input
-            type="password"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="Paste pilot API key"
-            aria-label="Pilot API key"
-            autoComplete="off"
-            style={{ flex: 1 }}
-          />
-          <button className="primary" onClick={saveApiKey}>
-            Save
-          </button>
-        </div>
-        <label className="check-row" style={{ marginTop: 10 }}>
-          <input
-            type="checkbox"
-            checked={rememberKey}
-            onChange={(e) => setRememberKey(e.target.checked)}
-            aria-label="Remember API key on this device"
-          />
-          Remember on this device (otherwise the key lives in memory only)
-        </label>
-      </div>
 
-      <div className="panel" style={{ marginBottom: 16 }}>
-        <h2>Meta model key</h2>
-        <p style={{ marginBottom: 8 }}>
-          This is not the Pilot API key above. The Meta key stays on the server. Do not paste it
-          into this page.
-        </p>
-        <p style={{ fontSize: 13.5, marginBottom: 8 }} data-testid="meta-key-status">
-          {metaStatusLine}
-        </p>
-        <ol style={{ margin: 0, paddingLeft: 20, lineHeight: 1.6 }}>
-          <li>
-            Open the repo file <span className="mono">.env</span> (it is gitignored). If it does not
-            exist, copy <span className="mono">.env.example</span> to <span className="mono">.env</span>.
-          </li>
-          <li>
-            Set <span className="mono">META_API_KEY</span> to the key from the hackathon. Leave the
-            Pilot API key field on this page empty unless the server was started with{" "}
-            <span className="mono">FRONTLINE_AUTH_REQUIRED=1</span>.
-          </li>
-          <li>
-            Restart the API with the documented command:
-            python -m uvicorn src.api.main:app --host 127.0.0.1 --port 8000.
-            That process loads the repo .env itself. A browser refresh is not enough, and this
-            page never accepts the Meta key.
-          </li>
-          <li>
-            Return here or look at the top bar. It should change from "AI: Deterministic" to the
-            Enhanced badge. Then run: <span className="mono">python -m scripts.ai_meta_smoke</span>
-          </li>
-        </ol>
-      </div>
+          <div className="settings-grid settings-access-grid">
+            <section className="panel settings-card" aria-labelledby="settings-api-title">
+              <div className="settings-card-heading">
+                <h2 id="settings-api-title">Pilot API key</h2>
+                <span className="settings-status">
+                  {authRequired === null ? "Status unknown" : authRequired ? "Key required" : "Open local"}
+                </span>
+              </div>
+              <p className="settings-description">Access this console with your pilot key. The key is used only by this browser.</p>
+              <div className="settings-key-row">
+                <input type="password" value={apiKey} onChange={(e) => setApiKey(e.target.value)}
+                  placeholder="Paste pilot API key" aria-label="Pilot API key" autoComplete="off" />
+                <button type="button" className="primary" onClick={saveApiKey}>Save</button>
+              </div>
+              <label className="check-row settings-check">
+                <input type="checkbox" checked={rememberKey} onChange={(e) => setRememberKey(e.target.checked)}
+                  aria-label="Remember API key on this device" />
+                Remember on this device
+              </label>
+              <p className="settings-help">Unchecked: keep the key in memory only.</p>
+            </section>
 
-      <div className="panel" style={{ marginBottom: 16 }}>
-        <h2>Demo traffic</h2>
-        <p className="muted" style={{ fontSize: 12, marginBottom: 8 }}>
-          Replay corpus rows as channel=simulated. They are excluded from live wallboard metrics unless Early warning has Include simulated on.
-        </p>
-        <button type="button" onClick={runDemoTraffic} disabled={simBusy}>
-          {simBusy ? "Seeding…" : "Seed 15 simulated contacts"}
-        </button>
-      </div>
+            <section className="panel settings-card" aria-labelledby="settings-meta-title">
+              <div className="settings-card-heading">
+                <h2 id="settings-meta-title">Meta model key</h2>
+                <span className={`settings-status ${metaConfigured === true ? "settings-status-ok" : ""}`} data-testid="meta-key-status">
+                  <i aria-hidden="true" />{metaStatusLine}
+                </span>
+              </div>
+              <p className="settings-description">Managed on the server. The Meta key enables AI models and should never be entered in the pilot key field.</p>
+              <p className="settings-meta-note">
+                {metaConfigured === true ? "A Meta key is configured on the server."
+                  : metaConfigured === false ? "Add a server key to enable the Meta AI layer."
+                  : "Refresh to check the server configuration."}
+              </p>
+              <details className="settings-disclosure settings-setup">
+                <summary>Server setup instructions</summary>
+                <ol>
+                  <li>Open the repository’s <code>.env</code> file, or copy <code>.env.example</code> to <code>.env</code>.</li>
+                  <li>Set <code>META_API_KEY</code> to your Meta key. Keep the pilot key separate; it controls console access.</li>
+                  <li>Restart the API using your deployment command. For local development: <code className="settings-command">python -m uvicorn src.api.main:app --host 127.0.0.1 --port 8000</code></li>
+                  <li>Refresh this page to check the configuration. Verify the connection with <code className="settings-command">python -m scripts.ai_meta_smoke</code></li>
+                </ol>
+                {singleWorker === true && <p className="settings-help">This server uses a single worker for its active-contact registry.</p>}
+              </details>
+            </section>
+          </div>
 
-      <div className="panel" style={{ marginBottom: 16 }}>
-        <h2>Active Domain Pack</h2>
-        {loading && <div className="empty">loading packs…</div>}
-        {!loading && (
-          <>
-            <div className="kvs" style={{ marginBottom: 14 }}>
-              <span className="k">active pack</span>
-              <span className="v mono">
-                {activePack ? (
-                  <>
-                    {activePack.id}{" "}
-                    <span className="muted">
-                      ({activePack.display_name} · v{activePack.pack_version})
-                    </span>
-                  </>
-                ) : (
-                  <span className="faint">{active || "—"}</span>
-                )}
-              </span>
+          <section className="panel settings-card settings-packs" aria-labelledby="settings-packs-title">
+            <div className="settings-card-heading">
+              <div>
+                <h2 id="settings-packs-title">Domain packs</h2>
+                <p className="settings-description">Choose the domain used for new contacts and analysis.</p>
+              </div>
+              {active && <span className="settings-status settings-status-ok"><i aria-hidden="true" />{activePack?.display_name || active}</span>}
             </div>
+            {loading ? <div className="settings-empty">Loading packs…</div> : (
+              <div className="settings-table-scroll">
+                <table className="settings-table">
+                  <thead><tr><th scope="col">Pack</th><th scope="col">Version</th><th scope="col">Fields</th><th scope="col">Validation</th><th scope="col"><span className="sr-only">Action</span></th></tr></thead>
+                  <tbody>
+                    {packs.filter((pack) => pack.id && !String(pack.id).startsWith("_") && !pack.error).map((pack) => (
+                      <tr key={pack.id} className={pack.is_active ? "settings-active-pack" : ""}>
+                        <td><strong>{pack.display_name || pack.id}</strong><span className="settings-secondary mono">{pack.id}</span></td>
+                        <td className="mono settings-version">{pack.pack_version || "—"}</td>
+                        <td><span className="settings-slot-list">{(pack.slots || []).slice(0, 4).join(", ") || "—"}</span>{(pack.slots || []).length > 4 && <span className="muted"> +{pack.slots.length - 4}</span>}</td>
+                        <td><span className={pack.lint_errors?.length ? "settings-validation-error" : "settings-validation-ok"}>{pack.lint_errors?.length ? `${pack.lint_errors.length} issues` : "Clean"}</span></td>
+                        <td className="settings-table-action">
+                          {pack.is_active ? <span className="settings-current">Active</span> : (
+                            <button type="button" className="ghost" disabled={switching || Boolean(pack.error) || Boolean(pack.lint_errors?.length)}
+                              onClick={() => selectPack(pack.id)} title={pack.lint_errors?.length ? "Pack has validation errors" : `Activate ${pack.display_name || pack.id}`}>
+                              Activate
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {!packs.length && !error && <div className="settings-empty">No domain packs available.</div>}
+              </div>
+            )}
+          </section>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>pack id</th>
-                  <th>display name</th>
-                  <th>version</th>
-                  <th>slots</th>
-                  <th>lint</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {packs.filter((p) => p.id && !String(p.id).startsWith("_") && !p.error).map((p) => (
-                  <tr key={p.id} className={p.is_active ? "selected" : ""}>
-                    <td className="mono">{p.id}</td>
-                    <td>
-                      {p.display_name || <span className="faint">—</span>}
-                    </td>
-                    <td className="mono">{p.pack_version || "—"}</td>
-                    <td>
-                      {(p.slots || []).slice(0, 4).map((s) => (
-                        <span className="chip" key={s} style={{ fontSize: 10 }}>
-                          {s}
-                        </span>
-                      ))}
-                      {(p.slots || []).length > 4 && (
-                        <span className="faint"> +{p.slots.length - 4}</span>
-                      )}
-                    </td>
-                    <td>
-                      {p.error ? (
-                        <span className="chip red">invalid</span>
-                      ) : p.lint_errors && p.lint_errors.length > 0 ? (
-                        <span className="chip red">
-                          {p.lint_errors.length} lint error(s)
-                        </span>
-                      ) : (
-                        <span className="chip green">clean</span>
-                      )}
-                    </td>
-                    <td style={{ textAlign: "right" }}>
-                      {p.is_active ? (
-                        <span className="chip green">active</span>
-                      ) : (
-                        <button
-                          className="primary"
-                          disabled={
-                            switching ||
-                            Boolean(p.error) ||
-                            (p.lint_errors && p.lint_errors.length > 0)
-                          }
-                          onClick={() => selectPack(p.id)}
-                          title={
-                            p.lint_errors && p.lint_errors.length > 0
-                              ? "pack has lint errors"
-                              : ""
-                          }
-                        >
-                          Activate
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        )}
-      </div>
+          <div className="settings-section-heading">
+            <h2>Connections & alerts</h2>
+            <span>Delivery settings and retries</span>
+          </div>
+          <div className="settings-grid settings-connections-grid">
+            <section className="panel settings-card" aria-labelledby="settings-connector-title">
+              <div className="settings-card-heading">
+                <h2 id="settings-connector-title">Outbound connector</h2>
+                <button type="button" className="settings-text-button" onClick={() => loadConnector()} disabled={connLoading || connSaving}>
+                  {connLoading ? "Refreshing…" : "Refresh connector"}
+                </button>
+              </div>
+              <p className="settings-description">Send case and investigation events to an HTTP webhook, or save them to the local outbox.</p>
+              <label className="check-row settings-check settings-connector-switch">
+                <input type="checkbox" checked={connEnabled} onChange={(e) => setConnEnabled(e.target.checked)} aria-label="Enable outbound connectors" />
+                Enable outbound events
+              </label>
+              <div className="settings-field">
+                <label htmlFor="settings-connector-url">Webhook URL <span className="settings-optional">optional</span></label>
+                <input id="settings-connector-url" value={connUrl} onChange={(e) => setConnUrl(e.target.value)}
+                  placeholder={connStatus?.webhook_url_redacted ? `Configured: ${connStatus.webhook_url_redacted}` : "https://hooks.example.com/tracex"}
+                  aria-label="Connector webhook URL" />
+                <p className="settings-help">Leave blank to keep the current URL. Without a URL, events go to the local outbox.</p>
+              </div>
+              <div className="settings-field">
+                <label htmlFor="settings-connector-secret">Shared secret <span className="settings-optional">optional</span></label>
+                <input id="settings-connector-secret" type="password" value={connSecret} onChange={(e) => setConnSecret(e.target.value)}
+                  placeholder={connStatus?.shared_secret_set ? "Configured · enter to replace" : "Enter a shared secret"}
+                  autoComplete="off" aria-label="Connector shared secret" />
+              </div>
+              <div className="settings-save-row">
+                <button type="button" className="primary" onClick={saveConnector} disabled={connSaving || connLoading}>
+                  {connSaving ? "Saving…" : "Save connector"}
+                </button>
+                {connStatus && <span className="settings-help">Destination: {connStatus.sink || "—"}</span>}
+              </div>
+              {connMsg && <Banner tone={bannerTone(connMsg)} onDismiss={() => setConnMsg(null)}>{connMsg}</Banner>}
+              <details className="settings-disclosure settings-deliveries">
+                <summary>Pending deliveries <span className="settings-count">{connLoading ? "…" : connStatus ? connDeliveries.length : "—"}</span></summary>
+                <p className="settings-help">Up to 50 pending deliveries. Replay resends the stored event to its original destination.</p>
+                {connStatus && <p className="settings-delivery-counts">{Object.entries(connStatus.delivery_counts || {}).map(([key, value]) => `${key}: ${value}`).join(" · ") || "No deliveries recorded."}</p>}
+                {!connDeliveries.length && !connLoading && connStatus && <div className="settings-empty">No pending connector deliveries.</div>}
+                {connDeliveries.length > 0 && <DeliveryTable rows={connDeliveries} kind="connector" onReplay={replayConnector} />}
+              </details>
+              <details className="settings-disclosure settings-technical">
+                <summary>Connector details</summary>
+                <p className="settings-help">The shared secret is sent as <code>X-Connector-Secret</code>. Local outbox files are stored in <code>data/connectors/outbox/</code>. This is a generic HTTP connector; dedicated Salesforce, ServiceNow and Twilio integrations are not included.</p>
+              </details>
+            </section>
 
-      <div className="panel" style={{ marginBottom: 16 }}>
-        <h2>Alerts</h2>
-        <div className="field">
-          <label>Alert webhook</label>
-          <input
-            value={alertWebhook}
-            readOnly
-            style={{ width: "100%" }}
-            placeholder="Configured on server"
-            aria-label="Alert webhook URL"
-          />
-          <span className="faint" style={{ fontSize: 11, marginTop: 4 }}>
-            Display only. Set the webhook URL on the server environment and
-            restart to enable outbound alert webhooks.
-          </span>
-        </div>
-      </div>
+            <section className="panel settings-card" aria-labelledby="settings-alerts-title">
+              <div className="settings-card-heading">
+                <h2 id="settings-alerts-title">Alerts</h2>
+                <span className="settings-status">Server managed</span>
+              </div>
+              <p className="settings-description">Deliver operational alerts to your configured webhook.</p>
+              <div className="settings-field">
+                <label htmlFor="settings-alert-url">Alert webhook</label>
+                <input id="settings-alert-url" value={alertWebhook} readOnly placeholder="Managed on server" aria-label="Alert webhook URL" />
+                <p className="settings-help">Set the URL in the server environment and restart the API to apply changes.</p>
+              </div>
+              <div className="settings-alert-queue">
+                <div className="settings-card-heading">
+                  <h3>Failed deliveries</h3>
+                  <button type="button" className="settings-text-button" onClick={() => loadDeadLetters()} disabled={dlLoading}>
+                    {dlLoading ? "Refreshing…" : "Refresh alerts"}
+                  </button>
+                </div>
+                <p className="settings-description">Slack and webhook alerts that exhausted their retries.</p>
+                {dlMsg && <Banner tone={bannerTone(dlMsg)} onDismiss={() => setDlMsg(null)}>{dlMsg}</Banner>}
+                {dlLoading && <div className="settings-empty">Loading failed alerts…</div>}
+                {!deadLetters.length && !dlLoading && !(dlMsg && bannerTone(dlMsg) === "error") && (
+                  <div className="settings-empty settings-empty-ok"><i aria-hidden="true" />No pending failed alerts.</div>
+                )}
+                {deadLetters.length > 0 && (
+                  <details className="settings-disclosure settings-deliveries">
+                    <summary>Review failed alerts <span className="settings-count">{deadLetters.length}</span></summary>
+                    <p className="settings-help">Up to 50 pending alerts. Replay resends the stored payload to the original endpoint.</p>
+                    <DeliveryTable rows={deadLetters} kind="alert" onReplay={replayDeadLetter} />
+                  </details>
+                )}
+              </div>
+            </section>
+          </div>
 
-      <div className="panel" style={{ marginBottom: 16 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 8,
-          }}
-        >
-          <h2 style={{ margin: 0 }}>Alert dead-letters</h2>
-          <button className="ghost" onClick={loadDeadLetters} disabled={dlLoading}>
-            {dlLoading ? "…" : "⟳ Refresh"}
-          </button>
+          <section className="panel settings-card settings-demo" aria-labelledby="settings-demo-title">
+            <div>
+              <h2 id="settings-demo-title">Demo traffic</h2>
+              <p className="settings-description">Replay 15 sample contacts. Live metrics include them only when test traffic is enabled in Early warning.</p>
+            </div>
+            <button type="button" className="ghost" onClick={runDemoTraffic} disabled={simBusy}>
+              {simBusy ? "Seeding…" : "Seed 15 simulated contacts"}
+            </button>
+            {simMsg && <Banner tone={bannerTone(simMsg)} onDismiss={() => setSimMsg(null)}>{simMsg}</Banner>}
+          </section>
         </div>
-        <p className="muted" style={{ fontSize: 12, marginBottom: 10 }}>
-          Failed Slack/webhook deliveries after retries. Replay resends the
-          stored payload to the original endpoint.
-        </p>
-        {dlMsg && (
-          <Banner tone={bannerTone(dlMsg)} onDismiss={() => setDlMsg(null)}>
-            {dlMsg}
-          </Banner>
-        )}
-        {deadLetters.length === 0 && !dlLoading && (
-          <div className="empty">No pending dead-letters.</div>
-        )}
-        {deadLetters.length > 0 && (
-          <table>
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>event</th>
-                <th>ref</th>
-                <th>attempts</th>
-                <th>error</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {deadLetters.map((d) => (
-                <tr key={d.dead_letter_id}>
-                  <td className="mono" style={{ fontSize: 11 }}>
-                    {(d.dead_letter_id || "").slice(0, 18)}…
-                  </td>
-                  <td>{d.event}</td>
-                  <td className="mono" style={{ fontSize: 11 }}>
-                    {d.ref_id}
-                  </td>
-                  <td className="mono">{d.attempts}</td>
-                  <td style={{ fontSize: 11, maxWidth: 180 }} className="muted">
-                    {(d.error || "—").slice(0, 80)}
-                  </td>
-                  <td style={{ textAlign: "right" }}>
-                    <button
-                      className="primary"
-                      onClick={() => replayDeadLetter(d.dead_letter_id)}
-                    >
-                      Replay
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-
-      <div className="panel" style={{ marginBottom: 16 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 8,
-          }}
-        >
-          <h2 style={{ margin: 0 }}>Outbound connector</h2>
-          <button className="ghost" onClick={loadConnector} disabled={connLoading}>
-            {connLoading ? "…" : "⟳ refresh"}
-          </button>
-        </div>
-        <p className="muted" style={{ fontSize: 12, marginBottom: 10 }}>
-          Generic HTTP webhook + dry-run file outbox for case / investigation
-          events. <strong>Not</strong> Salesforce, ServiceNow, or Twilio product
-          integration. Files land under <code>data/connectors/outbox/</code>.
-        </p>
-        <div className="field" style={{ marginBottom: 12 }}>
-          <label className="check-row">
-            <input
-              type="checkbox"
-              checked={connEnabled}
-              onChange={(e) => setConnEnabled(e.target.checked)}
-              aria-label="Enable outbound connectors"
-            />
-            <span>
-              Enabled
-              <span className="faint" style={{ display: "block", fontWeight: 400, fontSize: 11.5, marginTop: 2 }}>
-                When on, case and investigation events are posted to the webhook or written to the outbox.
-              </span>
-            </span>
-          </label>
-        </div>
-        <div className="field" style={{ marginBottom: 10 }}>
-          <label>Webhook URL (optional)</label>
-          <input
-            value={connUrl}
-            onChange={(e) => setConnUrl(e.target.value)}
-            placeholder={
-              connStatus?.webhook_url_redacted
-                ? `Configured: ${connStatus.webhook_url_redacted} — type to replace`
-                : "https://hooks.example.com/tracex"
-            }
-            aria-label="Connector webhook URL"
-            style={{ width: "100%" }}
-          />
-          <span className="faint" style={{ fontSize: 11, marginTop: 4 }}>
-            Leave empty to keep the current URL (or outbox-only dry-run when none
-            is set). Paste a full URL only when changing it.
-          </span>
-        </div>
-        <div className="field" style={{ marginBottom: 10 }}>
-          <label>Shared secret (optional → X-Connector-Secret)</label>
-          <input
-            type="password"
-            value={connSecret}
-            onChange={(e) => setConnSecret(e.target.value)}
-            placeholder={
-              connStatus?.shared_secret_set
-                ? "(set — enter to replace)"
-                : "Optional"
-            }
-            aria-label="Connector shared secret"
-            style={{ width: "100%" }}
-          />
-        </div>
-        <div className="row" style={{ gap: 8, marginBottom: 10 }}>
-          <button className="primary" onClick={saveConnector}>
-            Save connector
-          </button>
-          {connStatus && (
-            <span className="muted" style={{ fontSize: 12 }}>
-              sink={connStatus.sink || "—"} · counts={" "}
-              {Object.entries(connStatus.delivery_counts || {}).length === 0
-                ? "none yet"
-                : Object.entries(connStatus.delivery_counts || {})
-                    .map(([k, v]) => `${k}: ${v}`)
-                    .join(" · ")}
-            </span>
-          )}
-        </div>
-        {connMsg && (
-          <Banner tone={bannerTone(connMsg)} onDismiss={() => setConnMsg(null)}>
-            {connMsg}
-          </Banner>
-        )}
-        <h3 style={{ fontSize: 13, margin: "12px 0 8px" }}>
-          Pending deliveries
-        </h3>
-        {connDeliveries.length === 0 && !connLoading && (
-          <div className="empty">No pending connector deliveries.</div>
-        )}
-        {connDeliveries.length > 0 && (
-          <table>
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>event</th>
-                <th>ref</th>
-                <th>sink</th>
-                <th>error</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {connDeliveries.map((d) => (
-                <tr key={d.delivery_id}>
-                  <td className="mono" style={{ fontSize: 11 }}>
-                    {(d.delivery_id || "").slice(0, 18)}…
-                  </td>
-                  <td>{d.event}</td>
-                  <td className="mono" style={{ fontSize: 11 }}>
-                    {d.ref_id}
-                  </td>
-                  <td className="mono" style={{ fontSize: 11 }}>
-                    {d.sink}
-                  </td>
-                  <td style={{ fontSize: 11, maxWidth: 160 }} className="muted">
-                    {(d.error || "—").slice(0, 80)}
-                  </td>
-                  <td style={{ textAlign: "right" }}>
-                    <button
-                      className="primary"
-                      onClick={() => replayConnector(d.delivery_id)}
-                    >
-                      Replay
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-      </>
       )}
+    </div>
+  );
+}
+
+function DeliveryTable({ rows, kind, onReplay }) {
+  const isAlert = kind === "alert";
+  return (
+    <div className="settings-table-scroll">
+      <table className="settings-table settings-delivery-table">
+        <thead><tr><th scope="col">Event / ID</th><th scope="col">Reference</th><th scope="col">{isAlert ? "Attempts" : "Destination"}</th><th scope="col">Error</th><th scope="col"><span className="sr-only">Action</span></th></tr></thead>
+        <tbody>{rows.map((row) => {
+          const id = isAlert ? row.dead_letter_id : row.delivery_id;
+          return (
+            <tr key={id}>
+              <td><strong>{row.event}</strong><span className="settings-secondary mono" title={id}>{id?.length > 18 ? `${id.slice(0, 18)}…` : id}</span></td>
+              <td className="mono">{row.ref_id}</td>
+              <td>{isAlert ? row.attempts : row.sink}</td>
+              <td className="settings-error-cell" title={row.error || ""}>{(row.error || "—").slice(0, 80)}</td>
+              <td><button type="button" className="ghost" onClick={() => onReplay(id)} aria-label={`Replay ${isAlert ? "alert" : "delivery"} ${id}`}>Replay</button></td>
+            </tr>
+          );
+        })}</tbody>
+      </table>
     </div>
   );
 }

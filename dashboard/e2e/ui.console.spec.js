@@ -77,15 +77,13 @@ test.describe("UI Settings — API key + packs under auth", () => {
     await expect(page.getByText(/active pack|pack id/i).first()).toBeVisible();
   });
 
-  test("without key, settings asks for the pilot API key", async ({ page, request }) => {
+  test("without key, settings opens credential entry", async ({ page, request }) => {
     const health = await (await request.get("/health")).json();
     test.skip(health.auth_required === false, "open-mode server has no key to require");
     const consolePage = new ConsolePage(page);
     await consolePage.gotoHash("settings");
-    await expect(page.getByRole("heading", { name: "Pilot API key" })).toBeVisible();
-    await expect(page.getByRole("alert").filter({ hasText: "401" }).first()).toBeVisible();
-    // The removed sign-in page must not reappear as a gate.
-    await expect(page.getByRole("heading", { name: /Grounded Voice-of-Customer/i })).toHaveCount(0);
+    await expect(page.getByTestId("signin-page")).toBeVisible();
+    await expect(page.getByRole("button", { name: /Have an operator API key/ })).toBeVisible();
   });
 });
 
