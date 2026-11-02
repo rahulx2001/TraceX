@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "complete_pending_countersign",
+  "claim": "Third review (Gaurav, timed, prespecified 50-ID packet): 50/50 with per-record timing (median dwell ~63s); agreement with Rahul 47/50 = 94%, kappa 0.88; 3 disagreements adjudicated to other_unclear (countersign pending)",
+  "packet": "reports/improvement/human_reviews/round3-outsider-packet.json",
+  "verified_at": "2026-11-02T20:13:46+00:00",
+  "limits": [
+    "Reviewer independence rests on attestation plus timing and statistical signals.",
+    "Adjudication AI-assisted; human countersignature pending."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "revised_at": "2026-11-02T20:13:46+00:00",
+  "supersedes_rows": [
+    "S018",
+    "S033"
+  ],
+  "reason": "Third reviewer (Gaurav, timed, prespecified) disputed both; adjudicated per evidence rule. Original file preserved.",
+  "original_sha256": "7a9411446a32debf2585add82c1b42990fc729679e3ce3a2db42d74dfc4161cb",
+  "revised_sha256": "1727dda4a5facaf94fa3171e1767b7eb5d96c613d785f53695c964445e10946a"
+}

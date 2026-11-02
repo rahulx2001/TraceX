@@ -57,7 +57,7 @@
     },
     {
       "id": "original-human-review",
-      "claim": "Original sample: Rahul 300/300 and Rakesh Ranjan 300/300 (second blinded, prespecification-verified) human labels; agreement 269/300, kappa 0.80; adjudicated accuracy 255/300 = 85.0% (95% CI 80.5%-88.6%), macro F1 0.54; adjudication human-countersigned (Rahul, no overrides)",
+      "claim": "Original sample: Rahul 300/300 and Rakesh Ranjan 300/300 (second blinded, prespecification-verified) human labels; agreement 269/300, kappa 0.80; adjudicated accuracy 255/300 = 85.0% (95% CI 80.5%-88.6%), macro F1 0.54; adjudication human-countersigned (Rahul, no overrides); third timed review (Gaurav, prespecified 50-ID packet): 47/50 agreement, kappa 0.88, median dwell ~63s; revised accuracy still 255/300 = 85.0%",
       "status": "complete_adjudicated",
       "artifact": "reports/improvement/human_reviews/round1/review_status.json",
       "additional_artifacts": [

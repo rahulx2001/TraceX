@@ -1,0 +1,11 @@
+{
+  "reviewer": "Gaurav",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewed": 50,
+  "sample_size": 300,
+  "input_sha256": "1fe8866e17273c955c4b05bbf860034e70b8e9e31197e3cdaf09cc91031915aa",
+  "output_sha256": "161fd04957855a0792a9013d69ab0eafbd6dd153ad4d1117ff4c24dfed213ad7",
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "note": "Reviewer attestation records provenance; it does not independently verify expertise or correctness."
+}
