@@ -57,8 +57,8 @@
     },
     {
       "id": "original-human-review",
-      "claim": "Original sample: Rahul 300/300 and Rakesh Ranjan 300/300 (second blinded, prespecification-verified) human labels; agreement 269/300, kappa 0.80; adjudicated accuracy 255/300 = 85.0% (95% CI 80.5%-88.6%), macro F1 0.54; adjudication human-countersigned (Rahul, no overrides); third timed review (Gaurav, prespecified 50-ID packet): 47/50 agreement, kappa 0.88, median dwell ~63s; revised accuracy still 255/300 = 85.0%",
-      "status": "complete_adjudicated",
+      "claim": "Original sample: Rahul 300/300 attested single-reviewer labels; accuracy 246/300 = 82.0% (95% CI 77.3%-85.9%) scored against those labels only. No validated second review: Manish round superseded (identical arrays); Rakesh and Gaurav rounds withdrawn as machine-generated (see human_reviews/REJECTED_fabricated_rounds.md).",
+      "status": "single_reviewer_unvalidated",
       "artifact": "reports/improvement/human_reviews/round1/review_status.json",
       "additional_artifacts": [
         "reports/improvement/human_reviews/round1/human_review_provenance.json",
@@ -119,7 +119,7 @@
     },
     {
       "id": "grounded-human-review-candidate",
-      "claim": "Grounded candidate rejected (round-2 adjudicated labels): 238/300 = 79.3% vs baseline 255/300 = 85.0%; paired difference -5.7pp (95% CI -11.0 to -0.3); target 270/300 not met",
+      "claim": "Grounded candidate rejected (registered round-1 comparison, Rahul labels): 209/300 = 69.7% vs baseline 246/300 = 82.0%; paired difference -12.3pp (95% CI -17.3 to -7.3); target 270/300 not met",
       "status": "evaluated_rejected",
       "deployment_status": "not_deployed",
       "artifact": "reports/improvement/defect_grounded_v1/comparison.json",
