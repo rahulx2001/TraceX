@@ -1,5 +1,7 @@
 # TraceX — three-minute engineer workflow
 
+For the current LotGuard EPS B14 recording, use [the timed video script](LOTGUARD_VIDEO_SCRIPT.md) and [the narration-only text](LOTGUARD_NARRATION.txt). The workflow below preserves the earlier recording plan.
+
 TraceX helps an automotive quality or service engineer turn a multilingual owner report into a source-cited investigation and documented action. The customer supplies the vehicle association, installation provenance and workshop records. The model helps decide which evidence is missing; an engineer checks the claims and authorizes the next action.
 
 The final story is **Report → Investigate → Review → Evidence**. Start at `/ui/#demo` after `bash scripts/judge_setup.sh`, sign in with the issued local credential, and keep credentials out of the recording. Use the supervisor session for actions that require a named reviewer. Setup uses `data/hackathon/judge-v3/`; it does not reset earlier datasets or spend model credit.

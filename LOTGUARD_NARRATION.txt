@@ -1,0 +1,15 @@
+One steering complaint can point to a wider problem. TraceX helps engineers investigate the installed part, contact affected owners, and verify repairs. This walkthrough uses fictional records and an existing operations platform.
+
+Reports can begin by voice or typed Hindi or English. Here is our completed Honda City case. The photo, diagnostic code and reviewer assessment are stored. C0035 is a wheel-speed clue, so it does not confirm an EPS defect.
+
+Muse Spark can propose cited observations and read-only evidence lookups. We can open the original source, challenge a claim, and create a linked revision. An engineer reviews the interpretation before action. The batch-label image itself shows no confirmed damage.
+
+Matching the model name is not enough. Installation evidence ties this vehicle to EPS batch B14. Eleven reports share that reviewed scope. The caller's Medium severity inherits High review priority from severe parent reports.
+
+The campaign identifies 213 owners. Eleven have reported symptoms; the other 202 receive simulated warnings. The English and Hindi notices ask about symptoms and offer inspection. This owner replies YES and receives a workshop confirmation. Sixty-eight owners respond, and forty-one appointments are recorded.
+
+Here are the inspection, approved replacement part, repair, verification and follow-up. They are separate records. Nine fictional vehicles have findings and verified repairs after warnings, before any reported failure. Supplier containment stays open.
+
+The evidence packet preserves source records, reviewed installation data, actions and timestamps. Another engineer can inspect the reasoning. Recording a repair does not automatically close the campaign or clear every vehicle.
+
+The result is eleven linked reports, 202 warnings, and nine verified repairs in this simulation. Historical classifier accuracy is 82 percent, with macro-F1 0.514. The challenger was rejected; human countersignature is pending. The event work connects these reviewable steps. Code and evidence are public on GitHub. The goal is earlier intervention, with evidence for each decision.
