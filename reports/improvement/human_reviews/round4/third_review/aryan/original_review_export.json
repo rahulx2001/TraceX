@@ -1,0 +1,544 @@
+{
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewer": "ARYAN RAJ",
+  "exported_at": "2026-11-03T10:31:10.510Z",
+  "reviews": [
+    {
+      "sample_id": "S001",
+      "label": "other_unclear",
+      "notes": "The complaint reports that the front driver-side airbag failed to deploy during a multiple-vehicle collision at approximately 55 mph. No airbag warning light was illuminated. The occupant sustained a fractured finger, bruised hips, upper-body bruising, and back pain. The vehicle was declared a total loss. The specific technical cause of the airbag non-deployment is not established in the complaint."
+    },
+    {
+      "sample_id": "S002",
+      "label": "air_bag_restraint_control_module_failure",
+      "notes": "The complaint describes a persistent SRS airbag malfunction warning that remained unresolved despite two dealer diagnostic and repair attempts. This indicates a possible malfunction in the airbag/restraint control system. However, the exact faulty component has not been confirmed. The reported engine stalling issue may represent a separate safety-related defect and requires independent investigation."
+    },
+    {
+      "sample_id": "S003",
+      "label": "other_unclear",
+      "notes": "The 2016 Ford F-150 was involved in a serious collision, striking a street sign, an electrical pole, and a tree. Despite the significant impact and front-end damage, none of the airbags deployed. This raises concerns about the proper functioning and reliability of the vehicle's airbag restraint system. Photographs are available to support the reported incident. Further investigation is recommended to determine why the airbags failed to deploy."
+    },
+    {
+      "sample_id": "S004",
+      "label": "air_bag_restraint_control_module_failure",
+      "notes": "The owner reports that the Supplemental Restraint System (SRS) warning light illuminates intermittently while driving, approximately once per week. This recurring warning may indicate an issue within the airbag or restraint system and could affect its reliability. Further diagnostic inspection is recommended to identify the underlying cause and verify proper airbag system operation."
+    },
+    {
+      "sample_id": "S005",
+      "label": "other_unclear",
+      "notes": "The owner reports that the passenger-side airbag unexpectedly deployed while the 2017 Honda CR-V was being driven. No collision or warning lights were reported at the time of deployment. The vehicle was inspected by a dealer, but the cause of the unintended airbag deployment could not be determined. The vehicle was not repaired, and the manufacturer was notified. This incident raises concerns about unintended airbag deployment and the reliability of the supplemental restraint system. Further investigation is recommended."
+    },
+    {
+      "sample_id": "S006",
+      "label": "occupant_classification_software",
+      "notes": "The owner reports that the passenger airbag indicator incorrectly remains ON when the front passenger seat is unoccupied. The airbag OFF indicator illuminates during the warning light check but then turns off and remains off. The owner also expresses concern that the occupant classification system may not accurately detect passenger weight, potentially resulting in incorrect airbag activation or deactivation. Further investigation of the passenger occupancy detection and classification system is recommended."
+    },
+    {
+      "sample_id": "S007",
+      "label": "camera_software",
+      "notes": "The owner reports that the rear backup camera operates intermittently. This issue may affect the driver's ability to see obstacles and pedestrians behind the vehicle while reversing, increasing the risk of a backing collision. Further inspection of the backup camera system and its software is recommended to identify the cause of the intermittent operation."
+    },
+    {
+      "sample_id": "S008",
+      "label": "camera_software",
+      "notes": "The owner reports that the rear-view backup camera progressively deteriorated, initially displaying distorted images and lines before showing a blue screen and eventually becoming completely inoperative. The tailgate electrical connections were checked and the camera was replaced, but the issue persisted. The failure prevents the driver from viewing the area behind the vehicle while reversing, creating a potential safety risk, particularly around pedestrians and children. Further investigation of the camera system, wiring, and related electronics is recommended."
+    },
+    {
+      "sample_id": "S009",
+      "label": "camera_software",
+      "notes": "The owner reports that the rear backup camera intermittently fails to operate as intended. The vehicle is subject to NHTSA recall 23V342000 related to the back-over prevention system. However, the required recall repair parts were unavailable, preventing the dealer from completing the repair. The issue remains unresolved and may compromise rear visibility while reversing, creating a potential safety risk. Further investigation and timely completion of the recall repair are recommended."
+    },
+    {
+      "sample_id": "S010",
+      "label": "camera_software",
+      "notes": "The owner reports that the rear-view camera intermittently displays a \"Rear Camera Unavailable\" message while driving. The vehicle has been taken to the dealer multiple times, but the issue could not be duplicated and no repair was performed. The failure remains unresolved despite repeated service visits. The intermittent camera malfunction may compromise rear visibility and increase the risk of accidents while reversing. Further investigation of the rear camera system, wiring, and software is recommended."
+    },
+    {
+      "sample_id": "S011",
+      "label": "other_unclear",
+      "notes": "The consumer reports that the harness tightening strap on the Nuna Rava child car seat was fraying despite being used according to the manufacturer's instructions. The seat had not been involved in an accident or damaged through misuse. The frayed strap raised concerns about the integrity of the child restraint harness and the safety of the child. The consumer discontinued use and reported the issue to the manufacturer. Although a replacement shell was initially delayed by up to three months, the manufacturer eventually agreed to replace the seat. Further investigation into the harness strap durability is recommended."
+    },
+    {
+      "sample_id": "S012",
+      "label": "other_unclear",
+      "notes": "The owner reports that one of the locking indicator windows on the rotational child car seat consistently displays green, even when the seat is not properly locked. This creates a serious safety concern because the indicator may falsely suggest that the seat is securely installed and ready for use. The defect could result in a child being transported in an unlocked seat, increasing the risk of injury during a vehicle collision. Child Passenger Safety Technicians advised discontinuing use of the seat. The manufacturer has been contacted, and the owner is awaiting further instructions. Inspection of the seat has not yet been completed."
+    },
+    {
+      "sample_id": "S013",
+      "label": "other_unclear",
+      "notes": "The complaint describes the absence of lower LATCH anchors in the vehicle's design. No component failure or malfunction was reported. The issue concerns vehicle equipment/design rather than a confirmed defect. Other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S014",
+      "label": "wiring_electrical",
+      "notes": "The complaint reports an electrical failure during jump-starting. The vehicle sparked, resulting in a blown fuse box and inoperative heater and air blower. The vehicle required dealership service. WIRING / electrical is the closest supported defect category."
+    },
+    {
+      "sample_id": "S015",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint reports a defective instrument/gauge cluster that failed to display the fuel level accurately. The vehicle ran out of fuel on the highway, creating a dangerous situation. INSTRUMENT CLUSTER/PANEL is the appropriate supported defect category."
+    },
+    {
+      "sample_id": "S016",
+      "label": "relay_stall",
+      "notes": "Customer reports repeated loss of engine power during acceleration, especially uphill and under load. Vehicle bogs down and loses speed, creating a safety hazard during freeway merging. Problem persists after the initial recall repair, with a second dealer repair attempt pending."
+    },
+    {
+      "sample_id": "S017",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint describes an intermittent instrument cluster malfunction where the fuel gauge display glitches under certain weather conditions, preventing the driver from viewing fuel level and mileage information. This is related to the instrument cluster/panel."
+    },
+    {
+      "sample_id": "S018",
+      "label": "other_unclear",
+      "notes": "The complaint reports an unexpected and repeatable horn failure in a 2019 Ford Explorer. The horn is currently nonfunctional, creating a potential safety concern. No specific root cause or defective component has been diagnosed or confirmed. Therefore, the exact electrical fault remains unclear."
+    },
+    {
+      "sample_id": "S019",
+      "label": "relay_stall",
+      "notes": "The complaint reports that a 2016 Honda Pilot shut off at a stop light due to the auto idle-stop system and failed to restart. The vehicle remained unable to start for approximately five minutes despite multiple attempts. This indicates an intermittent engine restart failure associated with the auto idle-stop system. The exact root cause is not confirmed."
+    },
+    {
+      "sample_id": "S020",
+      "label": "other_unclear",
+      "notes": "The complaint reports an intermittent electrical/audio system malfunction causing extremely loud popping noises when starting the vehicle, followed by persistent static noise. The issue has occurred on two separate occasions and has resulted in poor rear speaker sound quality and rattling. The exact cause has not been diagnosed or confirmed."
+    },
+    {
+      "sample_id": "S021",
+      "label": "ignition_compliance_or_label",
+      "notes": "The complaint reports an ignition system security defect in which the vehicle can be started without a key using a USB cable after accessing and unplugging the ignition switch. This vulnerability makes the vehicle susceptible to theft. The owner reports that the vehicle was stolen using this method. The issue is related to the ignition system."
+    },
+    {
+      "sample_id": "S022",
+      "label": "wiring_electrical",
+      "notes": "The complaint reports a persistent vehicle charging system failure causing safety and monitoring systems to shut down. The battery and alternator have been replaced, but the vehicle still fails to maintain a charge. Multiple repair attempts have been unsuccessful, and the vehicle remains unsafe to drive. The issue is related to the electrical charging system."
+    },
+    {
+      "sample_id": "S023",
+      "label": "other_unclear",
+      "notes": "The complaint reports repeated hybrid system failures in a 2017 Hyundai Sonata Plug-in Hybrid. The vehicle displays a Check Hybrid System warning, shuts down while driving, and experiences complete loss of motive power. The complaint also describes intermittent loss of braking power and limp-home mode. A replacement hybrid battery was recommended, but the exact root cause remains unresolved. This is a serious vehicle safety concern."
+    },
+    {
+      "sample_id": "S024",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint involves an intermittent instrument cluster failure. The instrument panel randomly flickers and becomes inoperative while driving, preventing the driver from viewing the fuel gauge and engine temperature gauge. The dealer was unable to duplicate the issue, and the vehicle was not repaired. The failure is directly related to the instrument cluster/panel."
+    },
+    {
+      "sample_id": "S025",
+      "label": "electrical_system_software_software",
+      "notes": "The complaint involves multiple electronic system malfunctions, including messaging, navigation, phone connectivity, lane assist and radar. The dealer identified the computer head as faulty, but a replacement part is not yet available. The issue remains unresolved, and the customer has concerns about relying on the vehicle's driver-assistance and safety features. The complaint is best classified under electrical system software."
+    },
+    {
+      "sample_id": "S026",
+      "label": "body_control_module_software_software",
+      "notes": "The complaint involves intermittent rear liftgate operation. The liftgate fails to open or operates erratically through the dashboard button, key fob and exterior switch. Occupants have reportedly become trapped inside the rear of the vehicle when the liftgate fails to operate. The dealer was unable to resolve the issue. The symptoms are consistent with a possible body control module malfunction affecting liftgate operation."
+    },
+    {
+      "sample_id": "S027",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint involves intermittent freezing of the digital instrument cluster display. The digital screen freezes while the analog speedometer continues to operate. The issue prevents the driver from accessing vehicle information, using cruise control and viewing blind-spot camera images. The display returns to normal after the vehicle is shut off for several hours. The complaint is directly related to the instrument cluster/panel."
+    },
+    {
+      "sample_id": "S028",
+      "label": "wiring_electrical",
+      "notes": "The complaint involves the power steering warning light illuminating, possibly due to water intrusion following recent heavy rainfall. The suspected issue is related to the vehicle's electrical system, potentially involving wiring or electrical connections. No specific component failure has been confirmed."
+    },
+    {
+      "sample_id": "S029",
+      "label": "other_unclear",
+      "notes": "The complaint involves sticky steering at highway speeds, making minor steering adjustments difficult and potentially unsafe. The customer also reports intermittent illumination of the low oil pressure warning light on four occasions, despite the oil level appearing normal. No specific electrical component or software failure has been confirmed. The exact cause remains unclear."
+    },
+    {
+      "sample_id": "S030",
+      "label": "wiring_electrical",
+      "notes": "The complaint involves intermittent electrical system failure in the vehicle. Applying the brakes causes a complete vehicle shutdown with an electrical system warning. The brakes briefly become ineffective before mechanical braking engages. The vehicle also enters low-power or turtle mode during acceleration. The issue is suspected to involve an electrical short circuit or wiring fault. The exact cause has not been confirmed."
+    },
+    {
+      "sample_id": "S031",
+      "label": "other_unclear",
+      "notes": "The complaint involves excessive engine oil consumption and intermittent illumination of the oil warning and check engine lights. Despite previous repairs performed by the Kia dealership, oil consumption has increased significantly and the warning light continues to appear. A second repair shop found the engine oil level extremely low, with only one quart drained during the oil change. No specific electrical component failure has been confirmed. The primary concern is an unresolved engine oil consumption issue."
+    },
+    {
+      "sample_id": "S032",
+      "label": "other_unclear",
+      "notes": "The complaint involves a vehicle fire that originated near the passenger-side dashboard beneath the glove box. Smoke entered the cabin shortly after the vehicle was started, followed by flames that engulfed the dashboard and destroyed the vehicle interior. The vehicle was declared a total loss. The exact cause and failed component have not been identified. No specific wiring or electrical component failure has been confirmed."
+    },
+    {
+      "sample_id": "S033",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint involves delayed instrument panel operation during cold weather. The instrument panel takes more than 10 minutes to boot up and function properly. The reported failure directly affects the instrument cluster/panel. No specific wiring or software failure has been confirmed."
+    },
+    {
+      "sample_id": "S034",
+      "label": "wiring_electrical",
+      "notes": "The complaint involves a safety recall concerning a defect in the Hydraulic Electronic Control Unit (HECU), which may cause an electrical malfunction and engine compartment fire while driving or parked. The malfunction indicator lamp also illuminated. The required repair part was unavailable, leaving the vehicle unrepaired and the fire risk unresolved. The complaint is related to a potential electrical hardware fault."
+    },
+    {
+      "sample_id": "S035",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint involves the dashboard instrument display going completely blank while driving on the highway. The driver was unable to view vehicle speed, fuel level, and engine performance indicators. The customer reports that the vehicle experiences symptoms similar to those described in an existing safety recall, although the VIN was not included in the recall. The complaint is directly related to the instrument cluster/panel."
+    },
+    {
+      "sample_id": "S036",
+      "label": "relay_stall",
+      "notes": "The complaint involves intermittent engine stalling while driving on the interstate, resulting in loss of power steering and requiring the driver to pull over and restart the vehicle. The crankshaft position sensor was previously replaced, but the problem continues to occur. The dealer was unable to reproduce or resolve the issue. The vehicle has experienced this failure at least five times and is considered unsafe to drive."
+    },
+    {
+      "sample_id": "S037",
+      "label": "electrical_system_software_software",
+      "notes": "The complaint involves an APIM malfunction causing multiple vehicle electronic features to stop functioning properly, including rear traffic alert, navigation, radio, HVAC and cruise control. The dealership attempted to reboot the system, but the reboot failed. A software update using a USB drive was recommended as the next troubleshooting step. The complaint is related to the electrical system software."
+    },
+    {
+      "sample_id": "S038",
+      "label": "wiring_electrical",
+      "notes": "The complaint involves repeated electrical system malfunctions caused by a previously tampered electrical wiring harness. Inspection revealed improperly modified wiring wrapped with electrical tape, resulting in electrical system failure. Although repairs were performed, warning lights and vehicle stalling continued to occur. The complaint is directly related to an electrical wiring defect."
+    },
+    {
+      "sample_id": "S039",
+      "label": "other_unclear",
+      "notes": "The complaint concerns an outstanding NHTSA electrical system recall (Campaign No. 23V734000). The manufacturer and local dealer were notified, but the required repair part was not available. The customer reports an unreasonable delay in obtaining the recall repair. No actual electrical system failure or specific defective component has been reported."
+    },
+    {
+      "sample_id": "S040",
+      "label": "electrical_system_software_software",
+      "notes": "The complaint involves intermittent malfunction of the infotainment media screen and console. The screen repeatedly flickers, audio restarts continuously, and the user is unable to turn off the media system or adjust the volume. The display also goes blank when the backup camera is activated. The dealer was unable to identify or resolve the issue. The complaint is best classified under electrical system software."
+    },
+    {
+      "sample_id": "S041",
+      "label": "other_unclear",
+      "notes": "The complaint involves continuous burnout of the daytime running lights (DRL) in the vehicle's Quad Beam headlights. The customer reports a recurring lighting issue and requests that Ford address the safety concern. No specific electrical component, wiring fault, relay failure, or software malfunction has been confirmed. The exact cause remains unclear."
+    },
+    {
+      "sample_id": "S042",
+      "label": "other_unclear",
+      "notes": "The complaint involves severe vehicle performance issues. While driving on the highway, the dashboard warning lights illuminated and the vehicle slowed down until it would no longer move. The engine was subsequently replaced, but the vehicle continues to exhibit poor performance, fails to reach normal operating temperature, and experiences shaking. No specific electrical component or system failure has been confirmed. The exact cause remains unclear."
+    },
+    {
+      "sample_id": "S043",
+      "label": "other_unclear",
+      "notes": "The vehicle experienced a loss of power while driving on the highway, with multiple dashboard warning lights illuminating. The engine was replaced, but the vehicle continues to exhibit poor performance, fails to reach normal operating temperature, and shakes. No specific electrical component failure has been identified. The exact cause remains unclear."
+    },
+    {
+      "sample_id": "S044",
+      "label": "electronic_stability_control_esc_compliance_or_label",
+      "notes": "The complaint involves an unexpected vehicle stop while driving at approximately 40 MPH. The engine continued running, but the accelerator pedal became unresponsive. The electronic stability assist warning light illuminated during the incident. The vehicle has not been diagnosed, and the dealer was unable to reproduce the issue. The complaint is associated with the electronic stability control system."
+    },
+    {
+      "sample_id": "S045",
+      "label": "other_unclear",
+      "notes": "The complaint does not describe any vehicle defect, malfunction, symptoms, or component failure. The only reported text is \"Good.\" There is insufficient information to support an electronic stability control defect or any other listed defect. Classification as other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S046",
+      "label": "electronic_stability_control_esc_compliance_or_label",
+      "notes": "The complaint involves repeated brake vibration and shaking during braking. The rotors overheated, causing the brakes to seize. Previous replacement of the calipers, brakes and rotors did not resolve the issue. The dealer diagnosed a faulty hydraulic control unit (HCU), which requires replacement. The vehicle remains unrepaired. The complaint is related to the electronic stability control and hydraulic braking system."
+    },
+    {
+      "sample_id": "S047",
+      "label": "other_unclear",
+      "notes": "The complaint involves a persistent loud engine knocking and ticking noise, particularly during idling and acceleration. The vehicle also experiences transmission slipping, harsh shifting, grinding noises and intermittent stalling. Previous transmission repairs and component replacements did not resolve the issues. A black box flight recorder test was performed, but the exact cause of the engine noise and transmission malfunction remains unidentified. No specific listed defect has been confirmed."
+    },
+    {
+      "sample_id": "S048",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "The complaint involves engine failure following a remote start malfunction. The vehicle began shaking, and the check engine light illuminated. The dealership diagnosed coolant leaking into the engine and determined that the engine required complete replacement. The vehicle was taken to the dealership for repair, and the replacement engine was not immediately available. The complaint is related to an engine and engine cooling system leak."
+    },
+    {
+      "sample_id": "S049",
+      "label": "other_unclear",
+      "notes": "The complaint involves sudden engine failure while driving at approximately 65 MPH. The engine unexpectedly shut off and was subsequently diagnosed as seized by an independent repair shop. The driver reported that no oil pressure warning or check engine light illuminated before the failure. No specific cause of the engine seizure has been identified. The complaint is best classified as other/unclear."
+    },
+    {
+      "sample_id": "S050",
+      "label": "other_unclear",
+      "notes": "The complaint involves intermittent engine shaking, a flashing check engine light, and sudden loss of acceleration while driving on the highway. The vehicle has experienced this issue on two separate occasions while operating in ECON mode. The driver was unable to accelerate safely and had to pull over and restart the vehicle. The symptoms temporarily disappeared after restarting. No specific failed engine component or listed defect has been confirmed. The exact cause remains unclear."
+    },
+    {
+      "sample_id": "S051",
+      "label": "other_unclear",
+      "notes": "The complaint involves excessive engine oil consumption, requiring more than four quarts of oil to be added every 3,000 miles between oil changes. No external oil leak or black smoke from the exhaust has been reported. The low oil warning light does not consistently illuminate despite the oil level becoming critically low. The dealership considers the oil consumption acceptable, but the customer reports ongoing concerns about engine damage and potential fire hazards. No specific failed engine component or listed defect has been confirmed."
+    },
+    {
+      "sample_id": "S052",
+      "label": "other_unclear",
+      "notes": "The vehicle experienced sudden engine malfunction and stalling due to a failed engine rod bearing. This is an internal engine failure, and none of the listed supported defect categories specifically covers this condition. Therefore, classify as other/unclear."
+    },
+    {
+      "sample_id": "S053",
+      "label": "belts_and_associated_pulleys_detachment",
+      "notes": "The vehicle experienced engine failure due to a broken oil belt, as diagnosed by an independent mechanic. The complaint specifically identifies belt failure as the cause."
+    },
+    {
+      "sample_id": "S054",
+      "label": "other_unclear",
+      "notes": "The vehicle experienced sudden loss of acceleration, rough engine operation, and warning indicators while driving. The engine restarted and temporarily returned to normal after being switched off. No specific failed component or physical defect was identified."
+    },
+    {
+      "sample_id": "S055",
+      "label": "other_unclear",
+      "notes": "The engine reportedly suffered catastrophic internal failure at approximately 75,000 miles. The complaint mentions piston-related manufacturer defect, but no specific missing part, leak, corrosion, or belt detachment is identified."
+    },
+    {
+      "sample_id": "S056",
+      "label": "other_unclear",
+      "notes": "Customer reports engine fire concerns, unresolved recall, and flashing dashboard warning lights. No specific component failure or supported defect is identified. Other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S057",
+      "label": "other_unclear",
+      "notes": "Customer reports low-speed jerking, hesitation during acceleration, delayed shifting, and engine overheating. No specific component failure, missing part, or leak is identified. Other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S058",
+      "label": "other_unclear",
+      "notes": "Vehicle stalled while driving and was diagnosed with catastrophic camshaft failure by an independent mechanic. The identified failure does not match any listed supported defect category. Other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S059",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "it was determined that the engine needed to be replaced due to a coolant leak.\"\nBecause coolant is part of the engine cooling system and caused an engine failure/replacement, ENGINE AND ENGINE COOLING / leak directly corresponds to the stated diagnosis and component system."
+    },
+    {
+      "sample_id": "S060",
+      "label": "other_unclear",
+      "notes": "Symptoms only (inability to accelerate, rough idle); no specific failed part or listed defect established.\n"
+    },
+    {
+      "sample_id": "S061",
+      "label": "other_unclear",
+      "notes": "Abnormal engine knocking was caused by faulty cam phasers. Cam phasers were replaced, but the failure does not match any of the listed supported defect categories. Select other/unclear."
+    },
+    {
+      "sample_id": "S062",
+      "label": "other_unclear",
+      "notes": "Excessive engine oil consumption reported. No specific oil leak or failed component identified. Other/unclear."
+    },
+    {
+      "sample_id": "S063",
+      "label": "other_unclear",
+      "notes": "Engine cam phaser failure and related timing chain damage reported. No matching specific defect category available. Other/unclear."
+    },
+    {
+      "sample_id": "S064",
+      "label": "other_unclear",
+      "notes": "Engine shuddering and check-engine warning light reported. Exact cause or failed engine component not established. Other/unclear."
+    },
+    {
+      "sample_id": "S065",
+      "label": "other_unclear",
+      "notes": "Engine overheating warning reported during acceleration. No specific failed component or coolant leak identified. Other/unclear."
+    },
+    {
+      "sample_id": "S066",
+      "label": "other_unclear",
+      "notes": "Excessive engine oil consumption and engine performance issues reported, including knocking and loss of acceleration. Internal cylinder damage mentioned. No matching listed defect category. Other/unclear."
+    },
+    {
+      "sample_id": "S067",
+      "label": "other_unclear",
+      "notes": "Engine stalling and knocking reported. Dealer recommended complete engine replacement. Specific failed component not identified. Other/unclear."
+    },
+    {
+      "sample_id": "S068",
+      "label": "other_unclear",
+      "notes": "Vehicle intermittently fails to move despite engine RPM increasing, followed by sudden engagement and forward lurching. Possible transmission or drivetrain issue. No matching listed defect. Other/unclear."
+    },
+    {
+      "sample_id": "S069",
+      "label": "other_unclear",
+      "notes": "Engine knocking and grinding followed by sudden shutdown and failure to restart. Engine oil was missing, but no external leak or specific failed component identified. Other/unclear."
+    },
+    {
+      "sample_id": "S070",
+      "label": "other_unclear",
+      "notes": "Integrated Thermal Management System (ITMS) malfunction reported, causing severe engine power loss and speed limitation. No specific listed component defect identified. Other/unclear."
+    },
+    {
+      "sample_id": "S088",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "Coolant is seeping into the engine cylinders, indicating an internal engine coolant leak. Check for a possible head gasket or related sealing failure."
+    },
+    {
+      "sample_id": "S092",
+      "label": "other_unclear",
+      "notes": "Engine entered limp mode with coolant temperature warning illuminated. Recurrent engine failure reported, and engine replacement was recommended. Specific failed component or defect is not identified."
+    },
+    {
+      "sample_id": "S095",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "Coolant intrusion into the engine resulted in engine failure at 89,000 miles. The complaint explicitly identifies an internal engine coolant leak."
+    },
+    {
+      "sample_id": "S108",
+      "label": "tail_lights_leak",
+      "notes": "Rear taillight covers are deteriorating, with discoloration and fogging reported, indicating a possible moisture intrusion issue."
+    },
+    {
+      "sample_id": "S116",
+      "label": "other_unclear",
+      "notes": "Cruise control intermittently disengages and cannot be reactivated until the vehicle is stopped and restarted. No specific failed component is identified."
+    },
+    {
+      "sample_id": "S118",
+      "label": "other_unclear",
+      "notes": "Automatic emergency braking unexpectedly activated despite no obstacle being present, causing sudden braking. No specific failed component is identified."
+    },
+    {
+      "sample_id": "S121",
+      "label": "other_unclear",
+      "notes": "Multiple symptoms reported, including steering wander/disconnected steering feel at highway speeds and intermittent false pre-collision warnings. No specific failed component or confirmed defect identified. Further diagnosis required."
+    },
+    {
+      "sample_id": "S125",
+      "label": "other_unclear",
+      "notes": "Fuel dilution and gasoline smell in engine oil are reported, but no specific failed fuel system component is identified. No listed defect is directly supported."
+    },
+    {
+      "sample_id": "S126",
+      "label": "other_unclear",
+      "notes": "Recall notification reported, but no vehicle failure or defective component was experienced. No specific supported defect is identified."
+    },
+    {
+      "sample_id": "S133",
+      "label": "other_unclear",
+      "notes": "Dealer diagnosed a suspected fuel injector issue with P0301 cylinder 1 misfire and P0300 multiple misfire codes. Replacing ignition coils and spark plugs did not resolve the misfire. Fuel injector replacement and valve clearance inspection were recommended. No confirmed injector failure details provided."
+    },
+    {
+      "sample_id": "S146",
+      "label": "other_unclear",
+      "notes": "The complaint describes false collision warnings, unintended braking, and unexpected steering-wheel corrections. These are symptoms involving multiple driver-assistance systems, but no specific failed component is confirmed."
+    },
+    {
+      "sample_id": "S167",
+      "label": "other_unclear",
+      "notes": "The vehicle unexpectedly accelerated in reverse and continued moving despite the brake pedal being fully depressed. No specific transmission, axle, driveshaft, gear selector, or control module failure was diagnosed. The root cause remains unknown."
+    },
+    {
+      "sample_id": "S168",
+      "label": "other_unclear",
+      "notes": "The vehicle unexpectedly accelerated in reverse and continued moving despite the brake pedal being fully depressed. No specific transmission, axle, driveshaft, gear selector, or control module failure was diagnosed. The root cause remains unknown."
+    },
+    {
+      "sample_id": "S177",
+      "label": "other_unclear",
+      "notes": "Complaint reports multiple issues, including valve cover gasket leakage, coolant hose leaks, grease leaking from the passenger-side axle boot, and parasitic battery drain. No confirmed axle shaft crack or fracture, transmission failure, or control module defect is reported."
+    },
+    {
+      "sample_id": "S178",
+      "label": "other_unclear",
+      "notes": "Replacement part lacks the required sensor and requires vehicle reprogramming. No specific supported component failure is established."
+    },
+    {
+      "sample_id": "S183",
+      "label": "automatic_transmission_detachment",
+      "notes": "Vehicle jerks when accelerating from a stop and experiences sluggish acceleration. Dealer diagnosed a failed torque converter. Symptoms support an automatic transmission-related defect."
+    },
+    {
+      "sample_id": "S186",
+      "label": "automatic_transmission_detachment",
+      "notes": "Transmission shifted erratically and transmission temperature increased. Dealer diagnosed transmission failure and recommended transmission replacement. Supports an automatic transmission defect."
+    },
+    {
+      "sample_id": "S189",
+      "label": "other_unclear",
+      "notes": "Seat belt webbing is reported torn. No specific pretensioner, buckle, anchorage, or other listed component failure is identified."
+    },
+    {
+      "sample_id": "S192",
+      "label": "seats_failure",
+      "notes": "Heated seat amplifier connections melted under the front seats, producing smoke and a burning plastic smell. Supports a seat electrical failure."
+    },
+    {
+      "sample_id": "S214",
+      "label": "other_unclear",
+      "notes": "Loud grinding noise occurs when turning, with a general power steering complaint. No specific failed steering component or loss of control is confirmed."
+    },
+    {
+      "sample_id": "S222",
+      "label": "electric_power_assist_system_loss_of_control",
+      "notes": "Steering becomes sticky at highway speeds and requires increased effort to turn. This indicates a possible electric power steering assist malfunction affecting steering control."
+    },
+    {
+      "sample_id": "S225",
+      "label": "electric_power_assist_system_loss_of_control",
+      "notes": "Steering intermittently pulls or applies unwanted steering force at highway speeds, requiring additional driver effort to counteract. Suspected steering assist malfunction; dealer could not duplicate the issue."
+    },
+    {
+      "sample_id": "S232",
+      "label": "other_unclear",
+      "notes": "Loose spot welds on the driver-side door jamb caused the door to sag and prevented it from opening fully. Structural weld failure is not directly represented by the available defect options."
+    },
+    {
+      "sample_id": "S255",
+      "label": "other_unclear",
+      "notes": "A/C stopped cooling while driving. The complaint mentions a suspected faulty A/C compressor, but no confirmed component failure is established in the report."
+    },
+    {
+      "sample_id": "S256",
+      "label": "other_unclear",
+      "notes": "Customer reports a gasoline odor in the garage after parking the vehicle following driving. Issue has occurred multiple times. No confirmed fuel leak or specific failed component identified."
+    },
+    {
+      "sample_id": "S271",
+      "label": "other_unclear",
+      "notes": "Water intrusion damaged the power tailgate control circuit, resulting in the power tailgate becoming inoperative. No specific failed component beyond the control circuit damage is identified."
+    },
+    {
+      "sample_id": "S272",
+      "label": "other_unclear",
+      "notes": "Exterior roof and windshield side trim pieces detached while driving, with one piece striking a following vehicle. Multiple trim pieces appear loose or improperly secured. No specific component failure mechanism confirmed."
+    },
+    {
+      "sample_id": "S279",
+      "label": "other_unclear",
+      "notes": "The complaint provides insufficient information to identify a specific vehicle defect or failed component. Other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S282",
+      "label": "other_unclear",
+      "notes": "The vehicle experienced unintended acceleration and loss of speed control, resulting in a crash. Vehicle speed control is the supported defect category."
+    },
+    {
+      "sample_id": "S284",
+      "label": "other_unclear",
+      "notes": "Multiple unrelated vehicle symptoms are reported, including acceleration/mode concerns, sensor issues, A/C failure, and hard brake pedal. No specific failed component is identified. Other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S297",
+      "label": "other_unclear",
+      "notes": "Windshield developed a crack without any reported impact, collision, or external damage. No specific cause is established. Other/unclear is appropriate."
+    },
+    {
+      "sample_id": "S073",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "Mechanic diagnosed a head gasket failure following a recurring cylinder #4 misfire. The reported defect is consistent with an engine sealing leak."
+    },
+    {
+      "sample_id": "S074",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "Engine block cracked due to defective manufacturing/casting, resulting in coolant leakage. Confirmed engine coolant leak."
+    },
+    {
+      "sample_id": "S075",
+      "label": "other_unclear",
+      "notes": "Repeated engine failure caused by wet timing belt degradation. Timing belt failure is reported, but no specific supported defect category is listed."
+    },
+    {
+      "sample_id": "S078",
+      "label": "other_unclear",
+      "notes": "Engine oil pump reported inoperable, causing the oil pressure warning light to illuminate. No specific supported defect category covers this internal component failure. Other/unclear selected."
+    },
+    {
+      "sample_id": "S083",
+      "label": "other_unclear",
+      "notes": "Vehicle intermittently fails to restart after auto idle, causing engine inoperability and multiple warning lights. No specific failed component is identified. Other/unclear selected."
+    },
+    {
+      "sample_id": "S248",
+      "label": "other_unclear",
+      "notes": "Abnormal vehicle vibration and humming noise were diagnosed as a defective drive shaft and U-joint requiring replacement. No listed tire defect category supports this failure. Other/unclear selected."
+    }
+  ]
+}

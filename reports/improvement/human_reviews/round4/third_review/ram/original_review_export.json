@@ -1,0 +1,509 @@
+{
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewer": "Ram Prashad",
+  "exported_at": "2026-11-03T10:37:49.190Z",
+  "reviews": [
+    {
+      "sample_id": "S013",
+      "label": "other_unclear",
+      "notes": "Vehicle operating as designed. Per FMVSS 225, vehicles with a GVWR over 8,500 lbs (such as the Ford F-350 Super Duty) are exempt from lower LATCH anchor requirements. The absence of lower anchor bars is part of the original design rather than a component failure or safety defect."
+    },
+    {
+      "sample_id": "S018",
+      "label": "other_unclear",
+      "notes": "Symptom-only complaint. The owner reports that the horn stopped working, but explicitly states that the vehicle has not been inspected or diagnosed by a dealer or repair facility. No specific failed component (wiring, software, relay, etc.) is identified or confirmed; per guidelines, a symptom alone does not establish a supported defect."
+    },
+    {
+      "sample_id": "S022",
+      "label": "other_unclear",
+      "notes": "Root cause unresolved and unspecified. The owner reports unresolved battery charging failures leading to system shutdowns despite replacement of the battery and alternator. The text explicitly notes that dealer service and engineers could not determine what was causing the issue. Without a confirmed failed part or system among the listed defect categories, this represents an unresolved symptom and qualifies as other/unclear."
+    },
+    {
+      "sample_id": "S030",
+      "label": "other_unclear",
+      "notes": "Unconfirmed symptom / speculative root cause. The owner reports vehicle shutdowns and power loss during braking/regenerative braking and guesses it is an electrical short circuit, but no diagnostic inspection or specific part failure is confirmed. Per guidelines, symptoms alone without a confirmed failed part warrant other/unclear."
+    },
+    {
+      "sample_id": "S033",
+      "label": "other_unclear",
+      "notes": "Symptom-only complaint without diagnostic substantiation. The owner states that the instrument panel takes over 10 minutes to boot in cold weather, but no technical diagnosis or inspection confirms whether this is a cluster unit failure, cold voltage drop, software hang, or wiring issue. Per guidelines, an unconfirmed symptom alone does not establish a supported defect."
+    },
+    {
+      "sample_id": "S035",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint directly describes a complete blanking of the instrument cluster display/gauges (speedometer, fuel level, indicator lights) during operation. This matches the noncompliance condition under FMVSS 101 (Controls and Displays) captured by the INSTRUMENT CLUSTER/PANEL / compliance or label defect category."
+    },
+    {
+      "sample_id": "S044",
+      "label": "other_unclear",
+      "notes": "Intermittent symptom without confirmed diagnosis or reproduction. The owner experienced unintended stopping and loss of throttle with a VSA light, but explicitly states the vehicle was not diagnosed and the dealer could not reproduce the issue. Furthermore, the single listed defect category (compliance or label) does not apply to this performance symptom. Per the guidelines, a symptom alone does not establish a supported defect."
+    },
+    {
+      "sample_id": "S047",
+      "label": "other_unclear",
+      "notes": "None of the listed defect categories apply. The complaint details an engine knocking sound and transmission shifting/slipping issues, but the only selectable defect options involve leaks, corrosion, missing/wrong parts, or belt detachment. Because no supported defect matches the complaint description, it qualifies as other/unclear.\n  "
+    },
+    {
+      "sample_id": "S050",
+      "label": "other_unclear",
+      "notes": "Undiagnosed symptom. The owner reports intermittent loss of acceleration, vehicle shaking, and a flashing check engine light, noting that the vehicle will be taken to the dealer. No diagnosis has been performed, and none of the specific defect categories (leaks, corrosion, missing/wrong part, belt detachment) match the complaint. Per instructions, an undiagnosed symptom warrants other/unclear."
+    },
+    {
+      "sample_id": "S052",
+      "label": "other_unclear",
+      "notes": "Dealer diagnosed engine failure caused by a failed engine rod bearing. This internal rotating-assembly mechanical failure is not represented among the available categories (corrosion, leaks, missing/wrong part, belt detachment). Per instructions, it correctly maps to other/unclear.\n  "
+    },
+    {
+      "sample_id": "S055",
+      "label": "other_unclear",
+      "notes": "The mechanic identified an internal engine failure caused by defective pistons. Because this internal rotating assembly/piston defect does not match any of the listed defect classes (leaks, corrosion, missing/wrong part, or belt detachment), it is classified as other/unclear."
+    },
+    {
+      "sample_id": "S065",
+      "label": "other_unclear",
+      "notes": "Symptom-only complaint. The owner reports an engine overheating warning and check engine light, but no technical diagnosis or inspection was performed to identify a specific failed component (e.g., leak, belt detachment, etc.). Per guidelines, a symptom alone does not establish a supported defect."
+    },
+    {
+      "sample_id": "S069",
+      "label": "other_unclear",
+      "notes": "The complaint reports knocking noises, engine shutdown, and missing engine oil, but explicitly specifies that no oil leak was present. The issue is still pending dealership outcome, and excessive internal oil consumption/bearing seizure is not covered by any of the listed defect categories (leaks, corrosion, missing part, or belt detachment). Per instructions, this is marked other/unclear."
+    },
+    {
+      "sample_id": "S073",
+      "label": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+      "notes": "Mechanic diagnosed a failed head gasket causing cylinder #4 misfire (coolant leaking into the combustion chamber). This constitutes an internal cooling system leak under ENGINE AND ENGINE COOLING / leak."
+    },
+    {
+      "sample_id": "S074",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "Dealer confirmed cracked engine block causing coolant leak, necessitating short block replacement. Confirmed cooling system leak matching ENGINE AND ENGINE COOLING / leak."
+    },
+    {
+      "sample_id": "S075",
+      "label": "belts_and_associated_pulleys_detachment",
+      "notes": "While the complaint explicitly identifies engine failure due to \"wetbelt degrading\" (related to recall 23V-905), the available belt defect code is restricted to \"detachment.\" Because the described failure mode is belt material degradation/wear rather than physical detachment, it maps to other/unclear under strict modifier criteria."
+    },
+    {
+      "sample_id": "S078",
+      "label": "belts_and_associated_pulleys_detachment",
+      "notes": "The complaint explicitly references NHTSA Recall Campaign 23V905000 and reports the associated failure (loss of oil pressure due to an inoperable engine oil pump while awaiting recall remedy parts). This campaign corresponds directly to the oil pump belt drive tensioner separation/belt failure categorized under BELTS AND ASSOCIATED PULLEYS / detachment."
+    },
+    {
+      "sample_id": "S083",
+      "label": "other_unclear",
+      "notes": "Auto idle stop failure to restart / stall symptom. The vehicle has not been inspected or diagnosed, and Auto Idle Stop restart failure is not covered by any of the listed engine categories (corrosion, leaks, missing/wrong parts, belt detachment). Per instructions, it correctly maps to other/unclear."
+    },
+    {
+      "sample_id": "S088",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "The complaint directly identifies coolant seeping into the engine cylinders (coolant intrusion defect on Ford 2.0L engine) with an illuminated check engine light. This represents an internal coolant leak under ENGINE AND ENGINE COOLING / leak."
+    },
+    {
+      "sample_id": "S092",
+      "label": "other_unclear",
+      "notes": "Dealer diagnosed general \"engine failure\" following coolant temperature warnings and limp mode, but no specific failed component or leak mechanism is explicitly confirmed in the text. Per guidelines, general symptoms and unconfirmed part failures map to other/unclear."
+    },
+    {
+      "sample_id": "S095",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "The complaint explicitly reports coolant intrusion into the engine resulting in engine failure. This internal engine cooling fluid breach matches ENGINE AND ENGINE COOLING / leak.\n  "
+    },
+    {
+      "sample_id": "S108",
+      "label": "tail_lights_leak",
+      "notes": "The complaint reports fogging and deterioration of the rear taillight covers. Lens fogging reflects moisture intrusion due to housing seal compromise, corresponding to TAIL LIGHTS / leak."
+    },
+    {
+      "sample_id": "S116",
+      "label": "other_unclear",
+      "notes": "Intermittent cruise control dropout symptom without dealer diagnosis or confirmed root cause. No specific forward collision avoidance defect is supported, and other/unclear is the only applicable choice.\n  "
+    },
+    {
+      "sample_id": "S118",
+      "label": "other_unclear",
+      "notes": "Phantom automatic emergency braking symptom without technical inspection or diagnosis. No specific failed hardware or software component is confirmed, and \"other/unclear\" is the only selectable option."
+    },
+    {
+      "sample_id": "S121",
+      "label": "other_unclear",
+      "notes": "Unconfirmed symptoms and pending dealer diagnosis. The owner reports wandering steering and intermittent false pre-collision warnings without DTCs, but no specific failed component has been identified. Under the project guidelines, symptoms alone do not establish a supported defect, making other/unclear the correct choice."
+    },
+    {
+      "sample_id": "S122",
+      "label": "other_unclear",
+      "notes": "Phantom emergency braking symptom reported during rain without technical inspection or diagnosis confirming a specific hardware or software failure. Per guidelines, a symptom alone does not establish a supported defect, making other/unclear the correct choice."
+    },
+    {
+      "sample_id": "S125",
+      "label": "other_unclear",
+      "notes": "Fuel dilution issue where fuel mixes into the engine oil crankcase. This is not an external fuel lines/tank leak or fuel pump mechanical failure, and no listed component defect is substantiated. Per guidelines, it maps to other/unclear."
+    },
+    {
+      "sample_id": "S133",
+      "label": "other_unclear",
+      "notes": "Dealer diagnosed faulty fuel injector causing cylinder misfire (P0301) and failed air/fuel test, recommending replacement of fuel injectors and fuel pipe. Because no specific fuel injector defect option is listed, it correctly maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S146",
+      "label": "other_unclear",
+      "notes": "Phantom collision warnings, unnecessary braking, and false lane departure steering interventions reported without dealer inspection or confirmed part/software failure. Per guidelines, unverified operational symptoms map to other/unclear.\n  "
+    },
+    {
+      "sample_id": "S167",
+      "label": "other_unclear",
+      "notes": "Unintended acceleration symptom in reverse without technical inspection or diagnosis; the text explicitly confirms the vehicle has not yet been diagnosed or repaired. Per guidelines, an unconfirmed symptom alone does not establish a specific component defect, making other/unclear the correct classification."
+    },
+    {
+      "sample_id": "S178",
+      "label": "control_module_tcm_pcm_tecm_software",
+      "notes": "The owner vaguely states a superseded replacement part lacked a sensor and required the car to be reprogrammed, but does not identify the specific part, sensor, or control module involved. Because the exact powertrain component and failure mode are not technically substantiated, other/unclear is selected per guidelines."
+    },
+    {
+      "sample_id": "S183",
+      "label": "other_unclear",
+      "notes": "Dealership diagnosed a defective torque converter resulting in jerking and acceleration lag. Because internal torque converter failure does not match any of the provided powertrain defect categories (detachment, leaks, software, or axle fracture), it is classified as other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S186",
+      "label": "other_unclear",
+      "notes": "Dealer diagnosed transmission failure requiring replacement due to abnormal shifting and high transmission temperature. The options list only covers automatic transmission detachment, leaks (manual), module software, or axle/driveshaft defects. Internal automatic transmission failure is not listed, so other/unclear is selected per guidelines.\n  "
+    },
+    {
+      "sample_id": "S189",
+      "label": "other_unclear",
+      "notes": "The complaint merely reports \"Seat belt is torn\" without specifying position or cause. Torn webbing does not match any of the listed seat belt defect categories (pretensioner failure, buckle failure, compliance/labeling, or structural fracture). Categorized as other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S192",
+      "label": "seats_failure",
+      "notes": "Complaint documents confirmed physical melting and smoking of the heated seat amplifier connections under the front seats. This component-level failure of the seat heating system corresponds to SEATS / failure."
+    },
+    {
+      "sample_id": "S214",
+      "label": "other_unclear",
+      "notes": "The complaint reports an unverified noise symptom (loud grinding when turning) attributed generally to power steering, with no inspection or diagnosis performed. No loss of control, detachment, or specific mechanical fracture is documented. Per guidelines, symptom-only complaints without a supported listed defect map to other/unclear."
+    },
+    {
+      "sample_id": "S222",
+      "label": "other_unclear",
+      "notes": "Symptom-only complaint reporting sticky steering and increased effort at highway speeds. Although characteristic of the Civic steering gearbox/EPS issue, no technical inspection or diagnostic verification was performed. Defaults to other/unclear under strict symptom-only evaluation criteria.\n  "
+    },
+    {
+      "sample_id": "S225",
+      "label": "other_unclear",
+      "notes": "Intermittent steering resistance and pull reported, but the dealer was unable to duplicate the condition and no defect was diagnosed. Under the baseline rule that unverified symptoms alone do not establish a supported part failure, this defaults to other/unclear."
+    },
+    {
+      "sample_id": "S232",
+      "label": "hinge_and_attachments_detachment",
+      "notes": "Complaint reports failed spot welds on the driver's side door causing the check arm / attachment bracket to separate and move freely inside the door. This directly corresponds to the known 2020 Escape door check arm attachment weld failure (NHTSA PE23-013), classified under HINGE AND ATTACHMENTS / detachment."
+    },
+    {
+      "sample_id": "S248",
+      "label": "other_unclear",
+      "notes": "Complaint reports unresolved speed-dependent vibration and humming diagnosed as needing replacement tires and rims. The options list only covers labeling/compliance, sidewall cracking, or TPMS software, none of which apply to wheel/tire vibration or balance defects. Classified as other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S255",
+      "label": "other_unclear",
+      "notes": "Independent repair shop diagnosed a bad A/C compressor causing loss of windshield defogging during rain. Because no specific climate control or compressor defect category is listed in the taxonomy, it correctly maps to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S256",
+      "label": "other_unclear",
+      "notes": "Unconfirmed odor symptom (gasoline smell after parking) with dealer diagnosis pending. No component failure, mechanical leak source, or listed defect is substantiated, mapping to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S235",
+      "label": "structure_body_compliance_or_label",
+      "notes": ""
+    },
+    {
+      "sample_id": "S271",
+      "label": "other_unclear",
+      "notes": "Water intrusion caused the power tailgate control module/circuit to short and stop functioning. Because no specific power tailgate or body water intrusion category is listed under this section, it correctly maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S272",
+      "label": "other_unclear",
+      "notes": "The complaint reports that the roof trim piece detached and flew off on the highway, with adjacent windshield side trim lifting. Because no specific exterior body/roof trim detachment category is listed under this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S279",
+      "label": "other_unclear",
+      "notes": "The complaint text contains no narrative details (\"Unknown\") and mentions no vehicle components or symptoms. Maps directly to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S282",
+      "label": "other_unclear",
+      "notes": "Unintended acceleration crash incident reported without technical inspection or mechanical root cause diagnosis. No specific throttle or speed control component defect is verified, making other/unclear the correct choice per guidelines.\n  "
+    },
+    {
+      "sample_id": "S284",
+      "label": "other_unclear",
+      "notes": "Multiple unrelated symptoms reported (drive mode selection failure, sensor reading issues, erratic acceleration, non-functional A/C, and hard brake pedal) without diagnostic inspection or confirmed root cause. Per guidelines, unverified symptoms alone do not establish a supported defect, making other/unclear the correct choice."
+    },
+    {
+      "sample_id": "S297",
+      "label": "other_unclear",
+      "notes": "Complaint reports spontaneous windshield cracking without impact marks. Because the only specific category listed is for software failure, physical glass fracture maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S298",
+      "label": "other_unclear",
+      "notes": "The complaint documents persistent air leaks from wheel valve stems triggering the TPMS light. Because the available options in this section only cover lug hardware fracture and compliance/labeling defects, the valve stem leakage maps to other/unclear per guidelines"
+    },
+    {
+      "sample_id": "S299",
+      "label": "other_unclear",
+      "notes": "Complaint reports Lane Departure Warning failure and airbag non-deployment during a crash. No wheel or lug fastening components are mentioned, so this issue does not support any listed wheel defect category and maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S300",
+      "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+      "notes": "Complaint reports swollen two-piece lug nuts requiring replacement. If the taxonomy classifies physical delamination/casing deformation of wheel nuts under the lug hardware defect category, this aligns with LUGS/NUTS/BOLTS/STUDS / crack or fracture.\n  "
+    },
+    {
+      "sample_id": "S296",
+      "label": "other_unclear",
+      "notes": "The complaint reports physical windshield cracking while parked. Because the only listed category under Visibility/Wiper is for software failure, physical glass fracture defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S295",
+      "label": "other_unclear",
+      "notes": "Complaint reports windshield glass scratching easily from wiper use and minor debris, causing impaired visibility. Because physical glass abrasion/material issues are not covered by the single listed software defect option, it maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S294",
+      "label": "other_unclear",
+      "notes": "The complaint reports spontaneous windshield cracking without impact while stopped at a traffic light. Because physical glass stress cracking is not covered by the single listed software defect option under Visibility/Wiper, it maps to other/unclear per guidelines"
+    },
+    {
+      "sample_id": "S293",
+      "label": "other_unclear",
+      "notes": "Complaint reports wiper motor speed deficiency and intermittent wiper stopping without professional diagnostic verification or confirmed software failure. Because unconfirmed physical wiper motor/performance symptoms are not covered under the listed software defect option, this defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S292",
+      "label": "other_unclear",
+      "notes": "Complaint describes a spiderweb windshield crack resulting from road debris impact on a highway. Physical glass cracking/impact damage does not match the single listed software defect category, mapping directly to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S291",
+      "label": "other_unclear",
+      "notes": "Complaint documents repeated windshield cracking from external road debris impacts. Because none of the available visibility categories cover physical windshield glass cracking or durability, this maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S290",
+      "label": "sun_moon_roof_assembly_detachment",
+      "notes": "Complaint reports spontaneous sunroof shattering/explosion at highway speeds explicitly linked to NHTSA Recall 16V726000. This recall involves wind deflector detachment leading to sunroof panel breakage/detachment, mapping directly to SUN/MOON ROOF ASSEMBLY / detachment"
+    },
+    {
+      "sample_id": "S289",
+      "label": "other_unclear",
+      "notes": "Complaint reports a fractured windshield wiper arm related to NHTSA Recall 22V250000. Because the available options in this section only cover defroster software, sunroof detachment, fan motors, power windows, and rearview mirrors, a wiper arm fracture is not represented and correctly maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S288",
+      "label": "other_unclear",
+      "notes": "Complaint reports intermittent activation of traction control and hill descent braking warnings when driving uphill, causing vehicle shaking and uncommanded deceleration. No mechanical or electronic root cause has been diagnosed, and no specific defect option is provided in this section, mapping to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S287",
+      "label": "other_unclear",
+      "notes": "Complaint describes an unverified sudden acceleration symptom while coming to a stop, leading to a curb impact. The vehicle was not professionally diagnosed or repaired, and the referenced powertrain recall (23V588000) does not substantiate a listed vehicle speed control defect. Per guidelines, unconfirmed symptoms map to other/unclear.\n  "
+    },
+    {
+      "sample_id": "S286",
+      "label": "other_unclear",
+      "notes": "Complaint describes unexpected transmission downshifting to 1st gear at highway speeds, accompanied by engine revving and restart issues. Because this is a transmission/powertrain sensor failure and no relevant speed control defect categories are provided in this section, it correctly defaults to other/unclear per guidelines"
+    },
+    {
+      "sample_id": "S285",
+      "label": "other_unclear",
+      "notes": "Complaint reports loss of motive power and smoke due to engine failure, specifically diagnosed by the dealer as coolant leaking into cylinders 2 & 3. Because this is an internal engine/cooling defect and no engine categories exist under this vehicle speed control section, it maps to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S283",
+      "label": "other_unclear",
+      "notes": "The complaint reports unconfirmed symptoms including a sensation of wheels locking, loss of throttle pedal response while climbing a hill, and complete loss of forward/reverse mobility. Because no specific mechanical or electronic defect is confirmed, and no specific category exists in this section, it defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S280",
+      "label": "other_unclear",
+      "notes": "Dealer diagnosed a blown head gasket causing severe vehicle shaking on the freeway. Because internal engine mechanical failures are not covered by any specific defect categories under this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S278",
+      "label": "other_unclear",
+      "notes": "Complaint reports factory paint peeling/delamination (Super White 040) around the exterior window frame referencing Customer Support Program 23TE08. Because paint adhesion and exterior coating issues are not covered by any specific defect options under this section, it correctly defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S277",
+      "label": "other_unclear",
+      "notes": "Complaint reports an unconfirmed engine stalling/shutting off symptom while stationary in Drive. No mechanical or electrical root cause has been diagnosed, and no specific defect categories exist under this section, defaulting to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S276",
+      "label": "other_unclear",
+      "notes": "The complaint documents an uncommanded opening and failure to latch of the rear trunk/liftgate while driving. No specific mechanical latch or electrical actuator defect categories exist under this section, so it correctly defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S275",
+      "label": "other_unclear",
+      "notes": "Complaint reports an uncommanded tailgate unlatching issue where locking the doors (via key fob or auto-lock above 11 mph) causes the tailgate to pop open and swing out. Because latch/tailgate components are not listed among the supported defects in this section, it defaults to other/unclear per guidelines"
+    },
+    {
+      "sample_id": "S274",
+      "label": "other_unclear",
+      "notes": "The complaint reports physical cracking and spreading of a crack across the front windshield. Because physical glass cracking/glazing defects are not listed under this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S273",
+      "label": "other_unclear",
+      "notes": "The complaint describes an unconfirmed loss of throttle response and sputtering during a turn, accompanied by a flashing traction control light, which led to a tip-over. While the rider hypothesizes a software fault, no defect is formally confirmed and no specific defect categories exist under this section, defaulting to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S270",
+      "label": "other_unclear",
+      "notes": "The complaint reports spontaneous explosion/shattering of the sunroof glass at highway speeds without impact. Because sunroof and glazing components are not provided among the listed defect categories in this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S269",
+      "label": "other_unclear",
+      "notes": "Complaint reports spontaneous shattering of the rear window glass while stationary at a traffic light. Because window glass and glazing components are not provided among the listed defect categories in this section, it correctly defaults to other/unclear per guidelines"
+    },
+    {
+      "sample_id": "S268",
+      "label": "other_unclear",
+      "notes": "Complaint reports a transmission failure confirmed as unsafe to drive by dealership inspection. Because transmission/powertrain defect categories are not provided under this section, it correctly defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S267",
+      "label": "other_unclear",
+      "notes": "The complaint reports multiple intermittent issues including running board and exterior lighting malfunction, BlueCruise lane-centering errors, and drivetrain/steering failure messages that the dealer was unable to diagnose. Because no root mechanical or electrical component defect was confirmed, and no specific defect categories exist under this section, it defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S266",
+      "label": "other_unclear",
+      "notes": "The complaint reports spontaneous popping and shattering of the rear window glass while operating the rear defroster in rain. Because rear window glass and defroster grid failure categories are not provided under this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S265",
+      "label": "other_unclear",
+      "notes": "The complaint reports an uncommanded emergency braking warning and brief vehicle deceleration (phantom braking) at highway speeds with no collision hazard present. Because this is an ADAS/AEB symptom without confirmed diagnosis, and no specific defect categories exist under this section, it defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S264",
+      "label": "other_unclear",
+      "notes": "The complaint documents a failed spot weld on the driver-side door assembly preventing the door from opening or closing properly. Because structural body weld and door assembly defect categories are not provided under this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S263",
+      "label": "other_unclear",
+      "notes": "The complaint reports an intermittent no-crank/start condition (audible click when pushing start button) on a 2015 Honda CR-V. The vehicle was never inspected or diagnosed by a service facility, and no specific starter or electrical defect categories exist under this section, correctly defaulting to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S262",
+      "label": "other_unclear",
+      "notes": "The complaint reports failure of the power sliding door auto-reverse feature to operate properly upon contact with an obstruction or passenger. Because power sliding door mechanism and sensor defect categories are not provided under this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S261",
+      "label": "other_unclear",
+      "notes": "The complaint reports an uncommanded release or failure of the primary hood latch while parked, leaving the hood in a partially open position. Because hood latch and release mechanism categories are not listed under this section, it correctly defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S260",
+      "label": "other_unclear",
+      "notes": "Complaint reports intermittent engine shut-off/stalling while stopped or driving with no illuminated check engine light. The vehicle has not been diagnosed, no specific part failure is established, and no distinct defect categories exist under this section, correctly mapping to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S259",
+      "label": "other_unclear",
+      "notes": "Complaint reports an uncalibrated or rapidly advancing odometer registering approximately triple the actual distance traveled. No specific diagnostic root cause is established and no speedometer/odometer defect options exist under this section, correctly defaulting to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S258",
+      "label": "other_unclear",
+      "notes": "Complaint reports spontaneous cracking originating along the windshield heat band without an apparent point of impact. Because windshield glass and glazing categories are not provided under this section, it correctly defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S257",
+      "label": "other_unclear",
+      "notes": "The complaint reports recurring air conditioning and ventilation issues, including electrical AC faults, water leakage/condensation, and cabin mold odors. Because HVAC/air conditioning systems are not listed among the defect categories in this section, it correctly defaults to other/unclear per guidelines"
+    },
+    {
+      "sample_id": "S254",
+      "label": "other_unclear",
+      "notes": "The complaint reports paint peeling/delamination near the top of the windshield. Because cosmetic paint and exterior finish defect categories are not provided under this section, it correctly defaults to other/unclear per guidelines.\n  "
+    },
+    {
+      "sample_id": "S253",
+      "label": "other_unclear",
+      "notes": "The complaint reports an ADAS Road Sign Assist recognition and display error, where 70 MPH posted speed limit signs are misread and displayed as 75 MPH on the instrument cluster. Because ADAS camera and road sign recognition categories are not listed under this section, it correctly defaults to other/unclear per guidelines."
+    },
+    {
+      "sample_id": "S252",
+      "label": "other_unclear",
+      "notes": "Water intrusion/leakage into driver-side A-pillar trim and rear door cavity; root cause/specific failed component not identified"
+    },
+    {
+      "sample_id": "S251",
+      "label": "other_unclear",
+      "notes": "Water leak into A-pillar trim and accumulation inside rear driver-side door; symptom only, no specific part failure identified.\n  "
+    },
+    {
+      "sample_id": "S250",
+      "label": "other_unclear",
+      "notes": "​Recall repair parts unavailable (NHTSA campaign 23V534000); traction control and HEV warning lights illuminated without a specific component failure established"
+    },
+    {
+      "sample_id": "S249",
+      "label": "other_unclear",
+      "notes": "Multiple instrument cluster warnings illuminated (\"Service AdvanceTrac\", Traction Control, Pre-Collision Assist, Cruise Control, Hill Start Assist) during windy conditions; vehicle not yet diagnosed or repaired, so no specific failed part or defect is established."
+    },
+    {
+      "sample_id": "S247",
+      "label": "other_unclear",
+      "notes": "​Dealer noted uneven tread wear on tires; vehicle was not diagnosed or repaired, and the symptom does not match the specific listed defect categories (no compliance/label issue, sidewall crack, or TPMS software failure established)."
+    },
+    {
+      "sample_id": "S246",
+      "label": "other_unclear",
+      "notes": "​Right rear tire losing air; mechanic reported uneven/wavy tread wear across all four tires. This indicates abnormal wear/cupping rather than a specific listed defect (no sidewall crack/fracture, compliance/label issue, or TPMS software fault identified)."
+    },
+    {
+      "sample_id": "S245",
+      "label": "other_unclear",
+      "notes": "Vehicle experienced violent shaking/oscillation at highway speeds. The problem was not reproduced, inspected, or diagnosed by a dealer, so this is a symptom only and does not establish any specific part defect (such as fracture, detachment, or shock absorber issue)."
+    },
+    {
+      "sample_id": "S244",
+      "label": "other_unclear",
+      "notes": "Vehicle experiences front-end violent vibration/steering oscillation at freeway speeds (\"death wobble\" symptom). No specific failed part or listed component defect (crack/fracture, detachment, or missing/wrong shock absorber) is identified or established.\n  "
+    },
+    {
+      "sample_id": "S243",
+      "label": "other_unclear",
+      "notes": "Front-end violent shaking/steering oscillation at highway speeds reported. This describes a symptom rather than an established failed part, and none of the specific listed defect categories (fracture, detachment, or missing/wrong shock absorber) are confirmed."
+    },
+    {
+      "sample_id": "S242",
+      "label": "other_unclear",
+      "notes": "Vehicle experienced violent front shaking and wheel oscillation (\"death wobble\" symptom) at highway speeds after hitting a road transition. Complaint notes pending dealership inspection; no specific failed part or listed defect (fracture, detachment, shock absorber issue) has been established."
+    },
+    {
+      "sample_id": "S241",
+      "label": "other_unclear",
+      "notes": "Front-end violent shaking and wheel wobbling at 70 mph after hitting a bridge transition. The complaint describes a symptom awaiting dealership inspection; no specific failed part or listed defect (fracture, detachment, or shock absorber issue) has been established."
+    },
+    {
+      "sample_id": "S240",
+      "label": "other_unclear",
+      "notes": "Misaligned body panels, bumper gaps, poor trunk sealing, and hood vibration at high speeds. These fit and finish/fitment issues do not match any listed defect category (no roof/pillar failure, compliance/label defect, trailer hitch issue, or hinge detachment)."
+    }
+  ]
+}

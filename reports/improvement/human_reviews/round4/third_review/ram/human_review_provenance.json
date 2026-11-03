@@ -1,0 +1,11 @@
+{
+  "reviewer": "Ram Prashad",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewed": 100,
+  "sample_size": 300,
+  "input_sha256": "412ee3bcb26d69b1b4c22868ff7648e2716245c923f5df84a3a0b3a4d593d92e",
+  "output_sha256": "a9bb777b1de57ec9840fa3bd52211e7f355756ddc2187e40c3daef5e6dd63075",
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "note": "Reviewer attestation records provenance; it does not independently verify expertise or correctness."
+}

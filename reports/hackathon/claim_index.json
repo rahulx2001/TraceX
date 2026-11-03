@@ -57,8 +57,8 @@
     },
     {
       "id": "original-human-review",
-      "claim": "Original sample: Rahul 300/300 attested single-reviewer labels; accuracy 246/300 = 82.0% (95% CI 77.3%-85.9%) scored against those labels only. No validated second review: Manish round superseded (identical arrays); Rakesh and Gaurav rounds withdrawn as machine-generated (see human_reviews/REJECTED_fabricated_rounds.md).",
-      "status": "single_reviewer_unvalidated",
+      "claim": "Three new reviewers (ARYAN 107, Kaushal 130, Ram 100; 183 unique IDs) added to Rahul primary: baseline accuracy vs round-4 adjudicated gold 246/300 = 82.0% (95% CI 77.3%-85.9%), macro F1 0.514; candidate 238/300 = 79.3%, paired diff -2.7pp (CI includes zero): rejected, target unmet",
+      "status": "complete_pending_countersign",
       "artifact": "reports/improvement/human_reviews/round1/review_status.json",
       "additional_artifacts": [
         "reports/improvement/human_reviews/round1/human_review_provenance.json",

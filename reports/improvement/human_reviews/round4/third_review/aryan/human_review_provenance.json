@@ -1,0 +1,11 @@
+{
+  "reviewer": "ARYAN RAJ",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewed": 107,
+  "sample_size": 300,
+  "input_sha256": "d0e3ac31276cac593ea91238103eae55993cc4aa302c219d9e9e81854e300cb1",
+  "output_sha256": "9efdb875a79464c1436c9ad8bdb0af39cf166eadfd0b33bca9e547375bc29583",
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "note": "Reviewer attestation records provenance; it does not independently verify expertise or correctness."
+}

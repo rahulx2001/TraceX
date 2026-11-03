@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-03T13:18:22",
+  "status": "complete_with_disagreements_adjudicated",
+  "resolution_method": "Labeling-guide evidence rule (same as round 2). Majority-overriding decisions cite the rule explicitly.",
+  "adjudicator": "Muse (AI-assisted draft; human countersignature pending)",
+  "adjudication_decisions": [
+    {
+      "sample_id": "S001",
+      "votes": {
+        "rahul": "air_bag_restraint_control_module_failure",
+        "aryan": "other_unclear",
+        "kaushal": "air_bag_restraint_control_module_failure"
+      },
+      "adjudicated_label": "air_bag_restraint_control_module_failure",
+      "basis": "Rahul+Kaushal: frontal airbags did not deploy in a multi-vehicle total-loss crash with injuries; non-deployment evidenced.",
+      "narrative_excerpt": "TL* THE CONTACT OWNED A 2018 FORD EDGE. THE CONTACT STATED THAT WHILE HIS WIFE WAS DRIVING THE VEHICLE AT 55 MPH ON THE HIGHWAY, SHE ATTEMPTED TO DEPRESS ON THE BRAKE PEDAL TO SLOW DOWN IN TRAFFIC WHEN THE BRAKE PEDAL DID NOT FULLY DEPRESS CAUSING THE CONTACTS WIFE TO REAR END AND HIT ANOTHER DRIVER"
+    },
+    {
+      "sample_id": "S003",
+      "votes": {
+        "rahul": "air_bag_restraint_control_module_failure",
+        "aryan": "other_unclear",
+        "kaushal": "air_bag_restraint_control_module_failure"
+      },
+      "adjudicated_label": "air_bag_restraint_control_module_failure",
+      "basis": "Rahul+Kaushal: total-loss multi-impact crash, no airbags deployed, photos offered.",
+      "narrative_excerpt": "The F-150 was involved in a car crash. It hit a street sign, an electrical pole and then a tree. The front bumper is split and insurance just devalued it a total loss.  I am hereby reaching out to you, to let you know that none of the airbags in the truck went off. I have picture that I can provide "
+    },
+    {
+      "sample_id": "S005",
+      "votes": {
+        "rahul": "air_bag_restraint_control_module_failure",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "air_bag_restraint_control_module_failure",
+      "basis": "Rahul+Kaushal: uncommanded passenger-airbag deployment with no crash; the deployment itself is the evidenced mode.",
+      "narrative_excerpt": "The contact owns a 2017 Honda CR-V. The contact stated that while his son was driving at an undisclosed speed, the passenger\u00e2\u0080\u0099s side air bag inadvertently deployed. No warning lights were illuminated. The vehicle was taken to the dealer, who was unable to determine the cause for the air bag deploym"
+    },
+    {
+      "sample_id": "S016",
+      "votes": {
+        "rahul": "relay_stall",
+        "aryan": "relay_stall",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Loss of power under load; no named part or failure mode.",
+      "narrative_excerpt": "After a recall repair order was issued, the repairs were made and now accelerating under load or uphill, the vehicle will accelerate and then bogs down or chokes (the vehicle then loses speed and no longer accelates). The issue has occurred several times while accelerating to freeway speeds on freew"
+    },
+    {
+      "sample_id": "S017",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "instrument_cluster_panel_compliance_or_label",
+        "kaushal": "instrument_cluster_panel_compliance_or_label"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Gauge-cluster glitch; wiring not evidenced. Overrides ARYAN+Kaushal compliance votes: compliance mode not evidenced.",
+      "narrative_excerpt": "Fuel Gauge Cluster fails in weather sometimes outside of weather conditions and will glitch out causing an inability to see mileage and fuel amount."
+    },
+    {
+      "sample_id": "S018",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Horn dead, explicitly never diagnosed or inspected.",
+      "narrative_excerpt": "1. The vehicle HORN unknowingly and unexpectedly stopped working, became unavailable, and subsequently failed to alert other of hazardous conditions, when approperiately initiated by the driver/operator.  Without any indication or prior warning to the driver that the HORN was NOT FUNCTIONAL.   This "
+    },
+    {
+      "sample_id": "S020",
+      "votes": {
+        "rahul": "electrical_system_software_software",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Amplifier pop/static; software mode not evidenced.",
+      "narrative_excerpt": "When I got into my truck and pressed the start button, there was an extremely loud popping noise that appeared to be coming from the sound system. It was so loud that it caused ringing in my ears. I immediately attempted to shut off the truck, but the noise continued. I opened the door to exit the v"
+    },
+    {
+      "sample_id": "S022",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "wiring_electrical",
+        "kaushal": "other_unclear",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Charging-system failure confirmed but cause unknown to Ford engineers; wiring not evidenced.",
+      "narrative_excerpt": "Charging System The vehicle safety systems and monitoring systems shut down due to battery charging system failures.  Problem confirmed by Ford engineers. And Ford service where the vehicle is still sitting. Vehicle has been at dealership 90% since 8/2022. They and Ford engineers do not know what\u00e2\u0080\u0099"
+    },
+    {
+      "sample_id": "S023",
+      "votes": {
+        "rahul": "electrical_system_software_software",
+        "aryan": "other_unclear",
+        "kaushal": "relay_stall"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Repeated hybrid-system shutdowns; supervisory-software mode undiagnosed. Overrides Kaushal relay vote.",
+      "narrative_excerpt": "Problem began Dec. 2021.  Has occurred on 16 occasions since then. Warning light \"Check Hybrid System; Turn off Engine\" comes on while driving. The car then shuts off the engine and there is a 100% loss of motive power.  Sometimes is associated with very rough braking with the car \"knocking'.\" On 3 "
+    },
+    {
+      "sample_id": "S025",
+      "votes": {
+        "rahul": "body_control_module_software_software",
+        "aryan": "electrical_system_software_software",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Dealer named 'computer head' (head unit), not the body control module; neither specific label matches.",
+      "narrative_excerpt": "I first noticed an issue with the voice resignation which also is effecting the messages navigation phone and just recently the lane assist and radar. For 2 weeks I have tried to address this with Hyundai customer service with no proper response the dealer service I stating the computer head is at f"
+    },
+    {
+      "sample_id": "S026",
+      "votes": {
+        "rahul": "body_control_module_software_software",
+        "aryan": "body_control_module_software_software",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Liftgate control failure with no BCM diagnosis. Overrides Rahul+ARYAN majority per evidence rule.",
+      "narrative_excerpt": "Rear lift gate doesn't operate or operates erratically .   Rear lift gate will not open traping occupants in the vehicle.  Particularly any occupant seated in the third row seats. Yes.  Took it to the dealer and they failed to address the problem First began February 2023.   The dash board button wi"
+    },
+    {
+      "sample_id": "S028",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "wiring_electrical",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Warning light with speculative water cause.",
+      "narrative_excerpt": "Power steering light is on and possibly due to water penetration from recent heavy rainfall."
+    },
+    {
+      "sample_id": "S030",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "wiring_electrical",
+        "kaushal": "relay_stall",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Reproducible shutdown on braking is real, but no part diagnosed; wiring inferred. Overrides Rahul+ARYAN.",
+      "narrative_excerpt": "Application of the brakes causes complete vehicle shutdown along with message to check electrical system. Brakes appear to fail for a brief moment, then mechanical brakes kick in. Car has zero power until stopped and restarted.  Problem is reproducible a high percentage of the time provided the brak"
+    },
+    {
+      "sample_id": "S032",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "other_unclear",
+        "kaushal": "wiring_electrical"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Dash fire destroyed cause evidence; harness involvement unconfirmed. Overrides Rahul+Kaushal.",
+      "narrative_excerpt": "Started vehicle and proceeded to drive forward in my driveway when smoke started coming in the vehicle. Noticed after driving that the smoke was coming in the vehicle from under the glove box on the passenger side by the floor mat. Within approximately two minutes a flame ignited in which the dashbo"
+    },
+    {
+      "sample_id": "S033",
+      "votes": {
+        "rahul": "instrument_cluster_panel_compliance_or_label",
+        "aryan": "instrument_cluster_panel_compliance_or_label",
+        "kaushal": "instrument_cluster_panel_compliance_or_label",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "One-line cold-boot latency; compliance/label mode not evidenced. Overrides three reviewers; notable.",
+      "narrative_excerpt": "In cold weather, instrument panel can take over 10 minutes to boot up and function."
+    },
+    {
+      "sample_id": "S034",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "wiring_electrical",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Recall notice plus MIL; no diagnosed HECU failure experienced.",
+      "narrative_excerpt": "I received a safety recall notice in November 2023 stating that there is defect with Hydraulic Electrical Control Unit (HECU) in my car that can result in an engine compartment fire either while I am driving my car or when it is parked. As of April 2024, I am still waiting to be notified that the pa"
+    },
+    {
+      "sample_id": "S040",
+      "votes": {
+        "rahul": "electrical_system_software_software",
+        "aryan": "electrical_system_software_software",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Infotainment glitch with dealer finding nothing; software mode undiagnosed. Overrides Rahul+ARYAN.",
+      "narrative_excerpt": "The media screen console part of my 2024 Santa Fe has been glitching since July. Dealer has already looked at it and said there\u00e2\u0080\u0099s nothing to fix\u00e2\u0080\u00a6 now the screen flickers AND the audio glitches over and over the same few seconds.. then turn the car OFF and the audio stays playing over and over. C"
+    },
+    {
+      "sample_id": "S041",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Repeated DRL burnout; wiring not evidenced.",
+      "narrative_excerpt": "The DRL on the 2021 F150 Quad Beam headlights burn out continuously. Ford needs to step up and fix this issue. This issue is a safety matter."
+    },
+    {
+      "sample_id": "S043",
+      "votes": {
+        "rahul": "wiring_electrical",
+        "aryan": "other_unclear",
+        "kaushal": "wiring_electrical"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Water-fried liftgate opener; wiring part not evidenced.",
+      "narrative_excerpt": "Leak in roof rail seam causes interior water leak and fried liftgate opener. Known issue manufacturer is not willing to address. Recent class action: [XXX]  INFORMATION REDACTED PURSUANT TO THE FREEDOM OF INFORMATION ACT (FOIA), 5 U.S.C. 552(B)(6)"
+    },
+    {
+      "sample_id": "S044",
+      "votes": {
+        "rahul": "electronic_stability_control_esc_compliance_or_label",
+        "aryan": "electronic_stability_control_esc_compliance_or_label",
+        "kaushal": "electronic_stability_control_esc_compliance_or_label",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Unintended stop, undiagnosed.",
+      "narrative_excerpt": "The contact owns a 2019 Honda Ridgeline. The contact stated while driving 40 MPH, the vehicle inadvertently came to a complete stop but the engine was still running and gas pedal was not responding. The contact stated that the vehicle stability assist warning light was illuminated. The vehicle was n"
+    },
+    {
+      "sample_id": "S048",
+      "votes": {
+        "rahul": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+        "aryan": "engine_and_engine_cooling_leak",
+        "kaushal": "engine_and_engine_cooling_leak"
+      },
+      "adjudicated_label": "engine_and_engine_cooling_leak",
+      "basis": "ARYAN+Kaushal: dealer diagnosed coolant leaking into engine.",
+      "narrative_excerpt": "ON 04/28/2021 MY REMOTE START ON MY 2018 FORD ESCAPE TITANIUM 2.0L, WITH ONLY 21,833 MILES ON IT, DID NOT WORK AND DID NOT START MY VEHICLE. I GOT IN, STARTED MY VEHICLE USING THE PUSH BUTTON START, AT WHICH POINT MY VEHICLE BEGAN TO SHAKE AND THE CHECK ENGINE LIGHT CAME ON WITH NO OTHER INFORMATION"
+    },
+    {
+      "sample_id": "S070",
+      "votes": {
+        "rahul": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Named ITMS failure matches no taxonomy label.",
+      "narrative_excerpt": "The Integrated Thermal Management System (ITMS) failed/ malfunctioned. Available for inspection. My car completely lost power on the interstate and it was 70 mph speed limit, I had a semi behind me. I\u00e2\u0080\u0099m taking to the dealer when I\u00e2\u0080\u0099m off in 3 to 4 weeks. Problem has been reported by other owners,"
+    },
+    {
+      "sample_id": "S073",
+      "votes": {
+        "rahul": "engine_and_engine_cooling_leak",
+        "aryan": "engine_and_engine_cooling_leak",
+        "kaushal": "belts_and_associated_pulleys_detachment",
+        "ram": "engine_and_engine_cooling_engine_missing_or_wrong_part"
+      },
+      "adjudicated_label": "engine_and_engine_cooling_leak",
+      "basis": "Rahul+ARYAN: independent mechanic diagnosed head-gasket failure; gasket sealing failure fits the leak family.",
+      "narrative_excerpt": "The contact owns a 2018 Ford Edge. The contact stated that after starting the vehicle, the check engine warning light illuminated on the instrument panel. The vehicle was taken to an independent mechanic, who determined that there was a misfire on cylinder #4. The vehicle was repaired, but the failu"
+    },
+    {
+      "sample_id": "S075",
+      "votes": {
+        "rahul": "belts_and_associated_pulleys_detachment",
+        "aryan": "other_unclear",
+        "kaushal": "belts_and_associated_pulleys_detachment",
+        "ram": "belts_and_associated_pulleys_detachment"
+      },
+      "adjudicated_label": "belts_and_associated_pulleys_detachment",
+      "basis": "Rahul+Kaushal+Ram: three engine failures from wetbelt degrading, explicitly narrated.",
+      "narrative_excerpt": "We bought a car on Halloween of '22 with 13k miles. In July of '23 our engine blew to wetbelt degrading. We replaced that engine and in August of '23 it blew again due to the same issue. Replaced that engine and in Jan of '24 it happened a third time, both times lasting less than 5k miles. We have m"
+    },
+    {
+      "sample_id": "S078",
+      "votes": {
+        "rahul": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear",
+        "ram": "belts_and_associated_pulleys_detachment"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Diagnosed inoperable oil pump has no matching label.",
+      "narrative_excerpt": "The contact owns a 2019 Ford EcoSport. The contact received notification of NHTSA Campaign Number: 23V905000 (Engine and Engine Cooling) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall r"
+    },
+    {
+      "sample_id": "S079",
+      "votes": {
+        "rahul": "belts_and_associated_pulleys_detachment",
+        "kaushal": "engine_and_engine_cooling_engine_missing_or_wrong_part"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Oil light plus power loss tied only to campaign reference; no component diagnosis.",
+      "narrative_excerpt": "The contact owns a 2020 Ford EcoSport. The contact stated that while driving at an undisclosed speed, the oil warning light illuminated and suddenly the vehicle lost motive power. The contact merged to the side of the road. The vehicle was towed to the dealer to be diagnosed. The contact was informe"
+    },
+    {
+      "sample_id": "S080",
+      "votes": {
+        "rahul": "belts_and_associated_pulleys_detachment",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Diagnosed oil-pump failure and engine replacement need; no matching label (as S078).",
+      "narrative_excerpt": "The contact owns a 2018 Ford EcoSport. The contact received notification of NHTSA Campaign Number: 23V905000 (Engine and Engine Cooling) however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall r"
+    },
+    {
+      "sample_id": "S084",
+      "votes": {
+        "rahul": "engine_and_engine_cooling_engine_missing_or_wrong_part",
+        "kaushal": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "VCT/timing-chain diagnosis has no matching label.",
+      "narrative_excerpt": "see NTSHA report of technical service bulletin.  This describes exactly the issue.  As a result, the timing chain has been diagnosed as stretched due  to the cam phaser issue.  From what I understand, the safety concern is that the timing chain, if left undiagnosed/unrepaired can cause engine failur"
+    },
+    {
+      "sample_id": "S108",
+      "votes": {
+        "rahul": "other_unclear",
+        "aryan": "tail_lights_leak",
+        "kaushal": "tail_lights_leak",
+        "ram": "tail_lights_leak"
+      },
+      "adjudicated_label": "tail_lights_leak",
+      "basis": "All three reviewers: deteriorating/fogged taillight covers indicate seal moisture ingress. Overturns Rahul unclear.",
+      "narrative_excerpt": "Rear taillight  covers are deteriorating. Discoloration and fog"
+    },
+    {
+      "sample_id": "S125",
+      "votes": {
+        "rahul": "other_unclear",
+        "aryan": "other_unclear",
+        "kaushal": "fuel_system_other_electrical",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Oil dilution is not an electrical fault. Overrides Kaushal.",
+      "narrative_excerpt": "2019 Honda Accord Sport 1.5T and 2.0T oil dilution issues. Fuel leaks in to the oil system and anytime the oil is changed it smells like gasoline. I have to change the oil every 3k to 5k miles in order to keep my oil clean and without engine fuel dilution."
+    },
+    {
+      "sample_id": "S178",
+      "votes": {
+        "rahul": "other_unclear",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear",
+        "ram": "control_module_tcm_pcm_tecm_software"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Replacement part lacking sensor is a parts-compatibility story, not a TCM software defect. Overrides Ram.",
+      "narrative_excerpt": "Ford changed a part that my vehicle has and now the new part does not have my sensor and requires my car to be reprogrammed."
+    },
+    {
+      "sample_id": "S183",
+      "votes": {
+        "rahul": "other_unclear",
+        "aryan": "automatic_transmission_detachment",
+        "kaushal": "other_unclear",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Jerking without diagnosis; 3 reviewers unclear. Overrides ARYAN.",
+      "narrative_excerpt": "No warning lamps came on but while crossing after stopping at a stop sign the car was jerking and did not want to accelerate almost causing me to get hit by another car. This issue has been present since around 45k miles. I\u00e2\u0080\u0099m currently at 85k on odometer. This was the first time I realized how dan"
+    },
+    {
+      "sample_id": "S186",
+      "votes": {
+        "rahul": "other_unclear",
+        "aryan": "automatic_transmission_detachment",
+        "kaushal": "other_unclear",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Erratic shifting noted but detachment specifically not evidenced; 2 unclear. Overrides ARYAN.",
+      "narrative_excerpt": "The contact owns a 2019 Ford F-150. The contact stated while driving at an undisclosed speed, the transmission shifted erratically and the transmission temperature increased. The contact stated that the transmission was shifting abnormally. The contact stopped and parked the vehicle. The vehicle was"
+    },
+    {
+      "sample_id": "S222",
+      "votes": {
+        "rahul": "electric_power_assist_system_loss_of_control",
+        "aryan": "electric_power_assist_system_loss_of_control",
+        "kaushal": "other_unclear",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Sticky steering undiagnosed. Overrides Rahul+ARYAN.",
+      "narrative_excerpt": "My Civic SI has developed sticky steering while on the highway. When driving 70mph in a straight line I have to put increased effort into turning the steering wheel. It can cause over steer if putting to much effort into trying to turn."
+    },
+    {
+      "sample_id": "S225",
+      "votes": {
+        "rahul": "electric_power_assist_system_loss_of_control",
+        "aryan": "electric_power_assist_system_loss_of_control",
+        "kaushal": "other_unclear",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Pulling possibly lane-assist; EPAS undiagnosed. Overrides Rahul+ARYAN.",
+      "narrative_excerpt": "I purchased the Honda  HRV Sport in February 2023.  Have accumulated only 4,000 miles since mostly on city streets.  whenever I drive my HRV over 5 miles at 45 or 35 miles per  hour, the steering wheel intermittently wants to turn right or left and requires more force to counteract than  the lane ke"
+    },
+    {
+      "sample_id": "S232",
+      "votes": {
+        "rahul": "hinge_and_attachments_detachment",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear",
+        "ram": "hinge_and_attachments_detachment"
+      },
+      "adjudicated_label": "hinge_and_attachments_detachment",
+      "basis": "Rahul+Ram: spot welds loose, door moving freely \u2014 attachment failure explicit.",
+      "narrative_excerpt": "I was getting out of my car and when I opened my door it sounded like someone had hit my car. I checked to see if there was any damages and there was none. After further investigation I noticed that the spot welds on the driver side door of my 2020 Ford Escape came loose and the door  was starting t"
+    },
+    {
+      "sample_id": "S235",
+      "votes": {
+        "rahul": "other_unclear",
+        "ram": "structure_body_compliance_or_label"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Diagnosed bad engine/transmission mounts are not a body-compliance defect. Overrides Ram.",
+      "narrative_excerpt": "The contact owns a 2020 Honda Fit. The contact stated while driving at various speeds, the vehicle experienced severe front-end shaking and vibration. The vehicle was taken to the local mechanic who diagnosed the vehicle and determined that the engine mount and transmission mount were faulty and nee"
+    },
+    {
+      "sample_id": "S240",
+      "votes": {
+        "rahul": "structure_body_compliance_or_label",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Panel gaps alone do not establish noncompliance versus repair history. Close call; strict per guide.",
+      "narrative_excerpt": "Body panels are misaligned. Doors do not line up to the body, bumpers don\u00e2\u0080\u0099t line up to quarter fender, trunk lid has large gaps preventing proper sealing, hood has gaps and vibrates at high speeds."
+    },
+    {
+      "sample_id": "S241",
+      "votes": {
+        "rahul": "lower_arm_crack_or_fracture",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Back plate caught on arm is not arm crack/fracture. Overrides Rahul.",
+      "narrative_excerpt": "2125 miles on this Type R, fresh off the show room floor. At low speed turning into the slight dip in my driveway, the suspension in Sports Mode flexed enough for the driver side tin rotor back plate at the driver front wheel to get caught on the lower control arm. Drove it to Honda, and yes, they c"
+    },
+    {
+      "sample_id": "S246",
+      "votes": {
+        "rahul": "tires_compliance_or_label",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Compromised tires; specific mode not established.",
+      "narrative_excerpt": "215/55 R 17  My right rear tire has been losing air for at least 6 months. My tire pressure light is constantly on. I had my tire inspected and was told all 4 tires are compromised. The mechanic told me that my tires were wavy??? and that the tread inside my tires were damaged and I needed to replac"
+    },
+    {
+      "sample_id": "S247",
+      "votes": {
+        "rahul": "tires_compliance_or_label",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Uneven tread wear only.",
+      "narrative_excerpt": "The contact owns a 2022 Toyota Tundra. The contact stated that while getting the vehicle service and the dealer advised him the vehicle had uneven trade wear on the tires. The vehicle was not diagnosed or repaired. The VIN was not included in NHTSA Campaign Number that is unknown. The manufacturer w"
+    },
+    {
+      "sample_id": "S248",
+      "votes": {
+        "rahul": "tires_compliance_or_label",
+        "aryan": "other_unclear",
+        "kaushal": "other_unclear",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Cause unresolved after parts replacement.",
+      "narrative_excerpt": "The contact owns a 2022 Ford Expedition. The contact stated while driving 40-80 MPH, there was an abnormal vibration in the vehicle. There was an abnormal humming sound coming from the vehicle. The vehicle was taken to the local dealer, where it was diagnosed and determined that the wheels, drive sh"
+    },
+    {
+      "sample_id": "S293",
+      "votes": {
+        "rahul": "visibility_wiper_software",
+        "ram": "other_unclear"
+      },
+      "adjudicated_label": "other_unclear",
+      "basis": "Wiper motor inadequacy is not software.",
+      "narrative_excerpt": "Windshield wipers are not fast enough the motor isn't fast enough to keep up with moderate to Heavy Rain and occasionally wipers will just stop"
+    }
+  ],
+  "accepted_by_agreement": {
+    "numerator": 257,
+    "denominator": 300
+  },
+  "requiring_adjudication": {
+    "numerator": 43,
+    "denominator": 300
+  },
+  "evaluation_only": true
+}
