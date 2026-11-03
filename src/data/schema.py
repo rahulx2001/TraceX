@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS interactions (
     -- audit
     llm_calls          INTEGER NOT NULL DEFAULT 0,
     customer_ref       VARCHAR,                    -- sha256 of phone/email/account (returning-customer link; never raw PII)
+    summary            JSON,                       -- trusted origin metadata; never customer-supplied
     degraded_ledger    BOOLEAN NOT NULL DEFAULT FALSE,  -- safety output delivered from WAL fallback
     csat               INTEGER,                        -- post-call outcome signal 1-5 (board #9)
     customer_resolved  BOOLEAN,                        -- customer says the issue is resolved (board #9)

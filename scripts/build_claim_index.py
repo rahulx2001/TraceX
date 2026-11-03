@@ -8,6 +8,8 @@ HUMAN_REVIEW_STATUS = "reports/improvement/human_reviews/round1/review_status.js
 HUMAN_REVIEW_PROVENANCE = "reports/improvement/human_reviews/round1/human_review_provenance.json"
 GROUNDED_CANDIDATE_DIR = "reports/improvement/defect_grounded_v1"
 GROUNDED_CANDIDATE_COMPARISON = f"{GROUNDED_CANDIDATE_DIR}/comparison.json"
+WITHDRAWAL = "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md"
+CURRENT_REVIEW = "reports/improvement/human_reviews/round4"
 
 ARTIFACTS = [
     "reports/defect/fuel_holdout/holdout_results.json",
@@ -115,15 +117,48 @@ def main():
          "model_version": "meta-models/muse-spark-open-1026; complaint-evidence-v1",
          "limits": "Recorded real model transport on fictional data; quotation fidelity checks do not prove interpretation accuracy, new code validation or general reliability."},
     ]
+    withdrawn = (ROOT / WITHDRAWAL).is_file()
+    if withdrawn:
+        claims = [c for c in claims if c["id"] != "original-human-review"]
+        claims.append({
+            "id": "review-provenance-withdrawal",
+            "claim": "Earlier second-review and timed-review claims were withdrawn; Rahul's original labels remain attested single-reviewer evidence",
+            "status": "withdrawn_review_claims", "artifact": WITHDRAWAL, "pointers": [],
+            "recorded_at": "Withdrawal recorded before the round-4 evaluation",
+            "model_version": "Provenance audit; no model inference",
+            "limits": "No independent review validation, kappa or 85% accuracy claim is supported by the withdrawn rounds. Archived files remain available for audit.",
+        })
+        artifacts.append(WITHDRAWAL)
+    current_status_path = f"{CURRENT_REVIEW}/review_status.json"
+    if (ROOT / current_status_path).is_file():
+        current = json.loads((ROOT / current_status_path).read_text())
+        score = json.loads((ROOT / CURRENT_REVIEW / "accuracy_v2.json").read_text())
+        challenger = json.loads((ROOT / CURRENT_REVIEW / "candidate_accuracy_v2.json").read_text())
+        current_artifacts = [f"{CURRENT_REVIEW}/{name}" for name in (
+            "accuracy_v2.json", "candidate_accuracy_v2.json", "comparison_v2.json", "EVALUATION.md",
+            "adjudication/adjudicated_labels_v2.csv", "adjudication/decision_trail.json")]
+        claims.append({
+            "id": "round4-evaluation",
+            "claim": f"Current historical evaluation: {score['accuracy_numerator']}/{score['accuracy_denominator']} = {score['accuracy']:.1%} accuracy, macro-F1 {score['macro_f1']:.3f} over {score['macro_f1_label_count']} labels; challenger {challenger['accuracy_numerator']}/{challenger['accuracy_denominator']} = {challenger['accuracy']:.1%}, rejected",
+            "status": current["status"], "artifact": current_status_path,
+            "additional_artifacts": current_artifacts,
+            "pointers": ["/status", "/adjudicator", "/limits"],
+            "recorded_at": current["verified_at"],
+            "model_version": "; ".join(score["classifier"]["models"] + score["classifier"]["prompt_versions"]),
+            "limits": "AI-assisted adjudication; human countersignature pending. Blinding is unconfirmed; statistical agreement does not establish independence. Opened 300-record historical evaluation only; no accident prediction accuracy or demonstrated improvement.",
+        })
+        artifacts.extend([current_status_path, *current_artifacts])
     candidate_claim, candidate_artifacts = grounded_candidate_claim()
     if candidate_claim is not None:
+        if withdrawn:
+            candidate_claim["limits"] = "Separate candidate evaluation against the original attested single-reviewer labels. Second-review independence claims were withdrawn. Missing predictions count as wrong; candidate rejected and not deployed. Historical evaluation only; no fitting or calibration."
         claims.append(candidate_claim)
         artifacts = list(dict.fromkeys(artifacts + candidate_artifacts))
     revision_path = "reports/improvement/human_reviews/round1/revisions/manish_export4/status.json"
     finalized_revision_path = "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/status.json"
     if (ROOT / finalized_revision_path).is_file():
         revision_path = finalized_revision_path
-    if (ROOT / revision_path).is_file():
+    if not withdrawn and (ROOT / revision_path).is_file():
         revision = json.loads((ROOT / revision_path).read_text())
         revision_artifacts = revision.get("additional_artifacts", [])
         claims.append({
@@ -137,6 +172,7 @@ def main():
             "limits": revision["limits"],
         })
         artifacts = list(dict.fromkeys(artifacts + [revision_path] + revision_artifacts))
+    artifacts = list(dict.fromkeys(artifacts))
     index = {"schema_version": 1, "indexed_at": datetime.now(timezone.utc).isoformat(), **common,
              "claims": claims, "artifacts": [{"path": p, "sha256": sha(ROOT/p)} for p in artifacts],
              "full_reproduction": "Full experiment replay needs frozen gitignored inputs, source ZIPs, embeddings and weights listed by reports/defect/fuel_holdout/protocol.json. A new public download can differ. The small replay checks published arithmetic and citations only."}

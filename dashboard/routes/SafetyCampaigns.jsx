@@ -47,9 +47,9 @@ function demoValues(kind, initial) {
   const values = {
     workshop: "Demo Central Workshop", due_date: due.toISOString().slice(0, 10), reference: "SYN-DEMO-JOB-NEXT",
     technician: "Demo workshop technician", evidence_ref: "SYN-DEMO-REPORT-NEXT", replacement_part: initial.replacement_part || "SYN-CA-2302",
-    replacement_lot: "SYN-LOT-C", work_order: "SYN-DEMO-WO-NEXT", supplier: "SYN-AXLEWORKS", part_number: "SYN-CA-2301",
-    lot_id: "SYN-LOT-A", source_ref: "SYN-INSTALLATION-REVIEW", procedure_ref: "SYN-MANUAL-02", approval_ref: "SYN-ENG-01",
-    evidence_text: `FICTIONAL INSTALLATION RECORD — DEMO ONLY. Vehicle ${initial.vehicle_id || "selected demo vehicle"}: supplier SYN-AXLEWORKS; installed part SYN-CA-2301; installed lot SYN-LOT-A. Reference SYN-INSTALLATION-REVIEW. This example is not evidence for a real vehicle.`,
+    replacement_lot: "SYN-LOT-C", work_order: "SYN-DEMO-WO-NEXT", supplier: initial.supplier || "SYN-AXLEWORKS", part_number: initial.part_number || "SYN-CA-2301",
+    lot_id: initial.lot_id || "SYN-LOT-A", source_ref: "SYN-INSTALLATION-REVIEW", procedure_ref: "SYN-MANUAL-02", approval_ref: "SYN-ENG-01",
+    evidence_text: `FICTIONAL INSTALLATION RECORD — DEMO ONLY. Vehicle ${initial.vehicle_id || "selected demo vehicle"}: supplier ${initial.supplier || "SYN-AXLEWORKS"}; installed part ${initial.part_number || "SYN-CA-2301"}; installed lot ${initial.lot_id || "SYN-LOT-A"}. Reference SYN-INSTALLATION-REVIEW. This example is not evidence for a real vehicle.`,
     owner: "Demo supplier quality lead", status: "contained", regulatory_ref: "SYN-MANUFACTURER-REVIEW",
     outcome: kind === "followup" ? "no_symptoms" : "crack_found",
     note: "DEMO ONLY: fictional supporting record for this walkthrough; review the action and save when ready.",
@@ -158,6 +158,12 @@ function VehicleDetail({ vehicle: v, c, busy, save, tab, initialAction = "inspec
     ["Follow-up", v.followup?.at], ["Reviewer disposition", v.resolution?.at]];
   return <aside className="sc-panel sc-detail">
     <div className="sc-section-head"><div><h3>{v.vehicle_id}</h3><p className="sc-muted">{v.owner_ref} · {v.model}</p></div><span className={`sc-tag ${v.safety_hold ? "sc-tag-danger" : ""}`}>{v.safety_hold ? "Keep parked · recovery" : v.resolution ? "Reviewed resolution" : "Review pending"}</span></div>
+    {v.notice && <div className="sc-inset"><strong>Simulated notice · {v.notice.status}</strong><p className="sc-muted small">Delivered: {time(v.notice.delivered_at)} · Opened: {time(v.notice.opened_at)}</p>
+      {c.synthetic_demo && !v.notice.delivered_at && <button disabled={busy} onClick={() => save('simulate_receipt', { status: 'delivered', vehicle_ids: [v.vehicle_id] })}>Simulate delivery receipt</button>}
+      {c.synthetic_demo && v.notice.delivered_at && !v.notice.opened_at && <button disabled={busy} onClick={() => save('simulate_receipt', { status: 'opened', vehicle_ids: [v.vehicle_id] })}>Simulate owner opening</button>}
+      <details><summary>Approved message sent to this owner</summary><p>{v.notice.message}</p><p lang="hi">{v.notice.messages?.hi}</p></details>
+    </div>}
+    {v.appointment?.confirmation && <p className="sc-inset" role="status">{v.appointment.confirmation}</p>}
     {tab === "outreach" ? <ReplyForm key={v.vehicle_id} vehicle={v} campaign={c} busy={busy} save={save} /> : <>
       <dl className="sc-facts"><div><dt>Installed part</dt><dd>{v.part_number || "Unknown"}</dd></div><div><dt>Lot</dt><dd>{v.lot_id || "Unknown"}</dd></div>
         <div><dt>Trace evidence</dt><dd>{v.source_ref} · {label(v.match)}</dd></div><div><dt>Latest finding</dt><dd>{label(v.inspection?.outcome)}</dd></div></dl>
@@ -179,6 +185,7 @@ function VehicleDetail({ vehicle: v, c, busy, save, tab, initialAction = "inspec
           onSave={(k, data) => save(k, { ...data, vehicle_id: v.vehicle_id })} />
       </>}
     </>}
+    {tab === "outreach" && c.demo_context && v.replies.some(r => /\byes\b/i.test(r.text)) && !v.appointment && <details open><summary>YES received · offer an inspection slot</summary><ActionForm kind="appointment" busy={busy} demo={c.synthetic_demo} onSave={(k, data) => save(k, { ...data, vehicle_id: v.vehicle_id })} /></details>}
   </aside>;
 }
 
@@ -230,6 +237,15 @@ export default function SafetyCampaigns() {
     try { const created = await request(demo ? `${API}/demo` : API, demo ? {} : values); setCreating(false); setTab(route.interaction ? "investigate" : "overview"); setVehicleId(""); if (await load(created.campaign_id)) setMessage(demo ? "Ready demo loaded with owner replies, inspections, repairs and follow-up. All records are fictional; your saved changes are preserved." : "Campaign created. Import installation records to establish scope."); }
     catch (e) { setError(e.message); } finally { submitLock.current = false; setBusy(false); }
   }
+  async function loadEpsDemo() {
+    if (submitLock.current) return;
+    submitLock.current = true; setBusy(true); setError("");
+    try {
+      const result = await request(`${API}/demo/eps-b14`, {});
+      window.location.hash = `#cases?id=${result.hero_case_id}`;
+    } catch (e) { setError(e.message); }
+    finally { submitLock.current = false; setBusy(false); }
+  }
   async function save(kind, data) {
     if (submitLock.current || !c) return false;
     submitLock.current = true; setBusy(true); setError(""); setMessage("");
@@ -262,12 +278,12 @@ export default function SafetyCampaigns() {
   const selected = c?.vehicles.find((v) => v.vehicle_id === vehicleId) || null;
   const vehicles = (c?.vehicles || []).filter((v) => (filter === "all" || (filter === "hold" ? v.safety_hold : filter === "unresolved" ? !v.resolution && v.match !== "excluded" : v.match === filter)) &&
     [v.vehicle_id, v.owner_ref, v.model, v.lot_id].some((value) => value?.toLowerCase().includes(search.toLowerCase())));
-  const eligible = (c?.vehicles || []).filter((v) => ["exact", "possible"].includes(v.match) && v.contact_consent && !v.notice).length;
+  const eligible = (c?.vehicles || []).filter((v) => ["exact", "possible"].includes(v.match) && v.contact_consent && !v.notice && !c.demo_context?.inbound_vehicle_ids.includes(v.vehicle_id)).length;
 
   return <div className="sc-page">
     <header className="sc-header"><div><h1>Safety campaigns</h1><p className="sc-muted">Review owner reports, check installed-part records and document the next action.</p></div>
       <div className="sc-inline"><button disabled={busy || loading} onClick={() => load(c?.campaign_id)}>Refresh</button><button onClick={() => setCreating(!creating)} disabled={busy}>New campaign</button>
-        <button className="primary" disabled={busy || loading} onClick={() => create({}, true)}>{busy ? "Preparing…" : "Load ready demo"}</button></div></header>
+        <button className="primary" disabled={busy || loading} onClick={() => create({}, true)}>{busy ? "Preparing…" : "Load ready demo"}</button><button disabled={busy || loading} onClick={loadEpsDemo}>Load LotGuard EPS demo</button></div></header>
     {error && <div role="alert" className="banner banner-error">{error}</div>}
     {message && <div role="status" className="banner banner-ok">{message}</div>}
     {creating && <section className="sc-panel"><div className="sc-section-head"><h2>New safety campaign</h2><button className="ghost" onClick={() => setCreating(false)}>Cancel</button></div><CreateForm busy={busy} onCreate={create} /></section>}
@@ -284,6 +300,7 @@ export default function SafetyCampaigns() {
         <div className="sc-campaign-meta"><span className="sc-tag">{label(c.status)}</span><span className="mono">{c.component.part_number} / {c.component.lot_id}</span><button className="ghost" onClick={exportPacket}>Export evidence ↗</button></div>
       </section>
       <div className="sc-mode-note">{c.synthetic_demo ? "Synthetic demo · fictional vehicles, supplier and workshop evidence. Decisions are rehearsal records." : "Pilot campaign · recorded evidence requires qualified review."} Outreach is simulated; no WhatsApp, SMS or email is sent.</div>
+      {c.demo_context && <section className="sc-panel" aria-label="LotGuard campaign results"><h2>One report → fleet action</h2><p>11 current-week reports linked · {m.registered - c.demo_context.inbound_vehicle_ids.length} owners who had never called warned in simulation.</p><div className="sc-progress">{[["Simulated delivered", m.simulated_delivered], ["Opened / routed", m.simulated_opened], ["Workshop bookings", m.booked], ["Findings", m.confirmed_cracks], ["Verified & resolved", m.resolved]].map(([name, value]) => <div key={name}><strong>{value}</strong><span>{name}</span></div>)}</div><p><strong>{m.vehicles_warned_before_failure}</strong> fictional vehicles warned and fixed before reported failure. Accidents prevented are not measured.</p><p><a href={`#cases?id=${c.demo_context.hero_case_id}`}>Return to the source case and evaluation</a></p></section>}
       <div className="sc-metrics">{[["Verified lot matches", m.exact, `${m.possible} possible · ${m.unknown} trace unknown`], ["Open vehicle reviews", m.unresolved, `${m.safety_holds} safety holds · ${m.overdue} overdue`],
         ["Confirmed cracks", m.confirmed_cracks, `${m.inspected} recorded inspections`], ["Verified repairs", m.repair_verified, `${m.resolved} reviewed resolutions`]].map(([title, value, hint]) =>
         <div key={title} className="sc-metric"><span>{title}</span><strong>{value}</strong><small>{hint}</small></div>)}</div>
@@ -326,10 +343,11 @@ export default function SafetyCampaigns() {
           <form className="sc-form" onSubmit={(e) => { e.preventDefault(); save("approve", { lane, note: reviewNote }); }}>
             <label className="sc-field"><span>Response lane</span><select value={lane} onChange={(e) => setLane(e.target.value)}><option value="recovery">Keep parked · arrange recovery</option><option value="inspect" disabled={c.requires_recovery}>Authorised workshop inspection</option></select></label>
             <label className="sc-field"><span>Scope and message review</span><textarea required rows={3} value={reviewNote} onChange={(e) => setReviewNote(e.target.value)} placeholder="Record why this part/lot scope and response are appropriate…" /></label>
-            {c.synthetic_demo && <button type="button" className="ghost" disabled={busy} onClick={() => setReviewNote("DEMO: installation records and the critical seed finding reviewed. Keep exact and possible lot matches parked and arrange professional recovery.")}>Fill demo review note</button>}
+            {c.synthetic_demo && <button type="button" className="ghost" disabled={busy} onClick={() => setReviewNote(c.demo_context ? "DEMO: reviewed fictional Honda City EPS B14 installation scope and English/Hindi warnings. Reports are not diagnoses. Abnormal-steering vehicles stay parked pending workshop transport advice." : "DEMO: installation records and the critical seed finding reviewed. Keep exact and possible lot matches parked and arrange professional recovery.")}>Fill demo review note</button>}
             <div className="sc-inline"><button className="primary" disabled={busy}>{c.synthetic_demo ? "Simulate reviewer approval" : "Approve as supervisor"}</button><button type="button" disabled={busy || !c.approval || !eligible} onClick={() => save("outreach", {})}>Record simulated notices</button></div>
             <p className="sc-muted small">{c.approval ? `${c.approval.simulated ? "Simulated review" : "Reviewed"} by ${c.approval.by} · ${time(c.approval.at)}` : "Approval is required before notices. Unknown traceability and contacts without consent are withheld."}</p>
           </form></div></section>}
+      {tab === "outreach" && c.notice_languages?.hi && <details className="sc-panel"><summary>Hindi warning · same reviewed scope</summary><p lang="hi">{c.approval?.messages?.hi || c.notice_languages.hi}</p></details>}
 
       {tab === "workshop" && <section className="sc-panel"><div className="sc-section-head"><div><h2>Reviewed repair specification</h2><p className="sc-muted">Exact parts and procedures come from engineering records.</p></div><span className="sc-tag">{c.remedy ? "Specification recorded" : "Awaiting engineering review"}</span></div>
         {c.remedy && <dl className="sc-facts"><div><dt>Replacement part</dt><dd>{c.remedy.replacement_part}</dd></div><div><dt>Procedure</dt><dd>{c.remedy.procedure_ref}</dd></div><div><dt>Approval</dt><dd>{c.remedy.approval_ref}</dd></div></dl>}

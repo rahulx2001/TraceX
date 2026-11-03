@@ -71,6 +71,8 @@ class SentinelAgent(Agent):
             with domain_con(ctx.pack.id) as con:
                 rows = con.execute(sql_template, params).fetchall()
                 cols = [d[0] for d in con.description]
+                if ctx.channel != "simulated":
+                    rows = [r for r in rows if dict(zip(cols, r)).get("advisory_id") != "SYN-EPS-B14-ADVISORY"]
         except Exception as e:
             record_action(self._action(
                 action_type="advisory_check",

@@ -57,7 +57,7 @@ async function isolatedPage(base) {
 async function selectDraft(page, fixture) {
   await page.goto(`${new URL(page.url()).origin}/ui/#safety-campaigns?tab=investigate`);
   await page.getByLabel("Select safety campaign").selectOption(fixture.campaign_id);
-  await page.getByRole("button", { name: "Investigate", exact: true }).click();
+  await page.getByRole("navigation", { name: "Campaign sections" }).getByRole("button", { name: "Investigate", exact: true }).click();
   await page.getByLabel("Recorded investigations").selectOption(fixture.run_id);
   await expect(page.getByTestId("investigation-result")).toBeVisible();
 }
@@ -82,6 +82,15 @@ try {
       } }] : [] });
   if (missingRouteControl) console.log("NEGATIVE CONTROL: sign-in registry entry omitted only from this temporary build; browser assertions must fail.");
   browser = await chromium.launch(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {});
+  if (process.argv.includes("--eps-only")) {
+    const open = await startServer("open");
+    const local = await isolatedPage(open.base);
+    await fs.mkdir(visuals, { recursive: true });
+    const { runEpsDemoUiTest } = await import("./eps-demo-ui.test.mjs");
+    await runEpsDemoUiTest({ page: local.page, base: open.base, visuals });
+    await local.context.close();
+    passed = true;
+  } else {
   const auth = await startServer("auth");
   const { context, page } = await isolatedPage(auth.base);
   await page.goto(`${auth.base}/ui/#safety-campaigns?tab=investigate`);
@@ -189,6 +198,8 @@ try {
   await runMlEvidenceUiTest({ page: local.page, base: open.base });
   const { runCaseEvidenceUiTest } = await import("./case-evidence-ui.test.mjs");
   await runCaseEvidenceUiTest({ page: local.page, base: open.base, visuals });
+  const { runEpsDemoUiTest } = await import("./eps-demo-ui.test.mjs");
+  await runEpsDemoUiTest({ page: local.page, base: open.base, visuals });
   await local.page.goto(`${open.base}/ui/#ai-status`);
   await expect(local.page.getByRole("heading", { name: "AI assistance", exact: true })).toBeVisible();
   await expect(local.page.getByRole("columnheader", { name: "p50 ms", exact: true })).not.toBeVisible();
@@ -199,6 +210,7 @@ try {
   await runVoiceUiTest({ page: local.page, context: local.context, base: open.base, fixture: open.fixture });
   await local.context.close();
   passed = true;
+  }
 } finally {
   await browser?.close();
   for (const child of children) child.kill("SIGTERM");

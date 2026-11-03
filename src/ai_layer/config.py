@@ -237,6 +237,7 @@ def _live_verified(current_host: str) -> bool:
 def ai_status() -> dict[str, Any]:
     """Public, secret-free status for GET /api/ai/status and the UI badge."""
     enabled = meta_enabled()
+    from src.ai_layer.budget import limit_micros
     from src.ai_layer.live_proof import verified_features
     try:
         from src.ai.provider import llm_enabled as _tier2_enabled
@@ -273,7 +274,7 @@ def ai_status() -> dict[str, Any]:
         "fallback": "deterministic regex/gazetteer/rules path (always on)",
         "verified_against_live_api": _live_verified(base_host),
         "verified_features": verified_features(),
-        "budget_limit_usd": 30,
+        "budget_limit_usd": limit_micros() / 1_000_000,
     }
 
 

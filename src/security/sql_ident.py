@@ -77,6 +77,7 @@ SAFE_COLUMNS = frozenset(
 # Schema-migration only (warehouse APPLY); never from request input.
 SAFE_ALTER_COLUMNS = frozenset(
     {
+        "summary",
         "prev_hash",
         "row_hash",
         "tenant_id",

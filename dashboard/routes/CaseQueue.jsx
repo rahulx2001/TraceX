@@ -10,15 +10,17 @@ import {
 } from "../src/ui/labels.js";
 import { useDebounced, useFocusTrap, useLocalStorage } from "../src/ui/hooks.js";
 // [AI-LAYER] photo evidence panel (optional Meta AI layer; upload works without a key)
-import EvidencePanel from "../src/ai/EvidencePanel.jsx";
+import CaseEvidence from "../src/ai/CaseEvidence.jsx";
+import LotRiskPanel from "../src/ai/LotRiskPanel.jsx";
 import { noteAuthor, operatorError } from "../src/ui/operatorErrors.js";
 
-const SEV = ["All", "Critical", "Medium", "Low"];
+const SEV = ["All", "Critical", "High", "Medium", "Low"];
 const STATUS = ["All", "open", "pending_followup", "closed"];
+const readyStyle = { color: "var(--ok)", background: "var(--ok-soft)", border: "1px solid var(--ok)", padding: "4px 8px", borderRadius: 6 };
 
 function SevBadge({ severity }) {
   const s = (severity || "").toLowerCase();
-  const cls = s === "critical" ? "red" : s === "medium" ? "orange" : "blue";
+  const cls = s === "critical" ? "red" : ["medium", "high"].includes(s) ? "orange" : "blue";
   return <span className={"chip " + cls}>{severity || "—"}</span>;
 }
 
@@ -73,18 +75,48 @@ export default function CaseQueue() {
   const [clusterFilter, setClusterFilter] = useState("");
   const [hasMore, setHasMore] = useState(false);
   const [nextOffset, setNextOffset] = useState(0);
+  const [demoBusy, setDemoBusy] = useState(false);
+  const [evidenceRequest, setEvidenceRequest] = useState(null);
+  const [sending, setSending] = useState(false);
 
-  async function load({ append = false, offset = 0 } = {}) {
+  async function loadDemo() {
+    setDemoBusy(true); setError(null);
+    try {
+      const r = await fetch('/api/safety-campaigns/demo/eps-b14', { method: 'POST', headers: apiHeaders() });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.detail || "Could not load the demo");
+      setFilterSev("All"); setFilterStatus("All"); setSearchQ(""); setClusterFilter("");
+      await load({ append: false, offset: 0, clearFilters: true });
+      setActionMsg(data.message);
+      await openCase(data.hero_case_id);
+    } catch (e) { setError(e.message); }
+    finally { setDemoBusy(false); }
+  }
+
+  async function sendFollowup() {
+    const id = detail.case_id;
+    setSending(true); setError(null);
+    try {
+      if (!await saveCasePatch({ followup_draft: followupDraft })) return;
+      const r = await fetch(`/api/frontline/cases/${encodeURIComponent(id)}/followup/send-demo`, { method: 'POST', headers: apiHeaders() });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.detail || "Could not simulate delivery");
+      if (selectedRef.current === id) { setActionMsg("Simulated follow-up delivered to the collected fictional destination. No email was sent."); await refreshDetail(id); }
+    } catch (e) { if (selectedRef.current === id) setError(e.message); }
+    finally { setSending(false); }
+  }
+
+  async function load({ append = false, offset = 0, clearFilters = false } = {}) {
     setLoading(true);
     const params = new URLSearchParams({
       limit: "100",
       offset: String(offset),
       include_simulated: includeSimulated ? "true" : "false",
     });
-    if (filterSev !== "All") params.set("severity", filterSev);
-    if (filterStatus !== "All") params.set("status", filterStatus);
-    if (searchDebounced.trim()) params.set("q", searchDebounced.trim());
-    if (clusterFilter) params.set("cluster", clusterFilter);
+    if (!clearFilters && filterSev !== "All") params.set("severity", filterSev);
+    if (!clearFilters && filterStatus !== "All") params.set("status", filterStatus);
+    if (!clearFilters && searchDebounced.trim()) params.set("q", searchDebounced.trim());
+    if (!clearFilters && clusterFilter) params.set("cluster", clusterFilter);
     try {
       const r = await fetch(`/api/frontline/cases?${params.toString()}`, {
         headers: apiHeaders(),
@@ -223,6 +255,7 @@ export default function CaseQueue() {
     setUndoStatus(null);
     setExportMsg(null);
     setActionMsg(null);
+    setEvidenceRequest(null);
     setError(null);
     setDetailLoading(true);
     setDetailError("");
@@ -383,6 +416,7 @@ export default function CaseQueue() {
           </p>
         </div>
         <div className="page-actions">
+          <button type="button" disabled={demoBusy} onClick={loadDemo}>{demoBusy ? "Preparing demo…" : "Load LotGuard demo"}</button>
           <span className="build-stamp">Queue filters</span>
           <label className="check-row" style={{ fontSize: 12, margin: 0 }}>
             <input
@@ -518,9 +552,10 @@ export default function CaseQueue() {
                   }}
                 >
                   <td className="mono">{c.case_id}</td>
-                  <td>{c.category || "—"}</td>
+                  <td>{c.demo_hero ? "LOT ALERT · " : ""}{c.category || "—"}</td>
                   <td>
                     <SevBadge severity={c.severity} />
+                    {c.synthetic_demo && <span className="chip purple">Demo</span>}
                   </td>
                   <td>
                     <PriorityPill priority={c.priority} />
@@ -588,8 +623,9 @@ export default function CaseQueue() {
               onClick={() => openCase(c.case_id)}
             >
               <div className="case-card-top">
-                <span className="case-card-cat">{c.category || "Uncategorized"}</span>
+                <span className="case-card-cat">{c.demo_hero ? "LOT ALERT · " : ""}{c.category || "Uncategorized"}</span>
                 <SevBadge severity={c.severity} />
+                {c.synthetic_demo && <span className="chip purple">Demo</span>}
               </div>
               <div className="case-card-id">{c.case_id}</div>
               <div className="case-card-meta">
@@ -644,6 +680,7 @@ export default function CaseQueue() {
             )}
             {detail && (
               <>
+                {detail.synthetic_demo && <p className="chip purple">Demo · All records are fictional; your saved changes are preserved.</p>}
                 <section aria-label="Known now" data-testid="case-known-now">
                 <h2 style={panelHeading}>Known now</h2>
                 <p className="muted" style={{ marginTop: 0 }}>
@@ -665,24 +702,29 @@ export default function CaseQueue() {
                 )}
                 <div className="row">{Object.entries(detail.safety_flags || {}).filter(([, value]) => value).map(([name]) => <span className="chip red" key={name}>{safetyFlagLabel(name)}</span>)}</div>
                 {detail.investigation_id && <p><a href={`#issue/${encodeURIComponent(detail.investigation_id)}`}>Open related investigation</a></p>}
+                {detail.severity_inheritance?.raised && <details><summary>Why High? · inherited review priority</summary><p>Reported severity: {detail.severity_inheritance.own_severity}. {detail.severity_inheritance.reason}</p><p>{detail.severity_inheritance.interpretation}</p><details><summary>Supporting parent records</summary>{detail.parents?.filter(p => detail.severity_inheritance.supporting_record_ids.includes(p.record_id)).map(p => <p key={p.record_id}><strong>{p.record_id} · {p.severity_label}</strong><br />{p.text}</p>)}</details></details>}
                 </section>
                 <div className="h-divider" />
                 <section aria-label="Still needed" data-testid="case-evidence-guidance" style={{ fontSize: 12, marginTop: 12 }}>
                   <h2 style={panelHeading}>Still needed</h2>
-                  <strong>{detail.completeness?.complete ? "Evidence recorded" : "Choose the next action"}</strong>
+                  <strong className={detail.completeness?.complete ? "chip green" : ""} style={detail.completeness?.complete ? readyStyle : undefined}>{detail.completeness?.complete ? "Evidence recorded" : "Choose the next action"}</strong>
+                  <div className="row" style={{ flexWrap: "wrap", gap: 6, marginTop: 8 }}>{[["Photo", "photos"], ["Codes", "fault_codes"], ["Assessment", "operator_notes"], ["Follow-up", "followup_draft"]].map(([label, key]) => <span className={`chip ${["attached", "recorded", "drafted"].includes(detail.completeness?.[key]?.status) ? "green" : "orange"}`} style={["attached", "recorded", "drafted"].includes(detail.completeness?.[key]?.status) ? readyStyle : undefined} key={key}>{label} · {detail.completeness?.[key]?.status?.replaceAll("_", " ") || "unavailable"}</span>)}</div>
                   <p className="muted">Photos and scan codes are optional: add them when available, or request them in a follow-up. Record your assessment and next action in an operator note.</p>
                   {(!detail.completeness || (detail.completeness.unavailable || []).length > 0) && <p role="alert">
                     Some evidence records could not be loaded. Their absence is not confirmed.
                     {" "}<button type="button" className="ghost" onClick={() => refreshDetail()}>Retry evidence status</button>
                   </p>}
                   <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
-                    {(detail.completeness?.missing || []).includes("photos") && <><button type="button" className="ghost" onClick={() => requestEvidence('photo')}>Request photo</button><button type="button" className="ghost" onClick={() => focusEvidence('[aria-label="Upload photo evidence"]', true)}>Add a photo</button></>}
-                    {(detail.completeness?.missing || []).includes("fault_codes") && <><button type="button" className="ghost" onClick={() => requestEvidence('codes')}>Request scan codes</button><button type="button" className="ghost" onClick={() => focusEvidence('[aria-label="Fault codes"]')}>Add scan codes</button></>}
+                    {(detail.completeness?.missing || []).includes("photos") && <><button type="button" className="ghost" onClick={() => { requestEvidence('photo'); setEvidenceRequest('photo'); }}>Request photo</button><button type="button" className="ghost" onClick={() => focusEvidence('[aria-label="Upload photo evidence"]', true)}>Add a photo</button></>}
+                    {(detail.completeness?.missing || []).includes("fault_codes") && <><button type="button" className="ghost" onClick={() => { requestEvidence('codes'); setEvidenceRequest('codes'); }}>Request scan codes</button><button type="button" className="ghost" onClick={() => focusEvidence('[aria-label="Fault codes"]')}>Add scan codes</button></>}
                     <button type="button" className="ghost" onClick={() => focusEvidence('#followup-draft-input')}>Draft follow-up</button>
                     <button type="button" className="ghost" onClick={() => focusEvidence('#operator-notes-input')}>Record assessment</button>
                     <button type="button" className="ghost" disabled={drafting || Boolean(noteBody.trim())} onClick={draftNote}>{drafting ? "Preparing…" : "Draft note"}</button>
                   </div>
+                  {evidenceRequest && <div role="status" style={{ padding: 12, border: "1px solid #bcc6d0", marginTop: 8 }}>Request {evidenceRequest === 'photo' ? 'photo' : 'scan codes'} added to the follow-up draft. Review the request, confirm a destination and consent, then send through your connected channel.<button type="button" className="ghost" onClick={() => setEvidenceRequest(null)}>Dismiss request</button></div>}
                 </section>
+
+                {detail.demo_scenario && <><div className="h-divider" /><LotRiskPanel caseId={detail.case_id} /></>}
 
                 <div className="h-divider" />
                 <h2 style={panelHeading}>Status</h2>
@@ -696,7 +738,7 @@ export default function CaseQueue() {
                 <details>
                 <summary>Follow-up draft{followupDraft.trim() ? " · prepared" : ""}</summary>
                 <h2 style={panelHeading} id="followup-draft-heading">Follow-up Draft</h2>
-                <p className="muted small">Save the reviewed message for your case record. Customer delivery is not connected in this pilot.</p>
+                <p className="muted small">{detail.synthetic_demo ? `Fictional destination: ${detail.interaction_origin?.owner_ref || 'not collected'} · consent ${detail.interaction_origin?.contact_consent ? 'recorded' : 'missing'}. Delivery uses the demo stub.` : 'Save the reviewed message for your case record. Customer delivery is not connected in this pilot.'}</p>
                 <textarea
                   id="followup-draft-input"
                   aria-labelledby="followup-draft-heading"
@@ -714,11 +756,13 @@ export default function CaseQueue() {
                 >
                   Save follow-up
                 </button>
+                {detail.synthetic_demo && <button type="button" disabled={sending || saving || !followupDraft.trim()} onClick={sendFollowup}>{sending ? 'Sending simulation…' : 'Send demo follow-up'}</button>}
+                {detail.followup_delivery && <p className="chip green" style={readyStyle}>Simulated delivered · {new Date(detail.followup_delivery.sent_at).toLocaleString()}</p>}
                 </details>
 
                 {/* [AI-LAYER] photo evidence for this case */}
                 <details style={{ marginTop: 16 }}><summary>Photos & scan codes</summary>
-                <EvidencePanel key={detail.case_id || selectedId} caseId={detail.case_id || selectedId} onEvidenceChanged={() => refreshDetail(detail.case_id || selectedId)} />
+                <CaseEvidence cases={cases.some(c => c.case_id === detail.case_id) ? cases : [detail, ...cases]} caseId={detail.case_id || selectedId} onSelect={openCase} onEvidenceChanged={() => refreshDetail(detail.case_id || selectedId)} />
                 </details>
 
                 <div className="h-divider" />

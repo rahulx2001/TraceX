@@ -78,6 +78,21 @@ def validate(root=ROOT):
     assert study["participants"] == 0 and study["completed_tasks"] == 0 and study["time_saved_percent"] is None
     proofs = {name: validate_proof(read("reports/hackathon/"+name+".json", root))
               for name in ("investigation_live_smoke", "investigation_followup_smoke")}
+    if any(c["id"] == "round4-evaluation" for c in index["claims"]):
+        current = "reports/improvement/human_reviews/round4/"
+        score = read(current + "accuracy_v2.json", root)
+        candidate = read(current + "candidate_accuracy_v2.json", root)
+        comparison = read(current + "comparison_v2.json", root)
+        for result, name in ((score, "baseline"), (candidate, "candidate")):
+            assert result["accuracy"] == result["accuracy_numerator"] / result["accuracy_denominator"]
+            assert result["accuracy_denominator"] == 300
+            assert comparison[name + "_accuracy"]["numerator"] == result["accuracy_numerator"]
+        macro = comparison["common_label_macro_f1"]
+        assert macro["label_count"] == score["macro_f1_label_count"]
+        assert abs(sum(row["f1"] for row in macro["baseline"]["per_label"]) / macro["label_count"] - score["macro_f1"]) < 1e-12
+        assert score["accuracy_numerator"] == 246 and candidate["accuracy_numerator"] == 238
+        assert read(current + "review_status.json", root)["status"] == "complete_pending_countersign"
+        assert not {"original-human-review", "human-review-revision-export4"}.intersection(c["id"] for c in index["claims"])
     return {"ok": True, "validation": "saved-artifact arithmetic, source fidelity and hashes only",
             "model_calls": 0, "new_human_labels": 0, "new_participants": 0,
             "historical_counts": {"campaign_hits": 5, "campaigns": 8, "matching_mature_alerts": 6,

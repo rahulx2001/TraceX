@@ -175,6 +175,8 @@ ACTION_TYPES = {
     "case_status_updated",
     "case_note_added",
     "followup_saved",
+    "followup_simulated_delivered",
+    "severity_inherited",
     "investigation_status_updated",
     # Multi-issue / four-eyes / coach (platform extensions)
     "multi_issue_attach_failed",

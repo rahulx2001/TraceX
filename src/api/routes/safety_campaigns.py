@@ -96,6 +96,13 @@ async def analyze(body: ReplyAnalysis, request: Request, _role: str = Depends(co
     return await run(service.analyze_reply, body.text)
 
 
+@router.post("/demo/eps-b14")
+@limiter.limit("2 per minute")
+async def eps_demo(request: Request, _role: str = Depends(contact)):
+    from src.ai_layer.eps_demo import seed_eps_demo
+    return await seed_eps_demo()
+
+
 @router.get("/review-kit/{document}")
 async def review_kit(document: str, _role: str = Depends(read)):
     files = {"original-300": "reports/defect/repair/human_review.html",

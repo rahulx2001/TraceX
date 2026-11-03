@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "indexed_at": "2026-11-02T15:17:56.242568+00:00",
+  "indexed_at": "2026-11-03T17:10:41.427780+00:00",
   "verification": "python -m scripts.public_replay",
   "scope": "saved public artifacts; no new inference or human grading",
   "claims": [
@@ -56,38 +56,6 @@
       "limits": "Agreement is not accuracy; distinct from the reserved 100 complaints and five recall descriptions."
     },
     {
-      "id": "original-human-review",
-      "claim": "Three new reviewers (ARYAN 107, Kaushal 130, Ram 100; 183 unique IDs) added to Rahul primary: baseline accuracy vs round-4 adjudicated gold 246/300 = 82.0% (95% CI 77.3%-85.9%), macro F1 0.514; candidate 238/300 = 79.3%, paired diff -2.7pp (CI includes zero): rejected, target unmet",
-      "status": "complete_pending_countersign",
-      "artifact": "reports/improvement/human_reviews/round1/review_status.json",
-      "additional_artifacts": [
-        "reports/improvement/human_reviews/round1/human_review_provenance.json",
-        "reports/improvement/human_reviews/round1/second_review/manish/human_review_provenance.json",
-        "reports/improvement/human_reviews/round1/primary_review_export.json",
-        "reports/improvement/human_reviews/round1/second_review/manish/original_review_export.json",
-        "reports/improvement/human_reviews/round1/second_review/manish/user_confirmation.json",
-        "reports/improvement/human_reviews/round1/reliability_gate.json",
-        "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
-        "reports/improvement/human_reviews/round1/adjudication/decision_trail.json",
-        "reports/improvement/human_reviews/round1/adjudication/adjudicated_labels.csv",
-        "reports/improvement/human_reviews/round1/accuracy.json",
-        "scripts/defect_accuracy.py"
-      ],
-      "pointers": [
-        "/human_labels",
-        "/sample_size",
-        "/notes_present",
-        "/second_review/reviewed_ids",
-        "/second_review/minimum_preregistered_ids",
-        "/accuracy",
-        "/accuracy_interval",
-        "/status"
-      ],
-      "recorded_at": "2026-11-02T11:36:48+00:00",
-      "model_version": "meta-models/muse-spark-open-1026; defect-cls-v2",
-      "limits": "Review independence and prior full-sample assignment rely on human attestation and user confirmation. Labels and notes match exactly on 300/300 records; agreement alone does not establish correctness. This is an opened historical evaluation across all sample components. Evaluation-only; no fitting, calibration, feature selection or dashboard accuracy."
-    },
-    {
       "id": "reviewer-study",
       "claim": "Prepared study: 0 participants, 0 completed tasks; time savings unavailable",
       "artifact": "reports/hackathon/reviewer_study/results.json",
@@ -118,8 +86,40 @@
       "limits": "Recorded real model transport on fictional data; quotation fidelity checks do not prove interpretation accuracy, new code validation or general reliability."
     },
     {
+      "id": "review-provenance-withdrawal",
+      "claim": "Earlier second-review and timed-review claims were withdrawn; Rahul's original labels remain attested single-reviewer evidence",
+      "status": "withdrawn_review_claims",
+      "artifact": "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md",
+      "pointers": [],
+      "recorded_at": "Withdrawal recorded before the round-4 evaluation",
+      "model_version": "Provenance audit; no model inference",
+      "limits": "No independent review validation, kappa or 85% accuracy claim is supported by the withdrawn rounds. Archived files remain available for audit."
+    },
+    {
+      "id": "round4-evaluation",
+      "claim": "Current historical evaluation: 246/300 = 82.0% accuracy, macro-F1 0.514 over 46 labels; challenger 238/300 = 79.3%, rejected",
+      "status": "complete_pending_countersign",
+      "artifact": "reports/improvement/human_reviews/round4/review_status.json",
+      "additional_artifacts": [
+        "reports/improvement/human_reviews/round4/accuracy_v2.json",
+        "reports/improvement/human_reviews/round4/candidate_accuracy_v2.json",
+        "reports/improvement/human_reviews/round4/comparison_v2.json",
+        "reports/improvement/human_reviews/round4/EVALUATION.md",
+        "reports/improvement/human_reviews/round4/adjudication/adjudicated_labels_v2.csv",
+        "reports/improvement/human_reviews/round4/adjudication/decision_trail.json"
+      ],
+      "pointers": [
+        "/status",
+        "/adjudicator",
+        "/limits"
+      ],
+      "recorded_at": "2026-11-03T13:18:46+00:00",
+      "model_version": "meta-models/muse-spark-open-1026; defect-cls-v2",
+      "limits": "AI-assisted adjudication; human countersignature pending. Blinding is unconfirmed; statistical agreement does not establish independence. Opened 300-record historical evaluation only; no accident prediction accuracy or demonstrated improvement."
+    },
+    {
       "id": "grounded-human-review-candidate",
-      "claim": "Grounded candidate rejected (registered round-1 comparison, Rahul labels): 209/300 = 69.7% vs baseline 246/300 = 82.0%; paired difference -12.3pp (95% CI -17.3 to -7.3); target 270/300 not met",
+      "claim": "Grounded candidate rejected: 209/300 = 69.7% (95% CI 64.2%\u201374.6%); baseline 246/300 = 82.0%; missing predictions 6/300; target 270/300 not met",
       "status": "evaluated_rejected",
       "deployment_status": "not_deployed",
       "artifact": "reports/improvement/defect_grounded_v1/comparison.json",
@@ -154,42 +154,7 @@
       ],
       "recorded_at": "2026-11-02T13:32:40+00:00",
       "model_version": "meta-models/muse-spark-open-1026; defect-cls-v3-grounded-row-validation",
-      "limits": "Separate candidate evaluation on the opened 300-record historical sample. Missing predictions count as wrong. Human-review independence and prior full-sample assignment retain the user-attested provenance limits. The candidate is not deployed. Evaluation-only; no fitting, calibration, feature selection or dashboard accuracy."
-    },
-    {
-      "id": "human-review-revision-export4",
-      "claim": "Finalized human-approved review: 300/300 labels; 31/31 disagreements adjudicated; current-model accuracy 255/300 = 85.0% (95% CI 80.5%\u201388.6%). Grounded candidate 238/300 = 79.3% (95% CI 74.4%\u201383.5%); missing 6/300 retained.",
-      "status": "complete_adjudicated_user_attested",
-      "artifact": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/status.json",
-      "additional_artifacts": [
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/EVALUATION.md",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_baseline.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_candidate.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudicated_labels.csv",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudication_export.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/comparison.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/decision_trail.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/validation_before_scoring.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/verification.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/agreement_before_adjudication.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/original_review_export.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/human_confirmation.json",
-        "reports/improvement/human_reviews/round1/revisions/manish_export4/adjudication_draft.json",
-        "reports/improvement/human_reviews/round1/reliability_gate.json"
-      ],
-      "pointers": [
-        "/human_labels",
-        "/sample_size",
-        "/notes_present",
-        "/disagreements",
-        "/adjudicated_disagreements",
-        "/accuracy",
-        "/accuracy_interval",
-        "/status"
-      ],
-      "recorded_at": "2026-11-02T15:17:26+00:00",
-      "model_version": "meta-models/muse-spark-open-1026; defect-cls-v2",
-      "limits": "Opened historical benchmark; user-attested human reviews and assistant-supported source-evidence adjudication, with original independence/chronology limitations retained. Score change reflects corrected labels, not new predictions or training. Evaluation-only; no fitting, calibration, feature selection or dashboard accuracy."
+      "limits": "Separate candidate evaluation against the original attested single-reviewer labels. Second-review independence claims were withdrawn. Missing predictions count as wrong; candidate rejected and not deployed. Historical evaluation only; no fitting or calibration."
     }
   ],
   "artifacts": [
@@ -207,7 +172,7 @@
     },
     {
       "path": "reports/improvement/human_reviews/round1/review_status.json",
-      "sha256": "2bde469bface5976c93cf124b47e668791ae596e8b17872459b6baf681f4bad2"
+      "sha256": "6f506289eccf5408c3499034a057b463f1eecd896c99214516ecfbc321d07294"
     },
     {
       "path": "reports/hackathon/reviewer_study/results.json",
@@ -268,6 +233,38 @@
     {
       "path": "scripts/defect_accuracy.py",
       "sha256": "78bc6257573a7ab399c6175222ba299c3e2cde193accd71c85fb154681334894"
+    },
+    {
+      "path": "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md",
+      "sha256": "78624e69dc53a6667d3a83179e290eec38ca75e5f0f925831c63f86b6d4845e8"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/review_status.json",
+      "sha256": "d161d77dea3042ebaa6b59cacfa238eaaee401819dc4f88bc937a6a14dd34881"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/accuracy_v2.json",
+      "sha256": "e301af58a2f70bc8fddd59c9da66c77958761bf6a0a5d213717ac6fec9012a27"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/candidate_accuracy_v2.json",
+      "sha256": "8661293573c77c985e5eeacb9c7fb7c0fb599273550e45b66f2563ba9ffc774f"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/comparison_v2.json",
+      "sha256": "50c52ecb313297b6b3a0bb7f9cdf72c71cbd3a58e020cd09835e1111b7b1c6b7"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/EVALUATION.md",
+      "sha256": "72f04137d51b6fcfa3c19a6aa3fd490112feaca0303149fd89bbbfba47e9115d"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/adjudication/adjudicated_labels_v2.csv",
+      "sha256": "d93f234d6b0b5c2a93ec4b74cdf11af23f1516e1379cbfe9f7baaacdb58ad5c0"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/adjudication/decision_trail.json",
+      "sha256": "41f91a1031de77f62c724a3a7e668ba5849e36c158da65c667b2c2ace510b8d6"
     },
     {
       "path": "reports/improvement/defect_grounded_v1/accuracy.json",
@@ -332,62 +329,6 @@
     {
       "path": "reports/improvement/defect_grounded_v1/common_macro_interval.json",
       "sha256": "1b386cff4dd960ae096ede53051f99973bee365ec72e464a01d631db621877c0"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/status.json",
-      "sha256": "15f698196e9c9d5caf68a9928eb1f26b47c087fa3c866e9890d963c81f29a71b"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/EVALUATION.md",
-      "sha256": "4f8cd3e2616005edb17cc3fc6cf0aed4b41069b63ff19fdb874df35756d6f5f7"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_baseline.json",
-      "sha256": "e2945a0909b80a5887d400d9b63a8c0793f48c80f2973b728b161264bf73d3f3"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/accuracy_candidate.json",
-      "sha256": "950569384662af22a72cb97a9ee6a6c8a3055287e2a41d5c0996f574fc323ce8"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudicated_labels.csv",
-      "sha256": "f2ab4c28c2f8f6edb5907c426ccfe78ec2d04490a708739753b8f63164380a93"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudication_export.json",
-      "sha256": "74fc9d79db1b2ef4f58d212d7571ec392e24b77f228389c276151ddbf71a3b47"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/comparison.json",
-      "sha256": "1c987afbff912a7f66bfad61f0f67848968f9de361b5156e15b094ea425fb54b"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/decision_trail.json",
-      "sha256": "6463e958bac03cf0663bb2de125a006c4e65f8729dc51d2c9b6ca9afcfda819d"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/validation_before_scoring.json",
-      "sha256": "3989643a923bcf281709b54bbeddee4fecf2894d2d30f8a5cb7a20e37a53a1b1"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/verification.json",
-      "sha256": "1b1e5685288da94ea7b075cf6e2ff6d43e077e6dc7fc0509db8963c52d808a83"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/agreement_before_adjudication.json",
-      "sha256": "67d9a7cff0e465dadcf0589fa5521b86c5b730d1b03398f156f757bdeebf6348"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/original_review_export.json",
-      "sha256": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/human_confirmation.json",
-      "sha256": "fc958d5be0edc9e2548ead7e7c21b00870a1698d7e98301d655db2fa5669b33d"
-    },
-    {
-      "path": "reports/improvement/human_reviews/round1/revisions/manish_export4/adjudication_draft.json",
-      "sha256": "dfe06dc102f6d26d52258342a63689ebc651ff9830c957d9323587ae8f9a44f3"
     }
   ],
   "full_reproduction": "Full experiment replay needs frozen gitignored inputs, source ZIPs, embeddings and weights listed by reports/defect/fuel_holdout/protocol.json. A new public download can differ. The small replay checks published arithmetic and citations only."

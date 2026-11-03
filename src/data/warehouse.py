@@ -515,6 +515,7 @@ def apply_ops_schema(con) -> None:
                 ("peak_frustration_turn", "INTEGER"),
                 ("llm_calls", "INTEGER DEFAULT 0"),
                 ("customer_ref", "VARCHAR"),
+                ("summary", "JSON"),
                 ("degraded_ledger", "BOOLEAN DEFAULT FALSE"),
                 ("csat", "INTEGER"),
                 ("customer_resolved", "BOOLEAN"),

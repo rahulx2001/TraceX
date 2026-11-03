@@ -1,0 +1,9 @@
+{
+  "packet": "reports/improvement/human_reviews/round3-outsider-packet.json",
+  "packet_sha256": "ccca3f8d8cb82c8709248d8553c925f9aa556c6ef7b5d14f5c06161a02e0f805",
+  "page": "reports/improvement/human_reviews/round3-outsider/outsider_review.html",
+  "page_sha256": "2dc81b631cfe51973ffcfb2f814228f4d77abfadfdd4159621fd132f0ca1f362",
+  "template_sha256": "efc92539da0cee2942afa6f606b5c300a3c167b4a49e63e8cfc1e4580572942f",
+  "frozen_sample_unchanged": true,
+  "note": "Blank page only. No primary labels or model outputs included or used."
+}

@@ -283,7 +283,7 @@ async def list_cases(
         raise HTTPException(status_code=400, detail=f"invalid cursor: {e}") from e
 
     sql = (
-        "SELECT c.*, i.channel AS channel, i.peak_frustration AS peak_frustration "
+        "SELECT c.*, i.summary AS interaction_summary, i.channel AS channel, i.peak_frustration AS peak_frustration "
         "FROM cases c LEFT JOIN interactions i ON i.interaction_id = c.interaction_id"
     )
     params: list[Any] = []
@@ -305,7 +305,9 @@ async def list_cases(
         clauses.append("CAST(c.cluster_match_id AS VARCHAR) = ?")
         params.append(str(cluster).strip())
     if not include_simulated:
-        clauses.append("(i.channel IS NULL OR i.channel != 'simulated')")
+        clauses.append("(i.channel IS NULL OR i.channel != 'simulated' OR "
+                       "(json_extract_string(i.summary, '$.synthetic_demo') = 'true' "
+                       "AND json_extract_string(i.summary, '$.scenario') = 'lotguard-eps-b14-v1'))")
     if clauses:
         sql += " WHERE " + " AND ".join(clauses)
     # Fetch one extra row to detect has_more without a separate COUNT.
@@ -321,6 +323,8 @@ async def list_cases(
             out: list[dict[str, Any]] = []
             for r in cur.fetchall():
                 d = dict(zip(cols, r))
+                from src.ai_layer.eps_demo import origin_fields
+                d.update(origin_fields(d.pop("interaction_summary", None)))
                 for k in ("safety_flags",):
                     v = d.get(k)
                     if isinstance(v, str):
@@ -388,7 +392,9 @@ async def get_case(
 
     def _load():
         with ops_con(read_only=True) as con:
-            cur = con.execute("SELECT * FROM cases WHERE case_id = ?", [case_id])
+            cur = con.execute("SELECT c.*, i.summary AS interaction_summary, i.channel, "
+                              "i.entity_1, i.entity_2, i.entity_3 FROM cases c "
+                              "LEFT JOIN interactions i USING(interaction_id) WHERE c.case_id = ?", [case_id])
             cols = [d[0] for d in con.description]
             return cols, cur.fetchone()
 
@@ -396,6 +402,18 @@ async def get_case(
     if not row:
         raise HTTPException(status_code=404, detail=f"case not found: {case_id}")
     case = dict(zip(cols, row))
+    from src.ai_layer.eps_demo import origin_fields
+    case.update(origin_fields(case.pop("interaction_summary", None)))
+    from src.frontline.case_parents import scoped_parents
+    try:
+        case["parents"] = await ops_in_thread(scoped_parents, case["pack_id"], case.get("cluster_match_id"), case, case.get("channel") == "simulated")
+        case["parents_unavailable"] = False
+    except Exception:
+        case["parents"] = []
+        case["parents_unavailable"] = True
+    case["severity_inheritance"] = case["interaction_origin"].get("severity_inheritance")
+    from src.frontline.demo_followup import delivery_for_case
+    case["followup_delivery"] = await ops_in_thread(delivery_for_case, case_id)
     from src.security.pii import decrypt_case_row
 
     case = decrypt_case_row(case) or case
@@ -429,6 +447,7 @@ async def get_case(
         case["completeness"] = None
     if scrub:
         case = redact_dict(case)
+        case["parents"] = [redact_dict(p) for p in case["parents"]]
         case["notes"] = [
             redact_dict(n) if isinstance(n, dict) else n
             for n in (case.get("notes") or [])
@@ -459,6 +478,26 @@ async def draft_case_note(
     except Exception:
         pass
     return {"case_id": case_id, "draft": draft, "used_llm": used_llm, "model_id": model_id}
+
+
+@router.get("/cases/{case_id}/lot")
+async def case_lot(case_id: str, _role: str = Depends(require_perm_dep("case:read"))):
+    from src.ai_layer.eps_demo import lot_for_case
+    try:
+        return await ops_in_thread(lot_for_case, case_id)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.post("/cases/{case_id}/followup/send-demo")
+async def send_case_demo_followup(case_id: str, _role: str = Depends(require_perm_dep("contact:write", open_mode_ok=True))):
+    from src.frontline.demo_followup import send_demo_followup
+    try:
+        return await ops_in_thread(send_demo_followup, case_id, _role)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
 
 
 @router.patch("/cases/{case_id}")

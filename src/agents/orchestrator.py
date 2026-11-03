@@ -3231,6 +3231,7 @@ async def create_interaction(
     customer_ref: str | None = None,
     region: str | None = None,
     locale: str | None = None,
+    synthetic_origin: dict[str, Any] | None = None,
 ) -> tuple[Orchestrator, str]:
     """Create an interaction row + orchestrator. Returns (orchestrator, greeting).
 
@@ -3244,6 +3245,15 @@ async def create_interaction(
     from src.data.warehouse import ops_con, ops_in_thread
     from src.domains.active_pack import resolve_active_pack_id
     from src.ops.drain import DRAIN, ServiceDrainingError
+    import json
+
+    # Only internal synthetic callers can set the demo origin. Public request
+    # models never forward this parameter, and real channels reject it.
+    if synthetic_origin is not None and channel != "simulated":
+        raise ValueError("Synthetic origin requires the simulated channel")
+    origin = dict(synthetic_origin or {})
+    if origin:
+        origin["synthetic_demo"] = True
 
     pack = load_pack(pack_id or resolve_active_pack_id())
     interaction_id = new_interaction_id()
@@ -3287,6 +3297,9 @@ async def create_interaction(
                         """,
                         insert_row[:5],
                     )
+                if origin:
+                    con.execute("UPDATE interactions SET summary = ? WHERE interaction_id = ?",
+                                [json.dumps(origin), interaction_id])
 
         await ops_in_thread(_insert)
         record_action(_build_started_action(interaction_id, pack.id))
@@ -3301,6 +3314,7 @@ async def create_interaction(
 
         orch = Orchestrator(interaction_id, pack, channel=channel, hooks=hooks)
         orch.ctx.customer_ref = customer_ref
+        orch.ctx.origin = origin
         greeting = await orch.start(region=region, locale=locale)
         return orch, greeting
     except Exception:

@@ -56,3 +56,15 @@ def test_historical_citation_validation_is_not_just_nonempty_output():
     proof["followup"]["brief"]["claims"][0]["evidence"][0]["quote"] = "An unsupported invented quotation"
     with pytest.raises(AssertionError):
         replay.validate_proof(proof)
+
+
+def test_public_claims_use_current_evaluation_and_exclude_withdrawn_reviews():
+    index = replay.read(replay.INDEX)
+    claims = {c["id"]: c for c in index["claims"]}
+    assert "review-provenance-withdrawal" in claims
+    assert "original-human-review" not in claims
+    assert "human-review-revision-export4" not in claims
+    current = claims["round4-evaluation"]
+    assert current["status"] == "complete_pending_countersign"
+    assert "246/300 = 82.0%" in current["claim"]
+    assert "macro-F1 0.514" in current["claim"]

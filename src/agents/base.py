@@ -95,6 +95,7 @@ class InteractionContext:
     pending_safety_script: str | None = None
     # customer | simulated | audit_review — live-risk and COPQ exclude non-customer.
     case_kind: str = "customer"
+    origin: dict[str, Any] = field(default_factory=dict)
     # ── Voice Tier-A wiring state ─────────────────────────────────────
     region: str | None = None
     locale: str = "en-US"

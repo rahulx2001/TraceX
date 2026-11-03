@@ -130,13 +130,30 @@ class CaseAgent(Agent):
                 pass
 
         # ── Draft follow-up (deterministic; LLM polish is optional) ───────
-        followup = self._draft_followup(evidence_ids)
+        from src.frontline.case_parents import inherit_severity, scoped_parents
+        try:
+            parents = await ops_in_thread(scoped_parents, ctx.pack.id, cluster_id, ctx.slots, ctx.channel == "simulated")
+            inheritance = inherit_severity(ctx.severity, parents)
+            ctx.origin["severity_inheritance"] = inheritance
+            if inheritance["raised"]:
+                ctx.severity = inheritance["effective_severity"]
+                ctx.severity_source = "inherited_cluster"
+                ctx.priority = min(ctx.priority, 2)
+                record_action(self._action(action_type="severity_inherited",
+                    input_summary=f"own={inheritance['own_severity']}",
+                    output_summary=inheritance["reason"],
+                    evidence_ids=inheritance["supporting_record_ids"], case_id=case_id))
+        except Exception:
+            # Optional corpus reads never prevent case creation.
+            pass
 
         # ── Safety floor (C-OPEN-1): any safety flag → Critical + P1 ──────
         if any(ctx.safety_flags.values()):
             ctx.severity = "Critical"
             ctx.severity_source = ctx.severity_source or "rules"
             ctx.priority = 1
+
+        followup = self._draft_followup(evidence_ids)
 
         # ── Insert case + case_created ledger in one transaction (M3) ─────
         case_action = self._action(
@@ -219,6 +236,9 @@ class CaseAgent(Agent):
                             insert_args[:-2],
                         )
                     record_action_on_con(con, case_action)
+                    if ctx.origin:
+                        con.execute("UPDATE interactions SET summary = ? WHERE interaction_id = ?",
+                                    [json.dumps(ctx.origin), ctx.interaction_id])
                     con.execute("COMMIT")
                 except Exception:
                     try:

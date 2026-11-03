@@ -1,0 +1,26 @@
+{
+  "sha256": {
+    "reports/improvement/human_reviews/round4/accuracy_v2.json": "e301af58a2f70bc8fddd59c9da66c77958761bf6a0a5d213717ac6fec9012a27",
+    "reports/improvement/human_reviews/round4/candidate_accuracy_v2.json": "8661293573c77c985e5eeacb9c7fb7c0fb599273550e45b66f2563ba9ffc774f",
+    "reports/improvement/human_reviews/round4/review_status.json": "d161d77dea3042ebaa6b59cacfa238eaaee401819dc4f88bc937a6a14dd34881",
+    "reports/improvement/human_reviews/round4/comparison_v2.json": "50c52ecb313297b6b3a0bb7f9cdf72c71cbd3a58e020cd09835e1111b7b1c6b7",
+    "reports/improvement/human_reviews/round4/adjudication/adjudicated_labels_v2.csv": "d93f234d6b0b5c2a93ec4b74cdf11af23f1516e1379cbfe9f7baaacdb58ad5c0",
+    "reports/defect/repair/classifications.parquet": "ce3977cbe22e410775a9527cabfb5acb5191a4bc5134371369f98d5fddbd739b",
+    "reports/defect/repair/review_manifest.json": "7bba2257b2de4e6f6346041e737d5eede9137543020fb834365cdb65bd09be38"
+  },
+  "metrics": {
+    "accuracy": 0.82,
+    "accuracy_numerator": 246,
+    "accuracy_denominator": 300,
+    "macro_f1": 0.5140943597465337,
+    "macro_f1_label_count": 46,
+    "accuracy_ci95": [
+      0.7725668011129554,
+      0.859341697303335
+    ],
+    "challenger_accuracy": 0.7933333333333333,
+    "challenger_status": "rejected",
+    "publication": "evaluation_only",
+    "review_status": "complete_pending_countersign"
+  }
+}

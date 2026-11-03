@@ -19,7 +19,7 @@ RATES = {**{f"muse-spark-{v}": (1.25, 4.25) for v in ("1.1", "1.2", "1.3")},
 # Baseten-hosted Muse Spark Open: conservative estimate, not a published rate
 # (hackathon credits; Baseten per-token pricing unchecked from here). Kept at
 # the top tier above so reservations stay an upper bound under the same $30
-# lifetime cap. Revisit with Baseten's pricing page before any paid rollout.
+# default lifetime cap. Revisit with Baseten's pricing page before any paid rollout.
 try:
     from src.ai_layer.config import BASETEN_MODEL as _BASETEN_MODEL
 
@@ -36,7 +36,9 @@ def limit_micros() -> int:
     value = float(os.getenv("META_BUDGET_USD", "30"))
     if not math.isfinite(value) or value <= 0:
         raise ValueError("invalid budget")
-    return int(min(value, 30.0) * 1_000_000)
+    # The default remains $30. An explicit operator-set allowance can extend
+    # it; the accumulated reservations remain in the same ledger.
+    return int(value * 1_000_000)
 
 
 def connect():

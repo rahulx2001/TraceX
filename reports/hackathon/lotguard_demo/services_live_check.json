@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "synthetic_inputs_only": true,
+  "checked_at": "2026-11-03T17:01:48.235Z",
+  "api_origin": "http://127.0.0.1:8770",
+  "enabled_status": {
+    "mode": "enhanced",
+    "provider": "baseten",
+    "key_configured": true,
+    "layer_switch": "auto",
+    "narration": {
+      "enabled": true,
+      "provider": "baseten"
+    },
+    "api_host": "inference.baseten.co",
+    "api_host_allowed": true,
+    "models": {
+      "text": "meta-models/muse-spark-open-1026",
+      "vision": "meta-models/muse-spark-open-1026",
+      "segmentation": "sam-3.1",
+      "image": "muse-image-1.0"
+    },
+    "features": {
+      "enhanced_intake": true,
+      "hindi_hinglish_normalisation": true,
+      "grounded_brief": true,
+      "severity_sentiment_raise_only": true,
+      "photo_evidence_upload": true,
+      "photo_evidence_analysis": true
+    },
+    "fallback": "deterministic regex/gazetteer/rules path (always on)",
+    "verified_against_live_api": false,
+    "verified_features": {
+      "text": false,
+      "vision": false,
+      "segmentation": false,
+      "image": false
+    },
+    "budget_limit_usd": 50,
+    "calls_today": 55
+  },
+  "checks": {
+    "hindi_normalization": {
+      "ok": true,
+      "result": {
+        "original": "मेरी 2021 Honda City का स्टीयरिंग भारी हो जाता है। गाड़ी घर पर खड़ी है।",
+        "normalized_en": "My 2021 Honda City's steering becomes heavy. The car is parked at home.",
+        "lang": "hi",
+        "method": "meta_muse_spark",
+        "mode": "enhanced"
+      }
+    },
+    "photo_vision": {
+      "ok": true,
+      "source": "fictional EPS batch-label illustration",
+      "result": {
+        "evidence_id": "evd_01m6gz1jgxp73t48fd6cwea9g9",
+        "case_id": "case_01m6gz1hgzryh8fjqffkj7zn0t",
+        "interaction_id": "int_01m6gz1efxd9bvr87znfw4bfn7",
+        "pack_id": "automotive_nhtsa",
+        "cluster_id": 9014,
+        "investigation_id": "inv_0001",
+        "filename": "FICTIONAL_eps_B14_label.png",
+        "mime": "image/png",
+        "size_bytes": 10161,
+        "width": 720,
+        "height": 420,
+        "sha256": "0d83cbd629f1370c57097d20980e13a6c0c93a520395000d260f7bf796a278e2",
+        "analysis_status": "partial",
+        "analysis": {
+          "vision": {
+            "model_id": "meta-models/muse-spark-open-1026",
+            "proposed_category": "UNKNOWN",
+            "confidence": 0.05,
+            "mapped_category": null,
+            "defect_description": "No vehicle component or defect visible. Image is a fictional demo batch label illustration (SYN-EPSW.../Honda City) with text stating no crack diagnosis from this image.",
+            "damaged_part": "no visible part",
+            "visible_hazard": false,
+            "hazard_reason": ""
+          },
+          "segmentation": null,
+          "errors": [
+            "segmentation:model_unsupported_on_backend"
+          ],
+          "review_flag": false
+        },
+        "mapped_category": null,
+        "created_at": "2026-11-03 15:04:34.589971",
+        "file_url": "/api/evidence/evd_01m6gz1jgxp73t48fd6cwea9g9/file"
+      }
+    }
+  },
+  "limitations": [
+    "No Deepgram key configured; browser speech remains available.",
+    "Configured Baseten backend supplies text and vision, not SAM segmentation or Muse Image.",
+    "Owner outreach and workshop outcomes remain simulated."
+  ]
+}

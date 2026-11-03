@@ -123,10 +123,19 @@ def metrics(c: dict) -> dict:
     inspections = [v for v in vs if v.get("inspection_history")]
     cracks = sum(any(i["outcome"] == "crack_found" for i in v["inspection_history"]) for v in inspections)
     first = lambda values: min(values) if values else None
+    warned = [v for v in vs if c["synthetic_demo"] and v.get("notice", {}).get("delivered_at")
+              and v.get("inspection", {}).get("outcome") == "crack_found"
+              and v.get("resolution") and not v.get("reported_prior_failure", True)
+              and v["notice"]["delivered_at"] <= v["inspection"]["at"]]
     return {
         "registered": len(vs), "exact": counts["exact"], "possible": counts["possible"],
         "unknown": counts["unknown"], "excluded": counts["excluded"],
         "outreach_simulated": sum(bool(v.get("notice")) for v in vs), "delivered": 0,
+        "simulated_delivered": sum(bool(v.get("notice", {}).get("delivered_at")) for v in vs),
+        "simulated_opened": sum(bool(v.get("notice", {}).get("opened_at")) for v in vs),
+        "booked": sum(bool(v.get("appointment")) for v in vs),
+        "vehicles_warned_before_failure": len(warned),
+        "vehicles_warned_before_failure_ids": [v["vehicle_id"] for v in warned],
         "replied": sum(bool(v["replies"]) for v in vs),
         "symptom_reports": sum(any(set(r["symptoms"]) - {"none"} for r in v["replies"]) for v in vs),
         "awaiting_reply": sum(bool(v.get("notice")) and not v["replies"] for v in vs),
@@ -150,6 +159,7 @@ def present(c: dict) -> dict:
     normalize_traces(c)
     result = {**c, "metrics": metrics(c), "method": METHOD, "delivery_mode": "simulation_only"}
     result["notice_previews"] = {lane: notice_preview({**c, "approval": {"lane": lane}}) for lane in ("recovery", "inspect")}
+    result["notice_languages"] = notice_languages(c)
     result["vehicles"] = [dict(v, safety_hold=vehicle_hold(c, v)) for v in c["vehicles"].values()]
     result["vehicles"].sort(key=lambda v: (bool(v.get("resolution")), not v["safety_hold"], v["vehicle_id"]))
     return result
@@ -188,6 +198,9 @@ def create_campaign(data: dict, actor: str, role: str, *, demo: bool = False) ->
          "status": "investigating", "opened_at": now(), "opened_by": actor,
          "investigation_id": data.get("investigation_id") or None,
          "vehicles": {}, "approval": None, "remedy": None, "supplier_action": None}
+    if demo and data.get("demo_context"):
+        c["demo_context"] = data["demo_context"]
+        c["demo_version"] = data["demo_context"]["version"]
     with ops_con() as con:
         con.execute(DDL)
         if c["investigation_id"]:
@@ -239,6 +252,8 @@ def parse_vehicles(text: str) -> list[dict]:
 
 
 def notice_preview(c: dict) -> str:
+    if c.get("demo_context", {}).get("version", "").startswith("lotguard-eps"):
+        return notice_languages(c)["en"]
     part = c["component"]["component_name"]
     recovery = c["requires_recovery"] or (c.get("approval") or {}).get("lane") == "recovery"
     action = ("Please keep the vehicle parked and contact the authorised workshop to arrange recovery. "
@@ -250,6 +265,17 @@ def notice_preview(c: dict) -> str:
             "No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. "
             "If you have visible damage or loss of control, keep the vehicle parked and request recovery. "
             "If there is immediate danger or injury, contact local emergency services.")
+
+
+def notice_languages(c: dict) -> dict[str, str]:
+    scope = c.get("demo_context", {})
+    if not scope:
+        return {"en": notice_preview(c)}
+    make = scope.get("vehicle_scope", "Honda City 2021–22")
+    batch = c["component"]["lot_id"]
+    return {
+        "en": f"LotGuard DEMO · {make} · EPS batch {batch}. Reports of intermittent heavy steering and a warning light are under investigation. Your reviewed installation record matches this batch; this is not a diagnosis. Have you noticed the same symptoms? Reply YES to request an inspection slot. Keep the vehicle parked if steering is abnormal and ask the authorised workshop for recovery advice. Do not test-drive to reproduce the issue. No symptoms does not clear a vehicle. All messages, bookings and findings in this demo are simulated.",
+        "hi": f"LotGuard डेमो · {make} · EPS बैच {batch}। स्टीयरिंग भारी होने और चेतावनी लाइट की शिकायतों की जाँच चल रही है। आपके समीक्षा किए गए पार्ट रिकॉर्ड का बैच मेल खाता है; यह खराबी की पुष्टि नहीं है। क्या आपको भी ये लक्षण मिले हैं? जाँच का समय माँगने के लिए YES लिखें। स्टीयरिंग असामान्य हो तो वाहन खड़ा रखें और अधिकृत वर्कशॉप से रिकवरी की सलाह लें। समस्या दोहराने के लिए टेस्ट ड्राइव न करें। लक्षण न होना सुरक्षा की पुष्टि नहीं है। इस डेमो में सभी संदेश, बुकिंग और निष्कर्ष काल्पनिक हैं।"}
 
 
 def _invalidate_resolution(v: dict):
@@ -299,6 +325,8 @@ def apply_action(campaign_id: str, kind: str, data: dict, actor: str, role: str,
                 if row["trace_status"] == "verified":
                     row["trace_status"] = "unverified"
                 row.update(match=trace_match(c, row), replies=[], imported_at=stamp["at"])
+                if c.get("demo_context"):
+                    row["reported_prior_failure"] = row["vehicle_id"] in c["demo_context"].get("inbound_vehicle_ids", [])
                 c["vehicles"][row["vehicle_id"]] = row
             c["approval"] = None  # Scope changes require a fresh review.
             result = {"imported": len(rows)}
@@ -330,14 +358,18 @@ def apply_action(campaign_id: str, kind: str, data: dict, actor: str, role: str,
             c["approval"] = dict(stamp, lane=lane, note=required(data, "note"), scope_revision=c["revision"])
             c["status"] = "active"
             c["approval"]["message"] = notice_preview(c)
+            c["approval"]["messages"] = notice_languages(c)
         elif kind == "outreach":
             if not c["approval"]:
                 raise CampaignError("Review and approve the scope and message first", 409)
             selected = []
             for row in c["vehicles"].values():
+                if row["vehicle_id"] in c.get("demo_context", {}).get("inbound_vehicle_ids", []):
+                    continue
                 if row["match"] in {"exact", "possible"} and row["contact_consent"] and not row.get("notice"):
                     row["notice"] = dict(stamp, status="simulated", notice_id="sn_" + new_ulid(),
                                          message=c["approval"]["message"], channel=row["channel"])
+                    row["notice"]["messages"] = c["approval"].get("messages", {})
                     selected.append(row["vehicle_id"])
             result = {"simulated": len(selected), "vehicle_ids": selected, "delivered": 0}
         elif kind == "reply":
@@ -363,6 +395,24 @@ def apply_action(campaign_id: str, kind: str, data: dict, actor: str, role: str,
                     v.pop(key, None)
                 c["status"] = "active" if c["approval"] else "investigating"
             result = {"urgent_review": bool(reply.get("urgent_review"))}
+        elif kind == "simulate_receipt":
+            if not c["synthetic_demo"]:
+                raise CampaignError("Receipt simulation requires a fictional demo campaign", 403)
+            status = choice(data, "status", {"delivered", "opened"})
+            ids = data.get("vehicle_ids")
+            if not isinstance(ids, list) or not ids or len(ids) > 500 or any(not isinstance(i, str) for i in ids):
+                raise CampaignError("Provide 1–500 vehicle_ids")
+            for vid in ids:
+                row = c["vehicles"].get(vid)
+                if not row or not row.get("notice"):
+                    raise CampaignError("Send an approved simulated notice before recording its receipt", 409)
+                if status == "opened" and not row["notice"].get("delivered_at"):
+                    raise CampaignError("Delivery must precede opening", 409)
+                row["notice"].setdefault(f"{status}_at", stamp["at"])
+                stages = {"simulated": 0, "delivered": 1, "opened": 2, "booked": 3, "inspected": 4, "resolved": 5}
+                if stages.get(status, 0) > stages.get(row["notice"]["status"], 0):
+                    row["notice"]["status"] = status
+            result = {"simulated": True, "count": len(ids), "status": status}
         elif kind == "appointment":
             due = required(data, "due_date", 10)
             try:
@@ -372,6 +422,10 @@ def apply_action(campaign_id: str, kind: str, data: dict, actor: str, role: str,
             v["appointment"] = dict(stamp, workshop=required(data, "workshop", 160), due_date=due,
                                     reference=required(data, "reference", 160),
                                     transport="recovery" if vehicle_hold(c, v) else "workshop_advice")
+            if v.get("notice"):
+                v["notice"]["status"] = "booked"
+            if c.get("demo_context"):
+                v["appointment"]["confirmation"] = f"DEMO confirmation: {v['vehicle_id']} · {v['appointment']['workshop']} · {due} · {v['appointment']['reference']}. Contact the workshop for safe transport advice."
         elif kind == "recovery":
             v["recovery"] = dict(stamp, reference=required(data, "reference", 160), note=required(data, "note"))
         elif kind == "inspection":
@@ -380,6 +434,8 @@ def apply_action(campaign_id: str, kind: str, data: dict, actor: str, role: str,
             v["inspection"] = dict(stamp, outcome=outcome, technician=required(data, "technician", 160),
                                    evidence_ref=required(data, "evidence_ref", 300), note=required(data, "note"))
             v.setdefault("inspection_history", []).append(dict(v["inspection"]))
+            if v.get("notice"):
+                v["notice"]["status"] = "inspected"
             _invalidate_resolution(v)
             v.pop("repair", None)
             if outcome == "crack_found":
@@ -432,6 +488,8 @@ def apply_action(campaign_id: str, kind: str, data: dict, actor: str, role: str,
                 raise CampaignError("Complete a symptom-free follow-up before resolution")
             v["resolution"] = dict(stamp, evidence_ref=required(data, "evidence_ref", 300), note=required(data, "note"))
             v["repair_required"] = False
+            if v.get("notice"):
+                v["notice"]["status"] = "resolved"
         elif kind == "supplier_action":
             due = required(data, "due_date", 10)
             try:

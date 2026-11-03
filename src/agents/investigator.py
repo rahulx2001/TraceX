@@ -259,6 +259,8 @@ class InvestigatorAgent(Agent):
                 # takes the lexical pool. Vector hits join either way.
                 extra_lex = lexical if len(candidates) < 3 else []
                 candidates = merge_candidate_rows(candidates, extra_lex, vector_rows)
+                if ctx.channel != "simulated":
+                    candidates = [r for r in candidates if not str(r.get("record_id", "")).startswith("EPS-B14-")]
                 pool: list[dict[str, Any]] = []
 
                 # Full-corpus population for honest lift denominators
@@ -334,6 +336,8 @@ class InvestigatorAgent(Agent):
                         ).fetchall()
                     similar_cols = [d[0] for d in con.description]
                     pool = [dict(zip(similar_cols, r)) for r in similar_rows]
+                    if ctx.channel != "simulated":
+                        pool = [r for r in pool if not str(r.get("record_id", "")).startswith("EPS-B14-")]
                     from src.ml_runtime.association import rank_by_association
 
                     query = {
@@ -353,6 +357,8 @@ class InvestigatorAgent(Agent):
                     _CLUSTER_SQL, [ctx.pack.id, category, category]
                 ).fetchall()
                 cluster_cols = [d[0] for d in con.description]
+                if ctx.channel != "simulated":
+                    cluster_rows = [r for r in cluster_rows if r[0] != 9014]
                 # Fused cluster relevance (item 26): category fit + term
                 # overlap + ENTITY overlap (modal member values) + semantic
                 # similarity (description vs top terms). record_count is only
