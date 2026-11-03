@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "complete_pending_countersign",
+  "status": "complete_countersigned",
   "claim": "Three new reviewers (ARYAN 107, Kaushal 130, Ram 100; 183 unique IDs) added to Rahul primary: baseline accuracy vs round-4 adjudicated gold 246/300 = 82.0% (95% CI 77.3%-85.9%), macro F1 0.514; candidate 238/300 = 79.3%, paired diff -2.7pp (CI includes zero): rejected, target unmet",
   "coverage_unique_ids": 183,
   "disputes_adjudicated": 43,
@@ -13,7 +13,10 @@
     "kaushal_vs_ram": 0.598
   },
   "blinding": "Unconfirmed: blinding confirmation was requested and no answer recorded. Independence supported by imperfect agreement, original notes, and cross-reviewer convergence only.",
-  "adjudicator": "Muse (AI-assisted draft; human countersignature pending)",
+  "adjudicator": "Muse (AI-assisted draft); countersigned by Rahul Kumar Singh — all 43 decisions confirmed as drafted",
+  "countersigned_by": "Rahul Kumar Singh",
+  "countersigned_at": "2026-11-03T20:04:37Z",
+  "countersign_scope": "All 43 Round 4 adjudication decisions confirmed as drafted; no overrides.",
   "verified_at": "2026-11-03T13:18:46+00:00",
   "limits": [
     "Blinding confirmation requested, no answer recorded: independence supported by statistics only.",

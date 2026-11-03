@@ -65,6 +65,6 @@ def test_public_claims_use_current_evaluation_and_exclude_withdrawn_reviews():
     assert "original-human-review" not in claims
     assert "human-review-revision-export4" not in claims
     current = claims["round4-evaluation"]
-    assert current["status"] == "complete_pending_countersign"
+    assert current["status"] == "complete_countersigned"
     assert "246/300 = 82.0%" in current["claim"]
     assert "macro-F1 0.514" in current["claim"]

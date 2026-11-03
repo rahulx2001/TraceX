@@ -21,7 +21,7 @@ reviewers, consistent with honest disagreement rather than copying.
 ## Adjudication
 
 43 unique disputes adjudicated from source evidence per the labeling guide
-(`adjudication/decision_trail.json`; AI-assisted draft, countersignature pending).
+(`adjudication/decision_trail.json`; AI-assisted draft, human-countersigned by Rahul Kumar Singh — all 43 confirmed as drafted, 2026-11-03).
 Notable: S108 overturned to tail_lights_leak on unanimous reviewer agreement;
 several 2v2 majorities overridden by the evidence rule, each cited.
 

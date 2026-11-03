@@ -145,7 +145,7 @@ def main():
             "pointers": ["/status", "/adjudicator", "/limits"],
             "recorded_at": current["verified_at"],
             "model_version": "; ".join(score["classifier"]["models"] + score["classifier"]["prompt_versions"]),
-            "limits": "AI-assisted adjudication; human countersignature pending. Blinding is unconfirmed; statistical agreement does not establish independence. Opened 300-record historical evaluation only; no accident prediction accuracy or demonstrated improvement.",
+            "limits": "AI-assisted adjudication, human-countersigned by Rahul Kumar Singh (all 43 confirmed). Blinding is unconfirmed; statistical agreement does not establish independence. Opened 300-record historical evaluation only; no accident prediction accuracy or demonstrated improvement.",
         })
         artifacts.extend([current_status_path, *current_artifacts])
     candidate_claim, candidate_artifacts = grounded_candidate_claim()

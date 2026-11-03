@@ -91,7 +91,7 @@ def validate(root=ROOT):
         assert macro["label_count"] == score["macro_f1_label_count"]
         assert abs(sum(row["f1"] for row in macro["baseline"]["per_label"]) / macro["label_count"] - score["macro_f1"]) < 1e-12
         assert score["accuracy_numerator"] == 246 and candidate["accuracy_numerator"] == 238
-        assert read(current + "review_status.json", root)["status"] == "complete_pending_countersign"
+        assert read(current + "review_status.json", root)["status"] == "complete_countersigned"
         assert not {"original-human-review", "human-review-revision-export4"}.intersection(c["id"] for c in index["claims"])
     return {"ok": True, "validation": "saved-artifact arithmetic, source fidelity and hashes only",
             "model_calls": 0, "new_human_labels": 0, "new_participants": 0,
