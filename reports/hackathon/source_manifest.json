@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-11-03T17:11:47.031088+00:00",
+  "recorded_at": "2026-11-03T17:27:00.386969+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "e25752ef113a8d49030d47e883e9ee1ccb8b5910",
-  "source_tree": "a2dced05e4431994487d5b2733d05541c9099864",
+  "source_commit": "9ef3e100712d17461093323143bc088ebb6be587",
+  "source_tree": "a49a1f607724895962b6bc2b19010df5944ca0e2",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -67,6 +67,14 @@
     {
       "status": "A",
       "path": "LOTGUARD_DEMO_WALKTHROUGH.md"
+    },
+    {
+      "status": "A",
+      "path": "LOTGUARD_NARRATION.txt"
+    },
+    {
+      "status": "A",
+      "path": "LOTGUARD_VIDEO_SCRIPT.md"
     },
     {
       "status": "M",
@@ -4413,9 +4421,9 @@
     {
       "path": "DEMO_SCRIPT.md",
       "mode": "100644",
-      "git_blob": "1d7e90857d7fc459bea1334846ee0c3a2e6fa10d",
-      "bytes": 5917,
-      "sha256": "779f8231f22cfc8a6de23c4d719e54e3b84769b592fe5152f4b5ec0b9bb69e0d"
+      "git_blob": "bbdc33cb5b9c5a175d3ec561d7fbe982967cdbd7",
+      "bytes": 6129,
+      "sha256": "a8ed2aac7cfd674e1a60ad2069ce185d1a4d1adadf2d455b6827d2337ac4630f"
     },
     {
       "path": "Dockerfile",
@@ -4474,6 +4482,20 @@
       "sha256": "1b83ff21df16e36adaf1b91a3378616b14025360ab5b85a3f7905faebacc7684"
     },
     {
+      "path": "LOTGUARD_NARRATION.txt",
+      "mode": "100644",
+      "git_blob": "1a22e905f614151b400b80081aa4de1a71d03676",
+      "bytes": 2124,
+      "sha256": "1724a380971a163f473602a5e8c597309fe94b4eb06c0835f051f1a27b5ce97d"
+    },
+    {
+      "path": "LOTGUARD_VIDEO_SCRIPT.md",
+      "mode": "100644",
+      "git_blob": "ec5b8d8408c6e2e70aefa6b41bec4ec575717def",
+      "bytes": 14309,
+      "sha256": "c4a267c8fc4aa0fe0b3a61c1d492574e8eee449fe26d98dcc212d2211870acbf"
+    },
+    {
       "path": "Makefile",
       "mode": "100644",
       "git_blob": "867d98fb971cfad74b38f2982a2eb30a1f6ff665",
@@ -4490,9 +4512,9 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "git_blob": "6b77499f158ff2ae4a94a013f71592d74c2a8794",
-      "bytes": 22878,
-      "sha256": "e7c1e26983e3464e4eff0f4a591255e84c09fb6f8274b5cfe2c7c8a8d7cf5637"
+      "git_blob": "8cc4b632eb5fb5abaccad94120e8bb7030b9e5bc",
+      "bytes": 23040,
+      "sha256": "6cb42ff985b10d9f7ae3cdac7492780c9918e024d9d8252e875f6182f9714c85"
     },
     {
       "path": "dashboard/e2e/api.aggressive.spec.js",
