@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_commit": "bad2d30",
+  "checked_commit": "c4f4ce1",
   "method": "Fresh git clone of origin/main to a clean directory; no local files copied",
   "results": {
     "clone": "pass: main at 1b22ef9, clean status",
@@ -21,11 +21,14 @@
       "freeze_history_2": "ml_improvement + synthetic smoke fail on 'Frozen artifact hash mismatch: domains/automotive_nhtsa/gazetteers/models.csv'; freeze verification needs tags/history absent from a depth-1 fresh clone. No freeze tags present in fresh clone. Pre-existing.",
       "dashboard_source_3": "test_console_uses_server_access (App.jsx lazy Shell vs 'import SignIn' expectation), test_built_dist_ships_api_headers (fresh build has no X-API-Key), test_no_primary_json_stringify_dumps (AiStatus.jsx:90, committed in f5fcbe9). All reproduce from committed source; this session touched only CampaignInvestigation.jsx. Pre-existing.",
       "flaky_2": "eps_demo canonical replay timed out at 60s under full-suite load but passed on isolated rerun; journey h11 failed in full run, passed on rerun. Performance flakiness, not assertion breakage."
-    }
+    },
+    "dashboard_fixes_verified": "pass in fresh clone at c4f4ce1: npm ci + vite build exit 0, single index-*.js chunk contains X-API-Key and all four protected API paths",
+    "previously_failing_dashboard_tests": "pass in fresh clone: 26/26 (test_dashboard_pilot_auth, test_dashboard_ui_surface, test_defect_human_review, test_submission_artifacts)",
+    "signin_rendered_build": "pass in fresh clone: npm run test:signin exit 0, 17 PASS lines incl. credential entry, supervisor review, LotGuard UI, AI-mode and voice checks",
+    "dashboard_node_contracts": "pass: speech-draft + voice-capture (9), public-link-scope (2); prepare_review_assets leaves no diff"
   },
   "limits": [
-    "Dashboard production build passed, but built-dist content tests above fail from committed source.",
-    "Full frontline suite is NOT green in a fresh clone (17 failures, all classified pre-existing/environmental above).",
-    "data/defect/ inputs require the NHTSA prepare step; not needed for the replay and checker tests above."
+    "Full frontline suite at c4f4ce1 not re-run end-to-end (dashboard-touching files all green above); the 14 prospective-gate refusals and 2 flakes classified at bad2d30 are unaffected by the dashboard-only diff.",
+    "data/defect/ inputs require the NHTSA prepare step; not needed for the checks above."
   ]
 }
