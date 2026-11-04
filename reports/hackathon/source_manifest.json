@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-11-04T18:47:53.870167+00:00",
+  "recorded_at": "2026-11-04T19:30:45.752545+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "8f7bec3ad50ddc31f777b8fff4e56f05bf251339",
-  "source_tree": "c6fa3370d3c279923a84c1ae5a1058c7de0bd590",
+  "source_commit": "c4f90dfdf59098bdcc11487e49a03a04c877dc75",
+  "source_tree": "d4edd77cfd96106bba39f664336fe18617934ad6",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -1251,6 +1251,14 @@
     {
       "status": "A",
       "path": "reports/hackathon/submission_refinement/README.md"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/submission_refinement/ci_fixture_verification.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/submission_refinement/ci_refinement.md"
     },
     {
       "status": "A",
@@ -4418,6 +4426,10 @@
     },
     {
       "status": "M",
+      "path": "tests/frontline/test_journey_high.py"
+    },
+    {
+      "status": "M",
       "path": "tests/frontline/test_live_handoff_outcomes.py"
     },
     {
@@ -4531,9 +4543,9 @@
     {
       "path": ".github/workflows/frontline.yml",
       "mode": "100644",
-      "git_blob": "3828824824b466bd2d107bdb73b930a9cd2ca51a",
-      "bytes": 10513,
-      "sha256": "70a3fe67b66cd47a5450179d9c44741eb3870054e025113578ae23ed1b4a22df"
+      "git_blob": "b8052e97f098aa1b858ef208b166f0b0961083e3",
+      "bytes": 12278,
+      "sha256": "1f83de76b5f1669b031e2585bd2c31f9c01ccde4aa260847694b4ea9bc6cbdd5"
     },
     {
       "path": ".gitignore",
@@ -8129,9 +8141,23 @@
     {
       "path": "reports/hackathon/submission_refinement/README.md",
       "mode": "100644",
-      "git_blob": "09e6f69c9c842c6d2952109d10eced6600697f79",
-      "bytes": 2189,
-      "sha256": "e1fdc04bf333d33959abddfb99b208cfe2432efc1dba5c1dbab2380604244c07"
+      "git_blob": "1998e887afe2644ed507bca98b07a631a9ae1abf",
+      "bytes": 2297,
+      "sha256": "0b0dd1f2e43be8868e097e06fc7bf7ebf3ad4064798d8dcb75332c6d23c183de"
+    },
+    {
+      "path": "reports/hackathon/submission_refinement/ci_fixture_verification.json",
+      "mode": "100644",
+      "git_blob": "782316db4917eb719db4dd1520722abfab8a0735",
+      "bytes": 2093,
+      "sha256": "ad21a535b617c44a8e90605f3c738e548a2b35cf2772746061815ddf91544e46"
+    },
+    {
+      "path": "reports/hackathon/submission_refinement/ci_refinement.md",
+      "mode": "100644",
+      "git_blob": "cfa6c7c186e4c85c99704b6bcd2c738ed161273f",
+      "bytes": 2040,
+      "sha256": "80227b08944d2f36413c660adb05fe2607e24b87c26526650250f34d7bb9f907"
     },
     {
       "path": "reports/hackathon/submission_refinement/local_model_replay.json",
@@ -15661,9 +15687,9 @@
     {
       "path": "tests/frontline/ai_layer/prospective_fixture.py",
       "mode": "100644",
-      "git_blob": "7d86a78b07ddf3a3f7d3a4791e95b6f450516b52",
-      "bytes": 5840,
-      "sha256": "84f1175aa1c0f78257467dd2e4a4990fea58891d30b7ec4db2f557133dca85b6"
+      "git_blob": "f6441511696b3813853e0f8957c15c2193fdce71",
+      "bytes": 5852,
+      "sha256": "502298f24e4472f5c64562c1e8d2eaa6333ac6756c0970b48c62c970ea8c1ff3"
     },
     {
       "path": "tests/frontline/ai_layer/test_alerts.py",
@@ -15794,9 +15820,9 @@
     {
       "path": "tests/frontline/ai_layer/test_eps_demo.py",
       "mode": "100644",
-      "git_blob": "f0c30144bb95e1fb05bcb4f56ffb5dfff34c731a",
-      "bytes": 5072,
-      "sha256": "d92bdc88e83ae7adf94653dd734a0e4a8fb7b8d93a3e9217542eb5ce5c97699b"
+      "git_blob": "e63a6fa6f589a318486b8301240f9d46f65ec62d",
+      "bytes": 5098,
+      "sha256": "2f0a9932e3727086d68df1f226edbc897dae2cb15c0e6f85e709b91e42d10f6c"
     },
     {
       "path": "tests/frontline/ai_layer/test_eval_enhanced.py",
@@ -15941,9 +15967,9 @@
     {
       "path": "tests/frontline/ai_layer/test_ml_improvement.py",
       "mode": "100644",
-      "git_blob": "cf02ab072d4881d303af9b2c620cd3f39c2ee644",
-      "bytes": 11551,
-      "sha256": "8e7488ebe7610a9acfa425af2f8c8889279c6a678b8429661743e939aa6341ca"
+      "git_blob": "74b63f928efcb208647a54647be398845f8f531a",
+      "bytes": 11876,
+      "sha256": "fd6c46e44e59095b2176e75ac83d5e676cf94c3a5418ae014f571d01ec066328"
     },
     {
       "path": "tests/frontline/ai_layer/test_oos_backtest.py",
@@ -15955,9 +15981,9 @@
     {
       "path": "tests/frontline/ai_layer/test_prospective_comparison.py",
       "mode": "100644",
-      "git_blob": "e2492bba5b49235f8c68300b411f5557ecaecfe9",
-      "bytes": 8330,
-      "sha256": "f168b5b3c79b07ffbece056077b6a9c45b324f85e7b9a20f8823f898096dd83f"
+      "git_blob": "adb692ff367d8afb951ec17cdbb5a5cdafca6eee",
+      "bytes": 8725,
+      "sha256": "66b8788e8ba3fdd3d9c2b46bf8ac824cb8250e5afe171f203d4fadb5a5873189"
     },
     {
       "path": "tests/frontline/ai_layer/test_prospective_seal.py",
@@ -16039,9 +16065,9 @@
     {
       "path": "tests/frontline/ai_layer/test_synthetic_project_smoke.py",
       "mode": "100644",
-      "git_blob": "c96fe6f2f5e39717b0bff5cbb2308a0b8c1a76cf",
-      "bytes": 3107,
-      "sha256": "3cf9c9c862e0be12c6d2e9e1bc87cc3e5c7f518b979dc31d678c5ff2b59fbcb4"
+      "git_blob": "b284b900f62895804c5ea9eb2ef9737cadd2f91b",
+      "bytes": 3594,
+      "sha256": "6f4c4a397b24bc7145818528d6be43518fe5d56610a47ade2255834094fa3bcd"
     },
     {
       "path": "tests/frontline/ai_layer/test_vehicle_risk.py",
@@ -16396,9 +16422,9 @@
     {
       "path": "tests/frontline/test_due_diligence_trust.py",
       "mode": "100644",
-      "git_blob": "5b98ce72d456707e7314136ed3eeddfa549fee66",
-      "bytes": 10840,
-      "sha256": "8e0a1b555c1786e629191ece3f0cbdfd55e6a6a624eb7ce1b22228cb64077779"
+      "git_blob": "d4a1c695fc6f8173ca96d09825f81fb0e988cd59",
+      "bytes": 10491,
+      "sha256": "f99c93f8efd0b0e0d6567520288e4d24f85a1be07d910021a22d26e781f4cf51"
     },
     {
       "path": "tests/frontline/test_embedding_backfill.py",
@@ -16606,9 +16632,9 @@
     {
       "path": "tests/frontline/test_journey_high.py",
       "mode": "100644",
-      "git_blob": "42759869553eee28d02a42418e611d2f4c1ababc",
-      "bytes": 29830,
-      "sha256": "bb9619d2c7d6b68cd97d3b32c50f08e9d09d2802e75c9b45efba0b02fdaf247e"
+      "git_blob": "2c8f23a2c1bfc21e5ee2aba40b098396468e5ce0",
+      "bytes": 29855,
+      "sha256": "71c3c4c0be39b726a0979048c071bc52b16d7cacf3d807ffb893338f4623e000"
     },
     {
       "path": "tests/frontline/test_json_tz_lists.py",
