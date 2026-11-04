@@ -10,7 +10,10 @@ from scripts.run_lotguard_demo import PROVIDER_KEYS, configure_services, offline
 def clean_services(monkeypatch):
     for name in (*PROVIDER_KEYS, "FRONTLINE_AI_LAYER", "FRONTLINE_LLM_ENABLED",
                  "DEEPGRAM_ENABLED", "FRONTLINE_TEST_ISOLATION",
-                 "FRONTLINE_DISABLE_INLINE_WORKER", "META_BACKEND"):
+                 "FRONTLINE_DISABLE_INLINE_WORKER", "META_BACKEND", "META_TIMEOUT_S"):
+        # delenv alone records no undo for an absent variable. The launcher
+        # writes directly to os.environ, so reserve an undo before deleting.
+        monkeypatch.setenv(name, os.environ.get(name, ""))
         monkeypatch.delenv(name, raising=False)
 
 

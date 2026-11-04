@@ -11,7 +11,7 @@ export async function runDemoRuntimeUiTest({ page, context, base }) {
   await expect(filter).not.toBeChecked();
   const openCases = page.locator(".stat-card").filter({ hasText: "Open cases" }).locator(".value");
   await expect(openCases).toHaveText("0");
-  const seeded = page.waitForResponse(r => r.url().includes("/api/frontline/simulate?") && r.request().method() === "POST", { timeout: 120000 });
+  const seeded = page.waitForResponse(r => r.url().includes("/api/frontline/simulate?") && r.request().method() === "POST", { timeout: 300000 });
   await page.getByRole("button", { name: "Seed demo traffic", exact: true }).click();
   const seedResponse = await seeded;
   assert.equal(seedResponse.status(), 200);

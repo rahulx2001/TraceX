@@ -12,6 +12,7 @@ pandas>=2.2,<3.0        # Defect export and accuracy evaluation
 pyyaml>=6.0,<7.0
 python-ulid>=2.2,<4.0
 python-dotenv>=1.0,<2.0
+pillow>=12.0,<14.0      # Synthetic EPS evidence images (src/ai_layer/eps_demo.py)
 websockets>=12.0,<14.0
 
 # ── LLM providers (BYOK; optional — runtime works without them) ──────────

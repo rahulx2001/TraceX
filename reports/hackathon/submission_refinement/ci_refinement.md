@@ -30,3 +30,5 @@ regressions and three integration tests passed using already installed local
 packages. The YAML parses and the four file partitions have complete, unique
 coverage. Public model replay and historical scores are unchanged. Full new CI
 status will be established by the actual GitHub run after the workflow is pushed.
+
+The first partitioned run passed shards 1 and 3 and both container jobs. It exposed a missing Pillow runtime declaration in the canonical EPS demo, a demo-service fixture environment leak, and a 120-second browser timeout for fifteen simulated contacts. Pillow is now declared as an application requirement; no package was installed on the owner’s Mac. Launcher tests explicitly restore initially absent variables, the health check explicitly tests offline mode, and the multi-record integration/browser checks use bounded batch-sized timeouts. No production model or research metric changes were made.
