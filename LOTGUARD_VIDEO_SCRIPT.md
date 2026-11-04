@@ -77,7 +77,7 @@ Read only the quoted narration. The instructions underneath are for your cursor 
 
 ### 2:33–3:00 — The result and submission
 
-> The result is eleven linked reports, 202 warnings, and nine verified repairs in this simulation. Historical classifier accuracy is 82 percent, with macro-F1 0.514. The challenger was rejected; human countersignature is pending. The event work connects these reviewable steps. Code and evidence are public on GitHub. The goal is earlier intervention, with evidence for each decision.
+> The result is eleven linked reports, 202 warnings, and nine verified repairs in this simulation. Historical classifier accuracy is 82 percent, with macro-F1 0.514. The challenger was rejected; adjudication is human-countersigned. The event work connects these reviewable steps. Code and evidence are public on GitHub. The goal is earlier intervention, with evidence for each decision.
 
 **Screen action:** Return to the case's **Lot risk · EPS B14** panel. Hold on **213 / 11 / 202**, the nine-vehicle result and **82.0% accuracy · macro-F1 0.514**. Expand **Inspect evaluation source and limits** briefly. Finish on the public TraceX repository or a simple end card with its URL.
 
@@ -107,7 +107,7 @@ These are rehearsal or extended-demo clips; keep the hackathon submission at thr
 | “213 owners, 11 reports, 202 warnings” | Fictional installation scope, inbound reports and simulated warnings. |
 | “68 responses, 41 bookings, nine verified repairs” | Stored simulated replies/bookings/workshop outcomes, not real-world activity. |
 | “Warned and repaired before reported failure” | The demo records warning before finding/verified repair and no earlier reported failure. It does not measure accidents prevented. |
-| “82.0% accuracy, macro-F1 0.514” | Historical classifier evaluation on 300 records and 46 labels. AI-assisted adjudication has a pending human countersignature. |
+| “82.0% accuracy, macro-F1 0.514” | Historical classifier evaluation on 300 records and 46 labels. AI-assisted adjudication, human-countersigned by Rahul Kumar Singh. |
 | “Challenger rejected” | Challenger accuracy 238/300 = 79.3%; baseline 246/300 = 82.0%. |
 | “C0035 is a wheel-speed clue” | ABS/left-front wheel-speed circuitry; not confirmation of EPS failure. |
 | “Meta Muse Spark handles understanding and vision” | Browser speech handles the demonstrated microphone path. Deepgram is not configured here; Baseten does not supply SAM or Muse Image. |
@@ -117,7 +117,7 @@ These are rehearsal or extended-demo clips; keep the hackathon submission at thr
 
 - Finish at three minutes; trim tab switching, not evidence labels. Keep narration audible and add captions if helpful.
 - Leave “fictional” and “simulated” labels visible. Keep credentials and settings secrets off camera.
-- Hold the nine-vehicle result for at least three seconds. Keep the accuracy source and pending-countersignature limitation readable.
+- Hold the nine-vehicle result for at least three seconds. Keep the accuracy source and countersign record readable.
 - End card: **TraceX / LotGuard** · **From one report to reviewed fleet action** · **github.com/rahulx2001/TraceX** · **Fictional demonstration; accident reduction not yet measured**.
 - After upload, open the actual video URL signed out and play it. A local file or an unverified upload URL is not a completed public submission.
 

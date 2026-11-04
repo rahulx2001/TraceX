@@ -278,4 +278,4 @@ def frozen_evaluation() -> dict:
     if changed:
         return {"verified": False, "reason": "Frozen evaluation artifacts changed; refresh and review the regression gate.", "changed": changed}
     return {**manifest["metrics"], "verified": True, "source": "reports/improvement/human_reviews/round4/accuracy_v2.json",
-            "limitations": "Historical 300-record evaluation; AI-assisted adjudication, human countersignature pending. This is classifier accuracy, not accident prediction accuracy."}
+            "limitations": "Historical 300-record evaluation; AI-assisted adjudication, human-countersigned. This is classifier accuracy, not accident prediction accuracy."}

@@ -12,4 +12,4 @@ Here are the inspection, approved replacement part, repair, verification and fol
 
 The evidence packet preserves source records, reviewed installation data, actions and timestamps. Another engineer can inspect the reasoning. Recording a repair does not automatically close the campaign or clear every vehicle.
 
-The result is eleven linked reports, 202 warnings, and nine verified repairs in this simulation. Historical classifier accuracy is 82 percent, with macro-F1 0.514. The challenger was rejected; human countersignature is pending. The event work connects these reviewable steps. Code and evidence are public on GitHub. The goal is earlier intervention, with evidence for each decision.
+The result is eleven linked reports, 202 warnings, and nine verified repairs in this simulation. Historical classifier accuracy is 82 percent, with macro-F1 0.514. The challenger was rejected; adjudication is human-countersigned. The event work connects these reviewable steps. Code and evidence are public on GitHub. The goal is earlier intervention, with evidence for each decision.

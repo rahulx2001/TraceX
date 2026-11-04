@@ -3,7 +3,10 @@
   "recorded_at": "2026-11-03T13:18:22",
   "status": "complete_with_disagreements_adjudicated",
   "resolution_method": "Labeling-guide evidence rule (same as round 2). Majority-overriding decisions cite the rule explicitly.",
-  "adjudicator": "Muse (AI-assisted draft; human countersignature pending)",
+  "adjudicator": "Muse (AI-assisted draft); countersigned by Rahul Kumar Singh — all 43 decisions confirmed as drafted",
+  "countersigned_by": "Rahul Kumar Singh",
+  "countersigned_at": "2026-11-03T20:04:37Z",
+  "countersign_scope": "All 43 Round 4 adjudication decisions confirmed as drafted; no overrides.",
   "adjudication_decisions": [
     {
       "sample_id": "S001",

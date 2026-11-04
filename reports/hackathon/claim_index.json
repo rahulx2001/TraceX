@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "indexed_at": "2026-11-03T17:10:41.427780+00:00",
+  "indexed_at": "2026-11-03T20:05:49.316480+00:00",
   "verification": "python -m scripts.public_replay",
   "scope": "saved public artifacts; no new inference or human grading",
   "claims": [
@@ -98,7 +98,7 @@
     {
       "id": "round4-evaluation",
       "claim": "Current historical evaluation: 246/300 = 82.0% accuracy, macro-F1 0.514 over 46 labels; challenger 238/300 = 79.3%, rejected",
-      "status": "complete_pending_countersign",
+      "status": "complete_countersigned",
       "artifact": "reports/improvement/human_reviews/round4/review_status.json",
       "additional_artifacts": [
         "reports/improvement/human_reviews/round4/accuracy_v2.json",
@@ -115,7 +115,7 @@
       ],
       "recorded_at": "2026-11-03T13:18:46+00:00",
       "model_version": "meta-models/muse-spark-open-1026; defect-cls-v2",
-      "limits": "AI-assisted adjudication; human countersignature pending. Blinding is unconfirmed; statistical agreement does not establish independence. Opened 300-record historical evaluation only; no accident prediction accuracy or demonstrated improvement."
+      "limits": "AI-assisted adjudication, human-countersigned by Rahul Kumar Singh (all 43 confirmed). Blinding is unconfirmed; statistical agreement does not establish independence. Opened 300-record historical evaluation only; no accident prediction accuracy or demonstrated improvement."
     },
     {
       "id": "grounded-human-review-candidate",
@@ -240,7 +240,7 @@
     },
     {
       "path": "reports/improvement/human_reviews/round4/review_status.json",
-      "sha256": "d161d77dea3042ebaa6b59cacfa238eaaee401819dc4f88bc937a6a14dd34881"
+      "sha256": "9dd0d10d105e7444de238caa8ff69763c045195601611e22f6394628452ba506"
     },
     {
       "path": "reports/improvement/human_reviews/round4/accuracy_v2.json",
@@ -256,7 +256,7 @@
     },
     {
       "path": "reports/improvement/human_reviews/round4/EVALUATION.md",
-      "sha256": "72f04137d51b6fcfa3c19a6aa3fd490112feaca0303149fd89bbbfba47e9115d"
+      "sha256": "640e19d7a70507afd81705f30a3c47e392c1fde435b55c49d1088e1f8975751b"
     },
     {
       "path": "reports/improvement/human_reviews/round4/adjudication/adjudicated_labels_v2.csv",
@@ -264,7 +264,7 @@
     },
     {
       "path": "reports/improvement/human_reviews/round4/adjudication/decision_trail.json",
-      "sha256": "41f91a1031de77f62c724a3a7e668ba5849e36c158da65c667b2c2ace510b8d6"
+      "sha256": "2978b975a4b37c51453087f4f7256b0e4632ba057df806788a1bdbc2f5203f85"
     },
     {
       "path": "reports/improvement/defect_grounded_v1/accuracy.json",
