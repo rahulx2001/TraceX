@@ -1,0 +1,85 @@
+{
+  "run_url": "https://github.com/rahulx2001/TraceX/actions/runs/41907145906",
+  "head_sha": "2524c8400fd326b712f397e67b89a56170ca95c9",
+  "overall_conclusion": "failure",
+  "jobs": [
+    {
+      "databaseId": 126844756816,
+      "name": "docker build, startup and customer turn smoke test",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:31:13Z"
+    },
+    {
+      "databaseId": 126844757029,
+      "name": "seed \u00b7 lint \u00b7 public evidence \u00b7 eval",
+      "status": "completed",
+      "conclusion": "failure",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:30:34Z"
+    },
+    {
+      "databaseId": 126844757114,
+      "name": "unit and contract tests (shard 0)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:35:11Z",
+      "summary_lines": []
+    },
+    {
+      "databaseId": 126844757159,
+      "name": "current judge image, campaign and review pages",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:31:08Z"
+    },
+    {
+      "databaseId": 126844757169,
+      "name": "unit and contract tests (shard 2)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:43:58Z",
+      "summary_lines": []
+    },
+    {
+      "databaseId": 126844757193,
+      "name": "production browser, report handoff and canonical demos",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:36:04Z",
+      "summary_lines": []
+    },
+    {
+      "databaseId": 126844757298,
+      "name": "dashboard production build",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:30:02Z"
+    },
+    {
+      "databaseId": 126844757427,
+      "name": "unit and contract tests (shard 1)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:36:30Z",
+      "summary_lines": []
+    },
+    {
+      "databaseId": 126844757791,
+      "name": "unit and contract tests (shard 3)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T20:29:54Z",
+      "completedAt": "2026-11-04T20:37:32Z",
+      "summary_lines": []
+    }
+  ],
+  "scope": "Actual GitHub conclusions: all Frontline shards, production browser, dashboard and Docker jobs passed; overall run failed on strict platform-dependent tail-probability equality. This is not an all-green workflow claim."
+}

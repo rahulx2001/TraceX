@@ -1,21 +1,27 @@
 {
   "repository_url": "https://github.com/rahulx2001/TraceX",
   "submitted_source_commit": null,
-  "candidate_source_commit": "db6c7bade673006806a4e294c13c7021ca373948",
-  "video_url": null,
+  "video_url": "https://youtu.be/Uq7_kra8q-M",
   "hosted_demo_url": null,
   "portal_url": null,
   "team_members": [],
   "team_size": 1,
   "team_size_source": "Owner confirmed they are the sole member on 30 October 2026; portal display name has not been supplied or verified.",
-  "portal_verification_status": "deferred_by_owner_until_checks_complete",
+  "portal_verification_status": "not_verified_in_this_repository",
   "current_pass_excludes": [
     "hosted_demo",
-    "video",
     "portal_upload_or_submission"
   ],
   "portal_submission_confirmed": false,
-  "note": "Set final public URLs, actual team names and the submitted commit only after they exist. A packaged candidate is not a submitted entry. Video is an owner task outside the 30 October readiness pass and does not gate these checks. Never store credentials here.",
-  "candidate_verification": "reports/hackathon/container_validation/ci-db6c7ba.json",
-  "public_source_verification": "reports/hackathon/container_validation/public-source-db6c7ba.json"
+  "note": "The final public video URL is supplied by the owner. Repository verification records do not establish portal submission. Submitted commit and portal/team fields must reflect the actual portal entry. Historical container checks remain scoped to their recorded source version.",
+  "video_url_source": "Owner provided the public final-demo URL on 4 November 2026.",
+  "historical_candidate_source_commit": "db6c7bade673006806a4e294c13c7021ca373948",
+  "historical_candidate_verification": "reports/hackathon/container_validation/ci-db6c7ba.json",
+  "historical_public_source_verification": "reports/hackathon/container_validation/public-source-db6c7ba.json",
+  "candidate_source_commit": "2314f6352f45b97b0d4809161c80b48f5f70c1a5",
+  "candidate_verification": "reports/hackathon/submission_refinement/verification.json",
+  "current_source_manifest": "reports/hackathon/source_manifest.json",
+  "candidate_status": "Implementation source is pinned above and verified from an anonymous fresh source/release download. Subsequent submission metadata and receipts are packaged by current_source_manifest; no portal submission is implied.",
+  "public_source_verification": "reports/hackathon/submission_refinement/public_download_verification.json",
+  "model_replay_release_url": "https://github.com/rahulx2001/TraceX/releases/tag/tracex-replay-2026-11-04"
 }

@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-11-04T18:37:34.377933+00:00",
+  "supplied_files": 18,
+  "distinct_original_byte_sequences": 16,
+  "scope": "Filename/hash map of the 18 owner-supplied exports. Declared human fields do not authenticate independence or correctness. Superseded draft arrays were checked against latest exports; withdrawn generated reviews are excluded from current evidence.",
+  "files": [
+    {
+      "supplied_filename": "defect-review (10).json",
+      "sha256": "412ee3bcb26d69b1b4c22868ff7648e2716245c923f5df84a3a0b3a4d593d92e",
+      "bytes": 37292,
+      "kind": "review",
+      "declared_reviewer": "Ram Prashad",
+      "review_rows": 100,
+      "status": "active_round4_source",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/round4/third_review/ram/original_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: Ram, 100 labels; active Round 4 source."
+    },
+    {
+      "supplied_filename": "defect-review (9).json",
+      "sha256": "d0e3ac31276cac593ea91238103eae55993cc4aa302c219d9e9e81854e300cb1",
+      "bytes": 41576,
+      "kind": "review",
+      "declared_reviewer": "ARYAN RAJ",
+      "review_rows": 107,
+      "status": "active_round4_source",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/round4/third_review/aryan/original_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: Aryan, 107 labels; active Round 4 source."
+    },
+    {
+      "supplied_filename": "defect-review (1) (1).json",
+      "sha256": "bc11025fdb7054b63bc720a6fbbb59a06f4b3027705ff6adfb178170521ad1dd",
+      "bytes": 51725,
+      "kind": "review",
+      "declared_reviewer": "Kaushal Kumar Jha",
+      "review_rows": 130,
+      "status": "active_round4_source",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/round4/third_review/kaushal/original_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: Kaushal, 130 labels; active Round 4 source."
+    },
+    {
+      "supplied_filename": "sc_01m678rq8awba53pxwhrjftdyp-evidence.json",
+      "sha256": "f41ebd2c3b36420283a46ae301c3a3fc874a470b5468e8ac9c85a5d515b11bf3",
+      "bytes": 79231,
+      "kind": "campaign",
+      "declared_reviewer": null,
+      "review_rows": null,
+      "status": "synthetic_demo_reference",
+      "exact_public_paths": [
+        "reports/hackathon/demo_reference/owner_demo_packet.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Published byte-for-byte: twelve fictional vehicles, revision 50, simulation-only, zero investigation drafts. Separate from review labels and later EPS demo."
+    },
+    {
+      "supplied_filename": "defect-review (8).json",
+      "sha256": "a696ef3ea8dcf3cba87ab13da1f19543cb8b68dea0af321adc850b2abd960179",
+      "bytes": 86379,
+      "kind": "review",
+      "declared_reviewer": "Abhishek",
+      "review_rows": 133,
+      "status": "separate_partial_review_not_in_round4_gold",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/round4/third_review/abhishek/original_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: latest Abhishek export, 133 labels; separately evaluated, not incorporated into Round 4 gold."
+    },
+    {
+      "supplied_filename": "defect-review (7).json",
+      "sha256": "97f348074c7ded223c764d05bbeb953a865fc60a7a59ea29340daeaadc9054fa",
+      "bytes": 85650,
+      "kind": "review",
+      "declared_reviewer": "Abhishek",
+      "review_rows": 132,
+      "status": "superseded_draft_rows_preserved",
+      "exact_public_paths": [],
+      "rows_preserved_in": [
+        "reports/improvement/human_reviews/round4/third_review/abhishek/original_review_export.json"
+      ],
+      "scope": "Earlier 132-label Abhishek draft; all rows preserved unchanged in the latest 133-label export.",
+      "superseded_by_supplied_filename": "defect-review (8).json"
+    },
+    {
+      "supplied_filename": "defect-review (6).json",
+      "sha256": "7b506a053dbcb9fa8ee79156a9a74932887bcbc49c5812f085ea66a382c43551",
+      "bytes": 59205,
+      "kind": "review",
+      "declared_reviewer": "Abhishek",
+      "review_rows": 101,
+      "status": "superseded_draft_rows_preserved",
+      "exact_public_paths": [],
+      "rows_preserved_in": [
+        "reports/improvement/human_reviews/round4/third_review/abhishek/original_review_export.json"
+      ],
+      "scope": "Earlier 101-label Abhishek draft; all rows preserved unchanged in the latest 133-label export.",
+      "superseded_by_supplied_filename": "defect-review (8).json"
+    },
+    {
+      "supplied_filename": "defect-review (5).json",
+      "sha256": "1fe8866e17273c955c4b05bbf860034e70b8e9e31197e3cdaf09cc91031915aa",
+      "bytes": 27990,
+      "kind": "review",
+      "declared_reviewer": "Gaurav",
+      "review_rows": 50,
+      "status": "withdrawn_generated_review",
+      "exact_public_paths": [],
+      "rows_preserved_in": [],
+      "scope": "Withdrawn Gaurav generated/timed review; not acceptable independent human evidence.",
+      "withdrawal_record": "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md"
+    },
+    {
+      "supplied_filename": "defect-review-rakesh-ranjan.json",
+      "sha256": "e52d27d4a8b86e9afd5e7352f89efb0db32cacc9a558fa764cafb35182acb66e",
+      "bytes": 105717,
+      "kind": "review",
+      "declared_reviewer": "Rakesh Ranjan",
+      "review_rows": 300,
+      "status": "withdrawn_generated_review",
+      "exact_public_paths": [],
+      "rows_preserved_in": [],
+      "scope": "Withdrawn generated Rakesh review; identical to the -300 file.",
+      "withdrawal_record": "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md"
+    },
+    {
+      "supplied_filename": "defect-review-rakesh-ranjan-300.json",
+      "sha256": "e52d27d4a8b86e9afd5e7352f89efb0db32cacc9a558fa764cafb35182acb66e",
+      "bytes": 105717,
+      "kind": "review",
+      "declared_reviewer": "Rakesh Ranjan",
+      "review_rows": 300,
+      "status": "withdrawn_generated_review",
+      "exact_public_paths": [],
+      "rows_preserved_in": [],
+      "scope": "Withdrawn generated Rakesh review; duplicate of the default Rakesh file.",
+      "withdrawal_record": "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md"
+    },
+    {
+      "supplied_filename": "defect-review-rakesh-ranjan-50.json",
+      "sha256": "796007cf76b958f20603028adf2073cb8519577d1cc71f2be01a2e39b6ce3e72",
+      "bytes": 18009,
+      "kind": "review",
+      "declared_reviewer": "Rakesh Ranjan",
+      "review_rows": 50,
+      "status": "withdrawn_generated_review",
+      "exact_public_paths": [],
+      "rows_preserved_in": [],
+      "scope": "Withdrawn generated Rakesh subset; not acceptable independent human evidence.",
+      "withdrawal_record": "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md"
+    },
+    {
+      "supplied_filename": "defect-adjudication-export4.json",
+      "sha256": "74fc9d79db1b2ef4f58d212d7571ec392e24b77f228389c276151ddbf71a3b47",
+      "bytes": 18207,
+      "kind": "adjudication",
+      "declared_reviewer": "Rahul",
+      "review_rows": null,
+      "status": "archived_assisted_adjudication",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/round1/revisions/manish_export4/defect-adjudication-export4.json",
+        "reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/adjudication_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Published 31-decision assisted, human-approved adjudication from the Manish revision. Not the active Round 4 43-decision gold."
+    },
+    {
+      "supplied_filename": "defect-review (4).json",
+      "sha256": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0",
+      "bytes": 108072,
+      "kind": "review",
+      "declared_reviewer": "Manish",
+      "review_rows": 300,
+      "status": "archived_human_approved_assisted_revision",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/pending/export4/source_review_export.json",
+        "reports/improvement/human_reviews/round1/revisions/manish_export4/original_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: assisted, human-approved Manish revision; not independent blinded evidence."
+    },
+    {
+      "supplied_filename": "defect-review-second-independent.json",
+      "sha256": "881d17e4bd53e1ea4624a738c54e65f35f97e03862dad6ea4b6247017e890fe0",
+      "bytes": 108072,
+      "kind": "review",
+      "declared_reviewer": "Manish",
+      "review_rows": 300,
+      "status": "archived_human_approved_assisted_revision",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/pending/export4/source_review_export.json",
+        "reports/improvement/human_reviews/round1/revisions/manish_export4/original_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: exact duplicate of Manish export (4); filename does not establish independence."
+    },
+    {
+      "supplied_filename": "defect-review (3).json",
+      "sha256": "68f9832fc32771741080a9702c2db58f1e7c4116bd34de879f7209a161d26494",
+      "bytes": 138501,
+      "kind": "review",
+      "declared_reviewer": "Manish",
+      "review_rows": 300,
+      "status": "archived_identical_review_not_independence_evidence",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/round1/second_review/manish/original_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: original Manish export; identical labels/notes to Rahul and superseded as independence evidence."
+    },
+    {
+      "supplied_filename": "defect-review (2).json",
+      "sha256": "0e5b862fce512ee746ecf1f47d14adcf3400afd0558c813ecebbecc7238eb4a6",
+      "bytes": 138500,
+      "kind": "review",
+      "declared_reviewer": "Rahul",
+      "review_rows": 300,
+      "status": "active_round4_source",
+      "exact_public_paths": [
+        "reports/improvement/human_reviews/round1/primary_review_export.json",
+        "reports/improvement/human_reviews/round4/primary_review_export.json"
+      ],
+      "rows_preserved_in": [],
+      "scope": "Present: complete Rahul primary export, 300 labels."
+    },
+    {
+      "supplied_filename": "defect-review (1).json",
+      "sha256": "2f270b4c575bc695f1ee31777e596ac41d1a3a401c3b83f4840d99fe1608f631",
+      "bytes": 138177,
+      "kind": "review",
+      "declared_reviewer": "Rahul",
+      "review_rows": 299,
+      "status": "superseded_draft_rows_preserved",
+      "exact_public_paths": [],
+      "rows_preserved_in": [
+        "reports/improvement/human_reviews/round1/primary_review_export.json"
+      ],
+      "scope": "Earlier Rahul 299-label draft; all rows preserved unchanged in the committed 300-label export.",
+      "superseded_by_supplied_filename": "defect-review (2).json"
+    },
+    {
+      "supplied_filename": "defect-review.json",
+      "sha256": "a49d606acdf743676f08e11abbed33784a481b23d9719c30203c04f199d2a65b",
+      "bytes": 530,
+      "kind": "review",
+      "declared_reviewer": "Rahul",
+      "review_rows": 1,
+      "status": "superseded_draft_rows_preserved",
+      "exact_public_paths": [],
+      "rows_preserved_in": [
+        "reports/improvement/human_reviews/round1/primary_review_export.json"
+      ],
+      "scope": "Earlier Rahul one-label draft; its row is preserved unchanged in the committed 300-label export.",
+      "superseded_by_supplied_filename": "defect-review (2).json"
+    }
+  ]
+}

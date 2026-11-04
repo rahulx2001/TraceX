@@ -147,10 +147,11 @@ def test_get_pack_unknown_returns_404(client):
 # ── Health check ─────────────────────────────────────────────────────────────
 
 
-def test_health(client):
+def test_health(client, monkeypatch):
     from src.domains.active_pack import clear_active_pack_override, resolve_active_pack_id
 
     clear_active_pack_override()
+    monkeypatch.setenv("FRONTLINE_LLM_ENABLED", "0")
     resp = client.get("/health")
     assert resp.status_code == 200
     body = resp.json()

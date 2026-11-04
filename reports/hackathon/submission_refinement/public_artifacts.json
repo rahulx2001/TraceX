@@ -1,0 +1,108 @@
+{
+  "ok": true,
+  "validation": "saved-artifact arithmetic, source fidelity and hashes only",
+  "model_calls": 0,
+  "new_human_labels": 0,
+  "new_participants": 0,
+  "historical_counts": {
+    "campaign_hits": 5,
+    "campaigns": 8,
+    "matching_mature_alerts": 6,
+    "mature_alerts": 18,
+    "random_runs_at_least_method": 19,
+    "random_runs": 100
+  },
+  "artifacts_checked": [
+    "reports/defect/fuel_holdout/holdout_results.json",
+    "reports/defect/fuel_holdout/protocol.json",
+    "reports/defect/evidence_v1/development_comparison.json",
+    "reports/improvement/human_reviews/round1/review_status.json",
+    "reports/hackathon/reviewer_study/results.json",
+    "reports/hackathon/investigation_live_smoke.json",
+    "reports/hackathon/investigation_followup_smoke.json",
+    "reports/defect/repair/human_validation_status.json",
+    "reports/improvement/human_reviews/round1/human_review_provenance.json",
+    "reports/improvement/human_reviews/round1/second_review/manish/human_review_provenance.json",
+    "reports/improvement/human_reviews/round1/primary_review_export.json",
+    "reports/improvement/human_reviews/round1/second_review/manish/original_review_export.json",
+    "reports/improvement/human_reviews/round1/second_review/manish/user_confirmation.json",
+    "reports/improvement/human_reviews/round1/reliability_gate.json",
+    "reports/improvement/human_reviews/round1/agreement_before_adjudication.json",
+    "reports/improvement/human_reviews/round1/adjudication/decision_trail.json",
+    "reports/improvement/human_reviews/round1/adjudication/adjudicated_labels.csv",
+    "reports/improvement/human_reviews/round1/accuracy.json",
+    "scripts/defect_accuracy.py",
+    "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md",
+    "reports/improvement/human_reviews/round4/review_status.json",
+    "reports/improvement/human_reviews/round4/accuracy_v2.json",
+    "reports/improvement/human_reviews/round4/candidate_accuracy_v2.json",
+    "reports/improvement/human_reviews/round4/comparison_v2.json",
+    "reports/improvement/human_reviews/round4/EVALUATION.md",
+    "reports/improvement/human_reviews/round4/adjudication/adjudicated_labels_v2.csv",
+    "reports/improvement/human_reviews/round4/adjudication/decision_trail.json",
+    "reports/improvement/defect_grounded_v1/accuracy.json",
+    "reports/improvement/defect_grounded_v1/comparison.json",
+    "reports/improvement/defect_grounded_v1/protocol.json",
+    "reports/improvement/defect_grounded_v1/row_validation_plan.json",
+    "reports/improvement/defect_grounded_v1/row_validation_manifest.json",
+    "reports/improvement/defect_grounded_v1/retry_plan.json",
+    "reports/improvement/defect_grounded_v1/evaluation_contract_check.json",
+    "reports/improvement/defect_grounded_v1/pre_claim_update/build_claim_index.py",
+    "scripts/defect_grounded_candidate.py",
+    "scripts/defect_grounded_row_validation.py",
+    "scripts/defect_grounding.py",
+    "scripts/defect_candidate_compare.py",
+    "reports/improvement/defect_grounded_v1/EVALUATION.md",
+    "reports/improvement/defect_grounded_v1/status.json",
+    "reports/improvement/defect_grounded_v1/verification.json",
+    "reports/improvement/defect_grounded_v1/common_macro_interval.json",
+    "reports/defect/fuel_holdout/public_replay_manifest.json",
+    "reports/defect/fuel_holdout/public_replay_release.json",
+    "reports/improvement/human_reviews/export_index.json",
+    "reports/hackathon/demo_reference/owner_demo_packet.json",
+    "reports/hackathon/demo_reference/manifest.json"
+  ],
+  "recorded_synthetic_runs": {
+    "investigation_live_smoke": [
+      {
+        "phase": "initial",
+        "run_id": "sir_01m64h2gkeqswye62c1vxgg3f7",
+        "recorded_at": "2026-10-29T19:09:32.142937+00:00",
+        "model_id": "meta-models/muse-spark-open-1026",
+        "extractor_version": "complaint-evidence-v1",
+        "checked_citations": 12,
+        "recorded_elapsed_ms": 7579
+      },
+      {
+        "phase": "followup",
+        "run_id": "sir_01m64h2r1xqsyfcb70d7a95e4s",
+        "recorded_at": "2026-10-29T19:09:39.773879+00:00",
+        "model_id": "meta-models/muse-spark-open-1026",
+        "extractor_version": "complaint-evidence-v1",
+        "checked_citations": 17,
+        "recorded_elapsed_ms": 8882
+      }
+    ],
+    "investigation_followup_smoke": [
+      {
+        "phase": "initial",
+        "run_id": "sir_01m64hyqy225yr3k39qpzrm0dw",
+        "recorded_at": "2026-10-29T19:24:57.154667+00:00",
+        "model_id": "meta-models/muse-spark-open-1026",
+        "extractor_version": "complaint-evidence-v1",
+        "checked_citations": 12,
+        "recorded_elapsed_ms": 11895
+      },
+      {
+        "phase": "followup",
+        "run_id": "sir_01m64hz3mzz910ryxqaj05wjrb",
+        "recorded_at": "2026-10-29T19:25:09.151428+00:00",
+        "model_id": "meta-models/muse-spark-open-1026",
+        "extractor_version": "complaint-evidence-v1",
+        "checked_citations": 12,
+        "recorded_elapsed_ms": 7784
+      }
+    ]
+  },
+  "limits": "No inference, full-data retraining, semantic grading, live-audio validation or productivity measurement was performed."
+}

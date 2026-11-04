@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "indexed_at": "2026-11-03T20:05:49.316480+00:00",
+  "indexed_at": "2026-11-04T18:38:45.089565+00:00",
   "verification": "python -m scripts.public_replay",
   "scope": "saved public artifacts; no new inference or human grading",
   "claims": [
@@ -236,7 +236,7 @@
     },
     {
       "path": "reports/improvement/human_reviews/REJECTED_fabricated_rounds.md",
-      "sha256": "78624e69dc53a6667d3a83179e290eec38ca75e5f0f925831c63f86b6d4845e8"
+      "sha256": "eb5caca34818570cff20ea96ec5a0603328aed6cca0110f5aa7273eb72826316"
     },
     {
       "path": "reports/improvement/human_reviews/round4/review_status.json",
@@ -256,7 +256,7 @@
     },
     {
       "path": "reports/improvement/human_reviews/round4/EVALUATION.md",
-      "sha256": "640e19d7a70507afd81705f30a3c47e392c1fde435b55c49d1088e1f8975751b"
+      "sha256": "fd462cfd4377dde821acdd7abaffe146df50a78364f4a0bb5ebb6d2f76a97d2a"
     },
     {
       "path": "reports/improvement/human_reviews/round4/adjudication/adjudicated_labels_v2.csv",
@@ -329,7 +329,27 @@
     {
       "path": "reports/improvement/defect_grounded_v1/common_macro_interval.json",
       "sha256": "1b386cff4dd960ae096ede53051f99973bee365ec72e464a01d631db621877c0"
+    },
+    {
+      "path": "reports/defect/fuel_holdout/public_replay_manifest.json",
+      "sha256": "c1cc4a91792e3d0ebd862b27c73ab568f98949e8d03d463e3a7f2cb490ff9174"
+    },
+    {
+      "path": "reports/defect/fuel_holdout/public_replay_release.json",
+      "sha256": "1a547686f8de50bdc7b9132e4b432c9e979c7b8083d182c65a07397f56dcaa28"
+    },
+    {
+      "path": "reports/improvement/human_reviews/export_index.json",
+      "sha256": "be9a552508ed4c8820b3bc3d966ecf559889298fb5212e8e1d791c381a11cea6"
+    },
+    {
+      "path": "reports/hackathon/demo_reference/owner_demo_packet.json",
+      "sha256": "f41ebd2c3b36420283a46ae301c3a3fc874a470b5468e8ac9c85a5d515b11bf3"
+    },
+    {
+      "path": "reports/hackathon/demo_reference/manifest.json",
+      "sha256": "c9faadd9e5f9cdcf8ab4419bdcd00d62b64a46b9cd8e39ddc1796ccaf3415988"
     }
   ],
-  "full_reproduction": "Full experiment replay needs frozen gitignored inputs, source ZIPs, embeddings and weights listed by reports/defect/fuel_holdout/protocol.json. A new public download can differ. The small replay checks published arithmetic and citations only."
+  "full_reproduction": "The public model replay recomputes frozen student predictions and the complete alert evaluation from checksummed projections, cached embeddings and fitted weights. Regenerating raw ingestion, embeddings, teacher outputs or training selection still needs the original frozen inputs and environment listed by reports/defect/fuel_holdout/protocol.json. The small standard-library replay checks published arithmetic, hashes and citations only."
 }

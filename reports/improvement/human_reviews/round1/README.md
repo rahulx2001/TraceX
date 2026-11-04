@@ -1,5 +1,12 @@
 # Frozen human evaluation: round 1
 
+**Historical archive:** the independence interpretation below was superseded by
+the [provenance withdrawal](../REJECTED_fabricated_rounds.md). The two exports
+have identical labels and notes; their agreement is not current independent
+review evidence. Original labels, scores and chronology are retained. Use
+[Round 4](../round4/EVALUATION.md) and the [export inventory](../EXPORT_INDEX.md)
+for the current scoped evaluation.
+
 Rahul and Manish each supplied 300/300 unique labels with notes. Both original
 exports, imported CSVs, reviewer IDs, supplied export timestamps, and importer
 provenance records are preserved. Neither export supplies per-record annotation

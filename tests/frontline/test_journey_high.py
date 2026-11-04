@@ -158,6 +158,7 @@ def test_h11_start_idempotent(reset_ops_db, seed_automotive_pack, monkeypatch):
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(60)
 async def test_h11_returning_customer_attaches(orchestrator_factory):
     """Same customer_ref + entity/category + open case ⇒ attach, not new case."""
     import hashlib

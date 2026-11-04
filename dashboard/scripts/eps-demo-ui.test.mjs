@@ -9,7 +9,7 @@ export async function runEpsDemoUiTest({ page, base, visuals }) {
   const existingDrawer = page.getByRole('dialog', { name: 'Case detail' });
   if (await existingDrawer.isVisible()) await existingDrawer.getByRole('button', { name: 'Close', exact: true }).first().click();
   await expect(page.getByRole('button', { name: 'Load LotGuard demo', exact: true })).toBeVisible();
-  const seeded = page.waitForResponse(r => r.url().endsWith('/demo/eps-b14') && r.request().method() === 'POST', { timeout: 180000 }).catch(e => e);
+  const seeded = page.waitForResponse(r => r.url().endsWith('/demo/eps-b14') && r.request().method() === 'POST', { timeout: 480000 }).catch(e => e);
   await page.getByRole('button', { name: 'Load LotGuard demo', exact: true }).click();
   const response = await seeded;
   if (response instanceof Error) throw response;

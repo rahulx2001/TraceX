@@ -1,5 +1,11 @@
 # Manish export 4: human-approved revision, adjudication pending
 
+**Historical archive:** this page describes the revision before finalization.
+The original 31-decision [adjudication export](finalized/adjudication_export.json)
+and [status](finalized/status.json) are preserved. This assisted revision is not
+current independent blinded review evidence; see the [withdrawal](../../../REJECTED_fabricated_rounds.md),
+[Round 4](../../../round4/EVALUATION.md) and [export inventory](../../../EXPORT_INDEX.md).
+
 The importer accepted 300/300 unique human labels with 300/300 notes from `defect-review (4).json`, naming Manish and containing `annotation_source: human`, `attestation: true`. Its sample hash matches the frozen 300-record sample. Import output is in `human_labelled.csv`; the original JSON and importer provenance are preserved.
 
 The complete array exactly matches the automated `build_full_rephrased_json.py` generator. The user subsequently confirmed: “Manish personally reviewed every final label.” This is recorded as a human-approved assisted revision. It is not described as a new independent blinded review or fresh holdout. The generated notes remain preserved even where the source audit identifies unsupported details.

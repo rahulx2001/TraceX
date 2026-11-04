@@ -172,10 +172,17 @@ def main():
             "limits": revision["limits"],
         })
         artifacts = list(dict.fromkeys(artifacts + [revision_path] + revision_artifacts))
-    artifacts = list(dict.fromkeys(artifacts))
+    public_inventory = [
+        "reports/defect/fuel_holdout/public_replay_manifest.json",
+        "reports/defect/fuel_holdout/public_replay_release.json",
+        "reports/improvement/human_reviews/export_index.json",
+        "reports/hackathon/demo_reference/owner_demo_packet.json",
+        "reports/hackathon/demo_reference/manifest.json",
+    ]
+    artifacts = list(dict.fromkeys(artifacts + public_inventory))
     index = {"schema_version": 1, "indexed_at": datetime.now(timezone.utc).isoformat(), **common,
              "claims": claims, "artifacts": [{"path": p, "sha256": sha(ROOT/p)} for p in artifacts],
-             "full_reproduction": "Full experiment replay needs frozen gitignored inputs, source ZIPs, embeddings and weights listed by reports/defect/fuel_holdout/protocol.json. A new public download can differ. The small replay checks published arithmetic and citations only."}
+             "full_reproduction": "The public model replay recomputes frozen student predictions and the complete alert evaluation from checksummed projections, cached embeddings and fitted weights. Regenerating raw ingestion, embeddings, teacher outputs or training selection still needs the original frozen inputs and environment listed by reports/defect/fuel_holdout/protocol.json. The small standard-library replay checks published arithmetic, hashes and citations only."}
     (ROOT/"reports/hackathon/claim_index.json").write_text(json.dumps(index, indent=2)+"\n")
     lines = ["# TraceX claim-to-artifact index", "", "Every number in the short submission pitch should resolve here. These are saved scoped results, not new measurements.", "",
              "Run `python -m scripts.public_replay` from a clean checkout with Python 3.10+; only the standard library is used. No API key, private cache, model weights or network is needed.", "",
@@ -183,6 +190,7 @@ def main():
     for c in claims:
         lines.append(f"| {c['claim']} | [{c['id']}](../../{c['artifact']}) · {c['recorded_at']} | {c['model_version']}. {c['limits']} |")
     lines += ["", "The machine-readable [index](claim_index.json) pins SHA-256 hashes and JSON pointers for each artifact. The source hashes detect changes to these recorded files; this does not sign the campaign evidence packet.", "", "## Full-data replay", "", index["full_reproduction"], "",
+              "Run `python3 -m scripts.public_model_replay verify --download` with NumPy and pandas installed. The [public replay guide](../../docs/public-model-replay.md) explains the release hashes, excluded free text and replay scope. Run `python3 -m scripts.review_evidence_check` to validate the five public review exports and all 43 active adjudications; the [export inventory](../improvement/human_reviews/EXPORT_INDEX.md) maps all 18 supplied filenames.", "",
               "See [the frozen experiment instructions](../defect/fuel_holdout/README.md) and [input/source hashes](../defect/fuel_holdout/protocol.json). Keep opened evaluation data distinct from fresh holdouts. Do not tune against the published result or reuse its upper confidence endpoint as an achieved score.", "",
               "## Current implementation checks", "", "`PLAYWRIGHT_CHANNEL=chrome npm run test:signin` in `dashboard/` builds current assets and exercises real local entry/auth and text-report-to-packet behavior, plus clearly labelled UI fixtures. It makes no model call. Source version and acceptance details are in [entry validation](../../docs/entry-auth-validation.md). A saved historical video or model output does not validate a new build.", "",
               "The [30 October container execution](container_validation/README.md) records",

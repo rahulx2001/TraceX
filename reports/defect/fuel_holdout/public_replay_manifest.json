@@ -1,0 +1,108 @@
+{
+  "created_at": "2026-11-04T18:16:49.468007+00:00",
+  "files": {
+    "development.csv": {
+      "bytes": 388183,
+      "columns": [
+        "datea",
+        "odino",
+        "make",
+        "component",
+        "include_record"
+      ],
+      "included_rows": 5761,
+      "rows": 9726,
+      "sha256": "6cdf1f7f4bd213950fae2afbfa220527b434b40578997cea1be60da53aef4635"
+    },
+    "development_recalls.csv": {
+      "bytes": 21944,
+      "columns": [
+        "campno",
+        "component",
+        "rcdate",
+        "make",
+        "label_id"
+      ],
+      "included_rows": 360,
+      "rows": 360,
+      "sha256": "40deb1ecce905152502ed0525c7d1c63fe070d3f3d6c7f8833aa476303bd1305"
+    },
+    "development_vectors.npy": {
+      "bytes": 14939264,
+      "sha256": "aa5ecafdfdead40ff996d7c1fbdf434dc4b2bb397c474adaa907c75a7e638a78"
+    },
+    "final_student.npz": {
+      "bytes": 23346,
+      "sha256": "611939c6d19ba5a934336c8a447d275a69024eb1e06817cb662dda72868f6e0a"
+    },
+    "holdout.csv": {
+      "bytes": 108285,
+      "columns": [
+        "datea",
+        "odino",
+        "make",
+        "component",
+        "include_record"
+      ],
+      "included_rows": 1350,
+      "rows": 2719,
+      "sha256": "d8b0fa164c1f102e0c9e2d013ca188b6d41163355d88e2aba9498074a7f48e69"
+    },
+    "holdout_recalls.csv": {
+      "bytes": 4344,
+      "columns": [
+        "campno",
+        "component",
+        "rcdate",
+        "make",
+        "label_id"
+      ],
+      "included_rows": 73,
+      "rows": 73,
+      "sha256": "023119e07d125b871123f07524bdabfcde498dc1f1a9fac45b592b096be65c47"
+    },
+    "holdout_vectors.npy": {
+      "bytes": 4176512,
+      "sha256": "2b75a8f0f88aca941bf53e9136e251702020f7380ea1e0a9c03bd9b97ec9dcf8"
+    },
+    "teacher.csv": {
+      "bytes": 63129,
+      "columns": [
+        "datea",
+        "label_id"
+      ],
+      "included_rows": 1999,
+      "rows": 1999,
+      "sha256": "309445579acc89fa4c2cb92f884fce88829e54783a6bf2a2013f18c54ea8b992"
+    },
+    "teacher_vectors.npy": {
+      "bytes": 3070592,
+      "sha256": "9cd91fe434012e00bdba67c30c9fa066fa7c562f9ebb6b48d52a83f71fd93cb2"
+    }
+  },
+  "human_results_created": 0,
+  "model_calls": 0,
+  "original_private_input_hashes": {
+    "data/defect/fuel_holdout/development.parquet": "4d6d640fb512eaea79191f2b361605db4428c7223e5818fdf29e03d7e42c39cf",
+    "data/defect/fuel_holdout/development_recalls.parquet": "99ea2ff3fbee3dd62492fd311df4d5f8e89cd6574817b897262e042e0101b0a5",
+    "data/defect/fuel_holdout/development_vectors.npy": "aa5ecafdfdead40ff996d7c1fbdf434dc4b2bb397c474adaa907c75a7e638a78",
+    "data/defect/fuel_holdout/final_student.npz": "611939c6d19ba5a934336c8a447d275a69024eb1e06817cb662dda72868f6e0a",
+    "data/defect/fuel_holdout/holdout.parquet": "78645cd6356d8c7ace1df265ecb53a4db97d8f4940e681397052268e39e0f98a",
+    "data/defect/fuel_holdout/holdout_recalls.parquet": "560049c209ea5a19b129bd39b2103a118f9869b7ed5908d2371de9fd78619ec7",
+    "data/defect/fuel_holdout/holdout_vectors.npy": "2b75a8f0f88aca941bf53e9136e251702020f7380ea1e0a9c03bd9b97ec9dcf8",
+    "data/defect/fuel_holdout/teacher.parquet": "14a604f3829b0d6eadac6ea480e412bfd2ae5d59f71a4b33c811ab6533fbce5c",
+    "data/defect/fuel_holdout/teacher_vectors.npy": "9cd91fe434012e00bdba67c30c9fa066fa7c562f9ebb6b48d52a83f71fd93cb2"
+  },
+  "projection": "Original row order and text exclusion flags; dates/public complaint IDs/labels only; no narrative, contact or VIN columns.",
+  "schema_version": 1,
+  "scope": "Saved embedding-to-alert replay; original free text is excluded. Historical opened evaluation, not a new experiment.",
+  "selection_sha256": "33e1e9fe907ca4d5c37e1e743ffc728dc92851898df7786eb917ce693c978a51",
+  "source_hashes": {
+    "reports/defect/fuel_holdout/holdout_results.json": "bff56cd1f709b42741a4197da30daa55a2d70d862f7d0d0d4186cd970e149ad1",
+    "reports/defect/fuel_holdout/protocol.json": "e57442b4d001a20ccaefe9f46f77bff71be7cda01a4b692b1afec8b81ac7ec80",
+    "reports/defect/fuel_holdout/selection.json": "e0e4683076b03e2755167eab7fffc941c58ac9b5996955b8ae69df1433ebbcaa",
+    "scripts/fuel_holdout.py": "c3e788bf47f4fb2eb1d9e003d876de73507b5212a46b5ef6ea03496342e13394",
+    "src/eval/defect_prediction.py": "43d638910f1926f5e0514c8cefe92128f7e22afd11b083ad49c04d1f26af3dfe",
+    "src/eval/fuel_detection.py": "ddc73b5faee000ecea093c81b07180b782260fe64ffd0cc705e62cccea5f0442"
+  }
+}

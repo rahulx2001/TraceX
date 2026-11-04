@@ -93,6 +93,17 @@ python3 -m scripts.public_replay
 
 This checks indexed saved hashes, arithmetic and quotation fidelity. It does not rerun inference or fully reproduce historical training. Full-data requirements are linked from the [claim index](../reports/hackathon/CLAIM_INDEX.md#full-data-replay).
 
+For the frozen local student's prediction-and-alert stage, the separate
+[public model replay](public-model-replay.md) downloads permitted inputs with
+all free-text columns removed and recomputes the recorded result:
+
+```bash
+python3 -m scripts.public_model_replay verify --download
+```
+
+This is local inference from cached embeddings and fitted student weights,
+with zero new Meta calls. It does not regenerate Meta API classifications.
+
 For a new synthetic live text check with your own configured provider and credits:
 
 ```bash

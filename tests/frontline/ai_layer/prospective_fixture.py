@@ -23,7 +23,7 @@ def commit(root):git(root,'add','.');git(root,'commit','-qm','synthetic fixture'
 
 
 def repository(tmp_path):
-    root=tmp_path/'repo';root.mkdir();git(root,'init','-q');git(root,'config','user.email','fixture@example.invalid');git(root,'config','user.name','Synthetic test')
+    root=tmp_path/'repo';root.mkdir(parents=True);git(root,'init','-q');git(root,'config','user.email','fixture@example.invalid');git(root,'config','user.name','Synthetic test')
     protocol=json.loads((SOURCE/PHASE/'protocol.json').read_text());write(root/PHASE/'protocol.json',protocol)
     custody=json.loads((SOURCE/CUSTODY).read_text());custody['synthetic_fixture']=True;write(root/CUSTODY,custody)
     manifest=json.loads((SOURCE/MANIFEST).read_text());write(root/MANIFEST,manifest)

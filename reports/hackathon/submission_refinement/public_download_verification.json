@@ -1,0 +1,92 @@
+{
+  "verified_at": "2026-11-04T18:46:03.113914+00:00",
+  "source_commit": "2314f6352f45b97b0d4809161c80b48f5f70c1a5",
+  "scope": "Fresh public source archive and release download via HTTPS without Authorization headers, cookies, API keys or developer input caches. Local Python uses preinstalled packages; no dependency installation or new live provider call.",
+  "runtime": "3.14.7",
+  "repository_url": "https://github.com/rahulx2001/TraceX",
+  "repository_private": false,
+  "source_archive_url": "https://codeload.github.com/rahulx2001/TraceX/zip/2314f6352f45b97b0d4809161c80b48f5f70c1a5",
+  "source_archive_sha256": "68732bb3e89889543639e114817516a3165dfe45781ddee48bf4b85dec6b61a7",
+  "release_url": "https://github.com/rahulx2001/TraceX/releases/tag/tracex-replay-2026-11-04",
+  "release_draft": false,
+  "release_assets": [
+    {
+      "name": "TraceX-fuel-model-replay-v1.zip",
+      "bytes": 20540799,
+      "url": "https://github.com/rahulx2001/TraceX/releases/download/tracex-replay-2026-11-04/TraceX-fuel-model-replay-v1.zip"
+    }
+  ],
+  "video": {
+    "url": "https://youtu.be/Uq7_kra8q-M",
+    "title": "TraceX | AI Evidence Checks with Muse Spark | Meta AI Hackathon",
+    "duration_seconds": 180,
+    "availability": "public",
+    "method": "yt-dlp metadata only with --ignore-config and --no-cache-dir; no credentials or cookies supplied"
+  },
+  "saved_artifact_replay_ok": true,
+  "review_evidence": {
+    "ok": true,
+    "validation": "published review/import hashes, taxonomy, source votes and adjudication consistency",
+    "indexed_supplied_exports": 18,
+    "indexed_exact_public_copies_checked": 14,
+    "frozen_sample_records": 300,
+    "reviewers": {
+      "rahul": {
+        "reviewer": "Rahul",
+        "annotations": 300,
+        "sample_size": 300
+      },
+      "aryan": {
+        "reviewer": "ARYAN RAJ",
+        "annotations": 107,
+        "sample_size": 300
+      },
+      "kaushal": {
+        "reviewer": "Kaushal Kumar Jha",
+        "annotations": 130,
+        "sample_size": 300
+      },
+      "ram": {
+        "reviewer": "Ram Prashad",
+        "annotations": 100,
+        "sample_size": 300
+      },
+      "abhishek": {
+        "reviewer": "Abhishek",
+        "annotations": 133,
+        "sample_size": 300
+      }
+    },
+    "round4_additional_distinct_records": 183,
+    "round4_primary_only_records": 117,
+    "round4_disputes": 43,
+    "countersign_status": "complete_countersigned",
+    "abhishek_in_round4_gold": false,
+    "review_blinding": "Unconfirmed: blinding confirmation was requested and no answer recorded. Independence supported by imperfect agreement, original notes, and cross-reviewer convergence only.",
+    "new_model_calls": 0,
+    "new_human_labels": 0,
+    "human_independence_or_correctness_verified": false,
+    "limits": "Attestation and internal consistency do not independently authenticate a reviewer, establish blinding or prove mechanical truth. Withdrawn/assisted archival rounds are not counted as new independent review."
+  },
+  "public_model_replay": {
+    "ok": true,
+    "validation": "saved local-student predictions and alert evaluation match the original saved result",
+    "matched_sections": [
+      "method",
+      "count_baseline",
+      "evidence_ceiling",
+      "all 100 random references"
+    ],
+    "campaign_hits": 5,
+    "campaigns": 8,
+    "matching_mature_alerts": 6,
+    "mature_alerts": 18,
+    "new_model_api_calls": 0,
+    "new_human_results": 0,
+    "raw_narratives_included": false,
+    "limits": "Replays cached embeddings/fitted weights and saved text-filter decisions. It does not regenerate embeddings, raw ingestion, provider outputs, training selection or human grades."
+  },
+  "new_meta_api_calls": 0,
+  "new_human_results": 0,
+  "portal_submission_verified": false
+}

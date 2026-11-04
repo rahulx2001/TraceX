@@ -1,0 +1,18 @@
+{
+  "campaign_hits": 5,
+  "campaigns": 8,
+  "limits": "Replays cached embeddings/fitted weights and saved text-filter decisions. It does not regenerate embeddings, raw ingestion, provider outputs, training selection or human grades.",
+  "matched_sections": [
+    "method",
+    "count_baseline",
+    "evidence_ceiling",
+    "all 100 random references"
+  ],
+  "matching_mature_alerts": 6,
+  "mature_alerts": 18,
+  "new_human_results": 0,
+  "new_model_api_calls": 0,
+  "ok": true,
+  "raw_narratives_included": false,
+  "validation": "saved local-student predictions and alert evaluation match the original saved result"
+}

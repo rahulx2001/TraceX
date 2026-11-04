@@ -20,7 +20,9 @@ The machine-readable [index](claim_index.json) pins SHA-256 hashes and JSON poin
 
 ## Full-data replay
 
-Full experiment replay needs frozen gitignored inputs, source ZIPs, embeddings and weights listed by reports/defect/fuel_holdout/protocol.json. A new public download can differ. The small replay checks published arithmetic and citations only.
+The public model replay recomputes frozen student predictions and the complete alert evaluation from checksummed projections, cached embeddings and fitted weights. Regenerating raw ingestion, embeddings, teacher outputs or training selection still needs the original frozen inputs and environment listed by reports/defect/fuel_holdout/protocol.json. The small standard-library replay checks published arithmetic, hashes and citations only.
+
+Run `python3 -m scripts.public_model_replay verify --download` with NumPy and pandas installed. The [public replay guide](../../docs/public-model-replay.md) explains the release hashes, excluded free text and replay scope. Run `python3 -m scripts.review_evidence_check` to validate the five public review exports and all 43 active adjudications; the [export inventory](../improvement/human_reviews/EXPORT_INDEX.md) maps all 18 supplied filenames.
 
 See [the frozen experiment instructions](../defect/fuel_holdout/README.md) and [input/source hashes](../defect/fuel_holdout/protocol.json). Keep opened evaluation data distinct from fresh holdouts. Do not tune against the published result or reuse its upper confidence endpoint as an achieved score.
 

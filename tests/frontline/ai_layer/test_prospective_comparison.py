@@ -1,6 +1,8 @@
 """Synthetic comparisons only; no prospective performance evidence."""
 import argparse
 import json
+import platform
+from importlib.metadata import version
 
 import pandas as pd
 import pytest
@@ -15,6 +17,12 @@ from .prospective_fixture import SOURCE, repository, frozen_data, write, commit,
 def registered_repository(tmp_path):
     root, volume = repository(tmp_path)
     protocol = json.loads((SOURCE / comparison.PROTOCOL).read_text())
+    # Register this executing environment in the disposable synthetic repo.
+    # The production protocol and its exact runtime gate stay unchanged.
+    protocol['environment']['python'] = platform.python_version()
+    protocol['environment']['versions'] = {
+        name: version(name) for name in protocol['environment']['versions']
+    }
     protocol['freeze']['original_tag_commit'] = git(root, 'rev-parse', 'ml-prospective-freeze-2026^{commit}')
     protocol['baseline']['sha256'] = digest(root / protocol['baseline']['path'])
     for name in [protocol['challenger']['path'], 'scripts/prospective_comparison.py']:
@@ -115,7 +123,7 @@ def test_synthetic_final_comparison_writes_all_outputs_and_reserves_one_run(tmp_
 
 def test_registered_runtime_versions_are_required(tmp_path, monkeypatch):
     root, _ = registered_repository(tmp_path)
-    monkeypatch.setattr(comparison.platform, 'python_version', lambda: '3.12.0')
+    monkeypatch.setattr(comparison.platform, 'python_version', lambda: '0.0.0')
     with pytest.raises(ValueError, match='Runtime differs'):
         comparison.verify_registration(root)
 

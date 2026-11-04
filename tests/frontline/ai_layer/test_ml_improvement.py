@@ -114,6 +114,7 @@ def test_operating_point_cannot_promote_failed_gates_or_test_tuning():
     with pytest.raises(ValueError):choose_operating_point([dict(row,split="test")])
 
 
+@pytest.mark.timeout(120)
 def test_local_models_and_calibration_on_disjoint_toy_groups(monkeypatch):
     # Optional research dependencies are isolated from production requirements.
     from pathlib import Path
@@ -170,6 +171,11 @@ def test_prospective_dashboard_preserves_scores_and_rejects_mutation(tmp_path, m
     import copy,json
     path=publisher.ROOT/"reports/improvement/results.json"
     base=publisher.dashboard_payload(json.loads(path.read_text()),path)
+    # Current app source can differ from the old research freeze. Exercise
+    # verified publication in a disposable, explicitly synthetic freeze.
+    from .prospective_fixture import repository
+    root, _ = repository(tmp_path/'synthetic-freeze')
+    monkeypatch.setattr(publisher, 'ROOT', root)
     overlay=publisher.prospective_payload(base)
     assert overlay["metrics"]==base["metrics"]
     assert overlay["source_sha256"]==publisher.digest(path)

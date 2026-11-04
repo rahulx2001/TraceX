@@ -1,0 +1,1986 @@
+{
+  "campaign_id": "sc_01m678rq8awba53pxwhrjftdyp",
+  "revision": 50,
+  "title": "Control-arm crack · supplier lot A",
+  "component": {
+    "supplier": "SYN-AXLEWORKS",
+    "part_number": "SYN-CA-2301",
+    "lot_id": "SYN-LOT-A",
+    "component_name": "front lower control arm"
+  },
+  "seed_evidence": "SYN-WO-001: synthetic workshop report of a cracked control arm. Fictional vehicle and supplier.",
+  "requires_recovery": true,
+  "synthetic_demo": true,
+  "status": "active",
+  "opened_at": "2026-10-30T20:42:05.962648+00:00",
+  "opened_by": "operator",
+  "investigation_id": null,
+  "vehicles": [
+    {
+      "vehicle_id": "DEMO-CAR-002",
+      "owner_ref": "DEMO-OWNER-002",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-002",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "f23dfd60fa2e4e3edb39d1eb606a444c7074450cdb948f452146f6765ce6036b",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "exact",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:05.998651+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9erxtv8jt2cfehks19",
+          "text": "I hear a clunk from the front suspension and the steering pulls left.",
+          "symptoms": [
+            "clunk",
+            "steering_pull"
+          ]
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-002",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-002\nVehicle: DEMO-CAR-002\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "4c26e97c13369850b590c77a3b8c28ac6571cf6fe2e973fc5e438d14bbe3e02f",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.974740+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "4c26e97c13369850b590c77a3b8c28ac6571cf6fe2e973fc5e438d14bbe3e02f",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-002",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-002"
+        }
+      },
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpav",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "appointment": {
+        "at": "2026-10-30T20:42:06.011926+00:00",
+        "by": "operator",
+        "simulated": true,
+        "workshop": "Demo Central Workshop",
+        "due_date": "2026-11-02",
+        "reference": "SYN-BOOK-002",
+        "transport": "recovery"
+      },
+      "recovery": {
+        "at": "2026-10-30T20:42:06.024451+00:00",
+        "by": "operator",
+        "simulated": true,
+        "reference": "SYN-TOW-002",
+        "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+      },
+      "inspection": {
+        "at": "2026-10-30T20:42:06.025988+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "crack_found",
+        "technician": "Demo workshop technician",
+        "evidence_ref": "SYN-INSPECTION-002",
+        "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+      },
+      "inspection_history": [
+        {
+          "at": "2026-10-30T20:42:06.025988+00:00",
+          "by": "operator",
+          "simulated": true,
+          "outcome": "crack_found",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-002",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        }
+      ],
+      "hazard": true,
+      "repair_required": true,
+      "repair": {
+        "at": "2026-10-30T20:42:06.041419+00:00",
+        "by": "operator",
+        "simulated": true,
+        "replacement_part": "SYN-CA-2302",
+        "replacement_lot": "SYN-LOT-C",
+        "work_order": "SYN-WO-002",
+        "technician": "Demo repair technician",
+        "remedy": {
+          "at": "2026-10-30T20:42:06.036735+00:00",
+          "by": "operator",
+          "simulated": true,
+          "replacement_part": "SYN-CA-2302",
+          "procedure_ref": "SYN-MANUAL-02",
+          "approval_ref": "SYN-ENG-01",
+          "note": "DEMO ONLY: replacement control arm and applicability reviewed. These references must never be used on a real vehicle."
+        }
+      },
+      "repair_verification": {
+        "at": "2026-10-30T20:42:06.043005+00:00",
+        "by": "operator",
+        "simulated": true,
+        "technician": "Demo verification technician",
+        "evidence_ref": "SYN-CHECK-002",
+        "note": "DEMO: replacement and required post-repair checks recorded against the reviewed procedure."
+      },
+      "followup": {
+        "at": "2026-10-30T20:42:06.050756+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "unreachable",
+        "note": "DEMO: repair verified, owner follow-up still pending. Keep review open."
+      },
+      "safety_hold": true
+    },
+    {
+      "vehicle_id": "DEMO-CAR-003",
+      "owner_ref": "DEMO-OWNER-003",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-003",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "834c984fd08fee1156f1bbad4664acf3c45631c6f41bded2f2d286a5c66fa053",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "exact",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:06.000343+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9g2a78ec2dxz66g1jy",
+          "text": "The car pulled sharply to one side. It is parked at home now.",
+          "symptoms": [
+            "loss_of_control"
+          ],
+          "urgent_review": true
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-003",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-003\nVehicle: DEMO-CAR-003\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "5423161803db96f26f91d744f6e836ad56488723ad76ac5676799beca1138edd",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.977659+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "5423161803db96f26f91d744f6e836ad56488723ad76ac5676799beca1138edd",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-003",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-003"
+        }
+      },
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpaw",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "hazard": true,
+      "appointment": {
+        "at": "2026-10-30T20:42:06.013558+00:00",
+        "by": "operator",
+        "simulated": true,
+        "workshop": "Demo Central Workshop",
+        "due_date": "2026-11-02",
+        "reference": "SYN-BOOK-003",
+        "transport": "recovery"
+      },
+      "recovery": {
+        "at": "2026-10-30T20:42:06.027506+00:00",
+        "by": "operator",
+        "simulated": true,
+        "reference": "SYN-TOW-003",
+        "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+      },
+      "inspection": {
+        "at": "2026-10-30T20:42:06.029017+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "crack_found",
+        "technician": "Demo workshop technician",
+        "evidence_ref": "SYN-INSPECTION-003",
+        "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+      },
+      "inspection_history": [
+        {
+          "at": "2026-10-30T20:42:06.029017+00:00",
+          "by": "operator",
+          "simulated": true,
+          "outcome": "crack_found",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-003",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        }
+      ],
+      "repair_required": true,
+      "safety_hold": true
+    },
+    {
+      "vehicle_id": "DEMO-CAR-005",
+      "owner_ref": "DEMO-OWNER-005",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-005",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "c04eec60a9e0510ac0a1b3ba926117b1fa6ea68f194aaa2b7f62d52eb3a233c5",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "exact",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:06.003727+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9kg3sws46v9m8n985d",
+          "text": "Aage ke tyre ek taraf se ghis rahe hain aur suspension se awaaz aa rahi hai.",
+          "symptoms": [
+            "clunk",
+            "uneven_wear"
+          ]
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-005",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-005\nVehicle: DEMO-CAR-005\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "3b9d3d37a6b127622417d3fd098404d64ffde585e59c288820d361f977ace474",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.982760+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "3b9d3d37a6b127622417d3fd098404d64ffde585e59c288820d361f977ace474",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-005",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-005"
+        }
+      },
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpay",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "appointment": {
+        "at": "2026-10-30T20:42:06.016755+00:00",
+        "by": "operator",
+        "simulated": true,
+        "workshop": "Demo Central Workshop",
+        "due_date": "2026-11-02",
+        "reference": "SYN-BOOK-005",
+        "transport": "recovery"
+      },
+      "recovery": {
+        "at": "2026-10-30T20:42:06.033594+00:00",
+        "by": "operator",
+        "simulated": true,
+        "reference": "SYN-TOW-005",
+        "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+      },
+      "inspection": {
+        "at": "2026-10-30T20:42:06.035186+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "wear_only",
+        "technician": "Demo workshop technician",
+        "evidence_ref": "SYN-INSPECTION-005",
+        "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+      },
+      "inspection_history": [
+        {
+          "at": "2026-10-30T20:42:06.035186+00:00",
+          "by": "operator",
+          "simulated": true,
+          "outcome": "wear_only",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-005",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        }
+      ],
+      "repair_required": true,
+      "safety_hold": true
+    },
+    {
+      "vehicle_id": "DEMO-CAR-006",
+      "owner_ref": "DEMO-OWNER-006",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-006",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "8a47bafb47669bb1065d7759c098e3989638a834ec29f655ba98244fe18eb8f9",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "exact",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:06.005474+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9nstvy8dv06mczbjcb",
+          "text": "There is a knocking sound over bumps. Please help arrange collection.",
+          "symptoms": [
+            "clunk"
+          ]
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-006",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-006\nVehicle: DEMO-CAR-006\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "fb2507949480a0434e73824040f583557e8f6bf2fdefadf415e3dc31e9401dd4",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.984953+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "fb2507949480a0434e73824040f583557e8f6bf2fdefadf415e3dc31e9401dd4",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-006",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-006"
+        }
+      },
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpaz",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "appointment": {
+        "at": "2026-10-30T20:42:06.018212+00:00",
+        "by": "operator",
+        "simulated": true,
+        "workshop": "Demo Central Workshop",
+        "due_date": "2026-10-30",
+        "reference": "SYN-BOOK-006",
+        "transport": "recovery"
+      },
+      "safety_hold": true
+    },
+    {
+      "vehicle_id": "DEMO-CAR-007",
+      "owner_ref": "DEMO-OWNER-007",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-007",
+      "contact_consent": false,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "a72ab84554e92e79ffa1b778450c366f3427d8650e8503256e696534673aa331",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "exact",
+      "replies": [],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-007",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-007\nVehicle: DEMO-CAR-007\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "34e683b31d978cdfd77909aeacdd2fe6a4108efe096de142697537e90b870c56",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.987094+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "34e683b31d978cdfd77909aeacdd2fe6a4108efe096de142697537e90b870c56",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-007",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-007"
+        }
+      },
+      "safety_hold": true
+    },
+    {
+      "vehicle_id": "DEMO-CAR-008",
+      "owner_ref": "DEMO-OWNER-008",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "unverified",
+      "source_ref": "SYN-BUILD-RECORD-008",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "unverified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "f90168a5739fcd08aaa0a4295ace7414d8487bd929a26e1167692b39ffe79dc4",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "possible",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:06.007091+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9qyggexz8tj4pvyc6t",
+          "text": "The steering pulls when I travel over an uneven road.",
+          "symptoms": [
+            "steering_pull"
+          ]
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpb0",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "appointment": {
+        "at": "2026-10-30T20:42:06.019662+00:00",
+        "by": "operator",
+        "simulated": true,
+        "workshop": "Demo Central Workshop",
+        "due_date": "2026-11-02",
+        "reference": "SYN-BOOK-008",
+        "transport": "recovery"
+      },
+      "safety_hold": true
+    },
+    {
+      "vehicle_id": "DEMO-CAR-009",
+      "owner_ref": "DEMO-OWNER-009",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "unverified",
+      "source_ref": "SYN-BUILD-RECORD-009",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "unverified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "f9eea8c5092ea9da79b7218affb7b6ccdea3dd87780409b3a1f33d63d11344b2",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "possible",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:06.008686+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9rdxxwsq9t5fnfzpv0",
+          "text": "No symptoms noticed so far. The car is parked until the part record is checked.",
+          "symptoms": [
+            "none"
+          ]
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpb1",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "safety_hold": true
+    },
+    {
+      "vehicle_id": "DEMO-CAR-010",
+      "owner_ref": "DEMO-OWNER-010",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "unknown",
+      "source_ref": "SYN-BUILD-RECORD-010",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "unknown",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "072874b5bf4a3233dbfe288c3bc3079eb1dc50fb9d5a4e9e7c03f3745d97ba32",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "unknown",
+      "replies": [],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "safety_hold": false
+    },
+    {
+      "vehicle_id": "DEMO-CAR-011",
+      "owner_ref": "DEMO-OWNER-011",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-B",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-011",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "4efbc0472784461803ef7a1ab1f57b4e704b5a1d979db0a15c57b0d0d301e15c",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "excluded",
+      "replies": [],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-011",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-011\nVehicle: DEMO-CAR-011\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-B\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "fa61c16aa4626cab22c6756e7200e6140fd7e9bf105eb9d10bcf248bfa1d0774",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.989067+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "fa61c16aa4626cab22c6756e7200e6140fd7e9bf105eb9d10bcf248bfa1d0774",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-011",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-B",
+          "source_ref": "SYN-BUILD-RECORD-011"
+        }
+      },
+      "safety_hold": false
+    },
+    {
+      "vehicle_id": "DEMO-CAR-012",
+      "owner_ref": "DEMO-OWNER-012",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-B",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-012",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "381f9d89fe94c0daef5eeeca2192e213e2e563253c9f4afb8376fe8225304f83",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "excluded",
+      "replies": [],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-012",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-012\nVehicle: DEMO-CAR-012\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-B\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "5ebef036d73b2b342c79bbbc9fb1542900a5a870faabb04c6827b81ea373c19b",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.991008+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "5ebef036d73b2b342c79bbbc9fb1542900a5a870faabb04c6827b81ea373c19b",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-012",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-B",
+          "source_ref": "SYN-BUILD-RECORD-012"
+        }
+      },
+      "safety_hold": false
+    },
+    {
+      "vehicle_id": "DEMO-CAR-001",
+      "owner_ref": "DEMO-OWNER-001",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-001",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "03aff261d02d6cc7452daf67d35fba46251a50b9f94e86ddaf51b32bfb26bf9a",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "exact",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:05.996806+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9cs96kdg9gsbyk7wkt",
+          "text": "Meri gaadi mein speed breaker par khat-khat awaaz aati hai. Ab control arm par crack dikh raha hai.",
+          "symptoms": [
+            "clunk",
+            "crack"
+          ],
+          "urgent_review": true
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-001",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-001\nVehicle: DEMO-CAR-001\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "d889ab40169afb4b3c67e5f8de768bc2eb7405d3aca0b95782786cb2f1c64882",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.971474+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "d889ab40169afb4b3c67e5f8de768bc2eb7405d3aca0b95782786cb2f1c64882",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-001",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-001"
+        }
+      },
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpat",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "hazard": true,
+      "appointment": {
+        "at": "2026-10-30T20:42:06.010392+00:00",
+        "by": "operator",
+        "simulated": true,
+        "workshop": "Demo Central Workshop",
+        "due_date": "2026-11-02",
+        "reference": "SYN-BOOK-001",
+        "transport": "recovery"
+      },
+      "recovery": {
+        "at": "2026-10-30T20:42:06.021131+00:00",
+        "by": "operator",
+        "simulated": true,
+        "reference": "SYN-TOW-001",
+        "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+      },
+      "inspection": {
+        "at": "2026-10-30T20:42:06.022909+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "crack_found",
+        "technician": "Demo workshop technician",
+        "evidence_ref": "SYN-INSPECTION-001",
+        "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+      },
+      "inspection_history": [
+        {
+          "at": "2026-10-30T20:42:06.022909+00:00",
+          "by": "operator",
+          "simulated": true,
+          "outcome": "crack_found",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-001",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        }
+      ],
+      "repair_required": false,
+      "repair": {
+        "at": "2026-10-30T20:42:06.038290+00:00",
+        "by": "operator",
+        "simulated": true,
+        "replacement_part": "SYN-CA-2302",
+        "replacement_lot": "SYN-LOT-C",
+        "work_order": "SYN-WO-001",
+        "technician": "Demo repair technician",
+        "remedy": {
+          "at": "2026-10-30T20:42:06.036735+00:00",
+          "by": "operator",
+          "simulated": true,
+          "replacement_part": "SYN-CA-2302",
+          "procedure_ref": "SYN-MANUAL-02",
+          "approval_ref": "SYN-ENG-01",
+          "note": "DEMO ONLY: replacement control arm and applicability reviewed. These references must never be used on a real vehicle."
+        }
+      },
+      "repair_verification": {
+        "at": "2026-10-30T20:42:06.039857+00:00",
+        "by": "operator",
+        "simulated": true,
+        "technician": "Demo verification technician",
+        "evidence_ref": "SYN-CHECK-001",
+        "note": "DEMO: replacement and required post-repair checks recorded against the reviewed procedure."
+      },
+      "followup": {
+        "at": "2026-10-30T20:42:06.044521+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "no_symptoms",
+        "note": "DEMO: owner follow-up completed; no symptoms reported after workshop review."
+      },
+      "resolution": {
+        "at": "2026-10-30T20:42:06.046078+00:00",
+        "by": "operator",
+        "simulated": true,
+        "evidence_ref": "SYN-RELEASE-001",
+        "note": "DEMO: reviewer checked inspection, required remedy and follow-up. This is a scoped disposition, not an exemption from a recall."
+      },
+      "safety_hold": false
+    },
+    {
+      "vehicle_id": "DEMO-CAR-004",
+      "owner_ref": "DEMO-OWNER-004",
+      "model": "Fictional crossover 2023",
+      "supplier": "SYN-AXLEWORKS",
+      "part_number": "SYN-CA-2301",
+      "lot_id": "SYN-LOT-A",
+      "trace_status": "verified",
+      "source_ref": "SYN-BUILD-RECORD-004",
+      "contact_consent": true,
+      "channel": "whatsapp",
+      "source_asserted_trace_status": "verified",
+      "import_provenance": {
+        "sha256": "0db7cc0a4ce365b95b0a72f9f6acb58674a911e119f1689f457572e02ab297ce",
+        "row_sha256": "24a007f0b3197dc54d100aa8373bd51ad5845cd1bf6c67afc548d9968c023ae1",
+        "by": "operator",
+        "role": "agent",
+        "at": "2026-10-30T20:42:05.967799+00:00",
+        "verification": "source_asserted_only"
+      },
+      "match": "exact",
+      "replies": [
+        {
+          "at": "2026-10-30T20:42:06.002067+00:00",
+          "by": "operator",
+          "simulated": true,
+          "reply_id": "sr_01m678rq9jwjx7h2mk2h7jhk5g",
+          "text": "I have not noticed any of these symptoms. I will still arrange the inspection.",
+          "symptoms": [
+            "none"
+          ]
+        }
+      ],
+      "imported_at": "2026-10-30T20:42:05.967799+00:00",
+      "installation_evidence": {
+        "source_ref": "SYN-BUILD-RECORD-004",
+        "text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-004\nVehicle: DEMO-CAR-004\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+        "sha256": "d800cc5445ddc7ac32b6501c4717fa4b6b7d5d97ebf4be520ec64a21877086c6",
+        "format": "operator_attached_text",
+        "synthetic_demo": true
+      },
+      "trace_review": {
+        "at": "2026-10-30T20:42:05.980229+00:00",
+        "by": "operator",
+        "simulated": true,
+        "role": "agent",
+        "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated.",
+        "source_sha256": "d800cc5445ddc7ac32b6501c4717fa4b6b7d5d97ebf4be520ec64a21877086c6",
+        "scope": {
+          "vehicle_id": "DEMO-CAR-004",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-004"
+        }
+      },
+      "notice": {
+        "at": "2026-10-30T20:42:05.994916+00:00",
+        "by": "operator",
+        "simulated": true,
+        "status": "simulated",
+        "notice_id": "sn_01m678rq9amqmckqkjq8fmqpax",
+        "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+        "channel": "whatsapp"
+      },
+      "appointment": {
+        "at": "2026-10-30T20:42:06.015298+00:00",
+        "by": "operator",
+        "simulated": true,
+        "workshop": "Demo Central Workshop",
+        "due_date": "2026-11-02",
+        "reference": "SYN-BOOK-004",
+        "transport": "recovery"
+      },
+      "recovery": {
+        "at": "2026-10-30T20:42:06.030554+00:00",
+        "by": "operator",
+        "simulated": true,
+        "reference": "SYN-TOW-004",
+        "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+      },
+      "inspection": {
+        "at": "2026-10-30T20:42:06.032069+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "no_issue",
+        "technician": "Demo workshop technician",
+        "evidence_ref": "SYN-INSPECTION-004",
+        "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+      },
+      "inspection_history": [
+        {
+          "at": "2026-10-30T20:42:06.032069+00:00",
+          "by": "operator",
+          "simulated": true,
+          "outcome": "no_issue",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-004",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        }
+      ],
+      "followup": {
+        "at": "2026-10-30T20:42:06.047658+00:00",
+        "by": "operator",
+        "simulated": true,
+        "outcome": "no_symptoms",
+        "note": "DEMO: owner follow-up completed; no symptoms reported after workshop review."
+      },
+      "resolution": {
+        "at": "2026-10-30T20:42:06.049214+00:00",
+        "by": "operator",
+        "simulated": true,
+        "evidence_ref": "SYN-RELEASE-004",
+        "note": "DEMO: reviewer checked inspection, required remedy and follow-up. This is a scoped disposition, not an exemption from a recall."
+      },
+      "repair_required": false,
+      "safety_hold": false
+    }
+  ],
+  "approval": {
+    "at": "2026-10-30T20:42:05.992977+00:00",
+    "by": "operator",
+    "simulated": true,
+    "lane": "recovery",
+    "note": "DEMO: reviewed control-arm finding and installation records. Keep exact and possible matches parked pending workshop review.",
+    "scope_revision": 11,
+    "message": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services."
+  },
+  "remedy": {
+    "at": "2026-10-30T20:42:06.036735+00:00",
+    "by": "operator",
+    "simulated": true,
+    "replacement_part": "SYN-CA-2302",
+    "procedure_ref": "SYN-MANUAL-02",
+    "approval_ref": "SYN-ENG-01",
+    "note": "DEMO ONLY: replacement control arm and applicability reviewed. These references must never be used on a real vehicle."
+  },
+  "supplier_action": {
+    "at": "2026-10-30T20:42:06.052326+00:00",
+    "by": "operator",
+    "simulated": true,
+    "owner": "Demo supplier quality lead",
+    "due_date": "2026-11-07",
+    "status": "contained",
+    "evidence_ref": "SYN-SUPPLIER-8D-01",
+    "note": "DEMO: suspect stock isolated; supplier root-cause review and corrective-action verification remain open."
+  },
+  "demo_version": "road-safety-walkthrough-v2-sourced-trace",
+  "demo_prepared_at": "2026-10-30T20:42:06.053666+00:00",
+  "metrics": {
+    "registered": 12,
+    "exact": 7,
+    "possible": 2,
+    "unknown": 1,
+    "excluded": 2,
+    "outreach_simulated": 8,
+    "delivered": 0,
+    "replied": 8,
+    "symptom_reports": 6,
+    "awaiting_reply": 0,
+    "inspected": 5,
+    "confirmed_cracks": 3,
+    "inspection_yield": 0.6,
+    "repair_recorded": 2,
+    "repair_verified": 2,
+    "resolved": 2,
+    "unresolved": 8,
+    "safety_holds": 7,
+    "overdue": 5,
+    "first_reply_at": "2026-10-30T20:42:05.996806+00:00",
+    "first_inspection_at": "2026-10-30T20:42:06.022909+00:00",
+    "first_verified_repair_at": "2026-10-30T20:42:06.039857+00:00"
+  },
+  "method": "Counts describe recorded traceability, reports, inspections and remedies. Symptoms are not diagnoses. No response or no symptoms does not clear a vehicle. Accidents prevented and recalls avoided are not measured. Regulatory recall decisions remain with the manufacturer and authorities.",
+  "delivery_mode": "simulation_only",
+  "notice_previews": {
+    "recovery": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services.",
+    "inspect": "A potential issue involving the front lower control arm is under investigation. Your vehicle's component record matches or may match the investigated lot; this is not a diagnosis. Please keep the vehicle parked and contact the authorised workshop to arrange recovery. Do not drive it to the workshop. Have you noticed noise, uneven tyre wear, steering changes, or visible damage? No symptoms does not rule out a defect. Do not test-drive to reproduce the issue. If you have visible damage or loss of control, keep the vehicle parked and request recovery. If there is immediate danger or injury, contact local emergency services."
+  },
+  "events": [
+    {
+      "event_id": "sce_01m678rq8b8snxrfz645dswmp2",
+      "revision": 1,
+      "kind": "created",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "synthetic_demo": true,
+        "seed_evidence": "SYN-WO-001: synthetic workshop report of a cracked control arm. Fictional vehicle and supplier."
+      },
+      "at": "2026-10-30T20:42:05.963906+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq8gsj1gg1pgqbf69byp",
+      "revision": 2,
+      "kind": "import",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "csv": "vehicle_id,owner_ref,model,supplier,part_number,lot_id,trace_status,source_ref,contact_consent,channel\r\nDEMO-CAR-001,DEMO-OWNER-001,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,verified,SYN-BUILD-RECORD-001,yes,whatsapp\r\nDEMO-CAR-002,DEMO-OWNER-002,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,verified,SYN-BUILD-RECORD-002,yes,whatsapp\r\nDEMO-CAR-003,DEMO-OWNER-003,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,verified,SYN-BUILD-RECORD-003,yes,whatsapp\r\nDEMO-CAR-004,DEMO-OWNER-004,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,verified,SYN-BUILD-RECORD-004,yes,whatsapp\r\nDEMO-CAR-005,DEMO-OWNER-005,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,verified,SYN-BUILD-RECORD-005,yes,whatsapp\r\nDEMO-CAR-006,DEMO-OWNER-006,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,verified,SYN-BUILD-RECORD-006,yes,whatsapp\r\nDEMO-CAR-007,DEMO-OWNER-007,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,verified,SYN-BUILD-RECORD-007,no,whatsapp\r\nDEMO-CAR-008,DEMO-OWNER-008,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,unverified,SYN-BUILD-RECORD-008,yes,whatsapp\r\nDEMO-CAR-009,DEMO-OWNER-009,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,unverified,SYN-BUILD-RECORD-009,yes,whatsapp\r\nDEMO-CAR-010,DEMO-OWNER-010,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-A,unknown,SYN-BUILD-RECORD-010,yes,whatsapp\r\nDEMO-CAR-011,DEMO-OWNER-011,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-B,verified,SYN-BUILD-RECORD-011,yes,whatsapp\r\nDEMO-CAR-012,DEMO-OWNER-012,Fictional crossover 2023,SYN-AXLEWORKS,SYN-CA-2301,SYN-LOT-B,verified,SYN-BUILD-RECORD-012,yes,whatsapp\r\n"
+        },
+        "result": {
+          "imported": 12
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.968520+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq8mn3nxkvm8cve52r94",
+      "revision": 3,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-001",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-001\nVehicle: DEMO-CAR-001\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.972268+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq8qdpp0x8fh585hv3gn",
+      "revision": 4,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-002",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-002\nVehicle: DEMO-CAR-002\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.975131+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq8t5xnnfrh8dv4p6vtg",
+      "revision": 5,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-003",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-003",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-003\nVehicle: DEMO-CAR-003\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.978043+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq8wa09sgfs8psy23m0z",
+      "revision": 6,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-004",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-004",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-004\nVehicle: DEMO-CAR-004\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.980587+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq8zjac4zann8mmnwk1q",
+      "revision": 7,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-005",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-005",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-005\nVehicle: DEMO-CAR-005\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.983072+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq91fkfek1x6y7xjs8nn",
+      "revision": 8,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-006",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-006",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-006\nVehicle: DEMO-CAR-006\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.985282+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq932ymh26wd35yvffds",
+      "revision": 9,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-007",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-A",
+          "source_ref": "SYN-BUILD-RECORD-007",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-007\nVehicle: DEMO-CAR-007\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-A\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.987420+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq953gff2c5mtvavr66g",
+      "revision": 10,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-011",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-B",
+          "source_ref": "SYN-BUILD-RECORD-011",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-011\nVehicle: DEMO-CAR-011\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-B\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.989371+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq97rw1bwyjpxswejmrj",
+      "revision": 11,
+      "kind": "trace_review",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-012",
+          "supplier": "SYN-AXLEWORKS",
+          "part_number": "SYN-CA-2301",
+          "lot_id": "SYN-LOT-B",
+          "source_ref": "SYN-BUILD-RECORD-012",
+          "evidence_text": "FICTIONAL DEMO INSTALLATION RECORD SYN-BUILD-RECORD-012\nVehicle: DEMO-CAR-012\nSupplier: SYN-AXLEWORKS\nInstalled part: SYN-CA-2301\nInstalled lot: SYN-LOT-B\nPrepared fixture; not a real workshop document or human study result.",
+          "note": "SIMULATED SEED REVIEW: fictional installation record checked for this prepared scenario; no real reviewer participated."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.991288+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq99rk03hm185xzf2mp0",
+      "revision": 12,
+      "kind": "approve",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "lane": "recovery",
+          "note": "DEMO: reviewed control-arm finding and installation records. Keep exact and possible matches parked pending workshop review."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.993284+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9bnj1h0mxcvx1g8xm2",
+      "revision": 13,
+      "kind": "outreach",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {},
+        "result": {
+          "simulated": 8,
+          "vehicle_ids": [
+            "DEMO-CAR-001",
+            "DEMO-CAR-002",
+            "DEMO-CAR-003",
+            "DEMO-CAR-004",
+            "DEMO-CAR-005",
+            "DEMO-CAR-006",
+            "DEMO-CAR-008",
+            "DEMO-CAR-009"
+          ],
+          "delivered": 0
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.995240+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9d710cd00hmzsvgsnq",
+      "revision": 14,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "text": "Meri gaadi mein speed breaker par khat-khat awaaz aati hai. Ab control arm par crack dikh raha hai.",
+          "symptoms": [
+            "clunk",
+            "crack"
+          ]
+        },
+        "result": {
+          "urgent_review": true
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.997100+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9erxtv8jt2cfehks1a",
+      "revision": 15,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "text": "I hear a clunk from the front suspension and the steering pulls left.",
+          "symptoms": [
+            "clunk",
+            "steering_pull"
+          ]
+        },
+        "result": {
+          "urgent_review": false
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:05.998931+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9g2a78ec2dxz66g1jz",
+      "revision": 16,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-003",
+          "text": "The car pulled sharply to one side. It is parked at home now.",
+          "symptoms": [
+            "loss_of_control"
+          ]
+        },
+        "result": {
+          "urgent_review": true
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.000623+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9jwjx7h2mk2h7jhk5h",
+      "revision": 17,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-004",
+          "text": "I have not noticed any of these symptoms. I will still arrange the inspection.",
+          "symptoms": [
+            "none"
+          ]
+        },
+        "result": {
+          "urgent_review": false
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.002338+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9kg3sws46v9m8n985e",
+      "revision": 18,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-005",
+          "text": "Aage ke tyre ek taraf se ghis rahe hain aur suspension se awaaz aa rahi hai.",
+          "symptoms": [
+            "uneven_wear",
+            "clunk"
+          ]
+        },
+        "result": {
+          "urgent_review": false
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.003981+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9nstvy8dv06mczbjcc",
+      "revision": 19,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-006",
+          "text": "There is a knocking sound over bumps. Please help arrange collection.",
+          "symptoms": [
+            "clunk"
+          ]
+        },
+        "result": {
+          "urgent_review": false
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.005725+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9qyggexz8tj4pvyc6v",
+      "revision": 20,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-008",
+          "text": "The steering pulls when I travel over an uneven road.",
+          "symptoms": [
+            "steering_pull"
+          ]
+        },
+        "result": {
+          "urgent_review": false
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.007342+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9rdxxwsq9t5fnfzpv1",
+      "revision": 21,
+      "kind": "reply",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-009",
+          "text": "No symptoms noticed so far. The car is parked until the part record is checked.",
+          "symptoms": [
+            "none"
+          ]
+        },
+        "result": {
+          "urgent_review": false
+        },
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.008945+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9tb6wjadd10d88z3gg",
+      "revision": 22,
+      "kind": "appointment",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "workshop": "Demo Central Workshop",
+          "due_date": "2026-11-02",
+          "reference": "SYN-BOOK-001"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.010634+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9w0ysbr3248z309zdj",
+      "revision": 23,
+      "kind": "appointment",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "workshop": "Demo Central Workshop",
+          "due_date": "2026-11-02",
+          "reference": "SYN-BOOK-002"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.012160+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9xyx5ja3jd5f138etb",
+      "revision": 24,
+      "kind": "appointment",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-003",
+          "workshop": "Demo Central Workshop",
+          "due_date": "2026-11-02",
+          "reference": "SYN-BOOK-003"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.013806+00:00"
+    },
+    {
+      "event_id": "sce_01m678rq9z9nc7qw1vjme37ce2",
+      "revision": 25,
+      "kind": "appointment",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-004",
+          "workshop": "Demo Central Workshop",
+          "due_date": "2026-11-02",
+          "reference": "SYN-BOOK-004"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.015515+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqa0dk5sngedhway39rm",
+      "revision": 26,
+      "kind": "appointment",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-005",
+          "workshop": "Demo Central Workshop",
+          "due_date": "2026-11-02",
+          "reference": "SYN-BOOK-005"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.016987+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqa2qb4m5r3syn0wjhr4",
+      "revision": 27,
+      "kind": "appointment",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-006",
+          "workshop": "Demo Central Workshop",
+          "due_date": "2026-10-30",
+          "reference": "SYN-BOOK-006"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.018437+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqa3hwe88gzswpq1pfrr",
+      "revision": 28,
+      "kind": "appointment",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-008",
+          "workshop": "Demo Central Workshop",
+          "due_date": "2026-11-02",
+          "reference": "SYN-BOOK-008"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.019887+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqa5vhb85ranxt00g935",
+      "revision": 29,
+      "kind": "recovery",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "reference": "SYN-TOW-001",
+          "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.021421+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqa7g8r2wpt8j6ve5ca9",
+      "revision": 30,
+      "kind": "inspection",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "outcome": "crack_found",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-001",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.023151+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqa8hyjpkbvcwehxg8qf",
+      "revision": 31,
+      "kind": "recovery",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "reference": "SYN-TOW-002",
+          "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.024684+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqaa31vb28s84y85z6ze",
+      "revision": 32,
+      "kind": "inspection",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "outcome": "crack_found",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-002",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.026231+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqabr8f2wbbhfv4cf1k1",
+      "revision": 33,
+      "kind": "recovery",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-003",
+          "reference": "SYN-TOW-003",
+          "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.027733+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqad0jmrwtxx2pza8pbc",
+      "revision": 34,
+      "kind": "inspection",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-003",
+          "outcome": "crack_found",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-003",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.029264+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqae593gheseh6kmb9m2",
+      "revision": 35,
+      "kind": "recovery",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-004",
+          "reference": "SYN-TOW-004",
+          "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.030801+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqag9847x2s10hatzyyr",
+      "revision": 36,
+      "kind": "inspection",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-004",
+          "outcome": "no_issue",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-004",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.032305+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqahb5xcywjyjgzm6kgx",
+      "revision": 37,
+      "kind": "recovery",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-005",
+          "reference": "SYN-TOW-005",
+          "note": "DEMO: professional recovery to the workshop recorded; owner did not drive the vehicle."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.033858+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqakweanxwtw5n774vyf",
+      "revision": 38,
+      "kind": "inspection",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-005",
+          "outcome": "wear_only",
+          "technician": "Demo workshop technician",
+          "evidence_ref": "SYN-INSPECTION-005",
+          "note": "DEMO: documented inspection of the installed control arm and surrounding suspension using the fictional inspection procedure."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.035432+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqam98evkx5sj8cr91yj",
+      "revision": 39,
+      "kind": "remedy",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "replacement_part": "SYN-CA-2302",
+          "procedure_ref": "SYN-MANUAL-02",
+          "approval_ref": "SYN-ENG-01",
+          "note": "DEMO ONLY: replacement control arm and applicability reviewed. These references must never be used on a real vehicle."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.036980+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqapgyk98c2yw5d2g3pr",
+      "revision": 40,
+      "kind": "repair",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "replacement_part": "SYN-CA-2302",
+          "replacement_lot": "SYN-LOT-C",
+          "work_order": "SYN-WO-001",
+          "technician": "Demo repair technician"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.038545+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqarkmkh9tcgncqkhm9m",
+      "revision": 41,
+      "kind": "verify_repair",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "technician": "Demo verification technician",
+          "evidence_ref": "SYN-CHECK-001",
+          "note": "DEMO: replacement and required post-repair checks recorded against the reviewed procedure."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.040115+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqasaber4j4kf99wy8fy",
+      "revision": 42,
+      "kind": "repair",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "replacement_part": "SYN-CA-2302",
+          "replacement_lot": "SYN-LOT-C",
+          "work_order": "SYN-WO-002",
+          "technician": "Demo repair technician"
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.041671+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqavk51pz9htb045dqge",
+      "revision": 43,
+      "kind": "verify_repair",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "technician": "Demo verification technician",
+          "evidence_ref": "SYN-CHECK-002",
+          "note": "DEMO: replacement and required post-repair checks recorded against the reviewed procedure."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.043264+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqawfhpdyndvbzw1r0yb",
+      "revision": 44,
+      "kind": "followup",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "outcome": "no_symptoms",
+          "note": "DEMO: owner follow-up completed; no symptoms reported after workshop review."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.044772+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqay7kt84bg2haedttr7",
+      "revision": 45,
+      "kind": "resolve",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-001",
+          "evidence_ref": "SYN-RELEASE-001",
+          "note": "DEMO: reviewer checked inspection, required remedy and follow-up. This is a scoped disposition, not an exemption from a recall."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.046321+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqaz762a1p7hrsd9gw08",
+      "revision": 46,
+      "kind": "followup",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-004",
+          "outcome": "no_symptoms",
+          "note": "DEMO: owner follow-up completed; no symptoms reported after workshop review."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.047912+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqb1xpdxgv0qaheny0cj",
+      "revision": 47,
+      "kind": "resolve",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-004",
+          "evidence_ref": "SYN-RELEASE-004",
+          "note": "DEMO: reviewer checked inspection, required remedy and follow-up. This is a scoped disposition, not an exemption from a recall."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.049464+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqb3bz23sq3ead2cwx7m",
+      "revision": 48,
+      "kind": "followup",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "vehicle_id": "DEMO-CAR-002",
+          "outcome": "unreachable",
+          "note": "DEMO: repair verified, owner follow-up still pending. Keep review open."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.051009+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqb4nbn662wsw9412k7j",
+      "revision": 49,
+      "kind": "supplier_action",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "input": {
+          "owner": "Demo supplier quality lead",
+          "due_date": "2026-11-07",
+          "status": "contained",
+          "evidence_ref": "SYN-SUPPLIER-8D-01",
+          "note": "DEMO: suspect stock isolated; supplier root-cause review and corrective-action verification remain open."
+        },
+        "result": {},
+        "simulated": true
+      },
+      "at": "2026-10-30T20:42:06.052584+00:00"
+    },
+    {
+      "event_id": "sce_01m678rqb5beam7xrh3k54cr0b",
+      "revision": 50,
+      "kind": "demo_prepared",
+      "actor": "operator",
+      "actor_role": "agent",
+      "payload": {
+        "simulated": true,
+        "version": "road-safety-walkthrough-v2-sourced-trace"
+      },
+      "at": "2026-10-30T20:42:06.053926+00:00"
+    }
+  ],
+  "packet": "safety-campaign-v1",
+  "generated_at": "2026-11-03T10:59:57.581052+00:00",
+  "investigation_drafts": []
+}
