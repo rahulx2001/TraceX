@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_commit": "1b22ef9",
+  "checked_commit": "bad2d30",
   "method": "Fresh git clone of origin/main to a clean directory; no local files copied",
   "results": {
     "clone": "pass: main at 1b22ef9, clean status",
@@ -13,11 +13,19 @@
       "kaushal",
       "ram",
       "abhishek"
-    ]
+    ],
+    "dashboard_build": "pass: npm ci + vite build in fresh clone, BUILD_EXIT 0, dist/index.html 1.1M",
+    "full_frontline_suite": "2097 passed, 17 failed of 2114 in fresh clone (25m16s, isolated temp DBs)",
+    "full_suite_failures_classified": {
+      "pinned_runtime_gate_12": "prospective comparison tests refuse with 'Runtime differs from registered Python/dependency versions': repo pins its study runtime; fresh clone runs Python 3.14.7 + newer deps. Any checker on current toolchains trips this gate before substance is tested. Pre-existing design, unrelated to this session's changes.",
+      "freeze_history_2": "ml_improvement + synthetic smoke fail on 'Frozen artifact hash mismatch: domains/automotive_nhtsa/gazetteers/models.csv'; freeze verification needs tags/history absent from a depth-1 fresh clone. No freeze tags present in fresh clone. Pre-existing.",
+      "dashboard_source_3": "test_console_uses_server_access (App.jsx lazy Shell vs 'import SignIn' expectation), test_built_dist_ships_api_headers (fresh build has no X-API-Key), test_no_primary_json_stringify_dumps (AiStatus.jsx:90, committed in f5fcbe9). All reproduce from committed source; this session touched only CampaignInvestigation.jsx. Pre-existing.",
+      "flaky_2": "eps_demo canonical replay timed out at 60s under full-suite load but passed on isolated rerun; journey h11 failed in full run, passed on rerun. Performance flakiness, not assertion breakage."
+    }
   },
   "limits": [
-    "Dashboard production build not run in the clean clone (requires npm install).",
-    "data/defect/ inputs require the NHTSA prepare step; not needed for the replay above.",
-    "Full test suite not run in clean clone; targeted checker tests above passed."
+    "Dashboard production build passed, but built-dist content tests above fail from committed source.",
+    "Full frontline suite is NOT green in a fresh clone (17 failures, all classified pre-existing/environmental above).",
+    "data/defect/ inputs require the NHTSA prepare step; not needed for the replay and checker tests above."
   ]
 }
