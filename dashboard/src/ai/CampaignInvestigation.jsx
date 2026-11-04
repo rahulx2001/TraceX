@@ -34,7 +34,8 @@ function InterpretationReview({ kind, index, value = {}, disabled, change }) {
 }
 
 export default function CampaignInvestigation({ campaign, initialVehicleId = "", interactionId = "", replyId = "", initialAssistanceMode = "full_investigation", onOpenStep }) {
-  const [vehicleId, setVehicleId] = useState(initialVehicleId || (interactionId ? "" : campaign.vehicles.find(v => v.replies.length && !v.resolution)?.vehicle_id || campaign.vehicles[0]?.vehicle_id || ""));
+  const heroVehicleId = campaign.demo_context?.inbound_vehicle_ids?.[0] || "";
+  const [vehicleId, setVehicleId] = useState(initialVehicleId || (interactionId ? "" : heroVehicleId || campaign.vehicles.find(v => v.replies.length && !v.resolution)?.vehicle_id || campaign.vehicles[0]?.vehicle_id || ""));
   const [text, setText] = useState("");
   const [sourcePreview, setSourcePreview] = useState(null);
   const [sourceBusy, setSourceBusy] = useState(false);
@@ -57,10 +58,19 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
   const [decision, setDecision] = useState("needs_correction");
   const [attest, setAttest] = useState(false);
   const lock = useRef(false), pending = useRef(null), alive = useRef(true);
+  const autoSelectOff = useRef(false);
   const base = `/api/safety-campaigns/${campaign.campaign_id}/investigations`;
   const vehicle = campaign.vehicles.find(v => v.vehicle_id === vehicleId);
   useEffect(() => { alive.current = true; request(base).then(d => { if (alive.current) setRuns(d.runs); }).catch(e => { if (alive.current) setError(e.message); });
     return () => { alive.current = false; }; }, [base]);
+  useEffect(() => {
+    if (selected || autoSelectOff.current || !runs.length || !vehicleId) return;
+    const forVehicle = [...runs].reverse().filter(r => r.vehicle_id === vehicleId);
+    const complete = forVehicle.filter(r => r.status === "complete");
+    const pool = complete.length ? complete : forVehicle;
+    const aiFirst = pool.find(r => r.extraction?.mode?.startsWith("meta")) || pool[0];
+    if (aiFirst) choose(aiFirst);
+  }, [runs, vehicleId, selected]);
   useEffect(() => {
     if (interactionId) loadSource(`/api/safety-campaigns/report-sources/interactions/${encodeURIComponent(interactionId)}`);
     else if (replyId && initialVehicleId) loadSource(`/api/safety-campaigns/${encodeURIComponent(campaign.campaign_id)}/report-sources/replies/${encodeURIComponent(initialVehicleId)}/${encodeURIComponent(replyId)}`);
@@ -81,6 +91,7 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
     finally { if (alive.current && generation === sourceGeneration.current) setSourceBusy(false); }
   }
   function changeVehicle(id) {
+    autoSelectOff.current = false;
     setVehicleId(id); setSelected(null); setVehicleConfirmed(false); setRecordPage(null);
     if (sourcePreview?.source_ref.kind === "campaign_reply") { sourceGeneration.current++; setSourcePreview(null); setSourceReviewed(false); setText(""); }
   }
@@ -180,6 +191,7 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
   }
   const canRun = !!vehicleId && !busy && !sourceBusy && (sourcePreview ? sourceReviewed && vehicleConfirmed : !!text.trim());
   async function prepareNewRequest() {
+    autoSelectOff.current = true;
     const prior = selected;
     const source = prior?.report_sources?.[0];
     pending.current = null; setSelected(null);
@@ -196,6 +208,7 @@ export default function CampaignInvestigation({ campaign, initialVehicleId = "",
   function changeInterpretation(kind, index, value) { (kind === "claim" ? setCorrections : setObservationCorrections)(items => ({ ...items, [index]: value })); if (["correct", "reject"].includes(value.decision)) setDecision("needs_correction"); }
   return <section className="sc-panel sc-full" data-testid="campaign-investigation">
     <div className="sc-section-head"><div><h2>Investigate the report</h2><p className="sc-muted">Check the owner’s report against cited records and document a reviewed next step.</p></div><span className="sc-tag">Engineer review required</span></div>
+    {campaign.synthetic_demo && heroVehicleId && <p className="sc-mode-note">Demo investigation · source report {heroVehicleId} (Honda City EPS B14). The saved sourced investigation opens below: read its cited observations, evidence lookups and brief, then record Accept, Correct or Reject before any fleet action. Fictional records; no new model call is made by opening this tab.</p>}
     {error && <p role="alert" className="banner banner-error">{error}</p>}
     <div className="sc-fields">
       <label className="sc-field"><span>Investigation vehicle</span><select aria-label="Investigation vehicle" value={vehicleId} disabled={busy || sourceBusy} onChange={e => changeVehicle(e.target.value)}>
