@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "evaluation_only": true,
+  "model_accuracy_computed": false,
+  "reviewer": "Abhishek",
+  "reviewed": 133,
+  "sample_size": 300,
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "source_sha256": "a696ef3ea8dcf3cba87ab13da1f19543cb8b68dea0af321adc850b2abd960179",
+  "agreement_before_adjudication": {
+    "abhishek_vs_rahul": {
+      "paired": 133,
+      "agreements": 73,
+      "raw": 0.5489,
+      "kappa": 0.2341
+    },
+    "abhishek_vs_gold_v2": {
+      "paired": 133,
+      "agreements": 95,
+      "raw": 0.7143,
+      "kappa": 0.3026
+    }
+  },
+  "headline_replay_verified": {
+    "baseline_correct": "246/300",
+    "baseline_accuracy": 0.82,
+    "command": "python3 -m scripts.defect_accuracy --csv reports/improvement/human_reviews/round4/adjudication/adjudicated_labels_v2.csv --classifications reports/defect/repair/classifications.parquet --manifest reports/defect/repair/review_manifest.json --out /tmp/round4-replay-check.json --require-complete",
+    "replay_matches_saved_accuracy_v2": true
+  },
+  "limits": [
+    "Abhishek labels were not used in gold v2 adjudication, fitting, calibration, or feature selection.",
+    "Low kappa (0.23-0.30) shows high reviewer variance on this taxonomy; agreement does not establish correctness.",
+    "Blinding unconfirmed. Attestation records provenance only."
+  ]
+}
