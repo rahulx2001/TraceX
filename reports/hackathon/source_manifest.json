@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-11-04T20:28:20.324434+00:00",
+  "recorded_at": "2026-11-04T20:41:51.121569+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "f04207723bee161be4cd8679241bc3c9374a9e7c",
-  "source_tree": "f9f34a9cf47f3eabfdbb526ac9a9e3634fceab98",
+  "source_commit": "6e70eeab8187cb70a351497ec08889e2b7ef9d27",
+  "source_tree": "334c6a4e739344224988c1418f9137389c130166",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -4656,9 +4656,9 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "git_blob": "24b2157157bd30df9c2d63a10b3106f13489d0ff",
-      "bytes": 24465,
-      "sha256": "db2f59db8c16ff330ee56bd3250125ab1412ceb50595a4fcbf7da2d98acdab6f"
+      "git_blob": "8ba431b634152ce11f11ad42b5c12972109473e6",
+      "bytes": 24877,
+      "sha256": "0d43814c0e42b593397f1555d9ad4458b1668296742431163bc9477b257b780c"
     },
     {
       "path": "SUBMISSION.md",
@@ -13259,9 +13259,9 @@
     {
       "path": "scripts/public_model_replay.py",
       "mode": "100644",
-      "git_blob": "b47aad9579b83c2e961da3da251a967ff46c4607",
-      "bytes": 16593,
-      "sha256": "327e5139a202dc88d53e8f966ed6805cb5231a8e51f3c07138ef6588f624887b"
+      "git_blob": "d5b5983de9f3bc190003dfca772ef698f3258de5",
+      "bytes": 17818,
+      "sha256": "05a09a2219d5a21f72bdcdb6155a2789358dd83eba9c95c6ea873e4e02d9b8b3"
     },
     {
       "path": "scripts/public_replay.py",
@@ -17347,9 +17347,9 @@
     {
       "path": "tests/test_public_model_replay.py",
       "mode": "100644",
-      "git_blob": "9478ac1984f3bfebe72e3e4f51780bf7ba61339f",
-      "bytes": 4173,
-      "sha256": "46c4b5365591c4acb01a24c4ebb2b14665e638e767cfe452371b0433206f7b0f"
+      "git_blob": "f48eaa958ec42e7b225f923d9fcfd5eabdd8b3ae",
+      "bytes": 4729,
+      "sha256": "15eafedebd3a4d7614d00aa891fb774816a642ecf283869621d4a5be0309ed59"
     },
     {
       "path": "tests/test_submission_artifacts.py",
