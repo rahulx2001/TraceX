@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-11-04T20:27:37.605330+00:00",
+  "source_commit": "ef3424d1a67491273acb4cdce4b287c1eac4ff58",
+  "run_url": "https://github.com/rahulx2001/TraceX/actions/runs/41903932912",
+  "scope": "All four complete Frontline unit/contract partitions passed. The browser/evidence job timed out at the canonical demo and was not a successful full workflow. No new provider or participant validation is implied.",
+  "shards": [
+    {
+      "shard": 0,
+      "job_url": "https://github.com/rahulx2001/TraceX/actions/runs/41903932912/job/126833386052",
+      "summary": "482 passed, 2 warnings in 335.14s (0:05:35)",
+      "passed": 482
+    },
+    {
+      "shard": 1,
+      "job_url": "https://github.com/rahulx2001/TraceX/actions/runs/41903932912/job/126833385913",
+      "summary": "536 passed, 2 warnings in 302.94s (0:05:02)",
+      "passed": 536
+    },
+    {
+      "shard": 2,
+      "job_url": "https://github.com/rahulx2001/TraceX/actions/runs/41903932912/job/126833386112",
+      "summary": "465 passed, 1 warning in 707.72s (0:11:47)",
+      "passed": 465
+    },
+    {
+      "shard": 3,
+      "job_url": "https://github.com/rahulx2001/TraceX/actions/runs/41903932912/job/126833386324",
+      "summary": "631 passed, 1 warning in 441.55s (0:07:21)",
+      "passed": 631
+    }
+  ],
+  "passed_tests": 2114
+}

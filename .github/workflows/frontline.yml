@@ -125,16 +125,6 @@ jobs:
         working-directory: dashboard
         run: node --test scripts/speech-draft.test.mjs scripts/voice-capture.test.mjs
 
-      - name: Install current browser runtime
-        working-directory: dashboard
-        run: npx playwright install --with-deps chromium
-
-      - name: Current source handoff and authorization browser path
-        working-directory: dashboard
-        env:
-          E2E_PYTHON: python
-        run: npm run test:signin
-
       - name: Public-link scope and submission truthfulness
         run: node --test dashboard/scripts/public-link-scope.test.mjs
 
@@ -166,6 +156,45 @@ jobs:
         with:
           name: frontline-eval-report
           path: reports/qubot/eval/
+          if-no-files-found: warn
+          retention-days: 14
+
+  browser-handoff:
+    name: production browser, report handoff and canonical demos
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-lock.txt
+      - name: Install application requirements
+        run: python -m pip install -r requirements.txt -c requirements-lock.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - name: Install browser dependencies
+        working-directory: dashboard
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Current source handoff and authorization browser path
+        working-directory: dashboard
+        env:
+          E2E_PYTHON: python
+        run: npm run test:signin
+      - name: Retain isolated browser verification and failure artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-handoff-${{ github.sha }}
+          path: /tmp/tracex-signin-browser-*/
           if-no-files-found: warn
           retention-days: 14
 
