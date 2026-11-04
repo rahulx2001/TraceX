@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "checked_commit": "1b22ef9",
+  "method": "Fresh git clone of origin/main to a clean directory; no local files copied",
+  "results": {
+    "clone": "pass: main at 1b22ef9, clean status",
+    "python_tests": "pass: tests/frontline/ai_layer/test_defect_human_review.py + tests/test_submission_artifacts.py, 12 passed",
+    "headline_replay": "pass: 246/300 = 0.82 from clean clone, matches saved accuracy_v2.json",
+    "model_fetch": "pass: python -m scripts.prepare_minilm_onnx --out models/minilm; model.onnx sha256 afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1 and tokenizer.json da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0 match committed checksums.sha256",
+    "human_reviews_present": [
+      "rahul",
+      "aryan",
+      "kaushal",
+      "ram",
+      "abhishek"
+    ]
+  },
+  "limits": [
+    "Dashboard production build not run in the clean clone (requires npm install).",
+    "data/defect/ inputs require the NHTSA prepare step; not needed for the replay above.",
+    "Full test suite not run in clean clone; targeted checker tests above passed."
+  ]
+}
