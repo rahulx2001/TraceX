@@ -14,8 +14,16 @@ def models():
 
 
 def test_saved_cases_execute_frozen_detector_without_claiming_accuracy(tmp_path):
+    # Register this software fixture separately from the immutable real study.
+    from .test_prospective_comparison import registered_repository
+    from scripts.synthetic_label_checks import TAXONOMY
+    root, _ = registered_repository(tmp_path/'synthetic-registration')
+    for name in [*smoke.INPUT_HASHES, TAXONOMY]:
+        target = root/name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes((smoke.ROOT/name).read_bytes())
     out = tmp_path / 'replay'
-    report = smoke.build(out, command='synthetic test')
+    report = smoke.build(out, root=root, command='synthetic test')
     assert report['input_records'] == report['records_preserved'] == 300
     assert report['specific_label_records'] == report['unclear_label_records'] == 150
     assert report['count_feature_candidates'] == report['finite_logistic_scores'] > 0
@@ -27,7 +35,7 @@ def test_saved_cases_execute_frozen_detector_without_claiming_accuracy(tmp_path)
     assert not report['is_candidate_result'] and report['real_independent_campaigns_added'] == 0
     before = (out / 'replay.json').read_bytes()
     with pytest.raises(FileExistsError):
-        smoke.build(out)
+        smoke.build(out, root=root)
     assert (out / 'replay.json').read_bytes() == before
 
 

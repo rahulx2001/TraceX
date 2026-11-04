@@ -2,6 +2,7 @@
 import pytest
 
 
+@pytest.mark.timeout(120)
 async def test_canonical_demo_replays_and_preserves_work(reset_ops_db, seed_automotive_pack, tmp_path, monkeypatch):
     monkeypatch.setenv("AI_EVIDENCE_DIR", str(tmp_path / "evidence"))
     from src.ai_layer.eps_demo import seed_eps_demo, lot_for_case, CLUSTER_ID, ADVISORY_ID

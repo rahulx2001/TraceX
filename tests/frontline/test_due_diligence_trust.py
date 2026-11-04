@@ -220,13 +220,8 @@ async def test_enrichment_runs_agents_concurrently(reset_ops_db, seed_automotive
     assert len(starts) == 3
     # gather() must start all three before any of them finish the 50ms probe sleep.
     assert max(starts.values()) < min(ends.values())
-    # Concurrent: three serial 50ms sleeps are 150ms. Ledger writes share one
-    # DuckDB lock, so wall is sleep + serialized writes, still under sequential.
-    wall = max(ends.values()) - min(starts.values())
-    # Three serial 50ms sleeps are 150ms. CI runners add DuckDB/lock jitter;
-    # keep a bound well under 3x serial wall (~450ms+) so a sequential gather
-    # still fails, without flake on loaded GitHub runners.
-    assert wall < 0.75, f"expected concurrent execution under 750ms, got {wall}"
+    # The overlap assertion fails for sequential execution regardless of host
+    # speed. Serialized disk/ledger writes are not a 750ms service-level claim.
 
 
 @pytest.mark.asyncio

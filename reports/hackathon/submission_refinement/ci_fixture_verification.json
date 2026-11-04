@@ -1,0 +1,30 @@
+{
+  "verified_at": "2026-11-04T19:18:26.088639+00:00",
+  "runtime": "Python 3.14.7 with existing installed dependencies",
+  "scope": "Disposable synthetic registration tests and multi-case software integration tests. No original research protocol, frozen evaluator, dataset, labels or model was changed.",
+  "checks": [
+    {
+      "command": "python3 -m pytest tests/frontline/ai_layer/test_prospective_comparison.py tests/frontline/ai_layer/test_ml_improvement.py tests/frontline/ai_layer/test_synthetic_project_smoke.py -q --tb=short --timeout=30 --maxfail=3",
+      "passed": 42,
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m pytest tests/frontline/ai_layer/test_eps_demo.py::test_canonical_demo_replays_and_preserves_work tests/frontline/test_journey_high.py::test_h11_returning_customer_attaches tests/frontline/test_due_diligence_trust.py::test_enrichment_runs_agents_concurrently -q --tb=short --timeout=30",
+      "passed": 3,
+      "exit_code": 0
+    }
+  ],
+  "source_hashes": {
+    "tests/frontline/ai_layer/test_prospective_comparison.py": "66b8788e8ba3fdd3d9c2b46bf8ac824cb8250e5afe171f203d4fadb5a5873189",
+    "tests/frontline/ai_layer/test_ml_improvement.py": "fd6c46e44e59095b2176e75ac83d5e676cf94c3a5418ae014f571d01ec066328",
+    "tests/frontline/ai_layer/prospective_fixture.py": "502298f24e4472f5c64562c1e8d2eaa6333ac6756c0970b48c62c970ea8c1ff3",
+    "tests/frontline/ai_layer/test_synthetic_project_smoke.py": "6f4c4a397b24bc7145818528d6be43518fe5d56610a47ade2255834094fa3bcd",
+    "tests/frontline/ai_layer/test_eps_demo.py": "2f0a9932e3727086d68df1f226edbc897dae2cb15c0e6f85e709b91e42d10f6c",
+    "tests/frontline/test_journey_high.py": "71c3c4c0be39b726a0979048c071bc52b16d7cacf3d807ffb893338f4623e000",
+    "tests/frontline/test_due_diligence_trust.py": "f99c93f8efd0b0e0d6567520288e4d24f85a1be07d910021a22d26e781f4cf51"
+  },
+  "new_meta_api_calls": 0,
+  "real_human_results_created": 0,
+  "new_local_dependency_installs": 0,
+  "ci_full_suite_status": "Not yet verified. The earlier main run had failures and was cancelled at the 25-minute timeout."
+}

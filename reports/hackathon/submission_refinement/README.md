@@ -11,6 +11,7 @@ It does not create new provider outputs, labels or real-participant results.
 - [Local frozen model-to-alert replay](local_model_replay.json)
 - [Ten archive and review regression tests](replay_regressions.txt)
 - [Fresh anonymous public-source, release replay and video verification](public_download_verification.json)
+- [Full-suite fixture/CI follow-up](ci_refinement.md) and [45 focused checks](ci_fixture_verification.json)
 
 The local model replay matches the selected method, count baseline, opportunity
 diagnostic and all 100 random references: 5/8 campaign hits and 6/18 mature-alert
