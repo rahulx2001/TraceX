@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, lazy, Suspense } from "react";
+// Credential entry stays eager: the sign-in gate must render even when a
+// lazy chunk fails to load, and it pins auth wiring into the main bundle.
+import SignIn from "../routes/SignIn.jsx";
 const CallWidget = lazy(() => import("../routes/CallWidget.jsx"));
 const LiveContactConsole = lazy(() => import("../routes/LiveContactConsole.jsx"));
 const CaseQueue = lazy(() => import("../routes/CaseQueue.jsx"));
@@ -6,7 +9,6 @@ const EarlyWarningBoard = lazy(() => import("../routes/EarlyWarningBoard.jsx"));
 const Settings = lazy(() => import("../routes/Settings.jsx"));
 const CommandCenter = lazy(() => import("../routes/CommandCenter.jsx"));
 const SafetyCampaigns = lazy(() => import("../routes/SafetyCampaigns.jsx"));
-const SignIn = lazy(() => import("../routes/SignIn.jsx"));
 const JudgeEntry = lazy(() => import("../routes/JudgeEntry.jsx"));
 const DemoMode = lazy(() => import("../routes/DemoMode.jsx"));
 const UserJourneyGuide = lazy(() => import("../routes/UserJourneyGuide.jsx"));

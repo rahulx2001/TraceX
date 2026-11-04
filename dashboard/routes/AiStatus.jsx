@@ -87,7 +87,10 @@ export default function AiStatus() {
         </p>}
         <details><summary>Engineer diagnostics</summary>
           <CallHealth h={o?.call_health} />
-          <pre>{JSON.stringify(st, null, 2)}</pre>
+          <dl className="small" data-testid="ai-assistant-status">
+            <div><dt>Assistance mode</dt><dd>{fmt(st?.mode)}</dd></div>
+            <div><dt>Availability</dt><dd>{!st ? "Checking…" : st.unavailable ? `Unavailable (${fmt(st.error)})` : "Available"}</dd></div>
+          </dl>
         </details>
       </section>
       <section className="card" style={{ padding: 14 }}>

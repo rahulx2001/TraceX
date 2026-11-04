@@ -6,6 +6,11 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/ui/",
+  // Single-bundle pilot SPA: the shipped dist must provably contain the auth
+  // wiring (X-API-Key + protected API paths) in the main chunk, pinned by
+  // tests/frontline/test_dashboard_pilot_auth.py. Served locally/Docker, so
+  // one ~1MB bundle is an acceptable trade for a verifiable build.
+  build: { rolldownOptions: { output: { codeSplitting: false } } },
   server: {
     port: 8787,
     proxy: {

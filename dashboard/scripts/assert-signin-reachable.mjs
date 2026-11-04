@@ -2,6 +2,7 @@
 /** Render a fresh production build against the real, isolated API. No model calls. */
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import net from "node:net";
 import os from "node:os";
@@ -15,7 +16,10 @@ const root = path.dirname(dashboard);
 const temporary = await fs.mkdtemp(path.join(os.tmpdir(), "tracex-signin-browser-"));
 const dist = path.join(temporary, "ui");
 const visuals = path.join(os.tmpdir(), "tracex-entry-ui-review");
-const python = process.env.E2E_PYTHON || path.join(root, ".venv-hackathon/bin/python");
+// Prefer the project venv when present; fall back to PATH python3 so this
+// gate runs in a fresh clone that has no .venv-hackathon.
+const venvPython = path.join(root, ".venv-hackathon/bin/python");
+const python = process.env.E2E_PYTHON || (existsSync(venvPython) ? venvPython : "python3");
 const children = [];
 let browser;
 let passed = false;
