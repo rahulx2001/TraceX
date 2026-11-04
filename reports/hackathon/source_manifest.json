@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-11-04T20:48:32.998338+00:00",
+  "recorded_at": "2026-11-04T21:04:22.448191+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "c53ec4e43ade7246e00b6ababee6741a4d916bc0",
-  "source_tree": "14ee44b1e3a3745a4bbf20caa04c136136f40964",
+  "source_commit": "924ed5dad0df67d710f73b3175ae277d3182fa32",
+  "source_tree": "e0ccf18f1b293d5cb16c45f3a566c97ac92645e4",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -4461,6 +4461,10 @@
       "path": "tests/frontline/test_ml_pipeline_hardening.py"
     },
     {
+      "status": "M",
+      "path": "tests/frontline/test_phase1_live_pilot.py"
+    },
+    {
       "status": "A",
       "path": "tests/frontline/test_runtime_responsiveness.py"
     },
@@ -4471,6 +4475,10 @@
     {
       "status": "A",
       "path": "tests/frontline/test_session_exchange.py"
+    },
+    {
+      "status": "M",
+      "path": "tests/frontline/test_slm_probes.py"
     },
     {
       "status": "M",
@@ -8174,9 +8182,9 @@
     {
       "path": "reports/hackathon/submission_refinement/ci_refinement.md",
       "mode": "100644",
-      "git_blob": "7354a46d284deb3c833515e020cc8345aadaaca1",
-      "bytes": 4475,
-      "sha256": "37e45ff5712ce20a96b438362d54f70449362c0d5dec9716ede7df7c918c3a0f"
+      "git_blob": "3ff8af8920fbaebbcd83afb7b1cec7e7edcc9dc0",
+      "bytes": 5517,
+      "sha256": "58aa60a0f865cd6bdf8bc9371c5d50f24fdef44a90c1301cac810a02edb5b22a"
     },
     {
       "path": "reports/hackathon/submission_refinement/frontline_shards_ef3424d.json",
@@ -16868,9 +16876,9 @@
     {
       "path": "tests/frontline/test_phase1_live_pilot.py",
       "mode": "100644",
-      "git_blob": "3df6e9d829eac04eb7d4614e65039b4dff6e050d",
-      "bytes": 8721,
-      "sha256": "468cfd1c1ef25ebec9aab088093ee0de9c5960856d6e75e8406a6527d7990c39"
+      "git_blob": "25fdd0d3145bb7c3e871acd52e3f9f3e95c22bd8",
+      "bytes": 8747,
+      "sha256": "e503705c92e69d4c70953407b4cad70ad5eaf01b099e7a9e161c52b76814b2f2"
     },
     {
       "path": "tests/frontline/test_phase1_six.py",
@@ -17127,9 +17135,9 @@
     {
       "path": "tests/frontline/test_slm_probes.py",
       "mode": "100644",
-      "git_blob": "b9672e5852d1e0dfba091645c84c52b954f0e588",
-      "bytes": 14029,
-      "sha256": "fa6fa96c7c326db46f5cfc5aef6f8a1216904b5d42dfb26d141f43f8f7b59d77"
+      "git_blob": "49154592c47e9edf67e71506d2dba093c5719b5c",
+      "bytes": 13944,
+      "sha256": "aa1d2fcbaab007792afd7b5d7baa6eb2b8d22560c239dbe3d6da1af15a67bcd8"
     },
     {
       "path": "tests/frontline/test_slm_runtime.py",
