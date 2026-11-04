@@ -1,8 +1,10 @@
 # Evaluation: round 4 (three new reviewers + adjudicated gold v2)
 
 ARYAN (107), Kaushal (130), Ram (100); 183 unique IDs combined with Rahul primary.
-All three passed fraud checks (imperfect agreement 79-82% vs Rahul, zero copied notes,
-cross-reviewer convergence on disputed IDs).
+The three exports passed structural checks. Their agreement with Rahul is
+79-82%, with differing notes and cross-reviewer convergence on some disputed
+IDs. These statistics do not authenticate the review process; reviewer
+blinding remains unconfirmed.
 
 ## Pairwise agreement (before adjudication)
 
@@ -15,8 +17,9 @@ cross-reviewer convergence on disputed IDs).
 | aryan_vs_ram | 34 | 47 | 0.413 |
 | kaushal_vs_ram | 40 | 48 | 0.598 |
 
-Inter-reviewer kappas vary (0.41-0.69): genuine threshold variation between independent
-reviewers, consistent with honest disagreement rather than copying.
+Inter-reviewer kappas vary (0.41-0.69). They describe differences in the supplied
+labels; they cannot establish genuine independent human review or rule out
+shared interpretation errors.
 
 ## Adjudication
 

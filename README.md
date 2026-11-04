@@ -1,11 +1,24 @@
 # TraceX
 
+**[Watch the final three-minute demo](https://youtu.be/Uq7_kra8q-M)** ·
+**[Judge guide and verification commands](SUBMISSION.md)** ·
+**[Public model replay](docs/public-model-replay.md)**
+
 <!-- [AI-LAYER] mission line -->
 > **TraceX helps automotive quality and service engineers turn multilingual owner reports into source-cited investigations, reviewed next steps and inspectable repair evidence.**
 > 
 > **Meta Global AI Developer Hackathon:** **Indie developer track**, primarily **Build for Your World**. Meta's contribution is cited extraction and the choice of a bounded evidence lookup or follow-up. See [HACKATHON.md](HACKATHON.md), [ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and the [claim-to-artifact index](reports/hackathon/CLAIM_INDEX.md).
 
 **Meta AI tooling evidence:** Muse Spark interprets multilingual reports, chooses relevant record lookups, and drafts source-cited investigations that update with new evidence. [Read the Meta API usage guide](docs/meta-api-usage.md) for the model and endpoint map, six recorded investigation runs, historical classification outputs, execution traces, and verification steps.
+
+**Reproduce the evidence:** `python3 -m scripts.public_replay` checks saved results;
+`python3 -m scripts.review_evidence_check` checks published review/import and
+adjudication consistency. With NumPy and pandas installed,
+`python3 -m scripts.public_model_replay verify --download` recomputes the frozen
+student predictions and alert evaluation from a checksummed public payload.
+See the [review export inventory](reports/improvement/human_reviews/EXPORT_INDEX.md)
+and [real-user pilot plan](docs/pilot-validation.md). Real-participant usefulness
+results remain pending.
 
 The primary user is an **automotive quality or service engineer** reviewing an owner complaint against installation and workshop records. TraceX is a single-tenant pilot: a **domain pack** (YAML + CSV) supplies the intake questions, safety rules and known issues. Prediction remains a scoped historical research result; accident reduction and investigator time savings have not been established.
 
@@ -23,7 +36,7 @@ After installing the Python dependencies and building the dashboard below, run `
 
 **Judge entry:** open `#demo` for **Report → Investigate → Review → Evidence**. Finish a voice or typed report, choose **Investigate this report**, review the stored customer turns and confirm the campaign vehicle. The investigation keeps original turn IDs and source hashes without retyping. Correct a draft claim, record the review, and create a linked revision. Imported CSV assertions remain unverified until a reviewer attaches installation-record contents. Fictional seed reviews and saved Meta replays remain labelled; they are not participant results.
 
-The [30 October readiness record](reports/hackathon/READINESS_STATUS_2026-10-30.md) separates source/build checks from pending real-reviewer and audio evidence. The candidate is on `submission/readiness-2026-10-30`. The owner confirmed a one-person team and deferred portal upload until checks are complete; hosted demo and video are outside this pass.
+The [30 October readiness record](reports/hackathon/READINESS_STATUS_2026-10-30.md) preserves historical source/build and pending participant/audio checks. The [submission record](reports/hackathon/submission_links.json) now includes the owner's final public 180-second video. The owner confirmed a one-person team; portal submission and a hosted demo have not been verified. See [the current judge guide](SUBMISSION.md) for public evidence and replay commands.
 
 Two packs ship with small offline fixtures (10 records, 2 advisories, 3 clusters each):
 

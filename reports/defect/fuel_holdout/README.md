@@ -106,6 +106,13 @@ scored once after selection and have not been used to retune the method.
 
 ## Reproduce the recorded result
 
+**Public prediction-and-alert replay:** the new [release payload and guide](../../../docs/public-model-replay.md)
+contain original cached embeddings/weights and a projection with all free-text
+columns removed. Run `python3 -m scripts.public_model_replay verify --download`
+from an environment with NumPy and pandas. It reproduces the saved evaluation
+without the raw narrative Parquet files or a provider call. Raw-ingestion and
+embedding regeneration still need the original local inputs below.
+
 From the repository root, using the existing Python 3.12 environment and frozen
 local inputs:
 

@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "validation": "published review/import hashes, taxonomy, source votes and adjudication consistency",
+  "indexed_supplied_exports": 18,
+  "indexed_exact_public_copies_checked": 14,
+  "frozen_sample_records": 300,
+  "reviewers": {
+    "rahul": {
+      "reviewer": "Rahul",
+      "annotations": 300,
+      "sample_size": 300
+    },
+    "aryan": {
+      "reviewer": "ARYAN RAJ",
+      "annotations": 107,
+      "sample_size": 300
+    },
+    "kaushal": {
+      "reviewer": "Kaushal Kumar Jha",
+      "annotations": 130,
+      "sample_size": 300
+    },
+    "ram": {
+      "reviewer": "Ram Prashad",
+      "annotations": 100,
+      "sample_size": 300
+    },
+    "abhishek": {
+      "reviewer": "Abhishek",
+      "annotations": 133,
+      "sample_size": 300
+    }
+  },
+  "round4_additional_distinct_records": 183,
+  "round4_primary_only_records": 117,
+  "round4_disputes": 43,
+  "countersign_status": "complete_countersigned",
+  "abhishek_in_round4_gold": false,
+  "review_blinding": "Unconfirmed: blinding confirmation was requested and no answer recorded. Independence supported by imperfect agreement, original notes, and cross-reviewer convergence only.",
+  "new_model_calls": 0,
+  "new_human_labels": 0,
+  "human_independence_or_correctness_verified": false,
+  "limits": "Attestation and internal consistency do not independently authenticate a reviewer, establish blinding or prove mechanical truth. Withdrawn/assisted archival rounds are not counted as new independent review."
+}

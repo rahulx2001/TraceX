@@ -1,0 +1,11 @@
+{
+  "source_filename": "sc_01m678rq8awba53pxwhrjftdyp-evidence.json",
+  "sha256": "f41ebd2c3b36420283a46ae301c3a3fc874a470b5468e8ac9c85a5d515b11bf3",
+  "campaign_id": "sc_01m678rq8awba53pxwhrjftdyp",
+  "revision": 50,
+  "synthetic_demo": true,
+  "delivery_mode": "simulation_only",
+  "vehicles": 12,
+  "investigation_drafts": 0,
+  "scope": "Owner-supplied historical synthetic demo export, preserved byte-for-byte. Separate from classifier review and the later 213-owner EPS walkthrough."
+}

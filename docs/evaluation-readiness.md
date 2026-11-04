@@ -1,5 +1,10 @@
 # Evaluation readiness — 30 October 2026
 
+**Status update, 4 November:** the original classifier's [Round 4 historical
+review](../reports/improvement/human_reviews/round4/review_status.json) is published.
+The separate new field grades and participant study below remain pending.
+The [pilot validation guide](pilot-validation.md) gives the next real-user steps.
+
 The evaluation software now distinguishes prepared-draft review, live
 investigation work, broad historical alert matching and exact part/lot
 association. **Human labels, independent packet grades and participant results

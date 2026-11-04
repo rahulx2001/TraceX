@@ -6,6 +6,11 @@ TraceX helps an automotive quality or service engineer turn a multilingual owner
 
 For the Meta tooling criterion, start with the [Meta API usage and evidence guide](docs/meta-api-usage.md): it maps the models, product call sites, recorded live investigations, classification outputs, execution controls and verification steps.
 
+The [final three-minute video](https://youtu.be/Uq7_kra8q-M) and
+[judge guide](SUBMISSION.md) are now available. The guide links public review
+checks and the downloadable model-to-alert replay; real-participant impact
+measurement remains pending.
+
 The required customer data is an owner report linked to an operator-confirmed vehicle, installation records with part/lot provenance, and workshop/repair evidence. A credible first pilot is one service team's review of a small, consented batch, measuring acceptable packets, corrections and completion time against its existing process. No pilot results or accident reduction are claimed.
 
 ## What works and what has been verified
@@ -53,10 +58,22 @@ Start with the small public replay. It checks saved arithmetic, source hashes an
 
 ```bash
 python -m scripts.public_replay
+python -m scripts.review_evidence_check
 python -m scripts.package_public_replay
 ```
 
 The generated `reports/hackathon/public_replay/TraceX-public-replay.zip` is a lightweight standalone replay. The [claim-to-artifact index](reports/hackathon/CLAIM_INDEX.md) states every result's scope, date, model/version and denominator, plus the separate full-data requirements. Replaying a saved result does not validate new model behavior.
+
+The separate [public model replay](docs/public-model-replay.md) recomputes the
+fitted student's predictions, temporal alerts and all 100 random references
+from cached embeddings and a projection with free text removed:
+
+```bash
+python3 -m scripts.public_model_replay verify --download
+```
+
+It needs NumPy/pandas and downloads the checksummed release asset. It makes no
+provider call and does not regenerate raw ingestion, embeddings or Meta labels.
 
 ```bash
 make test                    # builds dashboard, provisions/checks pinned MiniLM, isolated test DBs
@@ -98,6 +115,6 @@ The reused contact action chain is **tamper-evident**, and its contact exports h
 
 Use [`DEMO_SCRIPT.md`](DEMO_SCRIPT.md): one difficult owner report becomes a cited investigation, a missing record changes the reviewed association, and the same vehicle reaches documented action and separate repair verification. The older narrated 180-second recording at `reports/hackathon/investigation_demo/TraceX-investigation-demo.mp4` and its [media verification](reports/hackathon/investigation_demo/video_verification.json) are historical evidence, not verification of the current build. Preserve its fictional/replay labels. Human effectiveness measurements remain pending.
 
-Public submission state is in [`submission_links.json`](reports/hackathon/submission_links.json). The repository opened successfully in a fresh anonymous Chrome context on 30 October; [the result](reports/hackathon/link_checks/results.json) retains the check. The owner confirmed a one-person team and explicitly deferred portal upload until the checks are complete. No portal submission or team entry has been verified. Hosted demo and video are outside this pass; a packaged candidate is not a submitted entry.
+Public submission state is in [`submission_links.json`](reports/hackathon/submission_links.json). The repository opened successfully in a fresh anonymous Chrome context on 30 October; [the result](reports/hackathon/link_checks/results.json) retains the check. The record now includes the owner's final public 180-second video. The owner confirmed a one-person team, but no portal submission, team entry or hosted demo has been verified. A packaged candidate is not a submitted entry.
 
 After filling actual links, run `PLAYWRIGHT_CHANNEL=chrome node scripts/check-public-links.mjs` from `dashboard/`. The checker uses a fresh browser context and does not submit the portal form. Confirm the final links/team in the portal separately and record the submitted commit. Do not mark an empty URL or a developer-only local file as publicly accessible.

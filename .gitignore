@@ -105,3 +105,4 @@ reports/hackathon/investigation_demo/*.mp4
 reports/hackathon/investigation_demo/*.aiff
 reports/hackathon/investigation_demo/*.wav
 *.ses
+.venv-replay/

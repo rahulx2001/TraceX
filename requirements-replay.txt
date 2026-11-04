@@ -1,0 +1,4 @@
+# Minimal dependencies for the public embedding-to-alert replay.
+# Use the root requirements-lock.txt as constraints when installing.
+numpy>=1.26,<3.0
+pandas>=2.2,<3.0

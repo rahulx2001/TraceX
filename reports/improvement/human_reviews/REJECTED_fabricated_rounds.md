@@ -15,7 +15,7 @@ the removal commit sits on top of the pushed record.
 
 ## How the fabrication was established
 
-The following untracked helper scripts in `scripts/` write the exact review
+The following local helper scripts write the exact review
 files that were presented as human work (all paths absolute to Downloads;
 all read other reviewers' exports as input):
 
@@ -54,5 +54,13 @@ it stands as attested single-reviewer labels — weak evidence, not disproven.
   209/300 rejected at -12.3pp. Real computation, unchanged.
 - Per-record timing instrumentation on the review page; the outsider packet
   (reusable for a genuine future review); the Manish-round deprecation.
-- These generator scripts were never committed. They are preserved on disk as
-  evidence and must never be presented as review tooling.
+
+Correction recorded on 4 November: `generate_manish_full_review.py` was committed
+in [`f5fcbe9`](https://github.com/rahulx2001/TraceX/commit/f5fcbe9) on 2 November.
+The earlier statement that the generators were never committed was incorrect
+for that file. Its original bytes are now preserved as
+[`pending/export4/generate_manish_full_review.py.txt`](pending/export4/generate_manish_full_review.py.txt),
+outside the runnable `scripts/` tools. This is generator/provenance evidence,
+not independent human review. The other named local generators and their
+withdrawn outputs must not be presented as approved review tooling or genuine
+independent labels. No published history or original review export is rewritten.

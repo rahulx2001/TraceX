@@ -1,0 +1,24 @@
+{
+  "verified_at": "2026-11-04T18:38:45.655348+00:00",
+  "runtime": "3.14.7",
+  "scope": "Focused submission/evidence checks from the current worktree. Frozen experiment code, original labels, predictions and historical scores were not changed. Not a new full application or container acceptance run.",
+  "source_hashes": {
+    "scripts/public_model_replay.py": "327e5139a202dc88d53e8f966ed6805cb5231a8e51f3c07138ef6588f624887b",
+    "scripts/review_evidence_check.py": "95b7e37b9719829306e4c2acfb7c65e5da0b30809ae5d38904d33d929dd61926",
+    "tests/test_public_model_replay.py": "46c4b5365591c4acb01a24c4ebb2b14665e638e767cfe452371b0433206f7b0f",
+    "scripts/build_claim_index.py": "5aff0da39d5c3f310249e32a85d75b0de9b83054f2e3848bae376b3e6069f497",
+    "reports/defect/fuel_holdout/public_replay_manifest.json": "c1cc4a91792e3d0ebd862b27c73ab568f98949e8d03d463e3a7f2cb490ff9174",
+    "reports/defect/fuel_holdout/public_replay_release.json": "1a547686f8de50bdc7b9132e4b432c9e979c7b8083d182c65a07397f56dcaa28",
+    "reports/hackathon/demo_reference/owner_demo_packet.json": "f41ebd2c3b36420283a46ae301c3a3fc874a470b5468e8ac9c85a5d515b11bf3",
+    "reports/improvement/human_reviews/export_index.json": "be9a552508ed4c8820b3bc3d966ecf559889298fb5212e8e1d791c381a11cea6"
+  },
+  "tests": {
+    "command": "python3 -m pytest tests/test_public_model_replay.py -q",
+    "passed": 10,
+    "exit_code": 0
+  },
+  "new_meta_api_calls": 0,
+  "new_human_results": 0,
+  "new_real_participants": 0,
+  "local_dependency_installs": 0
+}

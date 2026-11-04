@@ -100,6 +100,14 @@ jobs:
       - name: Public credit-free evidence replay
         run: python -m scripts.public_replay
 
+      - name: Public review provenance and replay regressions
+        run: |
+          python -m scripts.review_evidence_check
+          python -m pytest tests/test_public_model_replay.py -q
+
+      - name: Public frozen model-to-alert replay
+        run: python -m scripts.public_model_replay verify --download
+
       - name: SLM Phase 0 probes (honest-baseline regression suite)
         run: make slm-probes
 
