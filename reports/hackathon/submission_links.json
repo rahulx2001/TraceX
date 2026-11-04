@@ -18,8 +18,10 @@
   "historical_candidate_source_commit": "db6c7bade673006806a4e294c13c7021ca373948",
   "historical_candidate_verification": "reports/hackathon/container_validation/ci-db6c7ba.json",
   "historical_public_source_verification": "reports/hackathon/container_validation/public-source-db6c7ba.json",
-  "candidate_source_commit": null,
+  "candidate_source_commit": "2314f6352f45b97b0d4809161c80b48f5f70c1a5",
   "candidate_verification": "reports/hackathon/submission_refinement/verification.json",
   "current_source_manifest": "reports/hackathon/source_manifest.json",
-  "candidate_status": "New implementation candidate will be pinned after the source commit; older CI/source receipts above remain historical."
+  "candidate_status": "Implementation source is pinned above and verified from an anonymous fresh source/release download. Subsequent submission metadata and receipts are packaged by current_source_manifest; no portal submission is implied.",
+  "public_source_verification": "reports/hackathon/submission_refinement/public_download_verification.json",
+  "model_replay_release_url": "https://github.com/rahulx2001/TraceX/releases/tag/tracex-replay-2026-11-04"
 }

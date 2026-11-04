@@ -42,12 +42,17 @@ The following inventory is part of that committed foundation for the candidate:
 | Expanded-source temporal experiment and failed above-86% test | `scripts/fuel_holdout.py`, `src/eval/fuel_detection.py`, `reports/defect/fuel_holdout/README.md` |
 | Sourced Meta investigation, independent review/comparison tools, timed participant study and narrated demonstration | `src/ai_layer/complaint_evidence.py`, `src/ai_layer/campaign_investigator.py`, `dashboard/src/ai/CampaignInvestigation.jsx`, `scripts/evidence_benchmark.py`, `scripts/reviewer_study.py`, `docs/sourced-investigation.md` |
 | Current route/authentication, reviewed report handoff, inspectable trace sources, claim corrections and bounded run recovery | `dashboard/routes/JudgeEntry.jsx`, `dashboard/routes/CallWidget.jsx`, `src/ai_layer/report_sources.py`, `src/ai_layer/claim_support.py`, `src/ai_layer/operation_trace.py`, `dashboard/scripts/assert-signin-reachable.mjs`, `docs/entry-auth-validation.md` |
+| Public frozen model-to-alert replay, review-export inventory and owner final-demo linkage | `scripts/public_model_replay.py`, `scripts/review_evidence_check.py`, `docs/public-model-replay.md`, `SUBMISSION.md`, `reports/hackathon/submission_refinement/` |
 | Current seed/container review assets, credit-free replay, claim index and public-link checks | `scripts/submission_smoke.py`, `scripts/public_replay.py`, `scripts/submission_manifest.py`, `scripts/package_public_replay.py`, `reports/hackathon/CLAIM_INDEX.md`, `reports/hackathon/link_checks/results.json` |
 
 This inventory does not replace a review of history against the imported
 baseline. The current `reports/hackathon/source_manifest.json` must identify the
-packaged source commit; older manifests remain in Git history. Video work is
-outside this readiness pass and belongs to the owner.
+packaged source commit; older manifests remain in Git history. Video production
+belongs to the owner. The subsequent submission follow-up
+records the owner-supplied final public video URL. Permitted cached model replay
+inputs are a separate checksummed release asset, not raw narrative files or
+Meta foundation-model weights in Git. The replay does not regenerate or improve
+the original experiment.
 
 ## Package the final source
 

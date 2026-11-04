@@ -20,5 +20,12 @@
   "new_meta_api_calls": 0,
   "new_human_results": 0,
   "new_real_participants": 0,
-  "local_dependency_installs": 0
+  "local_dependency_installs": 0,
+  "implementation_source_commit": "2314f6352f45b97b0d4809161c80b48f5f70c1a5",
+  "additional_existing_checks": {
+    "command": "python3 -m pytest tests/test_submission_artifacts.py -q",
+    "passed": 4,
+    "exit_code": 0,
+    "scope": "standalone evidence packaging, manifest drift, historical citation tampering and current claim scope"
+  }
 }
