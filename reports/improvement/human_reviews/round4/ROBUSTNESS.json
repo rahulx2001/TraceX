@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "evaluation_only": true,
+  "subject": "Committed repair baseline (reports/defect/repair/classifications.parquet)",
+  "method": "scripts.defect_accuracy per label set; missing predictions count as wrong; no fitting on any label set",
+  "results": [
+    {
+      "label_set": "rahul_primary_round1",
+      "labelled": 300,
+      "correct": 246,
+      "accuracy": 0.82,
+      "macro_f1": 0.517,
+      "specific": "71/107"
+    },
+    {
+      "label_set": "gold_v2_adjudicated",
+      "labelled": 300,
+      "correct": 246,
+      "accuracy": 0.82,
+      "macro_f1": 0.514,
+      "specific": "60/78"
+    },
+    {
+      "label_set": "aryan_107",
+      "labelled": 107,
+      "correct": 87,
+      "accuracy": 0.8131,
+      "macro_f1": 0.64,
+      "specific": "34/42"
+    },
+    {
+      "label_set": "kaushal_130",
+      "labelled": 130,
+      "correct": 110,
+      "accuracy": 0.8462,
+      "macro_f1": 0.575,
+      "specific": "38/44"
+    },
+    {
+      "label_set": "ram_100",
+      "labelled": 100,
+      "correct": 87,
+      "accuracy": 0.87,
+      "macro_f1": 0.454,
+      "specific": "9/14"
+    },
+    {
+      "label_set": "abhishek_133",
+      "labelled": 133,
+      "correct": 87,
+      "accuracy": 0.6541,
+      "macro_f1": 0.169,
+      "specific": "12/15"
+    }
+  ],
+  "reading": "Baseline holds 81.3-87.0% across Rahul, adjudicated gold v2, Aryan, Kaushal and Ram label sets, above the 74.0% always-other_unclear reference (222/300 on gold v2). Abhishek is a disclosed outlier at 65.4%, consistent with his low kappa (0.23 vs Rahul); his labels are retained, not excluded.",
+  "limits": [
+    "All sets share the same opened 300-record sample; this is robustness across labelers, not a fresh holdout.",
+    "Blinding unconfirmed. Candidate improvement remains rejected (79.3% vs 82.0% on gold v2); no improvement is claimed.",
+    "Strong (9-10) evidence still requires the preregistered round-5 blinded validation on a new sample."
+  ]
+}
