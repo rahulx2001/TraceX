@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-11-04T19:30:45.752545+00:00",
+  "recorded_at": "2026-11-04T20:03:47.848456+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "c4f90dfdf59098bdcc11487e49a03a04c877dc75",
-  "source_tree": "d4edd77cfd96106bba39f664336fe18617934ad6",
+  "source_commit": "4dfac689af2f8a0963af8b25cb31bf9d7b12c1a2",
+  "source_tree": "32b3334c38291d20cc2807724107e5e77293cc55",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -4374,6 +4374,10 @@
     },
     {
       "status": "M",
+      "path": "tests/frontline/test_api_interactions.py"
+    },
+    {
+      "status": "M",
       "path": "tests/frontline/test_backlog_p0_p1.py"
     },
     {
@@ -5138,9 +5142,9 @@
     {
       "path": "dashboard/scripts/demo-runtime-ui.test.mjs",
       "mode": "100644",
-      "git_blob": "8479be5a15b50438f4718a27d2da22a05a33fb6e",
+      "git_blob": "c009e210a174bea19dcb0108245d59803ca898a4",
       "bytes": 4889,
-      "sha256": "13641eff735d93e39fdda19198a6bae87f6813aed18374883e786a179eea036b"
+      "sha256": "5627ce4e18ad901276367e2899f2ea91f1c53f9523ca4c4d7d399bdf14a5efe9"
     },
     {
       "path": "dashboard/scripts/early-warning-data.test.mjs",
@@ -8155,9 +8159,9 @@
     {
       "path": "reports/hackathon/submission_refinement/ci_refinement.md",
       "mode": "100644",
-      "git_blob": "cfa6c7c186e4c85c99704b6bcd2c738ed161273f",
-      "bytes": 2040,
-      "sha256": "80227b08944d2f36413c660adb05fe2607e24b87c26526650250f34d7bb9f907"
+      "git_blob": "b8f8b00d077f059d6d00d52a5d1f9d0a1cecd8be",
+      "bytes": 2646,
+      "sha256": "64f54ef8022a4491aedad77972e42617f387492792fbee6d3cf41f0dd43a744c"
     },
     {
       "path": "reports/hackathon/submission_refinement/local_model_replay.json",
@@ -12831,9 +12835,9 @@
     {
       "path": "requirements.txt",
       "mode": "100644",
-      "git_blob": "589a444224a45eefe1e444f377ddc52f4561e465",
-      "bytes": 1803,
-      "sha256": "cd343595d3e828ffe8ddf17db46ab0b2fb9c93a248f9ac605f3f866312f7307c"
+      "git_blob": "a65e473bafdc2b5077913bc267634af9db9b2ec1",
+      "bytes": 1886,
+      "sha256": "131abf7143536d7c24d789958a63064a4155d1b89f8fbbfd1ffb73fd1c24ed1d"
     },
     {
       "path": "scripts/__init__.py",
@@ -15806,9 +15810,9 @@
     {
       "path": "tests/frontline/ai_layer/test_demo_services.py",
       "mode": "100644",
-      "git_blob": "646f70c019b58ffe999acbd573e610ca19226dd7",
-      "bytes": 3023,
-      "sha256": "6fad9e1b36b9f35a80e9032ed68908782f02de9a71c384cf59db76b9c4dc1de5"
+      "git_blob": "05201ade92ee2c7a127f77574060c0c4278826af",
+      "bytes": 3253,
+      "sha256": "362e28f206083e0151630b83494978b636f9e2b5f804480d7d976844d52aa870"
     },
     {
       "path": "tests/frontline/ai_layer/test_envfile.py",
@@ -15820,9 +15824,9 @@
     {
       "path": "tests/frontline/ai_layer/test_eps_demo.py",
       "mode": "100644",
-      "git_blob": "e63a6fa6f589a318486b8301240f9d46f65ec62d",
+      "git_blob": "e644499bd8738befd68c92968359f9837f6e9190",
       "bytes": 5098,
-      "sha256": "2f0a9932e3727086d68df1f226edbc897dae2cb15c0e6f85e709b91e42d10f6c"
+      "sha256": "ff3412666ac9df1e9b6532fe2e3b5493da36e60900ad7437af244c26175e92a7"
     },
     {
       "path": "tests/frontline/ai_layer/test_eval_enhanced.py",
@@ -16121,9 +16125,9 @@
     {
       "path": "tests/frontline/test_api_interactions.py",
       "mode": "100644",
-      "git_blob": "b2d5b03c51deae863afc6fe3c2fa6abdc89b02a8",
-      "bytes": 5914,
-      "sha256": "2c71d9e7d0ed6feed16ac581d71c32ca79950719dbadeb9354342cc297b880c0"
+      "git_blob": "9b6e20003a46bb6ed53e9cab3ad44bd166469ae6",
+      "bytes": 5980,
+      "sha256": "ece57992aaa4b6e62d2ce0b7df92f6e88cc2b650a93b5a9bd36019daf02e4b78"
     },
     {
       "path": "tests/frontline/test_audit3_c1_c2.py",
