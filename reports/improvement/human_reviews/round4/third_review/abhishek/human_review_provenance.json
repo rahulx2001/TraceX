@@ -1,0 +1,11 @@
+{
+  "reviewer": "Abhishek",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewed": 133,
+  "sample_size": 300,
+  "input_sha256": "a696ef3ea8dcf3cba87ab13da1f19543cb8b68dea0af321adc850b2abd960179",
+  "output_sha256": "a16c773bac71529203576fa5ace767367500ce012aadecc5e9f672ff154a2226",
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "note": "Reviewer attestation records provenance; it does not independently verify expertise or correctness."
+}

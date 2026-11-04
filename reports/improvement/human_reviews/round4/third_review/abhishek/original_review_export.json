@@ -1,0 +1,674 @@
+{
+  "sample_hash": "f8cb337a18353fae264083d7aefd27ccb3e076605da7d4c1658e9ae38f839ae1",
+  "annotation_source": "human",
+  "attestation": true,
+  "reviewer": "Abhishek",
+  "exported_at": "2026-11-03T08:27:27.534Z",
+  "reviews": [
+    {
+      "sample_id": "S001",
+      "label": "other_unclear",
+      "notes": " The complaint alleges non-deployment of the front driver-side airbag during a rear-end collision following an apparent brake pedal failure, but no diagnostic trouble codes, warning lights, mechanical inspections, or component-level findings are documented. Under the instruction that a symptom alone does not establish a specific part failure, the narrative lacks factual support to attribute the issue to any specific listed defect (such as an RCM failure or inflator defect)."
+    },
+    {
+      "sample_id": "S002",
+      "label": "other_unclear",
+      "notes": "The complaint only reports a persistent \"SRS airbag malfunction\" warning message on the instrument panel (along with an unrelated engine shut-off issue) that the dealership failed to resolve after two visits. Because no specific diagnostic trouble code or failed component is identified in the text, the warning message is merely a symptom and does not establish any of the listed part defects."
+    },
+    {
+      "sample_id": "S003",
+      "label": "other_unclear",
+      "notes": "The complaint reports that none of the airbags deployed during a collision with a street sign, an electrical pole, and a tree. However, no diagnostic inspection, crash data retrieval, or component-level investigation is mentioned to explain why the airbags did not deploy. Because non-deployment is a symptom rather than proof of a specific failed component, none of the listed defects are supported."
+    },
+    {
+      "sample_id": "S004",
+      "label": "other_unclear",
+      "notes": "The complaint only reports an intermittent Supplemental Restraint System (SRS) warning light coming on about once a week while driving. Without any diagnostic trouble codes, inspection findings, or identified component failures, an illuminated warning light is solely a symptom and does not establish any of the listed part defects."
+    },
+    {
+      "sample_id": "S005",
+      "label": "other_unclear",
+      "notes": "The complaint reports an inadvertent deployment of the passenger-side airbag while driving, but explicitly notes that the dealer inspected the vehicle and was unable to determine the cause. Without a confirmed component diagnosis—such as an inflator overheat or restraint control module fault—inadvertent deployment alone is a symptom and does not establish any of the listed defects."
+    },
+    {
+      "sample_id": "S006",
+      "label": "other_unclear",
+      "notes": "The complaint describes an unverified observation regarding the \"passenger airbag off\" indicator light turning off when the front passenger seat is empty, leading the owner to question whether seat weight is being measured accurately. No diagnostic inspection or technical finding is provided to confirm whether an actual fault exists—or whether it involves a physical weight sensor, wiring, or normal indicator logic—so a specific OCCUPANT CLASSIFICATION / software defect is not established by the text."
+    },
+    {
+      "sample_id": "S007",
+      "label": "other_unclear",
+      "notes": "The complaint states only that the backup camera is intermittent, without providing any diagnostic findings or repair details. Because an intermittent camera display is a symptom that could be caused by faulty wiring, a loose connector, camera hardware failure, or software, it does not establish a specific CAMERA / software defect."
+    },
+    {
+      "sample_id": "S008",
+      "label": "other_unclear",
+      "notes": "The complaint describes a backup camera that progressed from fuzzy/lined images to a blue screen and then became completely inoperative. Although the owner checked the tailgate electrical connections and replaced the camera without resolving the issue, the vehicle has not been professionally inspected or diagnosed. Without a technical finding attributing the failure to software (versus an upstream wiring harness fault, module hardware failure, or uncalibrated replacement camera), CAMERA / software is not established."
+    },
+    {
+      "sample_id": "S009",
+      "label": "other_unclear",
+      "notes": "The complaint reports an intermittent backup camera failure linked to NHTSA Recall Campaign 23V342000 and notes that the replacement part required for the repair was not yet available (a campaign that involves replacing the physical rear/360-degree camera hardware rather than a software fix). Neither the complaint text nor the referenced recall supports a CAMERA / software defect."
+    },
+    {
+      "sample_id": "S010",
+      "label": "other_unclear",
+      "notes": "The complaint reports an intermittent \"rear camera unavailable\" message that the dealership was unable to duplicate or diagnose over multiple visits, along with a reference to an unspecified recall not associated with the vehicle's VIN. Because no diagnostic finding or root cause is identified, the warning message alone is a symptom and does not establish a CAMERA / software defect."
+    },
+    {
+      "sample_id": "S011",
+      "label": "other_unclear",
+      "notes": "The complaint describes a fraying harness tightening strap on a third-party child safety seat (Nuna Rava) used inside the vehicle, which the child seat manufacturer eventually agreed to replace. Because no specific child seat defect category is listed among the options—and the issue involves an aftermarket child restraint rather than a vehicle component—other/unclear is the only applicable selection."
+    },
+    {
+      "sample_id": "S012",
+      "label": "other_unclear",
+      "notes": "The complaint describes a malfunctioning lock-status indicator window on a third-party rotational child safety seat (Evenflo) that continuously displays green even when unlocked, and notes that the seat has not yet been inspected. Because no specific child seat defect category is listed among the choices—and other/unclear is the only available option—it is the appropriate selection."
+    },
+    {
+      "sample_id": "S013",
+      "label": "other_unclear",
+      "notes": "The complaint reports that the vehicle is not equipped with lower LATCH anchors for installing a child seat, which the dealer confirmed is an intentional design characteristic for this heavy-duty model rather than a broken component. Because no specific defect option is listed—and other/unclear is the only available choice—it is the appropriate selection."
+    },
+    {
+      "sample_id": "S014",
+      "label": "other_unclear",
+      "notes": "The complaint states that the vehicle sparked and blew out the fuse box while being jump-started by roadside assistance (AAA), leaving the heater and air blower inoperative. This describes electrical damage resulting from an external jump-start event (and specifically involves the fuse box rather than wiring, relays, or software), so none of the listed manufacturing defects are supported."
+    },
+    {
+      "sample_id": "S015",
+      "label": "other_unclear",
+      "notes": "Although the complaint states that the owner was told \"the entire instrument/gauge cluster is bad\" after running out of fuel, this describes a functional component failure affecting the fuel gauge reading rather than a regulatory compliance or labeling issue. Because the only listed cluster option is restricted to INSTRUMENT CLUSTER/PANEL / compliance or label and no other listed defect matches, other/unclear is the supported choice."
+    },
+    {
+      "sample_id": "S016",
+      "label": "other_unclear",
+      "notes": "The complaint describes an engine drivability symptom—bogging down, choking, and losing power when accelerating uphill or under load following an unspecified recall repair—with a second dealer diagnostic visit still pending. Because no specific failed component or software fault is identified in the narrative, the symptom alone does not support any of the listed electrical system defects."
+    },
+    {
+      "sample_id": "S017",
+      "label": "other_unclear",
+      "notes": "The complaint describes an intermittent functional failure of the instrument cluster display (\"glitch out\" preventing visibility of mileage and fuel level), with no diagnostic inspection or confirmed root cause provided. Furthermore, the only listed instrument cluster option is restricted to compliance or label issues rather than a display hardware or solder fault, so none of the listed defects are supported."
+    },
+    {
+      "sample_id": "S018",
+      "label": "other_unclear",
+      "notes": "The complaint reports an inoperative vehicle horn (along with a prior battery replacement), but explicitly states that the vehicle has not been inspected or diagnosed by a dealer or service center. Without a diagnostic finding to identify the failed part—and because a horn failure could stem from the horn assembly itself, a fuse, a relay, or a clockspring—none of the listed defects are supported."
+    },
+    {
+      "sample_id": "S019",
+      "label": "other_unclear",
+      "notes": "The complaint describes the vehicle entering auto idle-stop at a traffic light and failing to restart for approximately five minutes, without any mention of a diagnostic inspection, repair, or identified failed component. Because failure to restart from auto idle-stop is a symptom that could stem from multiple causes (such as battery degradation, starter wear, relay failure, or engine control software), the narrative alone does not establish any of the listed defects."
+    },
+    {
+      "sample_id": "S020",
+      "label": "other_unclear",
+      "notes": "The complaint describes a loud popping and static noise coming from the vehicle's sound system at startup that left the rear speakers rattling, and explicitly states that the dealership has not yet inspected the truck and does not know what is causing the issue. Because no diagnostic finding or root cause is identified, the audio symptom alone does not establish any of the listed electrical or software defects."
+    },
+    {
+      "sample_id": "S021",
+      "label": "other_unclear",
+      "notes": "The complaint describes a theft vulnerability in which thieves remove the steering column cover, detach the ignition lock cylinder, and turn the ignition switch actuator using a USB cable (referencing the \"Kia Boys\" theft trend shown in http://www.youtube.com/watch?v=fbTrLyqL_nw [05:02]). Because the narrative describes intentional physical tampering and the absence of an engine immobilizer rather than a failed electrical component, software malfunction, or regulatory labeling/compliance defect, none of the listed defects (including IGNITION / compliance or label or ELECTRICAL SYSTEM SOFTWARE / software) are established by the complaint text."
+    },
+    {
+      "sample_id": "S022",
+      "label": "other_unclear",
+      "notes": "The complaint reports a persistent charging system failure causing safety and monitoring systems to shut down, and explicitly states that despite replacing the battery, alternator, and other parts, both the dealership and Ford engineers have been unable to determine why the vehicle will not hold a charge. Because the root cause remains undiagnosed, none of the specific listed electrical or software defects are supported by the text."
+    },
+    {
+      "sample_id": "S023",
+      "label": "other_unclear",
+      "notes": "The complaint reports repeated \"Check Hybrid System\" and \"High System Temperature\" warnings accompanied by complete loss of motive power, and states that after a month of testing, the dealer determined the vehicle needed a new plug-in hybrid battery (which was unavailable due to supply chain delays). Because the diagnosed failed component is the high-voltage hybrid battery rather than software, wiring, a relay, or an instrument cluster/ignition compliance issue, none of the listed defects apply."
+    },
+    {
+      "sample_id": "S024",
+      "label": "other_unclear",
+      "notes": "The complaint describes an intermittent flickering and blackout of the instrument cluster display that the dealership was unable to duplicate or diagnose. Because no root cause or failed component was identified—and a random hardware/display malfunction is a symptom rather than a regulatory labeling or design compliance issue (INSTRUMENT CLUSTER/PANEL / compliance or label)—none of the listed defects are supported."
+    },
+    {
+      "sample_id": "S025",
+      "label": "other_unclear",
+      "notes": "The complaint reports malfunctions with voice recognition, navigation, phone connectivity, lane assist, and radar, which the dealership diagnosed as a faulty \"computer head\" (infotainment head unit hardware) requiring dashboard removal and a physical replacement part. Because the diagnosed failure involves replacing the head unit hardware rather than software, wiring, a relay, or a compliance/labeling issue, none of the listed defects apply."
+    },
+    {
+      "sample_id": "S026",
+      "label": "other_unclear",
+      "notes": "The complaint describes an erratic or inoperative power rear liftgate across all activation switches (dashboard button, key fob, and exterior release) that the dealership failed to diagnose or repair. Because no root cause or failed component is identified—and a malfunctioning liftgate could stem from a faulty liftgate latch actuator, power strut, control module hardware, or wiring—the symptom alone does not establish any of the listed electrical or software defects."
+    },
+    {
+      "sample_id": "S027",
+      "label": "other_unclear",
+      "notes": "The complaint describes the digital screen in the instrument cluster periodically freezing until the vehicle is turned off for a few hours, without any diagnostic inspection or confirmed root cause. Because a freezing cluster screen is a symptom that could stem from cluster hardware, a processor fault, or software—and the only listed instrument cluster option is restricted to compliance or label issues—none of the listed defects are established."
+    },
+    {
+      "sample_id": "S028",
+      "label": "other_unclear",
+      "notes": "The complaint states that the power steering warning light is illuminated and suspects water penetration from heavy rainfall, but no diagnostic inspection, technical testing, or component-level finding is provided. Because water intrusion into a steering harness, connector, or steering gear module is a speculative cause and no specific listed defect is verified, other/unclear is the supported choice."
+    },
+    {
+      "sample_id": "S029",
+      "label": "other_unclear",
+      "notes": "he complaint describes two distinct issues. The primary safety concern—sticky steering at highway speeds—is a well-documented mechanical defect within the Electronic Power Steering (EPS) gearbox (specifically, internal friction and binding of the worm gear), which does not strictly fit the provided electrical/software sub-categories. The secondary issue is an intermittent false low oil pressure light, which points to a localized sensor or wiring fault. \"Other/unclear\" is the most appropriate single selection to ensure the prominent physical steering hazard is not misclassified as a purely software or wiring issue."
+    },
+    {
+      "sample_id": "S030",
+      "label": "other_unclear",
+      "notes": "The complaint describes a complete loss of motive power (stall) and electrical shutdown triggered by the regenerative braking system (either via physical brake application or lifting off the accelerator). While the consequence is a stall (making \"RELAY / stall\" a potential symptom match if the high-voltage contactors are tripping), the root cause is a complex high-voltage powertrain issue. It is highly likely related to a fault in the Electric Power Control Unit (EPCU), the inverter, or the Battery Management System (BMS) triggering an emergency shutdown due to a voltage spike during regeneration. Because the exact root cause cannot be definitively narrowed down to just wiring, a relay, or software without pulling diagnostic trouble codes (DTCs), it is best categorized as other/unclear pending a high-voltage system diagnostic."
+    },
+    {
+      "sample_id": "S031",
+      "label": "other_unclear",
+      "notes": "Although the complaint mentions the oil light and check engine light illuminating (which may initially look like an electrical issue), the independent repair shop confirmed the engine physically only had 1 quart of oil remaining. The electrical sensors and instrument cluster are functioning exactly as intended by warning the driver of an actual, critical low-oil condition. The root cause is severe engine oil consumption—a well-documented mechanical defect in this generation of Kia engines—not an electrical, wiring, or software failure. Therefore, it falls outside the provided electrical sub-categories."
+    },
+    {
+      "sample_id": "S032",
+      "label": "other_unclear",
+      "notes": "The complaint describes a severe and rapid thermal event (fire) originating from under the passenger-side dashboard/glovebox area. In this vehicle, this specific location houses high-draw electrical components such as the HVAC blower motor, blower motor resistor, and their associated wiring harnesses. An electrical fire of this nature is caused by a physical short circuit, excessive electrical resistance at a damaged connector, or an overloaded circuit that melted the wire insulation and ignited the surrounding interior plastics. Therefore, this is a critical wiring and electrical hardware defect."
+    },
+    {
+      "sample_id": "S033",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint explicitly identifies a failure of the instrument panel to boot up and function for over 10 minutes during cold weather. This is highly indicative of a hardware fault within the cluster itself, such as failing electrolytic capacitors or cold solder joints on the circuit board that require thermal expansion to make a connection. When an instrument cluster fails to display, it becomes a severe safety and compliance issue (violating FMVSS 101 requirements), as the driver is temporarily deprived of vital operating information including vehicle speed, gear position, and critical warning telltales (e.g., ABS, airbag, or low oil pressure lights)."
+    },
+    {
+      "sample_id": "S034",
+      "label": "other_unclear",
+      "notes": "The complaint centers on a well-documented safety recall regarding the Hydraulic Electronic Control Unit (HECU). In affected vehicles, brake fluid can leak internally into the HECU's circuit board, causing an electrical short circuit that poses a severe risk of an engine compartment fire while driving or parked. Because the root cause is a fluid leak and an internal short within a hybrid hydraulic/electronic ABS module, it falls outside standard wiring, relay, or software categories. The recent illumination of the Malfunction Indicator Lamp (MIL) and performance changes are critical warning signs that an electrical short may be actively developing, necessitating immediate dealer intervention."
+    },
+    {
+      "sample_id": "S035",
+      "label": "instrument_cluster_panel_compliance_or_label",
+      "notes": "The complaint explicitly describes a total failure of the dashboard display (instrument cluster) while driving, resulting in the loss of vital vehicle information such as vehicle speed, fuel level, and critical warning indicators. When the instrument panel goes blank, it represents a severe safety risk and a direct compliance issue (violating FMVSS 101 standards), as the driver is completely deprived of essential operating information. As the owner noted, Kia has issued recalls for similar blank display issues in this generation of vehicles, making this a direct match for the instrument cluster/panel category."
+    },
+    {
+      "sample_id": "S036",
+      "label": "relay_stall",
+      "notes": "The complaint describes a severe safety hazard where the vehicle experiences an intermittent, complete engine stall while driving at highway speeds, leading to a sudden loss of motive power and power steering. The dealership has already replaced the Crankshaft Position Sensor—a common electronic cause for this exact symptom—but the stalling persists. This intermittent \"shut off and restart\" behavior is a hallmark symptom of a failing electrical relay, such as the main engine control (ECM) relay or fuel pump relay. These relays can temporarily drop their electrical circuit due to heat or internal wear causing a sudden stall, and then reconnect once cooled, allowing the car to restart. Therefore, this aligns directly with the relay/stall category."
+    },
+    {
+      "sample_id": "S037",
+      "label": "electrical_system_software_software",
+      "notes": "The complaint explicitly identifies a malfunction in the APIM (Accessory Protocol Interface Module), which serves as the central hub for the vehicle's infotainment, HVAC controls, navigation, and audible safety alerts (like rear cross-traffic alert). The dealership's diagnostic approach—attempting a system reboot and subsequently providing a manual software flash via a thumb drive—confirms that the root cause is currently being diagnosed and treated as a software-level failure within the vehicle's electrical system network."
+    },
+    {
+      "sample_id": "S038",
+      "label": "wiring_electrical",
+      "notes": "The complaint describes a cascading series of severe vehicle failures—including multiple instances of sudden loss of vehicle control resulting in crashes, as well as an interstate stall. The foundational electrical defect explicitly identified by the repair facility after the first crash was a physically compromised and \"rigged\" electrical wiring harness that had been taped together, causing total electrical system malfunction. While the vehicle later experienced a fuel pump failure (which caused the stall) and a turbo booster issue, the primary, diagnosed root cause of the initial catastrophic electrical failure is directly attributed to the vehicle's physical wiring harness."
+    },
+    {
+      "sample_id": "S039",
+      "label": "other_unclear",
+      "notes": "The complaint is an administrative grievance regarding an unreasonable delay in parts availability for an active safety recall (NHTSA Campaign 23V734000), and the owner explicitly states that no actual failure has occurred. Recall 23V734000 addresses a physical defect with the 12-volt battery hold-down assembly, where a replacement battery with different dimensions can shift during driving, allowing the positive terminal to contact the metal bracket and cause a short circuit. Because the underlying defect is a mechanical securing issue (battery bracket) rather than a failure within the vehicle's native wiring harnesses, software, or relays, it best fits the other/unclear category."
+    },
+    {
+      "sample_id": "S040",
+      "label": "electrical_system_software_software",
+      "notes": "The complaint describes a severe system lockup of the vehicle's infotainment/media console. Symptoms such as audio looping the same few seconds continuously, the inability to adjust volume, and the unit remaining powered on even after the vehicle is turned off are hallmark signs of a software crash, memory leak, or firmware freeze within the head unit's processor. While the failure of the backup camera to display during these episodes is a compliance concern (violating FMVSS 111), the root cause of the camera drop-out and the erratic behavior is fundamentally a software failure within the central media display system."
+    },
+    {
+      "sample_id": "S041",
+      "label": "other_unclear",
+      "notes": "The complaint describes the repeated failure (burning out) of the Daytime Running Lights (DRLs) within the Quad Beam headlamp assemblies. In modern LED headlight units, this type of premature failure is typically caused by a localized hardware defect within the headlamp itself—such as poor thermal management of the LED diodes, a failing internal LED driver circuit, or moisture intrusion. Because the root cause is isolated to the exterior lighting component's internal hardware rather than a failure of the vehicle's central wiring harness, BCM software, or relays, it best fits the other/unclear category."
+    },
+    {
+      "sample_id": "S042",
+      "label": "other_unclear",
+      "notes": "Although the complaint notes the dashboard \"started to light up\" prior to the loss of motive power, the dealership's diagnosis required a complete engine replacement. The illumination of the dashboard warning lights was the vehicle's intended response to a catastrophic mechanical engine failure, not a primary defect within the electrical system itself. Furthermore, the post-repair symptoms (shaking, poor acceleration, and lack of cabin heat) strongly indicate ongoing mechanical powertrain or cooling system issues (such as a faulty thermostat or misfires) resulting from the engine replacement, rather than an electrical wiring, relay, or software fault. Therefore, this defect falls outside the specific electrical sub-categories provided."
+    },
+    {
+      "sample_id": "S043",
+      "label": "other_unclear",
+      "notes": "Although the complaint describes the failure of an electrical component (a \"fried\" liftgate opener), the explicitly identified root cause is a physical water leak stemming from a defective roof rail seam. Because the electrical short and subsequent module damage are secondary consequences of a primary structural and weather-sealing failure (body/exterior), this does not represent an inherent defect within the vehicle's native wiring, software, or relays. Therefore, it best fits the other/unclear category."
+    },
+    {
+      "sample_id": "S044",
+      "label": "other_unclear",
+      "notes": "The complaint describes an uncommanded, sudden application of the brakes that brought the vehicle to a complete stop at 40 MPH, accompanied by a loss of throttle response and the illumination of the Vehicle Stability Assist (VSA) warning light. This points to a severe functional malfunction or false-positive activation within the VSA (Electronic Stability Control) modulator or the Collision Mitigation Braking System (CMBS). Because this is an active hardware/software control failure rather than an administrative or regulatory \"compliance or label\" issue (the VSA warning light functioned exactly as intended by alerting the driver to the system fault), it falls outside the specific ESC sub-category provided and is best categorized as other/unclear."
+    },
+    {
+      "sample_id": "S045",
+      "label": "other_unclear",
+      "notes": "The complaint text contains only the word \"Good\" and provides absolutely no details regarding a vehicle failure, symptom, or defect. Because there is no information to indicate an issue with the Electronic Stability Control system—let alone a specific compliance or label violation—this submission cannot be categorized as a valid ESC defect and defaults to other/unclear."
+    },
+    {
+      "sample_id": "S046",
+      "label": "other_unclear",
+      "notes": "The complaint describes a severe functional hardware failure where a defective Hydraulic Control Unit (HCU) is retaining hydraulic pressure, causing the brakes to seize and the rotors to overheat. While the HCU is a core component of the ABS and Electronic Stability Control (ESC) systems (as noted by the referenced recall), the specific ESC sub-category provided is restricted to \"compliance or label\" issues (such as a failure of the ESC warning light to illuminate per FMVSS 126 requirements). Because this is a mechanical/hydraulic malfunction rather than a regulatory labeling or telltale compliance defect, it must be categorized as other/unclear."
+    },
+    {
+      "sample_id": "S047",
+      "label": "other_unclear",
+      "notes": "The complaint describes two distinct and severe mechanical issues: an abnormal, loud knocking/tapping noise from the diesel engine (indicative of internal mechanical wear or a valvetrain/injector fault) and catastrophic transmission failures including slipping, stalling, hard shifting, and grinding (linked by the dealer to a failed sensor and valve body). Because these are internal mechanical and hydraulic failures rather than specific instances of engine corrosion, fluid leaks, missing parts, or belt detachments, they fall completely outside the provided highly specific engine sub-categories and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S048",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "The complaint explicitly describes a diagnosis from the dealership stating that \"coolant was leaking into the engine,\" resulting in severe engine misfires (shaking/check engine light) and requiring a complete engine replacement. This is a well-documented catastrophic defect (coolant intrusion into the cylinders) affecting this specific generation of Ford EcoBoost engines. Because the root cause is fundamentally an internal fluid leak compromising the engine block and cooling system, it is a direct match for the \"ENGINE AND ENGINE COOLING / leak\" category."
+    },
+    {
+      "sample_id": "S049",
+      "label": "other_unclear",
+      "notes": "The complaint describes a catastrophic mechanical engine failure where the engine completely seized while driving at highway speeds, notably without any prior warning from the oil pressure or check engine lights. This type of sudden seizure is typically caused by internal mechanical destruction, such as catastrophic connecting rod bearing failure (a well-documented defect in this generation of Kia engines) resulting in internal oil starvation. Because this is a severe internal mechanical fault rather than a specific instance of engine corrosion, an external fluid leak, missing parts, or a belt detachment, it falls outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S050",
+      "label": "other_unclear",
+      "notes": "The complaint describes the vehicle experiencing severe shaking and a flashing check engine light when attempting to accelerate at highway speeds, resulting in a sudden loss of motive power. A flashing check engine light is a universal OBD-II indicator of a severe engine misfire that can cause catalytic converter damage. In this generation of Honda vehicles, this is often caused by failing fuel injectors, faulty ignition coils, or a hybrid powertrain software/inverter fault. Because the root cause is an internal combustion misfire or hybrid system fault rather than a physical fluid leak, structural corrosion, missing part, or belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S051",
+      "label": "other_unclear",
+      "notes": "The complaint describes severe internal engine oil consumption (requiring over four quarts every 3,000 miles), which is a well-documented mechanical defect in this generation of Kia engines typically caused by faulty piston rings or valve seals. The owner explicitly states there is no external fluid leak on the ground. Because the root cause is excessive internal oil consumption/burning rather than a physical external fluid leak, engine corrosion, a missing part, or a belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S052",
+      "label": "other_unclear",
+      "notes": "The complaint explicitly identifies a catastrophic internal mechanical failure—specifically, a failed engine connecting rod bearing—that caused the engine to stall while driving. This is a well-documented mechanical defect in this generation of Hyundai engines. Because the root cause is internal mechanical wear and destruction rather than engine corrosion, an external fluid leak, a missing part, or a belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S053",
+      "label": "other_unclear",
+      "notes": "The complaint describes a catastrophic engine failure caused by a \"broken oil belt\"—specifically, the internal oil-bathed oil pump drive belt (wet belt) utilized in this generation of Ford EcoBoost engines. When this internal belt degrades and snaps, it causes immediate internal oil starvation, resulting in sudden engine seizure and stalling. Although the failure involves a belt, the specific category \"BELTS AND ASSOCIATED PULLEYS / detachment\" typically applies to external accessory drive belts (serpentine belts) slipping or falling off their external pulleys, not the physical snapping of an internal, oil-submerged engine timing or pump belt. Because the root cause is internal mechanical destruction due to a broken internal component rather than an external belt detachment, fluid leak, engine corrosion, or a missing part, it must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S054",
+      "label": "other_unclear",
+      "notes": "The complaint describes the vehicle suddenly losing acceleration, running rough, and triggering a cascade of warning lights (powertrain wrench, advanced trac, collision warning) at highway speeds, which temporarily resolves after turning the engine off and back on. This behavior is characteristic of the powertrain control module (PCM) forcing the vehicle into a protective \"limp mode\" (reduced engine power) due to an electronic powertrain fault—most commonly a failing Electronic Throttle Body (ETB) or a severe ignition misfire in this generation of F-150s, as the electronic fault temporarily clears upon a key cycle. Because the root cause is an electronic sensor/actuator or internal combustion fault rather than a physical fluid leak, engine corrosion, a missing part, or a belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S055",
+      "label": "other_unclear",
+      "notes": "The complaint describes a sudden and catastrophic internal engine failure (the engine \"blew\") while driving at highway speeds, resulting in a complete loss of motive power. The independent mechanic specifically diagnosed the root cause as an internal mechanical manufacturing defect related to the engine's pistons, noting that fluid levels (oil) were completely normal. Because this is a severe internal mechanical destruction issue rather than a specific instance of an external fluid leak, engine corrosion, a missing part, or a belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S056",
+      "label": "other_unclear",
+      "notes": "The complaint is primarily an administrative grievance regarding an unreasonable delay in obtaining a remedy for a known safety recall (engine fire risk) and dealer unresponsiveness. While the contact mentions flashing dashboard warning lights and the overarching fear of a catastrophic engine fire, there are no specific diagnostic details provided indicating an active external fluid leak, engine corrosion, a missing part, or a belt detachment. Because the complaint focuses on recall administration and non-specific warning lights rather than a diagnosed failure fitting the highly specific engine sub-categories provided, it must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S057",
+      "label": "other_unclear",
+      "notes": "The complaint describes a combination of severe transmission/drivetrain malfunctions (jerking, lurching, delayed gear engagement leading to a roll-away risk) and engine cooling system issues (overheating on long trips causing the A/C to blow hot air). While there is clearly a functional defect within the powertrain and cooling system, the owner does not identify a specific physical fluid leak, engine corrosion, a missing or wrong part, or a belt detachment. Because the root causes of these shifting and overheating issues are not explicitly diagnosed as fitting into the highly specific engine sub-categories provided, this submission must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S058",
+      "label": "other_unclear",
+      "notes": "The complaint explicitly identifies a \"catastrophic camshaft failure\" diagnosed by an independent mechanic, which caused the vehicle to stall while driving. A camshaft failure represents a severe internal mechanical breakage within the engine's valvetrain. Because the root cause is an internal mechanical destruction rather than engine corrosion, a fluid leak, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S059",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "The complaint explicitly states that a dealership diagnosed the vehicle and determined that the engine required a complete replacement due to a coolant leak. This aligns with a well-documented catastrophic defect (coolant intrusion into the engine cylinders) affecting this generation of Ford EcoBoost engines. Because the specifically diagnosed root cause of the engine failure is a fluid leak compromising the engine block and cooling system, it is a direct match for the \"ENGINE AND ENGINE COOLING / leak\" category."
+    },
+    {
+      "sample_id": "S060",
+      "label": "other_unclear",
+      "notes": "The complaint describes severe drivability issues, specifically a rough idle and a hesitation or inability to accelerate from a stop. While these symptoms indicate a significant powertrain fault (often associated with the transmission control module or throttle body in this generation of Hyundai vehicles), the contact does not describe a physical fluid leak, engine corrosion, a missing or wrong part, or a belt detachment. Because the root cause of the hesitation and rough idle falls outside the narrow, highly specific engine sub-categories provided, this submission must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S061",
+      "label": "other_unclear",
+      "notes": "The complaint describes an abnormal engine knocking sound that a dealership explicitly diagnosed as a failure of the cam phasers. Cam phasers are internal mechanical components that control variable valve timing, and their failure is a well-documented mechanical defect in this generation of Ford engines (as noted by the referenced Customer Satisfaction Program 21N03). Because the root cause is internal mechanical wear and valvetrain failure rather than a physical fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S062",
+      "label": "other_unclear",
+      "notes": "The complaint describes excessive internal engine oil consumption (a quart every thousand miles). This is a well-documented internal mechanical defect in this generation of Hyundai engines, typically caused by premature wear of the piston rings or valve seals resulting in oil being burned in the combustion chamber. Because the root cause is internal oil consumption rather than a specifically diagnosed external fluid leak, engine corrosion, a missing part, or a belt detachment, it falls outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S063",
+      "label": "other_unclear",
+      "notes": "The complaint explicitly describes an internal mechanical failure of the engine's cam phasers and subsequent damage to the timing chain, resulting in rough idle and power loss. Cam phasers are internal valvetrain components that control variable valve timing, and their failure is a well-documented mechanical defect in this generation of Ford EcoBoost engines (related to internal oil pressure retention). Because the root cause is internal mechanical wear and a specific component design flaw rather than an external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S064",
+      "label": "other_unclear",
+      "notes": "The complaint describes the vehicle shuddering and illuminating the check engine light, which prompted an independent mechanic to replace the ignition coil pack and spark plugs. These symptoms and attempted repairs indicate a severe engine misfire, an ignition system fault, or a deeper internal mechanical issue (which is common in this generation of Hyundai engines once basic ignition fixes fail). Because the root cause is related to the ignition/combustion process or internal mechanical wear rather than a specifically diagnosed physical fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear.\n"
+    },
+    {
+      "sample_id": "S065",
+      "label": "other_unclear",
+      "notes": "The complaint describes an engine overheating event during highway acceleration, followed by a persistent check engine light. While these symptoms clearly indicate a malfunction within the engine cooling system or an electronic sensor fault (such as a stuck thermostat, failing water pump, or erratic temperature sensor reading), the contact does not identify or diagnose a physical fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment. Because the specific root cause of the overheating remains undiagnosed and does not explicitly align with the highly specific engine sub-categories provided, it must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S066",
+      "label": "other_unclear",
+      "notes": "The complaint describes severe internal engine oil consumption followed by a complete loss of motive power. A dealership explicitly diagnosed the catastrophic failure as having \"2 broken cylinders.\" This represents severe internal mechanical destruction within the engine block (a well-documented issue with this generation of Kia engines, as referenced by the owner mentioning the knock sensor replacement). Because the root cause is internal mechanical breakage and excessive internal oil consumption/burning rather than a diagnosed external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S067",
+      "label": "other_unclear",
+      "notes": "The complaint describes a stalling issue and an \"engine knock,\" resulting in a dealership diagnosing that the engine requires a complete replacement. An engine knock leading to total engine failure in this generation of Kia vehicles is a well-documented catastrophic internal mechanical failure, specifically related to the connecting rod bearings. Because the root cause is severe internal mechanical destruction rather than a specifically diagnosed external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S068",
+      "label": "other_unclear",
+      "notes": "The complaint describes a severe drivability and powertrain malfunction involving delayed gear engagement (engine revving without moving), followed by sudden, unintended acceleration and lunging while the brake was applied. These symptoms strongly indicate a significant fault within the transmission, hybrid powertrain control module, or the electronic throttle-by-wire system. Because the root cause is related to transmission engagement or electronic powertrain control rather than a physical fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S069",
+      "label": "other_unclear",
+      "notes": "The complaint describes a sudden internal engine failure preceded by a progressive knocking and grinding sound. The subsequent inspection revealed that the engine was completely empty of oil, yet the owner explicitly notes that \"no oil leak was present.\" This indicates severe internal oil consumption (burning oil in the combustion chamber), which is a well-documented mechanical defect in this generation of Hyundai engines that inevitably leads to catastrophic internal mechanical destruction (such as connecting rod bearing failure, causing the knock). Because the root cause is excessive internal oil consumption and internal mechanical failure rather than a physical external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S070",
+      "label": "other_unclear",
+      "notes": "The complaint explicitly identifies a failure of the Integrated Thermal Management System (ITMS)—an electronic multi-way valve and module that controls coolant flow—resulting in an erratic temperature gauge reading and a sudden loss of engine power. The owner specifically notes that the engine was not physically overheating, indicating a sensor or electronic control valve malfunction rather than a loss of coolant. Because the root cause is an electronic or mechanical valve failure within the cooling system rather than a physical external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S071",
+      "label": "other_unclear",
+      "notes": "The complaint describes a situation where a dealership discovered a \"melted\" engine oil pan while the vehicle was being serviced for a water pump replacement. A melted or thermally deformed oil pan (a known issue with the composite/plastic oil pans used on some modern Ford engines) represents a severe material or structural failure. Because the complaint highlights this thermal material degradation rather than explicitly diagnosing an active external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S072",
+      "label": "other_unclear",
+      "notes": "The complaint describes an electronic or software-related drivability glitch where the engine stalls and throws warning lights when the auto start/stop system and the windshield wipers are operating simultaneously. This behavior indicates a fault within the powertrain control module's software logic, an electrical integration issue, or a voltage drop, requiring the driver to manually cycle the ignition in Park to recover. Because the root cause is an electronic, software, or electrical system malfunction rather than a physical external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S073",
+      "label": "other_unclear",
+      "notes": "The complaint describes a recurring cylinder #4 misfire that an independent mechanic subsequently diagnosed as a head gasket failure. A head gasket failure represents a breach of the internal mechanical seal between the engine block and the cylinder head (a well-documented defect in this generation of Ford engines that allows internal coolant intrusion into the combustion chamber). Because the specifically diagnosed root cause is an internal component/seal failure rather than a confirmed physical external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S074",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "The complaint explicitly states that the engine block cracked and began leaking coolant, a defect that was officially confirmed by a dealership and required a short block replacement. Because the specifically diagnosed root cause of the engine failure is a physical fluid leak compromising the engine block and cooling system, it is a direct match for the highly specific \"ENGINE AND ENGINE COOLING / leak\" category."
+    },
+    {
+      "sample_id": "S075",
+      "label": "other_unclear",
+      "notes": "The complaint describes a recurring catastrophic engine failure caused by a degrading \"wetbelt.\" Similar to previous EcoSport complaints, this refers to the internal, oil-submerged pump/timing belt used in this generation of Ford engines. When this internal belt degrades, it clogs the oil pickup and snaps, leading to immediate internal oil starvation and sudden engine seizure. Although the failure involves a belt, the specific category \"BELTS AND ASSOCIATED PULLEYS / detachment\" applies to external accessory drive belts (serpentine belts) slipping or falling off, not the physical degradation and failure of an internal, oil-bathed engine belt. Because the root cause is internal mechanical destruction due to internal component degradation rather than an external belt detachment, fluid leak, engine corrosion, or a missing part, it must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S076",
+      "label": "other_unclear",
+      "notes": "The complaint describes a history of the vehicle losing power and shutting down, culminating in \"white smoke pouring out back\" and a dealership determining the engine is \"no good\" and requires total replacement. Copious white exhaust smoke typically indicates a severe internal engine failure where coolant is intruding into the combustion chambers and burning (a well-documented catastrophic defect in this generation of Ford EcoBoost engines). Because the complaint describes symptoms of internal mechanical/seal failure (coolant burning internally) and a general \"engine is no good\" diagnosis rather than explicitly identifying a physical external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S077",
+      "label": "other_unclear",
+      "notes": "The complaint describes an engine \"knocking\" issue that aligns with a well-documented catastrophic internal mechanical defect in this generation of Hyundai vehicles (specifically, premature connecting rod bearing failure). Because the root cause is severe internal mechanical wear and destruction rather than a specifically diagnosed physical external fluid leak, engine corrosion, a missing or wrong part, or an accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S078",
+      "label": "other_unclear",
+      "notes": "The complaint describes the illumination of the engine oil pressure light and a subsequent diagnosis that the engine oil pump is inoperable, which is related to a known recall (NHTSA Campaign 23V905000) for this vehicle. An inoperable internal oil pump leads to internal oil starvation and catastrophic mechanical failure (often caused by the degradation of an internal wet belt clogging the oil pickup in this specific engine). Because the root cause is a severe internal mechanical failure and loss of oil pressure rather than a specifically diagnosed physical external fluid leak, engine corrosion, a missing or wrong part, or an external accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S079",
+      "label": "other_unclear",
+      "notes": "The complaint describes the illumination of the oil warning light followed by a sudden loss of motive power, which a dealership diagnosed as being related to NHTSA Campaign Number 23V905000 (an oil pump failure issue caused by internal wet belt degradation in this specific Ford engine). An inoperable internal oil pump leads to catastrophic internal oil starvation and mechanical seizure. Because the root cause is a severe internal mechanical failure and loss of oil pressure rather than a specifically diagnosed physical external fluid leak, engine corrosion, a missing or wrong part, or an external accessory belt detachment, it falls completely outside the highly specific engine sub-categories provided and must be classified as other/unclear."
+    },
+    {
+      "sample_id": "S080",
+      "label": "other_unclear",
+      "notes": "The reported failure involves an oil pump malfunction resulting in engine damage and requiring complete engine replacement. The issue does not directly match any of the listed supported defect categories. Therefore, “other/unclear” is the most appropriate classification."
+    },
+    {
+      "sample_id": "S081",
+      "label": "other_unclear",
+      "notes": "The vehicle exhibited a gasoline odor coming from the exhaust while driving. Although the mechanic identified it as a known issue, no specific component failure or mechanical defect was diagnosed. None of the listed supported defect categories directly matches the reported complaint. Therefore, “other/unclear” is the most appropriate classification."
+    },
+    {
+      "sample_id": "S082",
+      "label": "other_unclear",
+      "notes": "The vehicle experienced a recurring abnormal rattling noise from the engine compartment during startup. However, no specific defective component or mechanical failure was diagnosed, and no repairs were performed. The reported issue does not directly match any of the listed supported defect categories. Therefore, “other/unclear” is the most appropriate classification."
+    },
+    {
+      "sample_id": "S083",
+      "label": "other_unclear",
+      "notes": "The vehicle’s automatic idle-stop system intermittently failed to restart the engine after the brake pedal was released. During the latest incident, the vehicle became inoperable and required a manual shutdown and restart. No specific defective component or mechanical failure was identified. The reported issue does not directly match any of the listed supported defect categories. Therefore, “other/unclear” is the most appropriate classification."
+    },
+    {
+      "sample_id": "S084",
+      "label": "other_unclear",
+      "notes": "The reported issue involves a stretched timing chain caused by a faulty Variable Camshaft Timing (VCT) unit/cam phaser. Ford Technical Service Bulletin 23-2143 specifically addresses this condition, including cold-start rattling and intermittent auto-start/stop restart failures. Since timing chain and cam phaser failures do not directly match any of the listed supported defect categories, “other/unclear” is the most appropriate classification."
+    },
+    {
+      "sample_id": "S085",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "The vehicle experienced a coolant leak into the engine cylinders, causing significant engine damage. The dealership confirmed the issue and recommended complete engine replacement at an estimated cost of $9,000. The reported failure directly matches the ENGINE AND ENGINE COOLING / leak classification."
+    },
+    {
+      "sample_id": "S190",
+      "label": "other_unclear",
+      "notes": "Two-word report (\"Seat belt fault\"); no part/mode evidence."
+    },
+    {
+      "sample_id": "S198",
+      "label": "other_unclear",
+      "notes": "States no failure experienced; recall-delay only."
+    },
+    {
+      "sample_id": "S201",
+      "label": "other_unclear",
+      "notes": "Intermittent brake loss; no diagnosed part or mode."
+    },
+    {
+      "sample_id": "S203",
+      "label": "other_unclear",
+      "notes": "Dealer-diagnosed ABS/VSA modulator fault is electromechanical; software mode not evidenced. Closest call — highest reversal risk."
+    },
+    {
+      "sample_id": "S215",
+      "label": "other_unclear",
+      "notes": "Tie-rod ends replaced yet wobble persists; cause unresolved."
+    },
+    {
+      "sample_id": "S216",
+      "label": "other_unclear",
+      "notes": "Total electrical failure; steering loss consequential, EPAS not evidenced."
+    },
+    {
+      "sample_id": "S230",
+      "label": "other_unclear",
+      "notes": "Water ingress with source never located."
+    },
+    {
+      "sample_id": "S231",
+      "label": "other_unclear",
+      "notes": "Door-sensor failure described; not hinge/attachment detachment."
+    },
+    {
+      "sample_id": "S234",
+      "label": "other_unclear",
+      "notes": "Hood vibration; roof/pillars failure not evidenced."
+    },
+    {
+      "sample_id": "S236",
+      "label": "other_unclear",
+      "notes": "Door will not unlock; cause undiagnosed, compliance not evidenced."
+    },
+    {
+      "sample_id": "S237",
+      "label": "other_unclear",
+      "notes": "Door noise and window travel; specific mode not evidenced."
+    },
+    {
+      "sample_id": "S246",
+      "label": "other_unclear",
+      "notes": "Mechanic reports compromised tires; specific failure mode not established."
+    },
+    {
+      "sample_id": "S247",
+      "label": "other_unclear",
+      "notes": "Uneven tread wear only."
+    },
+    {
+      "sample_id": "S248",
+      "label": "other_unclear",
+      "notes": "Vibration persisted after wheel/shaft/u-joint replacement; cause unresolved."
+    },
+    {
+      "sample_id": "S293",
+      "label": "other_unclear",
+      "notes": "Wiper motor speed/stoppage; software not evidenced."
+    },
+    {
+      "sample_id": "S300",
+      "label": "lugs_nuts_bolts_studs_crack_or_fracture",
+      "notes": "Swollen two-piece lug nuts replaced: explicit wheels failure matching the label family."
+    },
+    {
+      "sample_id": "S088",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "Complaint concerns a 2016 Ford Edge (2.0L engine). The consumer reports coolant seeping into the engine cylinders, followed by the check engine light illuminating. The consumer states Ford recalled other vehicles with the same 2.0L engine issue but did not include the Edge. Failure mode is an internal coolant leak into the combustion chambers. Mapped to ENGINE AND ENGINE COOLING / leak. The consumer does not identify a specific failed component, and the root cause (e.g., cracked cylinder head/block or head gasket) is not stated."
+    },
+    {
+      "sample_id": "S092",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2016 Ford Fusion. While driving at about 45 MPH, the vehicle went into limp mode and the engine coolant temperature warning light came on. The vehicle restarted, but the failure recurred. The dealer diagnosed engine failure and stated the engine needed replacement. The vehicle was not repaired. The manufacturer was notified. Failure mileage approximately 135,000. The complaint does not identify a specific failed component or failure mode (no leak, corrosion, missing part, or detachment reported). Mapped to other/unclear because the supported defect categories cannot be confirmed from the narrative."
+    },
+    {
+      "sample_id": "S095",
+      "label": "engine_and_engine_cooling_leak",
+      "notes": "Complaint concerns a 2017 Ford Escape. The consumer reports coolant intrusion into the engine, resulting in engine failure at approximately 89,000 miles. The consumer states all maintenance was performed at the dealership. Failure mode is an internal coolant leak into the engine. Mapped to ENGINE AND ENGINE COOLING / leak. The complaint does not identify a specific failed component (e.g., cylinder head, block, or head gasket), and the repair outcome and manufacturer notification are not stated."
+    },
+    {
+      "sample_id": "S116",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2022 Honda Civic with about 6,000 miles. The consumer reports that since purchase the cruise control intermittently drops out and cannot be re-engaged until the vehicle is pulled over, turned off, and restarted. The complaint does not identify a specific failed component or the cause. It does not mention a collision, a collision warning, or automatic braking activation, and no crash or injury is reported. Mapped to other/unclear because the described failure (intermittent loss of cruise control) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S118",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2017 Honda CR-V. While driving at about 25 MPH with no vehicle or obstacle ahead, the consumer reports the forward collision warning beeped and the automatic braking system engaged, braking suddenly and hard. No crash or injury is reported; the consumer states no vehicle was behind them, and notes a rear-end collision could have occurred otherwise. The consumer reports a loss of trust in the system and states the system cannot be permanently disabled. The complaint does not identify a failed component or the cause. Mapped to other/unclear because the described failure (unintended automatic braking) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S121",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2022 Ford F-250 Super Duty with about 6,600 miles. The consumer reports two problems present since the truck was new. Problem 1: the truck equipped with Pro Trailer Backup Assist and electronic torque overlay steering wanders when driving straight and the steering feels disconnected in curves, both at 45+ MPH. Alignment was checked three times and was within specification, and no engine light or fault codes were reported. A deeper dealer inspection was scheduled for August 21. Problem 2: the pre-collision warning activates randomly at highway speeds with no vehicles ahead or beside the truck. The consumer notes the warning did work at least twice when traffic stopped abruptly. No crash or injury is reported. The complaint does not identify a failed component or cause. Mapped to other/unclear because the described failures (steering wander and false pre-collision warnings) do not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S122",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2017 Kia Optima. The consumer reports that on two occasions while driving in rain, the front collision warning/automatic braking system took control and braked hard to a full stop with no vehicle or object ahead. The consumer states that during the second event they narrowly avoided being rear-ended. No crash or injury is reported. The complaint does not identify a failed component or the cause, and does not say whether the vehicle was inspected or repaired or whether the manufacturer was notified. Mapped to other/unclear because the described failure (unintended automatic braking) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S126",
+      "label": "fuel_pump_failure",
+      "notes": "Complaint concerns a 2019 Honda Civic. The consumer reports receiving notification of NHTSA Campaign Number 23V858000 (Fuel System, Gasoline), but the part needed for the recall repair was not yet available. The consumer contacted the local dealer and states the manufacturer has exceeded a reasonable amount of time to provide the remedy. The consumer has not experienced a failure. The manufacturer was not made aware of the issue. The VIN was not provided. The complaint does not describe a defect itself; it concerns delay of the recall remedy. Mapped to FUEL PUMP / failure based on the referenced recall campaign, which should be confirmed against NHTSA’s recall record."
+    },
+    {
+      "sample_id": "S125",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2019 Honda Accord Sport with the 1.5T and 2.0T engines. The consumer reports oil dilution: fuel is entering the engine oil, and the oil smells of gasoline whenever it is changed. To keep the oil clean and avoid fuel dilution, the consumer states they must change the oil every 3,000 to 5,000 miles. No failure, crash, or injury is reported. The complaint does not identify a failed fuel system component or the source of the fuel entering the oil, and does not say whether the vehicle was inspected or repaired or whether the manufacturer was notified. Mapped to other/unclear because the described condition (fuel dilution of engine oil) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S133",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2018 Honda Accord EX with the 1.5L engine. On 12/19/2022 the consumer reports that multiple warning lights came on at startup and the vehicle advised seeing a dealer. The dealer diagnosed a cylinder 1 misfire (code P0301). After codes were cleared, rescanning showed multiple misfires on cylinder 2; swapping coils and spark plugs did not change the misfire, so it did not follow the parts. The vehicle failed an air/fuel test, and the dealer recommended replacing the fuel injectors with the fuel pipe and checking valve clearance (valve adjustment). The consumer states the dealer said the repair is not covered by warranty. No crash or injury is reported. The complaint does not state the vehicle’s mileage or whether the manufacturer was notified. Mapped to other/unclear because the described failure (misfires attributed to the fuel injectors) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S146",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2022 Honda Accord. The consumer reports that the vehicle warns of an impending collision when nothing is in front of it, brakes randomly or prompts the driver to brake at unnecessary times, and moves the steering wheel as if correcting a lane departure when the vehicle is not departing its lane. No crash or injury is reported. The complaint does not identify a failed component or cause, and does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the described failures (false collision warnings, unintended braking, and unintended steering intervention) do not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S167",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2019 Hyundai Ioniq Hybrid with about 33,500 miles. While parking, the consumer reports the vehicle accelerated on its own in reverse while in the R position. The vehicle struck a gutter, then a porch column that spun it off the parking pad, then a tree. The consumer pressed the brake pedal forcefully and then stood on it, but the vehicle continued to accelerate until it hit the tree. She then placed the vehicle in park. Afterward her son reported several warning lights and chimes sounded as he parked the vehicle. The consumer reports minor soreness and emotional trauma but did not seek medical attention. No police report was filed. Property damage includes the son’s porch column and downspout gutter. The manufacturer was notified and stated there were no recalls on the vehicle. The vehicle had not been diagnosed or repaired and had not been towed. The complaint does not identify a failed component or cause. Mapped to other/unclear because the described failure (unintended acceleration in reverse with reported brake ineffectiveness) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S168",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2018 Honda CR-V. While driving, the consumer reports that all dashboard warning lights began flashing, and that systems including forward crash avoidance, power steering, stability control, and tire pressure were indicated as disabled. The consumer had to pull to the side of the road and states they were almost struck by another vehicle. No crash or injury is reported. The complaint does not identify a failed component or cause, and does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the described failure (simultaneous warning lights and loss of multiple driver-assist and vehicle systems) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S177",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2020 Kia Telluride. The consumer reports four problems: a valve cover gasket leak, coolant hose leaks, grease being slung from the passenger side axle boot, and a parasitic battery draw. No crash or injury is reported. The complaint does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified, and it does not identify a failed power train component. Mapped to other/unclear because the described conditions are mostly engine, cooling, and electrical issues and do not match a more specific supported power train defect."
+    },
+    {
+      "sample_id": "S178",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2020 Ford Explorer. The consumer reports that Ford changed a part that the vehicle has, and that the replacement part does not include the consumer’s sensor and requires the vehicle to be reprogrammed. The complaint does not identify the part or sensor involved, describe any failure or symptom, or state mileage. No crash or injury is reported. It does not say whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the narrative does not describe a specific failure and does not match a more specific supported power train defect."
+    },
+    {
+      "sample_id": "S183",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2020 Ford Edge with about 85,000 miles. The consumer reports that no warning lamps came on, but while crossing an intersection after stopping at a stop sign, the vehicle jerked and did not accelerate, and the consumer states they were nearly struck by another vehicle. The consumer states the issue has been present since about 45,000 miles. The dealer reportedly diagnosed a failed torque converter. The consumer states the repair will cost a few thousand dollars and that the vehicle’s VIN is not covered by a recall. The consumer also states that other Ford models, including a relative’s 2016 Ford Escape, were recalled for the torque converter. No crash or injury is reported. The complaint does not state whether the manufacturer was notified. Mapped to other/unclear because the reported failure (torque converter failure causing jerking and hesitation) is not described as a detachment and does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S186",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2019 Ford F-150 with about 80,000 miles. While driving at an undisclosed speed, the consumer reports the transmission shifted erratically and abnormally and the transmission temperature increased. The consumer stopped and parked the vehicle; after restarting, the transmission temperature had decreased. The dealer diagnosed transmission failure and stated the transmission needed to be replaced. The vehicle was in the process of being repaired. The manufacturer was made aware of the failure, and the consumer was advised to contact the NHTSA Hotline. No crash or injury is reported. The complaint does not identify a specific failed component or cause. Mapped to other/unclear because the described failure (erratic shifting and overheating leading to transmission failure) is not described as a detachment and does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S189",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2024 Kia Carnival. The consumer reports that a seat belt is torn. The complaint does not identify which seat belt, where on the belt the tear is, or how or when it occurred. It does not state mileage, whether a crash or injury was involved, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the narrative is too brief to identify a specific failed component or failure mode matching a more specific supported defect."
+    },
+    {
+      "sample_id": "S192",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2017 Toyota Tacoma. The consumer reports that the heated seat amplifier connections under the front seats melted during use. The consumer states the melting caused some smoke and a strong burning plastic smell and that it could have caused a fire. The consumer states the issue first appeared in February 2021, with no warnings or messages beforehand, and that the damaged part is available and photographs were taken. The consumer states the dealership is aware of the issue and described it as common, but did not inspect the vehicle. No fire, crash, or injury is reported. The complaint does not state mileage or whether the manufacturer was notified. Mapped to other/unclear because the described failure (melted heated seat electrical connections with smoke) is a thermal/electrical fault that does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S214",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2016 Ford Explorer. The consumer reports a problem with the power steering and a loud grinding noise when turning the vehicle. The complaint does not identify a failed component or cause, and does not state mileage, whether steering assist or control was lost, whether a crash or injury occurred, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the narrative describes only a symptom (power steering problem with grinding noise on turning) and does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S222",
+      "label": "electric_power_assist_system_loss_of_control",
+      "notes": "Complaint concerns a 2022 Honda Civic Si. The consumer reports the steering has become sticky on the highway: when driving straight at about 70 MPH, increased effort is needed to turn the steering wheel. The consumer states that applying too much effort can cause oversteer. No crash or injury is reported. The complaint does not identify a failed component or cause, and does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to ELECTRIC POWER ASSIST SYSTEM / loss of control because the described condition (increased steering effort and reduced steering control at highway speed) is consistent with a power assist problem. The specific cause is not stated."
+    },
+    {
+      "sample_id": "S225",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2023 Honda HR-V Sport with about 4,000 miles, purchased in February 2023 and driven mostly on city streets. The consumer reports that after driving more than 5 miles at 35 to 45 MPH, the steering wheel intermittently tries to turn right or left, requiring more force to counteract than the lane keeping assist does. The consumer suspected the lane keep assist and turned it off, but the problem continued intermittently. The dealer was unable to duplicate the condition. No crash or injury is reported. The complaint does not identify a failed component or cause, and does not say whether the manufacturer was notified. Mapped to ELECTRIC POWER ASSIST SYSTEM / loss of control because the described condition (unintended, intermittent steering input that the driver must counteract) is consistent with a power assist problem. The specific cause is not stated."
+    },
+    {
+      "sample_id": "S232",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2020 Ford Escape with about 59,600 miles. The consumer reports that when opening the driver door there was a loud noise, and on inspection found that the spot welds on the driver side door had come loose, allowing part of the door to move freely inside it and preventing the door from opening fully. The consumer states no warning lights or messages occurred. The dealer reportedly kept the vehicle for weeks and said the door needed replacement at a cost of about $4,000. The consumer states Ford sent a representative, who agreed to pay 40% of the repair, leaving about $2,000 for the consumer, and that the extended warranty did not cover the part. The consumer states photographs of the left and right door jambs are attached for comparison. No crash or injury is reported. Mapped to other/unclear because the described failure (loose spot welds in the driver door) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S255",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2017 Honda CR-V. While driving out of town, the consumer reports the air conditioning stopped working. The consumer states it became a safety concern when it rained on a major interstate, because the windows fogged and could not be cleared without A/C. The consumer states the repair shop diagnosed a bad A/C compressor and that this appears to be a relatively common problem. No crash or injury is reported. The complaint does not state mileage, whether the vehicle was repaired, or whether the manufacturer was notified. Mapped to other/unclear because the described failure (A/C compressor failure affecting defogging) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S256",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2019 Ford Ranger. The consumer reports a gasoline smell in the garage after driving the truck and parking it inside. The consumer states it happens only when the truck is parked right after being driven, has occurred about 3 to 4 times, and the smell lasts 2 to 3 days if the truck stays parked. The consumer states the smell occurred again the day after an oil change at a Ford dealer. The consumer states the truck is not driven often and has an appointment at Ford the following week. No fire, crash, or injury is reported. The complaint does not identify the source of the odor or a failed component, does not state mileage, and does not say whether the manufacturer was notified. Mapped to other/unclear because the described condition (gasoline odor after driving) does not identify a specific failure or match a more specific supported defect."
+    },
+    {
+      "sample_id": "S271",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2018 Honda Odyssey. The consumer reports that the power tailgate no longer works. The consumer states water got into the vehicle and leaked onto the power tailgate control circuit, causing it to stop functioning. No crash or injury is reported. The complaint does not identify where the water entered the vehicle, and does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the described failure (water intrusion damaging the power tailgate control circuit) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S272",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2016 Honda Pilot purchased less than two months before the report. While driving on the highway, the consumer reports hearing a noise and seeing a part fly off the vehicle and strike the vehicle behind. The consumer could not tell at the time where the part came from. Later, the consumer found the roof’s rear trim piece had come off and the adjoining straight trim piece was hanging outward over the side of the vehicle. The consumer also reports the trim along the side of the windshield on the same side is raised. The consumer states the vehicle could have caused danger to others and that they have seen other Pilot owners report trim problems, including dented trunks. The consumer reports no injury to themselves. The complaint does not state mileage, the extent of any damage to the other vehicle, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the described failure (roof and body trim detaching from the vehicle) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S279",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2016 Kia Optima. The narrative consists only of the word “Unknown” and describes no symptom, component, failure, crash, or injury. It does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. Mapped to other/unclear because the complaint contains no information from which a defect can be identified."
+    },
+    {
+      "sample_id": "S282",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2018 Toyota RAV4. The consumer reports that the vehicle accelerated out of control on its own and crashed into a retaining wall on June 12, 2021. The consumer states they pressed the brakes but the vehicle kept going. The consumer reports that the airbags deployed, including the steering wheel airbag, and that the vehicle was declared a total loss by the insurer, State Farm. The consumer states no one else was injured and that one other vehicle was hit. The consumer reports no warning lamps or messages. The consumer states a similar incident occurred at the same location on April 3, 2021. The consumer reports being issued a police citation, with a court date of July 23, 2021. The consumer states that Toyota said it could take 4 to 6 weeks for someone to examine the vehicle, that the dealer was contacted and had not yet responded, and that the vehicle is currently at the insurer’s collision facility. The consumer requests that the vehicle be inspected and asks to speak with someone. The complaint does not state mileage or the consumer’s own injuries. The complaint does not identify a failed component or cause. Mapped to other/unclear because the described failure (unintended acceleration with reported brake ineffectiveness) does not match a more specific supported defect."
+    },
+    {
+      "sample_id": "S284",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2015 Hyundai Sonata. The consumer reports several problems: the vehicle’s Eco mode cannot be used, the engine accelerates, the vehicle cannot read its sensors, the air conditioning stopped working, and the brakes are hard to press. The complaint does not say whether the acceleration was unintended or occurred while braking, and does not state mileage, whether a crash or injury occurred, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. The complaint does not identify a failed component or cause. Mapped to other/unclear because the narrative lists multiple symptoms across different systems without identifying a specific failure mode matching a more specific supported defect."
+    },
+    {
+      "sample_id": "S297",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2021 Toyota Venza Hybrid. The consumer reports that after driving the vehicle for over a year without any impact, collision, or accident, a crack appeared in the windshield. The consumer states the crack starts at the bottom of the windshield, runs toward the middle, and arcs toward the driver side. The consumer states there is no point of impact and no indication that a stone or other object struck the glass, and that the consumer first mistook the crack for a raindrop until cleaning the glass inside and outside. No crash or injury is reported. The complaint does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. The complaint does not identify a cause. Mapped to other/unclear because the described condition (spontaneous windshield crack with no reported impact) does not match the supported visibility/wiper software defect."
+    },
+    {
+      "sample_id": "S108",
+      "label": "other_unclear",
+      "notes": "Complaint concerns a 2016 Toyota RAV4. The consumer reports that the rear taillight covers are deteriorating, with discoloration and fogging. The complaint does not say whether the lights still function, whether moisture is inside the housings, or whether visibility of the lights is reduced. No crash or injury is reported. It does not state mileage, whether the vehicle was inspected or repaired, or whether the manufacturer was notified. The complaint does not identify a cause. Mapped to other/unclear because the described condition (deteriorating, discolored, fogged taillight lenses) does not match a more specific supported defect."
+    }
+  ]
+}
