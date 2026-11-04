@@ -1,8 +1,10 @@
 # Sourced investigations, independent reviews and the demo
 
 The **Meta investigation** tab in Safety campaigns now runs a bounded,
-source-cited investigation. Human labels and reviewer-study results remain
-pending; no new prediction-accuracy claim is made.
+source-cited investigation. The original classifier's historical review is
+published under [Round 4](../reports/improvement/human_reviews/round4/review_status.json).
+Independent grading of the new benchmarks and reviewer-study results remain
+pending; this investigation feature has no measured semantic-accuracy result.
 
 ## Run the feature
 
@@ -162,7 +164,7 @@ authenticated buttons open these prepared documents:
 
 | Review | Current work prepared | Result status |
 |---|---:|---|
-| Original classifier sample | 300 complaints | 0 human labels |
+| Original classifier sample | 300 complaints | [Round 4 historical evaluation published](../reports/improvement/human_reviews/round4/review_status.json); blinding unconfirmed |
 | New development sample | 32 complaints | Human review pending |
 | Reserved cohort sample | 100 fuel/propulsion complaints | Human review pending |
 | New recall reference set | 5 distinct descriptions | Human review pending |

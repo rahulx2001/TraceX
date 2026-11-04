@@ -4,6 +4,8 @@
 
 TraceX helps an automotive quality or service engineer turn a multilingual owner report into a source-cited investigation, review missing installation evidence, and document action and repair verification. Browser Web Speech or optional Deepgram supplies the transcript. Muse Spark can select bounded evidence lookups and draft supported claims; the engineer reviews the result.
 
+For the Meta tooling criterion, start with the [Meta API usage and evidence guide](docs/meta-api-usage.md): it maps the models, product call sites, recorded live investigations, classification outputs, execution controls and verification steps.
+
 The required customer data is an owner report linked to an operator-confirmed vehicle, installation records with part/lot provenance, and workshop/repair evidence. A credible first pilot is one service team's review of a small, consented batch, measuring acceptable packets, corrections and completion time against its existing process. No pilot results or accident reduction are claimed.
 
 ## What works and what has been verified
@@ -82,7 +84,7 @@ The deterministic NHTSA report used five makes and 219,510 complaint records. It
 
 A different tuned `abs3` configuration reported **62.7% campaign recall, 8-week median lead** on a later window. Production `abs5` was **not run** on that window. Matching is at make/component grain, not verified physical-defect identity. The original raw-file hash and exact ingest arguments are not fully reproducible from this checkout. These figures do not establish Meta improving prediction or accidents prevented. See [`reports/CLAIMS_AUDIT.md`](reports/CLAIMS_AUDIT.md) and [`reports/nhtsa/backtest_safety_2015_2024.md`](reports/nhtsa/backtest_safety_2015_2024.md).
 
-The 84 Hindi/Hinglish examples are **synthetic**. Their prior local Hindi safety result is not real-customer accuracy. The 300-row defect label sample has no completed human labels; no defect-classification accuracy claim is made.
+The 84 Hindi/Hinglish examples are **synthetic**. Their prior local Hindi safety result is not real-customer accuracy. The original 300-row classifier sample now has a [published Round 4 historical evaluation](reports/improvement/human_reviews/round4/review_status.json): baseline **246/300 = 82.0%**, macro-F1 **0.514**; challenger **238/300 = 79.3%**, rejected. Adjudication is human-countersigned, while reviewer blinding remains unconfirmed. This does not measure investigation quality, time savings or accident prevention; the separate new benchmark reviews and participant study remain pending.
 
 The separate expanded-fuel 2025 holdout measured **5/8 campaigns (62.5%)** and **6/18 mature-alert matches (33.3%)**, equalling the count baseline. None of 40 development candidates met the precision gate. The above-86% target was not achieved. This scope differs from the earlier historical reports; it is not a direct improvement on their benchmarks. See the [frozen result and replay instructions](reports/defect/fuel_holdout/README.md).
 
