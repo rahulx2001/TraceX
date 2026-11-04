@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-11-04T20:03:47.848456+00:00",
+  "recorded_at": "2026-11-04T20:28:20.324434+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "4dfac689af2f8a0963af8b25cb31bf9d7b12c1a2",
-  "source_tree": "32b3334c38291d20cc2807724107e5e77293cc55",
+  "source_commit": "f04207723bee161be4cd8679241bc3c9374a9e7c",
+  "source_tree": "f9f34a9cf47f3eabfdbb526ac9a9e3634fceab98",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -1259,6 +1259,10 @@
     {
       "status": "A",
       "path": "reports/hackathon/submission_refinement/ci_refinement.md"
+    },
+    {
+      "status": "A",
+      "path": "reports/hackathon/submission_refinement/frontline_shards_ef3424d.json"
     },
     {
       "status": "A",
@@ -4547,9 +4551,9 @@
     {
       "path": ".github/workflows/frontline.yml",
       "mode": "100644",
-      "git_blob": "b8052e97f098aa1b858ef208b166f0b0961083e3",
-      "bytes": 12278,
-      "sha256": "1f83de76b5f1669b031e2585bd2c31f9c01ccde4aa260847694b4ea9bc6cbdd5"
+      "git_blob": "087128665e2d58bdf625617813dcaf0701a9a44b",
+      "bytes": 13283,
+      "sha256": "84bcb8b2733ab04a052450539d9f164afa8c12a6eba3cab1fdee26fd819a8423"
     },
     {
       "path": ".gitignore",
@@ -5156,9 +5160,9 @@
     {
       "path": "dashboard/scripts/eps-demo-ui.test.mjs",
       "mode": "100644",
-      "git_blob": "c9d38d7813d732b017227617c650ea4530d13a50",
+      "git_blob": "c891d463b936bc8a3d51f2301ed850419b40c0e2",
       "bytes": 4592,
-      "sha256": "b1eb0f1ec5cd72ce727ea47d4b98a23a954a8d1b3e24a09c18bd6b2bdc538d9d"
+      "sha256": "839543662dc8852579ed5796b6c49b6e445673f2f14d166d822c74ebdd1cc23e"
     },
     {
       "path": "dashboard/scripts/investigation-ui.test.mjs",
@@ -8159,9 +8163,16 @@
     {
       "path": "reports/hackathon/submission_refinement/ci_refinement.md",
       "mode": "100644",
-      "git_blob": "b8f8b00d077f059d6d00d52a5d1f9d0a1cecd8be",
-      "bytes": 2646,
-      "sha256": "64f54ef8022a4491aedad77972e42617f387492792fbee6d3cf41f0dd43a744c"
+      "git_blob": "99ff496d46052b29c1160ca0cfff8491af57da5e",
+      "bytes": 3124,
+      "sha256": "485eede014e16e8311e5aa3bd26741b3b5e2520fc42fdc4b2b955e99fddf4eaf"
+    },
+    {
+      "path": "reports/hackathon/submission_refinement/frontline_shards_ef3424d.json",
+      "mode": "100644",
+      "git_blob": "c82cbfe8552fb68983b15d6644cc6ac146e61361",
+      "bytes": 1319,
+      "sha256": "634bf6ded3f652454c10879cb461c08ff1821f41fd297e0afe50a22789ca0423"
     },
     {
       "path": "reports/hackathon/submission_refinement/local_model_replay.json",
