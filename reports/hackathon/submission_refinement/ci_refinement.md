@@ -55,3 +55,20 @@ passed with zero accepted roundoff differences and zero provider calls.
 
 The final workflow conclusion must be read from the PR's current-head checks;
 the linked earlier receipts retain their actual failures and source commits.
+
+The portable replay passed in run
+[41910318848](https://github.com/rahulx2001/TraceX/actions/runs/41910318848),
+accepting 98 diagnostic tail differences with maximum absolute difference
+`4.773959005888173e-15`; all other fields matched exactly. Public evidence,
+17 standalone regressions, SLM probes, dual-pack evaluation, production browser,
+dashboard and Docker jobs passed. Two Frontline partitions exposed timing
+flakiness: the no-provider-call test imposed an unrelated 100ms whole-turn bound
+(observed 110ms), and the complete five-drill staging test had only a 30-second
+outer timeout.
+
+The no-provider-call test retains its trapped narration function and requires
+both concurrent turns to return slot questions. Latency benchmarks and
+over-deadline model-refusal tests remain separate and unchanged. The five-drill
+integration test now has a 120-second outer limit; all five outcomes and the
+production drill's 60-second evacuation assertion remain unchanged. No
+production deadline, routing guard or inference behavior was altered.

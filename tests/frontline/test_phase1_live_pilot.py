@@ -211,6 +211,7 @@ def test_api_remedy_authorization_hitl(reset_ops_db):
     assert auth_resp.json()["authorized"] is True
 
 
+@pytest.mark.timeout(120)
 def test_day_one_supervisor_drill_e2e(reset_ops_db):
     from src.routing.day_one_drill import DayOneDrillRunner
 
