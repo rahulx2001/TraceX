@@ -4,7 +4,7 @@ import zipfile
 
 import pytest
 
-from scripts.public_model_replay import FILES, TABLES, json_bytes, result_differences, sha, unpack, validate_inputs
+from scripts.public_model_replay import FILES, TABLES, json_bytes, result_comparison, result_differences, sha, unpack, validate_inputs
 from scripts.review_evidence_check import validate_review
 
 
@@ -97,3 +97,25 @@ def test_replay_diagnostics_preserve_small_numeric_and_campaign_differences():
     assert {d['path'] for d in differences} == {
         '$.alerts[0].matched_campaigns', '$.alerts[0].score', '$.hits'}
     assert list(result_differences(expected, dict(reversed(list(expected.items()))))) == []
+
+
+def test_replay_allows_only_finite_diagnostic_tail_roundoff():
+    expected = {'method': {'alert_details': [{'tail_13': 0.014435871426451197}], 'campaign_recall': 0.625}}
+    actual = {'method': {'alert_details': [{'tail_13': 0.014435871426450975}], 'campaign_recall': 0.625}}
+    comparison = result_comparison(actual, expected)
+    assert comparison['mismatches'] == []
+    assert comparison['tail_roundoff_differences'] == 1
+    # Even a tiny difference in a reported metric must fail.
+    actual['method']['campaign_recall'] += 1e-14
+    assert result_comparison(actual, expected)['mismatches'][0]['path'] == '$.method.campaign_recall'
+    actual['method']['campaign_recall'] = 0.625
+    for invalid in (0.014436, float('nan'), float('inf'), '0.014435871426451197'):
+        actual['method']['alert_details'][0]['tail_13'] = invalid
+        assert result_comparison(actual, expected)['mismatches']
+
+
+def test_tail_tolerance_cannot_hide_configuration_or_reference_changes():
+    expected = {'selected': {'config': {'tail_13': 0.05}}, 'random_reference': {'draws': [{'hits': 5}]}}
+    actual = {'selected': {'config': {'tail_13': 0.05 + 1e-14}}, 'random_reference': {'draws': [{'hits': 4}]}}
+    assert {d['path'] for d in result_comparison(actual, expected)['mismatches']} == {
+        '$.selected.config.tail_13', '$.random_reference.draws[0].hits'}

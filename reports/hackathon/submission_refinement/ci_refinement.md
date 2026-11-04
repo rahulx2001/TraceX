@@ -34,3 +34,24 @@ status will be established by the actual GitHub run after the workflow is pushed
 The first partitioned run passed shards 1 and 3 and both container jobs. It exposed a missing Pillow runtime declaration in the canonical EPS demo, a demo-service fixture environment leak, and a 120-second browser timeout for fifteen simulated contacts. Pillow is now declared as an application requirement; no package was installed on the owner’s Mac. Launcher tests explicitly restore initially absent variables, the health check explicitly tests offline mode, and the multi-record integration/browser checks use bounded batch-sized timeouts. No production model or research metric changes were made.
 
 At [ef3424d](frontline_shards_ef3424d.json), all four complete unit/contract partitions passed. The browser workflow progressed through the fifteen-contact simulation and report/review/export checks, then timed out while loading the full 213-owner canonical campaign. Browser checks now have their own bounded CI job with retained failure artifacts; the canonical batch gets an eight-minute limit. Unit correctness assertions and all fictional campaign outcomes remain intact.
+
+At [2524c84](ci_2524c84.json), all four complete Frontline partitions, the
+production browser/report/canonical-demo job, dashboard build and both Docker
+jobs passed. The overall workflow failed in the public model replay. A subsequent
+strict diagnostic run at `f659c54852ec1d8120a75017b4a7c05e3e35e44a` identified
+98 floating-point differences; the first twelve were tail probabilities at
+approximately `1e-15` absolute scale. Linux and macOS use different platform
+math implementations.
+
+The public replay comparison now permits at most `1e-12` absolute difference
+only for `tail_4`, `tail_13` and `tail_26` diagnostic fields in selected/baseline
+alert details. Counts, metrics, alert identities, campaign matches, configuration
+and all 100 random references still require exact equality. Changed input hashes,
+frozen source or outcome choices remain failures. The report exposes accepted
+roundoff counts and maximum difference. Seventeen standalone regression checks
+passed locally, including rejection of metric/configuration/reference changes,
+nonfinite values and larger tail differences. The local model replay also
+passed with zero accepted roundoff differences and zero provider calls.
+
+The final workflow conclusion must be read from the PR's current-head checks;
+the linked earlier receipts retain their actual failures and source commits.

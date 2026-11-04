@@ -44,6 +44,13 @@ method, count baseline, opportunity diagnostic and all random references match
 the saved result, including **5/8 campaign matches and 6/18 mature-alert matches**.
 Those are scoped historical results; the candidate was not promoted.
 
+Counts, alert choices, dates, campaign IDs, metrics and all random-reference
+results require exact equality. Only `tail_4`, `tail_13` and `tail_26` diagnostic
+probabilities in the selected/count-baseline alert details allow an absolute
+difference of `1e-12`, for platform differences in `math.lgamma`. The report
+lists the number and largest size of accepted differences. The detector runs
+unchanged, so this tolerance cannot excuse a changed alert or reported result.
+
 ## Public payload and original inputs
 
 | Payload | Retained information |

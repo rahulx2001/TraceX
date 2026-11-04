@@ -13,8 +13,10 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
+import re
 import shutil
 import tempfile
 import urllib.request
@@ -27,6 +29,7 @@ RELEASE = REPORT/'public_replay_release.json'
 CACHE = ROOT/'data/public_replay/fuel-v1'
 MAX_BUNDLE_BYTES = 40_000_000
 RELEASE_PREFIX = 'https://github.com/rahulx2001/TraceX/releases/download/'
+TAIL_ABSOLUTE_TOLERANCE = 1e-12
 TABLES = {
     'development': ['datea', 'odino', 'make', 'component', 'include_record'],
     'holdout': ['datea', 'odino', 'make', 'component', 'include_record'],
@@ -70,6 +73,30 @@ def result_differences(actual, expected, path='$'):
             yield from result_differences(left, right, f'{path}[{index}]')
     elif actual != expected:
         yield {'path': path, 'actual': actual, 'expected': expected}
+
+
+def result_comparison(actual, expected):
+    """Accept only platform roundoff in diagnostic tail probabilities.
+
+    Counts, chosen alerts, campaign IDs, dates, metrics, configuration and all
+    random-reference outcomes still require exact equality. The frozen
+    detector runs unchanged before this comparison.
+    """
+    mismatches, roundoff = [], []
+    for difference in result_differences(actual, expected):
+        left, right = difference.get('actual'), difference.get('expected')
+        tail_path = re.fullmatch(
+            r'\$\.(method|count_baseline)\.alert_details\[\d+\]\.tail_(4|13|26)', difference['path'])
+        if (tail_path and isinstance(left, float) and isinstance(right, float)
+                and math.isfinite(left) and math.isfinite(right)
+                and abs(left-right) <= TAIL_ABSOLUTE_TOLERANCE):
+            roundoff.append(abs(left-right))
+        else:
+            mismatches.append(difference)
+    return {'mismatches': mismatches, 'exact_non_tail_fields': not mismatches,
+            'tail_probability_absolute_tolerance': TAIL_ABSOLUTE_TOLERANCE,
+            'tail_roundoff_differences': len(roundoff),
+            'maximum_tail_absolute_difference': max(roundoff, default=0.0)}
 
 
 def descriptor(root=ROOT):
@@ -271,12 +298,14 @@ def verify(directory=CACHE, *, root=ROOT):
               'interpretation':expected['interpretation'], 'human_validation':expected['human_validation'],
               'promoted_to_production':False}
     expected.pop('evaluated_at',None)
-    if actual != expected:
-        differences = list(result_differences(actual, expected))
+    comparison = result_comparison(actual, expected)
+    differences = comparison.pop('mismatches')
+    if differences:
         raise ValueError('Public model/alert replay differs from the saved result: '+json.dumps({
             'numpy': np.__version__, 'pandas': pd.__version__,
             'mismatch_count': len(differences), 'first_mismatches': differences[:12]}, sort_keys=True))
     return {'ok':True, 'validation':'saved local-student predictions and alert evaluation match the original saved result',
+            'comparison': comparison,
             'matched_sections':['method','count_baseline','evidence_ceiling','all 100 random references'],
             'campaign_hits':measured['hits'], 'campaigns':measured['campaigns'],
             'matching_mature_alerts':measured['confirmed_mature_alerts'], 'mature_alerts':measured['mature_alerts'],
