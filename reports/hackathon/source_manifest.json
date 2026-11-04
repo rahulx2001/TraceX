@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "recorded_at": "2026-11-03T17:27:00.386969+00:00",
+  "recorded_at": "2026-11-04T17:32:09.470332+00:00",
   "committed": true,
   "base_commit": "de3c48394675636e3b5b030dfc24ca32c37d8ddd",
-  "source_commit": "9ef3e100712d17461093323143bc088ebb6be587",
-  "source_tree": "a49a1f607724895962b6bc2b19010df5944ca0e2",
+  "source_commit": "b2958186279734c7633a817f667f2b4b1b9061f7",
+  "source_tree": "c0b6a6ccf164838db052362b210d455270adbce0",
   "scope": "Tracked source/artifacts at source_commit; excludes local credentials, data caches, generated media and this manifest. The imported baseline remains reused work.",
   "manifest_self_excluded": "reports/hackathon/source_manifest.json",
   "event_delta": [
@@ -486,6 +486,10 @@
     },
     {
       "status": "M",
+      "path": "dashboard/vite.config.js"
+    },
+    {
+      "status": "M",
       "path": "docker-compose.hackathon.yml"
     },
     {
@@ -511,6 +515,10 @@
     {
       "status": "A",
       "path": "docs/evaluation-readiness.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/meta-api-usage.md"
     },
     {
       "status": "A",
@@ -1247,6 +1255,10 @@
     {
       "status": "A",
       "path": "reports/hackathon/voice_repair_2026_10_30/release_verification.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/improvement/CLEAN_CLONE_VERIFICATION.json"
     },
     {
       "status": "A",
@@ -2302,6 +2314,10 @@
     },
     {
       "status": "A",
+      "path": "reports/improvement/human_reviews/round4/ROBUSTNESS.json"
+    },
+    {
+      "status": "A",
       "path": "reports/improvement/human_reviews/round4/accuracy_v2.json"
     },
     {
@@ -2338,6 +2354,26 @@
     },
     {
       "status": "A",
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/EVALUATION.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/README.md"
+    },
+    {
+      "status": "A",
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/human_labelled.csv"
+    },
+    {
+      "status": "A",
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/human_review_provenance.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/original_review_export.json"
+    },
+    {
+      "status": "A",
       "path": "reports/improvement/human_reviews/round4/third_review/aryan/human_labelled.csv"
     },
     {
@@ -2371,6 +2407,10 @@
     {
       "status": "A",
       "path": "reports/improvement/human_reviews/round4/third_review/ram/original_review_export.json"
+    },
+    {
+      "status": "A",
+      "path": "reports/improvement/human_reviews/round5/PREREGISTRATION.md"
     },
     {
       "status": "A",
@@ -4456,9 +4496,9 @@
     {
       "path": "HACKATHON.md",
       "mode": "100644",
-      "git_blob": "167a8c02b5d23ffe8965625718ff484985e78b45",
-      "bytes": 14356,
-      "sha256": "52776adf76322531cacc8eac58c1df21e1db11aba9934e9e926647d99e4b80c0"
+      "git_blob": "eb7cb9773603e5adbd2e2c3dbd80fff080decfc5",
+      "bytes": 14972,
+      "sha256": "a597916b3d1fc10b5a900059d919fa9e4c2631e93f9f03d17c655e98811d58ae"
     },
     {
       "path": "HACKATHON_FIX_PROMPTS.md",
@@ -4484,16 +4524,16 @@
     {
       "path": "LOTGUARD_NARRATION.txt",
       "mode": "100644",
-      "git_blob": "1a22e905f614151b400b80081aa4de1a71d03676",
-      "bytes": 2124,
-      "sha256": "1724a380971a163f473602a5e8c597309fe94b4eb06c0835f051f1a27b5ce97d"
+      "git_blob": "3b5643cb966ed8cc8327ac747b1392f012cedcb0",
+      "bytes": 2126,
+      "sha256": "9a04f121f95e35e25e3a1010a82d420844ff352487a0ae17aab941ab88c7475b"
     },
     {
       "path": "LOTGUARD_VIDEO_SCRIPT.md",
       "mode": "100644",
-      "git_blob": "ec5b8d8408c6e2e70aefa6b41bec4ec575717def",
-      "bytes": 14309,
-      "sha256": "c4a267c8fc4aa0fe0b3a61c1d492574e8eee449fe26d98dcc212d2211870acbf"
+      "git_blob": "8ddc654e289b2ef55e9f25aa539ba6e529486efa",
+      "bytes": 14299,
+      "sha256": "d1d38a7245e1d0556968dec70ead4035370f57b77548791c35d8e584251f5979"
     },
     {
       "path": "Makefile",
@@ -4512,9 +4552,9 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "git_blob": "8cc4b632eb5fb5abaccad94120e8bb7030b9e5bc",
-      "bytes": 23040,
-      "sha256": "6cb42ff985b10d9f7ae3cdac7492780c9918e024d9d8252e875f6182f9714c85"
+      "git_blob": "4484671823c195126249ce4a4d3b9ef32b0f2e4e",
+      "bytes": 23594,
+      "sha256": "000daa467b41214863cfbea0f4c857d739d070127062ac5033bae49fdf8bea6c"
     },
     {
       "path": "dashboard/e2e/api.aggressive.spec.js",
@@ -4680,9 +4720,9 @@
     {
       "path": "dashboard/routes/AiStatus.jsx",
       "mode": "100644",
-      "git_blob": "b906bbb15ff67b14bf085e815d1b6edb6a9cc9eb",
-      "bytes": 6359,
-      "sha256": "eedc739806d953484c53395f8ef912c3b86c4ce4cbb720e77df4d74c076d8671"
+      "git_blob": "92ae7b94758a9aaecf4c44605bc76b8aad7a0a25",
+      "bytes": 6604,
+      "sha256": "fd38208cafd7e4c697735900dc4c8f86c6bff115f865dee8de3f488a84dfb599"
     },
     {
       "path": "dashboard/routes/AiTools.jsx",
@@ -4953,9 +4993,9 @@
     {
       "path": "dashboard/scripts/assert-signin-reachable.mjs",
       "mode": "100644",
-      "git_blob": "7ef5bcc2b9f44d944cb74175914bdc90ae2c6f23",
-      "bytes": 15445,
-      "sha256": "d613af227b6f5be86b7f6ecb8f31be3a8101a868d464fbbc1b34fad7961304e5"
+      "git_blob": "1b4caba6a05d5b3147bf5ea2abe0575d5bedb321",
+      "bytes": 15687,
+      "sha256": "5f8bd529e8b03ddbaaf4f9169f786c28d2efcfeac5b06753f80ca9cba8d4444c"
     },
     {
       "path": "dashboard/scripts/assert-tts-voice.mjs",
@@ -5100,9 +5140,9 @@
     {
       "path": "dashboard/src/App.jsx",
       "mode": "100644",
-      "git_blob": "ebe628c1a031bca170663898039363e9f43348a8",
-      "bytes": 33325,
-      "sha256": "ec129238f712b60b7beedbacf1ebbb83b1e150426b823b90d624ab0ffe055486"
+      "git_blob": "a89ef85694608a3348d062702ffb6fc1af4cd351",
+      "bytes": 33458,
+      "sha256": "d32f8aa55beeb7f0161a508da901abce90890cf59dc75690b01fe5ef6604a372"
     },
     {
       "path": "dashboard/src/ai/AiModeBadge.jsx",
@@ -5128,9 +5168,9 @@
     {
       "path": "dashboard/src/ai/CampaignInvestigation.jsx",
       "mode": "100644",
-      "git_blob": "6d8520775545ea23f6ab28a7d0865c5bd0ae4478",
-      "bytes": 32540,
-      "sha256": "f903885336f2139c4cf833514489891eea9ab359bdf7ad7a97229bff3aa2bfed"
+      "git_blob": "2f46ad7d35ed81d621c53af6e4e130b0f2cbcad7",
+      "bytes": 33600,
+      "sha256": "7a27252fdb5426d7fab6e127aac7d711949535f3d6182dbb986c7417d0133982"
     },
     {
       "path": "dashboard/src/ai/CaseEvidence.jsx",
@@ -5492,9 +5532,9 @@
     {
       "path": "dashboard/vite.config.js",
       "mode": "100644",
-      "git_blob": "25eb1c1dde825382ab5f22cdc9b803886e23158a",
-      "bytes": 540,
-      "sha256": "cb7a76ba8e66f3d16d859e7b978b7554984878f0cd2ad6f81584fecfa3da7c34"
+      "git_blob": "0aa3d4a2f3679a66541198e33ca1c07d91074d61",
+      "bytes": 906,
+      "sha256": "fa5fe50dd158166e552255dd85a0615c560476bbc1c837fdc8c5372a78f79ec8"
     },
     {
       "path": "docker-compose.hackathon.yml",
@@ -5756,6 +5796,13 @@
       "sha256": "db7c3425efec7f8c2467e50e58bd9ba8e3e8c241f511aa5506f42255a5a59f1f"
     },
     {
+      "path": "docs/meta-api-usage.md",
+      "mode": "100644",
+      "git_blob": "eecc3f06c33a20015f1574722110ffc1b02aa392",
+      "bytes": 14704,
+      "sha256": "998280d5e7af60a7c89f4cbc86a9e07b742e3ad41f22ea2f550cdd8fdfaad7f2"
+    },
+    {
       "path": "docs/models/minilm-l6-category-zero-shot-card.md",
       "mode": "100644",
       "git_blob": "8dcff91ca7b214b9383c8aaa7e77eef003dfc046",
@@ -5905,9 +5952,9 @@
     {
       "path": "docs/sourced-investigation.md",
       "mode": "100644",
-      "git_blob": "7cd6cec7487732c726f72324edeed1c060771562",
-      "bytes": 17551,
-      "sha256": "12e818b20d4b3de7b65e8de9cf4855e866bd13c957b503caee285a30691a65cf"
+      "git_blob": "57829ef3c72cced95924c047f9deece13f994f46",
+      "bytes": 17858,
+      "sha256": "3bf8186a7b32faac2df0e0d5a74ce2bc129f91e934d893c966d81696fc3b0405"
     },
     {
       "path": "docs/ui_qa_audit_2026-07-31.md",
@@ -7333,9 +7380,9 @@
     {
       "path": "reports/hackathon/CLAIM_INDEX.md",
       "mode": "100644",
-      "git_blob": "4ec0b0c9a7be4caf95112628d7023d3227d09711",
-      "bytes": 5980,
-      "sha256": "37ad9919e57d39f57a68ecfd7476df50e75a5dd462cc8b5f98a863b6c897b58e"
+      "git_blob": "d20fe1c131308e8af5d6f83e5073f337d0bd4328",
+      "bytes": 6009,
+      "sha256": "e26195471c5010d69c2e9ddcce20f9351a82500305be38416f66c34c6905d6df"
     },
     {
       "path": "reports/hackathon/COMPETITIVENESS_REVIEW_2026-10-30.md",
@@ -7361,9 +7408,9 @@
     {
       "path": "reports/hackathon/claim_index.json",
       "mode": "100644",
-      "git_blob": "9e7b022c76d6801a742dc6526aa0a451a69164e0",
-      "bytes": 15689,
-      "sha256": "8250615ef40bf656341a3e93e59813fd80b97ee39db21ecb0643553f4145146d"
+      "git_blob": "4f9224d8f7665fd2012121fc7431060c8f32e482",
+      "bytes": 15712,
+      "sha256": "873233fd28e2b4be0e3afb4b7380948fa5cc9f8dfb4084061d6db09fae158d0a"
     },
     {
       "path": "reports/hackathon/container_validation/41f7d87-arm64-attempt1.browser.log",
@@ -8029,6 +8076,13 @@
       "git_blob": "e6325c1aebe82bce5b657ae6fb5c2aae69ffeb2b",
       "bytes": 1502,
       "sha256": "7b67b6d7678bf6dbd129c92cfda43db2d5e41db8d3e78671dbc21c64e5bbd639"
+    },
+    {
+      "path": "reports/improvement/CLEAN_CLONE_VERIFICATION.json",
+      "mode": "100644",
+      "git_blob": "0daa0bf037d686bb4f2c8fa6bac35e66b7b25db2",
+      "bytes": 3289,
+      "sha256": "f824f0e6b4860db5a49bfe8f152d5e84843ef763f3966fbcaf6173559834d82d"
     },
     {
       "path": "reports/improvement/FINAL_REVIEW.md",
@@ -9867,9 +9921,16 @@
     {
       "path": "reports/improvement/human_reviews/round4/EVALUATION.md",
       "mode": "100644",
-      "git_blob": "991c147cf123f1ec3a24e417db93d20826ed6601",
-      "bytes": 2720,
-      "sha256": "72f04137d51b6fcfa3c19a6aa3fd490112feaca0303149fd89bbbfba47e9115d"
+      "git_blob": "2e173f9f044c13881b2e39e48b925e75a2ed7994",
+      "bytes": 2780,
+      "sha256": "640e19d7a70507afd81705f30a3c47e392c1fde435b55c49d1088e1f8975751b"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/ROBUSTNESS.json",
+      "mode": "100644",
+      "git_blob": "0fd28181dbb26bd093b17618a09ead354ade9a13",
+      "bytes": 1968,
+      "sha256": "7afe4aa1ed02cbf8d00f64e70bfc331d50d485135af1a092b67a8a0821d53090"
     },
     {
       "path": "reports/improvement/human_reviews/round4/accuracy_v2.json",
@@ -9888,9 +9949,9 @@
     {
       "path": "reports/improvement/human_reviews/round4/adjudication/decision_trail.json",
       "mode": "100644",
-      "git_blob": "32d4853f865be6fe2c309f8c703711d593aa4b21",
-      "bytes": 28362,
-      "sha256": "41f91a1031de77f62c724a3a7e668ba5849e36c158da65c667b2c2ace510b8d6"
+      "git_blob": "e1cc8b324152d2a8bea2a2a314d412abbc9a2c62",
+      "bytes": 28597,
+      "sha256": "2978b975a4b37c51453087f4f7256b0e4632ba057df806788a1bdbc2f5203f85"
     },
     {
       "path": "reports/improvement/human_reviews/round4/agreement_before_adjudication.json",
@@ -9930,9 +9991,44 @@
     {
       "path": "reports/improvement/human_reviews/round4/review_status.json",
       "mode": "100644",
-      "git_blob": "b8471388d85fb14c8a2210312f8ee27caf6f0d69",
-      "bytes": 1341,
-      "sha256": "d161d77dea3042ebaa6b59cacfa238eaaee401819dc4f88bc937a6a14dd34881"
+      "git_blob": "a0edea9a87a17d0d55bc1ee37f9e516a526601f3",
+      "bytes": 1570,
+      "sha256": "9dd0d10d105e7444de238caa8ff69763c045195601611e22f6394628452ba506"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/EVALUATION.json",
+      "mode": "100644",
+      "git_blob": "28654b04b9d03a9a93980b12265b220e604c2535",
+      "bytes": 1383,
+      "sha256": "a4c0f35c4f33dc865717ada51bc7e6beb7f8f70dfbfa3686d5e498cc87dd696c"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/README.md",
+      "mode": "100644",
+      "git_blob": "71753ac487848e87599b19a48aab87cba79dfd60",
+      "bytes": 803,
+      "sha256": "6e8bcc6cea1b93e2b4b2a570a62d07f80feb613e2ca812c4392bd2ce3730e1bb"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/human_labelled.csv",
+      "mode": "100644",
+      "git_blob": "dc2f54fce16d529a6a5f99f9fa6e3f39ef8e09e8",
+      "bytes": 402150,
+      "sha256": "a16c773bac71529203576fa5ace767367500ce012aadecc5e9f672ff154a2226"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/human_review_provenance.json",
+      "mode": "100644",
+      "git_blob": "c07016e832b9613eec8ac577d3ed7a3dd560a57a",
+      "bytes": 496,
+      "sha256": "c91a7c670225d0d2b742759619a2b5d5736a7e09911c341ae3b8ad54d86b2e72"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round4/third_review/abhishek/original_review_export.json",
+      "mode": "100644",
+      "git_blob": "73e6f8839effbbae3a55ca23288d2c5a30500aaa",
+      "bytes": 86379,
+      "sha256": "a696ef3ea8dcf3cba87ab13da1f19543cb8b68dea0af321adc850b2abd960179"
     },
     {
       "path": "reports/improvement/human_reviews/round4/third_review/aryan/human_labelled.csv",
@@ -9996,6 +10092,13 @@
       "git_blob": "bea057f759eaeca3292bf686ce41ed0aa51f8eec",
       "bytes": 37292,
       "sha256": "412ee3bcb26d69b1b4c22868ff7648e2716245c923f5df84a3a0b3a4d593d92e"
+    },
+    {
+      "path": "reports/improvement/human_reviews/round5/PREREGISTRATION.md",
+      "mode": "100644",
+      "git_blob": "2a743cf68884266944f82eb173c07dd2dcf50c4a",
+      "bytes": 1697,
+      "sha256": "58d9a32fe92e52d3db116d87d60fb27174e6bdc934c44620091abe46dde3f2f6"
     },
     {
       "path": "reports/improvement/integrity_release_pre_docs.json",
@@ -12555,9 +12658,9 @@
     {
       "path": "scripts/build_claim_index.py",
       "mode": "100644",
-      "git_blob": "e059dedc6c26159915c202931bd8eb06bb10b295",
-      "bytes": 16380,
-      "sha256": "68fbb770ea8da8a4294ada4b96ebc47fbd29f913ae08946c4d6444dd547662d6"
+      "git_blob": "251f113a73c0c0ea756d406d36968833d3c5c23a",
+      "bytes": 16409,
+      "sha256": "929e453e41c4ac4be098275749986c87cd1e76a84d40312e76bcb7b8919622f5"
     },
     {
       "path": "scripts/build_full_rephrased_json.py",
@@ -12905,9 +13008,9 @@
     {
       "path": "scripts/public_replay.py",
       "mode": "100644",
-      "git_blob": "0c39e20cc31ccbf813017e767c46dd312ebc31c9",
-      "bytes": 6548,
-      "sha256": "07ed1a35af16688848c278982c1a47cef8a5cc23b63f2052d61ec9160b90f15e"
+      "git_blob": "f52448ead2c823c70085e4b16da502376ee7bf35",
+      "bytes": 6542,
+      "sha256": "7c577f13e2639ec534b07dcb8cdaf34024448381d1a15badb53cf73329b37570"
     },
     {
       "path": "scripts/purge_source.py",
@@ -13318,16 +13421,16 @@
     {
       "path": "src/ai_layer/eps_demo.py",
       "mode": "100644",
-      "git_blob": "cd387028931e56ee4d634fe342293c8113802434",
-      "bytes": 20093,
-      "sha256": "e58a0dddceb795e999b4ab863be90699c719a182aa72445d397d89d48433946a"
+      "git_blob": "1714165797390bfa008011df25bfe02591d33d9e",
+      "bytes": 20082,
+      "sha256": "036fa6cb5210074cff87f50da3ab7e1d4c206d98c10a81ce434cb58ddf11e01a"
     },
     {
       "path": "src/ai_layer/eps_demo_evaluation.json",
       "mode": "100644",
-      "git_blob": "513c1e69a2e6f12ed2d5c883fb9a7dcc0e81bc2b",
-      "bytes": 1389,
-      "sha256": "07e0dca6d3060b44c758ea91ece87cc77a01ccaf99ff15e02c0533d9086f7804"
+      "git_blob": "1646244d70b71cf59efe312c2a7904fea7d6c6b0",
+      "bytes": 1383,
+      "sha256": "40fbe7bd087bef8a980339aebc19da3f2e24fc772d8638fe02341157f0257b03"
     },
     {
       "path": "src/ai_layer/evidence.py",
@@ -16979,9 +17082,9 @@
     {
       "path": "tests/test_submission_artifacts.py",
       "mode": "100644",
-      "git_blob": "defa478e90701eae9256121b197c84bdef1ca8a7",
-      "bytes": 3254,
-      "sha256": "b01e22aa35e8121d58ace8f068598bcea52160df2e3eebb5a8d0fb70385f1c84"
+      "git_blob": "8273352c1311a003517f7cf8fac5951705e755a0",
+      "bytes": 3248,
+      "sha256": "f6276a4c041a2476751ffbc87a21b756730443f65fc1d3c29c97d7ea0d7d8db2"
     },
     {
       "path": "tests/test_voice_invariants.py",
