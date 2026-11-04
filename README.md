@@ -310,6 +310,9 @@ Endpoints: `GET /api/ai/status`, `POST /api/ai/language/normalize`,
 `POST|GET /api/cases/{id}/evidence`, `GET /api/evidence/{id}/file`, `POST /api/evidence/{id}/analyze`,
 `POST /api/ai/demo/seed` (only with `AI_DEMO_ENABLED=1`), `POST /api/ai/demo/safety-contrast`.
 
+How extensively Meta APIs are used — models, call sites, live proof, telemetry,
+guardrails and limits — is documented in [`docs/meta-api-usage.md`](docs/meta-api-usage.md).
+
 Backtest on real NHTSA data: `reports/nhtsa/backtest_safety_2015_2024.md`. The
 full-window **production** detector is in-sample: 535 / 1,172 campaigns (45.6%),
 median 11 weeks. The **tuned** OOS config scored 62.7% on 2021–2024 (median 8
