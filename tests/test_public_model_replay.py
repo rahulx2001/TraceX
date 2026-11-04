@@ -4,7 +4,7 @@ import zipfile
 
 import pytest
 
-from scripts.public_model_replay import FILES, TABLES, json_bytes, sha, unpack, validate_inputs
+from scripts.public_model_replay import FILES, TABLES, json_bytes, result_differences, sha, unpack, validate_inputs
 from scripts.review_evidence_check import validate_review
 
 
@@ -88,3 +88,12 @@ def test_out_of_taxonomy_review_is_rejected():
             'reviewer':'Explicit test fixture','reviews':[{'sample_id':'S001','label':'invented_failure'}]}
     with pytest.raises(ValueError,match='outside the frozen taxonomy'):
         validate_review(export,sample,'frozen')
+
+
+def test_replay_diagnostics_preserve_small_numeric_and_campaign_differences():
+    expected = {'alerts': [{'score': 1.0, 'matched_campaigns': ['real-campaign']}], 'hits': 1}
+    actual = {'hits': 0, 'alerts': [{'score': 1.0 + 1e-14, 'matched_campaigns': []}]}
+    differences = list(result_differences(actual, expected))
+    assert {d['path'] for d in differences} == {
+        '$.alerts[0].matched_campaigns', '$.alerts[0].score', '$.hits'}
+    assert list(result_differences(expected, dict(reversed(list(expected.items()))))) == []

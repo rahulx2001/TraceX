@@ -193,6 +193,17 @@ Enterprise Ops, Platform, Insights, and Pack Builder are extra surfaces on the s
 | `make test` | `tests/frontline/` in a temp database |
 | `make pack-init SRC=file.csv PACK=my_pack` | Draft a pack from CSV. Review the mapping before lint. |
 
+The complete `make test` suite includes optional research-model tests. In a
+development environment, install their existing pinned dependencies separately:
+
+```bash
+python -m pip install --target .ml-deps -r requirements-ml-improvement.txt
+make test
+```
+
+GitHub CI installs this directory on its runners and divides all Frontline test
+files across four jobs. The application does not require `.ml-deps` to run.
+
 Audit export: `GET /api/frontline/audits/export?start=YYYY-MM-DD&end=YYYY-MM-DD`.
 
 Optional narration uses `src/ai/` only when `FRONTLINE_LLM_ENABLED=1` and a provider key is set. The default path is deterministic and does not call a model.

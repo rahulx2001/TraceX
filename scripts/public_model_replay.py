@@ -54,6 +54,24 @@ def canonical_hash(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
 
+def result_differences(actual, expected, path='$'):
+    """Locate strict mismatches without discarding fields or numeric precision."""
+    if isinstance(actual, dict) and isinstance(expected, dict):
+        for key in sorted(actual.keys() | expected.keys()):
+            child = f'{path}.{key}'
+            if key not in actual or key not in expected:
+                yield {'path': child, 'reason': 'missing or unexpected field'}
+            else:
+                yield from result_differences(actual[key], expected[key], child)
+    elif isinstance(actual, list) and isinstance(expected, list):
+        if len(actual) != len(expected):
+            yield {'path': path, 'actual_length': len(actual), 'expected_length': len(expected)}
+        for index, (left, right) in enumerate(zip(actual, expected)):
+            yield from result_differences(left, right, f'{path}[{index}]')
+    elif actual != expected:
+        yield {'path': path, 'actual': actual, 'expected': expected}
+
+
 def descriptor(root=ROOT):
     body = json.loads((root/MANIFEST).read_text())
     if body['schema_version'] != 1 or set(body['files']) != FILES:
@@ -254,7 +272,10 @@ def verify(directory=CACHE, *, root=ROOT):
               'promoted_to_production':False}
     expected.pop('evaluated_at',None)
     if actual != expected:
-        raise ValueError('Public model/alert replay differs from the saved result')
+        differences = list(result_differences(actual, expected))
+        raise ValueError('Public model/alert replay differs from the saved result: '+json.dumps({
+            'numpy': np.__version__, 'pandas': pd.__version__,
+            'mismatch_count': len(differences), 'first_mismatches': differences[:12]}, sort_keys=True))
     return {'ok':True, 'validation':'saved local-student predictions and alert evaluation match the original saved result',
             'matched_sections':['method','count_baseline','evidence_ceiling','all 100 random references'],
             'campaign_hits':measured['hits'], 'campaigns':measured['campaigns'],
