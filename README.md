@@ -5,6 +5,8 @@
 > 
 > **Meta Global AI Developer Hackathon:** **Indie developer track**, primarily **Build for Your World**. Meta's contribution is cited extraction and the choice of a bounded evidence lookup or follow-up. See [HACKATHON.md](HACKATHON.md), [ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and the [claim-to-artifact index](reports/hackathon/CLAIM_INDEX.md).
 
+**Meta AI tooling evidence:** Muse Spark interprets multilingual reports, chooses relevant record lookups, and drafts source-cited investigations that update with new evidence. [Read the Meta API usage guide](docs/meta-api-usage.md) for the model and endpoint map, six recorded investigation runs, historical classification outputs, execution traces, and verification steps.
+
 The primary user is an **automotive quality or service engineer** reviewing an owner complaint against installation and workshop records. TraceX is a single-tenant pilot: a **domain pack** (YAML + CSV) supplies the intake questions, safety rules and known issues. Prediction remains a scoped historical research result; accident reduction and investigator time savings have not been established.
 
 The product name is TraceX. API paths and environment variables still use `frontline` (`/api/frontline/*`, `FRONTLINE_*`).
