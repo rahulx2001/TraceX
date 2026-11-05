@@ -63,6 +63,9 @@ def main():
     parser.add_argument("--offline", action="store_true", help="Disable AI providers and background jobs for an offline replay")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
+    if not args.seed_only and not (root / "dashboard/dist/index.html").is_file():
+        parser.error("Dashboard build missing. Run 'npm ci --prefix dashboard' and "
+                     "'npm run build --prefix dashboard', then start the demo again.")
     sys.path.insert(0, str(root))
     configure_services(root, offline=args.offline or args.seed_only)
     state = (args.state or root / "data/hackathon/eps-b14").resolve()
@@ -105,6 +108,7 @@ def main():
     fixture["url"] = f"http://127.0.0.1:{args.port}/ui/{fixture['case_url']}"
     (state / "scenario.json").write_text(json.dumps(fixture, indent=2))
     print(fixture["message"], flush=True)
+    print(f"Start here: http://127.0.0.1:{args.port}/ui/#demo", flush=True)
     print(fixture["url"], flush=True)
     from src.ai_layer.config import ai_status
     service_status = ai_status()

@@ -6,8 +6,49 @@
 
 <!-- [AI-LAYER] mission line -->
 > **TraceX helps automotive quality and service engineers turn multilingual owner reports into source-cited investigations, reviewed next steps and inspectable repair evidence.**
-> 
-> **Meta Global AI Developer Hackathon:** **Indie developer track**, primarily **Build for Your World**. Meta's contribution is cited extraction and the choice of a bounded evidence lookup or follow-up. See [HACKATHON.md](HACKATHON.md), [ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and the [claim-to-artifact index](reports/hackathon/CLAIM_INDEX.md).
+
+## Try the offline demo
+
+Requirements: **Python 3.12** and **Node 20.19+ or 22.12+** with npm.
+Run these commands in a terminal; installation downloads the dependencies.
+
+```bash
+git clone https://github.com/rahulx2001/TraceX.git
+cd TraceX
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt -c requirements-lock.txt
+npm ci --prefix dashboard
+npm run build --prefix dashboard
+.venv/bin/python scripts/run_lotguard_demo.py --offline
+```
+
+Open **http://127.0.0.1:8770/ui/#demo** for **Report → Investigate → Review → Evidence**.
+Choose **Start a report →**, then **Type instead**. The offline workflow stores
+your report, supports manual review and exports the source evidence. It uses
+fictional campaign records, needs no API key or sign-in, and makes no provider
+calls. AI-generated interpretations require separately configured services.
+
+For the prepared case, open **http://127.0.0.1:8770/ui/#cases** and select
+**LOT ALERT**. Its simulated counts are explained in the
+[LotGuard walkthrough](LOTGUARD_DEMO_WALKTHROUGH.md).
+The launcher saves this demo under `data/hackathon/eps-b14`; restarting it
+preserves saved records. Stop the server with **Ctrl-C**.
+See [the complete first-run walkthrough and troubleshooting](docs/getting-started.md).
+
+## Current evidence
+
+The active [Round 4 historical classifier evaluation](reports/improvement/human_reviews/round4/EVALUATION.md)
+is **246/300 = 82.0% accuracy**, with **macro-F1 0.514 over 46 labels**.
+The always-`other_unclear` baseline is **222/300 = 74.0%**; on specific human
+labels, the classifier scores **60/78 = 76.9%**. The challenger scored
+**238/300 = 79.3%** and was rejected. All 43 adjudication decisions were
+AI-assisted and human-countersigned; reviewer blinding remains unconfirmed.
+Real-participant usefulness results remain pending.
+
+**Meta Global AI Developer Hackathon:** **Indie developer track**, primarily
+**Build for Your World**. See [HACKATHON.md](HACKATHON.md),
+[ELIGIBLE_WORK.md](ELIGIBLE_WORK.md) and the
+[claim-to-artifact index](reports/hackathon/CLAIM_INDEX.md).
 
 **Meta AI tooling evidence:** Muse Spark interprets multilingual reports, chooses relevant record lookups, and drafts source-cited investigations that update with new evidence. [Read the Meta API usage guide](docs/meta-api-usage.md) for the model and endpoint map, six recorded investigation runs, historical classification outputs, execution traces, and verification steps.
 
@@ -30,7 +71,7 @@ The product name is TraceX. API paths and environment variables still use `front
 
 To record the submission video, use [the three-minute script with exact clicks](LOTGUARD_VIDEO_SCRIPT.md) and [the narration-only text](LOTGUARD_NARRATION.txt).
 
-After installing the Python dependencies and building the dashboard below, run `.venv/bin/python scripts/run_lotguard_demo.py --offline` and open `http://127.0.0.1:8770/ui/#cases`. Select **LOT ALERT**, or use the direct case link printed by the launcher. This creates a separate fictional warehouse without an access key. To use configured AI services, save provider credentials only in your local `.env` and run the launcher without `--offline`. No credentials or local spend history are included in this repository.
+The [offline quickstart](#try-the-offline-demo) installs and builds everything needed for the walkthrough. To use configured AI services, save provider credentials only in your local `.env` and run the launcher without `--offline`. No credentials or local spend history are included in this repository.
 
 **Sourced Meta investigations:** the campaign's **Meta investigation** tab extracts cited observations, selects read-only evidence lookups, asks for missing information and updates a reviewable brief. Independent review packs and a timed reviewer study are prepared; human results are pending. See [the feature and comparison protocol](docs/sourced-investigation.md).
 
@@ -52,7 +93,7 @@ Two packs ship with small offline fixtures (10 records, 2 advisories, 3 clusters
 Requirements: Python 3.12 (the project's CI, Dockerfiles and judge setup target 3.12), Node 20.19+ or 22.12+, and a Chrome-family browser if you want microphone recognition.
 
 ```bash
-python -m venv .venv
+python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt -c requirements-lock.txt
 cp .env.example .env
@@ -70,7 +111,7 @@ uvicorn src.api.main:app --reload --port 8000
 Terminal 2 — dashboard (proxies `/api` and `/ws` to port 8000):
 
 ```bash
-cd dashboard && npm install && npm run dev
+cd dashboard && npm ci && npm run dev
 ```
 
 Open [http://127.0.0.1:8787/ui/](http://127.0.0.1:8787/ui/). Health check: [http://127.0.0.1:8000/health](http://127.0.0.1:8000/health). `/health` reports `single_worker: true`. Keep it that way. Live calls live in this process.
@@ -203,6 +244,20 @@ make test
 
 GitHub CI installs this directory on its runners and divides all Frontline test
 files across four jobs. The application does not require `.ml-deps` to run.
+
+To check the offline launcher and complete typed-report journey, install the
+test browser once and run the demo check:
+
+```bash
+npm exec --prefix dashboard -- playwright install chromium
+npm run test:demo --prefix dashboard
+```
+
+This builds the dashboard, starts the real offline launcher with temporary
+state, and verifies report storage, review, revision, reload and evidence export.
+`npm run test:signin --prefix dashboard` additionally checks authenticated roles
+and the broader UI contracts. Both prefer `.venv`, then `.venv-hackathon`;
+`E2E_PYTHON=/path/to/python` overrides the interpreter.
 
 Audit export: `GET /api/frontline/audits/export?start=YYYY-MM-DD&end=YYYY-MM-DD`.
 
@@ -358,13 +413,16 @@ the five-make fuel-system classification scope and preserves full recall vehicle
 coverage. A training-selected rolling detector is compared with equal-budget
 count/random references, including a sensitivity excluding explicit recall
 mentions. This is a retrospective reanalysis of a previously examined window;
-the old partial experiment is preserved. The finalized historical human review
-scores the current classifier at **255/300 = 85.0%**, with a **95% Wilson interval
-of 80.5%–88.6%**, across 29 components. All **31/31** disputed labels have supplied
-human adjudication. This rescores unchanged predictions against revised labels;
-it does not establish a newly improved model or fresh prospective validation.
-See the [finalized evaluation and provenance](reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/EVALUATION.md).
-These labels are evaluation-only and do not enter dashboard accuracy. Open
+the old partial experiment is preserved. The superseded Manish revision records
+**255/300 = 85.0%** against assisted, human-approved revised labels. Its 31
+decisions and original provenance remain in the
+[archival evaluation](reports/improvement/human_reviews/round1/revisions/manish_export4/finalized/EVALUATION.md).
+This is a re-scoring of unchanged predictions, not independent blinded evidence
+or a model improvement. The active historical evaluation is
+[Round 4: 246/300 = 82.0%, macro-F1 0.514](reports/improvement/human_reviews/round4/EVALUATION.md),
+with 43 human-countersigned adjudications and unconfirmed reviewer blinding.
+See the [review export inventory](reports/improvement/human_reviews/EXPORT_INDEX.md)
+for current, superseded and withdrawn evidence. Open
 `#defect-level` for the separately recorded comparison or run
 `python -m scripts.defect_verify` to replay it.
 

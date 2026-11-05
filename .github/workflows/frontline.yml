@@ -189,6 +189,11 @@ jobs:
         env:
           E2E_PYTHON: python
         run: npm run test:signin
+      - name: Documented offline launcher and complete first-run journey
+        working-directory: dashboard
+        env:
+          E2E_PYTHON: python
+        run: npm run test:demo
       - name: Retain isolated browser verification and failure artifacts
         if: always()
         uses: actions/upload-artifact@v4

@@ -1,6 +1,6 @@
 # Judge entry and authentication validation
 
-Start at `/ui/#demo`. An authenticated server opens credential entry, then returns to the requested page. The operator API key shown by `scripts/judge_setup.sh` permits operator work; it does not grant supervisor authority. Use **Have a supervisor session?** on `/ui/#signin` for the separately issued supervisor token. The server validates that token and exchanges it for an HttpOnly cookie. Sign-in remains available in open local mode, where anonymous access retains the `agent` role.
+Start at `/ui/#demo`. An authenticated server opens credential entry, then returns to the requested page. The operator API key shown by `scripts/judge_setup.sh` permits operator work; it does not grant supervisor authority. Use **Have a supervisor session?** on `/ui/#signin` for the separately issued supervisor token. The server validates that token and exchanges it for an HttpOnly cookie. Open local mode bypasses account forms and retains the `agent` role; old sign-in links return to their internal destination or the demo.
 
 The main judge entry is Report → Investigate → Review → Evidence. The earlier intake/LotGuard tour remains at `/ui/#legacy-demo`. Prepared campaign records are fictional; saved Meta output is explicitly replayed and is not a new inference.
 
@@ -10,7 +10,7 @@ Run the current production-build browser check from `dashboard/`:
 npm run test:signin
 ```
 
-This requires installed dependencies, a Playwright browser (`npx playwright install chromium`) and the local `.venv-hackathon` Python environment. `PLAYWRIGHT_CHANNEL=chrome` selects an installed Chrome; `E2E_PYTHON=/path/to/python` selects another environment with the project dependencies.
+This requires installed dependencies and a Playwright browser (`npx playwright install chromium`). The runner prefers `.venv`, then `.venv-hackathon`, then `python3` from PATH. `PLAYWRIGHT_CHANNEL=chrome` selects an installed Chrome; `E2E_PYTHON=/path/to/python` selects another environment with the project dependencies.
 
 The check builds into a new temporary directory and starts the actual API with temporary databases, an automotive mini-fixture, fresh test credentials and all model calls disabled. It verifies:
 
@@ -18,8 +18,12 @@ The check builds into a new temporary directory and starts the actual API with t
 - An invalid API key stays refused; a valid operator key is accepted without disk persistence unless selected.
 - An operator sees the server's refusal when attempting a real-campaign draft review.
 - An issued supervisor token becomes an HttpOnly cookie and permits a review whose saved actor matches the authenticated supervisor.
-- A real local text contact sends consent, a punctuation-free report, a denial and a year correction over WebSocket. Every turn remains citable. A recorded correction review becomes a linked revision without retyping, and the downloaded packet retains both reviews and the original turn IDs. This exercises manual fallback with model calls disabled; it does not establish model obedience to a correction.
-- Open local mode needs no credential, still exposes sign-in and retains `agent` authority.
+- A real local text contact begins from the demo entry and sends consent, a punctuation-free report, a denial and a year correction over WebSocket. Every turn remains citable. A recorded correction review becomes a linked revision without retyping, reload preserves that revision without a new run, and the downloaded packet retains both reviews and the original turn IDs. This exercises manual fallback with model calls disabled; it does not establish model obedience to a correction.
+- Open local mode needs no credential, bypasses sign-in/signup and retains `agent` authority.
+
+`npm run test:demo` separately checks the documented offline launcher from
+temporary state through the same report, correction, revision and export
+workflow. See the [first-run guide](getting-started.md).
 
 No developer credentials, running demo server, external service, model credit or human evaluation result is used. These are UI/authentication regressions, not speech-quality or productivity measurements. Temporary fixture records are explicitly fictional even though the permission test exercises the non-demo campaign policy.
 
