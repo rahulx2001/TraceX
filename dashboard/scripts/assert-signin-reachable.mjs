@@ -14,12 +14,13 @@ import { build } from "vite";
 const dashboard = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const root = path.dirname(dashboard);
 const temporary = await fs.mkdtemp(path.join(os.tmpdir(), "tracex-signin-browser-"));
-const dist = path.join(temporary, "ui");
+const offlineDemo = process.argv.includes("--offline-demo");
+// The documented launcher serves dashboard/dist. Exercise that same path.
+const dist = offlineDemo ? path.join(dashboard, "dist") : path.join(temporary, "ui");
 const visuals = path.join(os.tmpdir(), "tracex-entry-ui-review");
-// Prefer the project venv when present; fall back to PATH python3 so this
-// gate runs in a fresh clone that has no .venv-hackathon.
-const venvPython = path.join(root, ".venv-hackathon/bin/python");
-const python = process.env.E2E_PYTHON || (existsSync(venvPython) ? venvPython : "python3");
+const venvPython = [".venv", ".venv-hackathon"]
+  .map(name => path.join(root, name, "bin/python")).find(existsSync);
+const python = process.env.E2E_PYTHON || venvPython || "python3";
 const children = [];
 let browser;
 let passed = false;
@@ -32,18 +33,23 @@ async function startServer(mode) {
   const port = listener.address().port;
   await new Promise(resolve => listener.close(resolve));
   const state = path.join(temporary, mode);
-  const child = spawn(python, [path.join(dashboard, "scripts/signin-test-server.py"),
-    "--state", state, "--dist", dist, "--port", String(port), "--mode", mode], { cwd: root, stdio: ["ignore", "pipe", "pipe"] });
+  const launcher = mode === "offline";
+  const args = launcher
+    ? [path.join(root, "scripts/run_lotguard_demo.py"), "--offline", "--state", state, "--port", String(port)]
+    : [path.join(dashboard, "scripts/signin-test-server.py"),
+      "--state", state, "--dist", dist, "--port", String(port), "--mode", mode];
+  const child = spawn(python, args, { cwd: root, stdio: ["ignore", "pipe", "pipe"] });
   children.push(child);
   let output = "", startupError, lastHealth = "unreachable";
   child.once("error", error => { startupError = error; });
   for (const stream of [child.stdout, child.stderr]) stream.on("data", data => { output = (output + data).slice(-8000); });
   const base = `http://127.0.0.1:${port}`;
-  for (let attempt = 0; attempt < 150; attempt++) {
+  const deadline = Date.now() + (launcher ? 180000 : 30000);
+  while (Date.now() < deadline) {
     if (startupError || child.exitCode !== null) throw startupError || new Error(`API did not start: ${output}`);
     try {
       const health = await fetch(`${base}/health`, { signal: AbortSignal.timeout(1000) });
-      if (health.ok) return { base, fixture: JSON.parse(await fs.readFile(path.join(state, "fixture.json"), "utf8")) };
+      if (health.ok) return { base, fixture: JSON.parse(await fs.readFile(path.join(state, launcher ? "scenario.json" : "fixture.json"), "utf8")) };
       lastHealth = `${health.status}: ${await health.text()}`;
     } catch { /* allow bounded startup */ }
     await new Promise(resolve => setTimeout(resolve, 200));
@@ -86,7 +92,25 @@ try {
       } }] : [] });
   if (missingRouteControl) console.log("NEGATIVE CONTROL: sign-in registry entry omitted only from this temporary build; browser assertions must fail.");
   browser = await chromium.launch(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {});
-  if (process.argv.includes("--eps-only")) {
+  if (offlineDemo) {
+    const offline = await startServer("offline");
+    const local = await isolatedPage(offline.base);
+    await fs.mkdir(visuals, { recursive: true });
+    await local.page.goto(`${offline.base}/ui/#demo`);
+    await expect(local.page.getByTestId("demo-ai-notice")).toContainText("AI assistance is off");
+    await expect(local.page.getByTestId("signin-page")).toHaveCount(0);
+    const health = await (await local.context.request.get(`${offline.base}/health`)).json();
+    assert.equal(health.auth_required, false);
+    const { runReportHandoffTest } = await import("./report-handoff.test.mjs");
+    const packet = await runReportHandoffTest({ page: local.page, context: local.context,
+      base: offline.base, fixture: offline.fixture, expectedActor: "operator",
+      report: { vehicle: "Honda City", initialYear: 2022, correctedYear: 2021 } });
+    await fs.writeFile(path.join(visuals, "offline-evidence.json"), JSON.stringify(packet, null, 2));
+    await local.page.screenshot({ path: path.join(visuals, "offline-journey.png"), fullPage: true });
+    await local.context.close();
+    console.log("PASS: documented offline launcher, fresh state, no sign-in, matching fictional Honda City report, durable review/revision/reload and downloaded evidence. Zero provider calls.");
+    passed = true;
+  } else if (process.argv.includes("--eps-only")) {
     const open = await startServer("open");
     const local = await isolatedPage(open.base);
     await fs.mkdir(visuals, { recursive: true });

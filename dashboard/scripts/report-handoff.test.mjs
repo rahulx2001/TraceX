@@ -3,14 +3,17 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { expect } from "@playwright/test";
 
-export async function runReportHandoffTest({ page, context, base, fixture, expectedActor = "browser-test-supervisor" }) {
-  await page.goto(`${base}/ui/#call`);
+export async function runReportHandoffTest({ page, context, base, fixture, expectedActor = "browser-test-supervisor",
+  report = { vehicle: "Toyota Camry", initialYear: 2019, correctedYear: 2018 } }) {
+  await page.goto(`${base}/ui/#demo`);
+  await page.getByRole("button", { name: "Start a report →", exact: true }).click();
   const startResponse = page.waitForResponse(r => r.url().includes("/api/interactions/start?") && r.request().method() === "POST");
   await page.getByRole("button", { name: "Type instead", exact: true }).click();
   const started = await startResponse;
   assert.equal(started.status(), 200);
   const interaction = await started.json();
-  const reports = ["Yes, I consent.", "My 2019 Toyota Camry knocks over bumps", "No fire", "No, I said model year 2018, not 2019"];
+  const reports = ["Yes, I consent.", `My ${report.initialYear} ${report.vehicle} knocks over bumps`, "No fire",
+    `No, I said model year ${report.correctedYear}, not ${report.initialYear}`];
   for (const text of reports) {
     await page.getByRole("textbox", { name: "Type a reply or correction" }).fill(text);
     await expect(page.getByRole("button", { name: "Send", exact: true })).toBeEnabled({ timeout: 15000 });
@@ -50,7 +53,7 @@ export async function runReportHandoffTest({ page, context, base, fixture, expec
   // Exercise durable review → revision in the same real backend path, even
   // without inference. This proves correction context/lineage, not AI quality.
   await page.getByLabel("Draft decision", { exact: true }).selectOption("needs_correction");
-  const correction = "Fictional operator review: make the denial and corrected model year 2018 explicit.";
+  const correction = `Fictional operator review: make the denial and corrected model year ${report.correctedYear} explicit.`;
   await page.getByLabel("Evidence review note", { exact: true }).fill(correction);
   await page.getByLabel("I reviewed the original sources and the draft interpretations.").check();
   const correctionReview = page.waitForResponse(r => r.url().endsWith(`/${draft.run_id}/review`) && r.request().method() === "POST");
@@ -67,6 +70,16 @@ export async function runReportHandoffTest({ page, context, base, fixture, expec
   assert.deepEqual(revised.report_sources, draft.report_sources);
   assert.equal(revised.model_calls, 0);
   await expect(page.getByText(`Linked revision of ${draft.run_id}.`, { exact: false })).toBeVisible();
+  const historyUrl = `${base}/api/safety-campaigns/${fixture.campaign_id}/investigations`;
+  const beforeReload = await (await context.request.get(historyUrl)).json();
+  await page.reload();
+  await page.getByLabel("Recorded investigations", { exact: true }).selectOption(revised.run_id);
+  await expect(page.getByTestId("investigation-result")).toContainText(`Linked revision of ${draft.run_id}.`);
+  const afterReload = await (await context.request.get(historyUrl)).json();
+  assert.deepEqual(afterReload.runs.map(r => r.run_id), beforeReload.runs.map(r => r.run_id),
+    "reloading must not create another investigation");
+  assert.deepEqual(afterReload.runs.find(r => r.run_id === revised.run_id), revised,
+    "the saved revision must survive reload without repeating inference");
   await page.getByLabel("Draft decision", { exact: true }).selectOption("accepted_for_investigation");
   await page.getByLabel("Evidence review note", { exact: true }).fill("Fictional browser test: checked original stored turns, including the model-year correction. No mechanical finding asserted.");
   await page.getByLabel("I reviewed the original sources and the draft interpretations.").check();
@@ -86,5 +99,6 @@ export async function runReportHandoffTest({ page, context, base, fixture, expec
   assert.deepEqual(exported.report_sources[0].source_ref, original.source_ref);
   assert.equal(exported.review.actor, expectedActor);
   for (const text of reports) assert.equal(exported.report_sources[0].sentences.filter(s => s.quote === text).length, 1);
-  console.log(`PASS: real local text contact → punctuation-free citable turns → reviewed source-reference handoff → manual fallback → stored correction → linked revision → authorized review (${expectedActor}) → downloaded original/revised packet. No mocked transport, model or real-audio claim.`);
+  console.log(`PASS: demo entry → real local text contact → citable turns → source-reference handoff → manual fallback → stored correction → linked revision → reload without duplicate inference → authorized review (${expectedActor}) → downloaded original/revised packet. No mocked transport, model or real-audio claim.`);
+  return packet;
 }

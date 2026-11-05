@@ -52,15 +52,18 @@ the distinction from regenerating raw data or embeddings.
 
 ## Run the product
 
-The [README quickstart](README.md#start-a-local-pilot) installs the application
-and dashboard. For the isolated fictional LotGuard walkthrough:
+The [offline quickstart](README.md#try-the-offline-demo) installs Python
+dependencies and builds the dashboard from a fresh checkout. For the isolated
+fictional LotGuard walkthrough:
 
 ```bash
 .venv/bin/python scripts/run_lotguard_demo.py --offline
 ```
 
-Open `http://127.0.0.1:8770/ui/#cases` and select **LOT ALERT**. Follow the
-[complete walkthrough](LOTGUARD_DEMO_WALKTHROUGH.md). Offline mode disables
+Open `http://127.0.0.1:8770/ui/#demo` to enter a typed report and follow it through
+manual review and evidence export; see the [first-run guide](docs/getting-started.md).
+For the prepared case, open `http://127.0.0.1:8770/ui/#cases` and select **LOT ALERT**.
+Follow the [complete walkthrough](LOTGUARD_DEMO_WALKTHROUGH.md). Offline mode disables
 providers. The [authenticated judge setup](HACKATHON.md#run-the-judge-demo)
 provides the separate Report → Investigate → Review → Evidence entry.
 Live Muse Spark operations require your own server-side provider key and
@@ -75,7 +78,8 @@ quality, field effectiveness or independent human grading.
 
 | Published result | Scope |
 |---|---|
-| 246/300 = 82.0%, macro-F1 0.514 | Historical classifier result against Round 4 adjudicated gold; reviewer blinding is unconfirmed |
+| 246/300 = 82.0%, macro-F1 0.514 | Active historical Round 4 result; 43 AI-assisted adjudications are human-countersigned, reviewer blinding unconfirmed |
+| 222/300 = 74.0% always-`other_unclear`; 60/78 = 76.9% classifier accuracy on specific labels | Baseline and class-balance context for the same 300-record sample |
 | 238/300 = 79.3%, six missing predictions retained | Grounded challenger against that gold; rejected |
 | 5/8 campaign matches; 6/18 mature-alert matches | Historical fuel experiment, equal to the count baseline; not promoted |
 | 0 real-participant tasks; time/quality benefit unavailable | The live user study remains pending; [pilot plan](docs/pilot-validation.md) is ready |
